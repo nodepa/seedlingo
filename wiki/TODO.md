@@ -1,0 +1,30 @@
+- [ ] Architect the infrastructure
+  - How to PWA
+    - Front-end - Serve One-Page-App
+      - Infrastruture
+        - S3
+        - CDN like Cloudflare
+        - Firebase-based service?
+      - Framework
+        - React
+        - Vue
+        - Other?
+      - Test
+        - Jest
+        - Cypress
+        - CI/CD
+    - Backend - API
+      - Infrastructure
+        - Serverless
+        - Docker
+        - Firebase
+      - Framework
+        - GraphQL
+      - Test
+        - CI/CD
+- [ ] Basic test deploy
+- [ ] Iterate
+  - Design
+  - Test
+  - Implement
+  - Deploy
