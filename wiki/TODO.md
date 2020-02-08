@@ -1,6 +1,6 @@
 - [ ] Architect the infrastructure
   - How to PWA
-    - Front-end - Serve One-Page-App
+    - Front-end - Serve Single-Page App (SPA)
       - Infrastruture
         - S3
         - CDN like Cloudflare
