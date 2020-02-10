@@ -1,12 +1,18 @@
 # Front end
 
-### PWA with Framework
-* [How to build a React PWA](https://blog.bitsrc.io/how-to-build-a-react-progressive-web-application-pwa-b5b897df2f0a)
-* [@vue/cli-plugin-pwa](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa) - CLI plugin to generate a Vue.js PWA template.
-* [Creating your first Vue.js PWA project](https://medium.com/the-web-tub/creating-your-first-vue-js-pwa-project-22f7c552fb34)
-* [PWA, Vue, Webpack, Material Design](https://www.sicara.ai/blog/2017-04-25-progressive-web-application-with-vue-js-webpack-material-design)
+### PWA
+* [A Gentle and Practical Introduction to PWA](https://www.telerik.com/blogs/a-gentle-and-practical-introduction-to-progressive-web-apps)
+* [Google on PWA](https://developers.google.com/web/progressive-web-apps/)
 
-### Responsive etc
+### PWA with Framework
+* React.js
+  * [How to build a React PWA](https://blog.bitsrc.io/how-to-build-a-react-progressive-web-application-pwa-b5b897df2f0a)
+* Vue.js
+  * [Building PWAs with vue.js](https://www.telerik.com/blogs/building-pwas-with-vuejs) - Basic CLI setup and Auditing
+  * [PWA, Vue, Webpack, Material Design](https://www.sicara.ai/blog/2017-04-25-progressive-web-application-with-vue-js-webpack-material-design) - complete minimalistic app 
+  * [Creating your first Vue.js PWA project](https://medium.com/the-web-tub/creating-your-first-vue-js-pwa-project-22f7c552fb34)
+
+### Mobile web app
 * [W3C CSS Mobile](https://www.w3schools.com/w3css/w3css_mobile.asp)
 * [Viewport units on mobile](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/)
 * [Responsibe Web Design Basics](https://developers.google.com/web/fundamentals/design-and-ux/responsive#responsive-web-design)
@@ -67,6 +73,11 @@ Containers?
 
 
 # Infrastructure
+Babel
+SASS
+Typescript?
+Unit testing
+E2E testing
 CI/CD: Jenkins in containers?
 
 
