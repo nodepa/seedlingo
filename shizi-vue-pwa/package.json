@@ -1,9 +1,10 @@
 {
-  "name": "shizi-vue-pwa",
+  "name": "vp-LiAiShiZi",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serves": "vue-cli-service serve --https -s build",
     "build": "vue-cli-service build"
   },
   "dependencies": {
@@ -18,5 +19,17 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "vue": {
+    "devServer": {
+      "compress": true
+    },
+    "pwa": {
+      "name": "立爱识字vp",
+      "manifestOptions": {
+        "name": "立爱识字vp",
+        "short_name": "立爱识字vp"
+      }
+    }
+  }
 }
