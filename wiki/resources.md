@@ -3,6 +3,7 @@
 ### PWA
 * [A Gentle and Practical Introduction to PWA](https://www.telerik.com/blogs/a-gentle-and-practical-introduction-to-progressive-web-apps)
 * [Google on PWA](https://developers.google.com/web/progressive-web-apps/)
+* [Mozilla: PWA - Add to home screen](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen)
 
 ### PWA with Framework
 * React.js
@@ -11,6 +12,8 @@
   * [Building PWAs with vue.js](https://www.telerik.com/blogs/building-pwas-with-vuejs) - Basic CLI setup and Auditing
   * [PWA, Vue, Webpack, Material Design](https://www.sicara.ai/blog/2017-04-25-progressive-web-application-with-vue-js-webpack-material-design) - complete minimalistic app 
   * [Creating your first Vue.js PWA project](https://medium.com/the-web-tub/creating-your-first-vue-js-pwa-project-22f7c552fb34)
+  * [SPA on AWS S3 Part 1](https://medium.com/@P_Lessing/single-page-apps-on-aws-part-1-hosting-a-website-on-s3-3c9871f126)
+  * [Using AWS CloudFront to serve an SPA from S3](https://johnlouros.com/blog/using-CloudFront-to-serve-an-SPA-from-S3)
 
 ### Mobile web app
 * [W3C CSS Mobile](https://www.w3schools.com/w3css/w3css_mobile.asp)
