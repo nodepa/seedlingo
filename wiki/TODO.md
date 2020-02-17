@@ -1,28 +1,35 @@
-- [ ] Architect the infrastructure
-  - How to PWA
-    - Front-end - Serve Single-Page App (SPA)
-      - Infrastruture
-        - S3
-        - CDN like Cloudflare
-        - Firebase-based service?
-      - Framework
-        - React
-        - Vue
-        - Other?
-      - Test
-        - Jest
-        - Cypress
-        - CI/CD
-    - Backend - API
-      - Infrastructure
-        - Serverless
-        - Docker
-        - Firebase
-      - Framework
-        - GraphQL
-      - Test
-        - CI/CD
+- [ ] Settle architecture of the infrastructure
+  - Front-end - PWA SPA (Single-Page Application)
+    - Infrastruture
+      - [X] AWS S3
+      - [X] AWS CloudFront
+      - [X] Cloudflare CDN (cache redirects to AWS CloudFront)
+    - Framework
+      - React (trialing)
+      - Vue (trialing)
+      - Other?
+    - Test
+      - [ ] Jest (unit)
+      - [ ] Cypress (e2d)
+      - [ ] CI/CD
+  - Backend - API on serverless or containers
+    - Infrastructure
+      - [ ] Serverless
+      - [ ] Docker
+    - Framework
+      - [ ] GraphQL
+    - Test
+      - Jest (unit, API)
+      - Cypress (e2e)
+      - CI/CD
 - [ ] Basic test deploy
+  - [X] Git repo for tracking
+  - [ ] Dev env with manual test, unit test and e2e test
+    - [X] Front-end/statics
+    - [ ] API (serverless framework or containers?)
+  - [ ] CI/CD
+  - [X] Deployment to S3 of statics
+  - [ ] Deployment to serverless or containers of API
 - [ ] Iterate
   - Design
   - Test
