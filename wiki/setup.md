@@ -12,10 +12,11 @@
   * `yarn global add @vue/cli`
 * Generate apps
   * `create-react-app shizi-react`
-  * `vue init pwa shizi-vue-full`
+  * `vue create shizi-vue-full`
 * Edit manifest
   * `vi shizi-react/public/manifest.json`
   * `vi shizi-vue-full/packages.json` and add a `"vue.pwa.manifestOptions"`-section.
+* To test locally, serve with https (`yarn serve -s build --https`) (Chrome only treats it as PWA if served over https)
 
 ## Deploy to S3
 * A) [SPA on AWS part 1 - Hosting a website on S3](https://medium.com/@P_Lessing/single-page-apps-on-aws-part-1-hosting-a-website-on-s3-3c9871f126)
