@@ -1,18 +1,18 @@
 - [ ] Settle architecture of the infrastructure
-  - Front-end - PWA SPA (Single-Page Application)
+  - Front end - PWA SPA (Single-Page Application)
     - Infrastruture
       - [X] AWS S3
       - [X] AWS CloudFront
       - [X] Cloudflare CDN (cache redirects to AWS CloudFront)
     - Framework
-      - React (trialing)
-      - Vue (trialing)
-      - Other?
+      - [ ] React (trialing)
+      - [ ] Vue (trialing)
+      - [ ] Other?
     - Test
       - [ ] Jest (unit)
       - [ ] Cypress (e2d)
       - [ ] CI/CD
-  - Backend - API on serverless or containers
+  - API-back end - API on serverless or containers
     - Infrastructure
       - [ ] Serverless
       - [ ] Docker
