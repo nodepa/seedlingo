@@ -1,10 +1,10 @@
 {
-  "name": "立爱识字r",
-  "short_name": "立爱识字r",
+  "name": "r立爱识字",
+  "short_name": "r立爱识字",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "64x64 32x32 16x16",
       "type": "image/x-icon"
     },
     {

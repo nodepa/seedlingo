@@ -4,10 +4,10 @@ I'm trying out creating PWAs with both React and Vue.
 
 ## React
 
-Scaffolded with `create-react-app`.
+Scaffolded with `create-react-app react`[*](https://create-react-app.dev/docs/getting-started).
 
 ## Vue
-Scaffold a full blown SPA with PWA traits with `vue create vue` + "Manually select features", manually selecting ALL options.
+Scaffold a full blown SPA with PWA traits with `vue create vue`[*](https://cli.vuejs.org/guide/creating-a-project.html) + "Manually select features", manually selecting ALL options.
 * Please pick a preset: Manually select features
 * Check the features needed for your project: Babel, TS, PWA, Router, Vuex, CSS Pre-processors, Linter, Unit, E2E
   * Babel - use because with template it just works, so can ignore or make use of as sees fit.
@@ -29,6 +29,8 @@ Scaffold a full blown SPA with PWA traits with `vue create vue` + "Manually sele
   * Pick a unit testing solution: Jest
   * Pick a E2E testing solution: Cypress
   * Where do you prefer placing config for Babel, ESLint, etc.? In package.json
+* Additional
+  * Add a `"vue.pwa.manifestOptions"`-section to `vi shizi-vue-full/packages.json`
 
 ## Front end technologies
 
