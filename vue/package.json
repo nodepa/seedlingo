@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "serves": "vue-cli-service serve --https -s build",
+    "servebuild": "vue-cli-service build --modern && http-server ./dist -g -b # --ssl --cert ../selfssl.crt --key ../selfssl.key",
     "build": "vue-cli-service build --modern",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
