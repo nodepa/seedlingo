@@ -8,6 +8,7 @@
 ### PWA with Framework
 * React.js
   * [How to build a React PWA](https://blog.bitsrc.io/how-to-build-a-react-progressive-web-application-pwa-b5b897df2f0a)
+  * [PWA with Ract.js: Part I](https://medium.com/@addyosmani/progressive-web-apps-with-react-js-part-i-introduction-50679aef2b12)
 * Vue.js
   * [Building PWAs with vue.js](https://www.telerik.com/blogs/building-pwas-with-vuejs) - Basic CLI setup and Auditing
   * [PWA, Vue, Webpack, Material Design](https://www.sicara.ai/blog/2017-04-25-progressive-web-application-with-vue-js-webpack-material-design) - complete minimalistic app 
