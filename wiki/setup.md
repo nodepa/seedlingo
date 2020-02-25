@@ -48,3 +48,12 @@ Combined these two articles give this confirmed procedure:
     * 403, custom yes, /index.html, 200 OK **!! This last one is important !!**
 * A) Step 6 - Redirect Domain at CloudFlare
   * As described: Add CNAME subdomain to AWS CloudFront domain name.
+
+## Deploy to AWS Amplify
+* Generate front end app as described above
+* Follow AWS Amplify's [Getting Started](https://docs.aws.amazon.com/amplify/latest/userguide/getting-started.html)
+* [Set up custom domain](https://docs.aws.amazon.com/amplify/latest/userguide/custom-domains.html)
+* [Configure build settings](https://docs.aws.amazon.com/amplify/latest/userguide/build-settings.html)
+* [Configure redirects](https://docs.aws.amazon.com/amplify/latest/userguide/redirects.html)
+* [Configure testing](https://docs.aws.amazon.com/amplify/latest/userguide/running-tests.html)
+* [Restrict access](https://docs.aws.amazon.com/amplify/latest/userguide/access-control.html)
