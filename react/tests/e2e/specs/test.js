@@ -3,6 +3,7 @@
 describe('My First Test', () => {
   it('Visits the app root url', () => {
     cy.visit('/')
-    cy.contains('h1', '立爱识字 on Vue.js')
+    cy.contains('h1', '立爱识字 on React.js')
   })
 })
+
