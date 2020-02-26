@@ -2,8 +2,10 @@
 node_modules
 /dist
 
+# Tests
 /tests/e2e/videos/
 /tests/e2e/screenshots/
+/tests/e2e/spexamples/
 
 # local env files
 .env.local
