@@ -1,7 +1,17 @@
 {
-  "name": "r-LiAiShiZi",
+  "name": "liaishizi-react",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start":      "react-scripts start",
+    "starts":     "HTTPS=true react-scripts start",
+    "build":      "react-scripts build",
+    "servebuild": "http-server ./build --gzip --brotli",
+    "servebuild#comment": "'-g/-b'=gzip/brotli compression, '--ssl --cert ../cert/selfssl.crt --key ../cert/selfssl.key'=https",
+    "test:unit":  "react-scripts test",
+    "test:e2e":   "http-server ./build -c-1 --silent --gzip --brotli & wait-on http://localhost:8080 & cypress run --headless",
+    "eject":      "react-scripts eject"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -10,13 +20,10 @@
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.1"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "starts": "HTTPS=true react-scripts start",
-    "servebuild": "react-scripts build && http-server ./build -g -b # --ssl --cert ../selfssl.crt --key ../selfssl.key",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "cypress": "^4.0.2",
+    "http-server": "^0.12.1",
+    "wait-on": "^4.0.0"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,8 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "http-server": "^0.12.1"
   }
 }
