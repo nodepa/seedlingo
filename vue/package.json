@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "serves": "vue-cli-service serve --https -s build",
-    "servebuild": "vue-cli-service build --modern && http-server ./dist -g -b # --ssl --cert ../selfssl.crt --key ../selfssl.key",
-    "build": "vue-cli-service build --modern",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "start":      "vue-cli-service serve",
+    "starts":     "vue-cli-service serve --https",
+    "build":      "vue-cli-service build --modern",
+    "servebuild": "vue-cli-service http-server --gzip --brotli ./dist",
+    "servebuild#comment": "'-g/-b'=gzip/brotli compression, '--ssl --cert ../cert/selfssl.crt --key ../cert/selfssl.key'=https",
+    "test:unit":  "vue-cli-service test:unit",
+    "test:e2e":   "vue-cli-service test:e2e --headless",
+    "lint":       "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.4",
