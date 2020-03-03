@@ -1,0 +1,154 @@
+{
+  "vim.easymotion": true,
+  "vim.sneak": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "d"
+      ],
+      "after": [
+        "d",
+        "d"
+      ]
+    },
+    {
+      "before": [
+        "<C-n>"
+      ],
+      "commands": [
+        ":nohl"
+      ]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-v>": false,
+    "<C-k>": false,
+    "<C-f>": false
+  },
+  "vim.sneakReplacesF": true,
+  "vim.neovimPath": "/usr/bin/nvim",
+  "vim.enableNeovim": true,
+  "vim.textwidth": 80,
+  "editor.wordWrapColumn": 80,
+  //trying out wordwrap from https://stackoverflow.com/a/45763713
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wrappingIndent": "same",
+  "editor.minimap.enabled": true,
+  "breadcrumbs.enabled": true,
+  "editor.renderControlCharacters": false,
+  "workbench.startupEditor": "welcomePage",
+  "markdown.extension.preview.autoShowPreviewToSide": true,
+  "markdown.extension.toc.githubCompatibility": true,
+  "markdown.extension.list.indentationSize": "inherit",
+  "markdownlint.config": {
+    "MD012": false, //no-multiple-blanks
+    "MD014": false, //commands-show-output
+    "MD033": false, //no-inline-html
+    "MD041": false //first-line-heading
+  },
+  "markdown.extension.toc.levels": "1..2",
+  "editor.tabSize": 2,
+  "languageStylus.useSeparator": false,
+  "typescript.surveys.enabled": false,
+  "cSpell.userWords": [
+    "Arial",
+    "Avenir",
+    "Docker's",
+    "Gemfile",
+    "Helvetica",
+    "Linode",
+    "MAILCHIMP",
+    "MAILGUN",
+    "PWAs",
+    "activeallservices",
+    "backgrounded",
+    "bottomnavigationbar",
+    "brotli",
+    "browserslist",
+    "busybox",
+    "camelcase",
+    "chmod",
+    "chown",
+    "comms",
+    "conferencejoy",
+    "conjoy",
+    "creds",
+    "dbstorage",
+    "enmod",
+    "ensite",
+    "entrypoint",
+    "esnext",
+    "fontface",
+    "fullscreen",
+    "fullscreening",
+    "genass",
+    "grayscale",
+    "greenlight",
+    "initdb",
+    "liaishizi",
+    "logrotate",
+    "macos",
+    "mariadb",
+    "materialdesignicons",
+    "millis",
+    "msapplication",
+    "nslookup",
+    "omniauth",
+    "printenv",
+    "roboto",
+    "rspec",
+    "runningallservices",
+    "scripthost",
+    "selfssl",
+    "servebuild",
+    "sidekiq",
+    "somedefault",
+    "somevalue",
+    "unsetting",
+    "userid",
+    "vuetify",
+    "vuex",
+    "webfonts",
+    "webhook"
+  ],
+  "html.format.wrapLineLength": 80,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "window.zoomLevel": 0,
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.packageManager": "yarn",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "emmet.includeLanguages": {
+    "vue": "html",
+    "vue-html": "html"
+  },
+  "typescript.validate.enable": false,
+  "javascript.validate.enable": false,
+  "vetur.useWorkspaceDependencies": true
+}
