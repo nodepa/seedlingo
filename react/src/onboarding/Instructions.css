@@ -1,0 +1,15 @@
+.Instructions-button {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  width: 20vh;
+  height: 20vh;
+  border-radius: 100%;
+  background-color: #1C9BF7;
+}
+
+.Instructions-button path {
+  transform: scale(0.8) translate(3px, 4px);
+  fill: #FFF;
+}
