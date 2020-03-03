@@ -1,0 +1,42 @@
+version: 0.1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - cd vue
+        - pwd
+    build:
+      commands:
+        - yarn install
+        - yarn build
+  artifacts:
+    baseDirectory: vue/dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - vue/node_modules/**/*
+test:
+  phases:
+    preTest:
+      commands:
+        - cd vue
+        - yarn install --pure-lockfile
+        - yarn add mocha mochawesome mochawesome-merge mochawesome-report-generator
+    test:
+      commands:
+        - 'yarn test:unit:once'
+        - 'yarn test:e2e --reporter mochawesome --reporter-options "reportDir=tests/e2e/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
+    postTest:
+      commands:
+        - yarn -s mochawesome-merge tests/e2e/report/mochawesome-report/mochawesome*.json > tests/e2e/report/mochawesome.json
+  artifacts:
+    baseDirectory: vue/tests/e2e
+    configFilePath: '**/mochawesome.json'
+    files:
+      - '**/*.png'
+      - '**/*.mp4'
+  cache:
+    paths:
+      - vue/node_modules/**/*
+
