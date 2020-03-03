@@ -1,17 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>v立爱识字<%//= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link rel="icon" type="image/png" sizes="196x196" href="logo/favicon-196.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="logo/apple-icon-180.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="logo/apple-icon-167.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="logo/apple-icon-152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="logo/apple-icon-120.png">
+
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-2048-2732.png"
+    media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-1668-2388.png"
+    media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-1668-2224.png"
+    media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-1536-2048.png"
+    media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-1242-2688.png"
+    media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-1125-2436.png"
+    media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-828-1792.png"
+    media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-1242-2208.png"
+    media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-750-1334.png"
+    media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-640-1136.png"
+    media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-2388-1668.png"
+    media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-2732-2048.png"
+    media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-2224-1668.png"
+    media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-2048-1536.png"
+    media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-2688-1242.png"
+    media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-2436-1125.png"
+    media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-1792-828.png"
+    media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-2208-1242.png"
+    media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-1334-750.png"
+    media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+  <link rel="apple-touch-startup-image" href="logo/apple-splash-1136-640.png"
+    media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+
+  <style>
+    html {
+      overflow-y: auto!important;
+    }
+
+    body {
+      background-color: white;
+    }
+
+    #app:not(:empty)+#loader {
+      display: none;
+    }
+
+    #loader {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      background: linear-gradient(#19D2FE, #1E64F0);
+    }
+
+    #loader svg {
+      position: fixed;
+      top: calc(50vh - 22px);
+      left: 50vw;
+      height: 100vmin;
+      transform: translate(-50%, -50%);
+    }
+
+    .pulse {
+      animation: pulse-animation 2s infinite;
+    }
+
+    .wave {
+      animation: wave-animation 2s infinite;
+      transform-origin: 50% 50%;
+    }
+
+    @keyframes pulse-animation {
+
+      0%,
+      100% {
+        transform: matrix(1, 0, 0, 1, 306, 107)
+      }
+
+      50% {
+        transform: matrix(1.2, 0, 0, 1.2, 306, 107)
+      }
+    }
+
+    @keyframes wave-animation {
+
+      0%,
+      100% {
+        transform: rotate(0)
+      }
+
+      25%,
+      75% {
+        transform: rotate(1deg)
+      }
+
+      50% {
+        transform: rotate(-2deg)
+      }
+    }
+  </style>
+
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+      properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <div id="loader" data-test="loader">
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round"
+      stroke-linejoin="round" stroke-miterlimit="1.5">
+      <path id="paper"
+        d="M153.207 344.592c15.288-4.45 89.887-27.286 102.79-3.67 12.891-23.616 87.5-.78 102.788 3.67l84.89 88.422c-27.904-8.126-164.127-49.822-187.679-6.703-23.552-43.12-159.775-1.423-187.679 6.703l84.89-88.422"
+        fill="#fff" />
+      <path id="base"
+        d="M443.675 433.014c-27.904-10.63-164.127-65.176-187.679-8.769-23.552-56.407-159.775-1.862-187.679 8.769l15.995 17.875c70.093-12.606 122.665-18.847 151.962-8.431.573 11.613 38.8 12.82 39.444 0 29.297-10.416 81.87-4.175 151.952 8.43l16.005-17.874" />
+      <path id="branch-big"
+        d="M822.201 507.132c0-27.953 16.403-66.857 36.421-84.207 28.513-24.714 37.371-29.67 54.122-46.884"
+        fill="none" stroke="#000" stroke-width="5.45"
+        transform="matrix(-1.56512 0 0 1.56385 1545.185 -424.832)" />
+      <path id="leaf-big" class="wave"
+        d="M82.923 90.321s44.835 50.948 81.113 52.7c32.528 1.573 51.92 11.72 64.25 28.987 19.958 27.95 11.076 67.036-1.303 81.366-27.636 31.994-57.25 28.302-77.033 18.39-23.154-11.601-53.475-46.343-60.293-119.73-1.392-14.98-3.985-56.507-6.734-61.713z"
+        fill="#fff" />
+      <path id="branch-sml"
+        d="M829.427 464.516c0-14.916-3.295-20.75-13.703-25.915-16.974-8.422-40.025-35.807-40.025-38.035"
+        fill="none" stroke="#000" stroke-width="5.45"
+        transform="matrix(-1.56512 0 0 1.56385 1554.497 -380.944)" />
+      <path id="leaf-sml" class="wave"
+        d="M371.826 184.555s-20.12 31.39-39.679 35.35c-17.537 3.552-27.227 10.671-32.49 21.072-8.518 16.836-.448 37.329 7.466 44.086 17.668 15.085 33.447 10.624 43.368 3.6 11.613-8.221 25.195-29.606 22.804-70.03-.49-8.252-2.53-31.023-1.469-34.078z"
+        fill="#fff" />
+      <g>
+        <circle class="pulse" cx="0" cy="0" r="38" fill="none" stroke="#fff"
+          stroke-width="8" transform="matrix(1 0 0 1 306 107)" />
+        <circle cx="0" cy="0" r="28" fill="#fff"
+          transform="matrix(1 0 0 1 306 107)" />
+      </g>
+    </svg>
+  </div>
+</body>
+
 </html>
