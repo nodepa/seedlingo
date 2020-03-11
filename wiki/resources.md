@@ -22,6 +22,9 @@
 * [Responsibe Web Design Basics](https://developers.google.com/web/fundamentals/design-and-ux/responsive#responsive-web-design)
 * [Using :focus](https://www.youtube.com/watch?v=Mvu5OMGcdVA&feature=youtu.be&utm_source=Iterable&utm_medium=email&utm_campaign=the_overflow_newsletter&utm_content=11-27-19)
 
+https://www.sitepoint.com/css-viewport-units-quick-start/
+https://medium.com/@susiekim9/how-to-compensate-for-the-ios-viewport-unit-bug-46e78d54af0d
+
 ### Speech-to-text
 * [Web Speech Recognition](https://code-boxx.com/add-speech-recognition-website-javascript/)
 * [Web Speech-to-Text Tutorial](https://tutorialzine.com/2017/08/converting-from-speech-to-text-with-javascript)
@@ -69,10 +72,26 @@
 * [Websocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) - for sockets-to-server comms.
 
 
+### Accessibility
+
+https://medium.com/@matuzo/writing-css-with-accessibility-in-mind-8514a0007939
+
+
+
 
 # Back end
 Serverless?
 Containers?
+
+
+
+# JS
+https://github.com/getify/You-Dont-Know-JS
+
+
+
+# HTML
+https://miro.medium.com/max/3285/1*1d6PpXylYNTGZtMU_q4_Vg.png
 
 
 
@@ -94,3 +113,4 @@ CI/CD: Jenkins in containers?
 
 # Business
 * [Lean Startup Principles](http://theleanstartup.com/principles)
+https://medium.com/s/story/notes-to-myself-on-software-engineering-c890f16f4e4d
