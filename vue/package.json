@@ -90,6 +90,7 @@
     "test:unit:coverage": "vue-cli-service test:unit --coverage",
     "tuo": "yarn test:unit:once",
     "test:unit:once": "vue-cli-service test:unit",
+    "vupdate": "vue --version && yarn global upgrade @vue/cli && vue --version && vue upgrade",
     "verify": "yarn install && yarn lint && yarn test:unit:coverage && yarn test:e2e"
   }
 }
