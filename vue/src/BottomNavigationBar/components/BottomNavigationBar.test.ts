@@ -6,7 +6,16 @@ import BottomNavigationBar from './BottomNavigationBar.vue';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
-const router = new VueRouter();
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+    },
+  ],
+});
 
 describe('BottomNavigationBar.vue (shallow)', () => {
   let vuetify: typeof Vuetify;

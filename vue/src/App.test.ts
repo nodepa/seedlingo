@@ -6,7 +6,16 @@ import App from '@/App.vue';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
-const router = new VueRouter();
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+    },
+  ],
+});
 
 describe('App.vue', () => {
   let vuetify: typeof Vuetify;

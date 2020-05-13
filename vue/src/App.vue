@@ -1,6 +1,10 @@
 <template>
   <v-app data-test="app">
-    <v-app-bar app color="primary" dark>
+    <v-app-bar
+      app
+      color="primary"
+      @click="$vuetify.theme.dark = !$vuetify.theme.dark"
+    >
       <div class="d-flex align-center">
         <v-img
           alt="立爱识字 Logo"
@@ -12,7 +16,7 @@
         />
 
         <span
-          class="shrink mt-1 hidden-sm-and-down"
+          class="shrink mt-1 hidden-sm-and-down white--text"
           min-width="100"
           width="100"
         >
@@ -24,7 +28,7 @@
     <v-content>
       <GetInstructions v-if="showGetInstructionsGraphic" />
       <router-view v-if="!showGetInstructionsGraphic" />
-      <v-overlay v-if="isInstructionsMode" absolute>
+      <v-overlay v-if="isInstructionsMode" z-index="4">
         <h1>INSTRUCTIONS</h1>
       </v-overlay>
     </v-content>
@@ -33,52 +37,30 @@
       :show-get-instructions-graphic.sync="showGetInstructionsGraphic"
       :is-instructions-mode.sync="isInstructionsMode"
     />
-    <!-- :show-instructions="isInstructionsMode"
-      @update:show-instructions="onUpdateShowInstructions" -->
-    <!-- @update:show-instructions="isInstructionsMode = $event" -->
   </v-app>
 </template>
 
 <script lang="ts">
-// @ is an alias to /src
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import BottomNavigationBar from '@/BottomNavigationBar/components/BottomNavigationBar.vue';
-import { mdiHome } from '@mdi/js';
-// import GetInstructionsGraphic from '@/components/graphics/GetInstructionsGraphic.vue';
 import GetInstructions from '@/Instructions/components/GetInstructions.vue';
 
 @Component({
-  name: 'App',
-
   components: {
     BottomNavigationBar,
     GetInstructions,
   },
-
-  data: () => ({
-    isInstructionsMode: false,
-    showGetInstructionsGraphic: true,
-    mdiHome,
-  }),
-
-  // .eslintrc: no-console not allowed in prod
-  // watch: {
-  //   isInstructionsMode() {
-  //     console.log(
-  //       `isInstructionsMode in App changed to: ${this.$data.isInstructionsMode}`,
-  //     );
-  //   },
-  //   showGetInstructionsGraphic() {
-  //     console.log(
-  //       `showGetInstructionsGraphic in App changed to: ${this.$data.showGetInstructionsGraphic}`,
-  //     );
-  //   },
-  // },
-
-  methods: {},
 })
-export default class extends Vue {}
+export default class App extends Vue {
+  // eslint-disable-next-line class-methods-use-this
+  data() {
+    return {
+      isInstructionsMode: false,
+      showGetInstructionsGraphic: true,
+    };
+  }
+}
 </script>
 
 <style lang="stylus" scoped>
