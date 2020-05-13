@@ -68,7 +68,29 @@
   "editor.tabSize": 2,
   "languageStylus.useSeparator": false,
   "typescript.surveys.enabled": false,
-  "cSpell.userWords": [
+  "html.format.wrapLineLength": 80,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "window.zoomLevel": 0,
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.packageManager": "yarn",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "emmet.includeLanguages": {
+    "vue": "html",
+    "vue-html": "html"
+  },
+  "typescript.validate.enable": false,
+  "javascript.validate.enable": false,
+  "vetur.useWorkspaceDependencies": true,
+  "cSpell.words": [
     "Arial",
     "Avenir",
     "Docker's",
@@ -127,28 +149,7 @@
     "vuetify",
     "vuex",
     "webfonts",
-    "webhook"
-  ],
-  "html.format.wrapLineLength": 80,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "window.zoomLevel": 0,
-  "eslint.enable": true,
-  "eslint.format.enable": true,
-  "eslint.alwaysShowStatus": true,
-  "eslint.packageManager": "yarn",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "[markdown]": {
-    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
-  },
-  "emmet.includeLanguages": {
-    "vue": "html",
-    "vue-html": "html"
-  },
-  "typescript.validate.enable": false,
-  "javascript.validate.enable": false,
-  "vetur.useWorkspaceDependencies": true
+    "webhook",
+    "behaviour"
+  ]
 }

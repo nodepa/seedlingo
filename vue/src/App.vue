@@ -43,10 +43,10 @@
 // @ is an alias to /src
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import BottomNavigationBar from '@/components/BottomNavigationBar.vue';
+import BottomNavigationBar from '@/BottomNavigationBar/components/BottomNavigationBar.vue';
 import { mdiHome } from '@mdi/js';
 // import GetInstructionsGraphic from '@/components/graphics/GetInstructionsGraphic.vue';
-import GetInstructions from '@/components/GetInstructions.vue';
+import GetInstructions from '@/Instructions/components/GetInstructions.vue';
 
 @Component({
   name: 'App',
