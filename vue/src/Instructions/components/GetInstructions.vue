@@ -6,6 +6,7 @@
           class="get-instructions-graphic"
           height="60vh"
         />
+        <audio autoplay :src="getInstructionsAudioPath" />
       </v-col>
     </v-row>
   </v-container>
@@ -13,6 +14,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import getInstructionsAudioPath from '@/assets/audio/get-instructions.mp3';
 import GetInstructionsGraphic from './GetInstructionsGraphic.vue';
 
 @Component({
@@ -20,7 +22,14 @@ import GetInstructionsGraphic from './GetInstructionsGraphic.vue';
     GetInstructionsGraphic,
   },
 })
-export default class GetInstructions extends Vue {}
+export default class GetInstructions extends Vue {
+  // eslint-disable-next-line class-methods-use-this
+  data() {
+    return {
+      getInstructionsAudioPath,
+    };
+  }
+}
 </script>
 
 <style lang="stylus">
