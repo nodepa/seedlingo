@@ -56,7 +56,10 @@
     "setupFilesAfterEnv": [
       "./tests/unit/jest.setup.js"
     ],
-    "testMatch": [ "**/?(*.)+(test).ts" ]
+    "testMatch": [ "**/?(*.)+(test).ts" ],
+    "moduleNameMapper": {
+      "\\.mp3$": "<rootDir>/tests/unit/__mocks__/mp3Mock.js"
+    }
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

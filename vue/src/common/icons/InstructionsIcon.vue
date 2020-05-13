@@ -19,6 +19,6 @@ export default { name: 'InstructionsIcon' };
 </script>
 
 <style lang="stylus" scoped>
-svg
+path
   fill currentColor
 </style>
