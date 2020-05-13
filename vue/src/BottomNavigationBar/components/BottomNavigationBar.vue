@@ -1,6 +1,6 @@
 <template>
   <v-bottom-navigation app grow dark background-color="primary">
-    <v-btn data-test="home-button" :disabled="disableHome" icon to="/">
+    <v-btn data-test="home-button" :disabled="isHomeButtonDisabled" icon to="/">
       <v-icon x-large>{{ mdiHome }}</v-icon>
     </v-btn>
     <v-btn
@@ -24,7 +24,7 @@ export default class BottomNavigationBar extends Vue {
   data() {
     return {
       mdiHome,
-      disableHome: true,
+      isHomeButtonDisabled: true,
     };
   }
 
@@ -40,8 +40,8 @@ export default class BottomNavigationBar extends Vue {
       // this.$emit('update:show-get-instructions-graphic', false);
       this.syncedShowGetInstructionsGraphic = false;
     }
-    if (this.$data.disableHome) {
-      this.$data.disableHome = false;
+    if (this.$data.isHomeButtonDisabled) {
+      this.$data.isHomeButtonDisabled = false;
     }
 
     // Toggle isInstructionsMode

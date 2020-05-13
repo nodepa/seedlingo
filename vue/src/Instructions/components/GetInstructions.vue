@@ -4,7 +4,7 @@
       <v-col fill-height>
         <GetInstructionsGraphic
           class="get-instructions-graphic"
-          height="70vh"
+          height="60vh"
         />
       </v-col>
     </v-row>
@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import GetInstructionsGraphic from '@/components/graphics/GetInstructionsGraphic.vue';
+import GetInstructionsGraphic from './GetInstructionsGraphic.vue';
 
 @Component({
   components: {
