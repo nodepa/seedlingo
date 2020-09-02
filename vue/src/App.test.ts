@@ -1,11 +1,16 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { createLocalVue, mount } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
+import Vuex from 'vuex';
+import store from '@/store';
+import InstructionDirective from '@/common/directives/InstructionDirective';
 
 import App from '@/App.vue';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
+localVue.use(Vuex);
+localVue.use(InstructionDirective);
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -34,6 +39,7 @@ describe('App.vue', () => {
         router,
         vuetify,
         stubs: ['router-view'],
+        store,
       });
 
       // Initially, the get-instructions graphic is shown
@@ -54,6 +60,7 @@ describe('App.vue', () => {
       localVue,
       router,
       vuetify,
+      store,
     });
 
     expect(wrapper.find('.v-bottom-navigation').exists()).toBe(true);

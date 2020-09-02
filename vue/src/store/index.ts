@@ -1,11 +1,20 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
+import Vuex, { StoreOptions } from 'vuex';
+import { RootState } from './types';
+import instructionsStore from './InstructionsStore';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {},
+const rootStore: StoreOptions<RootState> = {
+  strict: process.env.NODE_ENV !== 'production',
+  state: {
+    version: '1.0.0',
+  },
   mutations: {},
   actions: {},
-  modules: {},
-});
+  modules: {
+    instructionsStore,
+  },
+};
+
+export default new Vuex.Store(rootStore);

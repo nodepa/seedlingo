@@ -11,12 +11,6 @@ const routes = [
     component: () => import('@/views/Home.vue'),
   },
   {
-    path: '/hello',
-    name: 'HelloWorld',
-    component: () =>
-      import(/* webpackChunkName: "hello" */ '@/examples/HelloWorld.vue'),
-  },
-  {
     path: '/about',
     name: 'About',
     // route level code-splitting
@@ -24,6 +18,37 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ '@/views/About.vue'),
+  },
+  // examples
+  {
+    path: '/hello',
+    name: 'HelloWorld',
+    component: () =>
+      import(/* webpackChunkName: "hello" */ '@/examples/HelloWorld.vue'),
+  },
+  {
+    path: '/instr-mix',
+    name: 'InstrMix',
+    component: () =>
+      import(
+        /* webpackChunkName: "test-instr-mix" */ '@/examples/TestInstructionsMixin.vue'
+      ),
+  },
+  {
+    path: '/instr-play',
+    name: 'InstrPlay',
+    component: () =>
+      import(
+        /* webpackChunkName: "test-instr-play" */ '@/examples/TestInstructionsPlayer.vue'
+      ),
+  },
+  {
+    path: '/instr-wrap',
+    name: 'InstrWrap',
+    component: () =>
+      import(
+        /* webpackChunkName: "test-instr-wrap" */ '@/examples/TestInstructionsWrapper.vue'
+      ),
   },
 ];
 

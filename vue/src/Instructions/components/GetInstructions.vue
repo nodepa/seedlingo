@@ -2,10 +2,7 @@
   <v-container data-test="get-instructions-component" fill-height fluid>
     <v-row align="center" justify="center">
       <v-col fill-height>
-        <GetInstructionsGraphic
-          class="get-instructions-graphic"
-          height="60vh"
-        />
+        <GetInstructionsGraphic class="get-instructions-graphic" />
         <audio autoplay :src="getInstructionsAudioPath" />
       </v-col>
     </v-row>
@@ -14,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import getInstructionsAudioPath from '@/assets/audio/get-instructions.mp3';
+import getInstructionsAudioPath from '@/assets/audio/welcome.mp3';
 import GetInstructionsGraphic from './GetInstructionsGraphic.vue';
 
 @Component({
@@ -33,6 +30,10 @@ export default class GetInstructions extends Vue {
 </script>
 
 <style lang="stylus">
+.get-instructions-graphic
+  height 70vh
+  max-width 100%
+
 .get-instructions-graphic g
   animation touch 3s linear infinite
 
