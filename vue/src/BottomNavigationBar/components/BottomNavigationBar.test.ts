@@ -1,11 +1,28 @@
-import { shallowMount, mount, createLocalVue, Wrapper } from '@vue/test-utils';
+import Vue from 'vue';
+import { createLocalVue, Wrapper, mount } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
+import Vuex from 'vuex';
+import store from '@/store';
+import InstructionDirective from '@/common/directives/InstructionDirective';
 
 import BottomNavigationBar from './BottomNavigationBar.vue';
 
+window.HTMLMediaElement.prototype.play = (): Promise<void> => {
+  return new Promise(() => {
+    /* do nothing */
+  });
+};
+window.HTMLMediaElement.prototype.pause = (): void => {
+  /* do nothing */
+};
+
+Vue.use(Vuetify);
+
 const localVue = createLocalVue();
 localVue.use(VueRouter);
+localVue.use(Vuex);
+localVue.use(InstructionDirective);
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -17,21 +34,26 @@ const router = new VueRouter({
   ],
 });
 
-describe('BottomNavigationBar.vue (shallow)', () => {
+const homeButton = '[data-test="home-button"]';
+const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
+const instructionsIcon = '[data-test="instructions-icon"]';
+const instructionsCloseIcon = '[data-test="instructions-close-icon"]';
+
+describe('BottomNavigationBar.vue (deep)', () => {
   let vuetify: typeof Vuetify;
   let wrapper: Wrapper<Vue>;
 
   beforeEach(() => {
+    store.dispatch('instructionsStore/resetState');
     vuetify = new Vuetify();
-    // wrapper = mount(BottomNavigationBar, {
-    wrapper = shallowMount(BottomNavigationBar, {
+    wrapper = mount(BottomNavigationBar, {
       localVue,
       router,
       vuetify,
       propsData: {
         showGetInstructionsGraphic: true,
-        isInstructionsMode: false,
       },
+      store,
     });
   });
 
@@ -46,53 +68,28 @@ describe('BottomNavigationBar.vue (shallow)', () => {
     });
 
     it('renders a go home button and a toggle instructions button', () => {
-      expect(wrapper.find('[data-test="home-button"]').exists()).toBe(true);
-      expect(
-        wrapper.find('[data-test="toggle-instructions-button"]').exists(),
-      ).toBe(true);
+      expect(wrapper.find(homeButton).exists()).toBe(true);
+      expect(wrapper.find(toggleInstructionsButton).exists()).toBe(true);
     });
   });
 
   // Elements have initial states
   describe('home-button', () => {
     it('is disabled on first load', () => {
-      expect(wrapper.find('[data-test="home-button"]').props().disabled).toBe(
-        true,
-      );
+      expect(wrapper.find(homeButton).props().isHomeButtonDisabled).toBe(true);
+      expect(
+        wrapper.find(homeButton).element.classList.contains('v-btn--disabled'),
+      ).toBe(true);
     });
     it('links to home', () => {
-      expect(wrapper.find('[data-test="home-button"]').vm.$route.path).toBe(
-        '/',
-      );
+      expect(wrapper.find(homeButton).vm.$route.path).toBe('/');
     });
-  });
-});
-
-describe('BottomNavigationBar.vue (deep)', () => {
-  let vuetify: typeof Vuetify;
-  let wrapper: Wrapper<Vue>;
-
-  beforeEach(() => {
-    vuetify = new Vuetify();
-    wrapper = mount(BottomNavigationBar, {
-      localVue,
-      router,
-      vuetify,
-      propsData: {
-        showGetInstructionsGraphic: true,
-        isInstructionsMode: false,
-      },
-    });
-  });
-
-  afterEach(() => {
-    wrapper.destroy();
   });
 
   // Elements have expected behaviour
   describe('toggle-instructions-button', () => {
     it('on first click: hides the "get instructions" graphic', () => {
-      wrapper.find('[data-test="toggle-instructions-button"]').trigger('click');
+      wrapper.find(toggleInstructionsButton).trigger('click');
       expect(
         wrapper.emitted('update:showGetInstructionsGraphic'),
       ).toStrictEqual([[false]]);
@@ -100,26 +97,38 @@ describe('BottomNavigationBar.vue (deep)', () => {
 
     it('on first click: enables the home button', () => {
       expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(true);
-      wrapper.find('[data-test="toggle-instructions-button"]').trigger('click');
+      wrapper.find(toggleInstructionsButton).trigger('click');
       expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(false);
     });
 
-    it('on first click: toggles on instructions mode', () => {
-      wrapper.find('[data-test="toggle-instructions-button"]').trigger('click');
-      expect(wrapper.emitted('update:isInstructionsMode')).toStrictEqual([
-        [true],
-      ]);
+    it('on first click: toggles on instructions mode', async () => {
+      await wrapper.find(toggleInstructionsButton).trigger('click');
+      expect(
+        wrapper
+          .find(toggleInstructionsButton)
+          .find(instructionsCloseIcon)
+          .exists(),
+      ).toBe(true);
+      expect(
+        wrapper
+          .find(toggleInstructionsButton)
+          .find(instructionsIcon)
+          .exists(),
+      ).toBe(false);
+      expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
+        true,
+      );
     });
 
     it('toggles the instructions overlay on multiple clicks', () => {
-      const instructionsButton = wrapper.find(
-        '[data-test="toggle-instructions-button"]',
-      );
+      const instructionsButton = wrapper.find(toggleInstructionsButton);
 
       // initial state
       expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(true);
       expect(wrapper.vm.$props.showGetInstructionsGraphic).toBe(true);
-      expect(wrapper.vm.$props.isInstructionsMode).toBe(false);
+      expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
+        false,
+      );
 
       // first click
       instructionsButton.trigger('click');
@@ -127,13 +136,17 @@ describe('BottomNavigationBar.vue (deep)', () => {
       // parent updates props like so:
       wrapper.setProps({
         showGetInstructionsGraphic: false,
-        isInstructionsMode: true,
+      });
+      instructionsButton.setProps({
+        showGetInstructionsGraphic: false,
       });
 
       // current state
       expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(false);
       expect(wrapper.vm.$props.showGetInstructionsGraphic).toBe(false);
-      expect(wrapper.vm.$props.isInstructionsMode).toBe(true);
+      expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
+        true,
+      );
 
       // second click
       instructionsButton.trigger('click');
@@ -146,7 +159,9 @@ describe('BottomNavigationBar.vue (deep)', () => {
       // current state
       expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(false);
       expect(wrapper.vm.$props.showGetInstructionsGraphic).toBe(false);
-      expect(wrapper.vm.$props.isInstructionsMode).toBe(false);
+      expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
+        false,
+      );
 
       // third click
       instructionsButton.trigger('click');
@@ -159,19 +174,14 @@ describe('BottomNavigationBar.vue (deep)', () => {
       // current state
       expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(false);
       expect(wrapper.vm.$props.showGetInstructionsGraphic).toBe(false);
-      expect(wrapper.vm.$props.isInstructionsMode).toBe(true);
+      expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
+        true,
+      );
 
       // showGetInstructionsGraphic has only been emitted once
       expect(
         wrapper.emitted('update:showGetInstructionsGraphic'),
       ).toStrictEqual([[false]]);
-
-      // isInstructionsMode has been emitted trice toggling true/false
-      expect(wrapper.emitted('update:isInstructionsMode')).toStrictEqual([
-        [true],
-        [false],
-        [true],
-      ]);
     });
   });
 });

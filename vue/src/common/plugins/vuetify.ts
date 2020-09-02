@@ -23,6 +23,16 @@ const options: UserVuetifyPreset = {
     options: {
       customProperties: true,
     },
+    themes: {
+      light: {
+        white: '#ffffff',
+        black: '#1e1e1e',
+      },
+      dark: {
+        white: '#ffffff',
+        black: '#1e1e1e',
+      },
+    },
   },
 };
 

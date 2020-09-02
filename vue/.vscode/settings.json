@@ -38,10 +38,12 @@
   ],
   "vim.leader": "<space>",
   "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-v>": false,
-    "<C-k>": false,
-    "<C-f>": false
+    "<C-a>": false, // VSCode: Select all | vim: +1 under cursor
+    "<C-v>": false, // VSCode: Paste | vim: Visual Block mode
+    "<C-k>": false, // VSCode: Enter shortcut mode | vim: ?
+    "<C-f>": false, // vscode: find | vim: go 1 page down
+    "<C-b>": false, // vscode: toogle side bar | vim: go 1 page up
+    "<C-j>": false  // vscode: toggle panel | vim: ?
   },
   "vim.sneakReplacesF": true,
   "vim.neovimPath": "/usr/bin/nvim",
@@ -102,6 +104,7 @@
     "PWAs",
     "activeallservices",
     "backgrounded",
+    "behaviour",
     "bottomnavigationbar",
     "brotli",
     "browserslist",
@@ -146,10 +149,10 @@
     "somevalue",
     "unsetting",
     "userid",
+    "vnode",
     "vuetify",
     "vuex",
     "webfonts",
-    "webhook",
-    "behaviour"
+    "webhook"
   ]
 }

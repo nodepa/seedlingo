@@ -1,18 +1,16 @@
 <template>
   <v-app data-test="app">
-    <v-app-bar
-      app
-      color="primary"
-      @click="$vuetify.theme.dark = !$vuetify.theme.dark"
-    >
+    <v-app-bar app color="primary">
       <div class="d-flex align-center">
         <v-img
           alt="立爱识字 Logo"
           class="shrink mr-2"
           contain
           transition="scale-transition"
-          src="./assets/logo/logo.svg"
+          src="@/assets/logo/logo.svg"
           width="40"
+          height="40"
+          @click="$vuetify.theme.dark = !$vuetify.theme.dark"
         />
 
         <span
@@ -28,14 +26,15 @@
     <v-content>
       <GetInstructions v-if="showGetInstructionsGraphic" />
       <router-view v-if="!showGetInstructionsGraphic" />
-      <v-overlay v-if="isInstructionsMode" z-index="4">
-        <h1>INSTRUCTIONS</h1>
-      </v-overlay>
+      <v-overlay
+        v-if="isInstructionsMode"
+        z-index="3"
+        data-test="instructions-overlay"
+      />
     </v-content>
 
     <BottomNavigationBar
       :show-get-instructions-graphic.sync="showGetInstructionsGraphic"
-      :is-instructions-mode.sync="isInstructionsMode"
     />
   </v-app>
 </template>
@@ -56,9 +55,12 @@ export default class App extends Vue {
   // eslint-disable-next-line class-methods-use-this
   data() {
     return {
-      isInstructionsMode: false,
       showGetInstructionsGraphic: true,
     };
+  }
+
+  get isInstructionsMode() {
+    return this.$store.state.instructionsStore.isInstructionsMode;
   }
 }
 </script>
