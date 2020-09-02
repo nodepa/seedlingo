@@ -1,0 +1,6003 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`class Instruction constructor: functional 1`] = `
+Instruction {
+  "audioElement": <audio
+    src="http://just.a.test/audio.mp3"
+  />,
+  "hostElement": <button>
+    <audio
+      src="http://just.a.test/audio.mp3"
+    />
+  </button>,
+  "originalStyle": Object {
+    "backgroundColor": "",
+    "border": "",
+    "zIndex": "",
+  },
+  "unsubscribeInstructionsModeWatch": [Function],
+  "vm": Vue {
+    "$attrs": Object {},
+    "$children": Array [],
+    "$createElement": [Function],
+    "$el": <button>
+      <audio
+        src="http://just.a.test/audio.mp3"
+      />
+    </button>,
+    "$listeners": Object {},
+    "$options": Object {
+      "_base": [Function],
+      "beforeCreate": Array [
+        [Function],
+        [Function],
+      ],
+      "beforeMount": Array [
+        [Function],
+      ],
+      "components": Object {},
+      "directives": Object {},
+      "filters": Object {},
+      "mounted": Array [
+        [Function],
+      ],
+      "render": [Function],
+      "store": Store {
+        "_actionSubscribers": Array [],
+        "_actions": Object {
+          "instructionsStore/resetState": Array [
+            [Function],
+          ],
+          "instructionsStore/toggleInstructionsMode": Array [
+            [Function],
+          ],
+        },
+        "_committing": false,
+        "_makeLocalGettersCache": Object {
+          "instructionsStore/": Object {},
+        },
+        "_modules": ModuleCollection {
+          "root": Module {
+            "_children": Object {
+              "instructionsStore": Module {
+                "_children": Object {},
+                "_rawModule": Object {
+                  "actions": Object {
+                    "resetState": [Function],
+                    "toggleInstructionsMode": [Function],
+                  },
+                  "mutations": Object {
+                    "RESET_STATE": [Function],
+                    "TOGGLE_INSTRUCTIONS_MODE": [Function],
+                  },
+                  "namespaced": true,
+                  "state": Object {
+                    "isInstructionsMode": false,
+                  },
+                },
+                "context": Object {
+                  "commit": [Function],
+                  "dispatch": [Function],
+                },
+                "runtime": false,
+                "state": Object {
+                  "isInstructionsMode": false,
+                },
+              },
+            },
+            "_rawModule": Object {
+              "actions": Object {},
+              "modules": Object {
+                "instructionsStore": Object {
+                  "actions": Object {
+                    "resetState": [Function],
+                    "toggleInstructionsMode": [Function],
+                  },
+                  "mutations": Object {
+                    "RESET_STATE": [Function],
+                    "TOGGLE_INSTRUCTIONS_MODE": [Function],
+                  },
+                  "namespaced": true,
+                  "state": Object {
+                    "isInstructionsMode": false,
+                  },
+                },
+              },
+              "mutations": Object {},
+              "state": Object {
+                "instructionsStore": Object {
+                  "isInstructionsMode": false,
+                },
+                "version": "1.0.0",
+              },
+              "strict": true,
+            },
+            "context": Object {
+              "commit": [Function],
+              "dispatch": [Function],
+            },
+            "runtime": false,
+            "state": Object {
+              "instructionsStore": Object {
+                "isInstructionsMode": false,
+              },
+              "version": "1.0.0",
+            },
+          },
+        },
+        "_modulesNamespaceMap": Object {
+          "instructionsStore/": Module {
+            "_children": Object {},
+            "_rawModule": Object {
+              "actions": Object {
+                "resetState": [Function],
+                "toggleInstructionsMode": [Function],
+              },
+              "mutations": Object {
+                "RESET_STATE": [Function],
+                "TOGGLE_INSTRUCTIONS_MODE": [Function],
+              },
+              "namespaced": true,
+              "state": Object {
+                "isInstructionsMode": false,
+              },
+            },
+            "context": Object {
+              "commit": [Function],
+              "dispatch": [Function],
+            },
+            "runtime": false,
+            "state": Object {
+              "isInstructionsMode": false,
+            },
+          },
+        },
+        "_mutations": Object {
+          "instructionsStore/RESET_STATE": Array [
+            [Function],
+          ],
+          "instructionsStore/TOGGLE_INSTRUCTIONS_MODE": Array [
+            [Function],
+          ],
+        },
+        "_subscribers": Array [
+          [Function],
+        ],
+        "_vm": Vue {
+          "$attrs": Object {},
+          "$children": Array [],
+          "$createElement": [Function],
+          "$listeners": Object {},
+          "$options": Object {
+            "_base": [Function],
+            "beforeCreate": Array [
+              [Function],
+              [Function],
+            ],
+            "beforeMount": Array [
+              [Function],
+            ],
+            "components": Object {},
+            "computed": Object {},
+            "data": [Function],
+            "directives": Object {},
+            "filters": Object {},
+            "mounted": Array [
+              [Function],
+            ],
+          },
+          "$parent": undefined,
+          "$refs": Object {},
+          "$root": [Circular],
+          "$scopedSlots": Object {},
+          "$slots": Object {},
+          "$vnode": undefined,
+          "$vuetify": [Circular],
+          "_c": [Function],
+          "_computedWatchers": Object {},
+          "_data": Object {
+            "$$state": Object {
+              "instructionsStore": Object {
+                "isInstructionsMode": false,
+              },
+              "version": "1.0.0",
+            },
+          },
+          "_directInactive": false,
+          "_events": Object {},
+          "_hasHookEvent": false,
+          "_inactive": null,
+          "_isBeingDestroyed": false,
+          "_isDestroyed": false,
+          "_isMounted": false,
+          "_isVue": true,
+          "_renderProxy": Vue {
+            "$attrs": Object {},
+            "$children": Array [],
+            "$createElement": [Function],
+            "$listeners": Object {},
+            "$options": Object {
+              "_base": [Function],
+              "beforeCreate": Array [
+                [Function],
+                [Function],
+              ],
+              "beforeMount": Array [
+                [Function],
+              ],
+              "components": Object {},
+              "computed": Object {},
+              "data": [Function],
+              "directives": Object {},
+              "filters": Object {},
+              "mounted": Array [
+                [Function],
+              ],
+            },
+            "$parent": undefined,
+            "$refs": Object {},
+            "$root": [Circular],
+            "$scopedSlots": Object {},
+            "$slots": Object {},
+            "$vnode": undefined,
+            "$vuetify": [Circular],
+            "_c": [Function],
+            "_computedWatchers": Object {},
+            "_data": Object {
+              "$$state": Object {
+                "instructionsStore": Object {
+                  "isInstructionsMode": false,
+                },
+                "version": "1.0.0",
+              },
+            },
+            "_directInactive": false,
+            "_events": Object {},
+            "_hasHookEvent": false,
+            "_inactive": null,
+            "_isBeingDestroyed": false,
+            "_isDestroyed": false,
+            "_isMounted": false,
+            "_isVue": true,
+            "_renderProxy": [Circular],
+            "_self": [Circular],
+            "_staticTrees": null,
+            "_uid": 1,
+            "_vnode": null,
+            "_watcher": null,
+            "_watchers": Array [
+              Watcher {
+                "active": true,
+                "before": undefined,
+                "cb": [Function],
+                "deep": true,
+                "depIds": Set {
+                  6,
+                  7,
+                  9,
+                  10,
+                  11,
+                  8,
+                },
+                "deps": Array [
+                  Dep {
+                    "id": 6,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 7,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 9,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 10,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 11,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 8,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                ],
+                "dirty": false,
+                "expression": "function () { return this._data.$$state }",
+                "getter": [Function],
+                "id": 1,
+                "lazy": false,
+                "newDepIds": Set {},
+                "newDeps": Array [],
+                "sync": true,
+                "user": true,
+                "value": Object {
+                  "instructionsStore": Object {
+                    "isInstructionsMode": false,
+                  },
+                  "version": "1.0.0",
+                },
+                "vm": [Circular],
+              },
+            ],
+          },
+          "_self": [Circular],
+          "_staticTrees": null,
+          "_uid": 1,
+          "_vnode": null,
+          "_watcher": null,
+          "_watchers": Array [
+            Watcher {
+              "active": true,
+              "before": undefined,
+              "cb": [Function],
+              "deep": true,
+              "depIds": Set {
+                6,
+                7,
+                9,
+                10,
+                11,
+                8,
+              },
+              "deps": Array [
+                Dep {
+                  "id": 6,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 7,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 9,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 10,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 11,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 8,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+              ],
+              "dirty": false,
+              "expression": "function () { return this._data.$$state }",
+              "getter": [Function],
+              "id": 1,
+              "lazy": false,
+              "newDepIds": Set {},
+              "newDeps": Array [],
+              "sync": true,
+              "user": true,
+              "value": Object {
+                "instructionsStore": Object {
+                  "isInstructionsMode": false,
+                },
+                "version": "1.0.0",
+              },
+              "vm": [Circular],
+            },
+          ],
+        },
+        "_watcherVM": Vue {
+          "$attrs": Object {},
+          "$children": Array [],
+          "$createElement": [Function],
+          "$listeners": Object {},
+          "$options": Object {
+            "_base": [Function],
+            "beforeCreate": Array [
+              [Function],
+              [Function],
+            ],
+            "beforeMount": Array [
+              [Function],
+            ],
+            "components": Object {},
+            "directives": Object {},
+            "filters": Object {},
+            "mounted": Array [
+              [Function],
+            ],
+          },
+          "$parent": undefined,
+          "$refs": Object {},
+          "$root": [Circular],
+          "$scopedSlots": Object {},
+          "$slots": Object {},
+          "$vnode": undefined,
+          "$vuetify": [Circular],
+          "_c": [Function],
+          "_data": Object {},
+          "_directInactive": false,
+          "_events": Object {},
+          "_hasHookEvent": false,
+          "_inactive": null,
+          "_isBeingDestroyed": false,
+          "_isDestroyed": false,
+          "_isMounted": false,
+          "_isVue": true,
+          "_renderProxy": Vue {
+            "$attrs": Object {},
+            "$children": Array [],
+            "$createElement": [Function],
+            "$listeners": Object {},
+            "$options": Object {
+              "_base": [Function],
+              "beforeCreate": Array [
+                [Function],
+                [Function],
+              ],
+              "beforeMount": Array [
+                [Function],
+              ],
+              "components": Object {},
+              "directives": Object {},
+              "filters": Object {},
+              "mounted": Array [
+                [Function],
+              ],
+            },
+            "$parent": undefined,
+            "$refs": Object {},
+            "$root": [Circular],
+            "$scopedSlots": Object {},
+            "$slots": Object {},
+            "$vnode": undefined,
+            "$vuetify": [Circular],
+            "_c": [Function],
+            "_data": Object {},
+            "_directInactive": false,
+            "_events": Object {},
+            "_hasHookEvent": false,
+            "_inactive": null,
+            "_isBeingDestroyed": false,
+            "_isDestroyed": false,
+            "_isMounted": false,
+            "_isVue": true,
+            "_renderProxy": [Circular],
+            "_self": [Circular],
+            "_staticTrees": null,
+            "_uid": 0,
+            "_vnode": null,
+            "_watcher": null,
+            "_watchers": Array [],
+          },
+          "_self": [Circular],
+          "_staticTrees": null,
+          "_uid": 0,
+          "_vnode": null,
+          "_watcher": null,
+          "_watchers": Array [],
+        },
+        "_wrappedGetters": Object {},
+        "commit": [Function],
+        "dispatch": [Function],
+        "getters": Object {},
+        "strict": true,
+      },
+      "vuetify": Vuetify {
+        "framework": Object {
+          "application": Application {
+            "application": Object {
+              "bar": Object {},
+              "bottom": Object {},
+              "footer": Object {},
+              "insetFooter": Object {},
+              "left": Object {},
+              "right": Object {},
+              "top": Object {},
+            },
+            "bar": 0,
+            "bottom": 0,
+            "footer": 0,
+            "framework": [Circular],
+            "insetFooter": 0,
+            "left": 0,
+            "right": 0,
+            "top": 0,
+          },
+          "breakpoint": Breakpoint {
+            "framework": [Circular],
+            "height": 768,
+            "lg": false,
+            "lgAndDown": true,
+            "lgAndUp": false,
+            "lgOnly": false,
+            "md": true,
+            "mdAndDown": true,
+            "mdAndUp": true,
+            "mdOnly": true,
+            "mobile": true,
+            "mobileBreakpoint": 1264,
+            "name": "md",
+            "resizeTimeout": 0,
+            "scrollBarWidth": 16,
+            "sm": false,
+            "smAndDown": false,
+            "smAndUp": true,
+            "smOnly": false,
+            "thresholds": Object {
+              "lg": 1920,
+              "md": 1280,
+              "sm": 960,
+              "xs": 600,
+            },
+            "width": 1024,
+            "xl": false,
+            "xlOnly": false,
+            "xs": false,
+            "xsOnly": false,
+          },
+          "goTo": [Function],
+          "icons": Icons {
+            "framework": [Circular],
+            "iconfont": "mdi",
+            "values": Object {
+              "cancel": "mdi-close-circle",
+              "checkboxIndeterminate": "mdi-minus-box",
+              "checkboxOff": "mdi-checkbox-blank-outline",
+              "checkboxOn": "mdi-checkbox-marked",
+              "clear": "mdi-close",
+              "close": "mdi-close",
+              "complete": "mdi-check",
+              "delete": "mdi-close-circle",
+              "delimiter": "mdi-circle",
+              "dropdown": "mdi-menu-down",
+              "edit": "mdi-pencil",
+              "error": "mdi-alert",
+              "expand": "mdi-chevron-down",
+              "file": "mdi-paperclip",
+              "first": "mdi-page-first",
+              "info": "mdi-information",
+              "last": "mdi-page-last",
+              "loading": "mdi-cached",
+              "menu": "mdi-menu",
+              "minus": "mdi-minus",
+              "next": "mdi-chevron-right",
+              "plus": "mdi-plus",
+              "prev": "mdi-chevron-left",
+              "radioOff": "mdi-radiobox-blank",
+              "radioOn": "mdi-radiobox-marked",
+              "ratingEmpty": "mdi-star-outline",
+              "ratingFull": "mdi-star",
+              "ratingHalf": "mdi-star-half",
+              "sort": "mdi-arrow-up",
+              "subgroup": "mdi-menu-down",
+              "success": "mdi-check-circle",
+              "unfold": "mdi-unfold-more-horizontal",
+              "warning": "mdi-exclamation",
+            },
+          },
+          "isHydrating": false,
+          "lang": Lang {
+            "current": "en",
+            "defaultLocale": "en",
+            "framework": [Circular],
+            "locales": Object {
+              "en": Object {
+                "badge": "Badge",
+                "calendar": Object {
+                  "moreEvents": "{0} more",
+                },
+                "carousel": Object {
+                  "ariaLabel": Object {
+                    "delimiter": "Carousel slide {0} of {1}",
+                  },
+                  "next": "Next visual",
+                  "prev": "Previous visual",
+                },
+                "close": "Close",
+                "dataFooter": Object {
+                  "firstPage": "First page",
+                  "itemsPerPageAll": "All",
+                  "itemsPerPageText": "Items per page:",
+                  "lastPage": "Last page",
+                  "nextPage": "Next page",
+                  "pageText": "{0}-{1} of {2}",
+                  "prevPage": "Previous page",
+                },
+                "dataIterator": Object {
+                  "loadingText": "Loading items...",
+                  "noResultsText": "No matching records found",
+                },
+                "dataTable": Object {
+                  "ariaLabel": Object {
+                    "activateAscending": "Activate to sort ascending.",
+                    "activateDescending": "Activate to sort descending.",
+                    "activateNone": "Activate to remove sorting.",
+                    "sortAscending": "Sorted ascending.",
+                    "sortDescending": "Sorted descending.",
+                    "sortNone": "Not sorted.",
+                  },
+                  "itemsPerPageText": "Rows per page:",
+                  "sortBy": "Sort by",
+                },
+                "datePicker": Object {
+                  "itemsSelected": "{0} selected",
+                  "nextMonthAriaLabel": "Next month",
+                  "nextYearAriaLabel": "Next year",
+                  "prevMonthAriaLabel": "Previous month",
+                  "prevYearAriaLabel": "Previous year",
+                },
+                "fileInput": Object {
+                  "counter": "{0} files",
+                  "counterSize": "{0} files ({1} in total)",
+                },
+                "noDataText": "No data available",
+                "pagination": Object {
+                  "ariaLabel": Object {
+                    "currentPage": "Current Page, Page {0}",
+                    "next": "Next page",
+                    "page": "Goto Page {0}",
+                    "previous": "Previous page",
+                    "wrapper": "Pagination Navigation",
+                  },
+                },
+                "timePicker": Object {
+                  "am": "AM",
+                  "pm": "PM",
+                },
+              },
+            },
+            "translator": [Function],
+          },
+          "presets": Presets {
+            "framework": [Circular],
+          },
+          "rtl": false,
+          "theme": Theme {
+            "defaults": Object {
+              "dark": Object {
+                "accent": "#FF4081",
+                "error": "#FF5252",
+                "info": "#2196F3",
+                "primary": "#2196F3",
+                "secondary": "#424242",
+                "success": "#4CAF50",
+                "warning": "#FB8C00",
+              },
+              "light": Object {
+                "accent": "#82B1FF",
+                "error": "#FF5252",
+                "info": "#2196F3",
+                "primary": "#1976D2",
+                "secondary": "#424242",
+                "success": "#4CAF50",
+                "warning": "#FB8C00",
+              },
+            },
+            "disabled": false,
+            "framework": [Circular],
+            "isDark": false,
+            "options": Object {
+              "cspNonce": undefined,
+              "customProperties": undefined,
+              "minifyTheme": undefined,
+              "themeCache": undefined,
+              "variations": true,
+            },
+            "styleEl": <style
+              id="vuetify-theme-stylesheet"
+              type="text/css"
+            >
+              .v-application a { color: #1976d2; }
+.v-application .primary {
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+}
+.v-application .primary--text {
+  color: #1976d2 !important;
+  caret-color: #1976d2 !important;
+}
+.v-application .primary.lighten-5 {
+  background-color: #c7fdff !important;
+  border-color: #c7fdff !important;
+}
+.v-application .primary--text.text--lighten-5 {
+  color: #c7fdff !important;
+  caret-color: #c7fdff !important;
+}
+.v-application .primary.lighten-4 {
+  background-color: #a8e0ff !important;
+  border-color: #a8e0ff !important;
+}
+.v-application .primary--text.text--lighten-4 {
+  color: #a8e0ff !important;
+  caret-color: #a8e0ff !important;
+}
+.v-application .primary.lighten-3 {
+  background-color: #8ac5ff !important;
+  border-color: #8ac5ff !important;
+}
+.v-application .primary--text.text--lighten-3 {
+  color: #8ac5ff !important;
+  caret-color: #8ac5ff !important;
+}
+.v-application .primary.lighten-2 {
+  background-color: #6aaaff !important;
+  border-color: #6aaaff !important;
+}
+.v-application .primary--text.text--lighten-2 {
+  color: #6aaaff !important;
+  caret-color: #6aaaff !important;
+}
+.v-application .primary.lighten-1 {
+  background-color: #488fef !important;
+  border-color: #488fef !important;
+}
+.v-application .primary--text.text--lighten-1 {
+  color: #488fef !important;
+  caret-color: #488fef !important;
+}
+.v-application .primary.darken-1 {
+  background-color: #005eb6 !important;
+  border-color: #005eb6 !important;
+}
+.v-application .primary--text.text--darken-1 {
+  color: #005eb6 !important;
+  caret-color: #005eb6 !important;
+}
+.v-application .primary.darken-2 {
+  background-color: #00479b !important;
+  border-color: #00479b !important;
+}
+.v-application .primary--text.text--darken-2 {
+  color: #00479b !important;
+  caret-color: #00479b !important;
+}
+.v-application .primary.darken-3 {
+  background-color: #003180 !important;
+  border-color: #003180 !important;
+}
+.v-application .primary--text.text--darken-3 {
+  color: #003180 !important;
+  caret-color: #003180 !important;
+}
+.v-application .primary.darken-4 {
+  background-color: #001e67 !important;
+  border-color: #001e67 !important;
+}
+.v-application .primary--text.text--darken-4 {
+  color: #001e67 !important;
+  caret-color: #001e67 !important;
+}
+.v-application .secondary {
+  background-color: #424242 !important;
+  border-color: #424242 !important;
+}
+.v-application .secondary--text {
+  color: #424242 !important;
+  caret-color: #424242 !important;
+}
+.v-application .secondary.lighten-5 {
+  background-color: #c1c1c1 !important;
+  border-color: #c1c1c1 !important;
+}
+.v-application .secondary--text.text--lighten-5 {
+  color: #c1c1c1 !important;
+  caret-color: #c1c1c1 !important;
+}
+.v-application .secondary.lighten-4 {
+  background-color: #a6a6a6 !important;
+  border-color: #a6a6a6 !important;
+}
+.v-application .secondary--text.text--lighten-4 {
+  color: #a6a6a6 !important;
+  caret-color: #a6a6a6 !important;
+}
+.v-application .secondary.lighten-3 {
+  background-color: #8b8b8b !important;
+  border-color: #8b8b8b !important;
+}
+.v-application .secondary--text.text--lighten-3 {
+  color: #8b8b8b !important;
+  caret-color: #8b8b8b !important;
+}
+.v-application .secondary.lighten-2 {
+  background-color: #727272 !important;
+  border-color: #727272 !important;
+}
+.v-application .secondary--text.text--lighten-2 {
+  color: #727272 !important;
+  caret-color: #727272 !important;
+}
+.v-application .secondary.lighten-1 {
+  background-color: #595959 !important;
+  border-color: #595959 !important;
+}
+.v-application .secondary--text.text--lighten-1 {
+  color: #595959 !important;
+  caret-color: #595959 !important;
+}
+.v-application .secondary.darken-1 {
+  background-color: #2c2c2c !important;
+  border-color: #2c2c2c !important;
+}
+.v-application .secondary--text.text--darken-1 {
+  color: #2c2c2c !important;
+  caret-color: #2c2c2c !important;
+}
+.v-application .secondary.darken-2 {
+  background-color: #171717 !important;
+  border-color: #171717 !important;
+}
+.v-application .secondary--text.text--darken-2 {
+  color: #171717 !important;
+  caret-color: #171717 !important;
+}
+.v-application .secondary.darken-3 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .secondary--text.text--darken-3 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .secondary.darken-4 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .secondary--text.text--darken-4 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .accent {
+  background-color: #82b1ff !important;
+  border-color: #82b1ff !important;
+}
+.v-application .accent--text {
+  color: #82b1ff !important;
+  caret-color: #82b1ff !important;
+}
+.v-application .accent.lighten-5 {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+.v-application .accent--text.text--lighten-5 {
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+.v-application .accent.lighten-4 {
+  background-color: #f8ffff !important;
+  border-color: #f8ffff !important;
+}
+.v-application .accent--text.text--lighten-4 {
+  color: #f8ffff !important;
+  caret-color: #f8ffff !important;
+}
+.v-application .accent.lighten-3 {
+  background-color: #daffff !important;
+  border-color: #daffff !important;
+}
+.v-application .accent--text.text--lighten-3 {
+  color: #daffff !important;
+  caret-color: #daffff !important;
+}
+.v-application .accent.lighten-2 {
+  background-color: #bce8ff !important;
+  border-color: #bce8ff !important;
+}
+.v-application .accent--text.text--lighten-2 {
+  color: #bce8ff !important;
+  caret-color: #bce8ff !important;
+}
+.v-application .accent.lighten-1 {
+  background-color: #9fccff !important;
+  border-color: #9fccff !important;
+}
+.v-application .accent--text.text--lighten-1 {
+  color: #9fccff !important;
+  caret-color: #9fccff !important;
+}
+.v-application .accent.darken-1 {
+  background-color: #6596e2 !important;
+  border-color: #6596e2 !important;
+}
+.v-application .accent--text.text--darken-1 {
+  color: #6596e2 !important;
+  caret-color: #6596e2 !important;
+}
+.v-application .accent.darken-2 {
+  background-color: #467dc6 !important;
+  border-color: #467dc6 !important;
+}
+.v-application .accent--text.text--darken-2 {
+  color: #467dc6 !important;
+  caret-color: #467dc6 !important;
+}
+.v-application .accent.darken-3 {
+  background-color: #2364aa !important;
+  border-color: #2364aa !important;
+}
+.v-application .accent--text.text--darken-3 {
+  color: #2364aa !important;
+  caret-color: #2364aa !important;
+}
+.v-application .accent.darken-4 {
+  background-color: #004c90 !important;
+  border-color: #004c90 !important;
+}
+.v-application .accent--text.text--darken-4 {
+  color: #004c90 !important;
+  caret-color: #004c90 !important;
+}
+.v-application .error {
+  background-color: #ff5252 !important;
+  border-color: #ff5252 !important;
+}
+.v-application .error--text {
+  color: #ff5252 !important;
+  caret-color: #ff5252 !important;
+}
+.v-application .error.lighten-5 {
+  background-color: #ffe4d5 !important;
+  border-color: #ffe4d5 !important;
+}
+.v-application .error--text.text--lighten-5 {
+  color: #ffe4d5 !important;
+  caret-color: #ffe4d5 !important;
+}
+.v-application .error.lighten-4 {
+  background-color: #ffc6b9 !important;
+  border-color: #ffc6b9 !important;
+}
+.v-application .error--text.text--lighten-4 {
+  color: #ffc6b9 !important;
+  caret-color: #ffc6b9 !important;
+}
+.v-application .error.lighten-3 {
+  background-color: #ffa99e !important;
+  border-color: #ffa99e !important;
+}
+.v-application .error--text.text--lighten-3 {
+  color: #ffa99e !important;
+  caret-color: #ffa99e !important;
+}
+.v-application .error.lighten-2 {
+  background-color: #ff8c84 !important;
+  border-color: #ff8c84 !important;
+}
+.v-application .error--text.text--lighten-2 {
+  color: #ff8c84 !important;
+  caret-color: #ff8c84 !important;
+}
+.v-application .error.lighten-1 {
+  background-color: #ff6f6a !important;
+  border-color: #ff6f6a !important;
+}
+.v-application .error--text.text--lighten-1 {
+  color: #ff6f6a !important;
+  caret-color: #ff6f6a !important;
+}
+.v-application .error.darken-1 {
+  background-color: #df323b !important;
+  border-color: #df323b !important;
+}
+.v-application .error--text.text--darken-1 {
+  color: #df323b !important;
+  caret-color: #df323b !important;
+}
+.v-application .error.darken-2 {
+  background-color: #bf0025 !important;
+  border-color: #bf0025 !important;
+}
+.v-application .error--text.text--darken-2 {
+  color: #bf0025 !important;
+  caret-color: #bf0025 !important;
+}
+.v-application .error.darken-3 {
+  background-color: #9f0010 !important;
+  border-color: #9f0010 !important;
+}
+.v-application .error--text.text--darken-3 {
+  color: #9f0010 !important;
+  caret-color: #9f0010 !important;
+}
+.v-application .error.darken-4 {
+  background-color: #800000 !important;
+  border-color: #800000 !important;
+}
+.v-application .error--text.text--darken-4 {
+  color: #800000 !important;
+  caret-color: #800000 !important;
+}
+.v-application .info {
+  background-color: #2196f3 !important;
+  border-color: #2196f3 !important;
+}
+.v-application .info--text {
+  color: #2196f3 !important;
+  caret-color: #2196f3 !important;
+}
+.v-application .info.lighten-5 {
+  background-color: #d4ffff !important;
+  border-color: #d4ffff !important;
+}
+.v-application .info--text.text--lighten-5 {
+  color: #d4ffff !important;
+  caret-color: #d4ffff !important;
+}
+.v-application .info.lighten-4 {
+  background-color: #b5ffff !important;
+  border-color: #b5ffff !important;
+}
+.v-application .info--text.text--lighten-4 {
+  color: #b5ffff !important;
+  caret-color: #b5ffff !important;
+}
+.v-application .info.lighten-3 {
+  background-color: #95e8ff !important;
+  border-color: #95e8ff !important;
+}
+.v-application .info--text.text--lighten-3 {
+  color: #95e8ff !important;
+  caret-color: #95e8ff !important;
+}
+.v-application .info.lighten-2 {
+  background-color: #75ccff !important;
+  border-color: #75ccff !important;
+}
+.v-application .info--text.text--lighten-2 {
+  color: #75ccff !important;
+  caret-color: #75ccff !important;
+}
+.v-application .info.lighten-1 {
+  background-color: #51b0ff !important;
+  border-color: #51b0ff !important;
+}
+.v-application .info--text.text--lighten-1 {
+  color: #51b0ff !important;
+  caret-color: #51b0ff !important;
+}
+.v-application .info.darken-1 {
+  background-color: #007cd6 !important;
+  border-color: #007cd6 !important;
+}
+.v-application .info--text.text--darken-1 {
+  color: #007cd6 !important;
+  caret-color: #007cd6 !important;
+}
+.v-application .info.darken-2 {
+  background-color: #0064ba !important;
+  border-color: #0064ba !important;
+}
+.v-application .info--text.text--darken-2 {
+  color: #0064ba !important;
+  caret-color: #0064ba !important;
+}
+.v-application .info.darken-3 {
+  background-color: #004d9f !important;
+  border-color: #004d9f !important;
+}
+.v-application .info--text.text--darken-3 {
+  color: #004d9f !important;
+  caret-color: #004d9f !important;
+}
+.v-application .info.darken-4 {
+  background-color: #003784 !important;
+  border-color: #003784 !important;
+}
+.v-application .info--text.text--darken-4 {
+  color: #003784 !important;
+  caret-color: #003784 !important;
+}
+.v-application .success {
+  background-color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}
+.v-application .success--text {
+  color: #4caf50 !important;
+  caret-color: #4caf50 !important;
+}
+.v-application .success.lighten-5 {
+  background-color: #dcffd6 !important;
+  border-color: #dcffd6 !important;
+}
+.v-application .success--text.text--lighten-5 {
+  color: #dcffd6 !important;
+  caret-color: #dcffd6 !important;
+}
+.v-application .success.lighten-4 {
+  background-color: #beffba !important;
+  border-color: #beffba !important;
+}
+.v-application .success--text.text--lighten-4 {
+  color: #beffba !important;
+  caret-color: #beffba !important;
+}
+.v-application .success.lighten-3 {
+  background-color: #a2ff9e !important;
+  border-color: #a2ff9e !important;
+}
+.v-application .success--text.text--lighten-3 {
+  color: #a2ff9e !important;
+  caret-color: #a2ff9e !important;
+}
+.v-application .success.lighten-2 {
+  background-color: #85e783 !important;
+  border-color: #85e783 !important;
+}
+.v-application .success--text.text--lighten-2 {
+  color: #85e783 !important;
+  caret-color: #85e783 !important;
+}
+.v-application .success.lighten-1 {
+  background-color: #69cb69 !important;
+  border-color: #69cb69 !important;
+}
+.v-application .success--text.text--lighten-1 {
+  color: #69cb69 !important;
+  caret-color: #69cb69 !important;
+}
+.v-application .success.darken-1 {
+  background-color: #2d9437 !important;
+  border-color: #2d9437 !important;
+}
+.v-application .success--text.text--darken-1 {
+  color: #2d9437 !important;
+  caret-color: #2d9437 !important;
+}
+.v-application .success.darken-2 {
+  background-color: #00791e !important;
+  border-color: #00791e !important;
+}
+.v-application .success--text.text--darken-2 {
+  color: #00791e !important;
+  caret-color: #00791e !important;
+}
+.v-application .success.darken-3 {
+  background-color: #006000 !important;
+  border-color: #006000 !important;
+}
+.v-application .success--text.text--darken-3 {
+  color: #006000 !important;
+  caret-color: #006000 !important;
+}
+.v-application .success.darken-4 {
+  background-color: #004700 !important;
+  border-color: #004700 !important;
+}
+.v-application .success--text.text--darken-4 {
+  color: #004700 !important;
+  caret-color: #004700 !important;
+}
+.v-application .warning {
+  background-color: #fb8c00 !important;
+  border-color: #fb8c00 !important;
+}
+.v-application .warning--text {
+  color: #fb8c00 !important;
+  caret-color: #fb8c00 !important;
+}
+.v-application .warning.lighten-5 {
+  background-color: #ffff9e !important;
+  border-color: #ffff9e !important;
+}
+.v-application .warning--text.text--lighten-5 {
+  color: #ffff9e !important;
+  caret-color: #ffff9e !important;
+}
+.v-application .warning.lighten-4 {
+  background-color: #fffb82 !important;
+  border-color: #fffb82 !important;
+}
+.v-application .warning--text.text--lighten-4 {
+  color: #fffb82 !important;
+  caret-color: #fffb82 !important;
+}
+.v-application .warning.lighten-3 {
+  background-color: #ffdf67 !important;
+  border-color: #ffdf67 !important;
+}
+.v-application .warning--text.text--lighten-3 {
+  color: #ffdf67 !important;
+  caret-color: #ffdf67 !important;
+}
+.v-application .warning.lighten-2 {
+  background-color: #ffc24b !important;
+  border-color: #ffc24b !important;
+}
+.v-application .warning--text.text--lighten-2 {
+  color: #ffc24b !important;
+  caret-color: #ffc24b !important;
+}
+.v-application .warning.lighten-1 {
+  background-color: #ffa72d !important;
+  border-color: #ffa72d !important;
+}
+.v-application .warning--text.text--lighten-1 {
+  color: #ffa72d !important;
+  caret-color: #ffa72d !important;
+}
+.v-application .warning.darken-1 {
+  background-color: #db7200 !important;
+  border-color: #db7200 !important;
+}
+.v-application .warning--text.text--darken-1 {
+  color: #db7200 !important;
+  caret-color: #db7200 !important;
+}
+.v-application .warning.darken-2 {
+  background-color: #bb5900 !important;
+  border-color: #bb5900 !important;
+}
+.v-application .warning--text.text--darken-2 {
+  color: #bb5900 !important;
+  caret-color: #bb5900 !important;
+}
+.v-application .warning.darken-3 {
+  background-color: #9d4000 !important;
+  border-color: #9d4000 !important;
+}
+.v-application .warning--text.text--darken-3 {
+  color: #9d4000 !important;
+  caret-color: #9d4000 !important;
+}
+.v-application .warning.darken-4 {
+  background-color: #802700 !important;
+  border-color: #802700 !important;
+}
+.v-application .warning--text.text--darken-4 {
+  color: #802700 !important;
+  caret-color: #802700 !important;
+}
+            </style>,
+            "themes": Object {
+              "dark": Object {
+                "accent": "#FF4081",
+                "error": "#FF5252",
+                "info": "#2196F3",
+                "primary": "#2196F3",
+                "secondary": "#424242",
+                "success": "#4CAF50",
+                "warning": "#FB8C00",
+              },
+              "light": Object {
+                "accent": "#82B1FF",
+                "error": "#FF5252",
+                "info": "#2196F3",
+                "primary": "#1976D2",
+                "secondary": "#424242",
+                "success": "#4CAF50",
+                "warning": "#FB8C00",
+              },
+            },
+            "unwatch": [Function],
+            "vueMeta": null,
+          },
+        },
+        "installed": Array [
+          "presets",
+          "application",
+          "breakpoint",
+          "goTo",
+          "icons",
+          "lang",
+          "theme",
+        ],
+        "preset": Object {
+          "breakpoint": Object {
+            "mobileBreakpoint": 1264,
+            "scrollBarWidth": 16,
+            "thresholds": Object {
+              "lg": 1920,
+              "md": 1280,
+              "sm": 960,
+              "xs": 600,
+            },
+          },
+          "icons": Object {
+            "iconfont": "mdi",
+            "values": Object {},
+          },
+          "lang": Object {
+            "current": "en",
+            "locales": Object {
+              "en": Object {
+                "badge": "Badge",
+                "calendar": Object {
+                  "moreEvents": "{0} more",
+                },
+                "carousel": Object {
+                  "ariaLabel": Object {
+                    "delimiter": "Carousel slide {0} of {1}",
+                  },
+                  "next": "Next visual",
+                  "prev": "Previous visual",
+                },
+                "close": "Close",
+                "dataFooter": Object {
+                  "firstPage": "First page",
+                  "itemsPerPageAll": "All",
+                  "itemsPerPageText": "Items per page:",
+                  "lastPage": "Last page",
+                  "nextPage": "Next page",
+                  "pageText": "{0}-{1} of {2}",
+                  "prevPage": "Previous page",
+                },
+                "dataIterator": Object {
+                  "loadingText": "Loading items...",
+                  "noResultsText": "No matching records found",
+                },
+                "dataTable": Object {
+                  "ariaLabel": Object {
+                    "activateAscending": "Activate to sort ascending.",
+                    "activateDescending": "Activate to sort descending.",
+                    "activateNone": "Activate to remove sorting.",
+                    "sortAscending": "Sorted ascending.",
+                    "sortDescending": "Sorted descending.",
+                    "sortNone": "Not sorted.",
+                  },
+                  "itemsPerPageText": "Rows per page:",
+                  "sortBy": "Sort by",
+                },
+                "datePicker": Object {
+                  "itemsSelected": "{0} selected",
+                  "nextMonthAriaLabel": "Next month",
+                  "nextYearAriaLabel": "Next year",
+                  "prevMonthAriaLabel": "Previous month",
+                  "prevYearAriaLabel": "Previous year",
+                },
+                "fileInput": Object {
+                  "counter": "{0} files",
+                  "counterSize": "{0} files ({1} in total)",
+                },
+                "noDataText": "No data available",
+                "pagination": Object {
+                  "ariaLabel": Object {
+                    "currentPage": "Current Page, Page {0}",
+                    "next": "Next page",
+                    "page": "Goto Page {0}",
+                    "previous": "Previous page",
+                    "wrapper": "Pagination Navigation",
+                  },
+                },
+                "timePicker": Object {
+                  "am": "AM",
+                  "pm": "PM",
+                },
+              },
+            },
+            "t": undefined,
+          },
+          "rtl": false,
+          "theme": Object {
+            "dark": false,
+            "default": "light",
+            "disable": false,
+            "options": Object {
+              "cspNonce": undefined,
+              "customProperties": undefined,
+              "minifyTheme": undefined,
+              "themeCache": undefined,
+              "variations": true,
+            },
+            "themes": Object {
+              "dark": Object {
+                "accent": "#FF4081",
+                "error": "#FF5252",
+                "info": "#2196F3",
+                "primary": "#2196F3",
+                "secondary": "#424242",
+                "success": "#4CAF50",
+                "warning": "#FB8C00",
+              },
+              "light": Object {
+                "accent": "#82B1FF",
+                "error": "#FF5252",
+                "info": "#2196F3",
+                "primary": "#1976D2",
+                "secondary": "#424242",
+                "success": "#4CAF50",
+                "warning": "#FB8C00",
+              },
+            },
+          },
+        },
+        "userPreset": Object {},
+      },
+    },
+    "$parent": undefined,
+    "$refs": Object {},
+    "$root": [Circular],
+    "$scopedSlots": Object {},
+    "$slots": Object {},
+    "$store": Store {
+      "_actionSubscribers": Array [],
+      "_actions": Object {
+        "instructionsStore/resetState": Array [
+          [Function],
+        ],
+        "instructionsStore/toggleInstructionsMode": Array [
+          [Function],
+        ],
+      },
+      "_committing": false,
+      "_makeLocalGettersCache": Object {
+        "instructionsStore/": Object {},
+      },
+      "_modules": ModuleCollection {
+        "root": Module {
+          "_children": Object {
+            "instructionsStore": Module {
+              "_children": Object {},
+              "_rawModule": Object {
+                "actions": Object {
+                  "resetState": [Function],
+                  "toggleInstructionsMode": [Function],
+                },
+                "mutations": Object {
+                  "RESET_STATE": [Function],
+                  "TOGGLE_INSTRUCTIONS_MODE": [Function],
+                },
+                "namespaced": true,
+                "state": Object {
+                  "isInstructionsMode": false,
+                },
+              },
+              "context": Object {
+                "commit": [Function],
+                "dispatch": [Function],
+              },
+              "runtime": false,
+              "state": Object {
+                "isInstructionsMode": false,
+              },
+            },
+          },
+          "_rawModule": Object {
+            "actions": Object {},
+            "modules": Object {
+              "instructionsStore": Object {
+                "actions": Object {
+                  "resetState": [Function],
+                  "toggleInstructionsMode": [Function],
+                },
+                "mutations": Object {
+                  "RESET_STATE": [Function],
+                  "TOGGLE_INSTRUCTIONS_MODE": [Function],
+                },
+                "namespaced": true,
+                "state": Object {
+                  "isInstructionsMode": false,
+                },
+              },
+            },
+            "mutations": Object {},
+            "state": Object {
+              "instructionsStore": Object {
+                "isInstructionsMode": false,
+              },
+              "version": "1.0.0",
+            },
+            "strict": true,
+          },
+          "context": Object {
+            "commit": [Function],
+            "dispatch": [Function],
+          },
+          "runtime": false,
+          "state": Object {
+            "instructionsStore": Object {
+              "isInstructionsMode": false,
+            },
+            "version": "1.0.0",
+          },
+        },
+      },
+      "_modulesNamespaceMap": Object {
+        "instructionsStore/": Module {
+          "_children": Object {},
+          "_rawModule": Object {
+            "actions": Object {
+              "resetState": [Function],
+              "toggleInstructionsMode": [Function],
+            },
+            "mutations": Object {
+              "RESET_STATE": [Function],
+              "TOGGLE_INSTRUCTIONS_MODE": [Function],
+            },
+            "namespaced": true,
+            "state": Object {
+              "isInstructionsMode": false,
+            },
+          },
+          "context": Object {
+            "commit": [Function],
+            "dispatch": [Function],
+          },
+          "runtime": false,
+          "state": Object {
+            "isInstructionsMode": false,
+          },
+        },
+      },
+      "_mutations": Object {
+        "instructionsStore/RESET_STATE": Array [
+          [Function],
+        ],
+        "instructionsStore/TOGGLE_INSTRUCTIONS_MODE": Array [
+          [Function],
+        ],
+      },
+      "_subscribers": Array [
+        [Function],
+      ],
+      "_vm": Vue {
+        "$attrs": Object {},
+        "$children": Array [],
+        "$createElement": [Function],
+        "$listeners": Object {},
+        "$options": Object {
+          "_base": [Function],
+          "beforeCreate": Array [
+            [Function],
+            [Function],
+          ],
+          "beforeMount": Array [
+            [Function],
+          ],
+          "components": Object {},
+          "computed": Object {},
+          "data": [Function],
+          "directives": Object {},
+          "filters": Object {},
+          "mounted": Array [
+            [Function],
+          ],
+        },
+        "$parent": undefined,
+        "$refs": Object {},
+        "$root": [Circular],
+        "$scopedSlots": Object {},
+        "$slots": Object {},
+        "$vnode": undefined,
+        "$vuetify": [Circular],
+        "_c": [Function],
+        "_computedWatchers": Object {},
+        "_data": Object {
+          "$$state": Object {
+            "instructionsStore": Object {
+              "isInstructionsMode": false,
+            },
+            "version": "1.0.0",
+          },
+        },
+        "_directInactive": false,
+        "_events": Object {},
+        "_hasHookEvent": false,
+        "_inactive": null,
+        "_isBeingDestroyed": false,
+        "_isDestroyed": false,
+        "_isMounted": false,
+        "_isVue": true,
+        "_renderProxy": Vue {
+          "$attrs": Object {},
+          "$children": Array [],
+          "$createElement": [Function],
+          "$listeners": Object {},
+          "$options": Object {
+            "_base": [Function],
+            "beforeCreate": Array [
+              [Function],
+              [Function],
+            ],
+            "beforeMount": Array [
+              [Function],
+            ],
+            "components": Object {},
+            "computed": Object {},
+            "data": [Function],
+            "directives": Object {},
+            "filters": Object {},
+            "mounted": Array [
+              [Function],
+            ],
+          },
+          "$parent": undefined,
+          "$refs": Object {},
+          "$root": [Circular],
+          "$scopedSlots": Object {},
+          "$slots": Object {},
+          "$vnode": undefined,
+          "$vuetify": [Circular],
+          "_c": [Function],
+          "_computedWatchers": Object {},
+          "_data": Object {
+            "$$state": Object {
+              "instructionsStore": Object {
+                "isInstructionsMode": false,
+              },
+              "version": "1.0.0",
+            },
+          },
+          "_directInactive": false,
+          "_events": Object {},
+          "_hasHookEvent": false,
+          "_inactive": null,
+          "_isBeingDestroyed": false,
+          "_isDestroyed": false,
+          "_isMounted": false,
+          "_isVue": true,
+          "_renderProxy": [Circular],
+          "_self": [Circular],
+          "_staticTrees": null,
+          "_uid": 1,
+          "_vnode": null,
+          "_watcher": null,
+          "_watchers": Array [
+            Watcher {
+              "active": true,
+              "before": undefined,
+              "cb": [Function],
+              "deep": true,
+              "depIds": Set {
+                6,
+                7,
+                9,
+                10,
+                11,
+                8,
+              },
+              "deps": Array [
+                Dep {
+                  "id": 6,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 7,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 9,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 10,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 11,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 8,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+              ],
+              "dirty": false,
+              "expression": "function () { return this._data.$$state }",
+              "getter": [Function],
+              "id": 1,
+              "lazy": false,
+              "newDepIds": Set {},
+              "newDeps": Array [],
+              "sync": true,
+              "user": true,
+              "value": Object {
+                "instructionsStore": Object {
+                  "isInstructionsMode": false,
+                },
+                "version": "1.0.0",
+              },
+              "vm": [Circular],
+            },
+          ],
+        },
+        "_self": [Circular],
+        "_staticTrees": null,
+        "_uid": 1,
+        "_vnode": null,
+        "_watcher": null,
+        "_watchers": Array [
+          Watcher {
+            "active": true,
+            "before": undefined,
+            "cb": [Function],
+            "deep": true,
+            "depIds": Set {
+              6,
+              7,
+              9,
+              10,
+              11,
+              8,
+            },
+            "deps": Array [
+              Dep {
+                "id": 6,
+                "subs": Array [
+                  [Circular],
+                ],
+              },
+              Dep {
+                "id": 7,
+                "subs": Array [
+                  [Circular],
+                ],
+              },
+              Dep {
+                "id": 9,
+                "subs": Array [
+                  [Circular],
+                ],
+              },
+              Dep {
+                "id": 10,
+                "subs": Array [
+                  [Circular],
+                ],
+              },
+              Dep {
+                "id": 11,
+                "subs": Array [
+                  [Circular],
+                ],
+              },
+              Dep {
+                "id": 8,
+                "subs": Array [
+                  [Circular],
+                ],
+              },
+            ],
+            "dirty": false,
+            "expression": "function () { return this._data.$$state }",
+            "getter": [Function],
+            "id": 1,
+            "lazy": false,
+            "newDepIds": Set {},
+            "newDeps": Array [],
+            "sync": true,
+            "user": true,
+            "value": Object {
+              "instructionsStore": Object {
+                "isInstructionsMode": false,
+              },
+              "version": "1.0.0",
+            },
+            "vm": [Circular],
+          },
+        ],
+      },
+      "_watcherVM": Vue {
+        "$attrs": Object {},
+        "$children": Array [],
+        "$createElement": [Function],
+        "$listeners": Object {},
+        "$options": Object {
+          "_base": [Function],
+          "beforeCreate": Array [
+            [Function],
+            [Function],
+          ],
+          "beforeMount": Array [
+            [Function],
+          ],
+          "components": Object {},
+          "directives": Object {},
+          "filters": Object {},
+          "mounted": Array [
+            [Function],
+          ],
+        },
+        "$parent": undefined,
+        "$refs": Object {},
+        "$root": [Circular],
+        "$scopedSlots": Object {},
+        "$slots": Object {},
+        "$vnode": undefined,
+        "$vuetify": [Circular],
+        "_c": [Function],
+        "_data": Object {},
+        "_directInactive": false,
+        "_events": Object {},
+        "_hasHookEvent": false,
+        "_inactive": null,
+        "_isBeingDestroyed": false,
+        "_isDestroyed": false,
+        "_isMounted": false,
+        "_isVue": true,
+        "_renderProxy": Vue {
+          "$attrs": Object {},
+          "$children": Array [],
+          "$createElement": [Function],
+          "$listeners": Object {},
+          "$options": Object {
+            "_base": [Function],
+            "beforeCreate": Array [
+              [Function],
+              [Function],
+            ],
+            "beforeMount": Array [
+              [Function],
+            ],
+            "components": Object {},
+            "directives": Object {},
+            "filters": Object {},
+            "mounted": Array [
+              [Function],
+            ],
+          },
+          "$parent": undefined,
+          "$refs": Object {},
+          "$root": [Circular],
+          "$scopedSlots": Object {},
+          "$slots": Object {},
+          "$vnode": undefined,
+          "$vuetify": [Circular],
+          "_c": [Function],
+          "_data": Object {},
+          "_directInactive": false,
+          "_events": Object {},
+          "_hasHookEvent": false,
+          "_inactive": null,
+          "_isBeingDestroyed": false,
+          "_isDestroyed": false,
+          "_isMounted": false,
+          "_isVue": true,
+          "_renderProxy": [Circular],
+          "_self": [Circular],
+          "_staticTrees": null,
+          "_uid": 0,
+          "_vnode": null,
+          "_watcher": null,
+          "_watchers": Array [],
+        },
+        "_self": [Circular],
+        "_staticTrees": null,
+        "_uid": 0,
+        "_vnode": null,
+        "_watcher": null,
+        "_watchers": Array [],
+      },
+      "_wrappedGetters": Object {},
+      "commit": [Function],
+      "dispatch": [Function],
+      "getters": Object {},
+      "strict": true,
+    },
+    "$vnode": undefined,
+    "$vuetify": Object {
+      "application": Application {
+        "application": Object {
+          "bar": Object {},
+          "bottom": Object {},
+          "footer": Object {},
+          "insetFooter": Object {},
+          "left": Object {},
+          "right": Object {},
+          "top": Object {},
+        },
+        "bar": 0,
+        "bottom": 0,
+        "footer": 0,
+        "framework": [Circular],
+        "insetFooter": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+      },
+      "breakpoint": Breakpoint {
+        "framework": [Circular],
+        "height": 768,
+        "lg": false,
+        "lgAndDown": true,
+        "lgAndUp": false,
+        "lgOnly": false,
+        "md": true,
+        "mdAndDown": true,
+        "mdAndUp": true,
+        "mdOnly": true,
+        "mobile": true,
+        "mobileBreakpoint": 1264,
+        "name": "md",
+        "resizeTimeout": 0,
+        "scrollBarWidth": 16,
+        "sm": false,
+        "smAndDown": false,
+        "smAndUp": true,
+        "smOnly": false,
+        "thresholds": Object {
+          "lg": 1920,
+          "md": 1280,
+          "sm": 960,
+          "xs": 600,
+        },
+        "width": 1024,
+        "xl": false,
+        "xlOnly": false,
+        "xs": false,
+        "xsOnly": false,
+      },
+      "goTo": [Function],
+      "icons": Icons {
+        "framework": [Circular],
+        "iconfont": "mdi",
+        "values": Object {
+          "cancel": "mdi-close-circle",
+          "checkboxIndeterminate": "mdi-minus-box",
+          "checkboxOff": "mdi-checkbox-blank-outline",
+          "checkboxOn": "mdi-checkbox-marked",
+          "clear": "mdi-close",
+          "close": "mdi-close",
+          "complete": "mdi-check",
+          "delete": "mdi-close-circle",
+          "delimiter": "mdi-circle",
+          "dropdown": "mdi-menu-down",
+          "edit": "mdi-pencil",
+          "error": "mdi-alert",
+          "expand": "mdi-chevron-down",
+          "file": "mdi-paperclip",
+          "first": "mdi-page-first",
+          "info": "mdi-information",
+          "last": "mdi-page-last",
+          "loading": "mdi-cached",
+          "menu": "mdi-menu",
+          "minus": "mdi-minus",
+          "next": "mdi-chevron-right",
+          "plus": "mdi-plus",
+          "prev": "mdi-chevron-left",
+          "radioOff": "mdi-radiobox-blank",
+          "radioOn": "mdi-radiobox-marked",
+          "ratingEmpty": "mdi-star-outline",
+          "ratingFull": "mdi-star",
+          "ratingHalf": "mdi-star-half",
+          "sort": "mdi-arrow-up",
+          "subgroup": "mdi-menu-down",
+          "success": "mdi-check-circle",
+          "unfold": "mdi-unfold-more-horizontal",
+          "warning": "mdi-exclamation",
+        },
+      },
+      "isHydrating": false,
+      "lang": Lang {
+        "current": "en",
+        "defaultLocale": "en",
+        "framework": [Circular],
+        "locales": Object {
+          "en": Object {
+            "badge": "Badge",
+            "calendar": Object {
+              "moreEvents": "{0} more",
+            },
+            "carousel": Object {
+              "ariaLabel": Object {
+                "delimiter": "Carousel slide {0} of {1}",
+              },
+              "next": "Next visual",
+              "prev": "Previous visual",
+            },
+            "close": "Close",
+            "dataFooter": Object {
+              "firstPage": "First page",
+              "itemsPerPageAll": "All",
+              "itemsPerPageText": "Items per page:",
+              "lastPage": "Last page",
+              "nextPage": "Next page",
+              "pageText": "{0}-{1} of {2}",
+              "prevPage": "Previous page",
+            },
+            "dataIterator": Object {
+              "loadingText": "Loading items...",
+              "noResultsText": "No matching records found",
+            },
+            "dataTable": Object {
+              "ariaLabel": Object {
+                "activateAscending": "Activate to sort ascending.",
+                "activateDescending": "Activate to sort descending.",
+                "activateNone": "Activate to remove sorting.",
+                "sortAscending": "Sorted ascending.",
+                "sortDescending": "Sorted descending.",
+                "sortNone": "Not sorted.",
+              },
+              "itemsPerPageText": "Rows per page:",
+              "sortBy": "Sort by",
+            },
+            "datePicker": Object {
+              "itemsSelected": "{0} selected",
+              "nextMonthAriaLabel": "Next month",
+              "nextYearAriaLabel": "Next year",
+              "prevMonthAriaLabel": "Previous month",
+              "prevYearAriaLabel": "Previous year",
+            },
+            "fileInput": Object {
+              "counter": "{0} files",
+              "counterSize": "{0} files ({1} in total)",
+            },
+            "noDataText": "No data available",
+            "pagination": Object {
+              "ariaLabel": Object {
+                "currentPage": "Current Page, Page {0}",
+                "next": "Next page",
+                "page": "Goto Page {0}",
+                "previous": "Previous page",
+                "wrapper": "Pagination Navigation",
+              },
+            },
+            "timePicker": Object {
+              "am": "AM",
+              "pm": "PM",
+            },
+          },
+        },
+        "translator": [Function],
+      },
+      "presets": Presets {
+        "framework": [Circular],
+      },
+      "rtl": false,
+      "theme": Theme {
+        "defaults": Object {
+          "dark": Object {
+            "accent": "#FF4081",
+            "error": "#FF5252",
+            "info": "#2196F3",
+            "primary": "#2196F3",
+            "secondary": "#424242",
+            "success": "#4CAF50",
+            "warning": "#FB8C00",
+          },
+          "light": Object {
+            "accent": "#82B1FF",
+            "error": "#FF5252",
+            "info": "#2196F3",
+            "primary": "#1976D2",
+            "secondary": "#424242",
+            "success": "#4CAF50",
+            "warning": "#FB8C00",
+          },
+        },
+        "disabled": false,
+        "framework": [Circular],
+        "isDark": false,
+        "options": Object {
+          "cspNonce": undefined,
+          "customProperties": undefined,
+          "minifyTheme": undefined,
+          "themeCache": undefined,
+          "variations": true,
+        },
+        "styleEl": <style
+          id="vuetify-theme-stylesheet"
+          type="text/css"
+        >
+          .v-application a { color: #1976d2; }
+.v-application .primary {
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+}
+.v-application .primary--text {
+  color: #1976d2 !important;
+  caret-color: #1976d2 !important;
+}
+.v-application .primary.lighten-5 {
+  background-color: #c7fdff !important;
+  border-color: #c7fdff !important;
+}
+.v-application .primary--text.text--lighten-5 {
+  color: #c7fdff !important;
+  caret-color: #c7fdff !important;
+}
+.v-application .primary.lighten-4 {
+  background-color: #a8e0ff !important;
+  border-color: #a8e0ff !important;
+}
+.v-application .primary--text.text--lighten-4 {
+  color: #a8e0ff !important;
+  caret-color: #a8e0ff !important;
+}
+.v-application .primary.lighten-3 {
+  background-color: #8ac5ff !important;
+  border-color: #8ac5ff !important;
+}
+.v-application .primary--text.text--lighten-3 {
+  color: #8ac5ff !important;
+  caret-color: #8ac5ff !important;
+}
+.v-application .primary.lighten-2 {
+  background-color: #6aaaff !important;
+  border-color: #6aaaff !important;
+}
+.v-application .primary--text.text--lighten-2 {
+  color: #6aaaff !important;
+  caret-color: #6aaaff !important;
+}
+.v-application .primary.lighten-1 {
+  background-color: #488fef !important;
+  border-color: #488fef !important;
+}
+.v-application .primary--text.text--lighten-1 {
+  color: #488fef !important;
+  caret-color: #488fef !important;
+}
+.v-application .primary.darken-1 {
+  background-color: #005eb6 !important;
+  border-color: #005eb6 !important;
+}
+.v-application .primary--text.text--darken-1 {
+  color: #005eb6 !important;
+  caret-color: #005eb6 !important;
+}
+.v-application .primary.darken-2 {
+  background-color: #00479b !important;
+  border-color: #00479b !important;
+}
+.v-application .primary--text.text--darken-2 {
+  color: #00479b !important;
+  caret-color: #00479b !important;
+}
+.v-application .primary.darken-3 {
+  background-color: #003180 !important;
+  border-color: #003180 !important;
+}
+.v-application .primary--text.text--darken-3 {
+  color: #003180 !important;
+  caret-color: #003180 !important;
+}
+.v-application .primary.darken-4 {
+  background-color: #001e67 !important;
+  border-color: #001e67 !important;
+}
+.v-application .primary--text.text--darken-4 {
+  color: #001e67 !important;
+  caret-color: #001e67 !important;
+}
+.v-application .secondary {
+  background-color: #424242 !important;
+  border-color: #424242 !important;
+}
+.v-application .secondary--text {
+  color: #424242 !important;
+  caret-color: #424242 !important;
+}
+.v-application .secondary.lighten-5 {
+  background-color: #c1c1c1 !important;
+  border-color: #c1c1c1 !important;
+}
+.v-application .secondary--text.text--lighten-5 {
+  color: #c1c1c1 !important;
+  caret-color: #c1c1c1 !important;
+}
+.v-application .secondary.lighten-4 {
+  background-color: #a6a6a6 !important;
+  border-color: #a6a6a6 !important;
+}
+.v-application .secondary--text.text--lighten-4 {
+  color: #a6a6a6 !important;
+  caret-color: #a6a6a6 !important;
+}
+.v-application .secondary.lighten-3 {
+  background-color: #8b8b8b !important;
+  border-color: #8b8b8b !important;
+}
+.v-application .secondary--text.text--lighten-3 {
+  color: #8b8b8b !important;
+  caret-color: #8b8b8b !important;
+}
+.v-application .secondary.lighten-2 {
+  background-color: #727272 !important;
+  border-color: #727272 !important;
+}
+.v-application .secondary--text.text--lighten-2 {
+  color: #727272 !important;
+  caret-color: #727272 !important;
+}
+.v-application .secondary.lighten-1 {
+  background-color: #595959 !important;
+  border-color: #595959 !important;
+}
+.v-application .secondary--text.text--lighten-1 {
+  color: #595959 !important;
+  caret-color: #595959 !important;
+}
+.v-application .secondary.darken-1 {
+  background-color: #2c2c2c !important;
+  border-color: #2c2c2c !important;
+}
+.v-application .secondary--text.text--darken-1 {
+  color: #2c2c2c !important;
+  caret-color: #2c2c2c !important;
+}
+.v-application .secondary.darken-2 {
+  background-color: #171717 !important;
+  border-color: #171717 !important;
+}
+.v-application .secondary--text.text--darken-2 {
+  color: #171717 !important;
+  caret-color: #171717 !important;
+}
+.v-application .secondary.darken-3 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .secondary--text.text--darken-3 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .secondary.darken-4 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .secondary--text.text--darken-4 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .accent {
+  background-color: #82b1ff !important;
+  border-color: #82b1ff !important;
+}
+.v-application .accent--text {
+  color: #82b1ff !important;
+  caret-color: #82b1ff !important;
+}
+.v-application .accent.lighten-5 {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+.v-application .accent--text.text--lighten-5 {
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+.v-application .accent.lighten-4 {
+  background-color: #f8ffff !important;
+  border-color: #f8ffff !important;
+}
+.v-application .accent--text.text--lighten-4 {
+  color: #f8ffff !important;
+  caret-color: #f8ffff !important;
+}
+.v-application .accent.lighten-3 {
+  background-color: #daffff !important;
+  border-color: #daffff !important;
+}
+.v-application .accent--text.text--lighten-3 {
+  color: #daffff !important;
+  caret-color: #daffff !important;
+}
+.v-application .accent.lighten-2 {
+  background-color: #bce8ff !important;
+  border-color: #bce8ff !important;
+}
+.v-application .accent--text.text--lighten-2 {
+  color: #bce8ff !important;
+  caret-color: #bce8ff !important;
+}
+.v-application .accent.lighten-1 {
+  background-color: #9fccff !important;
+  border-color: #9fccff !important;
+}
+.v-application .accent--text.text--lighten-1 {
+  color: #9fccff !important;
+  caret-color: #9fccff !important;
+}
+.v-application .accent.darken-1 {
+  background-color: #6596e2 !important;
+  border-color: #6596e2 !important;
+}
+.v-application .accent--text.text--darken-1 {
+  color: #6596e2 !important;
+  caret-color: #6596e2 !important;
+}
+.v-application .accent.darken-2 {
+  background-color: #467dc6 !important;
+  border-color: #467dc6 !important;
+}
+.v-application .accent--text.text--darken-2 {
+  color: #467dc6 !important;
+  caret-color: #467dc6 !important;
+}
+.v-application .accent.darken-3 {
+  background-color: #2364aa !important;
+  border-color: #2364aa !important;
+}
+.v-application .accent--text.text--darken-3 {
+  color: #2364aa !important;
+  caret-color: #2364aa !important;
+}
+.v-application .accent.darken-4 {
+  background-color: #004c90 !important;
+  border-color: #004c90 !important;
+}
+.v-application .accent--text.text--darken-4 {
+  color: #004c90 !important;
+  caret-color: #004c90 !important;
+}
+.v-application .error {
+  background-color: #ff5252 !important;
+  border-color: #ff5252 !important;
+}
+.v-application .error--text {
+  color: #ff5252 !important;
+  caret-color: #ff5252 !important;
+}
+.v-application .error.lighten-5 {
+  background-color: #ffe4d5 !important;
+  border-color: #ffe4d5 !important;
+}
+.v-application .error--text.text--lighten-5 {
+  color: #ffe4d5 !important;
+  caret-color: #ffe4d5 !important;
+}
+.v-application .error.lighten-4 {
+  background-color: #ffc6b9 !important;
+  border-color: #ffc6b9 !important;
+}
+.v-application .error--text.text--lighten-4 {
+  color: #ffc6b9 !important;
+  caret-color: #ffc6b9 !important;
+}
+.v-application .error.lighten-3 {
+  background-color: #ffa99e !important;
+  border-color: #ffa99e !important;
+}
+.v-application .error--text.text--lighten-3 {
+  color: #ffa99e !important;
+  caret-color: #ffa99e !important;
+}
+.v-application .error.lighten-2 {
+  background-color: #ff8c84 !important;
+  border-color: #ff8c84 !important;
+}
+.v-application .error--text.text--lighten-2 {
+  color: #ff8c84 !important;
+  caret-color: #ff8c84 !important;
+}
+.v-application .error.lighten-1 {
+  background-color: #ff6f6a !important;
+  border-color: #ff6f6a !important;
+}
+.v-application .error--text.text--lighten-1 {
+  color: #ff6f6a !important;
+  caret-color: #ff6f6a !important;
+}
+.v-application .error.darken-1 {
+  background-color: #df323b !important;
+  border-color: #df323b !important;
+}
+.v-application .error--text.text--darken-1 {
+  color: #df323b !important;
+  caret-color: #df323b !important;
+}
+.v-application .error.darken-2 {
+  background-color: #bf0025 !important;
+  border-color: #bf0025 !important;
+}
+.v-application .error--text.text--darken-2 {
+  color: #bf0025 !important;
+  caret-color: #bf0025 !important;
+}
+.v-application .error.darken-3 {
+  background-color: #9f0010 !important;
+  border-color: #9f0010 !important;
+}
+.v-application .error--text.text--darken-3 {
+  color: #9f0010 !important;
+  caret-color: #9f0010 !important;
+}
+.v-application .error.darken-4 {
+  background-color: #800000 !important;
+  border-color: #800000 !important;
+}
+.v-application .error--text.text--darken-4 {
+  color: #800000 !important;
+  caret-color: #800000 !important;
+}
+.v-application .info {
+  background-color: #2196f3 !important;
+  border-color: #2196f3 !important;
+}
+.v-application .info--text {
+  color: #2196f3 !important;
+  caret-color: #2196f3 !important;
+}
+.v-application .info.lighten-5 {
+  background-color: #d4ffff !important;
+  border-color: #d4ffff !important;
+}
+.v-application .info--text.text--lighten-5 {
+  color: #d4ffff !important;
+  caret-color: #d4ffff !important;
+}
+.v-application .info.lighten-4 {
+  background-color: #b5ffff !important;
+  border-color: #b5ffff !important;
+}
+.v-application .info--text.text--lighten-4 {
+  color: #b5ffff !important;
+  caret-color: #b5ffff !important;
+}
+.v-application .info.lighten-3 {
+  background-color: #95e8ff !important;
+  border-color: #95e8ff !important;
+}
+.v-application .info--text.text--lighten-3 {
+  color: #95e8ff !important;
+  caret-color: #95e8ff !important;
+}
+.v-application .info.lighten-2 {
+  background-color: #75ccff !important;
+  border-color: #75ccff !important;
+}
+.v-application .info--text.text--lighten-2 {
+  color: #75ccff !important;
+  caret-color: #75ccff !important;
+}
+.v-application .info.lighten-1 {
+  background-color: #51b0ff !important;
+  border-color: #51b0ff !important;
+}
+.v-application .info--text.text--lighten-1 {
+  color: #51b0ff !important;
+  caret-color: #51b0ff !important;
+}
+.v-application .info.darken-1 {
+  background-color: #007cd6 !important;
+  border-color: #007cd6 !important;
+}
+.v-application .info--text.text--darken-1 {
+  color: #007cd6 !important;
+  caret-color: #007cd6 !important;
+}
+.v-application .info.darken-2 {
+  background-color: #0064ba !important;
+  border-color: #0064ba !important;
+}
+.v-application .info--text.text--darken-2 {
+  color: #0064ba !important;
+  caret-color: #0064ba !important;
+}
+.v-application .info.darken-3 {
+  background-color: #004d9f !important;
+  border-color: #004d9f !important;
+}
+.v-application .info--text.text--darken-3 {
+  color: #004d9f !important;
+  caret-color: #004d9f !important;
+}
+.v-application .info.darken-4 {
+  background-color: #003784 !important;
+  border-color: #003784 !important;
+}
+.v-application .info--text.text--darken-4 {
+  color: #003784 !important;
+  caret-color: #003784 !important;
+}
+.v-application .success {
+  background-color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}
+.v-application .success--text {
+  color: #4caf50 !important;
+  caret-color: #4caf50 !important;
+}
+.v-application .success.lighten-5 {
+  background-color: #dcffd6 !important;
+  border-color: #dcffd6 !important;
+}
+.v-application .success--text.text--lighten-5 {
+  color: #dcffd6 !important;
+  caret-color: #dcffd6 !important;
+}
+.v-application .success.lighten-4 {
+  background-color: #beffba !important;
+  border-color: #beffba !important;
+}
+.v-application .success--text.text--lighten-4 {
+  color: #beffba !important;
+  caret-color: #beffba !important;
+}
+.v-application .success.lighten-3 {
+  background-color: #a2ff9e !important;
+  border-color: #a2ff9e !important;
+}
+.v-application .success--text.text--lighten-3 {
+  color: #a2ff9e !important;
+  caret-color: #a2ff9e !important;
+}
+.v-application .success.lighten-2 {
+  background-color: #85e783 !important;
+  border-color: #85e783 !important;
+}
+.v-application .success--text.text--lighten-2 {
+  color: #85e783 !important;
+  caret-color: #85e783 !important;
+}
+.v-application .success.lighten-1 {
+  background-color: #69cb69 !important;
+  border-color: #69cb69 !important;
+}
+.v-application .success--text.text--lighten-1 {
+  color: #69cb69 !important;
+  caret-color: #69cb69 !important;
+}
+.v-application .success.darken-1 {
+  background-color: #2d9437 !important;
+  border-color: #2d9437 !important;
+}
+.v-application .success--text.text--darken-1 {
+  color: #2d9437 !important;
+  caret-color: #2d9437 !important;
+}
+.v-application .success.darken-2 {
+  background-color: #00791e !important;
+  border-color: #00791e !important;
+}
+.v-application .success--text.text--darken-2 {
+  color: #00791e !important;
+  caret-color: #00791e !important;
+}
+.v-application .success.darken-3 {
+  background-color: #006000 !important;
+  border-color: #006000 !important;
+}
+.v-application .success--text.text--darken-3 {
+  color: #006000 !important;
+  caret-color: #006000 !important;
+}
+.v-application .success.darken-4 {
+  background-color: #004700 !important;
+  border-color: #004700 !important;
+}
+.v-application .success--text.text--darken-4 {
+  color: #004700 !important;
+  caret-color: #004700 !important;
+}
+.v-application .warning {
+  background-color: #fb8c00 !important;
+  border-color: #fb8c00 !important;
+}
+.v-application .warning--text {
+  color: #fb8c00 !important;
+  caret-color: #fb8c00 !important;
+}
+.v-application .warning.lighten-5 {
+  background-color: #ffff9e !important;
+  border-color: #ffff9e !important;
+}
+.v-application .warning--text.text--lighten-5 {
+  color: #ffff9e !important;
+  caret-color: #ffff9e !important;
+}
+.v-application .warning.lighten-4 {
+  background-color: #fffb82 !important;
+  border-color: #fffb82 !important;
+}
+.v-application .warning--text.text--lighten-4 {
+  color: #fffb82 !important;
+  caret-color: #fffb82 !important;
+}
+.v-application .warning.lighten-3 {
+  background-color: #ffdf67 !important;
+  border-color: #ffdf67 !important;
+}
+.v-application .warning--text.text--lighten-3 {
+  color: #ffdf67 !important;
+  caret-color: #ffdf67 !important;
+}
+.v-application .warning.lighten-2 {
+  background-color: #ffc24b !important;
+  border-color: #ffc24b !important;
+}
+.v-application .warning--text.text--lighten-2 {
+  color: #ffc24b !important;
+  caret-color: #ffc24b !important;
+}
+.v-application .warning.lighten-1 {
+  background-color: #ffa72d !important;
+  border-color: #ffa72d !important;
+}
+.v-application .warning--text.text--lighten-1 {
+  color: #ffa72d !important;
+  caret-color: #ffa72d !important;
+}
+.v-application .warning.darken-1 {
+  background-color: #db7200 !important;
+  border-color: #db7200 !important;
+}
+.v-application .warning--text.text--darken-1 {
+  color: #db7200 !important;
+  caret-color: #db7200 !important;
+}
+.v-application .warning.darken-2 {
+  background-color: #bb5900 !important;
+  border-color: #bb5900 !important;
+}
+.v-application .warning--text.text--darken-2 {
+  color: #bb5900 !important;
+  caret-color: #bb5900 !important;
+}
+.v-application .warning.darken-3 {
+  background-color: #9d4000 !important;
+  border-color: #9d4000 !important;
+}
+.v-application .warning--text.text--darken-3 {
+  color: #9d4000 !important;
+  caret-color: #9d4000 !important;
+}
+.v-application .warning.darken-4 {
+  background-color: #802700 !important;
+  border-color: #802700 !important;
+}
+.v-application .warning--text.text--darken-4 {
+  color: #802700 !important;
+  caret-color: #802700 !important;
+}
+        </style>,
+        "themes": Object {
+          "dark": Object {
+            "accent": "#FF4081",
+            "error": "#FF5252",
+            "info": "#2196F3",
+            "primary": "#2196F3",
+            "secondary": "#424242",
+            "success": "#4CAF50",
+            "warning": "#FB8C00",
+          },
+          "light": Object {
+            "accent": "#82B1FF",
+            "error": "#FF5252",
+            "info": "#2196F3",
+            "primary": "#1976D2",
+            "secondary": "#424242",
+            "success": "#4CAF50",
+            "warning": "#FB8C00",
+          },
+        },
+        "unwatch": [Function],
+        "vueMeta": null,
+      },
+    },
+    "_c": [Function],
+    "_data": Object {},
+    "_directInactive": false,
+    "_events": Object {
+      "hook:created": Array [],
+    },
+    "_hasHookEvent": true,
+    "_inactive": null,
+    "_isBeingDestroyed": false,
+    "_isDestroyed": false,
+    "_isMounted": true,
+    "_isVue": true,
+    "_renderProxy": Vue {
+      "$attrs": Object {},
+      "$children": Array [],
+      "$createElement": [Function],
+      "$el": <button>
+        <audio
+          src="http://just.a.test/audio.mp3"
+        />
+      </button>,
+      "$listeners": Object {},
+      "$options": Object {
+        "_base": [Function],
+        "beforeCreate": Array [
+          [Function],
+          [Function],
+        ],
+        "beforeMount": Array [
+          [Function],
+        ],
+        "components": Object {},
+        "directives": Object {},
+        "filters": Object {},
+        "mounted": Array [
+          [Function],
+        ],
+        "render": [Function],
+        "store": Store {
+          "_actionSubscribers": Array [],
+          "_actions": Object {
+            "instructionsStore/resetState": Array [
+              [Function],
+            ],
+            "instructionsStore/toggleInstructionsMode": Array [
+              [Function],
+            ],
+          },
+          "_committing": false,
+          "_makeLocalGettersCache": Object {
+            "instructionsStore/": Object {},
+          },
+          "_modules": ModuleCollection {
+            "root": Module {
+              "_children": Object {
+                "instructionsStore": Module {
+                  "_children": Object {},
+                  "_rawModule": Object {
+                    "actions": Object {
+                      "resetState": [Function],
+                      "toggleInstructionsMode": [Function],
+                    },
+                    "mutations": Object {
+                      "RESET_STATE": [Function],
+                      "TOGGLE_INSTRUCTIONS_MODE": [Function],
+                    },
+                    "namespaced": true,
+                    "state": Object {
+                      "isInstructionsMode": false,
+                    },
+                  },
+                  "context": Object {
+                    "commit": [Function],
+                    "dispatch": [Function],
+                  },
+                  "runtime": false,
+                  "state": Object {
+                    "isInstructionsMode": false,
+                  },
+                },
+              },
+              "_rawModule": Object {
+                "actions": Object {},
+                "modules": Object {
+                  "instructionsStore": Object {
+                    "actions": Object {
+                      "resetState": [Function],
+                      "toggleInstructionsMode": [Function],
+                    },
+                    "mutations": Object {
+                      "RESET_STATE": [Function],
+                      "TOGGLE_INSTRUCTIONS_MODE": [Function],
+                    },
+                    "namespaced": true,
+                    "state": Object {
+                      "isInstructionsMode": false,
+                    },
+                  },
+                },
+                "mutations": Object {},
+                "state": Object {
+                  "instructionsStore": Object {
+                    "isInstructionsMode": false,
+                  },
+                  "version": "1.0.0",
+                },
+                "strict": true,
+              },
+              "context": Object {
+                "commit": [Function],
+                "dispatch": [Function],
+              },
+              "runtime": false,
+              "state": Object {
+                "instructionsStore": Object {
+                  "isInstructionsMode": false,
+                },
+                "version": "1.0.0",
+              },
+            },
+          },
+          "_modulesNamespaceMap": Object {
+            "instructionsStore/": Module {
+              "_children": Object {},
+              "_rawModule": Object {
+                "actions": Object {
+                  "resetState": [Function],
+                  "toggleInstructionsMode": [Function],
+                },
+                "mutations": Object {
+                  "RESET_STATE": [Function],
+                  "TOGGLE_INSTRUCTIONS_MODE": [Function],
+                },
+                "namespaced": true,
+                "state": Object {
+                  "isInstructionsMode": false,
+                },
+              },
+              "context": Object {
+                "commit": [Function],
+                "dispatch": [Function],
+              },
+              "runtime": false,
+              "state": Object {
+                "isInstructionsMode": false,
+              },
+            },
+          },
+          "_mutations": Object {
+            "instructionsStore/RESET_STATE": Array [
+              [Function],
+            ],
+            "instructionsStore/TOGGLE_INSTRUCTIONS_MODE": Array [
+              [Function],
+            ],
+          },
+          "_subscribers": Array [
+            [Function],
+          ],
+          "_vm": Vue {
+            "$attrs": Object {},
+            "$children": Array [],
+            "$createElement": [Function],
+            "$listeners": Object {},
+            "$options": Object {
+              "_base": [Function],
+              "beforeCreate": Array [
+                [Function],
+                [Function],
+              ],
+              "beforeMount": Array [
+                [Function],
+              ],
+              "components": Object {},
+              "computed": Object {},
+              "data": [Function],
+              "directives": Object {},
+              "filters": Object {},
+              "mounted": Array [
+                [Function],
+              ],
+            },
+            "$parent": undefined,
+            "$refs": Object {},
+            "$root": [Circular],
+            "$scopedSlots": Object {},
+            "$slots": Object {},
+            "$vnode": undefined,
+            "$vuetify": [Circular],
+            "_c": [Function],
+            "_computedWatchers": Object {},
+            "_data": Object {
+              "$$state": Object {
+                "instructionsStore": Object {
+                  "isInstructionsMode": false,
+                },
+                "version": "1.0.0",
+              },
+            },
+            "_directInactive": false,
+            "_events": Object {},
+            "_hasHookEvent": false,
+            "_inactive": null,
+            "_isBeingDestroyed": false,
+            "_isDestroyed": false,
+            "_isMounted": false,
+            "_isVue": true,
+            "_renderProxy": Vue {
+              "$attrs": Object {},
+              "$children": Array [],
+              "$createElement": [Function],
+              "$listeners": Object {},
+              "$options": Object {
+                "_base": [Function],
+                "beforeCreate": Array [
+                  [Function],
+                  [Function],
+                ],
+                "beforeMount": Array [
+                  [Function],
+                ],
+                "components": Object {},
+                "computed": Object {},
+                "data": [Function],
+                "directives": Object {},
+                "filters": Object {},
+                "mounted": Array [
+                  [Function],
+                ],
+              },
+              "$parent": undefined,
+              "$refs": Object {},
+              "$root": [Circular],
+              "$scopedSlots": Object {},
+              "$slots": Object {},
+              "$vnode": undefined,
+              "$vuetify": [Circular],
+              "_c": [Function],
+              "_computedWatchers": Object {},
+              "_data": Object {
+                "$$state": Object {
+                  "instructionsStore": Object {
+                    "isInstructionsMode": false,
+                  },
+                  "version": "1.0.0",
+                },
+              },
+              "_directInactive": false,
+              "_events": Object {},
+              "_hasHookEvent": false,
+              "_inactive": null,
+              "_isBeingDestroyed": false,
+              "_isDestroyed": false,
+              "_isMounted": false,
+              "_isVue": true,
+              "_renderProxy": [Circular],
+              "_self": [Circular],
+              "_staticTrees": null,
+              "_uid": 1,
+              "_vnode": null,
+              "_watcher": null,
+              "_watchers": Array [
+                Watcher {
+                  "active": true,
+                  "before": undefined,
+                  "cb": [Function],
+                  "deep": true,
+                  "depIds": Set {
+                    6,
+                    7,
+                    9,
+                    10,
+                    11,
+                    8,
+                  },
+                  "deps": Array [
+                    Dep {
+                      "id": 6,
+                      "subs": Array [
+                        [Circular],
+                      ],
+                    },
+                    Dep {
+                      "id": 7,
+                      "subs": Array [
+                        [Circular],
+                      ],
+                    },
+                    Dep {
+                      "id": 9,
+                      "subs": Array [
+                        [Circular],
+                      ],
+                    },
+                    Dep {
+                      "id": 10,
+                      "subs": Array [
+                        [Circular],
+                      ],
+                    },
+                    Dep {
+                      "id": 11,
+                      "subs": Array [
+                        [Circular],
+                      ],
+                    },
+                    Dep {
+                      "id": 8,
+                      "subs": Array [
+                        [Circular],
+                      ],
+                    },
+                  ],
+                  "dirty": false,
+                  "expression": "function () { return this._data.$$state }",
+                  "getter": [Function],
+                  "id": 1,
+                  "lazy": false,
+                  "newDepIds": Set {},
+                  "newDeps": Array [],
+                  "sync": true,
+                  "user": true,
+                  "value": Object {
+                    "instructionsStore": Object {
+                      "isInstructionsMode": false,
+                    },
+                    "version": "1.0.0",
+                  },
+                  "vm": [Circular],
+                },
+              ],
+            },
+            "_self": [Circular],
+            "_staticTrees": null,
+            "_uid": 1,
+            "_vnode": null,
+            "_watcher": null,
+            "_watchers": Array [
+              Watcher {
+                "active": true,
+                "before": undefined,
+                "cb": [Function],
+                "deep": true,
+                "depIds": Set {
+                  6,
+                  7,
+                  9,
+                  10,
+                  11,
+                  8,
+                },
+                "deps": Array [
+                  Dep {
+                    "id": 6,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 7,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 9,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 10,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 11,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 8,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                ],
+                "dirty": false,
+                "expression": "function () { return this._data.$$state }",
+                "getter": [Function],
+                "id": 1,
+                "lazy": false,
+                "newDepIds": Set {},
+                "newDeps": Array [],
+                "sync": true,
+                "user": true,
+                "value": Object {
+                  "instructionsStore": Object {
+                    "isInstructionsMode": false,
+                  },
+                  "version": "1.0.0",
+                },
+                "vm": [Circular],
+              },
+            ],
+          },
+          "_watcherVM": Vue {
+            "$attrs": Object {},
+            "$children": Array [],
+            "$createElement": [Function],
+            "$listeners": Object {},
+            "$options": Object {
+              "_base": [Function],
+              "beforeCreate": Array [
+                [Function],
+                [Function],
+              ],
+              "beforeMount": Array [
+                [Function],
+              ],
+              "components": Object {},
+              "directives": Object {},
+              "filters": Object {},
+              "mounted": Array [
+                [Function],
+              ],
+            },
+            "$parent": undefined,
+            "$refs": Object {},
+            "$root": [Circular],
+            "$scopedSlots": Object {},
+            "$slots": Object {},
+            "$vnode": undefined,
+            "$vuetify": [Circular],
+            "_c": [Function],
+            "_data": Object {},
+            "_directInactive": false,
+            "_events": Object {},
+            "_hasHookEvent": false,
+            "_inactive": null,
+            "_isBeingDestroyed": false,
+            "_isDestroyed": false,
+            "_isMounted": false,
+            "_isVue": true,
+            "_renderProxy": Vue {
+              "$attrs": Object {},
+              "$children": Array [],
+              "$createElement": [Function],
+              "$listeners": Object {},
+              "$options": Object {
+                "_base": [Function],
+                "beforeCreate": Array [
+                  [Function],
+                  [Function],
+                ],
+                "beforeMount": Array [
+                  [Function],
+                ],
+                "components": Object {},
+                "directives": Object {},
+                "filters": Object {},
+                "mounted": Array [
+                  [Function],
+                ],
+              },
+              "$parent": undefined,
+              "$refs": Object {},
+              "$root": [Circular],
+              "$scopedSlots": Object {},
+              "$slots": Object {},
+              "$vnode": undefined,
+              "$vuetify": [Circular],
+              "_c": [Function],
+              "_data": Object {},
+              "_directInactive": false,
+              "_events": Object {},
+              "_hasHookEvent": false,
+              "_inactive": null,
+              "_isBeingDestroyed": false,
+              "_isDestroyed": false,
+              "_isMounted": false,
+              "_isVue": true,
+              "_renderProxy": [Circular],
+              "_self": [Circular],
+              "_staticTrees": null,
+              "_uid": 0,
+              "_vnode": null,
+              "_watcher": null,
+              "_watchers": Array [],
+            },
+            "_self": [Circular],
+            "_staticTrees": null,
+            "_uid": 0,
+            "_vnode": null,
+            "_watcher": null,
+            "_watchers": Array [],
+          },
+          "_wrappedGetters": Object {},
+          "commit": [Function],
+          "dispatch": [Function],
+          "getters": Object {},
+          "strict": true,
+        },
+        "vuetify": Vuetify {
+          "framework": Object {
+            "application": Application {
+              "application": Object {
+                "bar": Object {},
+                "bottom": Object {},
+                "footer": Object {},
+                "insetFooter": Object {},
+                "left": Object {},
+                "right": Object {},
+                "top": Object {},
+              },
+              "bar": 0,
+              "bottom": 0,
+              "footer": 0,
+              "framework": [Circular],
+              "insetFooter": 0,
+              "left": 0,
+              "right": 0,
+              "top": 0,
+            },
+            "breakpoint": Breakpoint {
+              "framework": [Circular],
+              "height": 768,
+              "lg": false,
+              "lgAndDown": true,
+              "lgAndUp": false,
+              "lgOnly": false,
+              "md": true,
+              "mdAndDown": true,
+              "mdAndUp": true,
+              "mdOnly": true,
+              "mobile": true,
+              "mobileBreakpoint": 1264,
+              "name": "md",
+              "resizeTimeout": 0,
+              "scrollBarWidth": 16,
+              "sm": false,
+              "smAndDown": false,
+              "smAndUp": true,
+              "smOnly": false,
+              "thresholds": Object {
+                "lg": 1920,
+                "md": 1280,
+                "sm": 960,
+                "xs": 600,
+              },
+              "width": 1024,
+              "xl": false,
+              "xlOnly": false,
+              "xs": false,
+              "xsOnly": false,
+            },
+            "goTo": [Function],
+            "icons": Icons {
+              "framework": [Circular],
+              "iconfont": "mdi",
+              "values": Object {
+                "cancel": "mdi-close-circle",
+                "checkboxIndeterminate": "mdi-minus-box",
+                "checkboxOff": "mdi-checkbox-blank-outline",
+                "checkboxOn": "mdi-checkbox-marked",
+                "clear": "mdi-close",
+                "close": "mdi-close",
+                "complete": "mdi-check",
+                "delete": "mdi-close-circle",
+                "delimiter": "mdi-circle",
+                "dropdown": "mdi-menu-down",
+                "edit": "mdi-pencil",
+                "error": "mdi-alert",
+                "expand": "mdi-chevron-down",
+                "file": "mdi-paperclip",
+                "first": "mdi-page-first",
+                "info": "mdi-information",
+                "last": "mdi-page-last",
+                "loading": "mdi-cached",
+                "menu": "mdi-menu",
+                "minus": "mdi-minus",
+                "next": "mdi-chevron-right",
+                "plus": "mdi-plus",
+                "prev": "mdi-chevron-left",
+                "radioOff": "mdi-radiobox-blank",
+                "radioOn": "mdi-radiobox-marked",
+                "ratingEmpty": "mdi-star-outline",
+                "ratingFull": "mdi-star",
+                "ratingHalf": "mdi-star-half",
+                "sort": "mdi-arrow-up",
+                "subgroup": "mdi-menu-down",
+                "success": "mdi-check-circle",
+                "unfold": "mdi-unfold-more-horizontal",
+                "warning": "mdi-exclamation",
+              },
+            },
+            "isHydrating": false,
+            "lang": Lang {
+              "current": "en",
+              "defaultLocale": "en",
+              "framework": [Circular],
+              "locales": Object {
+                "en": Object {
+                  "badge": "Badge",
+                  "calendar": Object {
+                    "moreEvents": "{0} more",
+                  },
+                  "carousel": Object {
+                    "ariaLabel": Object {
+                      "delimiter": "Carousel slide {0} of {1}",
+                    },
+                    "next": "Next visual",
+                    "prev": "Previous visual",
+                  },
+                  "close": "Close",
+                  "dataFooter": Object {
+                    "firstPage": "First page",
+                    "itemsPerPageAll": "All",
+                    "itemsPerPageText": "Items per page:",
+                    "lastPage": "Last page",
+                    "nextPage": "Next page",
+                    "pageText": "{0}-{1} of {2}",
+                    "prevPage": "Previous page",
+                  },
+                  "dataIterator": Object {
+                    "loadingText": "Loading items...",
+                    "noResultsText": "No matching records found",
+                  },
+                  "dataTable": Object {
+                    "ariaLabel": Object {
+                      "activateAscending": "Activate to sort ascending.",
+                      "activateDescending": "Activate to sort descending.",
+                      "activateNone": "Activate to remove sorting.",
+                      "sortAscending": "Sorted ascending.",
+                      "sortDescending": "Sorted descending.",
+                      "sortNone": "Not sorted.",
+                    },
+                    "itemsPerPageText": "Rows per page:",
+                    "sortBy": "Sort by",
+                  },
+                  "datePicker": Object {
+                    "itemsSelected": "{0} selected",
+                    "nextMonthAriaLabel": "Next month",
+                    "nextYearAriaLabel": "Next year",
+                    "prevMonthAriaLabel": "Previous month",
+                    "prevYearAriaLabel": "Previous year",
+                  },
+                  "fileInput": Object {
+                    "counter": "{0} files",
+                    "counterSize": "{0} files ({1} in total)",
+                  },
+                  "noDataText": "No data available",
+                  "pagination": Object {
+                    "ariaLabel": Object {
+                      "currentPage": "Current Page, Page {0}",
+                      "next": "Next page",
+                      "page": "Goto Page {0}",
+                      "previous": "Previous page",
+                      "wrapper": "Pagination Navigation",
+                    },
+                  },
+                  "timePicker": Object {
+                    "am": "AM",
+                    "pm": "PM",
+                  },
+                },
+              },
+              "translator": [Function],
+            },
+            "presets": Presets {
+              "framework": [Circular],
+            },
+            "rtl": false,
+            "theme": Theme {
+              "defaults": Object {
+                "dark": Object {
+                  "accent": "#FF4081",
+                  "error": "#FF5252",
+                  "info": "#2196F3",
+                  "primary": "#2196F3",
+                  "secondary": "#424242",
+                  "success": "#4CAF50",
+                  "warning": "#FB8C00",
+                },
+                "light": Object {
+                  "accent": "#82B1FF",
+                  "error": "#FF5252",
+                  "info": "#2196F3",
+                  "primary": "#1976D2",
+                  "secondary": "#424242",
+                  "success": "#4CAF50",
+                  "warning": "#FB8C00",
+                },
+              },
+              "disabled": false,
+              "framework": [Circular],
+              "isDark": false,
+              "options": Object {
+                "cspNonce": undefined,
+                "customProperties": undefined,
+                "minifyTheme": undefined,
+                "themeCache": undefined,
+                "variations": true,
+              },
+              "styleEl": <style
+                id="vuetify-theme-stylesheet"
+                type="text/css"
+              >
+                .v-application a { color: #1976d2; }
+.v-application .primary {
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+}
+.v-application .primary--text {
+  color: #1976d2 !important;
+  caret-color: #1976d2 !important;
+}
+.v-application .primary.lighten-5 {
+  background-color: #c7fdff !important;
+  border-color: #c7fdff !important;
+}
+.v-application .primary--text.text--lighten-5 {
+  color: #c7fdff !important;
+  caret-color: #c7fdff !important;
+}
+.v-application .primary.lighten-4 {
+  background-color: #a8e0ff !important;
+  border-color: #a8e0ff !important;
+}
+.v-application .primary--text.text--lighten-4 {
+  color: #a8e0ff !important;
+  caret-color: #a8e0ff !important;
+}
+.v-application .primary.lighten-3 {
+  background-color: #8ac5ff !important;
+  border-color: #8ac5ff !important;
+}
+.v-application .primary--text.text--lighten-3 {
+  color: #8ac5ff !important;
+  caret-color: #8ac5ff !important;
+}
+.v-application .primary.lighten-2 {
+  background-color: #6aaaff !important;
+  border-color: #6aaaff !important;
+}
+.v-application .primary--text.text--lighten-2 {
+  color: #6aaaff !important;
+  caret-color: #6aaaff !important;
+}
+.v-application .primary.lighten-1 {
+  background-color: #488fef !important;
+  border-color: #488fef !important;
+}
+.v-application .primary--text.text--lighten-1 {
+  color: #488fef !important;
+  caret-color: #488fef !important;
+}
+.v-application .primary.darken-1 {
+  background-color: #005eb6 !important;
+  border-color: #005eb6 !important;
+}
+.v-application .primary--text.text--darken-1 {
+  color: #005eb6 !important;
+  caret-color: #005eb6 !important;
+}
+.v-application .primary.darken-2 {
+  background-color: #00479b !important;
+  border-color: #00479b !important;
+}
+.v-application .primary--text.text--darken-2 {
+  color: #00479b !important;
+  caret-color: #00479b !important;
+}
+.v-application .primary.darken-3 {
+  background-color: #003180 !important;
+  border-color: #003180 !important;
+}
+.v-application .primary--text.text--darken-3 {
+  color: #003180 !important;
+  caret-color: #003180 !important;
+}
+.v-application .primary.darken-4 {
+  background-color: #001e67 !important;
+  border-color: #001e67 !important;
+}
+.v-application .primary--text.text--darken-4 {
+  color: #001e67 !important;
+  caret-color: #001e67 !important;
+}
+.v-application .secondary {
+  background-color: #424242 !important;
+  border-color: #424242 !important;
+}
+.v-application .secondary--text {
+  color: #424242 !important;
+  caret-color: #424242 !important;
+}
+.v-application .secondary.lighten-5 {
+  background-color: #c1c1c1 !important;
+  border-color: #c1c1c1 !important;
+}
+.v-application .secondary--text.text--lighten-5 {
+  color: #c1c1c1 !important;
+  caret-color: #c1c1c1 !important;
+}
+.v-application .secondary.lighten-4 {
+  background-color: #a6a6a6 !important;
+  border-color: #a6a6a6 !important;
+}
+.v-application .secondary--text.text--lighten-4 {
+  color: #a6a6a6 !important;
+  caret-color: #a6a6a6 !important;
+}
+.v-application .secondary.lighten-3 {
+  background-color: #8b8b8b !important;
+  border-color: #8b8b8b !important;
+}
+.v-application .secondary--text.text--lighten-3 {
+  color: #8b8b8b !important;
+  caret-color: #8b8b8b !important;
+}
+.v-application .secondary.lighten-2 {
+  background-color: #727272 !important;
+  border-color: #727272 !important;
+}
+.v-application .secondary--text.text--lighten-2 {
+  color: #727272 !important;
+  caret-color: #727272 !important;
+}
+.v-application .secondary.lighten-1 {
+  background-color: #595959 !important;
+  border-color: #595959 !important;
+}
+.v-application .secondary--text.text--lighten-1 {
+  color: #595959 !important;
+  caret-color: #595959 !important;
+}
+.v-application .secondary.darken-1 {
+  background-color: #2c2c2c !important;
+  border-color: #2c2c2c !important;
+}
+.v-application .secondary--text.text--darken-1 {
+  color: #2c2c2c !important;
+  caret-color: #2c2c2c !important;
+}
+.v-application .secondary.darken-2 {
+  background-color: #171717 !important;
+  border-color: #171717 !important;
+}
+.v-application .secondary--text.text--darken-2 {
+  color: #171717 !important;
+  caret-color: #171717 !important;
+}
+.v-application .secondary.darken-3 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .secondary--text.text--darken-3 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .secondary.darken-4 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .secondary--text.text--darken-4 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .accent {
+  background-color: #82b1ff !important;
+  border-color: #82b1ff !important;
+}
+.v-application .accent--text {
+  color: #82b1ff !important;
+  caret-color: #82b1ff !important;
+}
+.v-application .accent.lighten-5 {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+.v-application .accent--text.text--lighten-5 {
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+.v-application .accent.lighten-4 {
+  background-color: #f8ffff !important;
+  border-color: #f8ffff !important;
+}
+.v-application .accent--text.text--lighten-4 {
+  color: #f8ffff !important;
+  caret-color: #f8ffff !important;
+}
+.v-application .accent.lighten-3 {
+  background-color: #daffff !important;
+  border-color: #daffff !important;
+}
+.v-application .accent--text.text--lighten-3 {
+  color: #daffff !important;
+  caret-color: #daffff !important;
+}
+.v-application .accent.lighten-2 {
+  background-color: #bce8ff !important;
+  border-color: #bce8ff !important;
+}
+.v-application .accent--text.text--lighten-2 {
+  color: #bce8ff !important;
+  caret-color: #bce8ff !important;
+}
+.v-application .accent.lighten-1 {
+  background-color: #9fccff !important;
+  border-color: #9fccff !important;
+}
+.v-application .accent--text.text--lighten-1 {
+  color: #9fccff !important;
+  caret-color: #9fccff !important;
+}
+.v-application .accent.darken-1 {
+  background-color: #6596e2 !important;
+  border-color: #6596e2 !important;
+}
+.v-application .accent--text.text--darken-1 {
+  color: #6596e2 !important;
+  caret-color: #6596e2 !important;
+}
+.v-application .accent.darken-2 {
+  background-color: #467dc6 !important;
+  border-color: #467dc6 !important;
+}
+.v-application .accent--text.text--darken-2 {
+  color: #467dc6 !important;
+  caret-color: #467dc6 !important;
+}
+.v-application .accent.darken-3 {
+  background-color: #2364aa !important;
+  border-color: #2364aa !important;
+}
+.v-application .accent--text.text--darken-3 {
+  color: #2364aa !important;
+  caret-color: #2364aa !important;
+}
+.v-application .accent.darken-4 {
+  background-color: #004c90 !important;
+  border-color: #004c90 !important;
+}
+.v-application .accent--text.text--darken-4 {
+  color: #004c90 !important;
+  caret-color: #004c90 !important;
+}
+.v-application .error {
+  background-color: #ff5252 !important;
+  border-color: #ff5252 !important;
+}
+.v-application .error--text {
+  color: #ff5252 !important;
+  caret-color: #ff5252 !important;
+}
+.v-application .error.lighten-5 {
+  background-color: #ffe4d5 !important;
+  border-color: #ffe4d5 !important;
+}
+.v-application .error--text.text--lighten-5 {
+  color: #ffe4d5 !important;
+  caret-color: #ffe4d5 !important;
+}
+.v-application .error.lighten-4 {
+  background-color: #ffc6b9 !important;
+  border-color: #ffc6b9 !important;
+}
+.v-application .error--text.text--lighten-4 {
+  color: #ffc6b9 !important;
+  caret-color: #ffc6b9 !important;
+}
+.v-application .error.lighten-3 {
+  background-color: #ffa99e !important;
+  border-color: #ffa99e !important;
+}
+.v-application .error--text.text--lighten-3 {
+  color: #ffa99e !important;
+  caret-color: #ffa99e !important;
+}
+.v-application .error.lighten-2 {
+  background-color: #ff8c84 !important;
+  border-color: #ff8c84 !important;
+}
+.v-application .error--text.text--lighten-2 {
+  color: #ff8c84 !important;
+  caret-color: #ff8c84 !important;
+}
+.v-application .error.lighten-1 {
+  background-color: #ff6f6a !important;
+  border-color: #ff6f6a !important;
+}
+.v-application .error--text.text--lighten-1 {
+  color: #ff6f6a !important;
+  caret-color: #ff6f6a !important;
+}
+.v-application .error.darken-1 {
+  background-color: #df323b !important;
+  border-color: #df323b !important;
+}
+.v-application .error--text.text--darken-1 {
+  color: #df323b !important;
+  caret-color: #df323b !important;
+}
+.v-application .error.darken-2 {
+  background-color: #bf0025 !important;
+  border-color: #bf0025 !important;
+}
+.v-application .error--text.text--darken-2 {
+  color: #bf0025 !important;
+  caret-color: #bf0025 !important;
+}
+.v-application .error.darken-3 {
+  background-color: #9f0010 !important;
+  border-color: #9f0010 !important;
+}
+.v-application .error--text.text--darken-3 {
+  color: #9f0010 !important;
+  caret-color: #9f0010 !important;
+}
+.v-application .error.darken-4 {
+  background-color: #800000 !important;
+  border-color: #800000 !important;
+}
+.v-application .error--text.text--darken-4 {
+  color: #800000 !important;
+  caret-color: #800000 !important;
+}
+.v-application .info {
+  background-color: #2196f3 !important;
+  border-color: #2196f3 !important;
+}
+.v-application .info--text {
+  color: #2196f3 !important;
+  caret-color: #2196f3 !important;
+}
+.v-application .info.lighten-5 {
+  background-color: #d4ffff !important;
+  border-color: #d4ffff !important;
+}
+.v-application .info--text.text--lighten-5 {
+  color: #d4ffff !important;
+  caret-color: #d4ffff !important;
+}
+.v-application .info.lighten-4 {
+  background-color: #b5ffff !important;
+  border-color: #b5ffff !important;
+}
+.v-application .info--text.text--lighten-4 {
+  color: #b5ffff !important;
+  caret-color: #b5ffff !important;
+}
+.v-application .info.lighten-3 {
+  background-color: #95e8ff !important;
+  border-color: #95e8ff !important;
+}
+.v-application .info--text.text--lighten-3 {
+  color: #95e8ff !important;
+  caret-color: #95e8ff !important;
+}
+.v-application .info.lighten-2 {
+  background-color: #75ccff !important;
+  border-color: #75ccff !important;
+}
+.v-application .info--text.text--lighten-2 {
+  color: #75ccff !important;
+  caret-color: #75ccff !important;
+}
+.v-application .info.lighten-1 {
+  background-color: #51b0ff !important;
+  border-color: #51b0ff !important;
+}
+.v-application .info--text.text--lighten-1 {
+  color: #51b0ff !important;
+  caret-color: #51b0ff !important;
+}
+.v-application .info.darken-1 {
+  background-color: #007cd6 !important;
+  border-color: #007cd6 !important;
+}
+.v-application .info--text.text--darken-1 {
+  color: #007cd6 !important;
+  caret-color: #007cd6 !important;
+}
+.v-application .info.darken-2 {
+  background-color: #0064ba !important;
+  border-color: #0064ba !important;
+}
+.v-application .info--text.text--darken-2 {
+  color: #0064ba !important;
+  caret-color: #0064ba !important;
+}
+.v-application .info.darken-3 {
+  background-color: #004d9f !important;
+  border-color: #004d9f !important;
+}
+.v-application .info--text.text--darken-3 {
+  color: #004d9f !important;
+  caret-color: #004d9f !important;
+}
+.v-application .info.darken-4 {
+  background-color: #003784 !important;
+  border-color: #003784 !important;
+}
+.v-application .info--text.text--darken-4 {
+  color: #003784 !important;
+  caret-color: #003784 !important;
+}
+.v-application .success {
+  background-color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}
+.v-application .success--text {
+  color: #4caf50 !important;
+  caret-color: #4caf50 !important;
+}
+.v-application .success.lighten-5 {
+  background-color: #dcffd6 !important;
+  border-color: #dcffd6 !important;
+}
+.v-application .success--text.text--lighten-5 {
+  color: #dcffd6 !important;
+  caret-color: #dcffd6 !important;
+}
+.v-application .success.lighten-4 {
+  background-color: #beffba !important;
+  border-color: #beffba !important;
+}
+.v-application .success--text.text--lighten-4 {
+  color: #beffba !important;
+  caret-color: #beffba !important;
+}
+.v-application .success.lighten-3 {
+  background-color: #a2ff9e !important;
+  border-color: #a2ff9e !important;
+}
+.v-application .success--text.text--lighten-3 {
+  color: #a2ff9e !important;
+  caret-color: #a2ff9e !important;
+}
+.v-application .success.lighten-2 {
+  background-color: #85e783 !important;
+  border-color: #85e783 !important;
+}
+.v-application .success--text.text--lighten-2 {
+  color: #85e783 !important;
+  caret-color: #85e783 !important;
+}
+.v-application .success.lighten-1 {
+  background-color: #69cb69 !important;
+  border-color: #69cb69 !important;
+}
+.v-application .success--text.text--lighten-1 {
+  color: #69cb69 !important;
+  caret-color: #69cb69 !important;
+}
+.v-application .success.darken-1 {
+  background-color: #2d9437 !important;
+  border-color: #2d9437 !important;
+}
+.v-application .success--text.text--darken-1 {
+  color: #2d9437 !important;
+  caret-color: #2d9437 !important;
+}
+.v-application .success.darken-2 {
+  background-color: #00791e !important;
+  border-color: #00791e !important;
+}
+.v-application .success--text.text--darken-2 {
+  color: #00791e !important;
+  caret-color: #00791e !important;
+}
+.v-application .success.darken-3 {
+  background-color: #006000 !important;
+  border-color: #006000 !important;
+}
+.v-application .success--text.text--darken-3 {
+  color: #006000 !important;
+  caret-color: #006000 !important;
+}
+.v-application .success.darken-4 {
+  background-color: #004700 !important;
+  border-color: #004700 !important;
+}
+.v-application .success--text.text--darken-4 {
+  color: #004700 !important;
+  caret-color: #004700 !important;
+}
+.v-application .warning {
+  background-color: #fb8c00 !important;
+  border-color: #fb8c00 !important;
+}
+.v-application .warning--text {
+  color: #fb8c00 !important;
+  caret-color: #fb8c00 !important;
+}
+.v-application .warning.lighten-5 {
+  background-color: #ffff9e !important;
+  border-color: #ffff9e !important;
+}
+.v-application .warning--text.text--lighten-5 {
+  color: #ffff9e !important;
+  caret-color: #ffff9e !important;
+}
+.v-application .warning.lighten-4 {
+  background-color: #fffb82 !important;
+  border-color: #fffb82 !important;
+}
+.v-application .warning--text.text--lighten-4 {
+  color: #fffb82 !important;
+  caret-color: #fffb82 !important;
+}
+.v-application .warning.lighten-3 {
+  background-color: #ffdf67 !important;
+  border-color: #ffdf67 !important;
+}
+.v-application .warning--text.text--lighten-3 {
+  color: #ffdf67 !important;
+  caret-color: #ffdf67 !important;
+}
+.v-application .warning.lighten-2 {
+  background-color: #ffc24b !important;
+  border-color: #ffc24b !important;
+}
+.v-application .warning--text.text--lighten-2 {
+  color: #ffc24b !important;
+  caret-color: #ffc24b !important;
+}
+.v-application .warning.lighten-1 {
+  background-color: #ffa72d !important;
+  border-color: #ffa72d !important;
+}
+.v-application .warning--text.text--lighten-1 {
+  color: #ffa72d !important;
+  caret-color: #ffa72d !important;
+}
+.v-application .warning.darken-1 {
+  background-color: #db7200 !important;
+  border-color: #db7200 !important;
+}
+.v-application .warning--text.text--darken-1 {
+  color: #db7200 !important;
+  caret-color: #db7200 !important;
+}
+.v-application .warning.darken-2 {
+  background-color: #bb5900 !important;
+  border-color: #bb5900 !important;
+}
+.v-application .warning--text.text--darken-2 {
+  color: #bb5900 !important;
+  caret-color: #bb5900 !important;
+}
+.v-application .warning.darken-3 {
+  background-color: #9d4000 !important;
+  border-color: #9d4000 !important;
+}
+.v-application .warning--text.text--darken-3 {
+  color: #9d4000 !important;
+  caret-color: #9d4000 !important;
+}
+.v-application .warning.darken-4 {
+  background-color: #802700 !important;
+  border-color: #802700 !important;
+}
+.v-application .warning--text.text--darken-4 {
+  color: #802700 !important;
+  caret-color: #802700 !important;
+}
+              </style>,
+              "themes": Object {
+                "dark": Object {
+                  "accent": "#FF4081",
+                  "error": "#FF5252",
+                  "info": "#2196F3",
+                  "primary": "#2196F3",
+                  "secondary": "#424242",
+                  "success": "#4CAF50",
+                  "warning": "#FB8C00",
+                },
+                "light": Object {
+                  "accent": "#82B1FF",
+                  "error": "#FF5252",
+                  "info": "#2196F3",
+                  "primary": "#1976D2",
+                  "secondary": "#424242",
+                  "success": "#4CAF50",
+                  "warning": "#FB8C00",
+                },
+              },
+              "unwatch": [Function],
+              "vueMeta": null,
+            },
+          },
+          "installed": Array [
+            "presets",
+            "application",
+            "breakpoint",
+            "goTo",
+            "icons",
+            "lang",
+            "theme",
+          ],
+          "preset": Object {
+            "breakpoint": Object {
+              "mobileBreakpoint": 1264,
+              "scrollBarWidth": 16,
+              "thresholds": Object {
+                "lg": 1920,
+                "md": 1280,
+                "sm": 960,
+                "xs": 600,
+              },
+            },
+            "icons": Object {
+              "iconfont": "mdi",
+              "values": Object {},
+            },
+            "lang": Object {
+              "current": "en",
+              "locales": Object {
+                "en": Object {
+                  "badge": "Badge",
+                  "calendar": Object {
+                    "moreEvents": "{0} more",
+                  },
+                  "carousel": Object {
+                    "ariaLabel": Object {
+                      "delimiter": "Carousel slide {0} of {1}",
+                    },
+                    "next": "Next visual",
+                    "prev": "Previous visual",
+                  },
+                  "close": "Close",
+                  "dataFooter": Object {
+                    "firstPage": "First page",
+                    "itemsPerPageAll": "All",
+                    "itemsPerPageText": "Items per page:",
+                    "lastPage": "Last page",
+                    "nextPage": "Next page",
+                    "pageText": "{0}-{1} of {2}",
+                    "prevPage": "Previous page",
+                  },
+                  "dataIterator": Object {
+                    "loadingText": "Loading items...",
+                    "noResultsText": "No matching records found",
+                  },
+                  "dataTable": Object {
+                    "ariaLabel": Object {
+                      "activateAscending": "Activate to sort ascending.",
+                      "activateDescending": "Activate to sort descending.",
+                      "activateNone": "Activate to remove sorting.",
+                      "sortAscending": "Sorted ascending.",
+                      "sortDescending": "Sorted descending.",
+                      "sortNone": "Not sorted.",
+                    },
+                    "itemsPerPageText": "Rows per page:",
+                    "sortBy": "Sort by",
+                  },
+                  "datePicker": Object {
+                    "itemsSelected": "{0} selected",
+                    "nextMonthAriaLabel": "Next month",
+                    "nextYearAriaLabel": "Next year",
+                    "prevMonthAriaLabel": "Previous month",
+                    "prevYearAriaLabel": "Previous year",
+                  },
+                  "fileInput": Object {
+                    "counter": "{0} files",
+                    "counterSize": "{0} files ({1} in total)",
+                  },
+                  "noDataText": "No data available",
+                  "pagination": Object {
+                    "ariaLabel": Object {
+                      "currentPage": "Current Page, Page {0}",
+                      "next": "Next page",
+                      "page": "Goto Page {0}",
+                      "previous": "Previous page",
+                      "wrapper": "Pagination Navigation",
+                    },
+                  },
+                  "timePicker": Object {
+                    "am": "AM",
+                    "pm": "PM",
+                  },
+                },
+              },
+              "t": undefined,
+            },
+            "rtl": false,
+            "theme": Object {
+              "dark": false,
+              "default": "light",
+              "disable": false,
+              "options": Object {
+                "cspNonce": undefined,
+                "customProperties": undefined,
+                "minifyTheme": undefined,
+                "themeCache": undefined,
+                "variations": true,
+              },
+              "themes": Object {
+                "dark": Object {
+                  "accent": "#FF4081",
+                  "error": "#FF5252",
+                  "info": "#2196F3",
+                  "primary": "#2196F3",
+                  "secondary": "#424242",
+                  "success": "#4CAF50",
+                  "warning": "#FB8C00",
+                },
+                "light": Object {
+                  "accent": "#82B1FF",
+                  "error": "#FF5252",
+                  "info": "#2196F3",
+                  "primary": "#1976D2",
+                  "secondary": "#424242",
+                  "success": "#4CAF50",
+                  "warning": "#FB8C00",
+                },
+              },
+            },
+          },
+          "userPreset": Object {},
+        },
+      },
+      "$parent": undefined,
+      "$refs": Object {},
+      "$root": [Circular],
+      "$scopedSlots": Object {},
+      "$slots": Object {},
+      "$store": Store {
+        "_actionSubscribers": Array [],
+        "_actions": Object {
+          "instructionsStore/resetState": Array [
+            [Function],
+          ],
+          "instructionsStore/toggleInstructionsMode": Array [
+            [Function],
+          ],
+        },
+        "_committing": false,
+        "_makeLocalGettersCache": Object {
+          "instructionsStore/": Object {},
+        },
+        "_modules": ModuleCollection {
+          "root": Module {
+            "_children": Object {
+              "instructionsStore": Module {
+                "_children": Object {},
+                "_rawModule": Object {
+                  "actions": Object {
+                    "resetState": [Function],
+                    "toggleInstructionsMode": [Function],
+                  },
+                  "mutations": Object {
+                    "RESET_STATE": [Function],
+                    "TOGGLE_INSTRUCTIONS_MODE": [Function],
+                  },
+                  "namespaced": true,
+                  "state": Object {
+                    "isInstructionsMode": false,
+                  },
+                },
+                "context": Object {
+                  "commit": [Function],
+                  "dispatch": [Function],
+                },
+                "runtime": false,
+                "state": Object {
+                  "isInstructionsMode": false,
+                },
+              },
+            },
+            "_rawModule": Object {
+              "actions": Object {},
+              "modules": Object {
+                "instructionsStore": Object {
+                  "actions": Object {
+                    "resetState": [Function],
+                    "toggleInstructionsMode": [Function],
+                  },
+                  "mutations": Object {
+                    "RESET_STATE": [Function],
+                    "TOGGLE_INSTRUCTIONS_MODE": [Function],
+                  },
+                  "namespaced": true,
+                  "state": Object {
+                    "isInstructionsMode": false,
+                  },
+                },
+              },
+              "mutations": Object {},
+              "state": Object {
+                "instructionsStore": Object {
+                  "isInstructionsMode": false,
+                },
+                "version": "1.0.0",
+              },
+              "strict": true,
+            },
+            "context": Object {
+              "commit": [Function],
+              "dispatch": [Function],
+            },
+            "runtime": false,
+            "state": Object {
+              "instructionsStore": Object {
+                "isInstructionsMode": false,
+              },
+              "version": "1.0.0",
+            },
+          },
+        },
+        "_modulesNamespaceMap": Object {
+          "instructionsStore/": Module {
+            "_children": Object {},
+            "_rawModule": Object {
+              "actions": Object {
+                "resetState": [Function],
+                "toggleInstructionsMode": [Function],
+              },
+              "mutations": Object {
+                "RESET_STATE": [Function],
+                "TOGGLE_INSTRUCTIONS_MODE": [Function],
+              },
+              "namespaced": true,
+              "state": Object {
+                "isInstructionsMode": false,
+              },
+            },
+            "context": Object {
+              "commit": [Function],
+              "dispatch": [Function],
+            },
+            "runtime": false,
+            "state": Object {
+              "isInstructionsMode": false,
+            },
+          },
+        },
+        "_mutations": Object {
+          "instructionsStore/RESET_STATE": Array [
+            [Function],
+          ],
+          "instructionsStore/TOGGLE_INSTRUCTIONS_MODE": Array [
+            [Function],
+          ],
+        },
+        "_subscribers": Array [
+          [Function],
+        ],
+        "_vm": Vue {
+          "$attrs": Object {},
+          "$children": Array [],
+          "$createElement": [Function],
+          "$listeners": Object {},
+          "$options": Object {
+            "_base": [Function],
+            "beforeCreate": Array [
+              [Function],
+              [Function],
+            ],
+            "beforeMount": Array [
+              [Function],
+            ],
+            "components": Object {},
+            "computed": Object {},
+            "data": [Function],
+            "directives": Object {},
+            "filters": Object {},
+            "mounted": Array [
+              [Function],
+            ],
+          },
+          "$parent": undefined,
+          "$refs": Object {},
+          "$root": [Circular],
+          "$scopedSlots": Object {},
+          "$slots": Object {},
+          "$vnode": undefined,
+          "$vuetify": [Circular],
+          "_c": [Function],
+          "_computedWatchers": Object {},
+          "_data": Object {
+            "$$state": Object {
+              "instructionsStore": Object {
+                "isInstructionsMode": false,
+              },
+              "version": "1.0.0",
+            },
+          },
+          "_directInactive": false,
+          "_events": Object {},
+          "_hasHookEvent": false,
+          "_inactive": null,
+          "_isBeingDestroyed": false,
+          "_isDestroyed": false,
+          "_isMounted": false,
+          "_isVue": true,
+          "_renderProxy": Vue {
+            "$attrs": Object {},
+            "$children": Array [],
+            "$createElement": [Function],
+            "$listeners": Object {},
+            "$options": Object {
+              "_base": [Function],
+              "beforeCreate": Array [
+                [Function],
+                [Function],
+              ],
+              "beforeMount": Array [
+                [Function],
+              ],
+              "components": Object {},
+              "computed": Object {},
+              "data": [Function],
+              "directives": Object {},
+              "filters": Object {},
+              "mounted": Array [
+                [Function],
+              ],
+            },
+            "$parent": undefined,
+            "$refs": Object {},
+            "$root": [Circular],
+            "$scopedSlots": Object {},
+            "$slots": Object {},
+            "$vnode": undefined,
+            "$vuetify": [Circular],
+            "_c": [Function],
+            "_computedWatchers": Object {},
+            "_data": Object {
+              "$$state": Object {
+                "instructionsStore": Object {
+                  "isInstructionsMode": false,
+                },
+                "version": "1.0.0",
+              },
+            },
+            "_directInactive": false,
+            "_events": Object {},
+            "_hasHookEvent": false,
+            "_inactive": null,
+            "_isBeingDestroyed": false,
+            "_isDestroyed": false,
+            "_isMounted": false,
+            "_isVue": true,
+            "_renderProxy": [Circular],
+            "_self": [Circular],
+            "_staticTrees": null,
+            "_uid": 1,
+            "_vnode": null,
+            "_watcher": null,
+            "_watchers": Array [
+              Watcher {
+                "active": true,
+                "before": undefined,
+                "cb": [Function],
+                "deep": true,
+                "depIds": Set {
+                  6,
+                  7,
+                  9,
+                  10,
+                  11,
+                  8,
+                },
+                "deps": Array [
+                  Dep {
+                    "id": 6,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 7,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 9,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 10,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 11,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
+                    "id": 8,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                ],
+                "dirty": false,
+                "expression": "function () { return this._data.$$state }",
+                "getter": [Function],
+                "id": 1,
+                "lazy": false,
+                "newDepIds": Set {},
+                "newDeps": Array [],
+                "sync": true,
+                "user": true,
+                "value": Object {
+                  "instructionsStore": Object {
+                    "isInstructionsMode": false,
+                  },
+                  "version": "1.0.0",
+                },
+                "vm": [Circular],
+              },
+            ],
+          },
+          "_self": [Circular],
+          "_staticTrees": null,
+          "_uid": 1,
+          "_vnode": null,
+          "_watcher": null,
+          "_watchers": Array [
+            Watcher {
+              "active": true,
+              "before": undefined,
+              "cb": [Function],
+              "deep": true,
+              "depIds": Set {
+                6,
+                7,
+                9,
+                10,
+                11,
+                8,
+              },
+              "deps": Array [
+                Dep {
+                  "id": 6,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 7,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 9,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 10,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 11,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
+                  "id": 8,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+              ],
+              "dirty": false,
+              "expression": "function () { return this._data.$$state }",
+              "getter": [Function],
+              "id": 1,
+              "lazy": false,
+              "newDepIds": Set {},
+              "newDeps": Array [],
+              "sync": true,
+              "user": true,
+              "value": Object {
+                "instructionsStore": Object {
+                  "isInstructionsMode": false,
+                },
+                "version": "1.0.0",
+              },
+              "vm": [Circular],
+            },
+          ],
+        },
+        "_watcherVM": Vue {
+          "$attrs": Object {},
+          "$children": Array [],
+          "$createElement": [Function],
+          "$listeners": Object {},
+          "$options": Object {
+            "_base": [Function],
+            "beforeCreate": Array [
+              [Function],
+              [Function],
+            ],
+            "beforeMount": Array [
+              [Function],
+            ],
+            "components": Object {},
+            "directives": Object {},
+            "filters": Object {},
+            "mounted": Array [
+              [Function],
+            ],
+          },
+          "$parent": undefined,
+          "$refs": Object {},
+          "$root": [Circular],
+          "$scopedSlots": Object {},
+          "$slots": Object {},
+          "$vnode": undefined,
+          "$vuetify": [Circular],
+          "_c": [Function],
+          "_data": Object {},
+          "_directInactive": false,
+          "_events": Object {},
+          "_hasHookEvent": false,
+          "_inactive": null,
+          "_isBeingDestroyed": false,
+          "_isDestroyed": false,
+          "_isMounted": false,
+          "_isVue": true,
+          "_renderProxy": Vue {
+            "$attrs": Object {},
+            "$children": Array [],
+            "$createElement": [Function],
+            "$listeners": Object {},
+            "$options": Object {
+              "_base": [Function],
+              "beforeCreate": Array [
+                [Function],
+                [Function],
+              ],
+              "beforeMount": Array [
+                [Function],
+              ],
+              "components": Object {},
+              "directives": Object {},
+              "filters": Object {},
+              "mounted": Array [
+                [Function],
+              ],
+            },
+            "$parent": undefined,
+            "$refs": Object {},
+            "$root": [Circular],
+            "$scopedSlots": Object {},
+            "$slots": Object {},
+            "$vnode": undefined,
+            "$vuetify": [Circular],
+            "_c": [Function],
+            "_data": Object {},
+            "_directInactive": false,
+            "_events": Object {},
+            "_hasHookEvent": false,
+            "_inactive": null,
+            "_isBeingDestroyed": false,
+            "_isDestroyed": false,
+            "_isMounted": false,
+            "_isVue": true,
+            "_renderProxy": [Circular],
+            "_self": [Circular],
+            "_staticTrees": null,
+            "_uid": 0,
+            "_vnode": null,
+            "_watcher": null,
+            "_watchers": Array [],
+          },
+          "_self": [Circular],
+          "_staticTrees": null,
+          "_uid": 0,
+          "_vnode": null,
+          "_watcher": null,
+          "_watchers": Array [],
+        },
+        "_wrappedGetters": Object {},
+        "commit": [Function],
+        "dispatch": [Function],
+        "getters": Object {},
+        "strict": true,
+      },
+      "$vnode": undefined,
+      "$vuetify": Object {
+        "application": Application {
+          "application": Object {
+            "bar": Object {},
+            "bottom": Object {},
+            "footer": Object {},
+            "insetFooter": Object {},
+            "left": Object {},
+            "right": Object {},
+            "top": Object {},
+          },
+          "bar": 0,
+          "bottom": 0,
+          "footer": 0,
+          "framework": [Circular],
+          "insetFooter": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+        },
+        "breakpoint": Breakpoint {
+          "framework": [Circular],
+          "height": 768,
+          "lg": false,
+          "lgAndDown": true,
+          "lgAndUp": false,
+          "lgOnly": false,
+          "md": true,
+          "mdAndDown": true,
+          "mdAndUp": true,
+          "mdOnly": true,
+          "mobile": true,
+          "mobileBreakpoint": 1264,
+          "name": "md",
+          "resizeTimeout": 0,
+          "scrollBarWidth": 16,
+          "sm": false,
+          "smAndDown": false,
+          "smAndUp": true,
+          "smOnly": false,
+          "thresholds": Object {
+            "lg": 1920,
+            "md": 1280,
+            "sm": 960,
+            "xs": 600,
+          },
+          "width": 1024,
+          "xl": false,
+          "xlOnly": false,
+          "xs": false,
+          "xsOnly": false,
+        },
+        "goTo": [Function],
+        "icons": Icons {
+          "framework": [Circular],
+          "iconfont": "mdi",
+          "values": Object {
+            "cancel": "mdi-close-circle",
+            "checkboxIndeterminate": "mdi-minus-box",
+            "checkboxOff": "mdi-checkbox-blank-outline",
+            "checkboxOn": "mdi-checkbox-marked",
+            "clear": "mdi-close",
+            "close": "mdi-close",
+            "complete": "mdi-check",
+            "delete": "mdi-close-circle",
+            "delimiter": "mdi-circle",
+            "dropdown": "mdi-menu-down",
+            "edit": "mdi-pencil",
+            "error": "mdi-alert",
+            "expand": "mdi-chevron-down",
+            "file": "mdi-paperclip",
+            "first": "mdi-page-first",
+            "info": "mdi-information",
+            "last": "mdi-page-last",
+            "loading": "mdi-cached",
+            "menu": "mdi-menu",
+            "minus": "mdi-minus",
+            "next": "mdi-chevron-right",
+            "plus": "mdi-plus",
+            "prev": "mdi-chevron-left",
+            "radioOff": "mdi-radiobox-blank",
+            "radioOn": "mdi-radiobox-marked",
+            "ratingEmpty": "mdi-star-outline",
+            "ratingFull": "mdi-star",
+            "ratingHalf": "mdi-star-half",
+            "sort": "mdi-arrow-up",
+            "subgroup": "mdi-menu-down",
+            "success": "mdi-check-circle",
+            "unfold": "mdi-unfold-more-horizontal",
+            "warning": "mdi-exclamation",
+          },
+        },
+        "isHydrating": false,
+        "lang": Lang {
+          "current": "en",
+          "defaultLocale": "en",
+          "framework": [Circular],
+          "locales": Object {
+            "en": Object {
+              "badge": "Badge",
+              "calendar": Object {
+                "moreEvents": "{0} more",
+              },
+              "carousel": Object {
+                "ariaLabel": Object {
+                  "delimiter": "Carousel slide {0} of {1}",
+                },
+                "next": "Next visual",
+                "prev": "Previous visual",
+              },
+              "close": "Close",
+              "dataFooter": Object {
+                "firstPage": "First page",
+                "itemsPerPageAll": "All",
+                "itemsPerPageText": "Items per page:",
+                "lastPage": "Last page",
+                "nextPage": "Next page",
+                "pageText": "{0}-{1} of {2}",
+                "prevPage": "Previous page",
+              },
+              "dataIterator": Object {
+                "loadingText": "Loading items...",
+                "noResultsText": "No matching records found",
+              },
+              "dataTable": Object {
+                "ariaLabel": Object {
+                  "activateAscending": "Activate to sort ascending.",
+                  "activateDescending": "Activate to sort descending.",
+                  "activateNone": "Activate to remove sorting.",
+                  "sortAscending": "Sorted ascending.",
+                  "sortDescending": "Sorted descending.",
+                  "sortNone": "Not sorted.",
+                },
+                "itemsPerPageText": "Rows per page:",
+                "sortBy": "Sort by",
+              },
+              "datePicker": Object {
+                "itemsSelected": "{0} selected",
+                "nextMonthAriaLabel": "Next month",
+                "nextYearAriaLabel": "Next year",
+                "prevMonthAriaLabel": "Previous month",
+                "prevYearAriaLabel": "Previous year",
+              },
+              "fileInput": Object {
+                "counter": "{0} files",
+                "counterSize": "{0} files ({1} in total)",
+              },
+              "noDataText": "No data available",
+              "pagination": Object {
+                "ariaLabel": Object {
+                  "currentPage": "Current Page, Page {0}",
+                  "next": "Next page",
+                  "page": "Goto Page {0}",
+                  "previous": "Previous page",
+                  "wrapper": "Pagination Navigation",
+                },
+              },
+              "timePicker": Object {
+                "am": "AM",
+                "pm": "PM",
+              },
+            },
+          },
+          "translator": [Function],
+        },
+        "presets": Presets {
+          "framework": [Circular],
+        },
+        "rtl": false,
+        "theme": Theme {
+          "defaults": Object {
+            "dark": Object {
+              "accent": "#FF4081",
+              "error": "#FF5252",
+              "info": "#2196F3",
+              "primary": "#2196F3",
+              "secondary": "#424242",
+              "success": "#4CAF50",
+              "warning": "#FB8C00",
+            },
+            "light": Object {
+              "accent": "#82B1FF",
+              "error": "#FF5252",
+              "info": "#2196F3",
+              "primary": "#1976D2",
+              "secondary": "#424242",
+              "success": "#4CAF50",
+              "warning": "#FB8C00",
+            },
+          },
+          "disabled": false,
+          "framework": [Circular],
+          "isDark": false,
+          "options": Object {
+            "cspNonce": undefined,
+            "customProperties": undefined,
+            "minifyTheme": undefined,
+            "themeCache": undefined,
+            "variations": true,
+          },
+          "styleEl": <style
+            id="vuetify-theme-stylesheet"
+            type="text/css"
+          >
+            .v-application a { color: #1976d2; }
+.v-application .primary {
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+}
+.v-application .primary--text {
+  color: #1976d2 !important;
+  caret-color: #1976d2 !important;
+}
+.v-application .primary.lighten-5 {
+  background-color: #c7fdff !important;
+  border-color: #c7fdff !important;
+}
+.v-application .primary--text.text--lighten-5 {
+  color: #c7fdff !important;
+  caret-color: #c7fdff !important;
+}
+.v-application .primary.lighten-4 {
+  background-color: #a8e0ff !important;
+  border-color: #a8e0ff !important;
+}
+.v-application .primary--text.text--lighten-4 {
+  color: #a8e0ff !important;
+  caret-color: #a8e0ff !important;
+}
+.v-application .primary.lighten-3 {
+  background-color: #8ac5ff !important;
+  border-color: #8ac5ff !important;
+}
+.v-application .primary--text.text--lighten-3 {
+  color: #8ac5ff !important;
+  caret-color: #8ac5ff !important;
+}
+.v-application .primary.lighten-2 {
+  background-color: #6aaaff !important;
+  border-color: #6aaaff !important;
+}
+.v-application .primary--text.text--lighten-2 {
+  color: #6aaaff !important;
+  caret-color: #6aaaff !important;
+}
+.v-application .primary.lighten-1 {
+  background-color: #488fef !important;
+  border-color: #488fef !important;
+}
+.v-application .primary--text.text--lighten-1 {
+  color: #488fef !important;
+  caret-color: #488fef !important;
+}
+.v-application .primary.darken-1 {
+  background-color: #005eb6 !important;
+  border-color: #005eb6 !important;
+}
+.v-application .primary--text.text--darken-1 {
+  color: #005eb6 !important;
+  caret-color: #005eb6 !important;
+}
+.v-application .primary.darken-2 {
+  background-color: #00479b !important;
+  border-color: #00479b !important;
+}
+.v-application .primary--text.text--darken-2 {
+  color: #00479b !important;
+  caret-color: #00479b !important;
+}
+.v-application .primary.darken-3 {
+  background-color: #003180 !important;
+  border-color: #003180 !important;
+}
+.v-application .primary--text.text--darken-3 {
+  color: #003180 !important;
+  caret-color: #003180 !important;
+}
+.v-application .primary.darken-4 {
+  background-color: #001e67 !important;
+  border-color: #001e67 !important;
+}
+.v-application .primary--text.text--darken-4 {
+  color: #001e67 !important;
+  caret-color: #001e67 !important;
+}
+.v-application .secondary {
+  background-color: #424242 !important;
+  border-color: #424242 !important;
+}
+.v-application .secondary--text {
+  color: #424242 !important;
+  caret-color: #424242 !important;
+}
+.v-application .secondary.lighten-5 {
+  background-color: #c1c1c1 !important;
+  border-color: #c1c1c1 !important;
+}
+.v-application .secondary--text.text--lighten-5 {
+  color: #c1c1c1 !important;
+  caret-color: #c1c1c1 !important;
+}
+.v-application .secondary.lighten-4 {
+  background-color: #a6a6a6 !important;
+  border-color: #a6a6a6 !important;
+}
+.v-application .secondary--text.text--lighten-4 {
+  color: #a6a6a6 !important;
+  caret-color: #a6a6a6 !important;
+}
+.v-application .secondary.lighten-3 {
+  background-color: #8b8b8b !important;
+  border-color: #8b8b8b !important;
+}
+.v-application .secondary--text.text--lighten-3 {
+  color: #8b8b8b !important;
+  caret-color: #8b8b8b !important;
+}
+.v-application .secondary.lighten-2 {
+  background-color: #727272 !important;
+  border-color: #727272 !important;
+}
+.v-application .secondary--text.text--lighten-2 {
+  color: #727272 !important;
+  caret-color: #727272 !important;
+}
+.v-application .secondary.lighten-1 {
+  background-color: #595959 !important;
+  border-color: #595959 !important;
+}
+.v-application .secondary--text.text--lighten-1 {
+  color: #595959 !important;
+  caret-color: #595959 !important;
+}
+.v-application .secondary.darken-1 {
+  background-color: #2c2c2c !important;
+  border-color: #2c2c2c !important;
+}
+.v-application .secondary--text.text--darken-1 {
+  color: #2c2c2c !important;
+  caret-color: #2c2c2c !important;
+}
+.v-application .secondary.darken-2 {
+  background-color: #171717 !important;
+  border-color: #171717 !important;
+}
+.v-application .secondary--text.text--darken-2 {
+  color: #171717 !important;
+  caret-color: #171717 !important;
+}
+.v-application .secondary.darken-3 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .secondary--text.text--darken-3 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .secondary.darken-4 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .secondary--text.text--darken-4 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .accent {
+  background-color: #82b1ff !important;
+  border-color: #82b1ff !important;
+}
+.v-application .accent--text {
+  color: #82b1ff !important;
+  caret-color: #82b1ff !important;
+}
+.v-application .accent.lighten-5 {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+.v-application .accent--text.text--lighten-5 {
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+.v-application .accent.lighten-4 {
+  background-color: #f8ffff !important;
+  border-color: #f8ffff !important;
+}
+.v-application .accent--text.text--lighten-4 {
+  color: #f8ffff !important;
+  caret-color: #f8ffff !important;
+}
+.v-application .accent.lighten-3 {
+  background-color: #daffff !important;
+  border-color: #daffff !important;
+}
+.v-application .accent--text.text--lighten-3 {
+  color: #daffff !important;
+  caret-color: #daffff !important;
+}
+.v-application .accent.lighten-2 {
+  background-color: #bce8ff !important;
+  border-color: #bce8ff !important;
+}
+.v-application .accent--text.text--lighten-2 {
+  color: #bce8ff !important;
+  caret-color: #bce8ff !important;
+}
+.v-application .accent.lighten-1 {
+  background-color: #9fccff !important;
+  border-color: #9fccff !important;
+}
+.v-application .accent--text.text--lighten-1 {
+  color: #9fccff !important;
+  caret-color: #9fccff !important;
+}
+.v-application .accent.darken-1 {
+  background-color: #6596e2 !important;
+  border-color: #6596e2 !important;
+}
+.v-application .accent--text.text--darken-1 {
+  color: #6596e2 !important;
+  caret-color: #6596e2 !important;
+}
+.v-application .accent.darken-2 {
+  background-color: #467dc6 !important;
+  border-color: #467dc6 !important;
+}
+.v-application .accent--text.text--darken-2 {
+  color: #467dc6 !important;
+  caret-color: #467dc6 !important;
+}
+.v-application .accent.darken-3 {
+  background-color: #2364aa !important;
+  border-color: #2364aa !important;
+}
+.v-application .accent--text.text--darken-3 {
+  color: #2364aa !important;
+  caret-color: #2364aa !important;
+}
+.v-application .accent.darken-4 {
+  background-color: #004c90 !important;
+  border-color: #004c90 !important;
+}
+.v-application .accent--text.text--darken-4 {
+  color: #004c90 !important;
+  caret-color: #004c90 !important;
+}
+.v-application .error {
+  background-color: #ff5252 !important;
+  border-color: #ff5252 !important;
+}
+.v-application .error--text {
+  color: #ff5252 !important;
+  caret-color: #ff5252 !important;
+}
+.v-application .error.lighten-5 {
+  background-color: #ffe4d5 !important;
+  border-color: #ffe4d5 !important;
+}
+.v-application .error--text.text--lighten-5 {
+  color: #ffe4d5 !important;
+  caret-color: #ffe4d5 !important;
+}
+.v-application .error.lighten-4 {
+  background-color: #ffc6b9 !important;
+  border-color: #ffc6b9 !important;
+}
+.v-application .error--text.text--lighten-4 {
+  color: #ffc6b9 !important;
+  caret-color: #ffc6b9 !important;
+}
+.v-application .error.lighten-3 {
+  background-color: #ffa99e !important;
+  border-color: #ffa99e !important;
+}
+.v-application .error--text.text--lighten-3 {
+  color: #ffa99e !important;
+  caret-color: #ffa99e !important;
+}
+.v-application .error.lighten-2 {
+  background-color: #ff8c84 !important;
+  border-color: #ff8c84 !important;
+}
+.v-application .error--text.text--lighten-2 {
+  color: #ff8c84 !important;
+  caret-color: #ff8c84 !important;
+}
+.v-application .error.lighten-1 {
+  background-color: #ff6f6a !important;
+  border-color: #ff6f6a !important;
+}
+.v-application .error--text.text--lighten-1 {
+  color: #ff6f6a !important;
+  caret-color: #ff6f6a !important;
+}
+.v-application .error.darken-1 {
+  background-color: #df323b !important;
+  border-color: #df323b !important;
+}
+.v-application .error--text.text--darken-1 {
+  color: #df323b !important;
+  caret-color: #df323b !important;
+}
+.v-application .error.darken-2 {
+  background-color: #bf0025 !important;
+  border-color: #bf0025 !important;
+}
+.v-application .error--text.text--darken-2 {
+  color: #bf0025 !important;
+  caret-color: #bf0025 !important;
+}
+.v-application .error.darken-3 {
+  background-color: #9f0010 !important;
+  border-color: #9f0010 !important;
+}
+.v-application .error--text.text--darken-3 {
+  color: #9f0010 !important;
+  caret-color: #9f0010 !important;
+}
+.v-application .error.darken-4 {
+  background-color: #800000 !important;
+  border-color: #800000 !important;
+}
+.v-application .error--text.text--darken-4 {
+  color: #800000 !important;
+  caret-color: #800000 !important;
+}
+.v-application .info {
+  background-color: #2196f3 !important;
+  border-color: #2196f3 !important;
+}
+.v-application .info--text {
+  color: #2196f3 !important;
+  caret-color: #2196f3 !important;
+}
+.v-application .info.lighten-5 {
+  background-color: #d4ffff !important;
+  border-color: #d4ffff !important;
+}
+.v-application .info--text.text--lighten-5 {
+  color: #d4ffff !important;
+  caret-color: #d4ffff !important;
+}
+.v-application .info.lighten-4 {
+  background-color: #b5ffff !important;
+  border-color: #b5ffff !important;
+}
+.v-application .info--text.text--lighten-4 {
+  color: #b5ffff !important;
+  caret-color: #b5ffff !important;
+}
+.v-application .info.lighten-3 {
+  background-color: #95e8ff !important;
+  border-color: #95e8ff !important;
+}
+.v-application .info--text.text--lighten-3 {
+  color: #95e8ff !important;
+  caret-color: #95e8ff !important;
+}
+.v-application .info.lighten-2 {
+  background-color: #75ccff !important;
+  border-color: #75ccff !important;
+}
+.v-application .info--text.text--lighten-2 {
+  color: #75ccff !important;
+  caret-color: #75ccff !important;
+}
+.v-application .info.lighten-1 {
+  background-color: #51b0ff !important;
+  border-color: #51b0ff !important;
+}
+.v-application .info--text.text--lighten-1 {
+  color: #51b0ff !important;
+  caret-color: #51b0ff !important;
+}
+.v-application .info.darken-1 {
+  background-color: #007cd6 !important;
+  border-color: #007cd6 !important;
+}
+.v-application .info--text.text--darken-1 {
+  color: #007cd6 !important;
+  caret-color: #007cd6 !important;
+}
+.v-application .info.darken-2 {
+  background-color: #0064ba !important;
+  border-color: #0064ba !important;
+}
+.v-application .info--text.text--darken-2 {
+  color: #0064ba !important;
+  caret-color: #0064ba !important;
+}
+.v-application .info.darken-3 {
+  background-color: #004d9f !important;
+  border-color: #004d9f !important;
+}
+.v-application .info--text.text--darken-3 {
+  color: #004d9f !important;
+  caret-color: #004d9f !important;
+}
+.v-application .info.darken-4 {
+  background-color: #003784 !important;
+  border-color: #003784 !important;
+}
+.v-application .info--text.text--darken-4 {
+  color: #003784 !important;
+  caret-color: #003784 !important;
+}
+.v-application .success {
+  background-color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}
+.v-application .success--text {
+  color: #4caf50 !important;
+  caret-color: #4caf50 !important;
+}
+.v-application .success.lighten-5 {
+  background-color: #dcffd6 !important;
+  border-color: #dcffd6 !important;
+}
+.v-application .success--text.text--lighten-5 {
+  color: #dcffd6 !important;
+  caret-color: #dcffd6 !important;
+}
+.v-application .success.lighten-4 {
+  background-color: #beffba !important;
+  border-color: #beffba !important;
+}
+.v-application .success--text.text--lighten-4 {
+  color: #beffba !important;
+  caret-color: #beffba !important;
+}
+.v-application .success.lighten-3 {
+  background-color: #a2ff9e !important;
+  border-color: #a2ff9e !important;
+}
+.v-application .success--text.text--lighten-3 {
+  color: #a2ff9e !important;
+  caret-color: #a2ff9e !important;
+}
+.v-application .success.lighten-2 {
+  background-color: #85e783 !important;
+  border-color: #85e783 !important;
+}
+.v-application .success--text.text--lighten-2 {
+  color: #85e783 !important;
+  caret-color: #85e783 !important;
+}
+.v-application .success.lighten-1 {
+  background-color: #69cb69 !important;
+  border-color: #69cb69 !important;
+}
+.v-application .success--text.text--lighten-1 {
+  color: #69cb69 !important;
+  caret-color: #69cb69 !important;
+}
+.v-application .success.darken-1 {
+  background-color: #2d9437 !important;
+  border-color: #2d9437 !important;
+}
+.v-application .success--text.text--darken-1 {
+  color: #2d9437 !important;
+  caret-color: #2d9437 !important;
+}
+.v-application .success.darken-2 {
+  background-color: #00791e !important;
+  border-color: #00791e !important;
+}
+.v-application .success--text.text--darken-2 {
+  color: #00791e !important;
+  caret-color: #00791e !important;
+}
+.v-application .success.darken-3 {
+  background-color: #006000 !important;
+  border-color: #006000 !important;
+}
+.v-application .success--text.text--darken-3 {
+  color: #006000 !important;
+  caret-color: #006000 !important;
+}
+.v-application .success.darken-4 {
+  background-color: #004700 !important;
+  border-color: #004700 !important;
+}
+.v-application .success--text.text--darken-4 {
+  color: #004700 !important;
+  caret-color: #004700 !important;
+}
+.v-application .warning {
+  background-color: #fb8c00 !important;
+  border-color: #fb8c00 !important;
+}
+.v-application .warning--text {
+  color: #fb8c00 !important;
+  caret-color: #fb8c00 !important;
+}
+.v-application .warning.lighten-5 {
+  background-color: #ffff9e !important;
+  border-color: #ffff9e !important;
+}
+.v-application .warning--text.text--lighten-5 {
+  color: #ffff9e !important;
+  caret-color: #ffff9e !important;
+}
+.v-application .warning.lighten-4 {
+  background-color: #fffb82 !important;
+  border-color: #fffb82 !important;
+}
+.v-application .warning--text.text--lighten-4 {
+  color: #fffb82 !important;
+  caret-color: #fffb82 !important;
+}
+.v-application .warning.lighten-3 {
+  background-color: #ffdf67 !important;
+  border-color: #ffdf67 !important;
+}
+.v-application .warning--text.text--lighten-3 {
+  color: #ffdf67 !important;
+  caret-color: #ffdf67 !important;
+}
+.v-application .warning.lighten-2 {
+  background-color: #ffc24b !important;
+  border-color: #ffc24b !important;
+}
+.v-application .warning--text.text--lighten-2 {
+  color: #ffc24b !important;
+  caret-color: #ffc24b !important;
+}
+.v-application .warning.lighten-1 {
+  background-color: #ffa72d !important;
+  border-color: #ffa72d !important;
+}
+.v-application .warning--text.text--lighten-1 {
+  color: #ffa72d !important;
+  caret-color: #ffa72d !important;
+}
+.v-application .warning.darken-1 {
+  background-color: #db7200 !important;
+  border-color: #db7200 !important;
+}
+.v-application .warning--text.text--darken-1 {
+  color: #db7200 !important;
+  caret-color: #db7200 !important;
+}
+.v-application .warning.darken-2 {
+  background-color: #bb5900 !important;
+  border-color: #bb5900 !important;
+}
+.v-application .warning--text.text--darken-2 {
+  color: #bb5900 !important;
+  caret-color: #bb5900 !important;
+}
+.v-application .warning.darken-3 {
+  background-color: #9d4000 !important;
+  border-color: #9d4000 !important;
+}
+.v-application .warning--text.text--darken-3 {
+  color: #9d4000 !important;
+  caret-color: #9d4000 !important;
+}
+.v-application .warning.darken-4 {
+  background-color: #802700 !important;
+  border-color: #802700 !important;
+}
+.v-application .warning--text.text--darken-4 {
+  color: #802700 !important;
+  caret-color: #802700 !important;
+}
+          </style>,
+          "themes": Object {
+            "dark": Object {
+              "accent": "#FF4081",
+              "error": "#FF5252",
+              "info": "#2196F3",
+              "primary": "#2196F3",
+              "secondary": "#424242",
+              "success": "#4CAF50",
+              "warning": "#FB8C00",
+            },
+            "light": Object {
+              "accent": "#82B1FF",
+              "error": "#FF5252",
+              "info": "#2196F3",
+              "primary": "#1976D2",
+              "secondary": "#424242",
+              "success": "#4CAF50",
+              "warning": "#FB8C00",
+            },
+          },
+          "unwatch": [Function],
+          "vueMeta": null,
+        },
+      },
+      "_c": [Function],
+      "_data": Object {},
+      "_directInactive": false,
+      "_events": Object {
+        "hook:created": Array [],
+      },
+      "_hasHookEvent": true,
+      "_inactive": null,
+      "_isBeingDestroyed": false,
+      "_isDestroyed": false,
+      "_isMounted": true,
+      "_isVue": true,
+      "_renderProxy": [Circular],
+      "_self": [Circular],
+      "_staticTrees": null,
+      "_uid": 2,
+      "_vnode": VNode {
+        "asyncFactory": undefined,
+        "asyncMeta": undefined,
+        "children": undefined,
+        "componentInstance": undefined,
+        "componentOptions": undefined,
+        "context": [Circular],
+        "data": undefined,
+        "elm": <button>
+          <audio
+            src="http://just.a.test/audio.mp3"
+          />
+        </button>,
+        "fnContext": undefined,
+        "fnOptions": undefined,
+        "fnScopeId": undefined,
+        "isAsyncPlaceholder": false,
+        "isCloned": false,
+        "isComment": false,
+        "isOnce": false,
+        "isRootInsert": true,
+        "isStatic": false,
+        "key": undefined,
+        "ns": undefined,
+        "parent": undefined,
+        "raw": false,
+        "tag": "button",
+        "text": undefined,
+      },
+      "_watcher": Watcher {
+        "active": true,
+        "before": [Function],
+        "cb": [Function],
+        "deep": false,
+        "depIds": Set {},
+        "deps": Array [],
+        "dirty": false,
+        "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+        "getter": [Function],
+        "id": 3,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": false,
+        "value": undefined,
+        "vm": [Circular],
+      },
+      "_watchers": Array [
+        Watcher {
+          "active": true,
+          "before": undefined,
+          "cb": [Function],
+          "deep": true,
+          "depIds": Set {
+            247,
+            197,
+            207,
+            208,
+            215,
+            214,
+            213,
+            212,
+            211,
+            210,
+            209,
+            198,
+            199,
+            206,
+            205,
+            204,
+            203,
+            202,
+            201,
+            200,
+          },
+          "deps": Array [
+            Dep {
+              "id": 247,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 197,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 207,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 208,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 215,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 214,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 213,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 212,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 211,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 210,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 209,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 198,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 199,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 206,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 205,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 204,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 203,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 202,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 201,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 200,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+          ],
+          "dirty": false,
+          "expression": "function () {
+        return obs.themes;
+      }",
+          "getter": [Function],
+          "id": 2,
+          "lazy": false,
+          "newDepIds": Set {},
+          "newDeps": Array [],
+          "sync": false,
+          "user": true,
+          "value": Object {
+            "dark": Object {
+              "accent": "#FF4081",
+              "error": "#FF5252",
+              "info": "#2196F3",
+              "primary": "#2196F3",
+              "secondary": "#424242",
+              "success": "#4CAF50",
+              "warning": "#FB8C00",
+            },
+            "light": Object {
+              "accent": "#82B1FF",
+              "error": "#FF5252",
+              "info": "#2196F3",
+              "primary": "#1976D2",
+              "secondary": "#424242",
+              "success": "#4CAF50",
+              "warning": "#FB8C00",
+            },
+          },
+          "vm": [Circular],
+        },
+        Watcher {
+          "active": true,
+          "before": [Function],
+          "cb": [Function],
+          "deep": false,
+          "depIds": Set {},
+          "deps": Array [],
+          "dirty": false,
+          "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+          "getter": [Function],
+          "id": 3,
+          "lazy": false,
+          "newDepIds": Set {},
+          "newDeps": Array [],
+          "sync": false,
+          "user": false,
+          "value": undefined,
+          "vm": [Circular],
+        },
+        Watcher {
+          "active": true,
+          "before": undefined,
+          "cb": [Function],
+          "deep": false,
+          "depIds": Set {
+            189,
+            190,
+            193,
+          },
+          "deps": Array [
+            Dep {
+              "id": 189,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 190,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 193,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+          ],
+          "dirty": false,
+          "expression": "$vuetify.theme.dark",
+          "getter": [Function],
+          "id": 4,
+          "lazy": false,
+          "newDepIds": Set {},
+          "newDeps": Array [],
+          "sync": false,
+          "user": true,
+          "value": false,
+          "vm": [Circular],
+        },
+      ],
+    },
+    "_self": [Circular],
+    "_staticTrees": null,
+    "_uid": 2,
+    "_vnode": VNode {
+      "asyncFactory": undefined,
+      "asyncMeta": undefined,
+      "children": undefined,
+      "componentInstance": undefined,
+      "componentOptions": undefined,
+      "context": [Circular],
+      "data": undefined,
+      "elm": <button>
+        <audio
+          src="http://just.a.test/audio.mp3"
+        />
+      </button>,
+      "fnContext": undefined,
+      "fnOptions": undefined,
+      "fnScopeId": undefined,
+      "isAsyncPlaceholder": false,
+      "isCloned": false,
+      "isComment": false,
+      "isOnce": false,
+      "isRootInsert": true,
+      "isStatic": false,
+      "key": undefined,
+      "ns": undefined,
+      "parent": undefined,
+      "raw": false,
+      "tag": "button",
+      "text": undefined,
+    },
+    "_watcher": Watcher {
+      "active": true,
+      "before": [Function],
+      "cb": [Function],
+      "deep": false,
+      "depIds": Set {},
+      "deps": Array [],
+      "dirty": false,
+      "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+      "getter": [Function],
+      "id": 3,
+      "lazy": false,
+      "newDepIds": Set {},
+      "newDeps": Array [],
+      "sync": false,
+      "user": false,
+      "value": undefined,
+      "vm": [Circular],
+    },
+    "_watchers": Array [
+      Watcher {
+        "active": true,
+        "before": undefined,
+        "cb": [Function],
+        "deep": true,
+        "depIds": Set {
+          247,
+          197,
+          207,
+          208,
+          215,
+          214,
+          213,
+          212,
+          211,
+          210,
+          209,
+          198,
+          199,
+          206,
+          205,
+          204,
+          203,
+          202,
+          201,
+          200,
+        },
+        "deps": Array [
+          Dep {
+            "id": 247,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 197,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 207,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 208,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 215,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 214,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 213,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 212,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 211,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 210,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 209,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 198,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 199,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 206,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 205,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 204,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 203,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 202,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 201,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 200,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+        ],
+        "dirty": false,
+        "expression": "function () {
+        return obs.themes;
+      }",
+        "getter": [Function],
+        "id": 2,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": true,
+        "value": Object {
+          "dark": Object {
+            "accent": "#FF4081",
+            "error": "#FF5252",
+            "info": "#2196F3",
+            "primary": "#2196F3",
+            "secondary": "#424242",
+            "success": "#4CAF50",
+            "warning": "#FB8C00",
+          },
+          "light": Object {
+            "accent": "#82B1FF",
+            "error": "#FF5252",
+            "info": "#2196F3",
+            "primary": "#1976D2",
+            "secondary": "#424242",
+            "success": "#4CAF50",
+            "warning": "#FB8C00",
+          },
+        },
+        "vm": [Circular],
+      },
+      Watcher {
+        "active": true,
+        "before": [Function],
+        "cb": [Function],
+        "deep": false,
+        "depIds": Set {},
+        "deps": Array [],
+        "dirty": false,
+        "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+        "getter": [Function],
+        "id": 3,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": false,
+        "value": undefined,
+        "vm": [Circular],
+      },
+      Watcher {
+        "active": true,
+        "before": undefined,
+        "cb": [Function],
+        "deep": false,
+        "depIds": Set {
+          189,
+          190,
+          193,
+        },
+        "deps": Array [
+          Dep {
+            "id": 189,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 190,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 193,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+        ],
+        "dirty": false,
+        "expression": "$vuetify.theme.dark",
+        "getter": [Function],
+        "id": 4,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": true,
+        "value": false,
+        "vm": [Circular],
+      },
+    ],
+  },
+}
+`;
