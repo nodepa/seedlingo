@@ -4,4 +4,5 @@ export interface RootState {
 
 export interface InstructionsState {
   isInstructionsMode: boolean;
+  showGetInstructionsGraphic: boolean;
 }

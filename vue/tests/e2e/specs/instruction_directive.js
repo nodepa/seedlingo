@@ -13,12 +13,15 @@ describe('马丽 interacts with the "instruction" system', () => {
       cy.get('[data-test="get-instructions-component"]').should(
         'not.be.visible',
       );
-      cy.get('[data-test="instructions-overlay"]').should('be.visible');
+      cy.get('[data-test="instructions-overlay"]').should('exist');
       // not working: cy.get('[data-test="home-button"]').should('not.be.disabled');
       cy.get('[data-test="home-button"]').should(
         'not.have.class',
         'v-btn--disabled',
       );
+
+      cy.get('[data-test="toggle-instructions-button"]').click();
+      cy.get('[data-test="instructions-overlay"]').should('not.exist');
 
       // ensure home button has styling indicating interactive, i.e.:
       // - ensure home button has overlay/icon/styling
