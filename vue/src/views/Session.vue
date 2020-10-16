@@ -13,12 +13,7 @@ import Matching from '@/Matching/components/Matching.vue';
     Matching,
   },
 })
-export default class Session extends Vue {
-  // eslint-disable-next-line class-methods-use-this
-  mounted() {
-    console.log('mounted the session wrapper');
-  }
-}
+export default class Session extends Vue {}
 </script>
 
 <style lang="stylus" scoped></style>

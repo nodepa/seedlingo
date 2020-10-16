@@ -4,7 +4,7 @@
       <v-col v-for="(answer, index) in answers" :key="index">
         <v-btn
           :ref="`answer${index}Button`"
-          :data-test="`choice-${index}-button`"
+          :data-test="`${index < 5 ? 'char' : 'sym'}-${index}-button`"
           height="100%"
           block
           raised
