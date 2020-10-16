@@ -3,7 +3,7 @@
     <v-app-bar app flat color="background">
       <div class="d-flex align-center">
         <v-img
-          alt="立爱识字 Logo"
+          alt="种字立爱 Logo"
           class="shrink mr-2"
           contain
           transition="scale-transition"
@@ -20,7 +20,7 @@
           min-width="100"
           width="100"
         >
-          立爱识字
+          种字立爱
         </span>
       </div>
     </v-app-bar>
