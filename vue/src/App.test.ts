@@ -1,16 +1,28 @@
-import { createLocalVue, mount } from '@vue/test-utils';
+// Libraries, plugins, components
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import store from '@/store';
+import Badge from '@/common/components/Badge.vue';
+import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import InstructionDirective from '@/common/directives/InstructionDirective';
 
+// Helpers
+import { createLocalVue, mount } from '@vue/test-utils';
+import { animate } from '@/testHelpers/FunctionOverrides';
+
+// Item under test
 import App from '@/App.vue';
+
+window.Element.prototype.animate = animate;
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
 localVue.use(Vuex);
-localVue.use(InstructionDirective);
+localVue.use(InstructionDirective, {
+  Badge,
+  Animation: RippleAnimation,
+});
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

@@ -5,5 +5,7 @@
   "port": 4000,
   "screenshotsFolder": "tests/e2e/screenshots",
   "supportFile": "tests/e2e/support",
-  "videosFolder": "tests/e2e/videos"
+  "videosFolder": "tests/e2e/videos",
+  "viewportWidth": 375,
+  "viewportHeight": 812
 }

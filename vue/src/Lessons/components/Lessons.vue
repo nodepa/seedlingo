@@ -1,24 +1,23 @@
 <template>
   <v-list flat rounded data-test="lessons-list">
-    <!-- <v-list-item-group v-model="selectedLesson" color="primary"> -->
     <v-list-item v-for="(lesson, order) in lessons" :key="order">
       <v-col cols="6" offset="3">
         <v-btn
           v-instruction="lesson.audio"
-          class="lesson-button"
+          class="pa-5"
           data-test="lesson-button"
-          x-large
+          block
+          rounded
           elevation="5"
-          fab
-          outlined
+          height="100%"
           color="primary"
+          :to="{ path: `lesson/${order}` }"
         >
-          <span>{{ order }}</span>
-          <v-icon>{{ lesson.icon }}</v-icon>
+          <span class="display-3">{{ order }}</span>
+          <v-icon x-large>{{ lesson.icon }}</v-icon>
         </v-btn>
       </v-col>
     </v-list-item>
-    <!-- </v-list-item-group> -->
   </v-list>
 </template>
 
@@ -44,7 +43,6 @@ export default class Lessons extends Vue {
   // eslint-disable-next-line class-methods-use-this
   data() {
     return {
-      // selectedLesson: 0,
       lessons: {
         1: {
           name: 'Numbers 1-5',
@@ -76,20 +74,40 @@ export default class Lessons extends Vue {
           icon: mdiTimelapse,
           audio: lesson06Time,
         },
-        7: { name: 'More 1', icon: mdiTimelapse, audio: lesson06Time },
-        8: { name: 'More 2', icon: mdiTimelapse, audio: lesson06Time },
-        9: { name: 'More 3', icon: mdiTimelapse, audio: lesson06Time },
-        10: { name: 'More 4', icon: mdiTimelapse, audio: lesson06Time },
-        11: { name: 'More 5', icon: mdiTimelapse, audio: lesson06Time },
-        12: { name: 'More 6', icon: mdiTimelapse, audio: lesson06Time },
+        7: {
+          name: 'More 1',
+          icon: mdiTimelapse,
+          audio: lesson06Time,
+        },
+        8: {
+          name: 'More 2',
+          icon: mdiTimelapse,
+          audio: lesson06Time,
+        },
+        9: {
+          name: 'More 3',
+          icon: mdiTimelapse,
+          audio: lesson06Time,
+        },
+        10: {
+          name: 'More 4',
+          icon: mdiTimelapse,
+          audio: lesson06Time,
+        },
+        11: {
+          name: 'More 5',
+          icon: mdiTimelapse,
+          audio: lesson06Time,
+        },
+        12: {
+          name: 'More 6',
+          icon: mdiTimelapse,
+          audio: lesson06Time,
+        },
       },
     };
   }
 }
 </script>
 
-<style lang="stylus" scoped>
-.lesson-button
-  transform: scale(1.5)
-  margin-bottom: 20px
-</style>
+<style lang="stylus" scoped></style>
