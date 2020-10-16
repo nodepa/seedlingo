@@ -1,9 +1,9 @@
 <template>
   <div class="about">
-    <h1>About 立爱识字</h1>
+    <h1>About 种字立爱</h1>
     <Logo />
     <p>
-      立爱识字 is a literacy education tool developed on behalf of
+      种字立爱 is a literacy education tool developed on behalf of
       <a href="https://liaieducation.com">Li Ai Education</a> as part of a
       research project aiming to empower rural citizens.
     </p>
