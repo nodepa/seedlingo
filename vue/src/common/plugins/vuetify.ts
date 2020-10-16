@@ -1,6 +1,6 @@
 // import '@mdi/font/css/materialdesignicons.css';
 import Vue from 'vue';
-import Vuetify from 'vuetify/lib';
+import Vuetify, { colors } from 'vuetify/lib';
 import { UserVuetifyPreset } from 'vuetify';
 import InstructionsIcon from '@/common/icons/InstructionsIcon.vue';
 import InstructionsCloseIcon from '@/common/icons/InstructionsCloseIcon.vue';
@@ -25,12 +25,12 @@ const options: UserVuetifyPreset = {
     },
     themes: {
       light: {
-        white: '#ffffff',
-        black: '#1e1e1e',
+        background: colors.shades.white,
+        foreground: colors.shades.black,
       },
       dark: {
-        white: '#ffffff',
-        black: '#1e1e1e',
+        background: colors.shades.black,
+        foreground: colors.shades.white,
       },
     },
   },

@@ -1,15 +1,12 @@
 <template>
   <v-bottom-navigation app grow color="primary">
     <HomeButton :is-home-button-disabled="isHomeButtonDisabled" />
-    <InstructionsButton
-      :show-get-instructions-graphic.sync="syncedShowGetInstructionsGraphic"
-      :is-home-button-disabled.sync="isHomeButtonDisabled"
-    />
+    <InstructionsButton :is-home-button-disabled.sync="isHomeButtonDisabled" />
   </v-bottom-navigation>
 </template>
 
 <script lang="ts">
-import { Component, PropSync, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import HomeButton from './HomeButton.vue';
 import InstructionsButton from './InstructionsButton.vue';
 
@@ -26,9 +23,6 @@ export default class BottomNavigationBar extends Vue {
       isHomeButtonDisabled: true,
     };
   }
-
-  @PropSync('showGetInstructionsGraphic', { type: Boolean })
-  syncedShowGetInstructionsGraphic!: boolean;
 }
 </script>
 

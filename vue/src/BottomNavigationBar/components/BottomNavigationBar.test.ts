@@ -1,28 +1,33 @@
+// Libraries, plugins, components
 import Vue from 'vue';
-import { createLocalVue, Wrapper, mount } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import store from '@/store';
+import Badge from '@/common/components/Badge.vue';
+import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import InstructionDirective from '@/common/directives/InstructionDirective';
 
+// Helpers
+import { createLocalVue, Wrapper, mount } from '@vue/test-utils';
+import { animate, pause, play } from '@/testHelpers/FunctionOverrides';
+
+// Item under test
 import BottomNavigationBar from './BottomNavigationBar.vue';
 
-window.HTMLMediaElement.prototype.play = (): Promise<void> => {
-  return new Promise(() => {
-    /* do nothing */
-  });
-};
-window.HTMLMediaElement.prototype.pause = (): void => {
-  /* do nothing */
-};
+window.Element.prototype.animate = animate;
+window.HTMLMediaElement.prototype.pause = pause;
+window.HTMLMediaElement.prototype.play = play;
 
 Vue.use(Vuetify);
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
 localVue.use(Vuex);
-localVue.use(InstructionDirective);
+localVue.use(InstructionDirective, {
+  Badge,
+  Animation: RippleAnimation,
+});
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -50,9 +55,6 @@ describe('BottomNavigationBar.vue (deep)', () => {
       localVue,
       router,
       vuetify,
-      propsData: {
-        showGetInstructionsGraphic: true,
-      },
       store,
     });
   });
@@ -89,10 +91,13 @@ describe('BottomNavigationBar.vue (deep)', () => {
   // Elements have expected behaviour
   describe('toggle-instructions-button', () => {
     it('on first click: hides the "get instructions" graphic', () => {
+      expect(
+        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
+      ).toBe(true);
       wrapper.find(toggleInstructionsButton).trigger('click');
       expect(
-        wrapper.emitted('update:showGetInstructionsGraphic'),
-      ).toStrictEqual([[false]]);
+        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
+      ).toBe(false);
     });
 
     it('on first click: enables the home button', () => {
@@ -125,7 +130,9 @@ describe('BottomNavigationBar.vue (deep)', () => {
 
       // initial state
       expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(true);
-      expect(wrapper.vm.$props.showGetInstructionsGraphic).toBe(true);
+      expect(
+        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
+      ).toBe(true);
       expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
         false,
       );
@@ -133,17 +140,11 @@ describe('BottomNavigationBar.vue (deep)', () => {
       // first click
       instructionsButton.trigger('click');
 
-      // parent updates props like so:
-      wrapper.setProps({
-        showGetInstructionsGraphic: false,
-      });
-      instructionsButton.setProps({
-        showGetInstructionsGraphic: false,
-      });
-
       // current state
       expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(false);
-      expect(wrapper.vm.$props.showGetInstructionsGraphic).toBe(false);
+      expect(
+        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
+      ).toBe(false);
       expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
         true,
       );
@@ -151,14 +152,11 @@ describe('BottomNavigationBar.vue (deep)', () => {
       // second click
       instructionsButton.trigger('click');
 
-      // parent updates props like so:
-      wrapper.setProps({
-        isInstructionsMode: false,
-      });
-
       // current state
       expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(false);
-      expect(wrapper.vm.$props.showGetInstructionsGraphic).toBe(false);
+      expect(
+        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
+      ).toBe(false);
       expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
         false,
       );
@@ -166,22 +164,14 @@ describe('BottomNavigationBar.vue (deep)', () => {
       // third click
       instructionsButton.trigger('click');
 
-      // parent updates props like so:
-      wrapper.setProps({
-        isInstructionsMode: true,
-      });
-
       // current state
       expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(false);
-      expect(wrapper.vm.$props.showGetInstructionsGraphic).toBe(false);
+      expect(
+        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
+      ).toBe(false);
       expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
         true,
       );
-
-      // showGetInstructionsGraphic has only been emitted once
-      expect(
-        wrapper.emitted('update:showGetInstructionsGraphic'),
-      ).toStrictEqual([[false]]);
     });
   });
 });

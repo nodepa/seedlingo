@@ -2,17 +2,3650 @@
 
 exports[`class Instruction constructor: functional 1`] = `
 Instruction {
+  "animation1": Ripple {
+    "$attrs": Object {},
+    "$children": Array [],
+    "$createElement": [Function],
+    "$el": <span
+      class="ripple"
+      style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+    />,
+    "$listeners": Object {},
+    "$options": Object {
+      "_Ctor": Object {
+        "0": [Function],
+      },
+      "_base": [Function],
+      "_propKeys": Array [
+        "playing",
+        "duration",
+        "delay",
+        "iterations",
+        "borderWidth",
+        "size",
+        "scale",
+        "borderColor",
+      ],
+      "beforeCreate": Array [
+        [Function],
+        [Function],
+      ],
+      "beforeMount": Array [
+        [Function],
+      ],
+      "components": Object {},
+      "data": [Function],
+      "directives": Object {},
+      "filters": Object {},
+      "methods": Object {
+        "onPlayingChanged": [Function],
+        "playAnimation": [Function],
+      },
+      "mixins": Array [
+        Object {
+          "data": [Function],
+        },
+      ],
+      "mounted": Array [
+        [Function],
+      ],
+      "name": "Ripple",
+      "props": Object {
+        "borderColor": Object {
+          "default": "rgba(0,0,0,0.2)",
+        },
+        "borderWidth": Object {
+          "default": "4px",
+        },
+        "delay": Object {
+          "default": 0,
+        },
+        "duration": Object {
+          "default": 500,
+        },
+        "iterations": Object {
+          "default": Infinity,
+        },
+        "playing": Object {
+          "default": false,
+        },
+        "scale": Object {
+          "default": "4",
+        },
+        "size": Object {
+          "default": "40px",
+        },
+      },
+      "render": [Function],
+      "staticRenderFns": Array [],
+      "watch": Object {},
+    },
+    "$parent": undefined,
+    "$refs": Object {
+      "ripple": <span
+        class="ripple"
+        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      />,
+    },
+    "$root": [Circular],
+    "$scopedSlots": Object {},
+    "$slots": Object {},
+    "$vnode": undefined,
+    "$vuetify": [Circular],
+    "_c": [Function],
+    "_data": Object {},
+    "_directInactive": false,
+    "_events": Object {},
+    "_hasHookEvent": false,
+    "_inactive": null,
+    "_isBeingDestroyed": false,
+    "_isDestroyed": false,
+    "_isMounted": true,
+    "_isVue": true,
+    "_props": Object {
+      "borderColor": "rgba(0,0,0,0.2)",
+      "borderWidth": "4px",
+      "delay": 0,
+      "duration": 500,
+      "iterations": Infinity,
+      "playing": false,
+      "scale": "4",
+      "size": "40px",
+    },
+    "_renderProxy": Ripple {
+      "$attrs": Object {},
+      "$children": Array [],
+      "$createElement": [Function],
+      "$el": <span
+        class="ripple"
+        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      />,
+      "$listeners": Object {},
+      "$options": Object {
+        "_Ctor": Object {
+          "0": [Function],
+        },
+        "_base": [Function],
+        "_propKeys": Array [
+          "playing",
+          "duration",
+          "delay",
+          "iterations",
+          "borderWidth",
+          "size",
+          "scale",
+          "borderColor",
+        ],
+        "beforeCreate": Array [
+          [Function],
+          [Function],
+        ],
+        "beforeMount": Array [
+          [Function],
+        ],
+        "components": Object {},
+        "data": [Function],
+        "directives": Object {},
+        "filters": Object {},
+        "methods": Object {
+          "onPlayingChanged": [Function],
+          "playAnimation": [Function],
+        },
+        "mixins": Array [
+          Object {
+            "data": [Function],
+          },
+        ],
+        "mounted": Array [
+          [Function],
+        ],
+        "name": "Ripple",
+        "props": Object {
+          "borderColor": Object {
+            "default": "rgba(0,0,0,0.2)",
+          },
+          "borderWidth": Object {
+            "default": "4px",
+          },
+          "delay": Object {
+            "default": 0,
+          },
+          "duration": Object {
+            "default": 500,
+          },
+          "iterations": Object {
+            "default": Infinity,
+          },
+          "playing": Object {
+            "default": false,
+          },
+          "scale": Object {
+            "default": "4",
+          },
+          "size": Object {
+            "default": "40px",
+          },
+        },
+        "render": [Function],
+        "staticRenderFns": Array [],
+        "watch": Object {},
+      },
+      "$parent": undefined,
+      "$refs": Object {
+        "ripple": <span
+          class="ripple"
+          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />,
+      },
+      "$root": [Circular],
+      "$scopedSlots": Object {},
+      "$slots": Object {},
+      "$vnode": undefined,
+      "$vuetify": [Circular],
+      "_c": [Function],
+      "_data": Object {},
+      "_directInactive": false,
+      "_events": Object {},
+      "_hasHookEvent": false,
+      "_inactive": null,
+      "_isBeingDestroyed": false,
+      "_isDestroyed": false,
+      "_isMounted": true,
+      "_isVue": true,
+      "_props": Object {
+        "borderColor": "rgba(0,0,0,0.2)",
+        "borderWidth": "4px",
+        "delay": 0,
+        "duration": 500,
+        "iterations": Infinity,
+        "playing": false,
+        "scale": "4",
+        "size": "40px",
+      },
+      "_renderProxy": [Circular],
+      "_self": [Circular],
+      "_staticTrees": null,
+      "_uid": 5,
+      "_vnode": VNode {
+        "asyncFactory": undefined,
+        "asyncMeta": undefined,
+        "children": undefined,
+        "componentInstance": undefined,
+        "componentOptions": undefined,
+        "context": [Circular],
+        "data": Object {
+          "normalizedStyle": Object {
+            "borderColor": "rgba(0,0,0,0.2)",
+            "borderWidth": "4px",
+            "height": "40px",
+            "width": "40px",
+          },
+          "ref": "ripple",
+          "staticClass": "ripple",
+          "style": Object {
+            "borderColor": "rgba(0,0,0,0.2)",
+            "borderWidth": "4px",
+            "height": "40px",
+            "width": "40px",
+          },
+        },
+        "elm": <span
+          class="ripple"
+          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />,
+        "fnContext": undefined,
+        "fnOptions": undefined,
+        "fnScopeId": undefined,
+        "isAsyncPlaceholder": false,
+        "isCloned": false,
+        "isComment": false,
+        "isOnce": false,
+        "isRootInsert": true,
+        "isStatic": false,
+        "key": undefined,
+        "ns": undefined,
+        "parent": undefined,
+        "raw": false,
+        "tag": "span",
+        "text": undefined,
+      },
+      "_watcher": Watcher {
+        "active": true,
+        "before": [Function],
+        "cb": [Function],
+        "deep": false,
+        "depIds": Set {
+          262,
+          261,
+          264,
+        },
+        "deps": Array [
+          Dep {
+            "id": 262,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 261,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 264,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+        ],
+        "dirty": false,
+        "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+        "getter": [Function],
+        "id": 7,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": false,
+        "value": undefined,
+        "vm": [Circular],
+      },
+      "_watchers": Array [
+        Watcher {
+          "active": true,
+          "before": undefined,
+          "cb": [Function],
+          "deep": false,
+          "depIds": Set {
+            257,
+          },
+          "deps": Array [
+            Dep {
+              "id": 257,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+          ],
+          "dirty": false,
+          "expression": "playing",
+          "getter": [Function],
+          "id": 6,
+          "lazy": false,
+          "newDepIds": Set {},
+          "newDeps": Array [],
+          "sync": false,
+          "user": true,
+          "value": false,
+          "vm": [Circular],
+        },
+        Watcher {
+          "active": true,
+          "before": [Function],
+          "cb": [Function],
+          "deep": false,
+          "depIds": Set {
+            262,
+            261,
+            264,
+          },
+          "deps": Array [
+            Dep {
+              "id": 262,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 261,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 264,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+          ],
+          "dirty": false,
+          "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+          "getter": [Function],
+          "id": 7,
+          "lazy": false,
+          "newDepIds": Set {},
+          "newDeps": Array [],
+          "sync": false,
+          "user": false,
+          "value": undefined,
+          "vm": [Circular],
+        },
+      ],
+      "onPlayingChanged": [Function],
+      "playAnimation": [Function],
+    },
+    "_self": [Circular],
+    "_staticTrees": null,
+    "_uid": 5,
+    "_vnode": VNode {
+      "asyncFactory": undefined,
+      "asyncMeta": undefined,
+      "children": undefined,
+      "componentInstance": undefined,
+      "componentOptions": undefined,
+      "context": [Circular],
+      "data": Object {
+        "normalizedStyle": Object {
+          "borderColor": "rgba(0,0,0,0.2)",
+          "borderWidth": "4px",
+          "height": "40px",
+          "width": "40px",
+        },
+        "ref": "ripple",
+        "staticClass": "ripple",
+        "style": Object {
+          "borderColor": "rgba(0,0,0,0.2)",
+          "borderWidth": "4px",
+          "height": "40px",
+          "width": "40px",
+        },
+      },
+      "elm": <span
+        class="ripple"
+        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      />,
+      "fnContext": undefined,
+      "fnOptions": undefined,
+      "fnScopeId": undefined,
+      "isAsyncPlaceholder": false,
+      "isCloned": false,
+      "isComment": false,
+      "isOnce": false,
+      "isRootInsert": true,
+      "isStatic": false,
+      "key": undefined,
+      "ns": undefined,
+      "parent": undefined,
+      "raw": false,
+      "tag": "span",
+      "text": undefined,
+    },
+    "_watcher": Watcher {
+      "active": true,
+      "before": [Function],
+      "cb": [Function],
+      "deep": false,
+      "depIds": Set {
+        262,
+        261,
+        264,
+      },
+      "deps": Array [
+        Dep {
+          "id": 262,
+          "subs": Array [
+            [Circular],
+          ],
+        },
+        Dep {
+          "id": 261,
+          "subs": Array [
+            [Circular],
+          ],
+        },
+        Dep {
+          "id": 264,
+          "subs": Array [
+            [Circular],
+          ],
+        },
+      ],
+      "dirty": false,
+      "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+      "getter": [Function],
+      "id": 7,
+      "lazy": false,
+      "newDepIds": Set {},
+      "newDeps": Array [],
+      "sync": false,
+      "user": false,
+      "value": undefined,
+      "vm": [Circular],
+    },
+    "_watchers": Array [
+      Watcher {
+        "active": true,
+        "before": undefined,
+        "cb": [Function],
+        "deep": false,
+        "depIds": Set {
+          257,
+        },
+        "deps": Array [
+          Dep {
+            "id": 257,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+        ],
+        "dirty": false,
+        "expression": "playing",
+        "getter": [Function],
+        "id": 6,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": true,
+        "value": false,
+        "vm": [Circular],
+      },
+      Watcher {
+        "active": true,
+        "before": [Function],
+        "cb": [Function],
+        "deep": false,
+        "depIds": Set {
+          262,
+          261,
+          264,
+        },
+        "deps": Array [
+          Dep {
+            "id": 262,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 261,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 264,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+        ],
+        "dirty": false,
+        "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+        "getter": [Function],
+        "id": 7,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": false,
+        "value": undefined,
+        "vm": [Circular],
+      },
+    ],
+    "onPlayingChanged": [Function],
+    "playAnimation": [Function],
+  },
+  "animation2": Ripple {
+    "$attrs": Object {},
+    "$children": Array [],
+    "$createElement": [Function],
+    "$el": <span
+      class="ripple"
+      style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+    />,
+    "$listeners": Object {},
+    "$options": Object {
+      "_Ctor": Object {
+        "0": [Function],
+      },
+      "_base": [Function],
+      "_propKeys": Array [
+        "playing",
+        "duration",
+        "delay",
+        "iterations",
+        "borderWidth",
+        "size",
+        "scale",
+        "borderColor",
+      ],
+      "beforeCreate": Array [
+        [Function],
+        [Function],
+      ],
+      "beforeMount": Array [
+        [Function],
+      ],
+      "components": Object {},
+      "data": [Function],
+      "directives": Object {},
+      "filters": Object {},
+      "methods": Object {
+        "onPlayingChanged": [Function],
+        "playAnimation": [Function],
+      },
+      "mixins": Array [
+        Object {
+          "data": [Function],
+        },
+      ],
+      "mounted": Array [
+        [Function],
+      ],
+      "name": "Ripple",
+      "props": Object {
+        "borderColor": Object {
+          "default": "rgba(0,0,0,0.2)",
+        },
+        "borderWidth": Object {
+          "default": "4px",
+        },
+        "delay": Object {
+          "default": 0,
+        },
+        "duration": Object {
+          "default": 500,
+        },
+        "iterations": Object {
+          "default": Infinity,
+        },
+        "playing": Object {
+          "default": false,
+        },
+        "scale": Object {
+          "default": "4",
+        },
+        "size": Object {
+          "default": "40px",
+        },
+      },
+      "propsData": Object {
+        "delay": 200,
+      },
+      "render": [Function],
+      "staticRenderFns": Array [],
+      "watch": Object {},
+    },
+    "$parent": undefined,
+    "$refs": Object {
+      "ripple": <span
+        class="ripple"
+        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      />,
+    },
+    "$root": [Circular],
+    "$scopedSlots": Object {},
+    "$slots": Object {},
+    "$vnode": undefined,
+    "$vuetify": [Circular],
+    "_c": [Function],
+    "_data": Object {},
+    "_directInactive": false,
+    "_events": Object {},
+    "_hasHookEvent": false,
+    "_inactive": null,
+    "_isBeingDestroyed": false,
+    "_isDestroyed": false,
+    "_isMounted": true,
+    "_isVue": true,
+    "_props": Object {
+      "borderColor": "rgba(0,0,0,0.2)",
+      "borderWidth": "4px",
+      "delay": 200,
+      "duration": 500,
+      "iterations": Infinity,
+      "playing": false,
+      "scale": "4",
+      "size": "40px",
+    },
+    "_renderProxy": Ripple {
+      "$attrs": Object {},
+      "$children": Array [],
+      "$createElement": [Function],
+      "$el": <span
+        class="ripple"
+        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      />,
+      "$listeners": Object {},
+      "$options": Object {
+        "_Ctor": Object {
+          "0": [Function],
+        },
+        "_base": [Function],
+        "_propKeys": Array [
+          "playing",
+          "duration",
+          "delay",
+          "iterations",
+          "borderWidth",
+          "size",
+          "scale",
+          "borderColor",
+        ],
+        "beforeCreate": Array [
+          [Function],
+          [Function],
+        ],
+        "beforeMount": Array [
+          [Function],
+        ],
+        "components": Object {},
+        "data": [Function],
+        "directives": Object {},
+        "filters": Object {},
+        "methods": Object {
+          "onPlayingChanged": [Function],
+          "playAnimation": [Function],
+        },
+        "mixins": Array [
+          Object {
+            "data": [Function],
+          },
+        ],
+        "mounted": Array [
+          [Function],
+        ],
+        "name": "Ripple",
+        "props": Object {
+          "borderColor": Object {
+            "default": "rgba(0,0,0,0.2)",
+          },
+          "borderWidth": Object {
+            "default": "4px",
+          },
+          "delay": Object {
+            "default": 0,
+          },
+          "duration": Object {
+            "default": 500,
+          },
+          "iterations": Object {
+            "default": Infinity,
+          },
+          "playing": Object {
+            "default": false,
+          },
+          "scale": Object {
+            "default": "4",
+          },
+          "size": Object {
+            "default": "40px",
+          },
+        },
+        "propsData": Object {
+          "delay": 200,
+        },
+        "render": [Function],
+        "staticRenderFns": Array [],
+        "watch": Object {},
+      },
+      "$parent": undefined,
+      "$refs": Object {
+        "ripple": <span
+          class="ripple"
+          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />,
+      },
+      "$root": [Circular],
+      "$scopedSlots": Object {},
+      "$slots": Object {},
+      "$vnode": undefined,
+      "$vuetify": [Circular],
+      "_c": [Function],
+      "_data": Object {},
+      "_directInactive": false,
+      "_events": Object {},
+      "_hasHookEvent": false,
+      "_inactive": null,
+      "_isBeingDestroyed": false,
+      "_isDestroyed": false,
+      "_isMounted": true,
+      "_isVue": true,
+      "_props": Object {
+        "borderColor": "rgba(0,0,0,0.2)",
+        "borderWidth": "4px",
+        "delay": 200,
+        "duration": 500,
+        "iterations": Infinity,
+        "playing": false,
+        "scale": "4",
+        "size": "40px",
+      },
+      "_renderProxy": [Circular],
+      "_self": [Circular],
+      "_staticTrees": null,
+      "_uid": 6,
+      "_vnode": VNode {
+        "asyncFactory": undefined,
+        "asyncMeta": undefined,
+        "children": undefined,
+        "componentInstance": undefined,
+        "componentOptions": undefined,
+        "context": [Circular],
+        "data": Object {
+          "normalizedStyle": Object {
+            "borderColor": "rgba(0,0,0,0.2)",
+            "borderWidth": "4px",
+            "height": "40px",
+            "width": "40px",
+          },
+          "ref": "ripple",
+          "staticClass": "ripple",
+          "style": Object {
+            "borderColor": "rgba(0,0,0,0.2)",
+            "borderWidth": "4px",
+            "height": "40px",
+            "width": "40px",
+          },
+        },
+        "elm": <span
+          class="ripple"
+          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />,
+        "fnContext": undefined,
+        "fnOptions": undefined,
+        "fnScopeId": undefined,
+        "isAsyncPlaceholder": false,
+        "isCloned": false,
+        "isComment": false,
+        "isOnce": false,
+        "isRootInsert": true,
+        "isStatic": false,
+        "key": undefined,
+        "ns": undefined,
+        "parent": undefined,
+        "raw": false,
+        "tag": "span",
+        "text": undefined,
+      },
+      "_watcher": Watcher {
+        "active": true,
+        "before": [Function],
+        "cb": [Function],
+        "deep": false,
+        "depIds": Set {
+          273,
+          272,
+          275,
+        },
+        "deps": Array [
+          Dep {
+            "id": 273,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 272,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 275,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+        ],
+        "dirty": false,
+        "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+        "getter": [Function],
+        "id": 9,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": false,
+        "value": undefined,
+        "vm": [Circular],
+      },
+      "_watchers": Array [
+        Watcher {
+          "active": true,
+          "before": undefined,
+          "cb": [Function],
+          "deep": false,
+          "depIds": Set {
+            268,
+          },
+          "deps": Array [
+            Dep {
+              "id": 268,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+          ],
+          "dirty": false,
+          "expression": "playing",
+          "getter": [Function],
+          "id": 8,
+          "lazy": false,
+          "newDepIds": Set {},
+          "newDeps": Array [],
+          "sync": false,
+          "user": true,
+          "value": false,
+          "vm": [Circular],
+        },
+        Watcher {
+          "active": true,
+          "before": [Function],
+          "cb": [Function],
+          "deep": false,
+          "depIds": Set {
+            273,
+            272,
+            275,
+          },
+          "deps": Array [
+            Dep {
+              "id": 273,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 272,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 275,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+          ],
+          "dirty": false,
+          "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+          "getter": [Function],
+          "id": 9,
+          "lazy": false,
+          "newDepIds": Set {},
+          "newDeps": Array [],
+          "sync": false,
+          "user": false,
+          "value": undefined,
+          "vm": [Circular],
+        },
+      ],
+      "onPlayingChanged": [Function],
+      "playAnimation": [Function],
+    },
+    "_self": [Circular],
+    "_staticTrees": null,
+    "_uid": 6,
+    "_vnode": VNode {
+      "asyncFactory": undefined,
+      "asyncMeta": undefined,
+      "children": undefined,
+      "componentInstance": undefined,
+      "componentOptions": undefined,
+      "context": [Circular],
+      "data": Object {
+        "normalizedStyle": Object {
+          "borderColor": "rgba(0,0,0,0.2)",
+          "borderWidth": "4px",
+          "height": "40px",
+          "width": "40px",
+        },
+        "ref": "ripple",
+        "staticClass": "ripple",
+        "style": Object {
+          "borderColor": "rgba(0,0,0,0.2)",
+          "borderWidth": "4px",
+          "height": "40px",
+          "width": "40px",
+        },
+      },
+      "elm": <span
+        class="ripple"
+        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      />,
+      "fnContext": undefined,
+      "fnOptions": undefined,
+      "fnScopeId": undefined,
+      "isAsyncPlaceholder": false,
+      "isCloned": false,
+      "isComment": false,
+      "isOnce": false,
+      "isRootInsert": true,
+      "isStatic": false,
+      "key": undefined,
+      "ns": undefined,
+      "parent": undefined,
+      "raw": false,
+      "tag": "span",
+      "text": undefined,
+    },
+    "_watcher": Watcher {
+      "active": true,
+      "before": [Function],
+      "cb": [Function],
+      "deep": false,
+      "depIds": Set {
+        273,
+        272,
+        275,
+      },
+      "deps": Array [
+        Dep {
+          "id": 273,
+          "subs": Array [
+            [Circular],
+          ],
+        },
+        Dep {
+          "id": 272,
+          "subs": Array [
+            [Circular],
+          ],
+        },
+        Dep {
+          "id": 275,
+          "subs": Array [
+            [Circular],
+          ],
+        },
+      ],
+      "dirty": false,
+      "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+      "getter": [Function],
+      "id": 9,
+      "lazy": false,
+      "newDepIds": Set {},
+      "newDeps": Array [],
+      "sync": false,
+      "user": false,
+      "value": undefined,
+      "vm": [Circular],
+    },
+    "_watchers": Array [
+      Watcher {
+        "active": true,
+        "before": undefined,
+        "cb": [Function],
+        "deep": false,
+        "depIds": Set {
+          268,
+        },
+        "deps": Array [
+          Dep {
+            "id": 268,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+        ],
+        "dirty": false,
+        "expression": "playing",
+        "getter": [Function],
+        "id": 8,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": true,
+        "value": false,
+        "vm": [Circular],
+      },
+      Watcher {
+        "active": true,
+        "before": [Function],
+        "cb": [Function],
+        "deep": false,
+        "depIds": Set {
+          273,
+          272,
+          275,
+        },
+        "deps": Array [
+          Dep {
+            "id": 273,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 272,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 275,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+        ],
+        "dirty": false,
+        "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+        "getter": [Function],
+        "id": 9,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": false,
+        "value": undefined,
+        "vm": [Circular],
+      },
+    ],
+    "onPlayingChanged": [Function],
+    "playAnimation": [Function],
+  },
   "audioElement": <audio
     src="http://just.a.test/audio.mp3"
   />,
+  "badge": Badge {
+    "$attrs": Object {},
+    "$children": Array [
+      VueComponent {
+        "$attrs": Object {},
+        "$children": Array [],
+        "$createElement": [Function],
+        "$el": <svg
+          clip-rule="evenodd"
+          fill-rule="evenodd"
+          stroke-linejoin="round"
+          stroke-miterlimit="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+            fill="#fff"
+          />
+        </svg>,
+        "$listeners": Object {},
+        "$options": Object {
+          "_componentTag": "InstructionsIcon",
+          "_parentListeners": undefined,
+          "_parentVnode": VNode {
+            "asyncFactory": undefined,
+            "asyncMeta": undefined,
+            "children": undefined,
+            "componentInstance": [Circular],
+            "componentOptions": Object {
+              "Ctor": [Function],
+              "children": undefined,
+              "listeners": undefined,
+              "propsData": undefined,
+              "tag": "InstructionsIcon",
+            },
+            "context": [Circular],
+            "data": Object {
+              "hook": Object {
+                "destroy": [Function],
+                "init": [Function],
+                "insert": [Function],
+                "prepatch": [Function],
+              },
+              "on": undefined,
+              "pendingInsert": null,
+            },
+            "elm": <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linejoin="round"
+              stroke-miterlimit="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                fill="#fff"
+              />
+            </svg>,
+            "fnContext": undefined,
+            "fnOptions": undefined,
+            "fnScopeId": undefined,
+            "isAsyncPlaceholder": false,
+            "isCloned": false,
+            "isComment": false,
+            "isOnce": false,
+            "isRootInsert": false,
+            "isStatic": false,
+            "key": undefined,
+            "ns": undefined,
+            "parent": undefined,
+            "raw": false,
+            "tag": "vue-component-404-InstructionsIcon",
+            "text": undefined,
+          },
+          "_renderChildren": undefined,
+          "parent": [Circular],
+          "propsData": undefined,
+        },
+        "$parent": [Circular],
+        "$refs": Object {},
+        "$root": [Circular],
+        "$scopedSlots": Object {},
+        "$slots": Object {},
+        "$vnode": VNode {
+          "asyncFactory": undefined,
+          "asyncMeta": undefined,
+          "children": undefined,
+          "componentInstance": [Circular],
+          "componentOptions": Object {
+            "Ctor": [Function],
+            "children": undefined,
+            "listeners": undefined,
+            "propsData": undefined,
+            "tag": "InstructionsIcon",
+          },
+          "context": [Circular],
+          "data": Object {
+            "hook": Object {
+              "destroy": [Function],
+              "init": [Function],
+              "insert": [Function],
+              "prepatch": [Function],
+            },
+            "on": undefined,
+            "pendingInsert": null,
+          },
+          "elm": <svg
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+            stroke-linejoin="round"
+            stroke-miterlimit="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+              fill="#fff"
+            />
+          </svg>,
+          "fnContext": undefined,
+          "fnOptions": undefined,
+          "fnScopeId": undefined,
+          "isAsyncPlaceholder": false,
+          "isCloned": false,
+          "isComment": false,
+          "isOnce": false,
+          "isRootInsert": false,
+          "isStatic": false,
+          "key": undefined,
+          "ns": undefined,
+          "parent": undefined,
+          "raw": false,
+          "tag": "vue-component-404-InstructionsIcon",
+          "text": undefined,
+        },
+        "$vuetify": [Circular],
+        "_c": [Function],
+        "_data": Object {},
+        "_directInactive": false,
+        "_events": Object {},
+        "_hasHookEvent": false,
+        "_inactive": null,
+        "_isBeingDestroyed": false,
+        "_isDestroyed": false,
+        "_isMounted": true,
+        "_isVue": true,
+        "_renderProxy": VueComponent {
+          "$attrs": Object {},
+          "$children": Array [],
+          "$createElement": [Function],
+          "$el": <svg
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+            stroke-linejoin="round"
+            stroke-miterlimit="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+              fill="#fff"
+            />
+          </svg>,
+          "$listeners": Object {},
+          "$options": Object {
+            "_componentTag": "InstructionsIcon",
+            "_parentListeners": undefined,
+            "_parentVnode": VNode {
+              "asyncFactory": undefined,
+              "asyncMeta": undefined,
+              "children": undefined,
+              "componentInstance": [Circular],
+              "componentOptions": Object {
+                "Ctor": [Function],
+                "children": undefined,
+                "listeners": undefined,
+                "propsData": undefined,
+                "tag": "InstructionsIcon",
+              },
+              "context": [Circular],
+              "data": Object {
+                "hook": Object {
+                  "destroy": [Function],
+                  "init": [Function],
+                  "insert": [Function],
+                  "prepatch": [Function],
+                },
+                "on": undefined,
+                "pendingInsert": null,
+              },
+              "elm": <svg
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+                stroke-linejoin="round"
+                stroke-miterlimit="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                  fill="#fff"
+                />
+              </svg>,
+              "fnContext": undefined,
+              "fnOptions": undefined,
+              "fnScopeId": undefined,
+              "isAsyncPlaceholder": false,
+              "isCloned": false,
+              "isComment": false,
+              "isOnce": false,
+              "isRootInsert": false,
+              "isStatic": false,
+              "key": undefined,
+              "ns": undefined,
+              "parent": undefined,
+              "raw": false,
+              "tag": "vue-component-404-InstructionsIcon",
+              "text": undefined,
+            },
+            "_renderChildren": undefined,
+            "parent": [Circular],
+            "propsData": undefined,
+          },
+          "$parent": [Circular],
+          "$refs": Object {},
+          "$root": [Circular],
+          "$scopedSlots": Object {},
+          "$slots": Object {},
+          "$vnode": VNode {
+            "asyncFactory": undefined,
+            "asyncMeta": undefined,
+            "children": undefined,
+            "componentInstance": [Circular],
+            "componentOptions": Object {
+              "Ctor": [Function],
+              "children": undefined,
+              "listeners": undefined,
+              "propsData": undefined,
+              "tag": "InstructionsIcon",
+            },
+            "context": [Circular],
+            "data": Object {
+              "hook": Object {
+                "destroy": [Function],
+                "init": [Function],
+                "insert": [Function],
+                "prepatch": [Function],
+              },
+              "on": undefined,
+              "pendingInsert": null,
+            },
+            "elm": <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linejoin="round"
+              stroke-miterlimit="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                fill="#fff"
+              />
+            </svg>,
+            "fnContext": undefined,
+            "fnOptions": undefined,
+            "fnScopeId": undefined,
+            "isAsyncPlaceholder": false,
+            "isCloned": false,
+            "isComment": false,
+            "isOnce": false,
+            "isRootInsert": false,
+            "isStatic": false,
+            "key": undefined,
+            "ns": undefined,
+            "parent": undefined,
+            "raw": false,
+            "tag": "vue-component-404-InstructionsIcon",
+            "text": undefined,
+          },
+          "$vuetify": [Circular],
+          "_c": [Function],
+          "_data": Object {},
+          "_directInactive": false,
+          "_events": Object {},
+          "_hasHookEvent": false,
+          "_inactive": null,
+          "_isBeingDestroyed": false,
+          "_isDestroyed": false,
+          "_isMounted": true,
+          "_isVue": true,
+          "_renderProxy": [Circular],
+          "_self": [Circular],
+          "_staticTrees": null,
+          "_uid": 4,
+          "_vnode": VNode {
+            "asyncFactory": undefined,
+            "asyncMeta": undefined,
+            "children": Array [
+              VNode {
+                "asyncFactory": undefined,
+                "asyncMeta": undefined,
+                "children": undefined,
+                "componentInstance": undefined,
+                "componentOptions": undefined,
+                "context": [Circular],
+                "data": Object {
+                  "attrs": Object {
+                    "d": "M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z",
+                    "fill": "#fff",
+                  },
+                },
+                "elm": <path
+                  d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                  fill="#fff"
+                />,
+                "fnContext": undefined,
+                "fnOptions": undefined,
+                "fnScopeId": undefined,
+                "isAsyncPlaceholder": false,
+                "isCloned": false,
+                "isComment": false,
+                "isOnce": false,
+                "isRootInsert": false,
+                "isStatic": false,
+                "key": undefined,
+                "ns": "svg",
+                "parent": undefined,
+                "raw": false,
+                "tag": "path",
+                "text": undefined,
+              },
+            ],
+            "componentInstance": undefined,
+            "componentOptions": undefined,
+            "context": [Circular],
+            "data": Object {
+              "attrs": Object {
+                "clip-rule": "evenodd",
+                "fill-rule": "evenodd",
+                "stroke-linejoin": "round",
+                "stroke-miterlimit": "2",
+                "viewBox": "0 0 24 24",
+                "xmlns": "http://www.w3.org/2000/svg",
+              },
+            },
+            "elm": <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linejoin="round"
+              stroke-miterlimit="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                fill="#fff"
+              />
+            </svg>,
+            "fnContext": undefined,
+            "fnOptions": undefined,
+            "fnScopeId": undefined,
+            "isAsyncPlaceholder": false,
+            "isCloned": false,
+            "isComment": false,
+            "isOnce": false,
+            "isRootInsert": true,
+            "isStatic": false,
+            "key": undefined,
+            "ns": "svg",
+            "parent": VNode {
+              "asyncFactory": undefined,
+              "asyncMeta": undefined,
+              "children": undefined,
+              "componentInstance": [Circular],
+              "componentOptions": Object {
+                "Ctor": [Function],
+                "children": undefined,
+                "listeners": undefined,
+                "propsData": undefined,
+                "tag": "InstructionsIcon",
+              },
+              "context": [Circular],
+              "data": Object {
+                "hook": Object {
+                  "destroy": [Function],
+                  "init": [Function],
+                  "insert": [Function],
+                  "prepatch": [Function],
+                },
+                "on": undefined,
+                "pendingInsert": null,
+              },
+              "elm": <svg
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+                stroke-linejoin="round"
+                stroke-miterlimit="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                  fill="#fff"
+                />
+              </svg>,
+              "fnContext": undefined,
+              "fnOptions": undefined,
+              "fnScopeId": undefined,
+              "isAsyncPlaceholder": false,
+              "isCloned": false,
+              "isComment": false,
+              "isOnce": false,
+              "isRootInsert": false,
+              "isStatic": false,
+              "key": undefined,
+              "ns": undefined,
+              "parent": undefined,
+              "raw": false,
+              "tag": "vue-component-404-InstructionsIcon",
+              "text": undefined,
+            },
+            "raw": false,
+            "tag": "svg",
+            "text": undefined,
+          },
+          "_watcher": Watcher {
+            "active": true,
+            "before": [Function],
+            "cb": [Function],
+            "deep": false,
+            "depIds": Set {},
+            "deps": Array [],
+            "dirty": false,
+            "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+            "getter": [Function],
+            "id": 5,
+            "lazy": false,
+            "newDepIds": Set {},
+            "newDeps": Array [],
+            "sync": false,
+            "user": false,
+            "value": undefined,
+            "vm": [Circular],
+          },
+          "_watchers": Array [
+            Watcher {
+              "active": true,
+              "before": [Function],
+              "cb": [Function],
+              "deep": false,
+              "depIds": Set {},
+              "deps": Array [],
+              "dirty": false,
+              "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+              "getter": [Function],
+              "id": 5,
+              "lazy": false,
+              "newDepIds": Set {},
+              "newDeps": Array [],
+              "sync": false,
+              "user": false,
+              "value": undefined,
+              "vm": [Circular],
+            },
+          ],
+        },
+        "_self": [Circular],
+        "_staticTrees": null,
+        "_uid": 4,
+        "_vnode": VNode {
+          "asyncFactory": undefined,
+          "asyncMeta": undefined,
+          "children": Array [
+            VNode {
+              "asyncFactory": undefined,
+              "asyncMeta": undefined,
+              "children": undefined,
+              "componentInstance": undefined,
+              "componentOptions": undefined,
+              "context": [Circular],
+              "data": Object {
+                "attrs": Object {
+                  "d": "M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z",
+                  "fill": "#fff",
+                },
+              },
+              "elm": <path
+                d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                fill="#fff"
+              />,
+              "fnContext": undefined,
+              "fnOptions": undefined,
+              "fnScopeId": undefined,
+              "isAsyncPlaceholder": false,
+              "isCloned": false,
+              "isComment": false,
+              "isOnce": false,
+              "isRootInsert": false,
+              "isStatic": false,
+              "key": undefined,
+              "ns": "svg",
+              "parent": undefined,
+              "raw": false,
+              "tag": "path",
+              "text": undefined,
+            },
+          ],
+          "componentInstance": undefined,
+          "componentOptions": undefined,
+          "context": [Circular],
+          "data": Object {
+            "attrs": Object {
+              "clip-rule": "evenodd",
+              "fill-rule": "evenodd",
+              "stroke-linejoin": "round",
+              "stroke-miterlimit": "2",
+              "viewBox": "0 0 24 24",
+              "xmlns": "http://www.w3.org/2000/svg",
+            },
+          },
+          "elm": <svg
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+            stroke-linejoin="round"
+            stroke-miterlimit="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+              fill="#fff"
+            />
+          </svg>,
+          "fnContext": undefined,
+          "fnOptions": undefined,
+          "fnScopeId": undefined,
+          "isAsyncPlaceholder": false,
+          "isCloned": false,
+          "isComment": false,
+          "isOnce": false,
+          "isRootInsert": true,
+          "isStatic": false,
+          "key": undefined,
+          "ns": "svg",
+          "parent": VNode {
+            "asyncFactory": undefined,
+            "asyncMeta": undefined,
+            "children": undefined,
+            "componentInstance": [Circular],
+            "componentOptions": Object {
+              "Ctor": [Function],
+              "children": undefined,
+              "listeners": undefined,
+              "propsData": undefined,
+              "tag": "InstructionsIcon",
+            },
+            "context": [Circular],
+            "data": Object {
+              "hook": Object {
+                "destroy": [Function],
+                "init": [Function],
+                "insert": [Function],
+                "prepatch": [Function],
+              },
+              "on": undefined,
+              "pendingInsert": null,
+            },
+            "elm": <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linejoin="round"
+              stroke-miterlimit="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                fill="#fff"
+              />
+            </svg>,
+            "fnContext": undefined,
+            "fnOptions": undefined,
+            "fnScopeId": undefined,
+            "isAsyncPlaceholder": false,
+            "isCloned": false,
+            "isComment": false,
+            "isOnce": false,
+            "isRootInsert": false,
+            "isStatic": false,
+            "key": undefined,
+            "ns": undefined,
+            "parent": undefined,
+            "raw": false,
+            "tag": "vue-component-404-InstructionsIcon",
+            "text": undefined,
+          },
+          "raw": false,
+          "tag": "svg",
+          "text": undefined,
+        },
+        "_watcher": Watcher {
+          "active": true,
+          "before": [Function],
+          "cb": [Function],
+          "deep": false,
+          "depIds": Set {},
+          "deps": Array [],
+          "dirty": false,
+          "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+          "getter": [Function],
+          "id": 5,
+          "lazy": false,
+          "newDepIds": Set {},
+          "newDeps": Array [],
+          "sync": false,
+          "user": false,
+          "value": undefined,
+          "vm": [Circular],
+        },
+        "_watchers": Array [
+          Watcher {
+            "active": true,
+            "before": [Function],
+            "cb": [Function],
+            "deep": false,
+            "depIds": Set {},
+            "deps": Array [],
+            "dirty": false,
+            "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+            "getter": [Function],
+            "id": 5,
+            "lazy": false,
+            "newDepIds": Set {},
+            "newDeps": Array [],
+            "sync": false,
+            "user": false,
+            "value": undefined,
+            "vm": [Circular],
+          },
+        ],
+      },
+    ],
+    "$createElement": [Function],
+    "$el": <span
+      class="badge-container"
+    >
+      <span
+        class="badge primary white--text"
+      >
+        <svg
+          clip-rule="evenodd"
+          fill-rule="evenodd"
+          stroke-linejoin="round"
+          stroke-miterlimit="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+            fill="#fff"
+          />
+        </svg>
+      </span>
+    </span>,
+    "$listeners": Object {},
+    "$options": Object {
+      "_Ctor": Object {
+        "0": [Function],
+      },
+      "_base": [Function],
+      "beforeCreate": Array [
+        [Function],
+        [Function],
+      ],
+      "beforeMount": Array [
+        [Function],
+      ],
+      "components": Object {},
+      "data": [Function],
+      "directives": Object {},
+      "filters": Object {},
+      "mixins": Array [
+        Object {
+          "data": [Function],
+        },
+      ],
+      "mounted": Array [
+        [Function],
+      ],
+      "name": "Badge",
+      "render": [Function],
+      "staticRenderFns": Array [],
+    },
+    "$parent": undefined,
+    "$refs": Object {},
+    "$root": [Circular],
+    "$scopedSlots": Object {},
+    "$slots": Object {},
+    "$vnode": undefined,
+    "$vuetify": [Circular],
+    "_c": [Function],
+    "_data": Object {},
+    "_directInactive": false,
+    "_events": Object {},
+    "_hasHookEvent": false,
+    "_inactive": null,
+    "_isBeingDestroyed": false,
+    "_isDestroyed": false,
+    "_isMounted": true,
+    "_isVue": true,
+    "_renderProxy": Badge {
+      "$attrs": Object {},
+      "$children": Array [
+        VueComponent {
+          "$attrs": Object {},
+          "$children": Array [],
+          "$createElement": [Function],
+          "$el": <svg
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+            stroke-linejoin="round"
+            stroke-miterlimit="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+              fill="#fff"
+            />
+          </svg>,
+          "$listeners": Object {},
+          "$options": Object {
+            "_componentTag": "InstructionsIcon",
+            "_parentListeners": undefined,
+            "_parentVnode": VNode {
+              "asyncFactory": undefined,
+              "asyncMeta": undefined,
+              "children": undefined,
+              "componentInstance": [Circular],
+              "componentOptions": Object {
+                "Ctor": [Function],
+                "children": undefined,
+                "listeners": undefined,
+                "propsData": undefined,
+                "tag": "InstructionsIcon",
+              },
+              "context": [Circular],
+              "data": Object {
+                "hook": Object {
+                  "destroy": [Function],
+                  "init": [Function],
+                  "insert": [Function],
+                  "prepatch": [Function],
+                },
+                "on": undefined,
+                "pendingInsert": null,
+              },
+              "elm": <svg
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+                stroke-linejoin="round"
+                stroke-miterlimit="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                  fill="#fff"
+                />
+              </svg>,
+              "fnContext": undefined,
+              "fnOptions": undefined,
+              "fnScopeId": undefined,
+              "isAsyncPlaceholder": false,
+              "isCloned": false,
+              "isComment": false,
+              "isOnce": false,
+              "isRootInsert": false,
+              "isStatic": false,
+              "key": undefined,
+              "ns": undefined,
+              "parent": undefined,
+              "raw": false,
+              "tag": "vue-component-404-InstructionsIcon",
+              "text": undefined,
+            },
+            "_renderChildren": undefined,
+            "parent": [Circular],
+            "propsData": undefined,
+          },
+          "$parent": [Circular],
+          "$refs": Object {},
+          "$root": [Circular],
+          "$scopedSlots": Object {},
+          "$slots": Object {},
+          "$vnode": VNode {
+            "asyncFactory": undefined,
+            "asyncMeta": undefined,
+            "children": undefined,
+            "componentInstance": [Circular],
+            "componentOptions": Object {
+              "Ctor": [Function],
+              "children": undefined,
+              "listeners": undefined,
+              "propsData": undefined,
+              "tag": "InstructionsIcon",
+            },
+            "context": [Circular],
+            "data": Object {
+              "hook": Object {
+                "destroy": [Function],
+                "init": [Function],
+                "insert": [Function],
+                "prepatch": [Function],
+              },
+              "on": undefined,
+              "pendingInsert": null,
+            },
+            "elm": <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linejoin="round"
+              stroke-miterlimit="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                fill="#fff"
+              />
+            </svg>,
+            "fnContext": undefined,
+            "fnOptions": undefined,
+            "fnScopeId": undefined,
+            "isAsyncPlaceholder": false,
+            "isCloned": false,
+            "isComment": false,
+            "isOnce": false,
+            "isRootInsert": false,
+            "isStatic": false,
+            "key": undefined,
+            "ns": undefined,
+            "parent": undefined,
+            "raw": false,
+            "tag": "vue-component-404-InstructionsIcon",
+            "text": undefined,
+          },
+          "$vuetify": [Circular],
+          "_c": [Function],
+          "_data": Object {},
+          "_directInactive": false,
+          "_events": Object {},
+          "_hasHookEvent": false,
+          "_inactive": null,
+          "_isBeingDestroyed": false,
+          "_isDestroyed": false,
+          "_isMounted": true,
+          "_isVue": true,
+          "_renderProxy": VueComponent {
+            "$attrs": Object {},
+            "$children": Array [],
+            "$createElement": [Function],
+            "$el": <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linejoin="round"
+              stroke-miterlimit="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                fill="#fff"
+              />
+            </svg>,
+            "$listeners": Object {},
+            "$options": Object {
+              "_componentTag": "InstructionsIcon",
+              "_parentListeners": undefined,
+              "_parentVnode": VNode {
+                "asyncFactory": undefined,
+                "asyncMeta": undefined,
+                "children": undefined,
+                "componentInstance": [Circular],
+                "componentOptions": Object {
+                  "Ctor": [Function],
+                  "children": undefined,
+                  "listeners": undefined,
+                  "propsData": undefined,
+                  "tag": "InstructionsIcon",
+                },
+                "context": [Circular],
+                "data": Object {
+                  "hook": Object {
+                    "destroy": [Function],
+                    "init": [Function],
+                    "insert": [Function],
+                    "prepatch": [Function],
+                  },
+                  "on": undefined,
+                  "pendingInsert": null,
+                },
+                "elm": <svg
+                  clip-rule="evenodd"
+                  fill-rule="evenodd"
+                  stroke-linejoin="round"
+                  stroke-miterlimit="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                    fill="#fff"
+                  />
+                </svg>,
+                "fnContext": undefined,
+                "fnOptions": undefined,
+                "fnScopeId": undefined,
+                "isAsyncPlaceholder": false,
+                "isCloned": false,
+                "isComment": false,
+                "isOnce": false,
+                "isRootInsert": false,
+                "isStatic": false,
+                "key": undefined,
+                "ns": undefined,
+                "parent": undefined,
+                "raw": false,
+                "tag": "vue-component-404-InstructionsIcon",
+                "text": undefined,
+              },
+              "_renderChildren": undefined,
+              "parent": [Circular],
+              "propsData": undefined,
+            },
+            "$parent": [Circular],
+            "$refs": Object {},
+            "$root": [Circular],
+            "$scopedSlots": Object {},
+            "$slots": Object {},
+            "$vnode": VNode {
+              "asyncFactory": undefined,
+              "asyncMeta": undefined,
+              "children": undefined,
+              "componentInstance": [Circular],
+              "componentOptions": Object {
+                "Ctor": [Function],
+                "children": undefined,
+                "listeners": undefined,
+                "propsData": undefined,
+                "tag": "InstructionsIcon",
+              },
+              "context": [Circular],
+              "data": Object {
+                "hook": Object {
+                  "destroy": [Function],
+                  "init": [Function],
+                  "insert": [Function],
+                  "prepatch": [Function],
+                },
+                "on": undefined,
+                "pendingInsert": null,
+              },
+              "elm": <svg
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+                stroke-linejoin="round"
+                stroke-miterlimit="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                  fill="#fff"
+                />
+              </svg>,
+              "fnContext": undefined,
+              "fnOptions": undefined,
+              "fnScopeId": undefined,
+              "isAsyncPlaceholder": false,
+              "isCloned": false,
+              "isComment": false,
+              "isOnce": false,
+              "isRootInsert": false,
+              "isStatic": false,
+              "key": undefined,
+              "ns": undefined,
+              "parent": undefined,
+              "raw": false,
+              "tag": "vue-component-404-InstructionsIcon",
+              "text": undefined,
+            },
+            "$vuetify": [Circular],
+            "_c": [Function],
+            "_data": Object {},
+            "_directInactive": false,
+            "_events": Object {},
+            "_hasHookEvent": false,
+            "_inactive": null,
+            "_isBeingDestroyed": false,
+            "_isDestroyed": false,
+            "_isMounted": true,
+            "_isVue": true,
+            "_renderProxy": [Circular],
+            "_self": [Circular],
+            "_staticTrees": null,
+            "_uid": 4,
+            "_vnode": VNode {
+              "asyncFactory": undefined,
+              "asyncMeta": undefined,
+              "children": Array [
+                VNode {
+                  "asyncFactory": undefined,
+                  "asyncMeta": undefined,
+                  "children": undefined,
+                  "componentInstance": undefined,
+                  "componentOptions": undefined,
+                  "context": [Circular],
+                  "data": Object {
+                    "attrs": Object {
+                      "d": "M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z",
+                      "fill": "#fff",
+                    },
+                  },
+                  "elm": <path
+                    d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                    fill="#fff"
+                  />,
+                  "fnContext": undefined,
+                  "fnOptions": undefined,
+                  "fnScopeId": undefined,
+                  "isAsyncPlaceholder": false,
+                  "isCloned": false,
+                  "isComment": false,
+                  "isOnce": false,
+                  "isRootInsert": false,
+                  "isStatic": false,
+                  "key": undefined,
+                  "ns": "svg",
+                  "parent": undefined,
+                  "raw": false,
+                  "tag": "path",
+                  "text": undefined,
+                },
+              ],
+              "componentInstance": undefined,
+              "componentOptions": undefined,
+              "context": [Circular],
+              "data": Object {
+                "attrs": Object {
+                  "clip-rule": "evenodd",
+                  "fill-rule": "evenodd",
+                  "stroke-linejoin": "round",
+                  "stroke-miterlimit": "2",
+                  "viewBox": "0 0 24 24",
+                  "xmlns": "http://www.w3.org/2000/svg",
+                },
+              },
+              "elm": <svg
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+                stroke-linejoin="round"
+                stroke-miterlimit="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                  fill="#fff"
+                />
+              </svg>,
+              "fnContext": undefined,
+              "fnOptions": undefined,
+              "fnScopeId": undefined,
+              "isAsyncPlaceholder": false,
+              "isCloned": false,
+              "isComment": false,
+              "isOnce": false,
+              "isRootInsert": true,
+              "isStatic": false,
+              "key": undefined,
+              "ns": "svg",
+              "parent": VNode {
+                "asyncFactory": undefined,
+                "asyncMeta": undefined,
+                "children": undefined,
+                "componentInstance": [Circular],
+                "componentOptions": Object {
+                  "Ctor": [Function],
+                  "children": undefined,
+                  "listeners": undefined,
+                  "propsData": undefined,
+                  "tag": "InstructionsIcon",
+                },
+                "context": [Circular],
+                "data": Object {
+                  "hook": Object {
+                    "destroy": [Function],
+                    "init": [Function],
+                    "insert": [Function],
+                    "prepatch": [Function],
+                  },
+                  "on": undefined,
+                  "pendingInsert": null,
+                },
+                "elm": <svg
+                  clip-rule="evenodd"
+                  fill-rule="evenodd"
+                  stroke-linejoin="round"
+                  stroke-miterlimit="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                    fill="#fff"
+                  />
+                </svg>,
+                "fnContext": undefined,
+                "fnOptions": undefined,
+                "fnScopeId": undefined,
+                "isAsyncPlaceholder": false,
+                "isCloned": false,
+                "isComment": false,
+                "isOnce": false,
+                "isRootInsert": false,
+                "isStatic": false,
+                "key": undefined,
+                "ns": undefined,
+                "parent": undefined,
+                "raw": false,
+                "tag": "vue-component-404-InstructionsIcon",
+                "text": undefined,
+              },
+              "raw": false,
+              "tag": "svg",
+              "text": undefined,
+            },
+            "_watcher": Watcher {
+              "active": true,
+              "before": [Function],
+              "cb": [Function],
+              "deep": false,
+              "depIds": Set {},
+              "deps": Array [],
+              "dirty": false,
+              "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+              "getter": [Function],
+              "id": 5,
+              "lazy": false,
+              "newDepIds": Set {},
+              "newDeps": Array [],
+              "sync": false,
+              "user": false,
+              "value": undefined,
+              "vm": [Circular],
+            },
+            "_watchers": Array [
+              Watcher {
+                "active": true,
+                "before": [Function],
+                "cb": [Function],
+                "deep": false,
+                "depIds": Set {},
+                "deps": Array [],
+                "dirty": false,
+                "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+                "getter": [Function],
+                "id": 5,
+                "lazy": false,
+                "newDepIds": Set {},
+                "newDeps": Array [],
+                "sync": false,
+                "user": false,
+                "value": undefined,
+                "vm": [Circular],
+              },
+            ],
+          },
+          "_self": [Circular],
+          "_staticTrees": null,
+          "_uid": 4,
+          "_vnode": VNode {
+            "asyncFactory": undefined,
+            "asyncMeta": undefined,
+            "children": Array [
+              VNode {
+                "asyncFactory": undefined,
+                "asyncMeta": undefined,
+                "children": undefined,
+                "componentInstance": undefined,
+                "componentOptions": undefined,
+                "context": [Circular],
+                "data": Object {
+                  "attrs": Object {
+                    "d": "M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z",
+                    "fill": "#fff",
+                  },
+                },
+                "elm": <path
+                  d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                  fill="#fff"
+                />,
+                "fnContext": undefined,
+                "fnOptions": undefined,
+                "fnScopeId": undefined,
+                "isAsyncPlaceholder": false,
+                "isCloned": false,
+                "isComment": false,
+                "isOnce": false,
+                "isRootInsert": false,
+                "isStatic": false,
+                "key": undefined,
+                "ns": "svg",
+                "parent": undefined,
+                "raw": false,
+                "tag": "path",
+                "text": undefined,
+              },
+            ],
+            "componentInstance": undefined,
+            "componentOptions": undefined,
+            "context": [Circular],
+            "data": Object {
+              "attrs": Object {
+                "clip-rule": "evenodd",
+                "fill-rule": "evenodd",
+                "stroke-linejoin": "round",
+                "stroke-miterlimit": "2",
+                "viewBox": "0 0 24 24",
+                "xmlns": "http://www.w3.org/2000/svg",
+              },
+            },
+            "elm": <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linejoin="round"
+              stroke-miterlimit="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                fill="#fff"
+              />
+            </svg>,
+            "fnContext": undefined,
+            "fnOptions": undefined,
+            "fnScopeId": undefined,
+            "isAsyncPlaceholder": false,
+            "isCloned": false,
+            "isComment": false,
+            "isOnce": false,
+            "isRootInsert": true,
+            "isStatic": false,
+            "key": undefined,
+            "ns": "svg",
+            "parent": VNode {
+              "asyncFactory": undefined,
+              "asyncMeta": undefined,
+              "children": undefined,
+              "componentInstance": [Circular],
+              "componentOptions": Object {
+                "Ctor": [Function],
+                "children": undefined,
+                "listeners": undefined,
+                "propsData": undefined,
+                "tag": "InstructionsIcon",
+              },
+              "context": [Circular],
+              "data": Object {
+                "hook": Object {
+                  "destroy": [Function],
+                  "init": [Function],
+                  "insert": [Function],
+                  "prepatch": [Function],
+                },
+                "on": undefined,
+                "pendingInsert": null,
+              },
+              "elm": <svg
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+                stroke-linejoin="round"
+                stroke-miterlimit="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                  fill="#fff"
+                />
+              </svg>,
+              "fnContext": undefined,
+              "fnOptions": undefined,
+              "fnScopeId": undefined,
+              "isAsyncPlaceholder": false,
+              "isCloned": false,
+              "isComment": false,
+              "isOnce": false,
+              "isRootInsert": false,
+              "isStatic": false,
+              "key": undefined,
+              "ns": undefined,
+              "parent": undefined,
+              "raw": false,
+              "tag": "vue-component-404-InstructionsIcon",
+              "text": undefined,
+            },
+            "raw": false,
+            "tag": "svg",
+            "text": undefined,
+          },
+          "_watcher": Watcher {
+            "active": true,
+            "before": [Function],
+            "cb": [Function],
+            "deep": false,
+            "depIds": Set {},
+            "deps": Array [],
+            "dirty": false,
+            "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+            "getter": [Function],
+            "id": 5,
+            "lazy": false,
+            "newDepIds": Set {},
+            "newDeps": Array [],
+            "sync": false,
+            "user": false,
+            "value": undefined,
+            "vm": [Circular],
+          },
+          "_watchers": Array [
+            Watcher {
+              "active": true,
+              "before": [Function],
+              "cb": [Function],
+              "deep": false,
+              "depIds": Set {},
+              "deps": Array [],
+              "dirty": false,
+              "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+              "getter": [Function],
+              "id": 5,
+              "lazy": false,
+              "newDepIds": Set {},
+              "newDeps": Array [],
+              "sync": false,
+              "user": false,
+              "value": undefined,
+              "vm": [Circular],
+            },
+          ],
+        },
+      ],
+      "$createElement": [Function],
+      "$el": <span
+        class="badge-container"
+      >
+        <span
+          class="badge primary white--text"
+        >
+          <svg
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+            stroke-linejoin="round"
+            stroke-miterlimit="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+              fill="#fff"
+            />
+          </svg>
+        </span>
+      </span>,
+      "$listeners": Object {},
+      "$options": Object {
+        "_Ctor": Object {
+          "0": [Function],
+        },
+        "_base": [Function],
+        "beforeCreate": Array [
+          [Function],
+          [Function],
+        ],
+        "beforeMount": Array [
+          [Function],
+        ],
+        "components": Object {},
+        "data": [Function],
+        "directives": Object {},
+        "filters": Object {},
+        "mixins": Array [
+          Object {
+            "data": [Function],
+          },
+        ],
+        "mounted": Array [
+          [Function],
+        ],
+        "name": "Badge",
+        "render": [Function],
+        "staticRenderFns": Array [],
+      },
+      "$parent": undefined,
+      "$refs": Object {},
+      "$root": [Circular],
+      "$scopedSlots": Object {},
+      "$slots": Object {},
+      "$vnode": undefined,
+      "$vuetify": [Circular],
+      "_c": [Function],
+      "_data": Object {},
+      "_directInactive": false,
+      "_events": Object {},
+      "_hasHookEvent": false,
+      "_inactive": null,
+      "_isBeingDestroyed": false,
+      "_isDestroyed": false,
+      "_isMounted": true,
+      "_isVue": true,
+      "_renderProxy": [Circular],
+      "_self": [Circular],
+      "_staticTrees": null,
+      "_uid": 3,
+      "_vnode": VNode {
+        "asyncFactory": undefined,
+        "asyncMeta": undefined,
+        "children": Array [
+          VNode {
+            "asyncFactory": undefined,
+            "asyncMeta": undefined,
+            "children": Array [
+              VNode {
+                "asyncFactory": undefined,
+                "asyncMeta": undefined,
+                "children": undefined,
+                "componentInstance": VueComponent {
+                  "$attrs": Object {},
+                  "$children": Array [],
+                  "$createElement": [Function],
+                  "$el": <svg
+                    clip-rule="evenodd"
+                    fill-rule="evenodd"
+                    stroke-linejoin="round"
+                    stroke-miterlimit="2"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                      fill="#fff"
+                    />
+                  </svg>,
+                  "$listeners": Object {},
+                  "$options": Object {
+                    "_componentTag": "InstructionsIcon",
+                    "_parentListeners": undefined,
+                    "_parentVnode": [Circular],
+                    "_renderChildren": undefined,
+                    "parent": [Circular],
+                    "propsData": undefined,
+                  },
+                  "$parent": [Circular],
+                  "$refs": Object {},
+                  "$root": [Circular],
+                  "$scopedSlots": Object {},
+                  "$slots": Object {},
+                  "$vnode": [Circular],
+                  "$vuetify": [Circular],
+                  "_c": [Function],
+                  "_data": Object {},
+                  "_directInactive": false,
+                  "_events": Object {},
+                  "_hasHookEvent": false,
+                  "_inactive": null,
+                  "_isBeingDestroyed": false,
+                  "_isDestroyed": false,
+                  "_isMounted": true,
+                  "_isVue": true,
+                  "_renderProxy": VueComponent {
+                    "$attrs": Object {},
+                    "$children": Array [],
+                    "$createElement": [Function],
+                    "$el": <svg
+                      clip-rule="evenodd"
+                      fill-rule="evenodd"
+                      stroke-linejoin="round"
+                      stroke-miterlimit="2"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                        fill="#fff"
+                      />
+                    </svg>,
+                    "$listeners": Object {},
+                    "$options": Object {
+                      "_componentTag": "InstructionsIcon",
+                      "_parentListeners": undefined,
+                      "_parentVnode": [Circular],
+                      "_renderChildren": undefined,
+                      "parent": [Circular],
+                      "propsData": undefined,
+                    },
+                    "$parent": [Circular],
+                    "$refs": Object {},
+                    "$root": [Circular],
+                    "$scopedSlots": Object {},
+                    "$slots": Object {},
+                    "$vnode": [Circular],
+                    "$vuetify": [Circular],
+                    "_c": [Function],
+                    "_data": Object {},
+                    "_directInactive": false,
+                    "_events": Object {},
+                    "_hasHookEvent": false,
+                    "_inactive": null,
+                    "_isBeingDestroyed": false,
+                    "_isDestroyed": false,
+                    "_isMounted": true,
+                    "_isVue": true,
+                    "_renderProxy": [Circular],
+                    "_self": [Circular],
+                    "_staticTrees": null,
+                    "_uid": 4,
+                    "_vnode": VNode {
+                      "asyncFactory": undefined,
+                      "asyncMeta": undefined,
+                      "children": Array [
+                        VNode {
+                          "asyncFactory": undefined,
+                          "asyncMeta": undefined,
+                          "children": undefined,
+                          "componentInstance": undefined,
+                          "componentOptions": undefined,
+                          "context": [Circular],
+                          "data": Object {
+                            "attrs": Object {
+                              "d": "M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z",
+                              "fill": "#fff",
+                            },
+                          },
+                          "elm": <path
+                            d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                            fill="#fff"
+                          />,
+                          "fnContext": undefined,
+                          "fnOptions": undefined,
+                          "fnScopeId": undefined,
+                          "isAsyncPlaceholder": false,
+                          "isCloned": false,
+                          "isComment": false,
+                          "isOnce": false,
+                          "isRootInsert": false,
+                          "isStatic": false,
+                          "key": undefined,
+                          "ns": "svg",
+                          "parent": undefined,
+                          "raw": false,
+                          "tag": "path",
+                          "text": undefined,
+                        },
+                      ],
+                      "componentInstance": undefined,
+                      "componentOptions": undefined,
+                      "context": [Circular],
+                      "data": Object {
+                        "attrs": Object {
+                          "clip-rule": "evenodd",
+                          "fill-rule": "evenodd",
+                          "stroke-linejoin": "round",
+                          "stroke-miterlimit": "2",
+                          "viewBox": "0 0 24 24",
+                          "xmlns": "http://www.w3.org/2000/svg",
+                        },
+                      },
+                      "elm": <svg
+                        clip-rule="evenodd"
+                        fill-rule="evenodd"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                          fill="#fff"
+                        />
+                      </svg>,
+                      "fnContext": undefined,
+                      "fnOptions": undefined,
+                      "fnScopeId": undefined,
+                      "isAsyncPlaceholder": false,
+                      "isCloned": false,
+                      "isComment": false,
+                      "isOnce": false,
+                      "isRootInsert": true,
+                      "isStatic": false,
+                      "key": undefined,
+                      "ns": "svg",
+                      "parent": [Circular],
+                      "raw": false,
+                      "tag": "svg",
+                      "text": undefined,
+                    },
+                    "_watcher": Watcher {
+                      "active": true,
+                      "before": [Function],
+                      "cb": [Function],
+                      "deep": false,
+                      "depIds": Set {},
+                      "deps": Array [],
+                      "dirty": false,
+                      "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+                      "getter": [Function],
+                      "id": 5,
+                      "lazy": false,
+                      "newDepIds": Set {},
+                      "newDeps": Array [],
+                      "sync": false,
+                      "user": false,
+                      "value": undefined,
+                      "vm": [Circular],
+                    },
+                    "_watchers": Array [
+                      Watcher {
+                        "active": true,
+                        "before": [Function],
+                        "cb": [Function],
+                        "deep": false,
+                        "depIds": Set {},
+                        "deps": Array [],
+                        "dirty": false,
+                        "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+                        "getter": [Function],
+                        "id": 5,
+                        "lazy": false,
+                        "newDepIds": Set {},
+                        "newDeps": Array [],
+                        "sync": false,
+                        "user": false,
+                        "value": undefined,
+                        "vm": [Circular],
+                      },
+                    ],
+                  },
+                  "_self": [Circular],
+                  "_staticTrees": null,
+                  "_uid": 4,
+                  "_vnode": VNode {
+                    "asyncFactory": undefined,
+                    "asyncMeta": undefined,
+                    "children": Array [
+                      VNode {
+                        "asyncFactory": undefined,
+                        "asyncMeta": undefined,
+                        "children": undefined,
+                        "componentInstance": undefined,
+                        "componentOptions": undefined,
+                        "context": [Circular],
+                        "data": Object {
+                          "attrs": Object {
+                            "d": "M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z",
+                            "fill": "#fff",
+                          },
+                        },
+                        "elm": <path
+                          d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                          fill="#fff"
+                        />,
+                        "fnContext": undefined,
+                        "fnOptions": undefined,
+                        "fnScopeId": undefined,
+                        "isAsyncPlaceholder": false,
+                        "isCloned": false,
+                        "isComment": false,
+                        "isOnce": false,
+                        "isRootInsert": false,
+                        "isStatic": false,
+                        "key": undefined,
+                        "ns": "svg",
+                        "parent": undefined,
+                        "raw": false,
+                        "tag": "path",
+                        "text": undefined,
+                      },
+                    ],
+                    "componentInstance": undefined,
+                    "componentOptions": undefined,
+                    "context": [Circular],
+                    "data": Object {
+                      "attrs": Object {
+                        "clip-rule": "evenodd",
+                        "fill-rule": "evenodd",
+                        "stroke-linejoin": "round",
+                        "stroke-miterlimit": "2",
+                        "viewBox": "0 0 24 24",
+                        "xmlns": "http://www.w3.org/2000/svg",
+                      },
+                    },
+                    "elm": <svg
+                      clip-rule="evenodd"
+                      fill-rule="evenodd"
+                      stroke-linejoin="round"
+                      stroke-miterlimit="2"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                        fill="#fff"
+                      />
+                    </svg>,
+                    "fnContext": undefined,
+                    "fnOptions": undefined,
+                    "fnScopeId": undefined,
+                    "isAsyncPlaceholder": false,
+                    "isCloned": false,
+                    "isComment": false,
+                    "isOnce": false,
+                    "isRootInsert": true,
+                    "isStatic": false,
+                    "key": undefined,
+                    "ns": "svg",
+                    "parent": [Circular],
+                    "raw": false,
+                    "tag": "svg",
+                    "text": undefined,
+                  },
+                  "_watcher": Watcher {
+                    "active": true,
+                    "before": [Function],
+                    "cb": [Function],
+                    "deep": false,
+                    "depIds": Set {},
+                    "deps": Array [],
+                    "dirty": false,
+                    "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+                    "getter": [Function],
+                    "id": 5,
+                    "lazy": false,
+                    "newDepIds": Set {},
+                    "newDeps": Array [],
+                    "sync": false,
+                    "user": false,
+                    "value": undefined,
+                    "vm": [Circular],
+                  },
+                  "_watchers": Array [
+                    Watcher {
+                      "active": true,
+                      "before": [Function],
+                      "cb": [Function],
+                      "deep": false,
+                      "depIds": Set {},
+                      "deps": Array [],
+                      "dirty": false,
+                      "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+                      "getter": [Function],
+                      "id": 5,
+                      "lazy": false,
+                      "newDepIds": Set {},
+                      "newDeps": Array [],
+                      "sync": false,
+                      "user": false,
+                      "value": undefined,
+                      "vm": [Circular],
+                    },
+                  ],
+                },
+                "componentOptions": Object {
+                  "Ctor": [Function],
+                  "children": undefined,
+                  "listeners": undefined,
+                  "propsData": undefined,
+                  "tag": "InstructionsIcon",
+                },
+                "context": [Circular],
+                "data": Object {
+                  "hook": Object {
+                    "destroy": [Function],
+                    "init": [Function],
+                    "insert": [Function],
+                    "prepatch": [Function],
+                  },
+                  "on": undefined,
+                  "pendingInsert": null,
+                },
+                "elm": <svg
+                  clip-rule="evenodd"
+                  fill-rule="evenodd"
+                  stroke-linejoin="round"
+                  stroke-miterlimit="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                    fill="#fff"
+                  />
+                </svg>,
+                "fnContext": undefined,
+                "fnOptions": undefined,
+                "fnScopeId": undefined,
+                "isAsyncPlaceholder": false,
+                "isCloned": false,
+                "isComment": false,
+                "isOnce": false,
+                "isRootInsert": false,
+                "isStatic": false,
+                "key": undefined,
+                "ns": undefined,
+                "parent": undefined,
+                "raw": false,
+                "tag": "vue-component-404-InstructionsIcon",
+                "text": undefined,
+              },
+            ],
+            "componentInstance": undefined,
+            "componentOptions": undefined,
+            "context": [Circular],
+            "data": Object {
+              "staticClass": "badge primary white--text",
+            },
+            "elm": <span
+              class="badge primary white--text"
+            >
+              <svg
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+                stroke-linejoin="round"
+                stroke-miterlimit="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                  fill="#fff"
+                />
+              </svg>
+            </span>,
+            "fnContext": undefined,
+            "fnOptions": undefined,
+            "fnScopeId": undefined,
+            "isAsyncPlaceholder": false,
+            "isCloned": false,
+            "isComment": false,
+            "isOnce": false,
+            "isRootInsert": false,
+            "isStatic": false,
+            "key": undefined,
+            "ns": undefined,
+            "parent": undefined,
+            "raw": false,
+            "tag": "span",
+            "text": undefined,
+          },
+        ],
+        "componentInstance": undefined,
+        "componentOptions": undefined,
+        "context": [Circular],
+        "data": Object {
+          "staticClass": "badge-container",
+        },
+        "elm": <span
+          class="badge-container"
+        >
+          <span
+            class="badge primary white--text"
+          >
+            <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linejoin="round"
+              stroke-miterlimit="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                fill="#fff"
+              />
+            </svg>
+          </span>
+        </span>,
+        "fnContext": undefined,
+        "fnOptions": undefined,
+        "fnScopeId": undefined,
+        "isAsyncPlaceholder": false,
+        "isCloned": false,
+        "isComment": false,
+        "isOnce": false,
+        "isRootInsert": true,
+        "isStatic": false,
+        "key": undefined,
+        "ns": undefined,
+        "parent": undefined,
+        "raw": false,
+        "tag": "span",
+        "text": undefined,
+      },
+      "_watcher": Watcher {
+        "active": true,
+        "before": [Function],
+        "cb": [Function],
+        "deep": false,
+        "depIds": Set {},
+        "deps": Array [],
+        "dirty": false,
+        "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+        "getter": [Function],
+        "id": 4,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": false,
+        "value": undefined,
+        "vm": [Circular],
+      },
+      "_watchers": Array [
+        Watcher {
+          "active": true,
+          "before": [Function],
+          "cb": [Function],
+          "deep": false,
+          "depIds": Set {},
+          "deps": Array [],
+          "dirty": false,
+          "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+          "getter": [Function],
+          "id": 4,
+          "lazy": false,
+          "newDepIds": Set {},
+          "newDeps": Array [],
+          "sync": false,
+          "user": false,
+          "value": undefined,
+          "vm": [Circular],
+        },
+      ],
+    },
+    "_self": [Circular],
+    "_staticTrees": null,
+    "_uid": 3,
+    "_vnode": VNode {
+      "asyncFactory": undefined,
+      "asyncMeta": undefined,
+      "children": Array [
+        VNode {
+          "asyncFactory": undefined,
+          "asyncMeta": undefined,
+          "children": Array [
+            VNode {
+              "asyncFactory": undefined,
+              "asyncMeta": undefined,
+              "children": undefined,
+              "componentInstance": VueComponent {
+                "$attrs": Object {},
+                "$children": Array [],
+                "$createElement": [Function],
+                "$el": <svg
+                  clip-rule="evenodd"
+                  fill-rule="evenodd"
+                  stroke-linejoin="round"
+                  stroke-miterlimit="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                    fill="#fff"
+                  />
+                </svg>,
+                "$listeners": Object {},
+                "$options": Object {
+                  "_componentTag": "InstructionsIcon",
+                  "_parentListeners": undefined,
+                  "_parentVnode": [Circular],
+                  "_renderChildren": undefined,
+                  "parent": [Circular],
+                  "propsData": undefined,
+                },
+                "$parent": [Circular],
+                "$refs": Object {},
+                "$root": [Circular],
+                "$scopedSlots": Object {},
+                "$slots": Object {},
+                "$vnode": [Circular],
+                "$vuetify": [Circular],
+                "_c": [Function],
+                "_data": Object {},
+                "_directInactive": false,
+                "_events": Object {},
+                "_hasHookEvent": false,
+                "_inactive": null,
+                "_isBeingDestroyed": false,
+                "_isDestroyed": false,
+                "_isMounted": true,
+                "_isVue": true,
+                "_renderProxy": VueComponent {
+                  "$attrs": Object {},
+                  "$children": Array [],
+                  "$createElement": [Function],
+                  "$el": <svg
+                    clip-rule="evenodd"
+                    fill-rule="evenodd"
+                    stroke-linejoin="round"
+                    stroke-miterlimit="2"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                      fill="#fff"
+                    />
+                  </svg>,
+                  "$listeners": Object {},
+                  "$options": Object {
+                    "_componentTag": "InstructionsIcon",
+                    "_parentListeners": undefined,
+                    "_parentVnode": [Circular],
+                    "_renderChildren": undefined,
+                    "parent": [Circular],
+                    "propsData": undefined,
+                  },
+                  "$parent": [Circular],
+                  "$refs": Object {},
+                  "$root": [Circular],
+                  "$scopedSlots": Object {},
+                  "$slots": Object {},
+                  "$vnode": [Circular],
+                  "$vuetify": [Circular],
+                  "_c": [Function],
+                  "_data": Object {},
+                  "_directInactive": false,
+                  "_events": Object {},
+                  "_hasHookEvent": false,
+                  "_inactive": null,
+                  "_isBeingDestroyed": false,
+                  "_isDestroyed": false,
+                  "_isMounted": true,
+                  "_isVue": true,
+                  "_renderProxy": [Circular],
+                  "_self": [Circular],
+                  "_staticTrees": null,
+                  "_uid": 4,
+                  "_vnode": VNode {
+                    "asyncFactory": undefined,
+                    "asyncMeta": undefined,
+                    "children": Array [
+                      VNode {
+                        "asyncFactory": undefined,
+                        "asyncMeta": undefined,
+                        "children": undefined,
+                        "componentInstance": undefined,
+                        "componentOptions": undefined,
+                        "context": [Circular],
+                        "data": Object {
+                          "attrs": Object {
+                            "d": "M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z",
+                            "fill": "#fff",
+                          },
+                        },
+                        "elm": <path
+                          d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                          fill="#fff"
+                        />,
+                        "fnContext": undefined,
+                        "fnOptions": undefined,
+                        "fnScopeId": undefined,
+                        "isAsyncPlaceholder": false,
+                        "isCloned": false,
+                        "isComment": false,
+                        "isOnce": false,
+                        "isRootInsert": false,
+                        "isStatic": false,
+                        "key": undefined,
+                        "ns": "svg",
+                        "parent": undefined,
+                        "raw": false,
+                        "tag": "path",
+                        "text": undefined,
+                      },
+                    ],
+                    "componentInstance": undefined,
+                    "componentOptions": undefined,
+                    "context": [Circular],
+                    "data": Object {
+                      "attrs": Object {
+                        "clip-rule": "evenodd",
+                        "fill-rule": "evenodd",
+                        "stroke-linejoin": "round",
+                        "stroke-miterlimit": "2",
+                        "viewBox": "0 0 24 24",
+                        "xmlns": "http://www.w3.org/2000/svg",
+                      },
+                    },
+                    "elm": <svg
+                      clip-rule="evenodd"
+                      fill-rule="evenodd"
+                      stroke-linejoin="round"
+                      stroke-miterlimit="2"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                        fill="#fff"
+                      />
+                    </svg>,
+                    "fnContext": undefined,
+                    "fnOptions": undefined,
+                    "fnScopeId": undefined,
+                    "isAsyncPlaceholder": false,
+                    "isCloned": false,
+                    "isComment": false,
+                    "isOnce": false,
+                    "isRootInsert": true,
+                    "isStatic": false,
+                    "key": undefined,
+                    "ns": "svg",
+                    "parent": [Circular],
+                    "raw": false,
+                    "tag": "svg",
+                    "text": undefined,
+                  },
+                  "_watcher": Watcher {
+                    "active": true,
+                    "before": [Function],
+                    "cb": [Function],
+                    "deep": false,
+                    "depIds": Set {},
+                    "deps": Array [],
+                    "dirty": false,
+                    "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+                    "getter": [Function],
+                    "id": 5,
+                    "lazy": false,
+                    "newDepIds": Set {},
+                    "newDeps": Array [],
+                    "sync": false,
+                    "user": false,
+                    "value": undefined,
+                    "vm": [Circular],
+                  },
+                  "_watchers": Array [
+                    Watcher {
+                      "active": true,
+                      "before": [Function],
+                      "cb": [Function],
+                      "deep": false,
+                      "depIds": Set {},
+                      "deps": Array [],
+                      "dirty": false,
+                      "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+                      "getter": [Function],
+                      "id": 5,
+                      "lazy": false,
+                      "newDepIds": Set {},
+                      "newDeps": Array [],
+                      "sync": false,
+                      "user": false,
+                      "value": undefined,
+                      "vm": [Circular],
+                    },
+                  ],
+                },
+                "_self": [Circular],
+                "_staticTrees": null,
+                "_uid": 4,
+                "_vnode": VNode {
+                  "asyncFactory": undefined,
+                  "asyncMeta": undefined,
+                  "children": Array [
+                    VNode {
+                      "asyncFactory": undefined,
+                      "asyncMeta": undefined,
+                      "children": undefined,
+                      "componentInstance": undefined,
+                      "componentOptions": undefined,
+                      "context": [Circular],
+                      "data": Object {
+                        "attrs": Object {
+                          "d": "M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z",
+                          "fill": "#fff",
+                        },
+                      },
+                      "elm": <path
+                        d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                        fill="#fff"
+                      />,
+                      "fnContext": undefined,
+                      "fnOptions": undefined,
+                      "fnScopeId": undefined,
+                      "isAsyncPlaceholder": false,
+                      "isCloned": false,
+                      "isComment": false,
+                      "isOnce": false,
+                      "isRootInsert": false,
+                      "isStatic": false,
+                      "key": undefined,
+                      "ns": "svg",
+                      "parent": undefined,
+                      "raw": false,
+                      "tag": "path",
+                      "text": undefined,
+                    },
+                  ],
+                  "componentInstance": undefined,
+                  "componentOptions": undefined,
+                  "context": [Circular],
+                  "data": Object {
+                    "attrs": Object {
+                      "clip-rule": "evenodd",
+                      "fill-rule": "evenodd",
+                      "stroke-linejoin": "round",
+                      "stroke-miterlimit": "2",
+                      "viewBox": "0 0 24 24",
+                      "xmlns": "http://www.w3.org/2000/svg",
+                    },
+                  },
+                  "elm": <svg
+                    clip-rule="evenodd"
+                    fill-rule="evenodd"
+                    stroke-linejoin="round"
+                    stroke-miterlimit="2"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                      fill="#fff"
+                    />
+                  </svg>,
+                  "fnContext": undefined,
+                  "fnOptions": undefined,
+                  "fnScopeId": undefined,
+                  "isAsyncPlaceholder": false,
+                  "isCloned": false,
+                  "isComment": false,
+                  "isOnce": false,
+                  "isRootInsert": true,
+                  "isStatic": false,
+                  "key": undefined,
+                  "ns": "svg",
+                  "parent": [Circular],
+                  "raw": false,
+                  "tag": "svg",
+                  "text": undefined,
+                },
+                "_watcher": Watcher {
+                  "active": true,
+                  "before": [Function],
+                  "cb": [Function],
+                  "deep": false,
+                  "depIds": Set {},
+                  "deps": Array [],
+                  "dirty": false,
+                  "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+                  "getter": [Function],
+                  "id": 5,
+                  "lazy": false,
+                  "newDepIds": Set {},
+                  "newDeps": Array [],
+                  "sync": false,
+                  "user": false,
+                  "value": undefined,
+                  "vm": [Circular],
+                },
+                "_watchers": Array [
+                  Watcher {
+                    "active": true,
+                    "before": [Function],
+                    "cb": [Function],
+                    "deep": false,
+                    "depIds": Set {},
+                    "deps": Array [],
+                    "dirty": false,
+                    "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+                    "getter": [Function],
+                    "id": 5,
+                    "lazy": false,
+                    "newDepIds": Set {},
+                    "newDeps": Array [],
+                    "sync": false,
+                    "user": false,
+                    "value": undefined,
+                    "vm": [Circular],
+                  },
+                ],
+              },
+              "componentOptions": Object {
+                "Ctor": [Function],
+                "children": undefined,
+                "listeners": undefined,
+                "propsData": undefined,
+                "tag": "InstructionsIcon",
+              },
+              "context": [Circular],
+              "data": Object {
+                "hook": Object {
+                  "destroy": [Function],
+                  "init": [Function],
+                  "insert": [Function],
+                  "prepatch": [Function],
+                },
+                "on": undefined,
+                "pendingInsert": null,
+              },
+              "elm": <svg
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+                stroke-linejoin="round"
+                stroke-miterlimit="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                  fill="#fff"
+                />
+              </svg>,
+              "fnContext": undefined,
+              "fnOptions": undefined,
+              "fnScopeId": undefined,
+              "isAsyncPlaceholder": false,
+              "isCloned": false,
+              "isComment": false,
+              "isOnce": false,
+              "isRootInsert": false,
+              "isStatic": false,
+              "key": undefined,
+              "ns": undefined,
+              "parent": undefined,
+              "raw": false,
+              "tag": "vue-component-404-InstructionsIcon",
+              "text": undefined,
+            },
+          ],
+          "componentInstance": undefined,
+          "componentOptions": undefined,
+          "context": [Circular],
+          "data": Object {
+            "staticClass": "badge primary white--text",
+          },
+          "elm": <span
+            class="badge primary white--text"
+          >
+            <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linejoin="round"
+              stroke-miterlimit="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+                fill="#fff"
+              />
+            </svg>
+          </span>,
+          "fnContext": undefined,
+          "fnOptions": undefined,
+          "fnScopeId": undefined,
+          "isAsyncPlaceholder": false,
+          "isCloned": false,
+          "isComment": false,
+          "isOnce": false,
+          "isRootInsert": false,
+          "isStatic": false,
+          "key": undefined,
+          "ns": undefined,
+          "parent": undefined,
+          "raw": false,
+          "tag": "span",
+          "text": undefined,
+        },
+      ],
+      "componentInstance": undefined,
+      "componentOptions": undefined,
+      "context": [Circular],
+      "data": Object {
+        "staticClass": "badge-container",
+      },
+      "elm": <span
+        class="badge-container"
+      >
+        <span
+          class="badge primary white--text"
+        >
+          <svg
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+            stroke-linejoin="round"
+            stroke-miterlimit="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.171 21.818c2.183 0 3.432-1.719 4.098-3.844.242-.782.471-1.624 1.574-2.746 2.013-2.05 2.877-4.39 2.877-6.684 0-3.826-3.015-6.726-6.326-6.726-3.924 0-6.895 3.439-4.943 8.809l1.74-.627c-1.537-4.395.818-6.149 3.257-6.195 2.116-.041 4.025 1.827 4.286 4.009.227 1.904-.271 4.206-2.091 5.953-1.577 1.512-1.792 2.514-2.08 3.506-.664 2.287-1.712 2.639-2.459 2.59-1.748-.115-2.509-1.95-.858-4.035l-1.656-.932c-.765 1.126-1.119 2.338-1.126 3.286-.014 2.227 1.763 3.636 3.707 3.636zm.264-8.035c1.127.595 2.147-.263 2.6-1.313.433-1.001.17-2.147-.697-3.067-.597-.634-.929-1.392-.804-1.97a.877.877 0 01.531-.658c.354-.147.72-.101 1.016.063.474.264.851.905.981 1.672l1.345-.227c-.202-1.185-.824-2.171-1.665-2.636a2.506 2.506 0 00-2.195-.134A2.241 2.241 0 0013.2 7.147c-.222 1.031.228 2.218 1.147 3.192-1.873.468-2.102 2.719-.912 3.444zM5.509 11.281V9.55l3.738 2.881-3.738 2.881v-1.731H2.28v-2.3h3.229z"
+              fill="#fff"
+            />
+          </svg>
+        </span>
+      </span>,
+      "fnContext": undefined,
+      "fnOptions": undefined,
+      "fnScopeId": undefined,
+      "isAsyncPlaceholder": false,
+      "isCloned": false,
+      "isComment": false,
+      "isOnce": false,
+      "isRootInsert": true,
+      "isStatic": false,
+      "key": undefined,
+      "ns": undefined,
+      "parent": undefined,
+      "raw": false,
+      "tag": "span",
+      "text": undefined,
+    },
+    "_watcher": Watcher {
+      "active": true,
+      "before": [Function],
+      "cb": [Function],
+      "deep": false,
+      "depIds": Set {},
+      "deps": Array [],
+      "dirty": false,
+      "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+      "getter": [Function],
+      "id": 4,
+      "lazy": false,
+      "newDepIds": Set {},
+      "newDeps": Array [],
+      "sync": false,
+      "user": false,
+      "value": undefined,
+      "vm": [Circular],
+    },
+    "_watchers": Array [
+      Watcher {
+        "active": true,
+        "before": [Function],
+        "cb": [Function],
+        "deep": false,
+        "depIds": Set {},
+        "deps": Array [],
+        "dirty": false,
+        "expression": "function () {
+      vm._update(vm._render(), hydrating);
+    }",
+        "getter": [Function],
+        "id": 4,
+        "lazy": false,
+        "newDepIds": Set {},
+        "newDeps": Array [],
+        "sync": false,
+        "user": false,
+        "value": undefined,
+        "vm": [Circular],
+      },
+    ],
+  },
   "hostElement": <button>
+    <span
+      class="ripple"
+      style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+    />
+    <span
+      class="ripple"
+      style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+    />
     <audio
       src="http://just.a.test/audio.mp3"
     />
   </button>,
   "originalStyle": Object {
-    "backgroundColor": "",
-    "border": "",
     "zIndex": "",
   },
   "unsubscribeInstructionsModeWatch": [Function],
@@ -21,6 +3654,14 @@ Instruction {
     "$children": Array [],
     "$createElement": [Function],
     "$el": <button>
+      <span
+        class="ripple"
+        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      />
+      <span
+        class="ripple"
+        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      />
       <audio
         src="http://just.a.test/audio.mp3"
       />
@@ -48,6 +3689,9 @@ Instruction {
           "instructionsStore/resetState": Array [
             [Function],
           ],
+          "instructionsStore/setShowGetInstructionsGraphic": Array [
+            [Function],
+          ],
           "instructionsStore/toggleInstructionsMode": Array [
             [Function],
           ],
@@ -64,15 +3708,18 @@ Instruction {
                 "_rawModule": Object {
                   "actions": Object {
                     "resetState": [Function],
+                    "setShowGetInstructionsGraphic": [Function],
                     "toggleInstructionsMode": [Function],
                   },
                   "mutations": Object {
                     "RESET_STATE": [Function],
+                    "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
                     "TOGGLE_INSTRUCTIONS_MODE": [Function],
                   },
                   "namespaced": true,
                   "state": Object {
                     "isInstructionsMode": false,
+                    "showGetInstructionsGraphic": true,
                   },
                 },
                 "context": Object {
@@ -82,6 +3729,7 @@ Instruction {
                 "runtime": false,
                 "state": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
               },
             },
@@ -91,15 +3739,18 @@ Instruction {
                 "instructionsStore": Object {
                   "actions": Object {
                     "resetState": [Function],
+                    "setShowGetInstructionsGraphic": [Function],
                     "toggleInstructionsMode": [Function],
                   },
                   "mutations": Object {
                     "RESET_STATE": [Function],
+                    "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
                     "TOGGLE_INSTRUCTIONS_MODE": [Function],
                   },
                   "namespaced": true,
                   "state": Object {
                     "isInstructionsMode": false,
+                    "showGetInstructionsGraphic": true,
                   },
                 },
               },
@@ -107,6 +3758,7 @@ Instruction {
               "state": Object {
                 "instructionsStore": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
                 "version": "1.0.0",
               },
@@ -120,6 +3772,7 @@ Instruction {
             "state": Object {
               "instructionsStore": Object {
                 "isInstructionsMode": false,
+                "showGetInstructionsGraphic": true,
               },
               "version": "1.0.0",
             },
@@ -131,15 +3784,18 @@ Instruction {
             "_rawModule": Object {
               "actions": Object {
                 "resetState": [Function],
+                "setShowGetInstructionsGraphic": [Function],
                 "toggleInstructionsMode": [Function],
               },
               "mutations": Object {
                 "RESET_STATE": [Function],
+                "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
                 "TOGGLE_INSTRUCTIONS_MODE": [Function],
               },
               "namespaced": true,
               "state": Object {
                 "isInstructionsMode": false,
+                "showGetInstructionsGraphic": true,
               },
             },
             "context": Object {
@@ -149,11 +3805,15 @@ Instruction {
             "runtime": false,
             "state": Object {
               "isInstructionsMode": false,
+              "showGetInstructionsGraphic": true,
             },
           },
         },
         "_mutations": Object {
           "instructionsStore/RESET_STATE": Array [
+            [Function],
+          ],
+          "instructionsStore/SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": Array [
             [Function],
           ],
           "instructionsStore/TOGGLE_INSTRUCTIONS_MODE": Array [
@@ -199,6 +3859,7 @@ Instruction {
             "$$state": Object {
               "instructionsStore": Object {
                 "isInstructionsMode": false,
+                "showGetInstructionsGraphic": true,
               },
               "version": "1.0.0",
             },
@@ -247,6 +3908,7 @@ Instruction {
               "$$state": Object {
                 "instructionsStore": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
                 "version": "1.0.0",
               },
@@ -276,6 +3938,7 @@ Instruction {
                   7,
                   9,
                   10,
+                  12,
                   11,
                   8,
                 },
@@ -305,6 +3968,12 @@ Instruction {
                     ],
                   },
                   Dep {
+                    "id": 12,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
                     "id": 11,
                     "subs": Array [
                       [Circular],
@@ -329,6 +3998,7 @@ Instruction {
                 "value": Object {
                   "instructionsStore": Object {
                     "isInstructionsMode": false,
+                    "showGetInstructionsGraphic": true,
                   },
                   "version": "1.0.0",
                 },
@@ -352,6 +4022,7 @@ Instruction {
                 7,
                 9,
                 10,
+                12,
                 11,
                 8,
               },
@@ -381,6 +4052,12 @@ Instruction {
                   ],
                 },
                 Dep {
+                  "id": 12,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
                   "id": 11,
                   "subs": Array [
                     [Circular],
@@ -405,6 +4082,7 @@ Instruction {
               "value": Object {
                 "instructionsStore": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
                 "version": "1.0.0",
               },
@@ -1442,6 +5120,9 @@ Instruction {
         "instructionsStore/resetState": Array [
           [Function],
         ],
+        "instructionsStore/setShowGetInstructionsGraphic": Array [
+          [Function],
+        ],
         "instructionsStore/toggleInstructionsMode": Array [
           [Function],
         ],
@@ -1458,15 +5139,18 @@ Instruction {
               "_rawModule": Object {
                 "actions": Object {
                   "resetState": [Function],
+                  "setShowGetInstructionsGraphic": [Function],
                   "toggleInstructionsMode": [Function],
                 },
                 "mutations": Object {
                   "RESET_STATE": [Function],
+                  "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
                   "TOGGLE_INSTRUCTIONS_MODE": [Function],
                 },
                 "namespaced": true,
                 "state": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
               },
               "context": Object {
@@ -1476,6 +5160,7 @@ Instruction {
               "runtime": false,
               "state": Object {
                 "isInstructionsMode": false,
+                "showGetInstructionsGraphic": true,
               },
             },
           },
@@ -1485,15 +5170,18 @@ Instruction {
               "instructionsStore": Object {
                 "actions": Object {
                   "resetState": [Function],
+                  "setShowGetInstructionsGraphic": [Function],
                   "toggleInstructionsMode": [Function],
                 },
                 "mutations": Object {
                   "RESET_STATE": [Function],
+                  "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
                   "TOGGLE_INSTRUCTIONS_MODE": [Function],
                 },
                 "namespaced": true,
                 "state": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
               },
             },
@@ -1501,6 +5189,7 @@ Instruction {
             "state": Object {
               "instructionsStore": Object {
                 "isInstructionsMode": false,
+                "showGetInstructionsGraphic": true,
               },
               "version": "1.0.0",
             },
@@ -1514,6 +5203,7 @@ Instruction {
           "state": Object {
             "instructionsStore": Object {
               "isInstructionsMode": false,
+              "showGetInstructionsGraphic": true,
             },
             "version": "1.0.0",
           },
@@ -1525,15 +5215,18 @@ Instruction {
           "_rawModule": Object {
             "actions": Object {
               "resetState": [Function],
+              "setShowGetInstructionsGraphic": [Function],
               "toggleInstructionsMode": [Function],
             },
             "mutations": Object {
               "RESET_STATE": [Function],
+              "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
               "TOGGLE_INSTRUCTIONS_MODE": [Function],
             },
             "namespaced": true,
             "state": Object {
               "isInstructionsMode": false,
+              "showGetInstructionsGraphic": true,
             },
           },
           "context": Object {
@@ -1543,11 +5236,15 @@ Instruction {
           "runtime": false,
           "state": Object {
             "isInstructionsMode": false,
+            "showGetInstructionsGraphic": true,
           },
         },
       },
       "_mutations": Object {
         "instructionsStore/RESET_STATE": Array [
+          [Function],
+        ],
+        "instructionsStore/SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": Array [
           [Function],
         ],
         "instructionsStore/TOGGLE_INSTRUCTIONS_MODE": Array [
@@ -1593,6 +5290,7 @@ Instruction {
           "$$state": Object {
             "instructionsStore": Object {
               "isInstructionsMode": false,
+              "showGetInstructionsGraphic": true,
             },
             "version": "1.0.0",
           },
@@ -1641,6 +5339,7 @@ Instruction {
             "$$state": Object {
               "instructionsStore": Object {
                 "isInstructionsMode": false,
+                "showGetInstructionsGraphic": true,
               },
               "version": "1.0.0",
             },
@@ -1670,6 +5369,7 @@ Instruction {
                 7,
                 9,
                 10,
+                12,
                 11,
                 8,
               },
@@ -1699,6 +5399,12 @@ Instruction {
                   ],
                 },
                 Dep {
+                  "id": 12,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
                   "id": 11,
                   "subs": Array [
                     [Circular],
@@ -1723,6 +5429,7 @@ Instruction {
               "value": Object {
                 "instructionsStore": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
                 "version": "1.0.0",
               },
@@ -1746,6 +5453,7 @@ Instruction {
               7,
               9,
               10,
+              12,
               11,
               8,
             },
@@ -1775,6 +5483,12 @@ Instruction {
                 ],
               },
               Dep {
+                "id": 12,
+                "subs": Array [
+                  [Circular],
+                ],
+              },
+              Dep {
                 "id": 11,
                 "subs": Array [
                   [Circular],
@@ -1799,6 +5513,7 @@ Instruction {
             "value": Object {
               "instructionsStore": Object {
                 "isInstructionsMode": false,
+                "showGetInstructionsGraphic": true,
               },
               "version": "1.0.0",
             },
@@ -2711,6 +6426,14 @@ Instruction {
       "$children": Array [],
       "$createElement": [Function],
       "$el": <button>
+        <span
+          class="ripple"
+          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />
+        <span
+          class="ripple"
+          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />
         <audio
           src="http://just.a.test/audio.mp3"
         />
@@ -2738,6 +6461,9 @@ Instruction {
             "instructionsStore/resetState": Array [
               [Function],
             ],
+            "instructionsStore/setShowGetInstructionsGraphic": Array [
+              [Function],
+            ],
             "instructionsStore/toggleInstructionsMode": Array [
               [Function],
             ],
@@ -2754,15 +6480,18 @@ Instruction {
                   "_rawModule": Object {
                     "actions": Object {
                       "resetState": [Function],
+                      "setShowGetInstructionsGraphic": [Function],
                       "toggleInstructionsMode": [Function],
                     },
                     "mutations": Object {
                       "RESET_STATE": [Function],
+                      "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
                       "TOGGLE_INSTRUCTIONS_MODE": [Function],
                     },
                     "namespaced": true,
                     "state": Object {
                       "isInstructionsMode": false,
+                      "showGetInstructionsGraphic": true,
                     },
                   },
                   "context": Object {
@@ -2772,6 +6501,7 @@ Instruction {
                   "runtime": false,
                   "state": Object {
                     "isInstructionsMode": false,
+                    "showGetInstructionsGraphic": true,
                   },
                 },
               },
@@ -2781,15 +6511,18 @@ Instruction {
                   "instructionsStore": Object {
                     "actions": Object {
                       "resetState": [Function],
+                      "setShowGetInstructionsGraphic": [Function],
                       "toggleInstructionsMode": [Function],
                     },
                     "mutations": Object {
                       "RESET_STATE": [Function],
+                      "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
                       "TOGGLE_INSTRUCTIONS_MODE": [Function],
                     },
                     "namespaced": true,
                     "state": Object {
                       "isInstructionsMode": false,
+                      "showGetInstructionsGraphic": true,
                     },
                   },
                 },
@@ -2797,6 +6530,7 @@ Instruction {
                 "state": Object {
                   "instructionsStore": Object {
                     "isInstructionsMode": false,
+                    "showGetInstructionsGraphic": true,
                   },
                   "version": "1.0.0",
                 },
@@ -2810,6 +6544,7 @@ Instruction {
               "state": Object {
                 "instructionsStore": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
                 "version": "1.0.0",
               },
@@ -2821,15 +6556,18 @@ Instruction {
               "_rawModule": Object {
                 "actions": Object {
                   "resetState": [Function],
+                  "setShowGetInstructionsGraphic": [Function],
                   "toggleInstructionsMode": [Function],
                 },
                 "mutations": Object {
                   "RESET_STATE": [Function],
+                  "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
                   "TOGGLE_INSTRUCTIONS_MODE": [Function],
                 },
                 "namespaced": true,
                 "state": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
               },
               "context": Object {
@@ -2839,11 +6577,15 @@ Instruction {
               "runtime": false,
               "state": Object {
                 "isInstructionsMode": false,
+                "showGetInstructionsGraphic": true,
               },
             },
           },
           "_mutations": Object {
             "instructionsStore/RESET_STATE": Array [
+              [Function],
+            ],
+            "instructionsStore/SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": Array [
               [Function],
             ],
             "instructionsStore/TOGGLE_INSTRUCTIONS_MODE": Array [
@@ -2889,6 +6631,7 @@ Instruction {
               "$$state": Object {
                 "instructionsStore": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
                 "version": "1.0.0",
               },
@@ -2937,6 +6680,7 @@ Instruction {
                 "$$state": Object {
                   "instructionsStore": Object {
                     "isInstructionsMode": false,
+                    "showGetInstructionsGraphic": true,
                   },
                   "version": "1.0.0",
                 },
@@ -2966,6 +6710,7 @@ Instruction {
                     7,
                     9,
                     10,
+                    12,
                     11,
                     8,
                   },
@@ -2995,6 +6740,12 @@ Instruction {
                       ],
                     },
                     Dep {
+                      "id": 12,
+                      "subs": Array [
+                        [Circular],
+                      ],
+                    },
+                    Dep {
                       "id": 11,
                       "subs": Array [
                         [Circular],
@@ -3019,6 +6770,7 @@ Instruction {
                   "value": Object {
                     "instructionsStore": Object {
                       "isInstructionsMode": false,
+                      "showGetInstructionsGraphic": true,
                     },
                     "version": "1.0.0",
                   },
@@ -3042,6 +6794,7 @@ Instruction {
                   7,
                   9,
                   10,
+                  12,
                   11,
                   8,
                 },
@@ -3071,6 +6824,12 @@ Instruction {
                     ],
                   },
                   Dep {
+                    "id": 12,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
                     "id": 11,
                     "subs": Array [
                       [Circular],
@@ -3095,6 +6854,7 @@ Instruction {
                 "value": Object {
                   "instructionsStore": Object {
                     "isInstructionsMode": false,
+                    "showGetInstructionsGraphic": true,
                   },
                   "version": "1.0.0",
                 },
@@ -4132,6 +7892,9 @@ Instruction {
           "instructionsStore/resetState": Array [
             [Function],
           ],
+          "instructionsStore/setShowGetInstructionsGraphic": Array [
+            [Function],
+          ],
           "instructionsStore/toggleInstructionsMode": Array [
             [Function],
           ],
@@ -4148,15 +7911,18 @@ Instruction {
                 "_rawModule": Object {
                   "actions": Object {
                     "resetState": [Function],
+                    "setShowGetInstructionsGraphic": [Function],
                     "toggleInstructionsMode": [Function],
                   },
                   "mutations": Object {
                     "RESET_STATE": [Function],
+                    "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
                     "TOGGLE_INSTRUCTIONS_MODE": [Function],
                   },
                   "namespaced": true,
                   "state": Object {
                     "isInstructionsMode": false,
+                    "showGetInstructionsGraphic": true,
                   },
                 },
                 "context": Object {
@@ -4166,6 +7932,7 @@ Instruction {
                 "runtime": false,
                 "state": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
               },
             },
@@ -4175,15 +7942,18 @@ Instruction {
                 "instructionsStore": Object {
                   "actions": Object {
                     "resetState": [Function],
+                    "setShowGetInstructionsGraphic": [Function],
                     "toggleInstructionsMode": [Function],
                   },
                   "mutations": Object {
                     "RESET_STATE": [Function],
+                    "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
                     "TOGGLE_INSTRUCTIONS_MODE": [Function],
                   },
                   "namespaced": true,
                   "state": Object {
                     "isInstructionsMode": false,
+                    "showGetInstructionsGraphic": true,
                   },
                 },
               },
@@ -4191,6 +7961,7 @@ Instruction {
               "state": Object {
                 "instructionsStore": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
                 "version": "1.0.0",
               },
@@ -4204,6 +7975,7 @@ Instruction {
             "state": Object {
               "instructionsStore": Object {
                 "isInstructionsMode": false,
+                "showGetInstructionsGraphic": true,
               },
               "version": "1.0.0",
             },
@@ -4215,15 +7987,18 @@ Instruction {
             "_rawModule": Object {
               "actions": Object {
                 "resetState": [Function],
+                "setShowGetInstructionsGraphic": [Function],
                 "toggleInstructionsMode": [Function],
               },
               "mutations": Object {
                 "RESET_STATE": [Function],
+                "SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": [Function],
                 "TOGGLE_INSTRUCTIONS_MODE": [Function],
               },
               "namespaced": true,
               "state": Object {
                 "isInstructionsMode": false,
+                "showGetInstructionsGraphic": true,
               },
             },
             "context": Object {
@@ -4233,11 +8008,15 @@ Instruction {
             "runtime": false,
             "state": Object {
               "isInstructionsMode": false,
+              "showGetInstructionsGraphic": true,
             },
           },
         },
         "_mutations": Object {
           "instructionsStore/RESET_STATE": Array [
+            [Function],
+          ],
+          "instructionsStore/SET_SHOW_GET_INSTRUCTIONS_GRAPHIC": Array [
             [Function],
           ],
           "instructionsStore/TOGGLE_INSTRUCTIONS_MODE": Array [
@@ -4283,6 +8062,7 @@ Instruction {
             "$$state": Object {
               "instructionsStore": Object {
                 "isInstructionsMode": false,
+                "showGetInstructionsGraphic": true,
               },
               "version": "1.0.0",
             },
@@ -4331,6 +8111,7 @@ Instruction {
               "$$state": Object {
                 "instructionsStore": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
                 "version": "1.0.0",
               },
@@ -4360,6 +8141,7 @@ Instruction {
                   7,
                   9,
                   10,
+                  12,
                   11,
                   8,
                 },
@@ -4389,6 +8171,12 @@ Instruction {
                     ],
                   },
                   Dep {
+                    "id": 12,
+                    "subs": Array [
+                      [Circular],
+                    ],
+                  },
+                  Dep {
                     "id": 11,
                     "subs": Array [
                       [Circular],
@@ -4413,6 +8201,7 @@ Instruction {
                 "value": Object {
                   "instructionsStore": Object {
                     "isInstructionsMode": false,
+                    "showGetInstructionsGraphic": true,
                   },
                   "version": "1.0.0",
                 },
@@ -4436,6 +8225,7 @@ Instruction {
                 7,
                 9,
                 10,
+                12,
                 11,
                 8,
               },
@@ -4465,6 +8255,12 @@ Instruction {
                   ],
                 },
                 Dep {
+                  "id": 12,
+                  "subs": Array [
+                    [Circular],
+                  ],
+                },
+                Dep {
                   "id": 11,
                   "subs": Array [
                     [Circular],
@@ -4489,6 +8285,7 @@ Instruction {
               "value": Object {
                 "instructionsStore": Object {
                   "isInstructionsMode": false,
+                  "showGetInstructionsGraphic": true,
                 },
                 "version": "1.0.0",
               },
@@ -5409,6 +9206,14 @@ Instruction {
         "context": [Circular],
         "data": undefined,
         "elm": <button>
+          <span
+            class="ripple"
+            style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+          />
+          <span
+            class="ripple"
+            style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+          />
           <audio
             src="http://just.a.test/audio.mp3"
           />
@@ -5457,48 +9262,54 @@ Instruction {
           "cb": [Function],
           "deep": true,
           "depIds": Set {
-            247,
-            197,
-            207,
+            248,
+            198,
             208,
+            209,
+            216,
             215,
             214,
             213,
             212,
             211,
             210,
-            209,
-            198,
             199,
+            200,
+            207,
             206,
             205,
             204,
             203,
             202,
             201,
-            200,
           },
           "deps": Array [
             Dep {
-              "id": 247,
+              "id": 248,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 197,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 207,
+              "id": 198,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
               "id": 208,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 209,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 216,
               "subs": Array [
                 [Circular],
               ],
@@ -5540,19 +9351,19 @@ Instruction {
               ],
             },
             Dep {
-              "id": 209,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 198,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
               "id": 199,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 200,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 207,
               "subs": Array [
                 [Circular],
               ],
@@ -5589,12 +9400,6 @@ Instruction {
             },
             Dep {
               "id": 201,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 200,
               "subs": Array [
                 [Circular],
               ],
@@ -5660,17 +9465,11 @@ Instruction {
           "cb": [Function],
           "deep": false,
           "depIds": Set {
-            189,
             190,
-            193,
+            191,
+            194,
           },
           "deps": Array [
-            Dep {
-              "id": 189,
-              "subs": Array [
-                [Circular],
-              ],
-            },
             Dep {
               "id": 190,
               "subs": Array [
@@ -5678,7 +9477,13 @@ Instruction {
               ],
             },
             Dep {
-              "id": 193,
+              "id": 191,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 194,
               "subs": Array [
                 [Circular],
               ],
@@ -5687,7 +9492,7 @@ Instruction {
           "dirty": false,
           "expression": "$vuetify.theme.dark",
           "getter": [Function],
-          "id": 4,
+          "id": 10,
           "lazy": false,
           "newDepIds": Set {},
           "newDeps": Array [],
@@ -5710,6 +9515,14 @@ Instruction {
       "context": [Circular],
       "data": undefined,
       "elm": <button>
+        <span
+          class="ripple"
+          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />
+        <span
+          class="ripple"
+          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />
         <audio
           src="http://just.a.test/audio.mp3"
         />
@@ -5758,48 +9571,54 @@ Instruction {
         "cb": [Function],
         "deep": true,
         "depIds": Set {
-          247,
-          197,
-          207,
+          248,
+          198,
           208,
+          209,
+          216,
           215,
           214,
           213,
           212,
           211,
           210,
-          209,
-          198,
           199,
+          200,
+          207,
           206,
           205,
           204,
           203,
           202,
           201,
-          200,
         },
         "deps": Array [
           Dep {
-            "id": 247,
+            "id": 248,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 197,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 207,
+            "id": 198,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
             "id": 208,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 209,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 216,
             "subs": Array [
               [Circular],
             ],
@@ -5841,19 +9660,19 @@ Instruction {
             ],
           },
           Dep {
-            "id": 209,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 198,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
             "id": 199,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 200,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 207,
             "subs": Array [
               [Circular],
             ],
@@ -5890,12 +9709,6 @@ Instruction {
           },
           Dep {
             "id": 201,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 200,
             "subs": Array [
               [Circular],
             ],
@@ -5961,17 +9774,11 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
-          189,
           190,
-          193,
+          191,
+          194,
         },
         "deps": Array [
-          Dep {
-            "id": 189,
-            "subs": Array [
-              [Circular],
-            ],
-          },
           Dep {
             "id": 190,
             "subs": Array [
@@ -5979,7 +9786,13 @@ Instruction {
             ],
           },
           Dep {
-            "id": 193,
+            "id": 191,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 194,
             "subs": Array [
               [Circular],
             ],
@@ -5988,7 +9801,7 @@ Instruction {
         "dirty": false,
         "expression": "$vuetify.theme.dark",
         "getter": [Function],
-        "id": 4,
+        "id": 10,
         "lazy": false,
         "newDepIds": Set {},
         "newDeps": Array [],
