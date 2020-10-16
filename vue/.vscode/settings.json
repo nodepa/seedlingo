@@ -49,7 +49,7 @@
   "vim.neovimPath": "/usr/bin/nvim",
   "vim.enableNeovim": true,
   "vim.textwidth": 80,
-  "editor.wordWrapColumn": 80,
+  "editor.wordWrapColumn": 81,
   //trying out wordwrap from https://stackoverflow.com/a/45763713
   "editor.wordWrap": "wordWrapColumn",
   "editor.wrappingIndent": "same",
@@ -74,7 +74,6 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "window.zoomLevel": 0,
-  "eslint.enable": true,
   "eslint.format.enable": true,
   "eslint.alwaysShowStatus": true,
   "eslint.packageManager": "yarn",
@@ -154,5 +153,8 @@
     "vuex",
     "webfonts",
     "webhook"
-  ]
+  ],
+  "editor.foldingHighlight": false,
+  "editor.glyphMargin": false,
+  "editor.folding": false
 }

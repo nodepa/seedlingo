@@ -43,34 +43,58 @@ export default class InstructionsButton extends Vue {
     return this.$store.state.instructionsStore.isInstructionsMode;
   }
 
-  @PropSync('showGetInstructionsGraphic', { type: Boolean })
-  syncedShowGetInstructionsGraphic!: boolean;
+  get showGetInstructionsGraphic() {
+    return this.$store.state.instructionsStore.showGetInstructionsGraphic;
+  }
 
   @PropSync('isHomeButtonDisabled', { type: Boolean })
   syncedIsHomeButtonDisabled!: boolean;
 
   toggleInstructionsMode() {
-    if (this.$props.showGetInstructionsGraphic) {
-      this.syncedShowGetInstructionsGraphic = false;
+    if (this.showGetInstructionsGraphic) {
+      this.$store.dispatch(
+        'instructionsStore/setShowGetInstructionsGraphic',
+        false,
+      );
 
-      // Add <audio> element to Instruction.Collection to provoke cancelling whenever another instruction starts playing
-      // const audioEl = this.$refs.instructionsButtonAudio as HTMLAudioElement;
-      // Instruction.Collection.push(audioEl);
-      // audioEl.currentTime = 0;
-      // audioEl.play();
-    }
-    if (this.$props.isHomeButtonDisabled) {
-      this.syncedIsHomeButtonDisabled = false;
-    }
-    if (!this.$store.state.instructionsStore.isInstructionsMode) {
       // Add <audio> element to Instruction.Collection to provoke cancelling whenever another instruction starts playing
       const audioEl = this.$refs.instructionsButtonAudio as HTMLAudioElement;
       Instruction.Collection.push(audioEl);
       audioEl.currentTime = 0;
       audioEl.play();
     }
+
+    if (this.$props.isHomeButtonDisabled) {
+      this.syncedIsHomeButtonDisabled = false;
+    }
+
     // Inform globally that isInstructionsMode should toggle
     this.$store.dispatch('instructionsStore/toggleInstructionsMode');
+  }
+
+  mounted() {
+    if (this.showGetInstructionsGraphic) {
+      const animation = (this.$refs.instructionsButton as Vue).$el.animate(
+        [
+          { backgroundColor: 'inherit' },
+          {
+            backgroundColor: `${this.$vuetify.theme.currentTheme.accent}66`,
+          },
+          { backgroundColor: 'inherit' },
+          // { opacity: '1' },
+          // { opacity: '0.4' },
+          // { opacity: '1' },
+        ],
+        { duration: 1300, iterations: Infinity },
+      );
+
+      (this.$refs.instructionsButton as Vue).$el.addEventListener(
+        'click',
+        () => {
+          animation.cancel();
+        },
+      );
+    }
   }
 }
 </script>

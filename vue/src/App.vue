@@ -1,6 +1,6 @@
 <template>
   <v-app data-test="app">
-    <v-app-bar app color="primary">
+    <v-app-bar app flat color="background">
       <div class="d-flex align-center">
         <v-img
           alt="立爱识字 Logo"
@@ -10,11 +10,13 @@
           src="@/assets/logo/logo.svg"
           width="40"
           height="40"
+          :style="
+            `border-radius: 100%; background-color: ${$vuetify.theme.currentTheme.primary}`
+          "
           @click="$vuetify.theme.dark = !$vuetify.theme.dark"
         />
-
         <span
-          class="shrink mt-1 hidden-sm-and-down white--text"
+          class="shrink mt-1 hidden-sm-and-down"
           min-width="100"
           width="100"
         >
@@ -23,7 +25,7 @@
       </div>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <GetInstructions v-if="showGetInstructionsGraphic" />
       <router-view v-if="!showGetInstructionsGraphic" />
       <v-overlay
@@ -31,11 +33,9 @@
         z-index="3"
         data-test="instructions-overlay"
       />
-    </v-content>
+    </v-main>
 
-    <BottomNavigationBar
-      :show-get-instructions-graphic.sync="showGetInstructionsGraphic"
-    />
+    <BottomNavigationBar />
   </v-app>
 </template>
 
@@ -52,11 +52,11 @@ import GetInstructions from '@/Instructions/components/GetInstructions.vue';
   },
 })
 export default class App extends Vue {
-  // eslint-disable-next-line class-methods-use-this
-  data() {
-    return {
-      showGetInstructionsGraphic: true,
-    };
+  get showGetInstructionsGraphic() {
+    return (
+      this.$route.name === 'Home' &&
+      this.$store.state.instructionsStore.showGetInstructionsGraphic
+    );
   }
 
   get isInstructionsMode() {

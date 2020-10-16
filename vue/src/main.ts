@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import Badge from '@/common/components/Badge.vue';
+import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import vuetify from './common/plugins/vuetify';
 import router from './router';
 import store from './store';
@@ -7,7 +9,10 @@ import App from './App.vue';
 import InstructionDirective from './common/directives/InstructionDirective';
 
 // Use custom directive v-instruction to add instructions audio
-Vue.use(InstructionDirective);
+Vue.use(InstructionDirective, {
+  Badge,
+  Animation: RippleAnimation,
+});
 Vue.config.productionTip = false;
 
 const vm = new Vue({
@@ -21,6 +26,6 @@ const vm = new Vue({
 // Fallback to max if performance.timing.navigationStart undefined
 const timeSinceNavStart =
   Date.now() - (performance?.timing?.navigationStart || Infinity);
-const minDelay = process.env.NODE_ENV === 'production' ? 2000 : 100;
-const delayMountAmount = Math.max(minDelay - timeSinceNavStart, 100);
+const minDelay = process.env.NODE_ENV === 'production' ? 3000 : 4000;
+const delayMountAmount = Math.max(minDelay - timeSinceNavStart, 0);
 setTimeout(() => vm.$mount('#app'), delayMountAmount);

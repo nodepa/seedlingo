@@ -30,4 +30,4 @@ export default class HomeButton extends Vue {
 }
 </script>
 
-<style lang="stylus"></style>
+<style lang="stylus" scoped></style>

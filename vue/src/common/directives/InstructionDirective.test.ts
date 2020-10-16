@@ -1,9 +1,12 @@
-// Libraries
+// Libraries, plugins, components
 import Vue from 'vue';
-
-// Plugins
 import store from '@/store';
 import Vuetify from 'vuetify';
+import Badge from '@/common/components/Badge.vue';
+import RippleAnimation from '@/common/animations/RippleAnimation.vue';
+
+// Helpers
+import { pause, play } from '@/testHelpers/FunctionOverrides';
 
 // Item under test
 import {
@@ -11,14 +14,8 @@ import {
   InstructionElement,
 } from '@/common/directives/InstructionDirective';
 
-window.HTMLMediaElement.prototype.play = (): Promise<void> => {
-  return new Promise(() => {
-    /* do nothing */
-  });
-};
-window.HTMLMediaElement.prototype.pause = (): void => {
-  /* do nothing */
-};
+window.HTMLMediaElement.prototype.pause = pause;
+window.HTMLMediaElement.prototype.play = play;
 
 let vm: Vue;
 let instruction: Instruction;
@@ -36,7 +33,13 @@ beforeEach(() => {
     store,
     vuetify,
   }).$mount();
-  instruction = new Instruction(vm.$el as InstructionElement, audioPath, vm);
+  instruction = new Instruction(
+    vm.$el as InstructionElement,
+    audioPath,
+    vm,
+    Badge,
+    RippleAnimation,
+  );
 
   // As set up in the "bind"-function at directive installation
   if (vm.$store.state.instructionsStore.isInstructionsMode) {
@@ -102,17 +105,19 @@ describe('class Instruction', () => {
     elToRemove.forEach((element) => {
       element.remove();
     });
-    expect(el.childElementCount).toBe(1);
+    expect(el.childElementCount).toBe(3); // 2 animations, 1 audio
 
     // Apply function
     instruction.addInstructionStyle();
 
     // Assert post-state
-    expect(el.style.backgroundColor).toBe('rgba(255, 255, 255, 1)');
+    expect(el.style.backgroundColor).toBe('rgb(255, 0, 0)');
     expect(el.style.zIndex).toBe('4');
-    expect(el.childElementCount).toBe(2);
-    expect(el.children[0].tagName).toBe('AUDIO');
-    expect(el.children[1].tagName).toBe('DIV');
+    expect(el.childElementCount).toBe(4); // 2 animations, 1 audio, 1 badge
+    expect(el.children[0].tagName).toBe('SPAN');
+    expect(el.children[1].tagName).toBe('SPAN');
+    expect(el.children[2].tagName).toBe('AUDIO');
+    expect(el.children[3].tagName).toBe('SPAN');
   });
 
   it('removeInstructionStyle: removes/restores styling to the element', () => {
@@ -121,21 +126,24 @@ describe('class Instruction', () => {
     const el = vm.$el as HTMLButtonElement;
     el.style.backgroundColor = '#FF0000';
     el.style.zIndex = '9';
-    expect(el.childElementCount).toBe(2);
+    expect(el.childElementCount).toBe(4); // 2 animations, 1 audio, 1 badge
 
     // Apply function
     instruction.removeInstructionStyle();
 
     // Assert post-state
-    expect(el.style.backgroundColor).toBe('');
+    expect(el.style.backgroundColor).toBe('rgb(255, 0, 0)');
     expect(el.style.zIndex).toBe('');
-    expect(el.childElementCount).toBe(1);
-    expect(el.children[0].tagName).toBe('AUDIO');
+    expect(el.childElementCount).toBe(3); // 2 animations, 1 audio
+    expect(el.children[2].tagName).toBe('AUDIO'); // audio is 3rd elm
   });
 
   it('playInstruction: plays attached audio', () => {
     // Setup and assert pre-state
-    const el = vm.$el.children[0] as HTMLAudioElement;
+    const parentEl = vm.$el;
+    expect(parentEl.children[0].tagName).toBe('SPAN');
+    expect(parentEl.children[1].tagName).toBe('SPAN');
+    const el = parentEl.children[2] as HTMLAudioElement;
     expect(el.tagName).toBe('AUDIO');
     expect(el.src).toBe(audioPath);
 
@@ -150,7 +158,10 @@ describe('class Instruction', () => {
 
   it('cancelInstruction: stops playing attached audio', () => {
     // Setup and assert pre-state
-    const el = vm.$el.children[0] as HTMLAudioElement;
+    const parentEl = vm.$el;
+    expect(parentEl.children[0].tagName).toBe('SPAN');
+    expect(parentEl.children[1].tagName).toBe('SPAN');
+    const el = parentEl.children[2] as HTMLAudioElement;
     expect(el.tagName).toBe('AUDIO');
     expect(el.src).toBe(audioPath);
 
@@ -187,7 +198,9 @@ describe('class Instruction', () => {
   });
 
   it('delist: current instance is removed from Instruction.Collection', () => {
-    const el = vm.$el.children[0] as HTMLAudioElement;
+    const el = Object.values(vm.$el.children).find((elm) => {
+      return elm.tagName === 'AUDIO';
+    }) as HTMLAudioElement;
     const count = Instruction.Collection.length;
     expect(Instruction.Collection.includes(el)).toBe(true);
 

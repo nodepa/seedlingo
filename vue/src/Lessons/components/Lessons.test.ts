@@ -1,23 +1,24 @@
-import { createLocalVue, Wrapper, shallowMount } from '@vue/test-utils';
+// Libraries, plugins, components
 import Vuetify from 'vuetify';
 import Vuex from 'vuex';
 import store from '@/store';
+import Badge from '@/common/components/Badge.vue';
+import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import InstructionDirective from '@/common/directives/InstructionDirective';
 
+// Helpers
+import { createLocalVue, Wrapper, shallowMount } from '@vue/test-utils';
+import { pause, play } from '@/testHelpers/FunctionOverrides';
+
+// Item under test
 import Lessons from './Lessons.vue';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-localVue.use(InstructionDirective);
+localVue.use(InstructionDirective, { Badge, Animation: RippleAnimation });
 
-window.HTMLMediaElement.prototype.play = (): Promise<void> => {
-  return new Promise(() => {
-    /* do nothing */
-  });
-};
-window.HTMLMediaElement.prototype.pause = (): void => {
-  /* do nothing */
-};
+window.HTMLMediaElement.prototype.pause = pause;
+window.HTMLMediaElement.prototype.play = play;
 
 describe('Lessons.vue (shallow)', () => {
   let vuetify: typeof Vuetify;
