@@ -41,6 +41,11 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.log(
         '2. 马丽 taps a character button, hears corresponding audio, sees a ripple animation on the button until audio ends and sees the button is highlighted or colored',
       );
+      cy.get('[data-test="char-1-button"]').click(); // character button
+      cy.get('@audio.play').should('have.callCount', 1); // 0 + 1
+      cy.get('@animation.play').should('have.callCount', 0); // 0 + 2
+      cy.get('@animation.animate').should('have.callCount', 3); // 1 + 2(*ripple)
+      cy.get('@animation.cancel').should('have.callCount', 2); // 0 + 2(*ripple)
 
       cy.log(
         '3. 马丽 taps a non-corresponding symbol button, hears corresponding audio, sees a ripple animation on the button until audio ends and sees the symbol button is highlighted or colored in a different color to the character button sees both highlighted buttons vibrate (and turn red?) sees both highlighted buttons return to normal state, i.e. is not highlighted',

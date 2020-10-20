@@ -8,15 +8,22 @@
           height="100%"
           block
           raised
+          :outlined="answer.selected"
           elevation="5"
           :disabled="answer.disabled"
+          :color="answer.icon ? 'primary' : ''"
+          @click="selected = +index"
         >
+          <v-icon v-if="answer.icon" class="pa-5 mb-4">
+            {{ answer.value }}
+          </v-icon>
           <p
+            v-else
             :class="
-              `${answer.char.length > 1 ? 'display-2' : 'display-3'} pa-5`
+              `${answer.value.length > 1 ? 'display-2' : 'display-3'} pa-5`
             "
           >
-            {{ answer.char }}
+            {{ answer.value }}
           </p>
         </v-btn>
       </v-col>
@@ -25,15 +32,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import placeholderAudio from '@/assets/audio/placeholder-audio.mp3';
 import yi from '@/assets/audio/characters/yi.mp3';
 import er from '@/assets/audio/characters/er.mp3';
 import san from '@/assets/audio/characters/san.mp3';
 import si from '@/assets/audio/characters/si.mp3';
-import { mdiCellphoneWireless } from '@mdi/js';
+import {
+  mdiDice3,
+  mdiNumeric2,
+  mdiNumeric3,
+  mdiNumeric4,
+  mdiPalmTree,
+} from '@mdi/js';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
-import { Instruction } from '@/common/directives/InstructionDirective';
 
 @Component({
   components: {
@@ -44,74 +56,106 @@ export default class Session extends Vue {
   // eslint-disable-next-line class-methods-use-this
   data() {
     return {
-      showAnswer: false,
       placeholderAudio,
-      itemUnderTestAudio: new Audio(er),
-      itemUnderTestAudioIsPlaying: false,
       yi,
       er,
       san,
       si,
-      mdiCellphoneWireless,
+      selected: 0,
       answers: {
         1: {
-          char: '三',
-          audio: new Audio(san),
-          correct: false,
-          disabled: false,
+          icon: true,
+          value: mdiNumeric2,
+          audio: new Audio(er),
           playing: false,
+          selected: false,
+          match: 3,
         },
         2: {
-          char: '二',
-          audio: new Audio(er),
-          correct: true,
-          disabled: false,
+          icon: false,
+          value: '术',
+          audio: new Audio(placeholderAudio),
           playing: false,
+          selected: false,
+          match: 5,
         },
         3: {
-          char: '四',
-          audio: new Audio(si),
-          correct: false,
-          disabled: false,
+          icon: false,
+          value: '二',
+          audio: new Audio(er),
           playing: false,
+          selected: false,
+          match: 1,
         },
         4: {
-          char: '一',
-          audio: new Audio(yi),
-          correct: false,
-          disabled: false,
+          icon: true,
+          value: mdiNumeric4,
+          audio: new Audio(si),
           playing: false,
+          selected: false,
+          match: 8,
         },
         5: {
-          char: '五',
+          icon: true,
+          value: mdiPalmTree,
           audio: new Audio(placeholderAudio),
-          correct: false,
-          disabled: false,
           playing: false,
+          selected: false,
+          match: 2,
         },
         6: {
-          char: '六',
-          audio: new Audio(placeholderAudio),
-          correct: false,
-          disabled: false,
+          icon: true,
+          value: mdiDice3,
+          audio: new Audio(san),
           playing: false,
+          selected: false,
+          match: 7,
         },
         7: {
-          char: '七',
-          audio: new Audio(placeholderAudio),
-          correct: false,
-          disabled: false,
+          icon: false,
+          value: '三',
+          audio: new Audio(san),
           playing: false,
+          selected: false,
+          match: 6,
         },
         8: {
-          char: '八',
-          audio: new Audio(placeholderAudio),
-          correct: false,
-          disabled: false,
+          icon: false,
+          value: '四',
+          audio: new Audio(si),
           playing: false,
+          selected: false,
+          match: 4,
         },
       },
     };
+  }
+
+  @Watch('selected')
+  onSelectedChanged(val: number, oldVal: number) {
+    // console.log(`selected changed from ${oldVal} to ${val}`);
+
+    const answer = this.$data.answers[val];
+    const oldAnswer = this.$data.answers[oldVal];
+
+    if (answer) {
+      answer.selected = true;
+    }
+
+    if (oldVal === 0) {
+      // only one element selected
+    } else if (val === 0) {
+      // programmatically reset to 0, due to incorrect match
+    } else if (answer.match === oldVal) {
+      // new selection has a match in previous selection
+      // console.log('correct match!!!');
+      answer.selected = true;
+      oldAnswer.selected = true;
+    } else {
+      // new selection does not have a match in previous selection
+      // console.log("that's not right");
+      oldAnswer.selected = false;
+    }
   }
 
   correctHandler(e: Event, index: number) {
@@ -167,13 +211,11 @@ export default class Session extends Vue {
     };
     answer.audio.play();
   }
-
-  mounted() {
-    Instruction.Collection.push(
-      this.$data.itemUnderTestAudio as HTMLMediaElement,
-    );
-  }
 }
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus">
+.v-icon__svg
+  height: 2.6em;
+  width: 2.6em;
+</style>
