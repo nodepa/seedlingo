@@ -36,6 +36,14 @@ module.exports = {
       favicon16: 'logo-m/favicon-16x16.png',
       msTileImage: 'logo-m/msapplication-icon-144x144.png',
     },
+    // workboxPluginMode: 'GenerateSW',
+    workboxPluginMode: 'InjectManifest',
+    workboxOptions: {
+      swSrc: 'src/service-worker.js',
+      importWorkboxFrom: 'local', // see v4.3.1 get-workbox-sw-imports.js
+      // importWorkboxFrom: 'disabled', // see v4.3.1 get-workbox-sw-imports.js
+      // modulePathPrefix: '/wb5.1.4/',
+    },
   },
   transpileDependencies: ['vuetify'],
   chainWebpack: (config) => {
