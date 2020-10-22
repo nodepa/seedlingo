@@ -21,9 +21,9 @@
           width="100"
         >
           种字立爱
-          <span class="caption" if="branch && jobId"
-            >({{ branch }}/{{ jobId }})
-          </span>
+        </span>
+        <span class="caption white--text" if="branch && jobId"
+          >({{ branch }}/{{ jobId }})
         </span>
       </div>
     </v-app-bar>
