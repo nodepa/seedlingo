@@ -16,11 +16,14 @@
           @click="$vuetify.theme.dark = !$vuetify.theme.dark"
         />
         <span
-          class="shrink mt-1 hidden-sm-and-down"
+          :class="`shrink mt-1${branch && jobId ? '' : ' hidden-sm-and-down'}`"
           min-width="100"
           width="100"
         >
           种字立爱
+          <span class="caption" if="branch && jobId"
+            >({{ branch }}/{{ jobId }})
+          </span>
         </span>
       </div>
     </v-app-bar>
@@ -52,6 +55,14 @@ import GetInstructions from '@/Instructions/components/GetInstructions.vue';
   },
 })
 export default class App extends Vue {
+  // eslint-disable-next-line class-methods-use-this
+  data() {
+    return {
+      branch: process.env.VUE_APP_BRANCH,
+      jobId: process.env.VUE_APP_JOB_ID.replaceAll('0', ''),
+    };
+  }
+
   get showGetInstructionsGraphic() {
     return (
       this.$route.name === 'Home' &&
