@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-navigation app grow height="80" color="primary">
+  <v-bottom-navigation app grow height="74" color="primary">
     <HomeButton :is-home-button-disabled="isHomeButtonDisabled" />
     <InstructionsButton :is-home-button-disabled.sync="isHomeButtonDisabled" />
   </v-bottom-navigation>
