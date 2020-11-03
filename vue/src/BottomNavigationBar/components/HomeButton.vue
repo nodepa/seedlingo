@@ -6,6 +6,7 @@
     :to="{ name: 'Home' }"
     data-test="home-button"
     :disabled="isHomeButtonDisabled"
+    @click="$store.commit('showContinueButton', false)"
   >
     <v-icon x-large>{{ mdiHome }}</v-icon>
   </v-btn>

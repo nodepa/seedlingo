@@ -156,5 +156,6 @@
   ],
   "editor.foldingHighlight": false,
   "editor.glyphMargin": false,
-  "editor.folding": false
+  "editor.folding": false,
+  "vim.visualstar": true
 }

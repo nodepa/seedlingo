@@ -5,7 +5,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       'and 4 alternative selectable answers',
     () => {
       cy.log(
-        '马丽 sees a vibrating loudspeaker/mouth talking and hears the sound of a corresponding character.',
+        '1. 马丽 sees a vibrating loudspeaker/mouth talking and hears the sound of a corresponding character.',
       );
       cy.visit('/lesson/1', {
         onBeforeLoad(window) {
@@ -33,14 +33,14 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       cy.get('@animation.play').should('have.callCount', 0);
 
       cy.log(
-        '马丽 sees 4 characters, of which one is the correct match to the sound played.',
+        '2. 马丽 sees 4 characters, of which one is the correct match to the sound played.',
       );
       cy.get('[data-test="choice-1-button"]').should('be.visible');
       cy.get('[data-test="choice-2-button"]').should('be.visible');
       cy.get('[data-test="choice-3-button"]').should('be.visible');
       cy.get('[data-test="choice-4-button"]').should('be.visible');
 
-      cy.log('马丽 taps the loudspeaker to hear the audio again.');
+      cy.log('3. 马丽 taps the loudspeaker to hear the audio again.');
       cy.get('[data-test="item-under-test-audio-button"]').click();
       cy.get('@audio.play').should('have.callCount', 2); // 1 + 1
       cy.get('@animation.play').should('have.callCount', 2); // 0 + 2
@@ -51,7 +51,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       // ### pending ###
       // ###############
       cy.log(
-        '马丽 taps the wrong character/a non-corresponding character, and sees the character vibrate, flash red, hears the sound for the incorrect character, then become disabled and non-interactive, then the "item under test" sound plays again. 马丽 can interrupt this by tapping another option, upon which currently playing audio stops, animations stop and previous incorrect entry is immediately rendered disabled.',
+        '4. 马丽 taps the wrong character/a non-corresponding character, and sees the character vibrate, flash red, hears the sound for the incorrect character, then become disabled and non-interactive, then the "item under test" sound plays again. 马丽 can interrupt this by tapping another option, upon which currently playing audio stops, animations stop and previous incorrect entry is immediately rendered disabled.',
       );
       // Normally, we would set up the data here. I'm going to go with
       // foreknowledge for now. At the time of writing this test, the data-set
@@ -83,7 +83,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       // ### pending ###
       // ###############
       // cy.log(
-      //   '马丽 taps the right character/the corresponding character, and sees the character expand to fill the screen, flash green or display fireworks, audio is re-played (?), then screen transitions to the next exercise.',
+      //   '5. 马丽 taps the right character/the corresponding character, and sees the character expand to fill the screen, flash green or display fireworks, audio is re-played (?), then screen transitions to the next exercise.',
       // );
 
       // ###############
