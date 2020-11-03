@@ -9,8 +9,13 @@ const rootStore: StoreOptions<RootState> = {
   strict: process.env.NODE_ENV !== 'production',
   state: {
     version: '1.0.0',
+    showContinueButton: false,
   },
-  mutations: {},
+  mutations: {
+    showContinueButton(state, show: boolean) {
+      state.showContinueButton = show;
+    },
+  },
   actions: {},
   modules: {
     instructionsStore,

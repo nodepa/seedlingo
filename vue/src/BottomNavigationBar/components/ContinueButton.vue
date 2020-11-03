@@ -1,0 +1,70 @@
+<template>
+  <transition>
+    <v-btn
+      v-if="showContinueButton()"
+      ref="continueButton"
+      v-instruction="placeholderAudio"
+      color="success"
+      data-test="continue-button"
+      icon
+      :to="to"
+      @click="$store.commit('showContinueButton', false)"
+    >
+      <v-icon size="50" color="success">{{ mdiForward }}</v-icon>
+    </v-btn>
+  </transition>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { mdiForward } from '@mdi/js';
+import placeholderAudio from '@/assets/audio/placeholder-audio.mp3';
+
+@Component
+export default class ContinueButton extends Vue {
+  // eslint-disable-next-line class-methods-use-this
+  data() {
+    return {
+      mdiForward,
+      placeholderAudio,
+    };
+  }
+
+  @Prop({ default: '' }) readonly to!: string;
+
+  showContinueButton() {
+    return this.$store.state.showContinueButton;
+  }
+
+  mounted() {
+    this.$watch(
+      () => {
+        return this.showContinueButton();
+      },
+      (show: boolean) => {
+        if (show) {
+          const animation = (this.$refs.continueButton as Vue).$el.animate(
+            [
+              { backgroundColor: 'inherit' },
+              {
+                backgroundColor: `${this.$vuetify.theme.currentTheme.success}66`,
+              },
+              { backgroundColor: 'inherit' },
+            ],
+            { duration: 1300, iterations: Infinity },
+          );
+
+          (this.$refs.continueButton as Vue).$el.addEventListener(
+            'click',
+            () => {
+              animation.cancel();
+            },
+          );
+        }
+      },
+    );
+  }
+}
+</script>
+
+<style lang="stylus"></style>
