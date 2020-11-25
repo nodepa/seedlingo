@@ -1,11 +1,11 @@
 <template>
   <v-btn
     ref="button"
-    height="100%"
     block
     raised
     elevation="5"
     :disabled="disabled"
+    :height="height"
     :color="errorColor ? errorColor : color"
     @click="$emit('click')"
   >
@@ -39,6 +39,8 @@ export default class AnswerButton extends Vue {
   @Prop({ default: '' }) readonly color!: string;
 
   @Prop({ default: false }) readonly disabled!: boolean;
+
+  @Prop({ default: '100%' }) readonly height!: string;
 
   @PropSync('isBuzzing', { type: Boolean, default: false })
   syncedIsBuzzing!: boolean;

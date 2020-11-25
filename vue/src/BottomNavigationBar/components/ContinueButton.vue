@@ -7,7 +7,6 @@
       color="success"
       data-test="continue-button"
       icon
-      :to="to"
       @click="$store.commit('showContinueButton', false)"
     >
       <v-icon size="50" color="success">{{ mdiForward }}</v-icon>
@@ -16,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { mdiForward } from '@mdi/js';
 import placeholderAudio from '@/assets/audio/placeholder-audio.mp3';
 
@@ -29,8 +28,6 @@ export default class ContinueButton extends Vue {
       placeholderAudio,
     };
   }
-
-  @Prop({ default: '' }) readonly to!: string;
 
   showContinueButton() {
     return this.$store.state.showContinueButton;
