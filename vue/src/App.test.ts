@@ -9,12 +9,13 @@ import InstructionDirective from '@/common/directives/InstructionDirective';
 
 // Helpers
 import { createLocalVue, mount } from '@vue/test-utils';
-import { animate } from '@/testHelpers/FunctionOverrides';
+import { animate, play } from '@/test_helpers/FunctionOverrides';
 
 // Item under test
 import App from '@/App.vue';
 
 window.Element.prototype.animate = animate;
+HTMLMediaElement.prototype.play = play;
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
@@ -35,7 +36,7 @@ const router = new VueRouter({
 });
 
 describe('App.vue', () => {
-  let vuetify: typeof Vuetify;
+  let vuetify: Vuetify;
 
   beforeEach(() => {
     vuetify = new Vuetify();
@@ -76,5 +77,19 @@ describe('App.vue', () => {
     });
 
     expect(wrapper.find('.v-bottom-navigation').exists()).toBe(true);
+  });
+
+  it('shows jobId and branch when available', () => {
+    // jest.mock('process.env');
+    process.env.VUE_APP_BRANCH = 'master';
+    process.env.VUE_APP_JOB_ID = '000000900';
+    const wrapper = mount(App, {
+      localVue,
+      router,
+      vuetify,
+      store,
+    });
+    expect(wrapper.vm.$data.branch).toBe('master');
+    expect(wrapper.vm.$data.jobId).toBe('900');
   });
 });

@@ -1,0 +1,33 @@
+{
+  "lesson-id": "26c4e124-0ff1-4a20-8dc0-1473e17ca4cd",
+  "lesson-index": 6,
+  "items": [
+    {
+      "id": "265ba7e4-f7bf-4abb-ad6a-318fefbaf40e",
+      "type": "cloze",
+      "word": "我有%{number}个%{relation}。",
+      "accepts": {
+        "number": { "tag": "number1To10"},
+        "relation": { "tag": "relation" }
+      },
+      "audioName": "placeholder-audio.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "2c6bdb77-b019-42b0-a0d2-76bc4f666a29",
+      "type": "cloze",
+      "word": "我的%{relation1}有%{number}个%{relation2}。",
+      "accepts": {
+        "relation1": { "tag": "relation" },
+        "number": { "tag": "number1To10"},
+        "relation2": { "tag": "relation" }
+      },
+      "audioName": "placeholder-audio.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    }
+  ]
+}

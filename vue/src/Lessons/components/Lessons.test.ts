@@ -8,7 +8,7 @@ import InstructionDirective from '@/common/directives/InstructionDirective';
 
 // Helpers
 import { createLocalVue, Wrapper, shallowMount } from '@vue/test-utils';
-import { pause, play } from '@/testHelpers/FunctionOverrides';
+import { pause, play } from '@/test_helpers/FunctionOverrides';
 
 // Item under test
 import Lessons from './Lessons.vue';
@@ -21,7 +21,7 @@ window.HTMLMediaElement.prototype.pause = pause;
 window.HTMLMediaElement.prototype.play = play;
 
 describe('Lessons.vue (shallow)', () => {
-  let vuetify: typeof Vuetify;
+  let vuetify: Vuetify;
   let wrapper: Wrapper<Vue>;
 
   beforeEach(() => {

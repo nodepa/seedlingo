@@ -81,9 +81,6 @@ export default class InstructionsButton extends Vue {
             backgroundColor: `${this.$vuetify.theme.currentTheme.accent}66`,
           },
           { backgroundColor: 'inherit' },
-          // { opacity: '1' },
-          // { opacity: '0.4' },
-          // { opacity: '1' },
         ],
         { duration: 1300, iterations: Infinity },
       );
