@@ -1,4 +1,3 @@
-/* eslint-disable import/no-duplicates */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 

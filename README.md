@@ -1,4 +1,4 @@
-# 立爱识字 Li Ai Shizi
+# 种字立爱 Zhong Zi Li Ai
 
 A mobile-first literacy webapp for adult Chinese.
 

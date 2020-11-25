@@ -1,0 +1,86 @@
+{
+  "lesson-id": "981252ba-3fba-465f-a204-3517f336dbcb",
+  "lesson-index": 3,
+  "items": [
+    {
+      "id": "0d66532e-7d41-4ff8-a52a-042f676655da",
+      "word": "家庭",
+      "audioName": "家庭.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiFamilyTree"]
+    },
+    {
+      "id": "9f4c842a-e36a-48b1-aa4b-955aedef35d2",
+      "word": "我",
+      "audioName": "我.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiAccount"]
+    },
+    {
+      "id": "843f4af4-5dcb-44a4-b690-759db29999c4",
+      "word": "的",
+      "audioName": "placeholder-audio.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "0ec9e1ed-e1a5-4fb4-a9b8-5822ea4399e2",
+      "word": "我的家庭",
+      "audioName": "我的家庭.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiAccount", "mdiFamilyTree"]
+    },
+    {
+      "id": "8da1e3a6-3268-40da-8707-be2a2c902c16",
+      "word": "妈妈",
+      "audioName": "妈妈.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "3773c800-4f9b-4951-b7a7-9e0c9861d089",
+      "word": "爸爸",
+      "audioName": "爸爸.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "b521f4d2-1084-4f17-af18-1bd6738d23a0",
+      "word": "姐姐",
+      "audioName": "placeholder-audio.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "8ee121b4-8522-4e16-91b7-8a2af070efd8",
+      "word": "妹妹",
+      "audioName": "placeholder-audio.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "802939da-7ac0-409c-bfb2-b0d6f81e2f56",
+      "word": "弟弟",
+      "audioName": "弟弟.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754",
+      "word": "哥哥",
+      "audioName": "哥哥.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    }
+  ]
+}

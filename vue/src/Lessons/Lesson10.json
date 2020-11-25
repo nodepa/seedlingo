@@ -1,0 +1,59 @@
+{
+  "lesson-id": "2eb619b1-2791-4054-98b7-01b055dc68c2",
+  "lesson-index": 10,
+  "items": [
+    {
+      "id": "de11e0d7-2ac0-4f35-966d-abb0d820a3cb",
+      "word": "她",
+      "audioName": "placeholder-audio.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "c53add23-aba4-42f5-9fbb-d6a6d1d8882c",
+      "word": "他",
+      "audioName": "placeholder-audio.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "5ded3df0-eda1-458b-a355-4c21e764154b",
+      "type": "cloze",
+      "word": "我的%{relation}%{number}岁。",
+      "accepts": {
+        "relation": { "tag": "relation" },
+        "number": { "tag": "number"}
+      },
+      "audioName": "placeholder-audio.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "3ed79306-e6c0-4e93-957f-81c02e512774",
+      "type": "cloze",
+      "word": "她%{number}岁。",
+      "accepts": {
+        "number": { "tag": "number"}
+      },
+      "audioName": "placeholder-audio.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "9fd88764-4570-4318-9449-ae9a0c5c132d",
+      "type": "cloze",
+      "word": "他%{number}岁。",
+      "accepts": {
+        "number": { "tag": "number"}
+      },
+      "audioName": "placeholder-audio.mp3",
+      "pictureName": "",
+      "videoName": "",
+      "symbolName": ["mdiCellphoneWireless"]
+    }
+  ]
+}

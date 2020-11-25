@@ -275,25 +275,25 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
-          263,
-          262,
-          265,
+          268,
+          267,
+          270,
         },
         "deps": Array [
           Dep {
-            "id": 263,
+            "id": 268,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 262,
+            "id": 267,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 265,
+            "id": 270,
             "subs": Array [
               [Circular],
             ],
@@ -320,11 +320,11 @@ Instruction {
           "cb": [Function],
           "deep": false,
           "depIds": Set {
-            258,
+            263,
           },
           "deps": Array [
             Dep {
-              "id": 258,
+              "id": 263,
               "subs": Array [
                 [Circular],
               ],
@@ -348,25 +348,25 @@ Instruction {
           "cb": [Function],
           "deep": false,
           "depIds": Set {
-            263,
-            262,
-            265,
+            268,
+            267,
+            270,
           },
           "deps": Array [
             Dep {
-              "id": 263,
+              "id": 268,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 262,
+              "id": 267,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 265,
+              "id": 270,
               "subs": Array [
                 [Circular],
               ],
@@ -442,25 +442,25 @@ Instruction {
       "cb": [Function],
       "deep": false,
       "depIds": Set {
-        263,
-        262,
-        265,
+        268,
+        267,
+        270,
       },
       "deps": Array [
         Dep {
-          "id": 263,
+          "id": 268,
           "subs": Array [
             [Circular],
           ],
         },
         Dep {
-          "id": 262,
+          "id": 267,
           "subs": Array [
             [Circular],
           ],
         },
         Dep {
-          "id": 265,
+          "id": 270,
           "subs": Array [
             [Circular],
           ],
@@ -487,11 +487,11 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
-          258,
+          263,
         },
         "deps": Array [
           Dep {
-            "id": 258,
+            "id": 263,
             "subs": Array [
               [Circular],
             ],
@@ -515,25 +515,25 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
-          263,
-          262,
-          265,
+          268,
+          267,
+          270,
         },
         "deps": Array [
           Dep {
-            "id": 263,
+            "id": 268,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 262,
+            "id": 267,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 265,
+            "id": 270,
             "subs": Array [
               [Circular],
             ],
@@ -836,25 +836,25 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
-          274,
-          273,
-          276,
+          279,
+          278,
+          281,
         },
         "deps": Array [
           Dep {
-            "id": 274,
+            "id": 279,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 273,
+            "id": 278,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 276,
+            "id": 281,
             "subs": Array [
               [Circular],
             ],
@@ -881,11 +881,11 @@ Instruction {
           "cb": [Function],
           "deep": false,
           "depIds": Set {
-            269,
+            274,
           },
           "deps": Array [
             Dep {
-              "id": 269,
+              "id": 274,
               "subs": Array [
                 [Circular],
               ],
@@ -909,25 +909,25 @@ Instruction {
           "cb": [Function],
           "deep": false,
           "depIds": Set {
-            274,
-            273,
-            276,
+            279,
+            278,
+            281,
           },
           "deps": Array [
             Dep {
-              "id": 274,
+              "id": 279,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 273,
+              "id": 278,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 276,
+              "id": 281,
               "subs": Array [
                 [Circular],
               ],
@@ -1003,25 +1003,25 @@ Instruction {
       "cb": [Function],
       "deep": false,
       "depIds": Set {
-        274,
-        273,
-        276,
+        279,
+        278,
+        281,
       },
       "deps": Array [
         Dep {
-          "id": 274,
+          "id": 279,
           "subs": Array [
             [Circular],
           ],
         },
         Dep {
-          "id": 273,
+          "id": 278,
           "subs": Array [
             [Circular],
           ],
         },
         Dep {
-          "id": 276,
+          "id": 281,
           "subs": Array [
             [Circular],
           ],
@@ -1048,11 +1048,11 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
-          269,
+          274,
         },
         "deps": Array [
           Dep {
-            "id": 269,
+            "id": 274,
             "subs": Array [
               [Circular],
             ],
@@ -1076,25 +1076,25 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
-          274,
-          273,
-          276,
+          279,
+          278,
+          281,
         },
         "deps": Array [
           Dep {
-            "id": 274,
+            "id": 279,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 273,
+            "id": 278,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 276,
+            "id": 281,
             "subs": Array [
               [Circular],
             ],
@@ -4297,7 +4297,7 @@ Instruction {
               "radioOn": "mdi-radiobox-marked",
               "ratingEmpty": "mdi-star-outline",
               "ratingFull": "mdi-star",
-              "ratingHalf": "mdi-star-half",
+              "ratingHalf": "mdi-star-half-full",
               "sort": "mdi-arrow-up",
               "subgroup": "mdi-menu-down",
               "success": "mdi-check-circle",
@@ -4368,6 +4368,11 @@ Instruction {
                     "page": "Goto Page {0}",
                     "previous": "Previous page",
                     "wrapper": "Pagination Navigation",
+                  },
+                },
+                "rating": Object {
+                  "ariaLabel": Object {
+                    "icon": "Rating {0} of {1}",
                   },
                 },
                 "timePicker": Object {
@@ -5089,6 +5094,11 @@ Instruction {
                     "wrapper": "Pagination Navigation",
                   },
                 },
+                "rating": Object {
+                  "ariaLabel": Object {
+                    "icon": "Rating {0} of {1}",
+                  },
+                },
                 "timePicker": Object {
                   "am": "AM",
                   "pm": "PM",
@@ -5753,7 +5763,7 @@ Instruction {
           "radioOn": "mdi-radiobox-marked",
           "ratingEmpty": "mdi-star-outline",
           "ratingFull": "mdi-star",
-          "ratingHalf": "mdi-star-half",
+          "ratingHalf": "mdi-star-half-full",
           "sort": "mdi-arrow-up",
           "subgroup": "mdi-menu-down",
           "success": "mdi-check-circle",
@@ -5824,6 +5834,11 @@ Instruction {
                 "page": "Goto Page {0}",
                 "previous": "Previous page",
                 "wrapper": "Pagination Navigation",
+              },
+            },
+            "rating": Object {
+              "ariaLabel": Object {
+                "icon": "Rating {0} of {1}",
               },
             },
             "timePicker": Object {
@@ -7119,7 +7134,7 @@ Instruction {
                 "radioOn": "mdi-radiobox-marked",
                 "ratingEmpty": "mdi-star-outline",
                 "ratingFull": "mdi-star",
-                "ratingHalf": "mdi-star-half",
+                "ratingHalf": "mdi-star-half-full",
                 "sort": "mdi-arrow-up",
                 "subgroup": "mdi-menu-down",
                 "success": "mdi-check-circle",
@@ -7190,6 +7205,11 @@ Instruction {
                       "page": "Goto Page {0}",
                       "previous": "Previous page",
                       "wrapper": "Pagination Navigation",
+                    },
+                  },
+                  "rating": Object {
+                    "ariaLabel": Object {
+                      "icon": "Rating {0} of {1}",
                     },
                   },
                   "timePicker": Object {
@@ -7911,6 +7931,11 @@ Instruction {
                       "wrapper": "Pagination Navigation",
                     },
                   },
+                  "rating": Object {
+                    "ariaLabel": Object {
+                      "icon": "Rating {0} of {1}",
+                    },
+                  },
                   "timePicker": Object {
                     "am": "AM",
                     "pm": "PM",
@@ -8575,7 +8600,7 @@ Instruction {
             "radioOn": "mdi-radiobox-marked",
             "ratingEmpty": "mdi-star-outline",
             "ratingFull": "mdi-star",
-            "ratingHalf": "mdi-star-half",
+            "ratingHalf": "mdi-star-half-full",
             "sort": "mdi-arrow-up",
             "subgroup": "mdi-menu-down",
             "success": "mdi-check-circle",
@@ -8646,6 +8671,11 @@ Instruction {
                   "page": "Goto Page {0}",
                   "previous": "Previous page",
                   "wrapper": "Pagination Navigation",
+                },
+              },
+              "rating": Object {
+                "ariaLabel": Object {
+                  "icon": "Rating {0} of {1}",
                 },
               },
               "timePicker": Object {
@@ -9362,48 +9392,78 @@ Instruction {
           "cb": [Function],
           "deep": true,
           "depIds": Set {
-            249,
-            199,
-            209,
-            210,
+            254,
+            204,
+            214,
+            215,
+            222,
+            221,
+            220,
+            219,
+            218,
             217,
             216,
-            215,
-            214,
+            205,
+            206,
             213,
             212,
             211,
-            200,
-            201,
+            210,
+            209,
             208,
             207,
-            206,
-            205,
-            204,
-            203,
-            202,
           },
           "deps": Array [
             Dep {
-              "id": 249,
+              "id": 254,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 199,
+              "id": 204,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 209,
+              "id": 214,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 210,
+              "id": 215,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 222,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 221,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 220,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 219,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 218,
               "subs": Array [
                 [Circular],
               ],
@@ -9421,13 +9481,13 @@ Instruction {
               ],
             },
             Dep {
-              "id": 215,
+              "id": 205,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 214,
+              "id": 206,
               "subs": Array [
                 [Circular],
               ],
@@ -9451,13 +9511,13 @@ Instruction {
               ],
             },
             Dep {
-              "id": 200,
+              "id": 210,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 201,
+              "id": 209,
               "subs": Array [
                 [Circular],
               ],
@@ -9470,36 +9530,6 @@ Instruction {
             },
             Dep {
               "id": 207,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 206,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 205,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 204,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 203,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 202,
               "subs": Array [
                 [Circular],
               ],
@@ -9565,25 +9595,25 @@ Instruction {
           "cb": [Function],
           "deep": false,
           "depIds": Set {
-            191,
-            192,
-            195,
+            196,
+            197,
+            200,
           },
           "deps": Array [
             Dep {
-              "id": 191,
+              "id": 196,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 192,
+              "id": 197,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 195,
+              "id": 200,
               "subs": Array [
                 [Circular],
               ],
@@ -9671,48 +9701,78 @@ Instruction {
         "cb": [Function],
         "deep": true,
         "depIds": Set {
-          249,
-          199,
-          209,
-          210,
+          254,
+          204,
+          214,
+          215,
+          222,
+          221,
+          220,
+          219,
+          218,
           217,
           216,
-          215,
-          214,
+          205,
+          206,
           213,
           212,
           211,
-          200,
-          201,
+          210,
+          209,
           208,
           207,
-          206,
-          205,
-          204,
-          203,
-          202,
         },
         "deps": Array [
           Dep {
-            "id": 249,
+            "id": 254,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 199,
+            "id": 204,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 209,
+            "id": 214,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 210,
+            "id": 215,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 222,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 221,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 220,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 219,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 218,
             "subs": Array [
               [Circular],
             ],
@@ -9730,13 +9790,13 @@ Instruction {
             ],
           },
           Dep {
-            "id": 215,
+            "id": 205,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 214,
+            "id": 206,
             "subs": Array [
               [Circular],
             ],
@@ -9760,13 +9820,13 @@ Instruction {
             ],
           },
           Dep {
-            "id": 200,
+            "id": 210,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 201,
+            "id": 209,
             "subs": Array [
               [Circular],
             ],
@@ -9779,36 +9839,6 @@ Instruction {
           },
           Dep {
             "id": 207,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 206,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 205,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 204,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 203,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 202,
             "subs": Array [
               [Circular],
             ],
@@ -9874,25 +9904,25 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
-          191,
-          192,
-          195,
+          196,
+          197,
+          200,
         },
         "deps": Array [
           Dep {
-            "id": 191,
+            "id": 196,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 192,
+            "id": 197,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 195,
+            "id": 200,
             "subs": Array [
               [Circular],
             ],

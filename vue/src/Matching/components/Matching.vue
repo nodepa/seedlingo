@@ -1,26 +1,35 @@
 <template>
   <v-container fill-height fluid>
-    <v-row align="stretch" justify="space-around">
-      <v-col v-for="(answer, index) in answers" :key="index">
+    <v-row align="stretch" justify="space-around" class="fill-height">
+      <v-col
+        v-for="(answer, index) in exerciseItems"
+        :key="index"
+        cols="6"
+        sm="3"
+      >
         <AnswerButton
           :ref="`answer${index}Button`"
-          :data-test="`answer-${index}-button`"
+          :data-test="`answer-${+index + 1}-button`"
           :is-playing="answer.audio.isPlaying"
           :is-buzzing.sync="answer.isBuzzing"
           :color="answer.color"
           @click="selectAndPlay(answer, +index)"
         >
-          <v-icon v-if="answer.isIcon" class="pa-4 mb-3">
-            {{ answer.value }}
-          </v-icon>
-          <p
-            v-else
-            :class="
-              `${answer.value.length > 1 ? 'display-2' : 'display-3'} pa-4`
-            "
-          >
-            {{ answer.value }}
-          </p>
+          <template v-if="answer.isIcon">
+            <v-icon
+              v-for="(icon, iconIndex) in answer.value"
+              :key="iconIndex"
+              :class="getSpacing(answer.value.length, iconIndex)"
+              :style="`font-size: ${2.6 - 0.3 * answer.value.length}rem`"
+            >
+              {{ icon }}
+            </v-icon>
+          </template>
+          <template v-else>
+            <p :style="`font-size: ${2.6 - 0.3 * answer.value.length}rem`">
+              {{ answer.value }}
+            </p>
+          </template>
         </AnswerButton>
       </v-col>
     </v-row>
@@ -28,11 +37,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import AnswerButton from '@/common/components/AnswerButton.vue';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
-import getExerciseTestData from '@/Matching/data/MatchingTestData';
-import { MatchingAnswer } from '@/Matching/MatchingTypes';
+import { MatchingItem } from '@/Matching/MatchingTypes';
 
 @Component({
   components: {
@@ -47,23 +55,43 @@ export default class Matching extends Vue {
 
   charColor = '';
 
+  @Prop(Array) exerciseProp!: Array<MatchingItem>;
+
+  @Watch('exerciseProp')
+  onExercisePropChanged() {
+    Object.assign(this.$data, this.getDefaultData());
+  }
+
   // eslint-disable-next-line class-methods-use-this
   data() {
+    return this.getDefaultData();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getDefaultData() {
+    this.colors = ['deep-purple', 'pink', 'orange', 'teal'];
     return {
-      answers: {} as Array<MatchingAnswer>,
       selected: -1,
+      localExerciseItems: [] as Array<MatchingItem>,
     };
   }
 
-  created() {
-    this.$data.answers = getExerciseTestData();
+  get exerciseItems() {
+    if (this.$data.localExerciseItems.length === 0) {
+      this.$data.localExerciseItems = this.exerciseProp;
+    }
+    return this.$data.localExerciseItems;
   }
 
-  selectAndPlay(answer: MatchingAnswer, index: number) {
+  set exerciseItems(items: Array<MatchingItem>) {
+    this.$data.localExerciseItems = items;
+  }
+
+  selectAndPlay(answer: MatchingItem, index: number) {
     this.$data.selected = index;
-    Object.values(this.$data.answers as Array<MatchingAnswer>).forEach((el) => {
-      if (el.audio.isPlaying) {
-        el.audio.cancel();
+    this.exerciseItems.forEach((item) => {
+      if (item.audio.isPlaying) {
+        item.audio.cancel();
       }
     });
     answer.audio.play();
@@ -75,8 +103,8 @@ export default class Matching extends Vue {
   }
 
   public checkForMatchAndReOrder(currIndex: number, prevIndex: number) {
-    const currAnswer = this.$data.answers[currIndex];
-    const prevAnswer = this.$data.answers[prevIndex];
+    const currAnswer = this.exerciseItems[currIndex];
+    const prevAnswer = this.exerciseItems[prevIndex];
 
     if (currIndex > -1 && currAnswer.isMatched) {
       // 1 item selected, but already matched
@@ -109,12 +137,13 @@ export default class Matching extends Vue {
       this.$data.selected = -1;
 
       //     - re-order
+      // can probably eliminate temp allAnswers here
       const allAnswers = Object.values(
-        this.$data.answers as Array<MatchingAnswer>,
+        this.exerciseItems as Array<MatchingItem>,
       );
 
-      const origCurrAnswerIndex = allAnswers.indexOf(currAnswer) + 1;
-      const origPrevAnswerIndex = allAnswers.indexOf(prevAnswer) + 1;
+      const origCurrAnswerIndex = allAnswers.indexOf(currAnswer);
+      const origPrevAnswerIndex = allAnswers.indexOf(prevAnswer);
 
       // debug output: print order of answers collection
       // const m = {
@@ -128,8 +157,8 @@ export default class Matching extends Vue {
       //   四: '四',
       // };
       // let concat = 'Before re-ordering\n';
-      // Object.values(allAnswers).forEach((el, i) => {
-      //   concat += `${i + 1}: ${m[el.value.substring(0, 6)]}  ->  ${el.match}${
+      // Object.values(allAnswers).forEach((item, i) => {
+      //   concat += `${i + 1}: ${m[item.value.substring(0, 6)]}  ->  ${item.match}${
       //     i === origCurrAnswerIndex - 1 || i === origPrevAnswerIndex - 1
       //       ? '*'
       //       : ''
@@ -153,68 +182,70 @@ export default class Matching extends Vue {
       // id latest previous match
       // note: lastMatched is zero-index-based
       let lastMatched = -1;
-      allAnswers.forEach((el: MatchingAnswer, index: number) => {
-        if (el.isMatched) {
+      allAnswers.forEach((item: MatchingItem, index: number) => {
+        if (item.isMatched) {
           lastMatched = index;
         }
       });
       lastMatched += 1;
 
-      // keep relative sort order within pair
+      // add last selected before the unmatched answers
       allAnswers.splice(lastMatched, 0, currAnswer);
+      // keep relative sort order within pair
       if (origCurrAnswerIndex > origPrevAnswerIndex) {
         allAnswers.splice(lastMatched, 0, prevAnswer);
-        prevAnswer.match = lastMatched + 2;
-        currAnswer.match = lastMatched + 1;
+        prevAnswer.match = lastMatched + 1;
+        currAnswer.match = lastMatched;
       } else {
         allAnswers.splice(lastMatched + 1, 0, prevAnswer);
-        currAnswer.match = lastMatched + 2;
-        prevAnswer.match = lastMatched + 1;
+        currAnswer.match = lastMatched + 1;
+        prevAnswer.match = lastMatched;
       }
 
       // 2 - any 'match' link lower than
       // re-map internal matching given re-ordering
-      allAnswers.forEach((el) => {
-        if (!el.isMatched) {
+      allAnswers.forEach((item) => {
+        if (!item.isMatched) {
           // include new pair in lastMatched
-          // if (el.match <= lastMatched + 2) {
+          // if (item.match <= lastMatched + 2) {
           //   // eslint-disable-next-line no-param-reassign
-          //   el.match += lastMatched + 2 - el.match + 1;
+          //   item.match += lastMatched + 2 - item.match + 1;
           // }
           if (
-            el.match < origCurrAnswerIndex &&
-            el.match < origPrevAnswerIndex
+            item.match < origCurrAnswerIndex &&
+            item.match < origPrevAnswerIndex
           ) {
             // eslint-disable-next-line no-param-reassign
-            el.match += 2;
+            item.match += 2;
           } else if (
-            el.match < origCurrAnswerIndex ||
-            el.match < origPrevAnswerIndex
+            item.match < origCurrAnswerIndex ||
+            item.match < origPrevAnswerIndex
           ) {
             // eslint-disable-next-line no-param-reassign
-            el.match += 1;
+            item.match += 1;
           }
         }
       });
 
       // debug output: print order of answers collection
       // concat = 'After re-ordering\n';
-      // Object.values(allAnswers).forEach((el, i) => {
-      //   concat += `${i + 1}: ${m[el.value.substring(0, 6)]}  ->  ${el.match}\n`;
+      // Object.values(allAnswers).forEach((item, i) => {
+      //   concat += `${i + 1}: ${m[item.value.substring(0, 6)]}  ->  ${item.match}\n`;
       // });
       // console.log(`${concat}\n\n`);
       // end debug output
 
-      this.$data.answers = Object.fromEntries(
-        allAnswers.map((ans, index) => {
-          return [index + 1, ans];
-        }),
-      );
+      // this.$data.answers = Object.fromEntries(
+      //   allAnswers.map((ans, index) => {
+      //     return [index, ans];
+      //   }),
+      // );
+      this.exerciseItems = allAnswers;
 
       // if all answers are matched up, continue!
       if (
-        !allAnswers.reduce((countMatched, el) => {
-          return el.isMatched ? countMatched - 1 : countMatched;
+        !allAnswers.reduce((countMatched, item) => {
+          return item.isMatched ? countMatched - 1 : countMatched;
         }, allAnswers.length)
       ) {
         // all answers have been matched
@@ -247,11 +278,25 @@ export default class Matching extends Vue {
       prevAnswer.color = prevAnswer.isIcon ? this.iconColor : this.charColor;
     }
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  getSpacing(itemCount: number, index: number): string {
+    if (itemCount > 1) {
+      if (index === 0) {
+        return 'mr-n4';
+      }
+      if (index === itemCount - 1) {
+        return 'ml-n4';
+      }
+      return 'mx-n4';
+    }
+    return '';
+  }
 }
 </script>
 
 <style lang="stylus">
 .v-icon__svg
-  height: 2.6em;
-  width: 2.6em;
+  height: 1.8em;
+  width: 1.8em;
 </style>

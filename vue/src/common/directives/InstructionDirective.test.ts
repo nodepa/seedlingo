@@ -6,7 +6,7 @@ import Badge from '@/common/components/Badge.vue';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 
 // Helpers
-import { pause, play } from '@/testHelpers/FunctionOverrides';
+import { pause, play } from '@/test_helpers/FunctionOverrides';
 
 // Item under test
 import {
@@ -19,7 +19,7 @@ window.HTMLMediaElement.prototype.play = play;
 
 let vm: Vue;
 let instruction: Instruction;
-let vuetify: typeof Vuetify;
+let vuetify: Vuetify;
 const audioPath = 'http://just.a.test/audio.mp3';
 
 beforeEach(() => {
