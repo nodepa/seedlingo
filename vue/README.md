@@ -1,4 +1,4 @@
-# 立爱识字v
+# 种字立爱v
 
 ## Project setup
 ```
