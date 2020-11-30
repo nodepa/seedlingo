@@ -2,7 +2,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
   it(
     'Displays the multiple-choice screen with ' +
       'vibrating loudspeaker/mouth talking, ' +
-      'and 4 alternative selectable answers',
+      'and 4 selectable options',
     () => {
       cy.log('**1. 马丽 sees a vibrating loudspeaker/mouth talking**');
       cy.log('-- hears the audio of a corresponding word');
@@ -21,25 +21,33 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       cy.get('[data-test="get-instructions-component"]').should(
         'not.be.visible',
       );
-      cy.get('[data-test="item-under-test-audio-button"]').should('be.visible');
-      // 3 ani.animate called: 1 toggle-instructions, 2 item-under-test-audio-button
+      cy.get('[data-test="item-under-test-button"]').should('be.visible');
+      // 3 ani.animate called: 1 toggle-instructions, 2 item-under-test--button
       cy.get('@animation.animate').should('have.callCount', 3);
-      // 2 ani.cancel called: 2 item-under-test-audio-button mount
+      // 2 ani.cancel called: 2 item-under-test-button mount
       cy.get('@animation.cancel').should('have.callCount', 2);
-      // 1 audio.play called: item-under-test-audio-button auto on load
+      // 1 audio.play called: item-under-test-button auto on load
       cy.get('@audio.play').should('have.callCount', 1);
       // 0 animation.play called (ani created on first play, no repeats)
       cy.get('@animation.play').should('have.callCount', 0);
 
       cy.log('**2. 马丽 sees 4 words**');
       cy.log('-- of which one is the correct match to the audio played.');
-      cy.get('[data-test="choice-1-button"]').should('be.visible');
-      cy.get('[data-test="choice-2-button"]').should('be.visible');
-      cy.get('[data-test="choice-3-button"]').should('be.visible');
-      cy.get('[data-test="choice-4-button"]').should('be.visible');
+      cy.get('[data-test="option-button-1"]')
+        .as('option1')
+        .should('be.visible');
+      cy.get('[data-test="option-button-2"]')
+        .as('option2')
+        .should('be.visible');
+      cy.get('[data-test="option-button-3"]')
+        .as('option3')
+        .should('be.visible');
+      cy.get('[data-test="option-button-4"]')
+        .as('option4')
+        .should('be.visible');
 
       cy.log('**3. 马丽 taps the loudspeaker to hear the audio again.**');
-      cy.get('[data-test="item-under-test-audio-button"]').click();
+      cy.get('[data-test="item-under-test-button"]').click();
       cy.get('@audio.play').should('have.callCount', 2); // 1 + 1
       cy.get('@animation.play').should('have.callCount', 2); // 0 + 2
       cy.get('@animation.animate').should('have.callCount', 3); // 3 + 0
@@ -60,9 +68,9 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       // Normally, we would set up the data here. I'm going to go with
       // foreknowledge for now. At the time of writing this test, the data-set
       // is limited to one exercise session testing the word 二 among
-      // 一(choice-4),二(choice-2),三(choice-1),四(choice-3).
-      cy.get('[data-test="choice-1-button"]')
-        // click incorrect answer
+      // 一(option4),二(option2),三(option1),四(option3).
+      cy.get('@option1')
+        // click incorrect option
         .click()
         // item turned red
         .should('have.css', 'background-color', 'rgb(255, 82, 82)');
@@ -72,7 +80,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       cy.get('@animation.animate').should('have.callCount', 6); // 3 + 3
       cy.get('@animation.cancel').should('have.callCount', 6); // 4 + 2 (remount?)
       //   item is disabled
-      cy.get('[data-test="choice-1-button"]').should('be.disabled');
+      cy.get('@option1').should('be.disabled');
       //   itemUnderTest audio plays
       cy.get('@audio.play').should('have.callCount', 4); // 3 + 1
       // end
@@ -101,6 +109,107 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       // - ensure plays animation
       // - ensure overlay disappears after audio done (wire up short audio or
       //   mock play)
+    },
+  );
+});
+
+describe('马丽 interacts with the "multiple-choice phrase" system', () => {
+  it(
+    'Displays the multiple-choice screen with ' +
+      'a phrase, ' +
+      'and 2-4 selectable options',
+    () => {
+      cy.log('**1. 马丽 sees a phrase**');
+      cy.visit('/lesson/multiple-choice-phrase-test', {
+        onBeforeLoad(window) {
+          cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
+          cy.spy(window.Animation.prototype, 'play').as('animation.play');
+          cy.spy(window.HTMLElement.prototype, 'animate').as(
+            'animation.animate',
+          );
+          cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
+        },
+      });
+      cy.get('[data-test="loader"]').should('not.be.visible');
+      cy.get('[data-test="app"]').should('be.visible');
+      cy.get('[data-test="get-instructions-component"]').should(
+        'not.be.visible',
+      );
+      cy.get('[data-test="item-under-test-button"]')
+        .should('be.visible')
+        .then((el) => {
+          cy.contains('一加二').should('match', el);
+        });
+      // 0 audio.play called: 0 item-under-test-button auto on load
+      cy.get('@audio.play').should('have.callCount', 0);
+      // 3 ani.animate called: 1 toggle-instructions
+      cy.get('@animation.animate').should('have.callCount', 1);
+      // 0 ani.cancel called: 0 item-under-test-button audio
+      cy.get('@animation.cancel').should('have.callCount', 0);
+      // 0 animation.play called (ani created on first play, no repeats)
+      cy.get('@animation.play').should('have.callCount', 0);
+
+      cy.log('**2. 马丽 sees 3 words**');
+      cy.log('-- of which one is the correct match to the phrase.');
+      cy.get('[data-test="option-button-1"]')
+        .as('option1')
+        .should('be.visible')
+        .then((el) => {
+          cy.contains(' 一 ').should('match', el);
+        });
+      cy.get('[data-test="option-button-2"]')
+        .as('option2')
+        .should('be.visible')
+        .then((el) => {
+          cy.contains('四').should('match', el);
+        });
+      cy.get('[data-test="option-button-3"]')
+        .as('option3')
+        .should('be.visible')
+        .then((el) => {
+          cy.contains('三').should('match', el);
+        });
+      cy.get('[data-test="option-button-4"]').should('not.be.visible');
+
+      cy.log('**3. 马丽 taps wrong word/non-corresponding word**');
+      cy.log('-- sees the word vibrate, flash red');
+      cy.log('-- hears the audio for the incorrect word');
+      cy.log('-- sees the word become disabled and non-interactive');
+
+      // Normally, we would set up the data here. I'm going to go with
+      // foreknowledge for now. At the time of writing this test, the data-set
+      // is limited to one exercise session testing the phrase 一加二 with options
+      // 一(option1),四(option2),三(option3)
+      cy.get('@option1')
+        // click incorrect option
+        .click()
+        // item turned red
+        .should('have.css', 'background-color', 'rgb(255, 82, 82)');
+      // item audio plays
+      cy.get('@audio.play').should('have.callCount', 1); // 0 + 1
+      //   item buzzes
+      cy.get('@animation.animate').should('have.callCount', 4); // 1 + 3
+      cy.get('@animation.cancel').should('have.callCount', 2); // 0 + 2
+      // 0 animation.play called (ani created on first play, no repeats)
+      cy.get('@animation.play').should('have.callCount', 0);
+
+      //   item is disabled
+      cy.get('@option1').should('be.disabled');
+      // there's no itemUnderTest audio to play
+      cy.get('@audio.play').should('have.callCount', 1); // 1 + 0
+
+      cy.log('**4. 马丽 taps correct word/corresponding word**');
+      cy.log('-- sees the word turn green');
+      cy.log('-- hears the audio for the correct word');
+      cy.log('-- sees the other words become disabled and non-interactive');
+      cy.log('-- sees the continue button available');
+      cy.get('[data-test="continue-button"').should('not.be.visible');
+      cy.get('@option3')
+        .click()
+        .should('have.css', 'background-color', 'rgb(76, 175, 80)');
+      cy.get('@option2').should('be.disabled');
+      cy.get('[data-test="continue-button"').should('be.visible');
+      // end
     },
   );
 });

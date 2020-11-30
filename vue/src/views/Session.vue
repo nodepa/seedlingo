@@ -6,8 +6,10 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import MultipleChoice from '@/MultipleChoice/components/MultipleChoice.vue';
 import Matching from '@/Matching/components/Matching.vue';
-import getMatchingExerciseTestData from '@/Matching/data/MatchingTestData';
-import getMultipleChoiceExerciseTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
+import getMatchingTestData from '@/Matching/data/MatchingTestData';
+import getMatchingPhraseTestData from '@/Matching/data/MatchingPhraseTestData';
+import getMultipleChoiceTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
+import getMultipleChoicePhraseTestData from '@/MultipleChoice/data/MultipleChoicePhraseTestData';
 import { MatchingItem } from '@/Matching/MatchingTypes';
 import ExerciseProvider from '@/Lessons/ExerciseProvider';
 
@@ -47,10 +49,16 @@ export default class Session extends Vue {
       +this.$route.params.id > 10
     ) {
       this.$data.exerciseComponent = 'Matching';
-      this.$data.exerciseItems = getMatchingExerciseTestData();
+      this.$data.exerciseItems = getMatchingTestData();
     } else if (this.$route.params.id === 'multiple-choice-test') {
       this.$data.exerciseComponent = 'MultipleChoice';
-      this.$data.exerciseItems = getMultipleChoiceExerciseTestData();
+      this.$data.exerciseItems = getMultipleChoiceTestData();
+    } else if (this.$route.params.id === 'multiple-choice-phrase-test') {
+      this.$data.exerciseComponent = 'MultipleChoice';
+      this.$data.exerciseItems = getMultipleChoicePhraseTestData();
+    } else if (this.$route.params.id === 'matching-phrase-test') {
+      this.$data.exerciseComponent = 'Matching';
+      this.$data.exerciseItems = getMatchingPhraseTestData();
     } else if (
       this.$route.params.id != null &&
       this.$route.params.id !== '' &&
@@ -59,13 +67,17 @@ export default class Session extends Vue {
       const lessonIndex = +this.$route.params.id;
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       const vm = this;
-      ExerciseProvider.getNextExercise(lessonIndex).then(
+      ExerciseProvider.getExerciseFromLesson(lessonIndex).then(
         (exercise: {
           exerciseType: string;
           exerciseItems: Array<MatchingItem> | {};
         }) => {
           vm.$data.exerciseItems = exercise.exerciseItems;
-          vm.$data.exerciseComponent = exercise.exerciseType;
+          if (exercise.exerciseType === 'MultipleChoicePhrase') {
+            vm.$data.exerciseComponent = 'MultipleChoice';
+          } else {
+            vm.$data.exerciseComponent = exercise.exerciseType;
+          }
         },
       );
     }

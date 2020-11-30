@@ -3,20 +3,20 @@ const secondHighlightColor = 'rgb(233, 30, 99)'; // pink
 const thirdHighlightColor = 'rgb(255, 152, 0)'; // orange
 const fourthHighlightColor = 'rgb(0, 150, 136)'; // teal
 const errorColor = 'rgb(255, 82, 82)'; // error
-const symColor = 'rgb(25, 118, 210)'; // primary
-const charColor = 'rgb(245, 245, 245)'; // default
+const wordColor = 'rgb(245, 245, 245)'; // default
+const nonWordColor = 'rgb(25, 118, 210)'; // primary
 
 describe('马丽 interacts with the "matching" system', () => {
   it(
     'Displays the matching screen with ' +
-      '4 "character" cards and 4 "symbol" cards',
+      '4 "word" cards and 4 "symbol" cards',
     () => {
       // *****
       // * 1 *
       // *****
       cy.log('**1. 马丽 sees**');
       cy.log('-- 4 *symbol* buttons');
-      cy.log('-- 4 corresponding *character* buttons');
+      cy.log('-- 4 corresponding *word* buttons');
       cy.visit('/lesson/matching-test', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
@@ -34,46 +34,46 @@ describe('马丽 interacts with the "matching" system', () => {
       );
 
       // Expected test-data:
-      // 1: answer1 '2'
-      // 2: answer2 术
-      // 3: answer3 二
-      // 4: answer4 '4'
-      // 5: answer5 '🌴'
-      // 6: answer6 'dice 3'
-      // 7: answer7 三
-      // 8: answer8 四
-      cy.get('[data-test="answer-1-button"]')
-        .as('answer1')
+      // 0: option1 '2'
+      // 1: option2 术
+      // 2: option3 二
+      // 3: option4 '4'
+      // 4: option5 '🌴'
+      // 5: option6 'dice 3'
+      // 6: option7 三
+      // 7: option8 四
+      cy.get('[data-test="option-button-1"]')
+        .as('option1')
         .should('be.visible');
-      cy.get('[data-test="answer-2-button"]')
-        .as('answer2')
+      cy.get('[data-test="option-button-2"]')
+        .as('option2')
         .should('be.visible')
         .then((el) => {
           cy.contains('术').should('match', el);
         });
-      cy.get('[data-test="answer-3-button"]')
-        .as('answer3')
+      cy.get('[data-test="option-button-3"]')
+        .as('option3')
         .should('be.visible')
         .then((el) => {
           cy.contains('二').should('match', el);
         });
-      cy.get('[data-test="answer-4-button"]')
-        .as('answer4')
+      cy.get('[data-test="option-button-4"]')
+        .as('option4')
         .should('be.visible');
-      cy.get('[data-test="answer-5-button"]')
-        .as('answer5')
+      cy.get('[data-test="option-button-5"]')
+        .as('option5')
         .should('be.visible');
-      cy.get('[data-test="answer-6-button"]')
-        .as('answer6')
+      cy.get('[data-test="option-button-6"]')
+        .as('option6')
         .should('be.visible');
-      cy.get('[data-test="answer-7-button"]')
-        .as('answer7')
+      cy.get('[data-test="option-button-7"]')
+        .as('option7')
         .should('be.visible')
         .then((el) => {
           cy.contains('三').should('match', el);
         });
-      cy.get('[data-test="answer-8-button"]')
-        .as('answer8')
+      cy.get('[data-test="option-button-8"]')
+        .as('option8')
         .should('be.visible')
         .then((el) => {
           cy.contains('四').should('match', el);
@@ -90,11 +90,11 @@ describe('马丽 interacts with the "matching" system', () => {
       // *****
       // * 2 *
       // *****
-      cy.log('**2. 马丽 taps a *character* button**');
+      cy.log('**2. 马丽 taps a *word* button**');
       cy.log('-- hears corresponding audio');
       cy.log('-- sees a ripple animation on the button until audio ends');
       cy.log('-- sees the button is highlighted/colored');
-      cy.get('@answer2')
+      cy.get('@option2')
         .click()
         .should('have.css', 'background-color', firstHighlightColor);
       // .then((el) => {
@@ -117,23 +117,23 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.log('-- hears corresponding audio');
       cy.log('-- sees a ripple animation on the button until audio ends');
       cy.log(
-        '-- ~~sees the *symbol* button colored in a different color to the *character* button~~',
+        '-- ~~sees the *symbol* button colored in a different color to the *word* button~~',
       );
       cy.log('-- sees both highlighted buttons buzz and turn red');
       cy.log('-- sees both buttons return to normal, i.e. not highlighted');
       // both went red
-      cy.get('@answer1') // numeric 2
+      cy.get('@option1') // numeric 2
         .click()
         .should('have.css', 'background-color', errorColor);
-      cy.get('@answer2').should('have.css', 'background-color', errorColor);
+      cy.get('@option2').should('have.css', 'background-color', errorColor);
       // then both reverted to original color
-      cy.get('@answer1') // numeric 2
-        .should('have.css', 'background-color', symColor);
-      cy.get('@answer2').should('have.css', 'background-color', charColor);
+      cy.get('@option1') // numeric 2
+        .should('have.css', 'background-color', nonWordColor);
+      cy.get('@option2').should('have.css', 'background-color', wordColor);
       // the button's audio was played
       cy.get('@audio.play').should('have.callCount', 2); // 1 + 1
       cy.get('@animation.play').should('have.callCount', 0); // 0 + 0
-      // 2 ripples animated on 1 audio playing + 2 answer buttons buzzing
+      // 2 ripples animated on 1 audio playing + 2 option buttons buzzing
       cy.get('@animation.animate').should('have.callCount', 7); // 3 + 2 + 2
       // 2 ripples canceled on audio ended
       cy.get('@animation.cancel').should('have.callCount', 4); // 2 + 2
@@ -145,7 +145,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.log('-- hears corresponding audio');
       cy.log('-- sees a ripple animation on the button until audio ends');
       cy.log('-- sees button colored in **same** color as first tap');
-      cy.get('@answer1') // numeric 2
+      cy.get('@option1') // numeric 2
         .click()
         .should('have.css', 'background-color', firstHighlightColor);
       // the button's audio was played
@@ -165,11 +165,11 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.log('-- sees the button colored in **different** color to last tap');
       cy.log('-- sees the previously tapped *symbol* button return to normal');
       cy.log('-- sees most recently tapped *symbol* button remain highlighted');
-      cy.get('@answer4') // numeric 4
+      cy.get('@option4') // numeric 4
         .click()
         .should('have.css', 'background-color', secondHighlightColor);
-      cy.get('@answer1') // numeric 2
-        .should('have.css', 'background-color', symColor);
+      cy.get('@option1') // numeric 2
+        .should('have.css', 'background-color', nonWordColor);
       // the button's audio was played
       cy.get('@audio.play').should('have.callCount', 4); // 3 + 1
       // no repeat animations, new button = new animate
@@ -182,7 +182,7 @@ describe('马丽 interacts with the "matching" system', () => {
       // *****
       // * 6 *
       // *****
-      cy.log('**6. 马丽 taps the corresponding *character* button**');
+      cy.log('**6. 马丽 taps the corresponding *word* button**');
       cy.log('-- hears corresponding audio');
       cy.log('-- sees a ripple animation on the button until audio ends');
       cy.log(
@@ -190,22 +190,22 @@ describe('马丽 interacts with the "matching" system', () => {
       );
       cy.log('-- sees both highlighted buttons turn the **same** color');
       cy.log('-- sees highlighted pair **reorder** before unmatched buttons');
-      cy.get('@answer8') // 四
+      cy.get('@option8') // 四
         .click();
-      // A successful match re-orders the buttons: `answer8` is now `answer2`
-      cy.get('@answer8') // 三
-        .should('have.css', 'background-color', charColor);
-      cy.get('@answer2') // 四
+      // A successful match re-orders the buttons: `option8` is now `option2`
+      cy.get('@option8') // 三
+        .should('have.css', 'background-color', wordColor);
+      cy.get('@option2') // 四
         .should('have.css', 'background-color', secondHighlightColor);
-      // answer4 and answer8 are reordered as first 2 of answer buttons
-      cy.get('[data-test|="answer"]').then((els) => {
-        cy.get('@answer1').should('match', els[0]);
-        cy.get('@answer2')
+      // option4 and option8 are reordered as first 2 of option buttons
+      cy.get('[data-test|="option"]').then((els) => {
+        cy.get('@option1').should('match', els[0]);
+        cy.get('@option2')
           .should('match', els[1])
           .find('p')
           .should('have.text', ' 四 ');
-        // cy.get('@answer4').should('match', els[3]);
-        // cy.get('@answer8').should('match', els[7]);
+        // cy.get('@option4').should('match', els[3]);
+        // cy.get('@option8').should('match', els[7]);
       });
       // the button's audio was played
       cy.get('@audio.play').should('have.callCount', 5); // 4 + 1
@@ -219,10 +219,10 @@ describe('马丽 interacts with the "matching" system', () => {
       // *****
       // * 7 *
       // *****
-      cy.log('**7. 马丽 taps either matched *symbol* and *character* button**');
+      cy.log('**7. 马丽 taps either matched *symbol* and *word* button**');
       cy.log('-- hears (one) corresponding audio');
       cy.log('-- sees a ripple animation on the button until audio ends');
-      cy.get('@answer2') // 四
+      cy.get('@option2') // 四
         .should('have.css', 'background-color', secondHighlightColor)
         .click()
         .should('have.css', 'background-color', secondHighlightColor);
@@ -242,16 +242,16 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.log('-- hears corresponding audio');
       cy.log('-- sees a ripple animation on the button until audio ends');
       cy.log('-- sees the first unmatched *symbol* button return to normal');
-      cy.get('@answer3') // 2
-        .should('have.css', 'background-color', symColor)
+      cy.get('@option3') // 2
+        .should('have.css', 'background-color', nonWordColor)
         .click()
         .should('have.css', 'background-color', thirdHighlightColor);
-      cy.get('@answer1') // 4, already matched
+      cy.get('@option1') // 4, already matched
         .should('have.css', 'background-color', secondHighlightColor)
         .click()
         .should('have.css', 'background-color', secondHighlightColor);
-      cy.get('@answer3') // 2
-        .should('have.css', 'background-color', symColor); // reset to normal
+      cy.get('@option3') // 2
+        .should('have.css', 'background-color', nonWordColor); // reset to normal
       // the two buttons' audio was played
       cy.get('@audio.play').should('have.callCount', 8); // 6 + 2
       // two repeat animations on button 1
@@ -265,25 +265,25 @@ describe('马丽 interacts with the "matching" system', () => {
       // * 8 *
       // *****
       cy.log('**8. 马丽 repeats matching**');
-      cy.log('-- correct characters with symbols');
-      cy.log('-- symbols with characters');
+      cy.log('-- correct words with symbols');
+      cy.log('-- symbols with words');
       cy.log('-- until all are correctly matched');
       cy.log('-- **then** sees **fireworks** or a big **smiley** cover screen');
       cy.log('-- sees the screen transition to the next exercise');
-      cy.get('@answer3') // 2
+      cy.get('@option3') // 2
         .click()
         .should('have.css', 'background-color', thirdHighlightColor);
-      cy.get('@answer5') // 二
+      cy.get('@option5') // 二
         .click();
-      cy.get('@answer4') // 二, re-ordered
+      cy.get('@option4') // 二, re-ordered
         .should('have.css', 'background-color', thirdHighlightColor);
-      cy.get('@answer5') // 术
+      cy.get('@option5') // 术
         .click()
         .should('have.css', 'background-color', fourthHighlightColor);
-      cy.get('@answer6') // 🌴
+      cy.get('@option6') // 🌴
         .click()
         .should('have.css', 'background-color', fourthHighlightColor);
-      cy.get('@answer7') // 3
+      cy.get('@option7') // 3
         .click()
         .should('have.css', 'background-color', firstHighlightColor);
       // 5 buttons' audio was played
@@ -296,7 +296,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@animation.cancel').should('have.callCount', 26); // 16 + 10
       cy.get('[data-test="continue-button"]').should('not.be.visible');
 
-      cy.get('@answer8') // 三
+      cy.get('@option8') // 三
         .click()
         .should('have.css', 'background-color', firstHighlightColor);
       // 1 buttons' audio was played
@@ -310,6 +310,85 @@ describe('马丽 interacts with the "matching" system', () => {
 
       // celebration state
       cy.get('[data-test="continue-button"]').should('be.visible');
+    },
+  );
+});
+
+describe('马丽 interacts with the "matching phrase" system', () => {
+  it(
+    'Displays the matching screen with ' +
+      '2 "word" cards and 2 "phrase" cards',
+    () => {
+      // *****
+      // * 1 *
+      // *****
+      cy.log('**1. 马丽 sees**');
+      cy.log('-- 2 *phrase* buttons');
+      cy.log('-- 2 corresponding *word* buttons');
+      cy.visit('/lesson/matching-phrase-test', {
+        onBeforeLoad(window) {
+          cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
+          cy.spy(window.Animation.prototype, 'play').as('animation.play');
+          cy.spy(window.HTMLElement.prototype, 'animate').as(
+            'animation.animate',
+          );
+          cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
+        },
+      });
+      cy.get('[data-test="loader"]').should('not.be.visible');
+      cy.get('[data-test="app"]').should('be.visible');
+      cy.get('[data-test="get-instructions-component"]').should(
+        'not.be.visible',
+      );
+
+      // Expected test-data:
+      // 0: option1 五件二
+      // 1: option2 四
+      // 2: option3 三
+      // 3: option4 二加二
+      cy.get('[data-test="option-button-1"]')
+        .as('option1')
+        .should('be.visible')
+        .then((el) => {
+          cy.contains('五件二').should('match', el);
+        });
+      cy.get('[data-test="option-button-2"]')
+        .as('option2')
+        .should('be.visible')
+        .then((el) => {
+          cy.contains('四').should('match', el);
+        });
+      cy.get('[data-test="option-button-3"]')
+        .as('option3')
+        .should('be.visible')
+        .then((el) => {
+          cy.contains('三').should('match', el);
+        });
+      cy.get('[data-test="option-button-4"]')
+        .as('option4')
+        .should('be.visible')
+        .then((el) => {
+          cy.contains('二加二').should('match', el);
+        });
+      // 1 ani.animate called: 1 toggle-instructions
+      cy.get('@animation.animate').should('have.callCount', 1);
+      // 0 ani.cancel called:
+      cy.get('@animation.cancel').should('have.callCount', 0);
+      // 0 audio.play called:
+      cy.get('@audio.play').should('have.callCount', 0);
+      // 0 animation.play called (ani created on first play, no repeats)
+      cy.get('@animation.play').should('have.callCount', 0);
+
+      // *****
+      // * 2 *
+      // *****
+      // cy.log('**2. 马丽 taps a *word* button**');
+      // cy.log('-- hears corresponding audio');
+      // cy.log('-- sees a ripple animation on the button until audio ends');
+      // cy.log('-- sees the button is highlighted/colored');
+      // cy.get('@option2')
+      //   .click()
+      //   .should('have.css', 'background-color', firstHighlightColor);
     },
   );
 });

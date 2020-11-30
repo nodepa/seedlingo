@@ -10,8 +10,8 @@
     @click="$emit('click')"
   >
     <slot />
-    <RippleAnimation :playing="isPlaying" />
-    <RippleAnimation :playing="isPlaying" :delay="200" />
+    <RippleAnimation :playing="playing" />
+    <RippleAnimation :playing="playing" :delay="200" />
   </v-btn>
 </template>
 
@@ -24,7 +24,7 @@ import RippleAnimation from '@/common/animations/RippleAnimation.vue';
     RippleAnimation,
   },
 })
-export default class AnswerButton extends Vue {
+export default class ExerciseButton extends Vue {
   animation?: Animation;
 
   // eslint-disable-next-line class-methods-use-this
@@ -34,7 +34,7 @@ export default class AnswerButton extends Vue {
     };
   }
 
-  @Prop({ default: false }) readonly isPlaying!: boolean;
+  @Prop({ default: false }) readonly playing!: boolean;
 
   @Prop({ default: '' }) readonly color!: string;
 
@@ -42,12 +42,12 @@ export default class AnswerButton extends Vue {
 
   @Prop({ default: '100%' }) readonly height!: string;
 
-  @PropSync('isBuzzing', { type: Boolean, default: false })
-  syncedIsBuzzing!: boolean;
+  @PropSync('buzzing', { type: Boolean, default: false })
+  syncedBuzzing!: boolean;
 
-  @Watch('isBuzzing')
-  onIsBuzzingChanged(isBuzzing: boolean) {
-    if (isBuzzing) {
+  @Watch('buzzing')
+  onBuzzingChanged(buzzing: boolean) {
+    if (buzzing) {
       this.$data.errorColor = this.$vuetify.theme.currentTheme.error as string;
       this.playAnimation();
     } else {
@@ -77,7 +77,7 @@ export default class AnswerButton extends Vue {
       );
 
       this.animation.onfinish = () => {
-        this.syncedIsBuzzing = false;
+        this.syncedBuzzing = false;
       };
     }
   }
