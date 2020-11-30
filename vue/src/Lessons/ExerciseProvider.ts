@@ -1,17 +1,25 @@
-import { createAudio } from '@/Matching/data/MatchingTestData';
 import { MatchingItem, ExerciseAudio } from '@/Matching/MatchingTypes';
-import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
-import { Lesson, LessonItem } from './LessonTypes';
-import Lesson01 from './Lesson01.json';
-import Lesson02 from './Lesson02.json';
-import Lesson03 from './Lesson03.json';
-import Lesson04 from './Lesson04.json';
-import Lesson05 from './Lesson05.json';
-import Lesson06 from './Lesson06.json';
-import Lesson07 from './Lesson07.json';
-import Lesson08 from './Lesson08.json';
-import Lesson09 from './Lesson09.json';
-import Lesson10 from './Lesson10.json';
+import {
+  MultipleChoiceExercise,
+  MultipleChoiceItem,
+} from '@/MultipleChoice/MultipleChoiceTypes';
+import Lesson01 from '@/Lessons/data/Lesson01.json';
+import Lesson02 from '@/Lessons/data/Lesson02.json';
+import Lesson03 from '@/Lessons/data/Lesson03.json';
+import Lesson04 from '@/Lessons/data/Lesson04.json';
+import Lesson05 from '@/Lessons/data/Lesson05.json';
+import Lesson06 from '@/Lessons/data/Lesson06.json';
+import Lesson07 from '@/Lessons/data/Lesson07.json';
+import Lesson08 from '@/Lessons/data/Lesson08.json';
+import Lesson09 from '@/Lessons/data/Lesson09.json';
+import Lesson10 from '@/Lessons/data/Lesson10.json';
+import { Lesson, LessonItem } from '@/Lessons/data/LessonTypes';
+
+export type ExerciseType =
+  | 'Matching'
+  | 'MatchingPhrase'
+  | 'MultipleChoice'
+  | 'MultipleChoicePhrase';
 
 export default class ExerciseProvider {
   private static lessons = [
@@ -27,238 +35,551 @@ export default class ExerciseProvider {
     Lesson10,
   ] as Array<Lesson>;
 
-  public static async getNextExercise(oneBaseIndex: number) {
-    if (oneBaseIndex < 1 || oneBaseIndex > ExerciseProvider.lessons.length) {
+  public static async getExerciseFromLesson(
+    indexFromOne: number,
+  ): Promise<{
+    exerciseType: string;
+    exerciseItems: Array<MatchingItem> | MultipleChoiceExercise;
+  }> {
+    this.validateExerciseIndex(indexFromOne);
+    const indexFromZero = indexFromOne - 1;
+    const lesson = this.lessons[indexFromZero] as Lesson;
+
+    const exerciseType = this.pickRandomExerciseType(lesson);
+    // const exerciseType = 'Matching' as ExerciseType;
+    // const exerciseType = 'MatchingPhrase' as ExerciseType;
+    // const exerciseType = 'MultipleChoice' as ExerciseType;
+    // const exerciseType = 'MultipleChoicePhrase' as ExerciseType;
+
+    if (exerciseType === 'Matching') {
+      return this.generateMatchingExercise(lesson);
+    }
+    if (exerciseType === 'MatchingPhrase') {
+      return this.generateMatchingPhraseExercise(lesson);
+    }
+    if (exerciseType === 'MultipleChoice') {
+      return this.generateMultipleChoiceExercise(lesson);
+    }
+    // else (exerciseType === 'MultipleChoicePhrase')
+    return this.generateMultipleChoicePhraseExercise(lesson);
+  }
+
+  public static validateExerciseIndex(indexFromOne: number): void {
+    if (indexFromOne < 1 || indexFromOne > ExerciseProvider.lessons.length) {
       throw new Error(
         `Please choose a lesson between 1 and ${ExerciseProvider.lessons.length}`,
       );
     }
-    const lesson = ExerciseProvider.lessons[oneBaseIndex - 1] as Lesson;
+  }
 
-    // decide exercise type: Matching or MultipleChoice
-    if (Math.random() * 2 > 1) {
-      // if (false) {
-      // return Matching-exercise
+  public static pickRandomExerciseType(lesson: Lesson): ExerciseType {
+    const validTypes = [] as Array<ExerciseType>;
+    // Matching requires minimum 2 words
+    if (lesson.wordsCount >= 2) {
+      validTypes.push('Matching');
+    }
+    // MatchingPhrase requires minimum 2 phrases & 2 words
+    if (lesson.phrasesCount >= 2 && lesson.wordsCount >= 2) {
+      validTypes.push('MatchingPhrase');
+    }
+    // MultipleChoice requires minimum 4 words
+    if (lesson.wordsCount >= 4) {
+      validTypes.push('MultipleChoice');
+    }
+    // MultipleChoicePhrase requires minimum 1 phrase & 2 words
+    if (lesson.phrasesCount >= 1 && lesson.wordsCount >= 2) {
+      validTypes.push('MultipleChoicePhrase');
+    }
+    return validTypes[Math.floor(Math.random() * validTypes.length)];
+  }
 
-      // pseudo code:
-      // pick 2-4 items from lesson (first at random, later based on progress)
-      // generate 4 symbol w/audio and 4 word w/audio items paired as matches
-      // randomly order the 8 items from 0 to 7
-      // maintain correct pairing
-      // return Array<MatchingItem>
+  public static generateMatchingExercise(
+    lesson: Lesson,
+  ): { exerciseType: ExerciseType; exerciseItems: Array<MatchingItem> } {
+    const wordsInLesson = this.selectWordsInLesson(lesson);
+    const selectedWords = this.selectRandomSubset(
+      wordsInLesson,
+      {
+        minItems: 2,
+        maxItems: 4,
+      },
+      lesson.lessonIndex,
+    );
 
-      const selectedItems = [];
-      if (lesson.items.length < 2) {
-        // only 0 or 1 item in lesson
-        throw new Error(
-          `Lesson ${oneBaseIndex} only has ${lesson.items.length} item(s), which is too few to produce a Matching exercise.`,
-        );
-      } else {
-        // pick 2-4 random items from lesson
-        const itemIndexes = [...Array(lesson.items.length).keys()];
-        const maxIterations = Math.min(4, lesson.items.length);
-        for (let i = 0; i < maxIterations; i += 1) {
-          const randomlySelectedUniqueIndex = itemIndexes.splice(
-            Math.floor(Math.random() * itemIndexes.length),
-            1,
-          )[0];
-          selectedItems.push(lesson.items[randomlySelectedUniqueIndex]);
-        }
-      }
+    const matchingExercises = this.createPairsFromWords(
+      selectedWords,
+      lesson.lessonIndex,
+    );
 
-      const matchingExercises = [] as Array<MatchingItem>;
-      // const matchingExercises = [] as unknown;
-      // we now have an array of 2-4 randomly ordered test items
-      // we need to have 4 to 8 pairwise test items generated from this list
-      selectedItems.forEach(async (item: LessonItem, index: number) => {
-        const wordPart = {
-          value: item.word,
-          audio: {} as ExerciseAudio,
-          // match: {} as MatchingItem
-          match: index * 2 + 1,
-          color: '',
-          isChar: true,
-          isIcon: false,
-          isMatched: false,
-          isSelected: false,
-          isBuzzing: false,
-        } as MatchingItem;
-        const symPart = {
-          value: [] as Array<string>,
-          audio: {} as ExerciseAudio,
-          // match: wordPart,
-          match: index * 2,
-          color: 'primary',
-          isChar: false,
-          isIcon: true,
-          isMatched: false,
-          isSelected: false,
-          isBuzzing: false,
-        } as MatchingItem;
-        // wordPart.match = symPart;
+    this.shuffleMatchingItemsInPlace(matchingExercises);
+    return { exerciseType: 'Matching', exerciseItems: matchingExercises };
+  }
 
-        import('@mdi/js').then((mod: typeof import('@mdi/js')) => {
-          item.symbolName.forEach((name) => {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (symPart.value as string[]).push((mod as any)[name]);
-          });
+  public static generateMatchingPhraseExercise(
+    lesson: Lesson,
+  ): { exerciseType: ExerciseType; exerciseItems: Array<MatchingItem> } {
+    const phrasesInLesson = this.selectPhrasesInLesson(lesson);
+    const wordsInLesson = this.selectWordsInLesson(lesson);
+
+    const selectedPhrases = this.selectRandomSubset(
+      phrasesInLesson,
+      {
+        minItems: 2,
+        maxItems: 2,
+      },
+      lesson.lessonIndex,
+    );
+
+    const matchingExercises = this.createPairsFromPhrasesAndWords(
+      selectedPhrases,
+      wordsInLesson,
+      lesson.lessonIndex,
+    );
+
+    this.shuffleMatchingItemsInPlace(matchingExercises);
+    return { exerciseType: 'Matching', exerciseItems: matchingExercises };
+  }
+
+  public static generateMultipleChoiceExercise(
+    lesson: Lesson,
+  ): { exerciseType: ExerciseType; exerciseItems: MultipleChoiceExercise } {
+    const wordsInLesson = this.selectWordsInLesson(lesson);
+    const selectedWords = this.selectRandomSubset(
+      wordsInLesson,
+      {
+        minItems: 4,
+        maxItems: 4,
+      },
+      lesson.lessonIndex,
+    );
+
+    const multipleChoiceExercise = this.createMultipleChoiceExerciseFromWords(
+      selectedWords,
+      lesson.lessonIndex,
+    );
+
+    this.makeRandomItemCorrectOption(
+      multipleChoiceExercise,
+      selectedWords,
+      lesson.lessonIndex,
+    );
+
+    return {
+      exerciseType: 'MultipleChoice',
+      exerciseItems: multipleChoiceExercise,
+    };
+  }
+
+  public static generateMultipleChoicePhraseExercise(
+    lesson: Lesson,
+  ): { exerciseType: ExerciseType; exerciseItems: MultipleChoiceExercise } {
+    const phrasesInLesson = this.selectPhrasesInLesson(lesson);
+
+    // ensure lesson has 1 or more phrases
+    if (phrasesInLesson.length === 0) {
+      throw new Error(
+        `Lesson ${lesson.lessonIndex} has zero phrase items, which is too few to generate an exercise.`,
+      );
+    }
+
+    // randomly pick a phrase from all available phrases
+    const phraseToMatch =
+      phrasesInLesson[Math.floor(Math.random() * phrasesInLesson.length)];
+
+    // get picked phrase's interpretation
+    const interpretationOfPhrase = lesson.items.find(
+      (lessonItem) => lessonItem.id === phraseToMatch.phraseInterpretationId,
+    );
+    if (!interpretationOfPhrase) {
+      throw new Error(
+        `Lesson ${lesson.lessonIndex} has a phrase (${phraseToMatch.id}) without a matching interpretation (${phraseToMatch.phraseInterpretationId}).`,
+      );
+    }
+
+    // create collection of options, starting with correct interpretation
+    const multipleChoiceExercise = {
+      phraseToMatch: phraseToMatch.phrase,
+      options: [] as Array<MultipleChoiceItem>,
+    } as MultipleChoiceExercise;
+
+    const correctOption = {
+      word: interpretationOfPhrase.word,
+      audio: {} as HTMLAudioElement,
+      correct: true,
+      disabled: false,
+      playing: false,
+      buzzing: false,
+    } as MultipleChoiceItem;
+
+    import(
+      `@/assets/lessons/lesson${lesson.lessonIndex
+        .toString()
+        .padStart(2, '0')}/${interpretationOfPhrase.audioName}`
+    ).then(({ default: path }) => {
+      correctOption.audio = new Audio(path);
+    });
+
+    multipleChoiceExercise.options.push(correctOption);
+
+    // randomly pick additional interpretations from (words - correct int.)
+    const allIncorrectInterpretations = this.selectWordsInLesson(
+      lesson,
+      interpretationOfPhrase,
+    );
+
+    allIncorrectInterpretations.forEach((lessonItem: LessonItem) => {
+      const incorrectInterpretation = {
+        word: lessonItem.word,
+        audio: {} as HTMLAudioElement,
+        correct: false,
+        disabled: false,
+        playing: false,
+        buzzing: false,
+      } as MultipleChoiceItem;
+      import(
+        `@/assets/lessons/lesson${lesson.lessonIndex
+          .toString()
+          .padStart(2, '0')}/${lessonItem.audioName}`
+      ).then(({ default: path }) => {
+        incorrectInterpretation.audio = new Audio(path);
+      });
+      multipleChoiceExercise.options.push(incorrectInterpretation);
+    });
+
+    // shuffle options
+    this.shuffleMultipleChoiceItemsInPlace(multipleChoiceExercise.options);
+    return {
+      exerciseType: 'MultipleChoice',
+      exerciseItems: multipleChoiceExercise,
+    };
+  }
+
+  public static selectWordsInLesson(
+    lesson: Lesson,
+    exception?: LessonItem,
+  ): Array<LessonItem> {
+    if (exception) {
+      return lesson.items.filter(
+        (lessonItem: LessonItem) =>
+          lessonItem.word &&
+          lessonItem.word.length > 0 &&
+          lessonItem !== exception,
+      );
+    }
+    return lesson.items.filter(
+      (lessonItem: LessonItem) => lessonItem.word && lessonItem.word.length > 0,
+    );
+  }
+
+  public static selectPhrasesInLesson(lesson: Lesson): Array<LessonItem> {
+    return lesson.items.filter((lessonItem: LessonItem) => {
+      return (
+        lessonItem.phrase &&
+        lessonItem.phrase.length > 0 &&
+        lessonItem.phraseInterpretationId &&
+        lessonItem.phraseInterpretationId.length === 36
+      );
+    });
+  }
+
+  public static selectRandomSubset(
+    lessonItems: Array<LessonItem>,
+    limits: { minItems: number; maxItems: number },
+    lessonIndex: number,
+  ): Array<LessonItem> {
+    this.validateLowerLimit(lessonItems, limits.minItems, lessonIndex);
+    const selected = [];
+    const lessonItemIndexes = [...Array(lessonItems.length).keys()];
+    const maxItemsAccepted = Math.min(limits.maxItems, lessonItems.length);
+    for (let i = 0; i < maxItemsAccepted; i += 1) {
+      const randomUniqueIndex = lessonItemIndexes.splice(
+        Math.floor(Math.random() * lessonItemIndexes.length),
+        1,
+      )[0];
+      selected.push(lessonItems[randomUniqueIndex]);
+    }
+    return selected;
+  }
+
+  public static validateLowerLimit(
+    lessonItems: Array<LessonItem>,
+    lowerLimit: number,
+    lessonIndex: number,
+  ): void {
+    if (lessonItems.length < lowerLimit) {
+      throw new Error(
+        `Lesson ${lessonIndex} only has ${lessonItems.length} suitable item(s), which is too few to generate this exercise.`,
+      );
+    }
+  }
+
+  public static createPairsFromWords(
+    words: Array<LessonItem>,
+    lessonIndex: number,
+  ): Array<MatchingItem> {
+    const matchingExercises = [] as Array<MatchingItem>;
+    words.forEach((lessonItem: LessonItem, index: number) => {
+      const wordPart = {
+        value: lessonItem.word,
+        audio: {} as ExerciseAudio,
+        // match: {} as MatchingItem
+        match: index * 2 + 1,
+        color: '',
+        isWord: true,
+        isIcon: false,
+        matched: false,
+        selected: false,
+        buzzing: false,
+      } as MatchingItem;
+      const symPart = {
+        value: [] as Array<string>,
+        audio: {} as ExerciseAudio,
+        // match: wordPart,
+        match: index * 2,
+        color: 'primary',
+        isWord: false,
+        isIcon: true,
+        matched: false,
+        selected: false,
+        buzzing: false,
+      } as MatchingItem;
+      // wordPart.match = symPart;
+
+      import('@mdi/js').then((mod: typeof import('@mdi/js')) => {
+        lessonItem.symbolName.forEach((name) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (symPart.value as Array<string>).push((mod as any)[name]);
         });
-
-        import(
-          `@/assets/lessons/lesson${lesson['lesson-index']
-            .toString()
-            .padStart(2, '0')}/${item.audioName}`
-        ).then(({ default: path }) => {
-          wordPart.audio = createAudio(path);
-          symPart.audio = createAudio(path);
-        });
-
-        matchingExercises.push(wordPart);
-        matchingExercises.push(symPart);
       });
 
-      // shuffle
-      for (let i = matchingExercises.length - 1; i > 0; i -= 1) {
-        const j = Math.floor(Math.random() * (i + 1));
-        if (j !== i) {
-          // update match targets
-          if (matchingExercises[i].match === j) {
-            // if matches are each others matches
-            matchingExercises[i].match = i;
-            matchingExercises[j].match = j;
-          } else {
-            // if item.match points to a pre-swap index, inject post-swap index
-            matchingExercises[matchingExercises[i].match].match = j;
-            matchingExercises[matchingExercises[j].match].match = i;
-          }
-          // swap index in list
-          [matchingExercises[i], matchingExercises[j]] = [
-            matchingExercises[j],
-            matchingExercises[i],
-          ];
-        }
-      }
-      return { exerciseType: 'Matching', exerciseItems: matchingExercises };
-    }
-    // not returning Matching-exercise, so must return MultipleChoice-exercise
+      import(
+        `@/assets/lessons/lesson${lessonIndex.toString().padStart(2, '0')}/${
+          lessonItem.audioName
+        }`
+      ).then(({ default: path }) => {
+        wordPart.audio = this.createAudio(path);
+        symPart.audio = this.createAudio(path);
+      });
 
-    const selectedItems = [];
-    if (lesson.items.length < 5) {
-      throw new Error(
-        `Lesson ${oneBaseIndex} only has ${lesson.items.length} item(s), which is too few to produce a MultipleChoice exercise.`,
+      matchingExercises.push(wordPart);
+      matchingExercises.push(symPart);
+    });
+    return matchingExercises;
+  }
+
+  public static createPairsFromPhrasesAndWords(
+    phraseItems: Array<LessonItem>,
+    interpretationItems: Array<LessonItem>,
+    lessonIndex: number,
+  ): Array<MatchingItem> {
+    const matchingExercises = [] as Array<MatchingItem>;
+    phraseItems.forEach((phraseItem: LessonItem, index: number) => {
+      const phrasePart = {
+        value: phraseItem.phrase,
+        audio: {} as ExerciseAudio,
+        // match: {} as MatchingItem
+        match: index * 2 + 1,
+        color: 'primary',
+        isWord: false,
+        isIcon: false,
+        matched: false,
+        selected: false,
+        buzzing: false,
+      } as MatchingItem;
+
+      const interpretationItem = interpretationItems.find(
+        (wordItem: LessonItem) =>
+          wordItem.id === phraseItem.phraseInterpretationId,
       );
-    } else {
-      // pick 4 random items from lesson
-      const itemIndexes = [...Array(lesson.items.length).keys()];
-      for (let i = 0; i < 4; i += 1) {
-        const randomlySelectedUniqueIndex = itemIndexes.splice(
-          Math.floor(Math.random() * itemIndexes.length),
-          1,
-        )[0];
-        selectedItems.push(lesson.items[randomlySelectedUniqueIndex]);
+      if (
+        !interpretationItem ||
+        !interpretationItem.word ||
+        interpretationItem.word.length < 1
+      ) {
+        throw new Error(
+          `This phrase (${phraseItem.word}) does not have a corresponding interpretation word in the same lesson.`,
+        );
+      }
+      const wordPart = {
+        value: interpretationItem.word,
+        audio: {} as ExerciseAudio,
+        // match: wordPart,
+        match: index * 2,
+        color: '',
+        isWord: true,
+        isIcon: false,
+        matched: false,
+        selected: false,
+        buzzing: false,
+      } as MatchingItem;
+      // wordPart.match = symPart;
+
+      import(
+        `@/assets/lessons/lesson${lessonIndex.toString().padStart(2, '0')}/${
+          phraseItem.audioName
+        }`
+      ).then(({ default: path }) => {
+        phrasePart.audio = this.createAudio(path);
+      });
+
+      import(
+        `@/assets/lessons/lesson${lessonIndex.toString().padStart(2, '0')}/${
+          interpretationItem.audioName
+        }`
+      ).then(({ default: path }) => {
+        wordPart.audio = this.createAudio(path);
+      });
+
+      matchingExercises.push(phrasePart);
+      matchingExercises.push(wordPart);
+    }); // end phraseItems.forEach
+
+    return matchingExercises;
+  }
+
+  public static createAudio(src: string) {
+    const el = new Audio(src);
+    const audio = {
+      el,
+      playing: false,
+      play() {
+        el.currentTime = 0;
+        el.play();
+      },
+      cancel() {
+        el.pause();
+      },
+    } as ExerciseAudio;
+
+    el.onplaying = () => {
+      audio.playing = true;
+    };
+    el.onpause = () => {
+      audio.playing = false;
+    };
+    el.onended = () => {
+      audio.playing = false;
+    };
+
+    return audio;
+  }
+
+  public static shuffleMatchingItemsInPlace(
+    matchingExercises: Array<MatchingItem>,
+  ): void {
+    for (let i = matchingExercises.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      if (j !== i) {
+        // update match targets
+        if (matchingExercises[i].match === j) {
+          // if matches are each others matches
+          // eslint-disable-next-line no-param-reassign
+          matchingExercises[i].match = i;
+          // eslint-disable-next-line no-param-reassign
+          matchingExercises[j].match = j;
+        } else {
+          // if item.match points to a pre-swap index, inject post-swap index
+          // eslint-disable-next-line no-param-reassign
+          matchingExercises[matchingExercises[i].match].match = j;
+          // eslint-disable-next-line no-param-reassign
+          matchingExercises[matchingExercises[j].match].match = i;
+        }
+        // swap location in list
+        // eslint-disable-next-line no-param-reassign
+        [matchingExercises[i], matchingExercises[j]] = [
+          matchingExercises[j],
+          matchingExercises[i],
+        ];
       }
     }
+  }
 
+  public static shuffleMultipleChoiceItemsInPlace(
+    multipleChoiceItems: Array<MultipleChoiceItem>,
+  ): void {
+    for (let i = multipleChoiceItems.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      if (j !== i) {
+        // swap location in list
+        // eslint-disable-next-line no-param-reassign
+        [multipleChoiceItems[i], multipleChoiceItems[j]] = [
+          multipleChoiceItems[j],
+          multipleChoiceItems[i],
+        ];
+      }
+    }
+  }
+
+  public static createMultipleChoiceExerciseFromWords(
+    selectedItems: Array<LessonItem>,
+    lessonIndex: number,
+  ): MultipleChoiceExercise {
     const multipleChoiceExercise = {
       itemUnderTestAudio: {} as HTMLAudioElement,
       itemUnderTestAudioIsPlaying: false,
-      itemUnderTestIcon: [] as Array<string>,
-      answers: [
-        {
-          char: selectedItems[0].word,
-          audio: {} as HTMLAudioElement,
-          correct: false,
-          disabled: false,
-          playing: false,
-          isBuzzing: false,
-        },
-        {
-          char: selectedItems[1].word,
-          audio: {} as HTMLAudioElement,
-          correct: false,
-          disabled: false,
-          playing: false,
-          isBuzzing: false,
-        },
-        {
-          char: selectedItems[2].word,
-          audio: {} as HTMLAudioElement,
-          correct: false,
-          disabled: false,
-          playing: false,
-          isBuzzing: false,
-        },
-        {
-          char: selectedItems[3].word,
-          audio: {} as HTMLAudioElement,
-          correct: false,
-          disabled: false,
-          playing: false,
-          isBuzzing: false,
-        },
-      ],
+      iconToMatch: [] as Array<string>,
+      options: [] as Array<MultipleChoiceItem>,
     } as MultipleChoiceExercise;
 
-    const correctIndex = Math.floor(Math.random() * 4);
+    selectedItems.forEach((item: LessonItem) => {
+      const exerciseItem = {
+        word: item.word,
+        audio: {} as HTMLAudioElement,
+        correct: false,
+        disabled: false,
+        playing: false,
+        buzzing: false,
+      } as MultipleChoiceItem;
+      import(
+        `@/assets/lessons/lesson${lessonIndex.toString().padStart(2, '0')}/${
+          item.audioName
+        }`
+      ).then(({ default: path }) => {
+        exerciseItem.audio = new Audio(path);
+      });
+      multipleChoiceExercise.options.push(exerciseItem);
+    });
+    return multipleChoiceExercise;
+  }
+
+  public static makeRandomItemCorrectOption(
+    multipleChoiceExercise: MultipleChoiceExercise,
+    selectedItems: Array<LessonItem>,
+    lessonIndex: number,
+  ): void {
+    // pick random item as correct option
+    const correctIndex = this.pickRandomIndexLessThan(selectedItems.length);
     const correctItem = selectedItems[correctIndex];
-    multipleChoiceExercise.answers[correctIndex].correct = true;
+    // eslint-disable-next-line no-param-reassign
+    multipleChoiceExercise.options[correctIndex].correct = true;
 
     import(
-      `@/assets/lessons/lesson${lesson['lesson-index']
-        .toString()
-        .padStart(2, '0')}/${correctItem.audioName}`
+      `@/assets/lessons/lesson${lessonIndex.toString().padStart(2, '0')}/${
+        correctItem.audioName
+      }`
     ).then(({ default: path }) => {
+      // eslint-disable-next-line no-param-reassign
       multipleChoiceExercise.itemUnderTestAudio = new Audio(path);
     });
 
     if (correctItem.symbolName.length > 0) {
       import('@mdi/js').then((mod: typeof import('@mdi/js')) => {
         correctItem.symbolName.forEach((name) => {
-          (multipleChoiceExercise.itemUnderTestIcon as string[]).push(
+          (multipleChoiceExercise.iconToMatch as Array<string>).push(
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (mod as any)[name],
           );
         });
       });
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const mdiIcons: any = await import('@mdi/js');
-      const iconName = 'mdiCellphoneWireless';
-      multipleChoiceExercise.itemUnderTestIcon = mdiIcons[iconName];
+      import('@mdi/js').then((mod: typeof import('@mdi/js')) => {
+        // eslint-disable-next-line no-param-reassign
+        multipleChoiceExercise.iconToMatch = [mod.mdiCellphoneWireless];
+      });
     }
+  }
 
-    import(
-      `@/assets/lessons/lesson${lesson['lesson-index']
-        .toString()
-        .padStart(2, '0')}/${selectedItems[0].audioName}`
-    ).then(({ default: path }) => {
-      multipleChoiceExercise.answers[0].audio = new Audio(path);
-    });
-    import(
-      `@/assets/lessons/lesson${lesson['lesson-index']
-        .toString()
-        .padStart(2, '0')}/${selectedItems[1].audioName}`
-    ).then(({ default: path }) => {
-      multipleChoiceExercise.answers[1].audio = new Audio(path);
-    });
-    import(
-      `@/assets/lessons/lesson${lesson['lesson-index']
-        .toString()
-        .padStart(2, '0')}/${selectedItems[2].audioName}`
-    ).then(({ default: path }) => {
-      multipleChoiceExercise.answers[2].audio = new Audio(path);
-    });
-    import(
-      `@/assets/lessons/lesson${lesson['lesson-index']
-        .toString()
-        .padStart(2, '0')}/${selectedItems[3].audioName}`
-    ).then(({ default: path }) => {
-      multipleChoiceExercise.answers[3].audio = new Audio(path);
-    });
-
-    return {
-      exerciseType: 'MultipleChoice',
-      exerciseItems: multipleChoiceExercise,
-    };
+  public static pickRandomIndexLessThan(max: number) {
+    return Math.floor(Math.random() * max);
   }
 }

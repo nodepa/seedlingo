@@ -36,7 +36,7 @@ describe('Matching', () => {
   });
 
   describe('.checkForMatchAndReOrder()', () => {
-    it('colors only 1 answer on first selection', async () => {
+    it('colors only 1 option on first selection', async () => {
       // #############
       // ### setup ###
       // #############
@@ -49,76 +49,76 @@ describe('Matching', () => {
       // ##############
       let countSelected = 0;
       let countMatched = 0;
-      wrapper.vm.$data.localExerciseItems.forEach((answer: MatchingItem) => {
-        if (answer.isSelected) {
+      wrapper.vm.$data.localExerciseItems.forEach((option: MatchingItem) => {
+        if (option.selected) {
           countSelected += 1;
         }
-        if (answer.isMatched) {
+        if (option.matched) {
           countMatched += 1;
         }
       });
 
       expect(countSelected).toEqual(1);
       expect(countMatched).toEqual(0);
-      const selectedAnswer = wrapper.vm.$data
+      const selectedOption = wrapper.vm.$data
         .localExerciseItems[1] as MatchingItem;
-      const preSelectionAnswer = getTestData()[1] as MatchingItem;
-      expect(selectedAnswer.value).toBe(preSelectionAnswer.value);
-      expect(selectedAnswer.match).toBe(preSelectionAnswer.match);
-      expect(selectedAnswer.color).not.toBe(preSelectionAnswer.color);
-      expect(selectedAnswer.isChar).toBe(preSelectionAnswer.isChar);
-      expect(selectedAnswer.isIcon).toBe(preSelectionAnswer.isIcon);
-      expect(selectedAnswer.isMatched).toBe(preSelectionAnswer.isMatched);
-      expect(selectedAnswer.isSelected).not.toBe(preSelectionAnswer.isSelected);
-      expect(selectedAnswer.isSelected).toBe(true);
-      expect(selectedAnswer.isBuzzing).toBe(preSelectionAnswer.isBuzzing);
+      const preSelectionOption = getTestData()[1] as MatchingItem;
+      expect(selectedOption.value).toBe(preSelectionOption.value);
+      expect(selectedOption.match).toBe(preSelectionOption.match);
+      expect(selectedOption.color).not.toBe(preSelectionOption.color);
+      expect(selectedOption.isWord).toBe(preSelectionOption.isWord);
+      expect(selectedOption.isIcon).toBe(preSelectionOption.isIcon);
+      expect(selectedOption.matched).toBe(preSelectionOption.matched);
+      expect(selectedOption.selected).not.toBe(preSelectionOption.selected);
+      expect(selectedOption.selected).toBe(true);
+      expect(selectedOption.buzzing).toBe(preSelectionOption.buzzing);
     });
 
-    it('matches two matching answers and re-orders them', async () => {
+    it('matches two related options and re-orders them', async () => {
       // #############
       // ### setup ###
       // #############
-      const originalAnswers = getTestData();
+      const originalOptions = getTestData();
       const firstIndex = 2;
       const secondIndex = 0;
-      const firstIsChar = true;
-      const expectedChar = '二';
+      const firstIsWord = true;
+      const expectedWord = '二';
       let { localExerciseItems } = wrapper.vm.$data;
       const firstSelection = localExerciseItems[firstIndex] as MatchingItem;
       const secondSelection = localExerciseItems[secondIndex] as MatchingItem;
       expect(firstSelection.match).toBe(secondIndex);
       expect(secondSelection.match).toBe(firstIndex);
 
-      // select answer 1
+      // select option 1
       expect(wrapper.vm.$data.selected).toBe(-1);
       await wrapper.setData({ selected: firstIndex });
       expect(wrapper.vm.$data.selected).toBe(firstIndex);
-      expect(firstSelection.isSelected).toBe(true);
+      expect(firstSelection.selected).toBe(true);
 
-      // select answer 3
+      // select option 3
       await wrapper.setData({ selected: secondIndex });
 
       // ##############
       // ### assert ###
       // ##############
 
-      const firstSelectionOriginal = originalAnswers[
+      const firstSelectionOriginal = originalOptions[
         firstIndex
       ] as MatchingItem;
-      const secondSelectionOriginal = originalAnswers[
+      const secondSelectionOriginal = originalOptions[
         secondIndex
       ] as MatchingItem;
 
       // deselects after processing match
       expect(wrapper.vm.$data.selected).toBe(-1);
-      expect(firstSelection.isSelected).toBe(false);
-      expect(secondSelection.isSelected).toBe(false);
+      expect(firstSelection.selected).toBe(false);
+      expect(secondSelection.selected).toBe(false);
 
-      // toggles objects to isMatched
-      expect(firstSelection.isMatched).toBe(true);
-      expect(secondSelection.isMatched).toBe(true);
-      expect(firstSelectionOriginal.isMatched).toBe(false);
-      expect(secondSelectionOriginal.isMatched).toBe(false);
+      // toggles objects to matched
+      expect(firstSelection.matched).toBe(true);
+      expect(secondSelection.matched).toBe(true);
+      expect(firstSelectionOriginal.matched).toBe(false);
+      expect(secondSelectionOriginal.matched).toBe(false);
 
       // shares color different from original
       expect(firstSelection.color).not.toEqual(firstSelectionOriginal.color);
@@ -138,12 +138,12 @@ describe('Matching', () => {
       expect(firstSelection.match).toBe(newSecondIndex);
       expect(secondSelection.match).toBe(newFirstIndex);
 
-      if (firstIsChar) {
-        expect(firstSelection.isChar).toBe(true);
-        expect(firstSelection.value).toBe(expectedChar);
+      if (firstIsWord) {
+        expect(firstSelection.isWord).toBe(true);
+        expect(firstSelection.value).toBe(expectedWord);
       } else {
-        expect(secondSelection.isChar).toBe(true);
-        expect(secondSelection.value).toBe(expectedChar);
+        expect(secondSelection.isWord).toBe(true);
+        expect(secondSelection.value).toBe(expectedWord);
       }
 
       // re-orders unmatched items after matching 2️⃣ + 二
@@ -157,23 +157,23 @@ describe('Matching', () => {
       // 7: 三 -> 6    => 三 -> 6
       // 8: 四 -> 4    => 四 -> 4
       // verify expected test data
-      expect(originalAnswers[0].match).toBe(2);
-      expect(originalAnswers[1].match).toBe(4);
-      expect(originalAnswers[2].match).toBe(0);
-      expect(originalAnswers[3].match).toBe(7);
-      expect(originalAnswers[4].match).toBe(1);
-      expect(originalAnswers[5].match).toBe(6);
-      expect(originalAnswers[6].match).toBe(5);
-      expect(originalAnswers[7].match).toBe(3);
+      expect(originalOptions[0].match).toBe(2);
+      expect(originalOptions[1].match).toBe(4);
+      expect(originalOptions[2].match).toBe(0);
+      expect(originalOptions[3].match).toBe(7);
+      expect(originalOptions[4].match).toBe(1);
+      expect(originalOptions[5].match).toBe(6);
+      expect(originalOptions[6].match).toBe(5);
+      expect(originalOptions[7].match).toBe(3);
       // verify new sort order
-      expect(localExerciseItems[0].value).toEqual(originalAnswers[0].value);
-      expect(localExerciseItems[1].value).toEqual(originalAnswers[2].value);
-      expect(localExerciseItems[2].value).toEqual(originalAnswers[1].value);
-      expect(localExerciseItems[3].value).toEqual(originalAnswers[3].value);
-      expect(localExerciseItems[4].value).toEqual(originalAnswers[4].value);
-      expect(localExerciseItems[5].value).toEqual(originalAnswers[5].value);
-      expect(localExerciseItems[6].value).toEqual(originalAnswers[6].value);
-      expect(localExerciseItems[7].value).toEqual(originalAnswers[7].value);
+      expect(localExerciseItems[0].value).toEqual(originalOptions[0].value);
+      expect(localExerciseItems[1].value).toEqual(originalOptions[2].value);
+      expect(localExerciseItems[2].value).toEqual(originalOptions[1].value);
+      expect(localExerciseItems[3].value).toEqual(originalOptions[3].value);
+      expect(localExerciseItems[4].value).toEqual(originalOptions[4].value);
+      expect(localExerciseItems[5].value).toEqual(originalOptions[5].value);
+      expect(localExerciseItems[6].value).toEqual(originalOptions[6].value);
+      expect(localExerciseItems[7].value).toEqual(originalOptions[7].value);
       // verify new matches
       expect(localExerciseItems[0].match).toBe(1);
       expect(localExerciseItems[1].match).toBe(0);
@@ -192,7 +192,7 @@ describe('Matching', () => {
       // #############
       // ### setup ###
       // #############
-      const originalAnswers = getTestData();
+      const originalOptions = getTestData();
 
       // Original test data => after re-ordering (keeping order within pairs):
       // matching order:  3️⃣+三(6+7)    二+2️⃣(5+3)    四+4️⃣(8+6)     术+🌴(7+8)
@@ -223,14 +223,14 @@ describe('Matching', () => {
       // expected new order
       const { localExerciseItems } = wrapper.vm.$data;
       // verify new sort order
-      expect(localExerciseItems[0].value).toEqual(originalAnswers[5].value);
-      expect(localExerciseItems[1].value).toEqual(originalAnswers[6].value);
-      expect(localExerciseItems[2].value).toEqual(originalAnswers[0].value);
-      expect(localExerciseItems[3].value).toEqual(originalAnswers[2].value);
-      expect(localExerciseItems[4].value).toEqual(originalAnswers[3].value);
-      expect(localExerciseItems[5].value).toEqual(originalAnswers[7].value);
-      expect(localExerciseItems[6].value).toEqual(originalAnswers[1].value);
-      expect(localExerciseItems[7].value).toEqual(originalAnswers[4].value);
+      expect(localExerciseItems[0].value).toEqual(originalOptions[5].value);
+      expect(localExerciseItems[1].value).toEqual(originalOptions[6].value);
+      expect(localExerciseItems[2].value).toEqual(originalOptions[0].value);
+      expect(localExerciseItems[3].value).toEqual(originalOptions[2].value);
+      expect(localExerciseItems[4].value).toEqual(originalOptions[3].value);
+      expect(localExerciseItems[5].value).toEqual(originalOptions[7].value);
+      expect(localExerciseItems[6].value).toEqual(originalOptions[1].value);
+      expect(localExerciseItems[7].value).toEqual(originalOptions[4].value);
       // verify new matches
       expect(localExerciseItems[0].match).toBe(1);
       expect(localExerciseItems[1].match).toBe(0);

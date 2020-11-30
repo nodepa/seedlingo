@@ -2,47 +2,59 @@
   <v-container fill-height fluid>
     <v-row align="stretch" justify="center" style="height: 30%">
       <v-col cols="11">
-        <AnswerButton
-          ref="itemUnderTestAudioButton"
+        <ExerciseButton
+          ref="itemUnderTestButton"
           v-instruction="placeholderAudio"
-          data-test="item-under-test-audio-button"
+          data-test="item-under-test-button"
           color="primary"
-          :is-playing="exercise.itemUnderTestAudioIsPlaying"
+          :playing="exercise.itemUnderTestAudioIsPlaying"
           @click="playItemUnderTestAudio"
         >
-          <v-icon
-            v-for="(icon, iconIndex) in exercise.itemUnderTestIcon"
-            :key="iconIndex"
-            :class="getSpacing(exercise.itemUnderTestIcon.length, iconIndex)"
-            style="font-size: 3rem"
+          <template
+            v-if="exercise.iconToMatch && exercise.iconToMatch.length > 0"
           >
-            {{ icon }}
-          </v-icon>
-        </AnswerButton>
+            <v-icon
+              v-for="(icon, iconIndex) in exercise.iconToMatch"
+              :key="iconIndex"
+              :class="getSpacing(exercise.iconToMatch.length, iconIndex)"
+              style="font-size: 3rem"
+            >
+              {{ icon }}
+            </v-icon>
+          </template>
+          <template
+            v-else-if="
+              exercise.phraseToMatch && exercise.phraseToMatch.length > 0
+            "
+          >
+            <p
+              :style="
+                `font-size: ${4.4 - 0.4 * exercise.phraseToMatch.length}rem`
+              "
+            >
+              {{ exercise.phraseToMatch }}
+            </p>
+          </template>
+        </ExerciseButton>
       </v-col>
     </v-row>
     <v-row align="stretch" justify="space-around" style="height: 70%">
-      <v-col v-for="(answer, index) in exercise.answers" :key="index" cols="6">
-        <AnswerButton
-          :ref="`answer${index}Button`"
-          :data-test="`choice-${index + 1}-button`"
-          :is-playing="answer.playing"
-          :is-buzzing.sync="answer.isBuzzing"
-          :disabled="answer.disabled"
-          :color="answer.color"
-          v-on="
-            answer.correct
-              ? { click: (e) => correctHandler(e, index) }
-              : { click: (e) => incorrectHandler(e, index) }
-          "
+      <v-col v-for="(option, index) in exercise.options" :key="index" cols="6">
+        <ExerciseButton
+          :data-test="`option-button-${index + 1}`"
+          :playing="option.playing"
+          :buzzing.sync="option.buzzing"
+          :disabled="option.disabled"
+          :color="option.color"
+          @click="determineCorrectness(option)"
         >
           <p
             :class="getSpacing(0, 0)"
-            :style="`font-size: ${3.4 - 0.4 * answer.char.length}rem`"
+            :style="`font-size: ${3.4 - 0.4 * option.word.length}rem`"
           >
-            {{ answer.char }}
+            {{ option.word }}
           </p>
-        </AnswerButton>
+        </ExerciseButton>
       </v-col>
     </v-row>
   </v-container>
@@ -52,14 +64,17 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import placeholderAudio from '@/assets/audio/placeholder-audio.mp3';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
-import AnswerButton from '@/common/components/AnswerButton.vue';
+import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import { Instruction } from '@/common/directives/InstructionDirective';
-import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
+import {
+  MultipleChoiceExercise,
+  MultipleChoiceItem,
+} from '@/MultipleChoice/MultipleChoiceTypes';
 
 @Component({
   components: {
     RippleAnimation,
-    AnswerButton,
+    ExerciseButton,
   },
 })
 export default class MultipleChoice extends Vue {
@@ -86,12 +101,12 @@ export default class MultipleChoice extends Vue {
   getDefaultData() {
     return {
       placeholderAudio,
-      localExercise: {},
+      localExercise: {} as MultipleChoiceExercise,
     };
   }
 
-  get exercise() {
-    if (!this.$data.localExercise.answers) {
+  get exercise(): MultipleChoiceExercise {
+    if (!this.$data.localExercise.options) {
       this.exercise = this.exerciseProp;
     }
     return this.$data.localExercise;
@@ -102,33 +117,44 @@ export default class MultipleChoice extends Vue {
   }
 
   mounted() {
-    ((this.$refs.itemUnderTestAudioButton as Vue).$el as HTMLElement).focus();
+    ((this.$refs.itemUnderTestButton as Vue).$el as HTMLElement).focus();
   }
 
-  correctHandler(e: Event, index: number) {
-    this.exercise.answers[index].color = this.$vuetify.theme.currentTheme
-      .success as string;
-    this.exercise.answers.forEach((answer, i) => {
-      if (i !== index) {
+  // eslint-disable-next-line class-methods-use-this
+  determineCorrectness(option: MultipleChoiceItem) {
+    if (option.correct) {
+      this.correctHandler(option);
+    } else {
+      this.incorrectHandler(option);
+    }
+  }
+
+  // correctHandler(e: Event, index: number) {
+  correctHandler(option: MultipleChoiceItem) {
+    this.exercise.options.forEach((item) => {
+      if (item !== option) {
         // eslint-disable-next-line no-param-reassign
-        answer.disabled = true;
+        item.disabled = true;
       }
     });
-    this.playAnswerAudio(index);
+    // eslint-disable-next-line no-param-reassign
+    option.color = this.$vuetify.theme.currentTheme.success as string;
+    this.playOptionAudio(option);
     this.$store.commit('showContinueButton', true);
   }
 
-  incorrectHandler(e: Event, index: number) {
-    this.playAnswerAudio(index);
-    const answer = this.exercise.answers[index];
-    answer.isBuzzing = true;
+  incorrectHandler(option: MultipleChoiceItem) {
+    this.playOptionAudio(option);
+    // eslint-disable-next-line no-param-reassign
+    option.buzzing = true;
     this.$watch(
       () => {
-        return this.exercise.answers[index].playing;
+        return option.playing;
       },
       (playing: boolean) => {
         if (!playing) {
-          this.exercise.answers[index].disabled = true;
+          // eslint-disable-next-line no-param-reassign
+          option.disabled = true;
           setTimeout(this.playItemUnderTestAudio, 200);
         }
       },
@@ -137,41 +163,54 @@ export default class MultipleChoice extends Vue {
 
   playItemUnderTestAudio() {
     const testAudio = this.exercise.itemUnderTestAudio;
-    testAudio.onplaying = () => {
-      this.exercise.itemUnderTestAudioIsPlaying = true;
-    };
-    testAudio.onpause = () => {
-      this.exercise.itemUnderTestAudioIsPlaying = false;
-    };
-    testAudio.onended = () => {
-      this.exercise.itemUnderTestAudioIsPlaying = false;
-    };
-    testAudio.play();
+    if (testAudio) {
+      testAudio.onplaying = () => {
+        this.exercise.itemUnderTestAudioIsPlaying = true;
+      };
+      testAudio.onpause = () => {
+        this.exercise.itemUnderTestAudioIsPlaying = false;
+      };
+      testAudio.onended = () => {
+        this.exercise.itemUnderTestAudioIsPlaying = false;
+      };
+      testAudio.play();
+    }
   }
 
-  playAnswerAudio(index: number) {
+  playOptionAudio(option: MultipleChoiceItem) {
     // pause other (potentially playing) audio
-    this.exercise.answers.forEach((answer) => {
-      answer.audio.pause();
-      // eslint-disable-next-line no-param-reassign
-      answer.audio.currentTime = 0;
+    this.exercise.options.forEach((item) => {
+      if (item.audio && !item.audio.paused) {
+        item.audio.pause();
+      }
     });
-    this.exercise.itemUnderTestAudio.pause();
-    this.exercise.itemUnderTestAudio.currentTime = 0;
+    if (this.exercise.itemUnderTestAudio) {
+      this.exercise.itemUnderTestAudio.pause();
+      this.exercise.itemUnderTestAudio.currentTime = 0;
+    }
 
     // prepare to handle playtime events
-    const answer = this.exercise.answers[index];
-    answer.audio.onplaying = () => {
-      answer.playing = true;
-    };
-    answer.audio.onpause = () => {
-      answer.playing = false;
-    };
-    answer.audio.onended = () => {
-      answer.playing = false;
-    };
+    if (option.audio) {
+      // eslint-disable-next-line no-param-reassign
+      option.audio.onplaying = () => {
+        // eslint-disable-next-line no-param-reassign
+        option.playing = true;
+      };
+      // eslint-disable-next-line no-param-reassign
+      option.audio.onpause = () => {
+        // eslint-disable-next-line no-param-reassign
+        option.playing = false;
+      };
+      // eslint-disable-next-line no-param-reassign
+      option.audio.onended = () => {
+        // eslint-disable-next-line no-param-reassign
+        option.playing = false;
+      };
 
-    answer.audio.play();
+      // eslint-disable-next-line no-param-reassign
+      option.audio.currentTime = 0;
+      option.audio.play();
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this

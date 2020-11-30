@@ -1,6 +1,8 @@
 {
-  "lesson-id": "65832e2a-79a7-405c-b20a-a0252020594b",
-  "lesson-index": 9,
+  "lessonId": "65832e2a-79a7-405c-b20a-a0252020594b",
+  "lessonIndex": 9,
+  "wordsCount": 4,
+  "phrasesCount": 8,
   "items": [
     {
       "id": "b6ebbe69-9834-41f3-a353-4a9142d599b3",
@@ -12,7 +14,9 @@
     },
     {
       "id": "fe6136b6-5b06-4bce-adef-2c2d57f38377",
-      "word": "姐姐的孩子",
+      "word": "",
+      "phrase": "姐姐的孩子",
+      "phraseInterpretationId": "b6ebbe69-9834-41f3-a353-4a9142d599b3",
       "audioName": "placeholder-audio.mp3",
       "pictureName": "",
       "videoName": "",
@@ -20,7 +24,9 @@
     },
     {
       "id": "64aeff99-8821-4659-9e24-2b9edbefecac",
-      "word": "妹妹的女儿",
+      "word": "",
+      "phrase": "妹妹的女儿",
+      "phraseInterpretationId": "b6ebbe69-9834-41f3-a353-4a9142d599b3",
       "audioName": "placeholder-audio.mp3",
       "pictureName": "",
       "videoName": "",
@@ -36,7 +42,9 @@
     },
     {
       "id": "2ec33882-f247-42d3-b84a-ee24f72fe130",
-      "word": "妹妹的孩子",
+      "word": "",
+      "phrase": "妹妹的孩子",
+      "phraseInterpretationId": "54ff3fa1-141e-4620-861d-335376b3f8f2",
       "audioName": "placeholder-audio.mp3",
       "pictureName": "",
       "videoName": "",
@@ -44,7 +52,9 @@
     },
     {
       "id": "1ef691db-a4d4-40e0-9dbb-943627b8f99b",
-      "word": "姐姐的儿子",
+      "word": "",
+      "phrase": "姐姐的儿子",
+      "phraseInterpretationId": "54ff3fa1-141e-4620-861d-335376b3f8f2",
       "audioName": "placeholder-audio.mp3",
       "pictureName": "",
       "videoName": "",
@@ -60,7 +70,9 @@
     },
     {
       "id": "51b402f3-50a3-4d7c-942b-1a7bd1b71228",
-      "word": "哥哥的孩子",
+      "word": "",
+      "phrase": "哥哥的孩子",
+      "phraseInterpretationId": "0087add3-b033-4cac-bb6b-cebf1c1acdd0",
       "audioName": "placeholder-audio.mp3",
       "pictureName": "",
       "videoName": "",
@@ -68,7 +80,9 @@
     },
     {
       "id": "7d63aafa-5923-49be-870b-489c1925a4d1",
-      "word": "弟弟的女儿",
+      "word": "",
+      "phrase": "弟弟的女儿",
+      "phraseInterpretationId": "0087add3-b033-4cac-bb6b-cebf1c1acdd0",
       "audioName": "placeholder-audio.mp3",
       "pictureName": "",
       "videoName": "",
@@ -84,7 +98,9 @@
     },
     {
       "id": "b17bf354-c988-4f42-b817-0ad587429895",
-      "word": "弟弟的孩子",
+      "word": "",
+      "phrase": "弟弟的孩子",
+      "phraseInterpretationId": "dda9c23b-503d-4ada-8293-3450c8bfae7c",
       "audioName": "placeholder-audio.mp3",
       "pictureName": "",
       "videoName": "",
@@ -92,7 +108,9 @@
     },
     {
       "id": "d9bb9c8c-1b07-4aaf-a597-fdbc20ab7c91",
-      "word": "哥哥的儿子",
+      "word": "",
+      "phrase": "哥哥的儿子",
+      "phraseInterpretationId": "dda9c23b-503d-4ada-8293-3450c8bfae7c",
       "audioName": "placeholder-audio.mp3",
       "pictureName": "",
       "videoName": "",
