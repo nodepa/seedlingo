@@ -8,10 +8,10 @@ assignees: ''
 
 ---
 
-马丽 sees the initial state.
-马丽 performs some actions.
-马丽 sees the results.
-马丽 can perform some "mistakes" and see appropriate responses.
+1. 马丽 sees the initial state.
+2. 马丽 performs some actions.
+3. 马丽 sees the results.
+4. 马丽 can perform some "mistakes" and see appropriate responses.
 
 **Requires**
 
