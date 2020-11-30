@@ -2,35 +2,34 @@
   <v-container fill-height fluid>
     <v-row align="stretch" justify="space-around" class="fill-height">
       <v-col
-        v-for="(answer, index) in exerciseItems"
+        v-for="(option, index) in exerciseItems"
         :key="index"
         cols="6"
         sm="3"
       >
-        <AnswerButton
-          :ref="`answer${index}Button`"
-          :data-test="`answer-${+index + 1}-button`"
-          :is-playing="answer.audio.isPlaying"
-          :is-buzzing.sync="answer.isBuzzing"
-          :color="answer.color"
-          @click="selectAndPlay(answer, +index)"
+        <ExerciseButton
+          :data-test="`option-button-${+index + 1}`"
+          :playing="option.audio.playing"
+          :buzzing.sync="option.buzzing"
+          :color="option.color"
+          @click="selectAndPlay(option, +index)"
         >
-          <template v-if="answer.isIcon">
+          <template v-if="option.isIcon">
             <v-icon
-              v-for="(icon, iconIndex) in answer.value"
+              v-for="(icon, iconIndex) in option.value"
               :key="iconIndex"
-              :class="getSpacing(answer.value.length, iconIndex)"
-              :style="`font-size: ${2.6 - 0.3 * answer.value.length}rem`"
+              :class="getSpacing(option.value.length, iconIndex)"
+              :style="`font-size: ${2.6 - 0.3 * option.value.length}rem`"
             >
               {{ icon }}
             </v-icon>
           </template>
           <template v-else>
-            <p :style="`font-size: ${2.6 - 0.3 * answer.value.length}rem`">
-              {{ answer.value }}
+            <p :style="`font-size: ${2.6 - 0.3 * option.value.length}rem`">
+              {{ option.value }}
             </p>
           </template>
-        </AnswerButton>
+        </ExerciseButton>
       </v-col>
     </v-row>
   </v-container>
@@ -38,22 +37,22 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import AnswerButton from '@/common/components/AnswerButton.vue';
+import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import { MatchingItem } from '@/Matching/MatchingTypes';
 
 @Component({
   components: {
     RippleAnimation,
-    AnswerButton,
+    ExerciseButton,
   },
 })
 export default class Matching extends Vue {
   colors: Array<string> = ['deep-purple', 'pink', 'orange', 'teal'];
 
-  iconColor = 'primary';
+  nonWordColor = 'primary';
 
-  charColor = '';
+  wordColor = '';
 
   @Prop(Array) exerciseProp!: Array<MatchingItem>;
 
@@ -87,139 +86,115 @@ export default class Matching extends Vue {
     this.$data.localExerciseItems = items;
   }
 
-  selectAndPlay(answer: MatchingItem, index: number) {
+  selectAndPlay(option: MatchingItem, index: number) {
     this.$data.selected = index;
     this.exerciseItems.forEach((item) => {
-      if (item.audio.isPlaying) {
+      if (item.audio.playing) {
         item.audio.cancel();
       }
     });
-    answer.audio.play();
+    option.audio.play();
   }
 
   @Watch('selected')
-  onSelectedChanged(currIndex: number, prevIndex: number) {
-    this.checkForMatchAndReOrder(currIndex, prevIndex);
+  onSelectedChanged(indexOfSelected: number, indexOfPrevious: number) {
+    this.checkForMatchAndReOrder(indexOfSelected, indexOfPrevious);
   }
 
-  public checkForMatchAndReOrder(currIndex: number, prevIndex: number) {
-    const currAnswer = this.exerciseItems[currIndex];
-    const prevAnswer = this.exerciseItems[prevIndex];
+  public checkForMatchAndReOrder(
+    indexOfSelected: number,
+    indexOfPrevious: number,
+  ) {
+    const selectedOption = this.exerciseItems[indexOfSelected];
+    const previousOption = this.exerciseItems[indexOfPrevious];
 
-    if (currIndex > -1 && currAnswer.isMatched) {
+    if (indexOfSelected > -1 && selectedOption.matched) {
       // 1 item selected, but already matched
       this.$data.selected = -1;
       // cancel (potential) previous selection
-      if (prevAnswer) {
-        prevAnswer.isSelected = false;
-        prevAnswer.color = prevAnswer.isIcon ? this.iconColor : this.charColor;
+      if (previousOption) {
+        previousOption.selected = false;
+        previousOption.color = previousOption.isWord
+          ? this.wordColor
+          : this.nonWordColor;
       }
-    } else if (prevIndex === -1) {
+    } else if (indexOfPrevious === -1) {
       // nothing was selected, now 1 item is
       //   - color currently selected item
-      currAnswer.isSelected = true;
-      [currAnswer.color] = this.colors;
-    } else if (currIndex === -1) {
-      // if no selection (neither prevIndex nor currIndex): programmatically reset to -1
-    } else if (currAnswer && currAnswer.match === prevIndex) {
+      selectedOption.selected = true;
+      [selectedOption.color] = this.colors;
+    } else if (indexOfSelected === -1) {
+      // if no selection (neither indexOfPrevious nor indexOfSelected): programmatically reset to -1
+    } else if (selectedOption && selectedOption.match === indexOfPrevious) {
       // 1 item was selected, now another item is selected
       //   - they are a match
       //     - color same
-      [currAnswer.color] = this.colors;
-      [prevAnswer.color] = this.colors;
+      [selectedOption.color] = this.colors;
+      [previousOption.color] = this.colors;
       this.colors.shift();
 
       //     - set selection to nothing
-      currAnswer.isSelected = false;
-      prevAnswer.isSelected = false;
-      currAnswer.isMatched = true;
-      prevAnswer.isMatched = true;
+      selectedOption.selected = false;
+      previousOption.selected = false;
+      selectedOption.matched = true;
+      previousOption.matched = true;
       this.$data.selected = -1;
 
       //     - re-order
-      // can probably eliminate temp allAnswers here
-      const allAnswers = Object.values(
+      // can probably eliminate temp allOptions here
+      const allOptions = Object.values(
         this.exerciseItems as Array<MatchingItem>,
       );
 
-      const origCurrAnswerIndex = allAnswers.indexOf(currAnswer);
-      const origPrevAnswerIndex = allAnswers.indexOf(prevAnswer);
+      const originalIndexOfSelected = allOptions.indexOf(selectedOption);
+      const originalIndexOfPrevious = allOptions.indexOf(previousOption);
 
-      // debug output: print order of answers collection
-      // const m = {
-      //   'M9,7V9': ' 2',
-      //   术: '术',
-      //   二: '二',
-      //   'M9,7V1': ' 4',
-      //   'M12 9C': '🌴',
-      //   'M5,3H1': ' 3',
-      //   三: '三',
-      //   四: '四',
-      // };
-      // let concat = 'Before re-ordering\n';
-      // Object.values(allAnswers).forEach((item, i) => {
-      //   concat += `${i + 1}: ${m[item.value.substring(0, 6)]}  ->  ${item.match}${
-      //     i === origCurrAnswerIndex - 1 || i === origPrevAnswerIndex - 1
-      //       ? '*'
-      //       : ''
-      //   }\n`;
-      // });
-      // console.log(`${concat.substring(0, concat.length - 1)}`);
-      // console.log(
-      //   `curr:   ${origCurrAnswerIndex}: ${
-      //     m[currAnswer.value.substring(0, 6)]
-      //   }  ->  ${currAnswer.match}\nprev:   ${origPrevAnswerIndex}: ${
-      //     m[prevAnswer.value.substring(0, 6)]
-      //   }  ->  ${prevAnswer.match}`,
-      // );
-      // end debug output
-
-      // 1 - put currAnswer and prevAnswer first, re-link to 1 and 2
+      // 1 - put selectedOption and previousOption first, re-link to 1 and 2
       // remove matched pair from collection
-      allAnswers.splice(allAnswers.indexOf(currAnswer), 1);
-      allAnswers.splice(allAnswers.indexOf(prevAnswer), 1);
+      allOptions.splice(allOptions.indexOf(selectedOption), 1);
+      allOptions.splice(allOptions.indexOf(previousOption), 1);
 
       // id latest previous match
       // note: lastMatched is zero-index-based
       let lastMatched = -1;
-      allAnswers.forEach((item: MatchingItem, index: number) => {
-        if (item.isMatched) {
+      allOptions.forEach((item: MatchingItem, index: number) => {
+        if (item.matched) {
           lastMatched = index;
         }
       });
       lastMatched += 1;
 
-      // add last selected before the unmatched answers
-      allAnswers.splice(lastMatched, 0, currAnswer);
+      // add last selected before the unmatched options
+      allOptions.splice(lastMatched, 0, selectedOption);
       // keep relative sort order within pair
-      if (origCurrAnswerIndex > origPrevAnswerIndex) {
-        allAnswers.splice(lastMatched, 0, prevAnswer);
-        prevAnswer.match = lastMatched + 1;
-        currAnswer.match = lastMatched;
+      if (originalIndexOfSelected > originalIndexOfPrevious) {
+        allOptions.splice(lastMatched, 0, previousOption);
+        previousOption.match = lastMatched + 1;
+        selectedOption.match = lastMatched;
       } else {
-        allAnswers.splice(lastMatched + 1, 0, prevAnswer);
-        currAnswer.match = lastMatched + 1;
-        prevAnswer.match = lastMatched;
+        allOptions.splice(lastMatched + 1, 0, previousOption);
+        selectedOption.match = lastMatched + 1;
+        previousOption.match = lastMatched;
       }
 
       // 2 - any 'match' link lower than
       // re-map internal matching given re-ordering
-      allAnswers.forEach((item) => {
-        if (!item.isMatched) {
+      allOptions.forEach((item) => {
+        if (!item.matched) {
           // include new pair in lastMatched
           // if (item.match <= lastMatched + 2) {
           //   // eslint-disable-next-line no-param-reassign
           //   item.match += lastMatched + 2 - item.match + 1;
           // }
           if (
-            item.match < origCurrAnswerIndex &&
-            item.match < origPrevAnswerIndex
+            item.match < originalIndexOfSelected &&
+            item.match < originalIndexOfPrevious
           ) {
             // eslint-disable-next-line no-param-reassign
             item.match += 2;
           } else if (
-            item.match < origCurrAnswerIndex ||
-            item.match < origPrevAnswerIndex
+            item.match < originalIndexOfSelected ||
+            item.match < originalIndexOfPrevious
           ) {
             // eslint-disable-next-line no-param-reassign
             item.match += 1;
@@ -227,28 +202,15 @@ export default class Matching extends Vue {
         }
       });
 
-      // debug output: print order of answers collection
-      // concat = 'After re-ordering\n';
-      // Object.values(allAnswers).forEach((item, i) => {
-      //   concat += `${i + 1}: ${m[item.value.substring(0, 6)]}  ->  ${item.match}\n`;
-      // });
-      // console.log(`${concat}\n\n`);
-      // end debug output
+      this.exerciseItems = allOptions;
 
-      // this.$data.answers = Object.fromEntries(
-      //   allAnswers.map((ans, index) => {
-      //     return [index, ans];
-      //   }),
-      // );
-      this.exerciseItems = allAnswers;
-
-      // if all answers are matched up, continue!
+      // if all options are matched up, continue!
       if (
-        !allAnswers.reduce((countMatched, item) => {
-          return item.isMatched ? countMatched - 1 : countMatched;
-        }, allAnswers.length)
+        !allOptions.reduce((countMatched, item) => {
+          return item.matched ? countMatched - 1 : countMatched;
+        }, allOptions.length)
       ) {
-        // all answers have been matched
+        // all options have been matched
         // setTimeout(() => {
         this.$store.commit('showContinueButton', true);
         // }, 500);
@@ -256,26 +218,30 @@ export default class Matching extends Vue {
     } else {
       // 1 item was selected, now another item is selected
       //   - they are not a match
-      if (currAnswer.isIcon === prevAnswer.isIcon) {
+      if (selectedOption.isWord === previousOption.isWord) {
         //   - if the new selection is of same type, then
         //     - revert color of previous selection
         //     - keep current selection
-        currAnswer.isSelected = true;
+        selectedOption.selected = true;
         // rotate color list
         this.colors.push(this.colors.shift() as string);
-        [currAnswer.color] = this.colors;
+        [selectedOption.color] = this.colors;
       } else {
         //   - if new selection is of different type
         //     - revert color
         //     - set selection to nothing
-        currAnswer.isBuzzing = true;
-        prevAnswer.isBuzzing = true;
-        currAnswer.color = currAnswer.isIcon ? this.iconColor : this.charColor;
-        currAnswer.isSelected = false;
+        selectedOption.buzzing = true;
+        previousOption.buzzing = true;
+        selectedOption.color = selectedOption.isWord
+          ? this.wordColor
+          : this.nonWordColor;
+        selectedOption.selected = false;
         this.$data.selected = -1;
       }
-      prevAnswer.isSelected = false;
-      prevAnswer.color = prevAnswer.isIcon ? this.iconColor : this.charColor;
+      previousOption.selected = false;
+      previousOption.color = previousOption.isWord
+        ? this.wordColor
+        : this.nonWordColor;
     }
   }
 

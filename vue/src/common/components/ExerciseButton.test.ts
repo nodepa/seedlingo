@@ -7,19 +7,19 @@ import { shallowMount, Wrapper } from '@vue/test-utils';
 import { animate } from '@/test_helpers/FunctionOverrides';
 
 // Item under test
-import AnswerButton from './AnswerButton.vue';
+import ExerciseButton from './ExerciseButton.vue';
 
 window.Element.prototype.animate = animate;
 
 Vue.use(Vuetify);
 
-describe('AnswerButton', () => {
+describe('ExerciseButton', () => {
   let wrapper: Wrapper<Vue>;
   let vuetify: Vuetify;
 
   beforeEach(() => {
     vuetify = new Vuetify();
-    wrapper = shallowMount(AnswerButton, {
+    wrapper = shallowMount(ExerciseButton, {
       vuetify,
     });
   });
@@ -36,24 +36,24 @@ describe('AnswerButton', () => {
 
     it('has correct defaults', () => {
       expect(wrapper.vm.$data.errorColor).toBe('');
-      expect(wrapper.vm.$props.isPlaying).toBe(false);
+      expect(wrapper.vm.$props.playing).toBe(false);
       expect(wrapper.vm.$props.color).toBe('');
       expect(wrapper.vm.$props.disabled).toBe(false);
       expect(wrapper.vm.$props.height).toBe('100%');
-      expect(wrapper.vm.$props.isBuzzing).toBe(false);
+      expect(wrapper.vm.$props.buzzing).toBe(false);
     });
 
-    it('changes color when `isBuzzing`', async () => {
-      await wrapper.setProps({ isBuzzing: true });
+    it('changes color when `buzzing`', async () => {
+      await wrapper.setProps({ buzzing: true });
       expect(wrapper.vm.$data.errorColor).toBe(
         wrapper.vm.$vuetify.theme.currentTheme.error,
       );
     });
 
-    it('animates when `isBuzzing`', async () => {
+    it('animates when `buzzing`', async () => {
       const spyAnimate = jest.spyOn(window.Element.prototype, 'animate');
       expect(spyAnimate).toBeCalledTimes(0);
-      await wrapper.setProps({ isBuzzing: true });
+      await wrapper.setProps({ buzzing: true });
       expect(spyAnimate).toBeCalledTimes(1);
     });
   });

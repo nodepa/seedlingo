@@ -1,6 +1,6 @@
 export interface ExerciseAudio {
   el: HTMLAudioElement;
-  isPlaying: boolean;
+  playing: boolean;
   play(): void;
   cancel(): void;
 }
@@ -10,9 +10,9 @@ export interface MatchingItem {
   audio: ExerciseAudio;
   match: number;
   color: string;
-  isChar: boolean;
+  isWord: boolean;
   isIcon: boolean;
-  isMatched: boolean;
-  isSelected: boolean;
-  isBuzzing: boolean;
+  matched: boolean;
+  selected: boolean;
+  buzzing: boolean;
 }
