@@ -22,18 +22,18 @@ import placeholderAudio from '@/assets/audio/placeholder-audio.mp3';
 @Component
 export default class ContinueButton extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): { mdiForward: string; placeholderAudio: string } {
     return {
       mdiForward,
       placeholderAudio,
     };
   }
 
-  showContinueButton() {
+  showContinueButton(): boolean {
     return this.$store.state.showContinueButton;
   }
 
-  mounted() {
+  mounted(): void {
     this.$watch(
       () => {
         return this.showContinueButton();

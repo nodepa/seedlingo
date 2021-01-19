@@ -8,8 +8,8 @@
   >
     <v-icon
       v-if="isInstructionsMode"
-      x-large
       data-test="instructions-close-icon"
+      x-large
     >
       $instructionsClose
     </v-icon>
@@ -21,36 +21,36 @@
     >
       $instructions
     </v-icon>
-    <audio ref="instructionsButtonAudio" :src="whenYouSeeAnEarAudio" />
+    <audio ref="instructionsButtonAudio" :src="说明耳朵" />
   </v-btn>
 </template>
 
 <script lang="ts">
 import { Component, PropSync, Vue } from 'vue-property-decorator';
-import whenYouSeeAnEarAudio from '@/assets/audio/when-you-see-an-ear.mp3';
+import 说明耳朵 from '@/assets/audio/instructions/说明耳朵.mp3';
 import { Instruction } from '@/common/directives/InstructionDirective';
 
 @Component
 export default class InstructionsButton extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): { 说明耳朵: string } {
     return {
-      whenYouSeeAnEarAudio,
+      说明耳朵,
     };
   }
 
-  get isInstructionsMode() {
+  get isInstructionsMode(): boolean {
     return this.$store.state.instructionsStore.isInstructionsMode;
   }
 
-  get showGetInstructionsGraphic() {
+  get showGetInstructionsGraphic(): boolean {
     return this.$store.state.instructionsStore.showGetInstructionsGraphic;
   }
 
-  @PropSync('isHomeButtonDisabled', { type: Boolean })
-  syncedIsHomeButtonDisabled!: boolean;
+  @PropSync('homeButtonDisabled', { type: Boolean })
+  syncedHomeButtonDisabled!: boolean;
 
-  toggleInstructionsMode() {
+  toggleInstructionsMode(): void {
     if (this.showGetInstructionsGraphic) {
       this.$store.dispatch(
         'instructionsStore/setShowGetInstructionsGraphic',
@@ -64,15 +64,15 @@ export default class InstructionsButton extends Vue {
       audioEl.play();
     }
 
-    if (this.$props.isHomeButtonDisabled) {
-      this.syncedIsHomeButtonDisabled = false;
+    if (this.$props.homeButtonDisabled) {
+      this.syncedHomeButtonDisabled = false;
     }
 
     // Inform globally that isInstructionsMode should toggle
     this.$store.dispatch('instructionsStore/toggleInstructionsMode');
   }
 
-  mounted() {
+  mounted(): void {
     if (this.showGetInstructionsGraphic) {
       const animation = (this.$refs.instructionsButton as Vue).$el.animate(
         [

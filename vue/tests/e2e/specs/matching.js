@@ -314,18 +314,18 @@ describe('马丽 interacts with the "matching" system', () => {
   );
 });
 
-describe('马丽 interacts with the "matching phrase" system', () => {
+describe('马丽 interacts with the "matching explanation" system', () => {
   it(
     'Displays the matching screen with ' +
-      '2 "word" cards and 2 "phrase" cards',
+      '2 "word" cards and 2 "explanation" cards',
     () => {
       // *****
       // * 1 *
       // *****
       cy.log('**1. 马丽 sees**');
-      cy.log('-- 2 *phrase* buttons');
+      cy.log('-- 2 *explanation* buttons');
       cy.log('-- 2 corresponding *word* buttons');
-      cy.visit('/lesson/matching-phrase-test', {
+      cy.visit('/lesson/matching-explanation-test', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');
@@ -342,7 +342,7 @@ describe('马丽 interacts with the "matching phrase" system', () => {
       );
 
       // Expected test-data:
-      // 0: option1 五件二
+      // 0: option1 五减二
       // 1: option2 四
       // 2: option3 三
       // 3: option4 二加二
@@ -350,7 +350,7 @@ describe('马丽 interacts with the "matching phrase" system', () => {
         .as('option1')
         .should('be.visible')
         .then((el) => {
-          cy.contains('五件二').should('match', el);
+          cy.contains('五减二').should('match', el);
         });
       cy.get('[data-test="option-button-2"]')
         .as('option2')

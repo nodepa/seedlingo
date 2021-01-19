@@ -13,7 +13,7 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class InstructionsWrapper extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  say(msg: string) {
+  say(msg: string): void {
     // eslint-disable-next-line no-console
     console.log(msg);
   }

@@ -12,7 +12,7 @@ module.exports = {
     assetsVersion: '1.0.0', // appends ?v=1.0.0 to URL of icons and manifest
     manifestOptions: {
       display: 'standalone', // standalone, fullscreen, minimal, browser
-      background_color: '#0086ff', // eslint-disable-line @typescript-eslint/camelcase
+      background_color: '#0086ff',
       // assumes assets generated with `yarn genass`, see packages.json
       icons: [
         {

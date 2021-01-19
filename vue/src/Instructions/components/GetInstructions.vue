@@ -3,7 +3,7 @@
     <v-row align="center" justify="center">
       <v-col fill-height>
         <GetInstructionsGraphic class="get-instructions-graphic" />
-        <audio autoplay :src="getInstructionsAudioPath" />
+        <audio autoplay :src="欢迎" />
       </v-col>
     </v-row>
   </v-container>
@@ -11,19 +11,20 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import getInstructionsAudioPath from '@/assets/audio/welcome.mp3';
+import 欢迎 from '@/assets/audio/instructions/欢迎.mp3';
 import GetInstructionsGraphic from './GetInstructionsGraphic.vue';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {
     GetInstructionsGraphic,
   },
 })
 export default class GetInstructions extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): { 欢迎: string } {
     return {
-      getInstructionsAudioPath,
+      欢迎,
     };
   }
 }

@@ -15,6 +15,10 @@ import { animate, pause, play } from '@/test_helpers/FunctionOverrides';
 // Item under test
 import BottomNavigationBar from './BottomNavigationBar.vue';
 
+import HomeButton from './HomeButton.vue';
+import InstructionsButton from './InstructionsButton.vue';
+import ContinueButton from './ContinueButton.vue';
+
 window.Element.prototype.animate = animate;
 window.HTMLMediaElement.prototype.pause = pause;
 window.HTMLMediaElement.prototype.play = play;
@@ -43,6 +47,7 @@ const homeButton = '[data-test="home-button"]';
 const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
 const instructionsIcon = '[data-test="instructions-icon"]';
 const instructionsCloseIcon = '[data-test="instructions-close-icon"]';
+const bottomNavigationBar = '[data-test="bottom-navigation-bar"]';
 
 describe('BottomNavigationBar.vue (deep)', () => {
   let wrapper: Wrapper<Vue>;
@@ -56,6 +61,9 @@ describe('BottomNavigationBar.vue (deep)', () => {
       router,
       vuetify,
       store,
+      propsData: {
+        initiateHomeButtonDisabled: true,
+      },
     });
   });
 
@@ -78,7 +86,13 @@ describe('BottomNavigationBar.vue (deep)', () => {
   // Elements have initial states
   describe('home-button', () => {
     it('is disabled on first load', () => {
-      expect(wrapper.find(homeButton).props().isHomeButtonDisabled).toBe(true);
+      expect(
+        wrapper.find(bottomNavigationBar).props().initiateHomeButtonDisabled,
+      ).toBe(true);
+      expect(
+        wrapper.find(bottomNavigationBar).vm.$data.homeButtonDisabled,
+      ).toBe(true);
+      expect(wrapper.find(homeButton).props().homeButtonDisabled).toBe(true);
       expect(
         wrapper.find(homeButton).element.classList.contains('v-btn--disabled'),
       ).toBe(true);
@@ -101,9 +115,9 @@ describe('BottomNavigationBar.vue (deep)', () => {
     });
 
     it('on first click: enables the home button', async () => {
-      expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(true);
+      expect(wrapper.vm.$data.homeButtonDisabled).toBe(true);
       await wrapper.find(toggleInstructionsButton).trigger('click');
-      expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(false);
+      expect(wrapper.vm.$data.homeButtonDisabled).toBe(false);
     });
 
     it('on first click: toggles on instructions mode', async () => {
@@ -115,10 +129,7 @@ describe('BottomNavigationBar.vue (deep)', () => {
           .exists(),
       ).toBe(true);
       expect(
-        wrapper
-          .find(toggleInstructionsButton)
-          .find(instructionsIcon)
-          .exists(),
+        wrapper.find(toggleInstructionsButton).find(instructionsIcon).exists(),
       ).toBe(false);
       expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
         true,
@@ -129,14 +140,14 @@ describe('BottomNavigationBar.vue (deep)', () => {
       const instructionsButton = wrapper.find(toggleInstructionsButton);
 
       // initial state
-      expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(true);
+      expect(wrapper.vm.$data.homeButtonDisabled).toBe(true);
       expect(
         wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
       ).toBe(true);
       expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
         false,
       );
-      expect(instructionsButton.emitted('update:isHomeButtonDisabled')).toBe(
+      expect(instructionsButton.emitted('update:homeButtonDisabled')).toBe(
         undefined,
       );
 
@@ -144,7 +155,7 @@ describe('BottomNavigationBar.vue (deep)', () => {
       instructionsButton.trigger('click');
 
       // current state
-      expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(false);
+      expect(wrapper.vm.$data.homeButtonDisabled).toBe(false);
       expect(
         wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
       ).toBe(false);
@@ -152,14 +163,14 @@ describe('BottomNavigationBar.vue (deep)', () => {
         true,
       );
       expect(
-        instructionsButton.emitted('update:isHomeButtonDisabled').length,
+        instructionsButton.emitted('update:homeButtonDisabled')?.length,
       ).toBe(1);
 
       // second click
       instructionsButton.trigger('click');
 
       // current state
-      expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(false);
+      expect(wrapper.vm.$data.homeButtonDisabled).toBe(false);
       expect(
         wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
       ).toBe(false);
@@ -167,14 +178,14 @@ describe('BottomNavigationBar.vue (deep)', () => {
         false,
       );
       expect(
-        instructionsButton.emitted('update:isHomeButtonDisabled').length,
+        instructionsButton.emitted('update:homeButtonDisabled')?.length,
       ).toBe(2);
 
       // third click
       instructionsButton.trigger('click');
 
       // current state
-      expect(wrapper.vm.$data.isHomeButtonDisabled).toBe(false);
+      expect(wrapper.vm.$data.homeButtonDisabled).toBe(false);
       expect(
         wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
       ).toBe(false);
@@ -182,7 +193,7 @@ describe('BottomNavigationBar.vue (deep)', () => {
         true,
       );
       expect(
-        instructionsButton.emitted('update:isHomeButtonDisabled').length,
+        instructionsButton.emitted('update:homeButtonDisabled')?.length,
       ).toBe(3);
     });
   });
