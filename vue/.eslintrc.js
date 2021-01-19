@@ -21,6 +21,7 @@ module.exports = {
       'error',
       { devDependencies: ['**/*.test.ts', '**/*.spec.ts'] },
     ],
+    'no-use-before-define': 'off',
   },
   overrides: [
     {

@@ -1,7 +1,7 @@
-import placeholderAudio from '@/assets/audio/placeholder-audio.mp3';
-import er from '@/assets/audio/characters/er.mp3';
-import san from '@/assets/audio/characters/san.mp3';
-import si from '@/assets/audio/characters/si.mp3';
+import 术 from '@/assets/audio/characters/术.mp3';
+import 二 from '@/assets/audio/characters/二.mp3';
+import 三 from '@/assets/audio/characters/三.mp3';
+import 四 from '@/assets/audio/characters/四.mp3';
 import {
   mdiDice3,
   mdiNumeric2Circle,
@@ -11,11 +11,11 @@ import {
 import ExerciseProvider from '@/Lessons/ExerciseProvider';
 import { MatchingItem } from '../MatchingTypes';
 
-export default function(): Array<MatchingItem> {
+export default function MatchingTestData(): Array<MatchingItem> {
   return [
     {
       value: [mdiNumeric2Circle],
-      audio: ExerciseProvider.createAudio(er),
+      audio: ExerciseProvider.createAudio(二),
       match: 2,
       color: 'primary',
       isWord: false,
@@ -26,7 +26,7 @@ export default function(): Array<MatchingItem> {
     },
     {
       value: '术',
-      audio: ExerciseProvider.createAudio(placeholderAudio),
+      audio: ExerciseProvider.createAudio(术),
       match: 4,
       color: '',
       isWord: true,
@@ -37,7 +37,7 @@ export default function(): Array<MatchingItem> {
     },
     {
       value: '二',
-      audio: ExerciseProvider.createAudio(er),
+      audio: ExerciseProvider.createAudio(二),
       match: 0,
       color: '',
       isWord: true,
@@ -48,7 +48,7 @@ export default function(): Array<MatchingItem> {
     },
     {
       value: [mdiNumeric4Circle],
-      audio: ExerciseProvider.createAudio(si),
+      audio: ExerciseProvider.createAudio(四),
       match: 7,
       color: 'primary',
       isWord: false,
@@ -59,7 +59,7 @@ export default function(): Array<MatchingItem> {
     },
     {
       value: [mdiPalmTree],
-      audio: ExerciseProvider.createAudio(placeholderAudio),
+      audio: ExerciseProvider.createAudio(术),
       match: 1,
       color: 'primary',
       isWord: false,
@@ -70,7 +70,7 @@ export default function(): Array<MatchingItem> {
     },
     {
       value: [mdiDice3],
-      audio: ExerciseProvider.createAudio(san),
+      audio: ExerciseProvider.createAudio(三),
       match: 6,
       color: 'primary',
       isWord: false,
@@ -81,7 +81,7 @@ export default function(): Array<MatchingItem> {
     },
     {
       value: '三',
-      audio: ExerciseProvider.createAudio(san),
+      audio: ExerciseProvider.createAudio(三),
       match: 5,
       color: '',
       isWord: true,
@@ -92,7 +92,7 @@ export default function(): Array<MatchingItem> {
     },
     {
       value: '四',
-      audio: ExerciseProvider.createAudio(si),
+      audio: ExerciseProvider.createAudio(四),
       match: 3,
       color: '',
       isWord: true,

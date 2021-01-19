@@ -113,14 +113,14 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
   );
 });
 
-describe('马丽 interacts with the "multiple-choice phrase" system', () => {
+describe('马丽 interacts with the "multiple-choice explanation" system', () => {
   it(
     'Displays the multiple-choice screen with ' +
-      'a phrase, ' +
+      'an explanation, ' +
       'and 2-4 selectable options',
     () => {
-      cy.log('**1. 马丽 sees a phrase**');
-      cy.visit('/lesson/multiple-choice-phrase-test', {
+      cy.log('**1. 马丽 sees an explanation**');
+      cy.visit('/lesson/multiple-choice-explanation-test', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');
@@ -150,7 +150,7 @@ describe('马丽 interacts with the "multiple-choice phrase" system', () => {
       cy.get('@animation.play').should('have.callCount', 0);
 
       cy.log('**2. 马丽 sees 3 words**');
-      cy.log('-- of which one is the correct match to the phrase.');
+      cy.log('-- of which one is the correct match to the explanation.');
       cy.get('[data-test="option-button-1"]')
         .as('option1')
         .should('be.visible')
@@ -178,8 +178,8 @@ describe('马丽 interacts with the "multiple-choice phrase" system', () => {
 
       // Normally, we would set up the data here. I'm going to go with
       // foreknowledge for now. At the time of writing this test, the data-set
-      // is limited to one exercise session testing the phrase 一加二 with options
-      // 一(option1),四(option2),三(option3)
+      // is limited to one exercise session testing the explanation 一加二 with
+      // options 一(option1),四(option2),三(option3)
       cy.get('@option1')
         // click incorrect option
         .click()

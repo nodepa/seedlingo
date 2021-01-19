@@ -4,24 +4,34 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import MultipleChoice from '@/MultipleChoice/components/MultipleChoice.vue';
+import Cloze from '@/Cloze/components/Cloze.vue';
 import Matching from '@/Matching/components/Matching.vue';
+import MultipleChoice from '@/MultipleChoice/components/MultipleChoice.vue';
 import getMatchingTestData from '@/Matching/data/MatchingTestData';
-import getMatchingPhraseTestData from '@/Matching/data/MatchingPhraseTestData';
+import getMatchingExplanationTestData from '@/Matching/data/MatchingExplanationTestData';
 import getMultipleChoiceTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
-import getMultipleChoicePhraseTestData from '@/MultipleChoice/data/MultipleChoicePhraseTestData';
+import getMultipleChoiceExplanationTestData from '@/MultipleChoice/data/MultipleChoiceExplanationTestData';
+import getClozeTestData from '@/Cloze/data/ClozeTestData';
 import { MatchingItem } from '@/Matching/MatchingTypes';
+import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
+import { ClozeExercise } from '@/Cloze/ClozeTypes';
 import ExerciseProvider from '@/Lessons/ExerciseProvider';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {
-    MultipleChoice,
+    Cloze,
     Matching,
+    MultipleChoice,
   },
 })
 export default class Session extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): {
+    exerciseComponent: string;
+    exerciseItems: Array<MatchingItem> | MultipleChoiceExercise | ClozeExercise;
+    currentIteration: number;
+  } {
     return {
       exerciseComponent: 'MultipleChoice',
       exerciseItems: [],
@@ -31,7 +41,7 @@ export default class Session extends Vue {
 
   @Watch('$store.state.showContinueButton')
   // eslint-disable-next-line class-methods-use-this
-  onShowContinueButtonChanged(show: boolean) {
+  onShowContinueButtonChanged(show: boolean): void {
     if (!show) {
       // the continue button has been clicked, time to refresh or return home
       if (this.$data.currentIteration >= 5) {
@@ -43,7 +53,7 @@ export default class Session extends Vue {
     }
   }
 
-  getExercise() {
+  getExercise(): void {
     if (
       this.$route.params.id === 'matching-test' ||
       +this.$route.params.id > 10
@@ -53,12 +63,15 @@ export default class Session extends Vue {
     } else if (this.$route.params.id === 'multiple-choice-test') {
       this.$data.exerciseComponent = 'MultipleChoice';
       this.$data.exerciseItems = getMultipleChoiceTestData();
-    } else if (this.$route.params.id === 'multiple-choice-phrase-test') {
+    } else if (this.$route.params.id === 'multiple-choice-explanation-test') {
       this.$data.exerciseComponent = 'MultipleChoice';
-      this.$data.exerciseItems = getMultipleChoicePhraseTestData();
-    } else if (this.$route.params.id === 'matching-phrase-test') {
+      this.$data.exerciseItems = getMultipleChoiceExplanationTestData();
+    } else if (this.$route.params.id === 'matching-explanation-test') {
       this.$data.exerciseComponent = 'Matching';
-      this.$data.exerciseItems = getMatchingPhraseTestData();
+      this.$data.exerciseItems = getMatchingExplanationTestData();
+    } else if (this.$route.params.id === 'cloze-test') {
+      this.$data.exerciseComponent = 'Cloze';
+      this.$data.exerciseItems = getClozeTestData();
     } else if (
       this.$route.params.id != null &&
       this.$route.params.id !== '' &&
@@ -70,10 +83,13 @@ export default class Session extends Vue {
       ExerciseProvider.getExerciseFromLesson(lessonIndex).then(
         (exercise: {
           exerciseType: string;
-          exerciseItems: Array<MatchingItem> | {};
+          exerciseItems:
+            | Array<MatchingItem>
+            | MultipleChoiceExercise
+            | ClozeExercise;
         }) => {
           vm.$data.exerciseItems = exercise.exerciseItems;
-          if (exercise.exerciseType === 'MultipleChoicePhrase') {
+          if (exercise.exerciseType === 'MultipleChoiceExplanation') {
             vm.$data.exerciseComponent = 'MultipleChoice';
           } else {
             vm.$data.exerciseComponent = exercise.exerciseType;
@@ -83,7 +99,7 @@ export default class Session extends Vue {
     }
   }
 
-  mounted() {
+  mounted(): void {
     this.getExercise();
   }
 }

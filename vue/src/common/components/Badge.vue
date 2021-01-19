@@ -11,6 +11,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import InstructionsIcon from '@/common/icons/InstructionsIcon.vue';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {
     InstructionsIcon,
   },
@@ -21,8 +22,8 @@ export default class Badge extends Vue {}
 <style lang="stylus">
 .badge-container
   position: absolute;
-  top: inherit;
-  left: inherit;
+  top: 0px;
+  left: 0px;
   width: 100%;
   height: 100%;
 .badge

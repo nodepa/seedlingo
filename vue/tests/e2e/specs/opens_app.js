@@ -48,7 +48,7 @@ describe('马丽 opens the app to lessons overview', () => {
       cy.log(
         'A short auto-played audio clip invites 马丽 to tap the interactive icon.',
       );
-      cy.wait(100);
+      cy.wait(200);
       cy.get('[data-test="get-instructions-component"]')
         .find('audio')
         .then(($el) => {

@@ -63,7 +63,7 @@
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator';
 import InstructionsMixin from '@/examples/InstructionsMixin.vue';
-import instructionAudioPath from '@/assets/audio/welcome.mp3';
+import instructionAudioPath from '@/assets/audio/instructions/欢迎.mp3';
 import {
   mdiDatabaseImport,
   mdiStandardDefinition,
@@ -72,11 +72,18 @@ import {
 } from '@mdi/js';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {},
 })
 export default class InstructionsMixinView extends Mixins(InstructionsMixin) {
   // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): {
+    instructionAudioPath: string;
+    mdiDatabaseImport: string;
+    mdiStandardDefinition: string;
+    mdiTransferRight: string;
+    mdiWrap: string;
+  } {
     return {
       instructionAudioPath,
       mdiDatabaseImport,
@@ -87,7 +94,7 @@ export default class InstructionsMixinView extends Mixins(InstructionsMixin) {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  say(msg: string) {
+  say(msg: string): void {
     // eslint-disable-next-line no-console
     console.log(msg);
   }

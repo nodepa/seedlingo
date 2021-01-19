@@ -1,11 +1,11 @@
 <template>
   <v-btn
-    v-instruction="homeButtonAudio"
+    v-instruction="说明回家"
     icon
     exact
     :to="{ name: 'Home' }"
     data-test="home-button"
-    :disabled="isHomeButtonDisabled"
+    :disabled="homeButtonDisabled"
     @click="$store.commit('showContinueButton', false)"
   >
     <v-icon x-large>{{ mdiHome }}</v-icon>
@@ -15,19 +15,19 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mdiHome } from '@mdi/js';
-import homeButtonAudio from '@/assets/audio/home-button.mp3';
+import 说明回家 from '@/assets/audio/instructions/说明回家.mp3';
 
 @Component
 export default class HomeButton extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): { 说明回家: string; mdiHome: string } {
     return {
-      homeButtonAudio,
+      说明回家,
       mdiHome,
     };
   }
 
-  @Prop({ default: false }) readonly isHomeButtonDisabled!: boolean;
+  @Prop({ default: false }) readonly homeButtonDisabled!: boolean;
 }
 </script>
 

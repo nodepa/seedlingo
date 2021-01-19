@@ -42,6 +42,7 @@ import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import { MatchingItem } from '@/Matching/MatchingTypes';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {
     RippleAnimation,
     ExerciseButton,
@@ -57,17 +58,21 @@ export default class Matching extends Vue {
   @Prop(Array) exerciseProp!: Array<MatchingItem>;
 
   @Watch('exerciseProp')
-  onExercisePropChanged() {
+  onExercisePropChanged(): void {
     Object.assign(this.$data, this.getDefaultData());
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): {
+    selected: number;
+    localExerciseItems: Array<MatchingItem>;
+  } {
     return this.getDefaultData();
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  getDefaultData() {
+  getDefaultData(): {
+    selected: number;
+    localExerciseItems: Array<MatchingItem>;
+  } {
     this.colors = ['deep-purple', 'pink', 'orange', 'teal'];
     return {
       selected: -1,
@@ -75,7 +80,7 @@ export default class Matching extends Vue {
     };
   }
 
-  get exerciseItems() {
+  get exerciseItems(): Array<MatchingItem> {
     if (this.$data.localExerciseItems.length === 0) {
       this.$data.localExerciseItems = this.exerciseProp;
     }
@@ -86,7 +91,7 @@ export default class Matching extends Vue {
     this.$data.localExerciseItems = items;
   }
 
-  selectAndPlay(option: MatchingItem, index: number) {
+  selectAndPlay(option: MatchingItem, index: number): void {
     this.$data.selected = index;
     this.exerciseItems.forEach((item) => {
       if (item.audio.playing) {
@@ -97,14 +102,14 @@ export default class Matching extends Vue {
   }
 
   @Watch('selected')
-  onSelectedChanged(indexOfSelected: number, indexOfPrevious: number) {
+  onSelectedChanged(indexOfSelected: number, indexOfPrevious: number): void {
     this.checkForMatchAndReOrder(indexOfSelected, indexOfPrevious);
   }
 
   public checkForMatchAndReOrder(
     indexOfSelected: number,
     indexOfPrevious: number,
-  ) {
+  ): void {
     const selectedOption = this.exerciseItems[indexOfSelected];
     const previousOption = this.exerciseItems[indexOfPrevious];
 
