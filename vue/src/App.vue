@@ -10,9 +10,7 @@
           src="@/assets/logo/logo.svg"
           width="40"
           height="40"
-          :style="
-            `border-radius: 100%; background-color: ${$vuetify.theme.currentTheme.primary}`
-          "
+          :style="`border-radius: 100%; background-color: ${$vuetify.theme.currentTheme.primary}`"
           @click="$vuetify.theme.dark = !$vuetify.theme.dark"
         />
         <span
@@ -38,7 +36,9 @@
       />
     </v-main>
 
-    <BottomNavigationBar />
+    <BottomNavigationBar
+      :initiate-home-button-disabled="showGetInstructionsGraphic"
+    />
   </v-app>
 </template>
 
@@ -49,6 +49,7 @@ import BottomNavigationBar from '@/BottomNavigationBar/components/BottomNavigati
 import GetInstructions from '@/Instructions/components/GetInstructions.vue';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {
     BottomNavigationBar,
     GetInstructions,
@@ -56,7 +57,7 @@ import GetInstructions from '@/Instructions/components/GetInstructions.vue';
 })
 export default class App extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): { branch: string; jobId: string } {
     return {
       branch: process.env.VUE_APP_BRANCH,
       jobId: process.env.VUE_APP_JOB_ID
@@ -65,14 +66,14 @@ export default class App extends Vue {
     };
   }
 
-  get showGetInstructionsGraphic() {
+  get showGetInstructionsGraphic(): boolean {
     return (
       this.$route.name === 'Home' &&
       this.$store.state.instructionsStore.showGetInstructionsGraphic
     );
   }
 
-  get isInstructionsMode() {
+  get isInstructionsMode(): boolean {
     return this.$store.state.instructionsStore.isInstructionsMode;
   }
 }
@@ -84,4 +85,5 @@ export default class App extends Vue {
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   text-align center
+  user-select none
 </style>

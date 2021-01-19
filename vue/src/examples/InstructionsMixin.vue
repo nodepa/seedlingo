@@ -14,18 +14,18 @@ export default class InstructionsMixin extends Vue {
 
   person = 'Bob';
 
-  hello() {
+  hello(): void {
     this.say(`Hello ${this.person}`);
   }
 
-  created() {
+  created(): void {
     this.say('mixin created');
     this.hello();
     this.say(this.$children.length);
   }
 
   // eslint-disable-next-line class-methods-use-this
-  say(msg: string | number) {
+  say(msg: string | number): void {
     // eslint-disable-next-line no-console
     console.log(msg);
   }

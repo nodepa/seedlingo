@@ -20,6 +20,7 @@ import { Component, Prop, PropSync, Vue, Watch } from 'vue-property-decorator';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {
     RippleAnimation,
   },
@@ -28,7 +29,7 @@ export default class ExerciseButton extends Vue {
   animation?: Animation;
 
   // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): { errorColor: string } {
     return {
       errorColor: '',
     };
@@ -46,7 +47,7 @@ export default class ExerciseButton extends Vue {
   syncedBuzzing!: boolean;
 
   @Watch('buzzing')
-  onBuzzingChanged(buzzing: boolean) {
+  onBuzzingChanged(buzzing: boolean): void {
     if (buzzing) {
       this.$data.errorColor = this.$vuetify.theme.currentTheme.error as string;
       this.playAnimation();
@@ -55,7 +56,7 @@ export default class ExerciseButton extends Vue {
     }
   }
 
-  playAnimation() {
+  playAnimation(): void {
     if (this.animation) {
       this.animation.play();
     } else {

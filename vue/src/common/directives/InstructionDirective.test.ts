@@ -17,6 +17,11 @@ import {
 window.HTMLMediaElement.prototype.pause = pause;
 window.HTMLMediaElement.prototype.play = play;
 
+const spyAddAudioListeners = jest.spyOn(
+  Instruction.prototype,
+  'addAudioListeners',
+);
+
 let vm: Vue;
 let instruction: Instruction;
 let vuetify: Vuetify;
@@ -25,6 +30,7 @@ const audioPath = 'http://just.a.test/audio.mp3';
 beforeEach(() => {
   // Setup
   store.dispatch('instructionsStore/resetState');
+  spyAddAudioListeners.mockClear();
   vuetify = new Vuetify();
   vm = new Vue({
     render(createElement) {
@@ -78,6 +84,18 @@ describe('class Instruction', () => {
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
+  it('addAudioListeners: adds event listeners', () => {
+    const spyAudioAddEventListener = jest.spyOn(
+      HTMLAudioElement.prototype,
+      'addEventListener',
+    );
+    expect(spyAddAudioListeners).toHaveBeenCalledTimes(1);
+    spyAudioAddEventListener.mockClear();
+    instruction.addAudioListeners();
+    expect(spyAddAudioListeners).toHaveBeenCalledTimes(2);
+    expect(spyAudioAddEventListener).toHaveBeenCalledTimes(3);
+  });
+
   it('removeEventListener: removes event listeners', () => {
     const spyAdd = jest.spyOn(vm.$el, 'addEventListener');
     const spyRemove = jest.spyOn(vm.$el, 'removeEventListener');
@@ -105,7 +123,7 @@ describe('class Instruction', () => {
     elToRemove.forEach((element) => {
       element.remove();
     });
-    expect(el.childElementCount).toBe(3); // 2 animations, 1 audio
+    expect(el.childElementCount).toBe(1); // 1 audio, 0 animations
 
     // Apply function
     instruction.addInstructionStyle();
@@ -113,11 +131,9 @@ describe('class Instruction', () => {
     // Assert post-state
     expect(el.style.backgroundColor).toBe('rgb(255, 0, 0)');
     expect(el.style.zIndex).toBe('4');
-    expect(el.childElementCount).toBe(4); // 2 animations, 1 audio, 1 badge
+    expect(el.childElementCount).toBe(2); // 1 badge, 1 audio, 0 animations
     expect(el.children[0].tagName).toBe('SPAN');
-    expect(el.children[1].tagName).toBe('SPAN');
-    expect(el.children[2].tagName).toBe('AUDIO');
-    expect(el.children[3].tagName).toBe('SPAN');
+    expect(el.children[1].tagName).toBe('AUDIO');
   });
 
   it('removeInstructionStyle: removes/restores styling to the element', () => {
@@ -126,7 +142,7 @@ describe('class Instruction', () => {
     const el = vm.$el as HTMLButtonElement;
     el.style.backgroundColor = '#FF0000';
     el.style.zIndex = '9';
-    expect(el.childElementCount).toBe(4); // 2 animations, 1 audio, 1 badge
+    expect(el.childElementCount).toBe(2); // 1 badge, 1 audio, 0 animations
 
     // Apply function
     instruction.removeInstructionStyle();
@@ -134,16 +150,16 @@ describe('class Instruction', () => {
     // Assert post-state
     expect(el.style.backgroundColor).toBe('rgb(255, 0, 0)');
     expect(el.style.zIndex).toBe('');
-    expect(el.childElementCount).toBe(3); // 2 animations, 1 audio
-    expect(el.children[2].tagName).toBe('AUDIO'); // audio is 3rd elm
+    expect(el.childElementCount).toBe(1); // 1 audio, 0 animations
+    expect(el.children[0].tagName).toBe('AUDIO'); // audio is 1rst elm
   });
 
   it('playInstruction: plays attached audio', () => {
     // Setup and assert pre-state
     const parentEl = vm.$el;
-    expect(parentEl.children[0].tagName).toBe('SPAN');
-    expect(parentEl.children[1].tagName).toBe('SPAN');
-    const el = parentEl.children[2] as HTMLAudioElement;
+    expect(parentEl.children[0].tagName).toBe('AUDIO');
+    expect(parentEl.childElementCount).toBe(1); // 1 audio, 0 animations
+    const el = parentEl.children[0] as HTMLAudioElement;
     expect(el.tagName).toBe('AUDIO');
     expect(el.src).toBe(audioPath);
 
@@ -159,9 +175,9 @@ describe('class Instruction', () => {
   it('cancelInstruction: stops playing attached audio', () => {
     // Setup and assert pre-state
     const parentEl = vm.$el;
-    expect(parentEl.children[0].tagName).toBe('SPAN');
-    expect(parentEl.children[1].tagName).toBe('SPAN');
-    const el = parentEl.children[2] as HTMLAudioElement;
+    expect(parentEl.children[0].tagName).toBe('AUDIO');
+    expect(parentEl.childElementCount).toBe(1); // 1 audio, 0 animations
+    const el = parentEl.children[0] as HTMLAudioElement;
     expect(el.tagName).toBe('AUDIO');
     expect(el.src).toBe(audioPath);
 

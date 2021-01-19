@@ -26,6 +26,6 @@ const vm = new Vue({
 // Fallback to max if performance.timing.navigationStart undefined
 const timeSinceNavStart =
   Date.now() - (performance?.timing?.navigationStart || Infinity);
-const minDelay = process.env.NODE_ENV === 'production' ? 3000 : 4000;
+const minDelay = process.env.NODE_ENV === 'production' ? 3000 : 2000;
 const delayMountAmount = Math.max(minDelay - timeSinceNavStart, 0);
 setTimeout(() => vm.$mount('#app'), delayMountAmount);

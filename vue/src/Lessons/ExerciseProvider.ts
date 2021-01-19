@@ -1,8 +1,10 @@
+import { Lesson, LessonItem, BlankOption } from '@/Lessons/data/LessonTypes';
 import { MatchingItem, ExerciseAudio } from '@/Matching/MatchingTypes';
 import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
 } from '@/MultipleChoice/MultipleChoiceTypes';
+import { ClozeExercise, ClozeOption } from '@/Cloze/ClozeTypes';
 import Lesson01 from '@/Lessons/data/Lesson01.json';
 import Lesson02 from '@/Lessons/data/Lesson02.json';
 import Lesson03 from '@/Lessons/data/Lesson03.json';
@@ -13,13 +15,13 @@ import Lesson07 from '@/Lessons/data/Lesson07.json';
 import Lesson08 from '@/Lessons/data/Lesson08.json';
 import Lesson09 from '@/Lessons/data/Lesson09.json';
 import Lesson10 from '@/Lessons/data/Lesson10.json';
-import { Lesson, LessonItem } from '@/Lessons/data/LessonTypes';
 
 export type ExerciseType =
   | 'Matching'
-  | 'MatchingPhrase'
+  | 'MatchingExplanation'
   | 'MultipleChoice'
-  | 'MultipleChoicePhrase';
+  | 'MultipleChoiceExplanation'
+  | 'Cloze';
 
 export default class ExerciseProvider {
   private static lessons = [
@@ -39,7 +41,7 @@ export default class ExerciseProvider {
     indexFromOne: number,
   ): Promise<{
     exerciseType: string;
-    exerciseItems: Array<MatchingItem> | MultipleChoiceExercise;
+    exerciseItems: Array<MatchingItem> | MultipleChoiceExercise | ClozeExercise;
   }> {
     this.validateExerciseIndex(indexFromOne);
     const indexFromZero = indexFromOne - 1;
@@ -47,21 +49,25 @@ export default class ExerciseProvider {
 
     const exerciseType = this.pickRandomExerciseType(lesson);
     // const exerciseType = 'Matching' as ExerciseType;
-    // const exerciseType = 'MatchingPhrase' as ExerciseType;
+    // const exerciseType = 'MatchingExplanation' as ExerciseType;
     // const exerciseType = 'MultipleChoice' as ExerciseType;
-    // const exerciseType = 'MultipleChoicePhrase' as ExerciseType;
+    // const exerciseType = 'MultipleChoiceExplanation' as ExerciseType;
+    // const exerciseType = 'Cloze' as ExerciseType;
 
     if (exerciseType === 'Matching') {
       return this.generateMatchingExercise(lesson);
     }
-    if (exerciseType === 'MatchingPhrase') {
-      return this.generateMatchingPhraseExercise(lesson);
+    if (exerciseType === 'MatchingExplanation') {
+      return this.generateMatchingExplanationExercise(lesson);
     }
     if (exerciseType === 'MultipleChoice') {
       return this.generateMultipleChoiceExercise(lesson);
     }
-    // else (exerciseType === 'MultipleChoicePhrase')
-    return this.generateMultipleChoicePhraseExercise(lesson);
+    if (exerciseType === 'MultipleChoiceExplanation') {
+      return this.generateMultipleChoiceExplanationExercise(lesson);
+    }
+    // else (exerciseType === 'Cloze') {
+    return this.generateClozeExercise(lesson);
   }
 
   public static validateExerciseIndex(indexFromOne: number): void {
@@ -74,23 +80,22 @@ export default class ExerciseProvider {
 
   public static pickRandomExerciseType(lesson: Lesson): ExerciseType {
     const validTypes = [] as Array<ExerciseType>;
-    // Matching requires minimum 2 words
-    if (lesson.wordsCount >= 2) {
+    if (lesson.wordCount >= 2) {
       validTypes.push('Matching');
     }
-    // MatchingPhrase requires minimum 2 phrases & 2 words
-    if (lesson.phrasesCount >= 2 && lesson.wordsCount >= 2) {
-      validTypes.push('MatchingPhrase');
+    if (lesson.explanationCount >= 2 && lesson.wordCount >= 2) {
+      validTypes.push('MatchingExplanation');
     }
-    // MultipleChoice requires minimum 4 words
-    if (lesson.wordsCount >= 4) {
+    if (lesson.wordCount >= 4) {
       validTypes.push('MultipleChoice');
     }
-    // MultipleChoicePhrase requires minimum 1 phrase & 2 words
-    if (lesson.phrasesCount >= 1 && lesson.wordsCount >= 2) {
-      validTypes.push('MultipleChoicePhrase');
+    if (lesson.explanationCount >= 1 && lesson.wordCount >= 2) {
+      validTypes.push('MultipleChoiceExplanation');
     }
-    return validTypes[Math.floor(Math.random() * validTypes.length)];
+    if (lesson.clozeCount >= 1) {
+      validTypes.push('Cloze');
+    }
+    return this.pickRandomItem(validTypes);
   }
 
   public static generateMatchingExercise(
@@ -115,14 +120,14 @@ export default class ExerciseProvider {
     return { exerciseType: 'Matching', exerciseItems: matchingExercises };
   }
 
-  public static generateMatchingPhraseExercise(
+  public static generateMatchingExplanationExercise(
     lesson: Lesson,
   ): { exerciseType: ExerciseType; exerciseItems: Array<MatchingItem> } {
-    const phrasesInLesson = this.selectPhrasesInLesson(lesson);
+    const explanationsInLesson = this.selectExplanationsInLesson(lesson);
     const wordsInLesson = this.selectWordsInLesson(lesson);
 
-    const selectedPhrases = this.selectRandomSubset(
-      phrasesInLesson,
+    const selectedExplanations = this.selectRandomSubset(
+      explanationsInLesson,
       {
         minItems: 2,
         maxItems: 2,
@@ -130,8 +135,8 @@ export default class ExerciseProvider {
       lesson.lessonIndex,
     );
 
-    const matchingExercises = this.createPairsFromPhrasesAndWords(
-      selectedPhrases,
+    const matchingExercises = this.createPairsFromExplanationsAndWords(
+      selectedExplanations,
       wordsInLesson,
       lesson.lessonIndex,
     );
@@ -170,40 +175,60 @@ export default class ExerciseProvider {
     };
   }
 
-  public static generateMultipleChoicePhraseExercise(
+  public static generateClozeExercise(
+    lesson: Lesson,
+  ): { exerciseType: ExerciseType; exerciseItems: ClozeExercise } {
+    const clozeItems = this.selectClozeItemsInLesson(lesson);
+    if (clozeItems.length === 0) {
+      throw new Error(
+        `Lesson ${lesson.lessonIndex} has zero cloze items, which is too few to generate an exercise.`,
+      );
+    }
+    const selectedClozeItem = this.pickRandomItem(clozeItems);
+    const clozeExercise = this.createClozeExerciseFromClozeItem(
+      selectedClozeItem,
+      lesson.lessonIndex,
+    );
+
+    return {
+      exerciseType: 'Cloze',
+      exerciseItems: clozeExercise,
+    };
+  }
+
+  public static generateMultipleChoiceExplanationExercise(
     lesson: Lesson,
   ): { exerciseType: ExerciseType; exerciseItems: MultipleChoiceExercise } {
-    const phrasesInLesson = this.selectPhrasesInLesson(lesson);
+    const explanationsInLesson = this.selectExplanationsInLesson(lesson);
 
-    // ensure lesson has 1 or more phrases
-    if (phrasesInLesson.length === 0) {
+    // ensure lesson has 1 or more explanations
+    if (explanationsInLesson.length === 0) {
       throw new Error(
-        `Lesson ${lesson.lessonIndex} has zero phrase items, which is too few to generate an exercise.`,
+        `Lesson ${lesson.lessonIndex} has zero explanation items, which is too few to generate an exercise.`,
       );
     }
 
-    // randomly pick a phrase from all available phrases
-    const phraseToMatch =
-      phrasesInLesson[Math.floor(Math.random() * phrasesInLesson.length)];
+    // randomly pick an explanation from all available explanations
+    const explanationToMatch = this.pickRandomItem(explanationsInLesson);
 
-    // get picked phrase's interpretation
-    const interpretationOfPhrase = lesson.items.find(
-      (lessonItem) => lessonItem.id === phraseToMatch.phraseInterpretationId,
+    // get the explanation's interpretation
+    const targetOfExplanation = lesson.items.find(
+      (lessonItem) => lessonItem.id === explanationToMatch.explanationTargetId,
     );
-    if (!interpretationOfPhrase) {
+    if (!targetOfExplanation) {
       throw new Error(
-        `Lesson ${lesson.lessonIndex} has a phrase (${phraseToMatch.id}) without a matching interpretation (${phraseToMatch.phraseInterpretationId}).`,
+        `Lesson ${lesson.lessonIndex} has an explanation (${explanationToMatch.id}) without a matching target (${explanationToMatch.explanationTargetId}).`,
       );
     }
 
     // create collection of options, starting with correct interpretation
     const multipleChoiceExercise = {
-      phraseToMatch: phraseToMatch.phrase,
+      explanationToMatch: explanationToMatch.explanation,
       options: [] as Array<MultipleChoiceItem>,
     } as MultipleChoiceExercise;
 
     const correctOption = {
-      word: interpretationOfPhrase.word,
+      word: targetOfExplanation.word,
       audio: {} as HTMLAudioElement,
       correct: true,
       disabled: false,
@@ -214,7 +239,7 @@ export default class ExerciseProvider {
     import(
       `@/assets/lessons/lesson${lesson.lessonIndex
         .toString()
-        .padStart(2, '0')}/${interpretationOfPhrase.audioName}`
+        .padStart(2, '0')}/${targetOfExplanation.audioName}`
     ).then(({ default: path }) => {
       correctOption.audio = new Audio(path);
     });
@@ -224,7 +249,7 @@ export default class ExerciseProvider {
     // randomly pick additional interpretations from (words - correct int.)
     const allIncorrectInterpretations = this.selectWordsInLesson(
       lesson,
-      interpretationOfPhrase,
+      targetOfExplanation,
     );
 
     allIncorrectInterpretations.forEach((lessonItem: LessonItem) => {
@@ -271,13 +296,24 @@ export default class ExerciseProvider {
     );
   }
 
-  public static selectPhrasesInLesson(lesson: Lesson): Array<LessonItem> {
+  public static selectExplanationsInLesson(lesson: Lesson): Array<LessonItem> {
     return lesson.items.filter((lessonItem: LessonItem) => {
       return (
-        lessonItem.phrase &&
-        lessonItem.phrase.length > 0 &&
-        lessonItem.phraseInterpretationId &&
-        lessonItem.phraseInterpretationId.length === 36
+        lessonItem.explanation &&
+        lessonItem.explanation.length > 0 &&
+        lessonItem.explanationTargetId &&
+        lessonItem.explanationTargetId.length === 36
+      );
+    });
+  }
+
+  public static selectClozeItemsInLesson(lesson: Lesson): Array<LessonItem> {
+    return lesson.items.filter((lessonItem: LessonItem) => {
+      return (
+        lessonItem.clozeText &&
+        lessonItem.clozeText.length > 0 &&
+        lessonItem.clozeSpecVariants &&
+        lessonItem.clozeSpecVariants.length > 0
       );
     });
   }
@@ -293,7 +329,7 @@ export default class ExerciseProvider {
     const maxItemsAccepted = Math.min(limits.maxItems, lessonItems.length);
     for (let i = 0; i < maxItemsAccepted; i += 1) {
       const randomUniqueIndex = lessonItemIndexes.splice(
-        Math.floor(Math.random() * lessonItemIndexes.length),
+        this.randomIndexLessThan(lessonItemIndexes.length),
         1,
       )[0];
       selected.push(lessonItems[randomUniqueIndex]);
@@ -346,20 +382,24 @@ export default class ExerciseProvider {
       // wordPart.match = symPart;
 
       import('@mdi/js').then((mod: typeof import('@mdi/js')) => {
-        lessonItem.symbolName.forEach((name) => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (symPart.value as Array<string>).push((mod as any)[name]);
-        });
+        if (lessonItem.symbolName) {
+          lessonItem.symbolName.forEach((name) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (symPart.value as Array<string>).push((mod as any)[name]);
+          });
+        }
       });
 
-      import(
-        `@/assets/lessons/lesson${lessonIndex.toString().padStart(2, '0')}/${
-          lessonItem.audioName
-        }`
-      ).then(({ default: path }) => {
-        wordPart.audio = this.createAudio(path);
-        symPart.audio = this.createAudio(path);
-      });
+      if (lessonItem.audioName) {
+        import(
+          `@/assets/lessons/lesson${lessonIndex.toString().padStart(2, '0')}/${
+            lessonItem.audioName
+          }`
+        ).then(({ default: path }) => {
+          wordPart.audio = this.createAudio(path);
+          symPart.audio = this.createAudio(path);
+        });
+      }
 
       matchingExercises.push(wordPart);
       matchingExercises.push(symPart);
@@ -367,15 +407,15 @@ export default class ExerciseProvider {
     return matchingExercises;
   }
 
-  public static createPairsFromPhrasesAndWords(
-    phraseItems: Array<LessonItem>,
-    interpretationItems: Array<LessonItem>,
+  public static createPairsFromExplanationsAndWords(
+    explanationItems: Array<LessonItem>,
+    targetItems: Array<LessonItem>,
     lessonIndex: number,
   ): Array<MatchingItem> {
     const matchingExercises = [] as Array<MatchingItem>;
-    phraseItems.forEach((phraseItem: LessonItem, index: number) => {
-      const phrasePart = {
-        value: phraseItem.phrase,
+    explanationItems.forEach((explanationItem: LessonItem, index: number) => {
+      const explanationPart = {
+        value: explanationItem.explanation,
         audio: {} as ExerciseAudio,
         // match: {} as MatchingItem
         match: index * 2 + 1,
@@ -387,9 +427,9 @@ export default class ExerciseProvider {
         buzzing: false,
       } as MatchingItem;
 
-      const interpretationItem = interpretationItems.find(
+      const interpretationItem = targetItems.find(
         (wordItem: LessonItem) =>
-          wordItem.id === phraseItem.phraseInterpretationId,
+          wordItem.id === explanationItem.explanationTargetId,
       );
       if (
         !interpretationItem ||
@@ -397,7 +437,7 @@ export default class ExerciseProvider {
         interpretationItem.word.length < 1
       ) {
         throw new Error(
-          `This phrase (${phraseItem.word}) does not have a corresponding interpretation word in the same lesson.`,
+          `This explanation (${explanationItem.word}) does not have a corresponding interpretation word in the same lesson.`,
         );
       }
       const wordPart = {
@@ -416,10 +456,10 @@ export default class ExerciseProvider {
 
       import(
         `@/assets/lessons/lesson${lessonIndex.toString().padStart(2, '0')}/${
-          phraseItem.audioName
+          explanationItem.audioName
         }`
       ).then(({ default: path }) => {
-        phrasePart.audio = this.createAudio(path);
+        explanationPart.audio = this.createAudio(path);
       });
 
       import(
@@ -430,14 +470,14 @@ export default class ExerciseProvider {
         wordPart.audio = this.createAudio(path);
       });
 
-      matchingExercises.push(phrasePart);
+      matchingExercises.push(explanationPart);
       matchingExercises.push(wordPart);
-    }); // end phraseItems.forEach
+    }); // end explanationItems.forEach
 
     return matchingExercises;
   }
 
-  public static createAudio(src: string) {
+  public static createAudio(src: string): ExerciseAudio {
     const el = new Audio(src);
     const audio = {
       el,
@@ -468,7 +508,7 @@ export default class ExerciseProvider {
     matchingExercises: Array<MatchingItem>,
   ): void {
     for (let i = matchingExercises.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
+      const j = this.randomIndexLessThan(i + 1);
       if (j !== i) {
         // update match targets
         if (matchingExercises[i].match === j) {
@@ -498,7 +538,7 @@ export default class ExerciseProvider {
     multipleChoiceItems: Array<MultipleChoiceItem>,
   ): void {
     for (let i = multipleChoiceItems.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
+      const j = this.randomIndexLessThan(i + 1);
       if (j !== i) {
         // swap location in list
         // eslint-disable-next-line no-param-reassign
@@ -516,7 +556,7 @@ export default class ExerciseProvider {
   ): MultipleChoiceExercise {
     const multipleChoiceExercise = {
       itemUnderTestAudio: {} as HTMLAudioElement,
-      itemUnderTestAudioIsPlaying: false,
+      itemUnderTestAudioPlaying: false,
       iconToMatch: [] as Array<string>,
       options: [] as Array<MultipleChoiceItem>,
     } as MultipleChoiceExercise;
@@ -542,13 +582,157 @@ export default class ExerciseProvider {
     return multipleChoiceExercise;
   }
 
+  public static createClozeExerciseFromClozeItem(
+    clozeItem: LessonItem,
+    lessonIndex: number,
+  ): ClozeExercise {
+    if (!clozeItem.clozeText || clozeItem.clozeText.length < 2) {
+      throw new Error(
+        `Lesson ${lessonIndex}'s clozeItem ${clozeItem.id} does not have a clozeText with enough words and blanks to generate an exercise.`,
+      );
+    }
+    if (
+      !clozeItem.clozeSpecVariants ||
+      clozeItem.clozeSpecVariants.length === 0
+    ) {
+      throw new Error(
+        `Lesson ${lessonIndex}'s clozeItem ${clozeItem.id} has zero clozeSpecVariants, which is too few to generate an exercise.`,
+      );
+    }
+
+    // randomly pick a clozeSpecVariant to use for this clozeExercise
+    const variantIndex = this.randomIndexLessThan(
+      clozeItem.clozeSpecVariants?.length,
+    );
+    const selectedBlankSpecs =
+      clozeItem.clozeSpecVariants[variantIndex].blankSpecs;
+
+    // verify number of blankSpecs match number of blanks in clozeText
+    if (
+      selectedBlankSpecs.length !==
+      clozeItem.clozeText?.filter((word) => word === '{blank}').length
+    ) {
+      throw new Error(
+        `Lesson ${lessonIndex}'s clozeItem ${clozeItem.id}'s clozeSpecVariant ${
+          variantIndex + 1
+        } and the clozeText does not specify the same number of blanks, but must be equal to generate an exercise.`,
+      );
+    }
+
+    // create a clozeText with all blanks pre-filled with valid values
+    let blankIndex = -1;
+    const blankMap = [] as Array<number>;
+    const validBlankItems = [] as Array<LessonItem>;
+    const preFilledClozeText = clozeItem.clozeText.map((clozeWord, index) => {
+      if (clozeWord === '{blank}') {
+        blankIndex += 1;
+        blankMap.push(index);
+        const currentBlankValidWordItems = this.getBlankOptionWordItems(
+          selectedBlankSpecs[blankIndex].validOptions,
+        );
+        const randomValidWordItem = this.pickRandomItem(
+          currentBlankValidWordItems,
+        );
+        if (
+          !randomValidWordItem.word ||
+          randomValidWordItem.word.length === 0
+        ) {
+          throw new Error(
+            `Lesson ${lessonIndex}'s clozeItem ${
+              clozeItem.id
+            }'s clozeSpecVariant ${variantIndex + 1}'s blankSpec number ${
+              blankIndex + 1
+            } has a validOption referring to a LessonItem (id: ${
+              randomValidWordItem.id
+            }) missing a word, which must exist to generate this exercise.`,
+          );
+        }
+        validBlankItems.push(randomValidWordItem);
+        return randomValidWordItem.word;
+      }
+      return clozeWord;
+    });
+
+    // randomly pick blank to request, excluding any pre-filled
+    const indicesOfFlexibleBlanks = [] as Array<number>;
+    selectedBlankSpecs.forEach((blankSpec, index) => {
+      if (!blankSpec.alwaysPreFilled) {
+        indicesOfFlexibleBlanks.push(index);
+      }
+    });
+    const blankIndexToRequest = this.pickRandomItem(indicesOfFlexibleBlanks);
+    const blankToRequest = selectedBlankSpecs[blankIndexToRequest];
+
+    // randomly pick 3 invalid options for selected blank
+    if (
+      !blankToRequest.invalidOptions ||
+      blankToRequest.invalidOptions.length === 0
+    ) {
+      throw new Error(
+        `Lesson ${lessonIndex}'s clozeSpecVariant ${
+          clozeItem.id
+        }'s blankSpec number ${
+          blankIndexToRequest + 1
+        } has no invalidOptions, which must exist to generate an exercise.`,
+      );
+    }
+    // get invalid blank options from relevant lessons for requested blank
+    const invalidWords = this.getBlankOptionWordItems(
+      blankToRequest.invalidOptions,
+    );
+
+    // randomly pick 3 invalid blank options out of above
+    const answerOptions = this.selectRandomSubset(
+      invalidWords,
+      { minItems: 3, maxItems: 3 },
+      lessonIndex,
+    );
+
+    // insert correct option among answers at random index
+    const randomLocationInAnswerOptions = this.randomIndexLessThan(
+      answerOptions.length,
+    );
+    const validWordItem = validBlankItems[blankIndexToRequest];
+    answerOptions.splice(randomLocationInAnswerOptions, 0, validWordItem);
+
+    // format as a ClozeExercise
+    const indexOfBlankToRequest = blankMap[blankIndexToRequest];
+    const clozeExercise = {
+      sentenceBeginning: preFilledClozeText.slice(0, indexOfBlankToRequest),
+      sentenceBlank: preFilledClozeText[indexOfBlankToRequest],
+      sentenceEnd: preFilledClozeText.slice(indexOfBlankToRequest + 1),
+      sentenceAudioPlaying: false,
+      showingBlankFilled: false,
+      options: [] as Array<ClozeOption>,
+    };
+    answerOptions.forEach((option) => {
+      if (!option.word || option.word.length === 0) {
+        throw new Error(
+          `Lesson ${lessonIndex}'s clozeSpecVariant ${clozeItem.id}'s selected blankSpec refers to non-existing word with id: ${option.id}, preventing generation of exercise.`,
+        );
+      }
+      clozeExercise.options.push({
+        word: option.word,
+        // audio: new Audio(术),
+        correct: false,
+        disabled: false,
+        playing: false,
+        buzzing: false,
+        color: 'primary',
+      });
+    });
+    clozeExercise.options[randomLocationInAnswerOptions].correct = true;
+
+    return clozeExercise;
+  }
+
   public static makeRandomItemCorrectOption(
     multipleChoiceExercise: MultipleChoiceExercise,
     selectedItems: Array<LessonItem>,
     lessonIndex: number,
   ): void {
     // pick random item as correct option
-    const correctIndex = this.pickRandomIndexLessThan(selectedItems.length);
+    const correctIndex = this.randomIndexLessThan(selectedItems.length);
     const correctItem = selectedItems[correctIndex];
     // eslint-disable-next-line no-param-reassign
     multipleChoiceExercise.options[correctIndex].correct = true;
@@ -562,24 +746,53 @@ export default class ExerciseProvider {
       multipleChoiceExercise.itemUnderTestAudio = new Audio(path);
     });
 
-    if (correctItem.symbolName.length > 0) {
-      import('@mdi/js').then((mod: typeof import('@mdi/js')) => {
+    import('@mdi/js').then((mod: typeof import('@mdi/js')) => {
+      if (correctItem.symbolName && correctItem.symbolName.length > 0) {
         correctItem.symbolName.forEach((name) => {
           (multipleChoiceExercise.iconToMatch as Array<string>).push(
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (mod as any)[name],
           );
         });
-      });
-    } else {
-      import('@mdi/js').then((mod: typeof import('@mdi/js')) => {
+      } else {
         // eslint-disable-next-line no-param-reassign
         multipleChoiceExercise.iconToMatch = [mod.mdiCellphoneWireless];
-      });
-    }
+      }
+    });
   }
 
-  public static pickRandomIndexLessThan(max: number) {
+  public static getBlankOptionWordItems(
+    blankOptions: Array<BlankOption>,
+  ): Array<LessonItem> {
+    return blankOptions.reduce(
+      (accumulatedWordItems: LessonItem[], blankOption) => {
+        let wordItemsFromLesson = [];
+        if (blankOption.words) {
+          // select a subset of words from lesson
+          wordItemsFromLesson = blankOption.words?.map((word) => {
+            return this.lessons[blankOption.lesson - 1].items.find(
+              (targetLessonItem) => {
+                return targetLessonItem.word === word;
+              },
+            );
+          }) as Array<LessonItem>;
+        } else {
+          // or select all words from lesson
+          wordItemsFromLesson = this.lessons[
+            blankOption.lesson - 1
+          ].items.filter((item) => item.word && item.word.length > 0);
+        }
+        return [...accumulatedWordItems, ...wordItemsFromLesson];
+      },
+      [],
+    );
+  }
+
+  public static pickRandomItem<T>(array: Array<T>): T {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  public static randomIndexLessThan(max: number): number {
     return Math.floor(Math.random() * max);
   }
 }
