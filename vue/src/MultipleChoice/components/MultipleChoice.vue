@@ -7,7 +7,7 @@
           v-instruction="placeholderAudio"
           data-test="item-under-test-button"
           color="primary"
-          :playing="exercise.itemUnderTestAudioIsPlaying"
+          :playing="exercise.itemUnderTestAudioPlaying"
           @click="playItemUnderTestAudio"
         >
           <template
@@ -24,15 +24,16 @@
           </template>
           <template
             v-else-if="
-              exercise.phraseToMatch && exercise.phraseToMatch.length > 0
+              exercise.explanationToMatch &&
+              exercise.explanationToMatch.length > 0
             "
           >
             <p
-              :style="
-                `font-size: ${4.4 - 0.4 * exercise.phraseToMatch.length}rem`
-              "
+              :style="`font-size: ${
+                4.4 - 0.4 * exercise.explanationToMatch.length
+              }rem`"
             >
-              {{ exercise.phraseToMatch }}
+              {{ exercise.explanationToMatch }}
             </p>
           </template>
         </ExerciseButton>
@@ -65,13 +66,14 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import placeholderAudio from '@/assets/audio/placeholder-audio.mp3';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
-import { Instruction } from '@/common/directives/InstructionDirective';
+// import { Instruction } from '@/common/directives/InstructionDirective';
 import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
 } from '@/MultipleChoice/MultipleChoiceTypes';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {
     RippleAnimation,
     ExerciseButton,
@@ -81,24 +83,31 @@ export default class MultipleChoice extends Vue {
   @Prop() exerciseProp!: MultipleChoiceExercise;
 
   @Watch('localExercise.itemUnderTestAudio')
-  onItemUnderTestAudioChanged(newVal: HTMLAudioElement) {
+  onItemUnderTestAudioChanged(newVal: HTMLAudioElement): void {
     if (newVal instanceof HTMLAudioElement) {
-      Instruction.Collection.push(newVal);
+      // Instruction.Collection.push(newVal);
       this.playItemUnderTestAudio();
     }
   }
 
   @Watch('exerciseProp')
-  onExercisePropChanged() {
+  onExercisePropChanged(): void {
+    // reset local state
     Object.assign(this.$data, this.getDefaultData());
   }
 
-  data() {
+  data(): {
+    placeholderAudio: string;
+    localExercise: MultipleChoiceExercise;
+  } {
     return this.getDefaultData();
   }
 
   // eslint-disable-next-line class-methods-use-this
-  getDefaultData() {
+  getDefaultData(): {
+    placeholderAudio: string;
+    localExercise: MultipleChoiceExercise;
+  } {
     return {
       placeholderAudio,
       localExercise: {} as MultipleChoiceExercise,
@@ -116,12 +125,12 @@ export default class MultipleChoice extends Vue {
     this.$data.localExercise = item;
   }
 
-  mounted() {
+  mounted(): void {
     ((this.$refs.itemUnderTestButton as Vue).$el as HTMLElement).focus();
   }
 
   // eslint-disable-next-line class-methods-use-this
-  determineCorrectness(option: MultipleChoiceItem) {
+  determineCorrectness(option: MultipleChoiceItem): void {
     if (option.correct) {
       this.correctHandler(option);
     } else {
@@ -130,7 +139,7 @@ export default class MultipleChoice extends Vue {
   }
 
   // correctHandler(e: Event, index: number) {
-  correctHandler(option: MultipleChoiceItem) {
+  correctHandler(option: MultipleChoiceItem): void {
     this.exercise.options.forEach((item) => {
       if (item !== option) {
         // eslint-disable-next-line no-param-reassign
@@ -143,16 +152,16 @@ export default class MultipleChoice extends Vue {
     this.$store.commit('showContinueButton', true);
   }
 
-  incorrectHandler(option: MultipleChoiceItem) {
+  incorrectHandler(option: MultipleChoiceItem): void {
     this.playOptionAudio(option);
     // eslint-disable-next-line no-param-reassign
     option.buzzing = true;
     this.$watch(
       () => {
-        return option.playing;
+        return option.buzzing;
       },
-      (playing: boolean) => {
-        if (!playing) {
+      (buzzing: boolean) => {
+        if (!buzzing) {
           // eslint-disable-next-line no-param-reassign
           option.disabled = true;
           setTimeout(this.playItemUnderTestAudio, 200);
@@ -161,23 +170,23 @@ export default class MultipleChoice extends Vue {
     );
   }
 
-  playItemUnderTestAudio() {
+  playItemUnderTestAudio(): void {
     const testAudio = this.exercise.itemUnderTestAudio;
     if (testAudio) {
       testAudio.onplaying = () => {
-        this.exercise.itemUnderTestAudioIsPlaying = true;
+        this.exercise.itemUnderTestAudioPlaying = true;
       };
       testAudio.onpause = () => {
-        this.exercise.itemUnderTestAudioIsPlaying = false;
+        this.exercise.itemUnderTestAudioPlaying = false;
       };
       testAudio.onended = () => {
-        this.exercise.itemUnderTestAudioIsPlaying = false;
+        this.exercise.itemUnderTestAudioPlaying = false;
       };
       testAudio.play();
     }
   }
 
-  playOptionAudio(option: MultipleChoiceItem) {
+  playOptionAudio(option: MultipleChoiceItem): void {
     // pause other (potentially playing) audio
     this.exercise.options.forEach((item) => {
       if (item.audio && !item.audio.paused) {

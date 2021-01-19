@@ -4,7 +4,9 @@ import { InstructionsState, RootState } from './types';
 const getDefaultState = (): InstructionsState => {
   return {
     isInstructionsMode: false,
-    showGetInstructionsGraphic: true,
+    showGetInstructionsGraphic: !(
+      Number(localStorage.getItem('GetInstructionsGraphicShownCount')) > 4
+    ),
   };
 };
 
@@ -28,6 +30,12 @@ const mutations: MutationTree<InstructionsState> = {
     state.isInstructionsMode = !state.isInstructionsMode;
   },
   SET_SHOW_GET_INSTRUCTIONS_GRAPHIC(state, showGetInstructionsGraphic) {
+    const shownCount =
+      Number(localStorage.getItem('GetInstructionsGraphicShownCount')) || 0;
+    localStorage.setItem(
+      'GetInstructionsGraphicShownCount',
+      `${shownCount + 1}`,
+    );
     state.showGetInstructionsGraphic = showGetInstructionsGraphic;
   },
   RESET_STATE(state) {

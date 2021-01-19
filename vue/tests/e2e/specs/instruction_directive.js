@@ -5,32 +5,50 @@ describe('马丽 interacts with the "instruction" system', () => {
     () => {
       /* 马丽 arrives at the instruction overlay
        */
-      cy.visit('/');
+      cy.visit('/', {
+        onBeforeLoad(window) {
+          cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
+          cy.spy(window.Animation.prototype, 'play').as('animation.play');
+          cy.spy(window.HTMLElement.prototype, 'animate').as(
+            'animation.animate',
+          );
+          cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
+        },
+      });
+
       cy.get('[data-test="get-instructions-component"]').should('be.visible');
       cy.get('[data-test="toggle-instructions-button"]')
+        .as('ToggleInstructionsButton')
         .should('be.visible')
         .click();
       cy.get('[data-test="get-instructions-component"]').should(
         'not.be.visible',
       );
-      cy.get('[data-test="instructions-overlay"]').should('exist');
+      cy.get('[data-test="instructions-overlay"]')
+        .as('InstructionsOverlay')
+        .should('exist');
       // not working: cy.get('[data-test="home-button"]').should('not.be.disabled');
-      cy.get('[data-test="home-button"]').should(
-        'not.have.class',
-        'v-btn--disabled',
-      );
+      cy.get('[data-test="home-button"]')
+        .as('HomeButton')
+        .should('not.have.class', 'v-btn--disabled')
+        .should('have.css', 'z-index', '4')
+        .find('.badge')
+        .should('exist');
 
-      cy.get('[data-test="toggle-instructions-button"]').click();
-      cy.get('[data-test="instructions-overlay"]').should('not.exist');
+      cy.get('@audio.play').should('have.callCount', 1); // on first load
+      cy.get('@HomeButton').click();
+      cy.get('@audio.play').should('have.callCount', 2);
 
-      // ensure home button has styling indicating interactive, i.e.:
-      // - ensure home button has overlay/icon/styling
-      // - ensure home button has audio attached
-      // ensure default state has no such styling
-      // - click instruction toggle
-      // - ensure no screen overlay
-      // - ensure home button has no overlay
-      // - ensure no animation playing
+      cy.get('@ToggleInstructionsButton').click();
+      cy.get('@InstructionsOverlay').should('not.exist');
+      cy.get('@HomeButton')
+        .should('have.css', 'z-index', 'auto')
+        .find('.badge')
+        .should('not.exist');
+
+      cy.get('@ToggleInstructionsButton').click();
+      cy.get('@InstructionsOverlay').should('exist');
+
       // ensure overlay disappears after audio
       // - click instruction toggle
       // - click home button

@@ -1,8 +1,8 @@
 <template>
   <div class="about">
-    <h1>About 种字立爱</h1>
+    <h1>种字立爱</h1>
     <Logo />
-    <p>
+    <p class="px-14">
       种字立爱 is a literacy education tool developed on behalf of
       <a href="https://liaieducation.com">Li Ai Education</a> as part of a
       research project aiming to empower rural citizens.
@@ -16,6 +16,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import Logo from '!vue-svg-loader!@/assets/logo/logo-col.svg';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {
     Logo,
   },

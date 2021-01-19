@@ -25,84 +25,83 @@
 import { Component, Vue } from 'vue-property-decorator';
 import {
   mdiNumeric,
-  mdiTimelapse,
   mdiHumanFemaleBoy,
   mdiHumanMaleGirl,
+  mdiHumanMaleChild,
+  mdiHumanMaleBoy,
+  mdiHumanFemaleGirl,
 } from '@mdi/js';
-import lesson01Numbers from '@/assets/audio/lesson-01-numbers.mp3';
-import lesson02Numbers from '@/assets/audio/lesson-02-numbers.mp3';
-import lesson03Family from '@/assets/audio/lesson-03-family.mp3';
-import lesson04Family from '@/assets/audio/lesson-04-family.mp3';
-import lesson05Time from '@/assets/audio/lesson-05-time.mp3';
-import lesson06Time from '@/assets/audio/lesson-06-time.mp3';
+import 说明第一课 from '@/assets/audio/instructions/说明第一课.mp3';
+import 说明第二课 from '@/assets/audio/instructions/说明第二课.mp3';
+import 说明第三课 from '@/assets/audio/instructions/说明第三课.mp3';
+import 说明第四课 from '@/assets/audio/instructions/说明第四课.mp3';
+import 说明第五课 from '@/assets/audio/instructions/说明第五课.mp3';
+import 说明第六课 from '@/assets/audio/instructions/说明第六课.mp3';
+import 说明第七课 from '@/assets/audio/instructions/说明第七课.mp3';
+import 说明第八课 from '@/assets/audio/instructions/说明第八课.mp3';
+import 说明第九课 from '@/assets/audio/instructions/说明第九课.mp3';
+import 说明第十课 from '@/assets/audio/instructions/说明第十课.mp3';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {},
 })
 export default class Lessons extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): {
+    lessons: { [index: number]: { name: string; icon: string; audio: string } };
+  } {
     return {
       lessons: {
         1: {
           name: 'Numbers 1-5',
           icon: mdiNumeric,
-          audio: lesson01Numbers,
+          audio: 说明第一课,
         },
         2: {
           name: 'Numbers 6-10',
           icon: mdiNumeric,
-          audio: lesson02Numbers,
+          audio: 说明第二课,
         },
         3: {
           name: 'Family 1',
           icon: mdiHumanFemaleBoy,
-          audio: lesson03Family,
+          audio: 说明第三课,
         },
         4: {
           name: 'Family 2',
-          icon: mdiHumanMaleGirl,
-          audio: lesson04Family,
+          icon: mdiHumanFemaleGirl,
+          audio: 说明第四课,
         },
         5: {
-          name: 'Time 1',
-          icon: mdiTimelapse,
-          audio: lesson05Time,
+          name: 'Family 3',
+          icon: mdiHumanFemaleBoy,
+          audio: 说明第五课,
         },
         6: {
-          name: 'Time 2',
-          icon: mdiTimelapse,
-          audio: lesson06Time,
+          name: 'Family 4',
+          icon: mdiHumanFemaleGirl,
+          audio: 说明第六课,
         },
         7: {
-          name: 'More 1',
-          icon: mdiTimelapse,
-          audio: lesson06Time,
+          name: 'Family 5',
+          icon: mdiHumanMaleBoy,
+          audio: 说明第七课,
         },
         8: {
-          name: 'More 2',
-          icon: mdiTimelapse,
-          audio: lesson06Time,
+          name: 'Family 6',
+          icon: mdiHumanMaleGirl,
+          audio: 说明第八课,
         },
         9: {
-          name: 'More 3',
-          icon: mdiTimelapse,
-          audio: lesson06Time,
+          name: 'Family 7',
+          icon: mdiHumanMaleChild,
+          audio: 说明第九课,
         },
         10: {
-          name: 'More 4',
-          icon: mdiTimelapse,
-          audio: lesson06Time,
-        },
-        11: {
-          name: 'More 5',
-          icon: mdiTimelapse,
-          audio: lesson06Time,
-        },
-        12: {
-          name: 'More 6',
-          icon: mdiTimelapse,
-          audio: lesson06Time,
+          name: 'Family 8',
+          icon: mdiHumanMaleChild,
+          audio: 说明第十课,
         },
       },
     };

@@ -65,7 +65,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import InstructionsPlayer from '@/examples/InstructionsPlayer.vue';
-import instructionAudioPath from '@/assets/audio/welcome.mp3';
+import instructionAudioPath from '@/assets/audio/instructions/欢迎.mp3';
 import {
   mdiPlay,
   mdiStandardDefinition,
@@ -74,13 +74,20 @@ import {
 } from '@mdi/js';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {
     InstructionsPlayer,
   },
 })
 export default class InstructionsPlayerView extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): {
+    instructionAudioPath: string;
+    mdiPlay: string;
+    mdiStandardDefinition: string;
+    mdiTransferRight: string;
+    mdiWrap: string;
+  } {
     return {
       instructionAudioPath,
       mdiPlay,
@@ -91,7 +98,7 @@ export default class InstructionsPlayerView extends Vue {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  say(msg: string) {
+  say(msg: string): void {
     // eslint-disable-next-line no-console
     console.log(msg);
   }

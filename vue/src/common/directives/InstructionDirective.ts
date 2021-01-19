@@ -64,8 +64,8 @@ export class Instruction {
     this.animation2 = new Animation({
       propsData: { delay: 200 },
     }).$mount();
-    this.hostElement.appendChild(this.animation1.$el);
-    this.hostElement.appendChild(this.animation2.$el);
+    this.badge.$el.appendChild(this.animation1.$el);
+    this.badge.$el.appendChild(this.animation2.$el);
 
     this.originalStyle = {
       zIndex: this.hostElement.style.zIndex,
@@ -91,7 +91,7 @@ export class Instruction {
     }
   } // end constructor
 
-  public addEventListener() {
+  public addEventListener(): void {
     this.hostElement.addEventListener(
       'click',
       Instruction.playInstructionClick,
@@ -99,7 +99,7 @@ export class Instruction {
     );
   }
 
-  public removeEventListener() {
+  public removeEventListener(): void {
     this.hostElement.removeEventListener(
       'click',
       Instruction.playInstructionClick,
@@ -107,13 +107,20 @@ export class Instruction {
     );
   }
 
-  public addInstructionStyle() {
+  public addInstructionStyle(): void {
     this.hostElement.style.zIndex = '4';
     this.hostElement.classList.add('accent');
-    this.hostElement.appendChild(this.badge.$el);
+    if (this.hostElement.firstChild) {
+      this.hostElement.insertBefore(
+        this.badge.$el,
+        this.hostElement.firstChild,
+      );
+    } else {
+      this.hostElement.appendChild(this.badge.$el);
+    }
   }
 
-  public removeInstructionStyle() {
+  public removeInstructionStyle(): void {
     this.hostElement.style.zIndex = this.originalStyle.zIndex;
     this.hostElement.classList.remove('accent');
     if (this.hostElement.getElementsByClassName(this.badge.$el.className)[0]) {
@@ -121,16 +128,16 @@ export class Instruction {
     }
   }
 
-  public playInstruction() {
+  public playInstruction(): void {
     this.audioElement.currentTime = 0;
     this.audioElement.play();
   }
 
-  public cancelInstruction() {
+  public cancelInstruction(): void {
     this.audioElement.pause();
   }
 
-  public unsubscribe() {
+  public unsubscribe(): void {
     if (this.unsubscribeInstructionsModeWatch) {
       this.unsubscribeInstructionsModeWatch();
     } else {
@@ -140,14 +147,14 @@ export class Instruction {
     }
   }
 
-  public delist() {
+  public delist(): void {
     Instruction.Collection.splice(
       Instruction.Collection.indexOf(this.audioElement),
       1,
     );
   }
 
-  private addAudioListeners() {
+  public addAudioListeners(): void {
     this.audioElement.addEventListener('playing', () => {
       if (this.animation1 && this.animation2) {
         this.animation1.$props.playing = true;
@@ -206,7 +213,7 @@ export class Instruction {
     });
   }
 
-  static playInstructionClick(this: InstructionElement, event: Event) {
+  static playInstructionClick(this: InstructionElement, event: Event): void {
     // prevent triggering the button's regular action
     event.preventDefault();
     event.stopPropagation();
@@ -222,7 +229,7 @@ export class Instruction {
 export default function InstallInstructionDirective(
   Vue: typeof _Vue,
   { Badge, Animation }: InstructionsOptions,
-) {
+): void {
   Vue.directive('instruction', {
     bind(
       hostElement: InstructionElement,

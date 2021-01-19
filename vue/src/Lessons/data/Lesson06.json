@@ -1,35 +1,115 @@
 {
-  "lessonId": "26c4e124-0ff1-4a20-8dc0-1473e17ca4cd",
+  "id": "26c4e124-0ff1-4a20-8dc0-1473e17ca4cd",
   "lessonIndex": 6,
-  "wordsCount": 2,
-  "phrasesCount": 0,
+  "clozeCount": 2,
+  "explanationCount": 0,
+  "sentenceCount": 0,
+  "wordCount": 0,
   "items": [
     {
-      "id": "265ba7e4-f7bf-4abb-ad6a-318fefbaf40e",
-      "type": "cloze",
-      "word": "我有%{number}个%{relation}。",
-      "accepts": {
-        "number": { "tag": "number1To10"},
-        "relation": { "tag": "relation" }
-      },
-      "audioName": "placeholder-audio.mp3",
-      "pictureName": "",
-      "videoName": "",
-      "symbolName": ["mdiCellphoneWireless"]
+      "id": "11028b6f-cf9c-4258-8c70-03b91e3f5ce2",
+      "clozeText": [ "我", "有", "{blank}", "个", "{blank}", "。" ],
+      "clozeSpecVariants": [
+        {
+          "variant": 1,
+          "blankSpecs": [
+            {
+              "description": "numbers",
+              "alwaysPreFilled": true,
+              "validOptions": [
+                { "lesson": 1, "words": [ "一", "两", "三" ] }
+              ]
+            },
+            {
+              "description": "relations",
+              "alwaysPreFilled": false,
+              "validOptions": [
+                { "lesson": 3, "words": [ "姐姐", "妹妹", "弟弟", "哥哥" ] }
+              ],
+              "invalidOptions": [
+                { "lesson": 1 },
+                { "lesson": 2 }
+              ]
+            }
+          ]
+        },
+        {
+          "variant": 2,
+          "blankSpecs": [
+            {
+              "description": "numbers",
+              "alwaysPreFilled": true,
+              "validOptions": [
+                { "lesson": 1, "words": [ "一" ] }
+              ]
+            },
+            {
+              "description": "relations",
+              "alwaysPreFilled": false,
+              "validOptions": [
+                { "lesson": 3, "words": [ "妈妈", "爸爸", "姐姐", "妹妹",
+                                          "弟弟", "哥哥" ] },
+                { "lesson": 4, "words": [ "姥姥", "老爷", "奶奶", "爷爷" ] },
+                { "lesson": 5, "words": [ "丈夫", "妻子", "大姐", "二姐", "大哥",
+                                          "二哥", "大妹妹", "小妹妹", "大弟弟", "小弟弟" ] }
+              ],
+              "invalidOptions": [
+                { "lesson": 1 },
+                { "lesson": 2 }
+              ]
+            }
+          ]
+        }
+      ],
+      "audioName": "placeholder-audio.mp3"
     },
     {
       "id": "2c6bdb77-b019-42b0-a0d2-76bc4f666a29",
-      "type": "cloze",
-      "word": "我的%{relation1}有%{number}个%{relation2}。",
-      "accepts": {
-        "relation1": { "tag": "relation" },
-        "number": { "tag": "number1To10"},
-        "relation2": { "tag": "relation" }
-      },
-      "audioName": "placeholder-audio.mp3",
-      "pictureName": "",
-      "videoName": "",
-      "symbolName": ["mdiCellphoneWireless"]
+      "clozeText": [ "我", "的", "{blank}", "有", "{blank}", "个", "{blank}", "。" ],
+      "clozeSpecVariants": [
+        {
+          "variant": 1,
+          "blankSpecs": [
+            {
+              "description": "relations",
+              "alwaysPreFilled": false,
+              "validOptions": [
+                { "lesson": 3, "words": [ "妈妈", "爸爸" ] },
+                { "lesson": 4, "words": [ "姥姥", "老爷", "奶奶", "爷爷" ] },
+                { "lesson": 5, "words": [ "丈夫", "妻子" ] }
+              ],
+              "invalidOptions": [
+                { "lesson": 1 },
+                { "lesson": 2 }
+              ]
+            },
+            {
+              "description": "numbers",
+              "alwaysPreFilled": false,
+              "validOptions": [
+                { "lesson": 1, "words": [ "一", "两", "三" ] }
+              ],
+              "invalidOptions": [
+                { "lesson": 3 },
+                { "lesson": 4 },
+                { "lesson": 5 }
+              ]
+            },
+            {
+              "description": "relations",
+              "alwaysPreFilled": false,
+              "validOptions": [
+                { "lesson": 3, "words": [ "姐姐", "妹妹", "弟弟", "哥哥" ] }
+              ],
+              "invalidOptions": [
+                { "lesson": 1 },
+                { "lesson": 2 }
+              ]
+            }
+          ]
+        }
+      ],
+      "audioName": "placeholder-audio.mp3"
     }
   ]
 }

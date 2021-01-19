@@ -13,6 +13,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import Lessons from '@/Lessons/components/Lessons.vue';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {
     Lessons,
   },

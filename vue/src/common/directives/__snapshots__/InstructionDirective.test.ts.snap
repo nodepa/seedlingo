@@ -8,7 +8,7 @@ Instruction {
     "$createElement": [Function],
     "$el": <span
       class="ripple"
-      style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
     />,
     "$listeners": Object {},
     "$options": Object {
@@ -84,7 +84,7 @@ Instruction {
     "$refs": Object {
       "ripple": <span
         class="ripple"
-        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
       />,
     },
     "$root": [Circular],
@@ -118,7 +118,7 @@ Instruction {
       "$createElement": [Function],
       "$el": <span
         class="ripple"
-        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
       />,
       "$listeners": Object {},
       "$options": Object {
@@ -194,7 +194,7 @@ Instruction {
       "$refs": Object {
         "ripple": <span
           class="ripple"
-          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+          style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
         />,
       },
       "$root": [Circular],
@@ -235,6 +235,7 @@ Instruction {
         "context": [Circular],
         "data": Object {
           "normalizedStyle": Object {
+            "--size": "40px",
             "borderColor": "rgba(0,0,0,0.2)",
             "borderWidth": "4px",
             "height": "40px",
@@ -243,6 +244,7 @@ Instruction {
           "ref": "ripple",
           "staticClass": "ripple",
           "style": Object {
+            "--size": "40px",
             "borderColor": "rgba(0,0,0,0.2)",
             "borderWidth": "4px",
             "height": "40px",
@@ -251,7 +253,7 @@ Instruction {
         },
         "elm": <span
           class="ripple"
-          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+          style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
         />,
         "fnContext": undefined,
         "fnOptions": undefined,
@@ -275,11 +277,17 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
+          269,
           268,
-          267,
-          270,
+          271,
         },
         "deps": Array [
+          Dep {
+            "id": 269,
+            "subs": Array [
+              [Circular],
+            ],
+          },
           Dep {
             "id": 268,
             "subs": Array [
@@ -287,13 +295,7 @@ Instruction {
             ],
           },
           Dep {
-            "id": 267,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 270,
+            "id": 271,
             "subs": Array [
               [Circular],
             ],
@@ -320,11 +322,11 @@ Instruction {
           "cb": [Function],
           "deep": false,
           "depIds": Set {
-            263,
+            264,
           },
           "deps": Array [
             Dep {
-              "id": 263,
+              "id": 264,
               "subs": Array [
                 [Circular],
               ],
@@ -348,11 +350,17 @@ Instruction {
           "cb": [Function],
           "deep": false,
           "depIds": Set {
+            269,
             268,
-            267,
-            270,
+            271,
           },
           "deps": Array [
+            Dep {
+              "id": 269,
+              "subs": Array [
+                [Circular],
+              ],
+            },
             Dep {
               "id": 268,
               "subs": Array [
@@ -360,13 +368,7 @@ Instruction {
               ],
             },
             Dep {
-              "id": 267,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 270,
+              "id": 271,
               "subs": Array [
                 [Circular],
               ],
@@ -402,6 +404,7 @@ Instruction {
       "context": [Circular],
       "data": Object {
         "normalizedStyle": Object {
+          "--size": "40px",
           "borderColor": "rgba(0,0,0,0.2)",
           "borderWidth": "4px",
           "height": "40px",
@@ -410,6 +413,7 @@ Instruction {
         "ref": "ripple",
         "staticClass": "ripple",
         "style": Object {
+          "--size": "40px",
           "borderColor": "rgba(0,0,0,0.2)",
           "borderWidth": "4px",
           "height": "40px",
@@ -418,7 +422,7 @@ Instruction {
       },
       "elm": <span
         class="ripple"
-        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
       />,
       "fnContext": undefined,
       "fnOptions": undefined,
@@ -442,11 +446,17 @@ Instruction {
       "cb": [Function],
       "deep": false,
       "depIds": Set {
+        269,
         268,
-        267,
-        270,
+        271,
       },
       "deps": Array [
+        Dep {
+          "id": 269,
+          "subs": Array [
+            [Circular],
+          ],
+        },
         Dep {
           "id": 268,
           "subs": Array [
@@ -454,13 +464,7 @@ Instruction {
           ],
         },
         Dep {
-          "id": 267,
-          "subs": Array [
-            [Circular],
-          ],
-        },
-        Dep {
-          "id": 270,
+          "id": 271,
           "subs": Array [
             [Circular],
           ],
@@ -487,11 +491,11 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
-          263,
+          264,
         },
         "deps": Array [
           Dep {
-            "id": 263,
+            "id": 264,
             "subs": Array [
               [Circular],
             ],
@@ -515,11 +519,17 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
+          269,
           268,
-          267,
-          270,
+          271,
         },
         "deps": Array [
+          Dep {
+            "id": 269,
+            "subs": Array [
+              [Circular],
+            ],
+          },
           Dep {
             "id": 268,
             "subs": Array [
@@ -527,13 +537,7 @@ Instruction {
             ],
           },
           Dep {
-            "id": 267,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 270,
+            "id": 271,
             "subs": Array [
               [Circular],
             ],
@@ -563,7 +567,7 @@ Instruction {
     "$createElement": [Function],
     "$el": <span
       class="ripple"
-      style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
     />,
     "$listeners": Object {},
     "$options": Object {
@@ -642,7 +646,7 @@ Instruction {
     "$refs": Object {
       "ripple": <span
         class="ripple"
-        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
       />,
     },
     "$root": [Circular],
@@ -676,7 +680,7 @@ Instruction {
       "$createElement": [Function],
       "$el": <span
         class="ripple"
-        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
       />,
       "$listeners": Object {},
       "$options": Object {
@@ -755,7 +759,7 @@ Instruction {
       "$refs": Object {
         "ripple": <span
           class="ripple"
-          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+          style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
         />,
       },
       "$root": [Circular],
@@ -796,6 +800,7 @@ Instruction {
         "context": [Circular],
         "data": Object {
           "normalizedStyle": Object {
+            "--size": "40px",
             "borderColor": "rgba(0,0,0,0.2)",
             "borderWidth": "4px",
             "height": "40px",
@@ -804,6 +809,7 @@ Instruction {
           "ref": "ripple",
           "staticClass": "ripple",
           "style": Object {
+            "--size": "40px",
             "borderColor": "rgba(0,0,0,0.2)",
             "borderWidth": "4px",
             "height": "40px",
@@ -812,7 +818,7 @@ Instruction {
         },
         "elm": <span
           class="ripple"
-          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+          style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
         />,
         "fnContext": undefined,
         "fnOptions": undefined,
@@ -836,11 +842,17 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
+          280,
           279,
-          278,
-          281,
+          282,
         },
         "deps": Array [
+          Dep {
+            "id": 280,
+            "subs": Array [
+              [Circular],
+            ],
+          },
           Dep {
             "id": 279,
             "subs": Array [
@@ -848,13 +860,7 @@ Instruction {
             ],
           },
           Dep {
-            "id": 278,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 281,
+            "id": 282,
             "subs": Array [
               [Circular],
             ],
@@ -881,11 +887,11 @@ Instruction {
           "cb": [Function],
           "deep": false,
           "depIds": Set {
-            274,
+            275,
           },
           "deps": Array [
             Dep {
-              "id": 274,
+              "id": 275,
               "subs": Array [
                 [Circular],
               ],
@@ -909,11 +915,17 @@ Instruction {
           "cb": [Function],
           "deep": false,
           "depIds": Set {
+            280,
             279,
-            278,
-            281,
+            282,
           },
           "deps": Array [
+            Dep {
+              "id": 280,
+              "subs": Array [
+                [Circular],
+              ],
+            },
             Dep {
               "id": 279,
               "subs": Array [
@@ -921,13 +933,7 @@ Instruction {
               ],
             },
             Dep {
-              "id": 278,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 281,
+              "id": 282,
               "subs": Array [
                 [Circular],
               ],
@@ -963,6 +969,7 @@ Instruction {
       "context": [Circular],
       "data": Object {
         "normalizedStyle": Object {
+          "--size": "40px",
           "borderColor": "rgba(0,0,0,0.2)",
           "borderWidth": "4px",
           "height": "40px",
@@ -971,6 +978,7 @@ Instruction {
         "ref": "ripple",
         "staticClass": "ripple",
         "style": Object {
+          "--size": "40px",
           "borderColor": "rgba(0,0,0,0.2)",
           "borderWidth": "4px",
           "height": "40px",
@@ -979,7 +987,7 @@ Instruction {
       },
       "elm": <span
         class="ripple"
-        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
       />,
       "fnContext": undefined,
       "fnOptions": undefined,
@@ -1003,11 +1011,17 @@ Instruction {
       "cb": [Function],
       "deep": false,
       "depIds": Set {
+        280,
         279,
-        278,
-        281,
+        282,
       },
       "deps": Array [
+        Dep {
+          "id": 280,
+          "subs": Array [
+            [Circular],
+          ],
+        },
         Dep {
           "id": 279,
           "subs": Array [
@@ -1015,13 +1029,7 @@ Instruction {
           ],
         },
         Dep {
-          "id": 278,
-          "subs": Array [
-            [Circular],
-          ],
-        },
-        Dep {
-          "id": 281,
+          "id": 282,
           "subs": Array [
             [Circular],
           ],
@@ -1048,11 +1056,11 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
-          274,
+          275,
         },
         "deps": Array [
           Dep {
-            "id": 274,
+            "id": 275,
             "subs": Array [
               [Circular],
             ],
@@ -1076,11 +1084,17 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
+          280,
           279,
-          278,
-          281,
+          282,
         },
         "deps": Array [
+          Dep {
+            "id": 280,
+            "subs": Array [
+              [Circular],
+            ],
+          },
           Dep {
             "id": 279,
             "subs": Array [
@@ -1088,13 +1102,7 @@ Instruction {
             ],
           },
           Dep {
-            "id": 278,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 281,
+            "id": 282,
             "subs": Array [
               [Circular],
             ],
@@ -1194,7 +1202,7 @@ Instruction {
             "ns": undefined,
             "parent": undefined,
             "raw": false,
-            "tag": "vue-component-404-InstructionsIcon",
+            "tag": "vue-component-408-InstructionsIcon",
             "text": undefined,
           },
           "_renderChildren": undefined,
@@ -1255,7 +1263,7 @@ Instruction {
           "ns": undefined,
           "parent": undefined,
           "raw": false,
-          "tag": "vue-component-404-InstructionsIcon",
+          "tag": "vue-component-408-InstructionsIcon",
           "text": undefined,
         },
         "$vuetify": [Circular],
@@ -1339,7 +1347,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-404-InstructionsIcon",
+              "tag": "vue-component-408-InstructionsIcon",
               "text": undefined,
             },
             "_renderChildren": undefined,
@@ -1400,7 +1408,7 @@ Instruction {
             "ns": undefined,
             "parent": undefined,
             "raw": false,
-            "tag": "vue-component-404-InstructionsIcon",
+            "tag": "vue-component-408-InstructionsIcon",
             "text": undefined,
           },
           "$vuetify": [Circular],
@@ -1542,7 +1550,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-404-InstructionsIcon",
+              "tag": "vue-component-408-InstructionsIcon",
               "text": undefined,
             },
             "raw": false,
@@ -1721,7 +1729,7 @@ Instruction {
             "ns": undefined,
             "parent": undefined,
             "raw": false,
-            "tag": "vue-component-404-InstructionsIcon",
+            "tag": "vue-component-408-InstructionsIcon",
             "text": undefined,
           },
           "raw": false,
@@ -1795,6 +1803,14 @@ Instruction {
           />
         </svg>
       </span>
+      <span
+        class="ripple"
+        style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      />
+      <span
+        class="ripple"
+        style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+      />
     </span>,
     "$listeners": Object {},
     "$options": Object {
@@ -1915,7 +1931,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-404-InstructionsIcon",
+              "tag": "vue-component-408-InstructionsIcon",
               "text": undefined,
             },
             "_renderChildren": undefined,
@@ -1976,7 +1992,7 @@ Instruction {
             "ns": undefined,
             "parent": undefined,
             "raw": false,
-            "tag": "vue-component-404-InstructionsIcon",
+            "tag": "vue-component-408-InstructionsIcon",
             "text": undefined,
           },
           "$vuetify": [Circular],
@@ -2060,7 +2076,7 @@ Instruction {
                 "ns": undefined,
                 "parent": undefined,
                 "raw": false,
-                "tag": "vue-component-404-InstructionsIcon",
+                "tag": "vue-component-408-InstructionsIcon",
                 "text": undefined,
               },
               "_renderChildren": undefined,
@@ -2121,7 +2137,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-404-InstructionsIcon",
+              "tag": "vue-component-408-InstructionsIcon",
               "text": undefined,
             },
             "$vuetify": [Circular],
@@ -2263,7 +2279,7 @@ Instruction {
                 "ns": undefined,
                 "parent": undefined,
                 "raw": false,
-                "tag": "vue-component-404-InstructionsIcon",
+                "tag": "vue-component-408-InstructionsIcon",
                 "text": undefined,
               },
               "raw": false,
@@ -2442,7 +2458,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-404-InstructionsIcon",
+              "tag": "vue-component-408-InstructionsIcon",
               "text": undefined,
             },
             "raw": false,
@@ -2516,6 +2532,14 @@ Instruction {
             />
           </svg>
         </span>
+        <span
+          class="ripple"
+          style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />
+        <span
+          class="ripple"
+          style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />
       </span>,
       "$listeners": Object {},
       "$options": Object {
@@ -2966,7 +2990,7 @@ Instruction {
                 "ns": undefined,
                 "parent": undefined,
                 "raw": false,
-                "tag": "vue-component-404-InstructionsIcon",
+                "tag": "vue-component-408-InstructionsIcon",
                 "text": undefined,
               },
             ],
@@ -3036,6 +3060,14 @@ Instruction {
               />
             </svg>
           </span>
+          <span
+            class="ripple"
+            style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+          />
+          <span
+            class="ripple"
+            style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+          />
         </span>,
         "fnContext": undefined,
         "fnOptions": undefined,
@@ -3500,7 +3532,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-404-InstructionsIcon",
+              "tag": "vue-component-408-InstructionsIcon",
               "text": undefined,
             },
           ],
@@ -3570,6 +3602,14 @@ Instruction {
             />
           </svg>
         </span>
+        <span
+          class="ripple"
+          style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />
+        <span
+          class="ripple"
+          style="--size: 40px; height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
+        />
       </span>,
       "fnContext": undefined,
       "fnOptions": undefined,
@@ -3633,14 +3673,6 @@ Instruction {
     ],
   },
   "hostElement": <button>
-    <span
-      class="ripple"
-      style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
-    />
-    <span
-      class="ripple"
-      style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
-    />
     <audio
       src="http://just.a.test/audio.mp3"
     />
@@ -3654,14 +3686,6 @@ Instruction {
     "$children": Array [],
     "$createElement": [Function],
     "$el": <button>
-      <span
-        class="ripple"
-        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
-      />
-      <span
-        class="ripple"
-        style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
-      />
       <audio
         src="http://just.a.test/audio.mp3"
       />
@@ -4267,6 +4291,7 @@ Instruction {
           },
           "goTo": [Function],
           "icons": Icons {
+            "component": undefined,
             "framework": [Circular],
             "iconfont": "mdi",
             "values": Object {
@@ -5733,6 +5758,7 @@ Instruction {
       },
       "goTo": [Function],
       "icons": Icons {
+        "component": undefined,
         "framework": [Circular],
         "iconfont": "mdi",
         "values": Object {
@@ -6491,14 +6517,6 @@ Instruction {
       "$children": Array [],
       "$createElement": [Function],
       "$el": <button>
-        <span
-          class="ripple"
-          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
-        />
-        <span
-          class="ripple"
-          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
-        />
         <audio
           src="http://just.a.test/audio.mp3"
         />
@@ -7104,6 +7122,7 @@ Instruction {
             },
             "goTo": [Function],
             "icons": Icons {
+              "component": undefined,
               "framework": [Circular],
               "iconfont": "mdi",
               "values": Object {
@@ -8570,6 +8589,7 @@ Instruction {
         },
         "goTo": [Function],
         "icons": Icons {
+          "component": undefined,
           "framework": [Circular],
           "iconfont": "mdi",
           "values": Object {
@@ -9336,14 +9356,6 @@ Instruction {
         "context": [Circular],
         "data": undefined,
         "elm": <button>
-          <span
-            class="ripple"
-            style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
-          />
-          <span
-            class="ripple"
-            style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
-          />
           <audio
             src="http://just.a.test/audio.mp3"
           />
@@ -9392,48 +9404,54 @@ Instruction {
           "cb": [Function],
           "deep": true,
           "depIds": Set {
-            254,
-            204,
-            214,
+            255,
+            205,
             215,
+            216,
+            223,
             222,
             221,
             220,
             219,
             218,
             217,
-            216,
-            205,
             206,
+            207,
+            214,
             213,
             212,
             211,
             210,
             209,
             208,
-            207,
           },
           "deps": Array [
             Dep {
-              "id": 254,
+              "id": 255,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
-              "id": 204,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 214,
+              "id": 205,
               "subs": Array [
                 [Circular],
               ],
             },
             Dep {
               "id": 215,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 216,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 223,
               "subs": Array [
                 [Circular],
               ],
@@ -9475,19 +9493,19 @@ Instruction {
               ],
             },
             Dep {
-              "id": 216,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 205,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
               "id": 206,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 207,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 214,
               "subs": Array [
                 [Circular],
               ],
@@ -9524,12 +9542,6 @@ Instruction {
             },
             Dep {
               "id": 208,
-              "subs": Array [
-                [Circular],
-              ],
-            },
-            Dep {
-              "id": 207,
               "subs": Array [
                 [Circular],
               ],
@@ -9595,17 +9607,11 @@ Instruction {
           "cb": [Function],
           "deep": false,
           "depIds": Set {
-            196,
             197,
-            200,
+            198,
+            201,
           },
           "deps": Array [
-            Dep {
-              "id": 196,
-              "subs": Array [
-                [Circular],
-              ],
-            },
             Dep {
               "id": 197,
               "subs": Array [
@@ -9613,7 +9619,13 @@ Instruction {
               ],
             },
             Dep {
-              "id": 200,
+              "id": 198,
+              "subs": Array [
+                [Circular],
+              ],
+            },
+            Dep {
+              "id": 201,
               "subs": Array [
                 [Circular],
               ],
@@ -9645,14 +9657,6 @@ Instruction {
       "context": [Circular],
       "data": undefined,
       "elm": <button>
-        <span
-          class="ripple"
-          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
-        />
-        <span
-          class="ripple"
-          style="height: 40px; width: 40px; border-width: 4px; border-color: rgba(0,0,0,0.2);"
-        />
         <audio
           src="http://just.a.test/audio.mp3"
         />
@@ -9701,48 +9705,54 @@ Instruction {
         "cb": [Function],
         "deep": true,
         "depIds": Set {
-          254,
-          204,
-          214,
+          255,
+          205,
           215,
+          216,
+          223,
           222,
           221,
           220,
           219,
           218,
           217,
-          216,
-          205,
           206,
+          207,
+          214,
           213,
           212,
           211,
           210,
           209,
           208,
-          207,
         },
         "deps": Array [
           Dep {
-            "id": 254,
+            "id": 255,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
-            "id": 204,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 214,
+            "id": 205,
             "subs": Array [
               [Circular],
             ],
           },
           Dep {
             "id": 215,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 216,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 223,
             "subs": Array [
               [Circular],
             ],
@@ -9784,19 +9794,19 @@ Instruction {
             ],
           },
           Dep {
-            "id": 216,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 205,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
             "id": 206,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 207,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 214,
             "subs": Array [
               [Circular],
             ],
@@ -9833,12 +9843,6 @@ Instruction {
           },
           Dep {
             "id": 208,
-            "subs": Array [
-              [Circular],
-            ],
-          },
-          Dep {
-            "id": 207,
             "subs": Array [
               [Circular],
             ],
@@ -9904,17 +9908,11 @@ Instruction {
         "cb": [Function],
         "deep": false,
         "depIds": Set {
-          196,
           197,
-          200,
+          198,
+          201,
         },
         "deps": Array [
-          Dep {
-            "id": 196,
-            "subs": Array [
-              [Circular],
-            ],
-          },
           Dep {
             "id": 197,
             "subs": Array [
@@ -9922,7 +9920,13 @@ Instruction {
             ],
           },
           Dep {
-            "id": 200,
+            "id": 198,
+            "subs": Array [
+              [Circular],
+            ],
+          },
+          Dep {
+            "id": 201,
             "subs": Array [
               [Circular],
             ],

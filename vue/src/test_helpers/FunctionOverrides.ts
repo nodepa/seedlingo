@@ -11,23 +11,23 @@ export function pause(): void {
 }
 
 export class Animation {
-  addEventListener() {
+  addEventListener(): void {
     /* do nothing */
   }
 
-  cancel() {
+  cancel(): void {
     /* do nothing */
   }
 
   currentTime = null;
 
-  dispatchEvent() {
+  dispatchEvent(): boolean {
     return false;
   }
 
   effect = null;
 
-  finish() {
+  finish(): void {
     /* do nothing */
   }
 
@@ -41,11 +41,11 @@ export class Animation {
 
   onfinish = null;
 
-  pause() {
+  pause(): void {
     /* do nothing */
   }
 
-  play() {
+  play(): void {
     /* do nothing */
   }
 
@@ -59,15 +59,15 @@ export class Animation {
     /* do nothing */
   });
 
-  removeEventListener() {
+  removeEventListener(): void {
     /* do nothing */
   }
 
-  reverse() {
+  reverse(): void {
     /* do nothing */
   }
 
-  updatePlaybackRate() {
+  updatePlaybackRate(): void {
     /* do nothing */
   }
 
@@ -90,6 +90,6 @@ export function animate(
   keyframes: PropertyIndexedKeyframes | Keyframe[] | null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   options?: number | KeyframeAnimationOptions | undefined,
-) {
+): Animation {
   return new Animation();
 }

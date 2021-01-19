@@ -1,18 +1,25 @@
 <template>
-  <v-bottom-navigation app grow height="74" color="primary">
-    <HomeButton :is-home-button-disabled="isHomeButtonDisabled" />
+  <v-bottom-navigation
+    app
+    grow
+    height="74"
+    color="primary"
+    data-test="bottom-navigation-bar"
+  >
+    <HomeButton :home-button-disabled="homeButtonDisabled" />
     <ContinueButton />
-    <InstructionsButton :is-home-button-disabled.sync="isHomeButtonDisabled" />
+    <InstructionsButton :home-button-disabled.sync="homeButtonDisabled" />
   </v-bottom-navigation>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import HomeButton from './HomeButton.vue';
 import ContinueButton from './ContinueButton.vue';
 import InstructionsButton from './InstructionsButton.vue';
 
 @Component({
+  // eslint-disable-next-line no-undef
   components: {
     HomeButton,
     ContinueButton,
@@ -21,11 +28,13 @@ import InstructionsButton from './InstructionsButton.vue';
 })
 export default class BottomNavigationBar extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data() {
+  data(): { homeButtonDisabled: boolean } {
     return {
-      isHomeButtonDisabled: true,
+      homeButtonDisabled: this.initiateHomeButtonDisabled,
     };
   }
+
+  @Prop() initiateHomeButtonDisabled!: boolean;
 }
 </script>
 
