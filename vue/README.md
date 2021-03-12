@@ -1,4 +1,4 @@
-# 种字立爱v
+# 种字立爱 - Seedlings for Putonhua in Simplified Chinese
 
 ## Project setup
 ```
