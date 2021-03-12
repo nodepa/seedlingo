@@ -1,6 +1,7 @@
-# 种字立爱 Zhong Zi Li Ai
+![Seedlings](https://github.com/nodepa/seedlings/blob/master/asset-sources/seedlings-banner.png)
+A mobile-first literacy webapp for adults.
 
-A mobile-first literacy webapp for adult Chinese.
+Currently available as 种字立爱 - Seedlings for Putonhua in Simplified Chinese.
 
 ## Development
 
@@ -9,14 +10,14 @@ A mobile-first literacy webapp for adult Chinese.
 sudo apt install git
 
 # Clone this git repo
-git clone git@github.com:toshify/shizi.git target-dir
+git clone git@github.com:toshify/seedlings.git
 
 # Install [NVM](https://github.com/nvm-sh/nvm) to handle node versions (ensure v#.##.# is latest version):
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 
 # Reload terminal
 exit
-Ctrl-Alt-T
+<Ctrl-Alt-T>
 # or instead
 source ~/.bashrc
 
@@ -27,7 +28,7 @@ nvm install --lts
 npm install -g yarn
 
 # Navigate to repo
-cd shizi/vue # or target-dir/vue or target-dir/react
+cd seedlings/vue
 
 # Install packages
 yarn # equivalent of: yarn install
