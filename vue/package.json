@@ -80,7 +80,7 @@
     "test:e2e": "vue-cli-service test:e2e --headless",
     "lint": "vue-cli-service lint",
     "buildm": "vue-cli-service build --modern",
-    "genass": "cd public && pwd && npx pwa-asset-generator --background 'linear-gradient(#19D2FE, #1E64F0)' --padding '0px' --favicon --single-quotes ../src/assets/logo/logo.svg ./logo",
+    "genass": "cd public && pwd && npx pwa-asset-generator --background 'linear-gradient(#19D2FE, #1E64F0)' --padding '0px' --favicon --single-quotes --type png ../src/assets/logo/logo.svg ./logo",
     "servebuild": "http-server ./dist --gzip --brotli -c-1",
     "start": "vue-cli-service serve",
     "starts": "vue-cli-service serve --https",
