@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <rect x="-0" y="-0" width="512" height="512" style="fill:#fff;"/>
     <g id="BookSeedlingBlack">
         <g id="Book">
             <path d="M256.003,387.229c13.401,-15.822 46.294,-21.58 120.734,-0.766l74.263,44.779c-28.999,-5.443 -170.531,-33.377 -195,-4.487c-24.469,-28.89 -166.001,-0.956 -195,4.487l74.263,-44.779c74.44,-20.814 107.339,-15.056 120.74,0.766Z" style="fill:url(#_Linear1);"/>
