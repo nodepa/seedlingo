@@ -1,7 +1,7 @@
-![Seedlings](https://github.com/nodepa/seedlings/blob/master/asset-sources/seedlings-banner.png)
-A mobile-first literacy webapp for adults.
+![Seedling](https://github.com/nodepa/seedling/blob/master/asset-sources/seedling-banner.png)
+A mobile-first literacy webapp for adults
 
-Currently available as 种字立爱 - Seedlings for Putonhua in Simplified Chinese.
+Available as 种字立爱 - Seedling for Putonghua Simplified Chinese, at [种字.com](https://种字.com)
 
 ## Development
 
@@ -10,7 +10,7 @@ Currently available as 种字立爱 - Seedlings for Putonhua in Simplified Chine
 sudo apt install git
 
 # Clone this git repo
-git clone git@github.com:toshify/seedlings.git
+git clone git@github.com:toshify/seedling.git
 
 # Install [NVM](https://github.com/nvm-sh/nvm) to handle node versions (ensure v#.##.# is latest version):
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
@@ -28,7 +28,7 @@ nvm install --lts
 npm install -g yarn
 
 # Navigate to repo
-cd seedlings/vue
+cd seedling/vue
 
 # Install packages
 yarn # equivalent of: yarn install
