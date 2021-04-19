@@ -1,4 +1,4 @@
-# 种字立爱 - Seedling for Putonghua Simplified Chinese, at [种字.com](https://种字.com)
+# 立爱种字 - Seedling for Putonghua Simplified Chinese, at [种字.com](https://种字.com)
 
 ## Project setup
 ```
