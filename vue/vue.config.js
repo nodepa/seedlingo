@@ -1,4 +1,4 @@
-const name = '种字立爱';
+const name = '立爱种字';
 module.exports = {
   devServer: {
     compress: true,

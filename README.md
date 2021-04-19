@@ -1,7 +1,7 @@
 ![Seedling](https://github.com/nodepa/seedling/blob/master/asset-sources/seedling-banner.png)
 A mobile-first literacy webapp for adults
 
-Available as 种字立爱 - Seedling for Putonghua Simplified Chinese, at [种字.com](https://种字.com)
+Available as 立爱种字 - Seedling for Putonghua Simplified Chinese, at [种字.com](https://种字.com)
 
 ## Development
 

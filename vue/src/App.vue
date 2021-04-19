@@ -3,7 +3,7 @@
     <v-app-bar app flat color="background">
       <div class="d-flex align-center">
         <v-img
-          alt="种字立爱 Logo"
+          alt="立爱种字 Logo"
           class="shrink mr-2"
           contain
           transition="scale-transition"
@@ -18,7 +18,7 @@
           min-width="100"
           width="100"
         >
-          种字立爱
+          立爱种字
         </span>
         <span class="caption white--text" if="branch && jobId"
           >({{ branch }}/{{ jobId }})
