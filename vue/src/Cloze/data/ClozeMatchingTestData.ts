@@ -54,7 +54,7 @@ export default function ClozeMatchingTestData(): ClozeMatchingExercise {
         audio: ExerciseProvider.createAudio(术),
       },
       {
-        word: '兄弟＿姐妹',
+        word: '兄弟姐妹',
         isBlank: true,
         revealed: false,
         audio: ExerciseProvider.createAudio(术),

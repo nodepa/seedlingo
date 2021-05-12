@@ -17,7 +17,11 @@
                 style="position: relative"
               >
                 <!-- {{ word.revealed ? word.word : blankFillers(word.word.length) }} -->
-                {{ word.revealed ? word.word : blankFillers(word.word.length) }}
+                {{
+                  !word.blank || word.revealed
+                    ? word.word
+                    : blankFillers(word.word.length)
+                }}
                 <RippleAnimation
                   :playing="word.audio ? word.audio.playing : false"
                   :scale="1"
