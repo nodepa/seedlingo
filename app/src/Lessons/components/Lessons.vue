@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import ContentConfig from '../ContentConfig';
+import ContentConfig from '../ContentSpec';
 import { LessonMenuItems } from '../LessonMenuTypes';
 
 const lessons = ref<LessonMenuItems | null>(null);

@@ -1,5 +1,7 @@
 // Libraries, plugins, components
 import store from '@/common/store/RootStore';
+import Badge from '@/common/components/Badge.vue';
+import InstructionDirective from '@/common/directives/InstructionDirective';
 
 // Helpers
 import { mount, VueWrapper } from '@vue/test-utils';
@@ -24,7 +26,7 @@ describe('Matching', () => {
         exerciseProp: getTestData(),
       },
       global: {
-        plugins: [store, vuetify],
+        plugins: [store, vuetify, [InstructionDirective, { Badge }]],
       },
     });
   });

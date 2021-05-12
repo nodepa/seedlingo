@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, Ref, ref, watch } from 'vue';
+import { computed, ComputedRef, Ref, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import { MatchingItem } from '../MatchingTypes';
+import ContentConfig from '@/Lessons/ContentSpec';
 
 const startColors = ['deep-purple', 'pink', 'orange', 'teal'];
 const colors: Array<string> = Array.from(startColors);
@@ -41,11 +42,11 @@ const wordColor = '';
 function selectAndPlay(option: MatchingItem, index: number): void {
   selected.value = index;
   exerciseItems.value.forEach((item) => {
-    if (item.audio.playing) {
+    if (item.audio?.playing) {
       item.audio.cancel();
     }
   });
-  option.audio.play();
+  option.audio?.play();
 }
 
 watch(selected, (indexOfSelected: number, indexOfPrevious: number) => {
@@ -188,6 +189,10 @@ function checkForMatchAndReOrder(
   }
 }
 
+const matchingInstructionPath: ComputedRef<string> = computed(() => {
+  return ContentConfig.getInstructionPathFor('matchingExercise');
+});
+
 function getSpacing(itemCount: number, index: number): string {
   if (itemCount > 1) {
     if (index === 0) {
@@ -212,8 +217,9 @@ function getSpacing(itemCount: number, index: number): string {
         sm="3"
       >
         <ExerciseButton
+          v-instruction="matchingInstructionPath"
           :data-test="`option-button-${+index + 1}`"
-          :playing="option.audio.playing"
+          :playing="option.audio && option.audio.playing"
           :class="`bg-${option.color}`"
           v-model:buzzing="option.buzzing"
           @click="selectAndPlay(option, +index)"

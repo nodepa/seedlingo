@@ -1,19 +1,30 @@
-export interface ClozeOption {
-  word: string;
-  audio?: HTMLAudioElement;
-  correct: boolean;
-  disabled: boolean;
-  playing: boolean;
-  buzzing: boolean;
-  color: string;
-}
+import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
 
 export interface ClozeExercise {
-  sentenceBeginning: Array<string>;
-  sentenceBlank: string;
-  sentenceEnd: Array<string>;
-  sentenceAudio?: HTMLAudioElement;
-  sentenceAudioPlaying: boolean;
-  showingBlankFilled: boolean;
-  options: Array<ClozeOption>;
+  clozeOptions: Array<ClozeOption>;
+  clozeText: Array<ClozeWord>;
+}
+
+export interface MultiClozeExercise {
+  clozeText: Array<ClozeWord>;
+  multiClozeOptions: Array<ClozeOption>;
+}
+
+export interface ClozeWord {
+  audio?: ExerciseAudio;
+  buzzing?: boolean;
+  isBlank?: boolean;
+  revealed?: boolean;
+  suppressClozeAudio?: boolean;
+  word: string;
+}
+
+export interface ClozeOption {
+  audio?: ExerciseAudio;
+  buzzing: boolean;
+  color: string;
+  correct?: boolean;
+  disabled: boolean;
+  suppressOptionAudio?: boolean;
+  word: string;
 }

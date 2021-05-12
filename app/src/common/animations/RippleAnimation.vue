@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 interface Props {
   playing?: boolean;
@@ -31,6 +31,8 @@ const keyFrames = [
     transform: `scale(${props.scale}, ${props.scale})`,
   },
 ];
+
+const zIndex = computed(() => (props.playing ? 10 : -10));
 
 watch(
   () => props.playing,
@@ -67,7 +69,7 @@ watch(
 
 <style>
 .ripple {
-  z-index: 10;
+  z-index: v-bind(zIndex);
   opacity: 0;
   border-style: solid;
   border-radius: 100%;

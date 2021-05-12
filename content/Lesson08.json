@@ -1,0 +1,109 @@
+{
+  "formatVersion": "1.1",
+  "id": "9995ec1f-e06b-4562-bff0-4145c1cb4139",
+  "lessonIndex": 8,
+  "multipleChoiceCount": 4,
+  "matchingCount": 4,
+  "explanationCount": 4,
+  "singleClozeCount": 0,
+  "multiClozeCount": 0,
+  "wordCount": 4,
+  "exercises": [
+    {
+      "id": "15b2baf1-2576-44c9-96f3-f0f01eb1e6bb",
+      "type": "MultipleChoice",
+      "words": [
+        { "外孙女": "83ded6b2-d80b-4a78-bd10-00d4822aefb9" },
+        { "外孙": "bb91deac-cbe1-4314-b7d3-9662cc82d446" },
+        { "孙女": "7f3cd2dd-da20-4c3c-8fb1-d6beefb43d0e" },
+        { "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3" }
+      ]
+    },
+    {
+      "id": "49658ef5-0f50-4693-88b3-5de245de78fb",
+      "type": "Matching",
+      "words": [
+        { "外孙女": "83ded6b2-d80b-4a78-bd10-00d4822aefb9" },
+        { "外孙": "bb91deac-cbe1-4314-b7d3-9662cc82d446" },
+        { "孙女": "7f3cd2dd-da20-4c3c-8fb1-d6beefb43d0e" },
+        { "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3" }
+      ]
+    },
+    {
+      "id": "86f060d5-7d02-4f0e-8cf7-6d9e1208169f",
+      "type": "Explanation",
+      "explanation": [
+        { "女儿": "34d92533-9c8c-4469-b050-2638f2b5f4d5" },
+        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+        { "女儿": "34d92533-9c8c-4469-b050-2638f2b5f4d5" }
+      ],
+      "explanationTargets": {
+        "validOption": { "外孙女": "83ded6b2-d80b-4a78-bd10-00d4822aefb9" },
+        "invalidOptions": [
+          { "外孙": "bb91deac-cbe1-4314-b7d3-9662cc82d446" },
+          { "孙女": "7f3cd2dd-da20-4c3c-8fb1-d6beefb43d0e" },
+          { "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3" }
+        ]
+      },
+      "audio": "audio/女儿的女儿.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "676cfb12-e970-4e56-9b98-96a5289a25d4",
+      "type": "Explanation",
+      "explanation": [
+        { "女儿": "34d92533-9c8c-4469-b050-2638f2b5f4d5" },
+        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+        { "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c" }
+      ],
+      "explanationTargets": {
+        "validOption": { "外孙": "bb91deac-cbe1-4314-b7d3-9662cc82d446" },
+        "invalidOptions": [
+          { "外孙女": "83ded6b2-d80b-4a78-bd10-00d4822aefb9" },
+          { "孙女": "7f3cd2dd-da20-4c3c-8fb1-d6beefb43d0e" },
+          { "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3" }
+        ]
+      },
+      "audio": "audio/女儿的儿子.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "35422710-e7b3-42aa-bfc8-5f2cd9026d6f",
+      "type": "Explanation",
+      "explanation": [
+        { "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c" },
+        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+        { "女儿": "34d92533-9c8c-4469-b050-2638f2b5f4d5" }
+      ],
+      "explanationTargets": {
+        "validOption": { "孙女": "7f3cd2dd-da20-4c3c-8fb1-d6beefb43d0e" },
+        "invalidOptions": [
+          { "外孙女": "83ded6b2-d80b-4a78-bd10-00d4822aefb9" },
+          { "外孙": "bb91deac-cbe1-4314-b7d3-9662cc82d446" },
+          { "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3" }
+        ]
+      },
+      "audio": "audio/儿子的女儿.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    {
+      "id": "794a4891-2af7-4e04-8ff4-67720e5e2329",
+      "type": "Explanation",
+      "explanation": [
+        { "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c" },
+        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+        { "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c" }
+      ],
+      "explanationTargets": {
+        "validOption": { "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3" },
+        "invalidOptions": [
+          { "外孙女": "83ded6b2-d80b-4a78-bd10-00d4822aefb9" },
+          { "外孙": "bb91deac-cbe1-4314-b7d3-9662cc82d446" },
+          { "孙女": "7f3cd2dd-da20-4c3c-8fb1-d6beefb43d0e" }
+        ]
+      },
+      "audio": "audio/儿子的儿子.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    }
+  ]
+}

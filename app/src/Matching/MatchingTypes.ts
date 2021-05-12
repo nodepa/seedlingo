@@ -1,13 +1,8 @@
-export interface ExerciseAudio {
-  el: HTMLAudioElement;
-  playing: boolean;
-  play(): void;
-  cancel(): void;
-}
+import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
 
 export interface MatchingItem {
   wordOrIcons: string | Array<string>;
-  audio: ExerciseAudio;
+  audio?: ExerciseAudio;
   match: number;
   color: string;
   isWord: boolean;

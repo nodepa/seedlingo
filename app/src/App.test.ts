@@ -85,8 +85,25 @@ describe('App.vue', () => {
       },
     });
 
-    expect(wrapper.get('[data-test="app"').html()).toContain(branch);
-    expect(wrapper.get('[data-test="app"').html()).not.toContain(paddedId);
-    expect(wrapper.get('[data-test="app"').html()).toContain(trimmedId);
+    expect(wrapper.get('[data-test="app"]').html()).toContain(branch);
+    expect(wrapper.get('[data-test="app"]').html()).not.toContain(paddedId);
+    expect(wrapper.get('[data-test="app"]').html()).toContain(trimmedId);
+  });
+
+  it('toggles light/dark theme', () => {
+    const wrapper = mount(App, {
+      global: {
+        plugins: [router, store, vuetify, [InstructionDirective, { Badge }]],
+        stubs: ['router-view'],
+      },
+      props: {
+        theme: 'dark',
+      },
+    });
+    expect(wrapper.vm.theme).toBe('dark');
+    wrapper.get('[data-test="toggle"]').trigger('click');
+    expect(wrapper.vm.theme).toBe('light');
+    wrapper.vm.toggleTheme();
+    expect(wrapper.vm.theme).toBe('dark');
   });
 });

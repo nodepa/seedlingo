@@ -1,98 +1,71 @@
 import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
-import ContentConfig from './ContentConfig';
+import ContentSpec from './ContentSpec';
 import ExerciseProvider from './ExerciseProvider';
-import { Lesson } from './LessonTypes';
+import { LessonSpec } from './ContentTypes';
 
-let lesson: Lesson;
-beforeEach(() => {
-  lesson = {
-    id: '9b56ad90-9bee-48b7-baf5-e8372e2001b6',
-    lessonIndex: 1,
-    lessonPath: './test-support/audio/',
-    clozeCount: 0,
-    explanationCount: 0,
-    sentenceCount: 0,
-    wordCount: 4,
-    items: [
-      {
-        id: 'a681b683-d909-4f5b-834e-8347633df4b1',
-        word: '数字',
-        audioName: '数字.mp3',
-        symbolName: ['mdiNumeric'],
-      },
-      {
-        id: '8d2a8043-7eaa-4aee-927d-a42313036970',
-        word: '零',
-        audioName: '零.mp3',
-        symbolName: ['mdiNumeric0Circle'],
-      },
-      {
-        id: '1d936b6b-e44c-466c-8d04-ab52643670c2',
-        word: '一',
-        audioName: '一.mp3',
-        symbolName: ['mdiNumeric1Circle'],
-      },
-      {
-        id: '698cced9-2080-4226-87f0-07837add7938',
-        word: '二',
-        audioName: '二.mp3',
-        symbolName: ['mdiNumeric2Circle'],
-      },
-    ],
-  };
-});
+import lessonTestData from '../test-support/LessonSpecFile.json';
+const lesson = lessonTestData as LessonSpec;
 
 describe('ExerciseProvider', () => {
   describe('.getExerciseFromLesson()', () => {
-    it('correctly returns exercises', async () => {
-      // mock: Matching
+    it('correctly returns exercises', () => {
+      // mock: Matching on 2nd exercise
       const spyPickRandomExerciseTypeMatching = jest
         .spyOn(ExerciseProvider, 'pickRandomExerciseType')
         .mockImplementation(() => 'Matching');
+      const spySelectRandomSubsetMatching = jest
+        .spyOn(ExerciseProvider, 'selectRandomSubset')
+        .mockImplementation(() => lesson.exercises[1].words || []);
+      const spyGetAudioPath = jest
+        .spyOn(ContentSpec, 'getAudioPath')
+        .mockImplementation((path: string) => path);
 
-      let exercise = await ExerciseProvider.getExerciseFromLesson(1);
+      let exercise = ExerciseProvider.getExerciseFromLesson(1);
       expect(spyPickRandomExerciseTypeMatching).toHaveBeenCalled();
       expect(exercise.exerciseType).toBe('Matching');
 
-      expect(lesson.items[3].symbolName?.length).toBe(1);
-      lesson.items[3].symbolName = [];
-      expect(lesson.items[3].symbolName?.length).toBe(0);
+      // reset mocks
+      spyPickRandomExerciseTypeMatching.mockRestore();
+      spySelectRandomSubsetMatching.mockRestore();
 
-      // mock: MultipleChoice with items of `lesson`, index 3 as correct answer
+      // mock: MultipleChoice on 1st exercise, word 3 as correct answer
       const spyPickRandomExerciseTypeMultipleChoice = jest
         .spyOn(ExerciseProvider, 'pickRandomExerciseType')
         .mockImplementation(() => 'MultipleChoice');
-      const spySelectRandomSubset = jest
+      const spySelectRandomSubsetMultipleChoice = jest
         .spyOn(ExerciseProvider, 'selectRandomSubset')
-        .mockImplementation(() => lesson.items);
+        .mockImplementation(() => lesson.exercises[0].words || []);
       const spyRandomIndexLessThan = jest
         .spyOn(ExerciseProvider, 'randomIndexLessThan')
         .mockImplementation(() => 3);
 
-      exercise = await ExerciseProvider.getExerciseFromLesson(1);
+      exercise = ExerciseProvider.getExerciseFromLesson(1);
       expect(spyPickRandomExerciseTypeMultipleChoice).toHaveBeenCalled();
-      expect(spySelectRandomSubset).toHaveBeenCalled();
+      expect(spySelectRandomSubsetMultipleChoice).toHaveBeenCalled();
       expect(spyRandomIndexLessThan).toHaveBeenCalled();
 
       expect(exercise.exerciseType).toBe('MultipleChoice');
       expect(
         (exercise.exerciseItems as MultipleChoiceExercise).options[0].word,
-      ).toBe(lesson.items[0].word);
+      ).toBe(
+        Object.keys(
+          lesson.exercises[0].words ? lesson.exercises[0].words[0] : [],
+        )[0],
+      );
 
       // reset mocks
-      spyPickRandomExerciseTypeMatching.mockRestore();
       spyPickRandomExerciseTypeMultipleChoice.mockRestore();
-      spySelectRandomSubset.mockRestore();
+      spySelectRandomSubsetMultipleChoice.mockRestore();
       spyRandomIndexLessThan.mockRestore();
+      spyGetAudioPath.mockRestore();
     });
   });
 
   describe('.generateMatchingExercise()', () => {
     it('correctly returns exercises', () => {
       const spyGetAudioPath = jest
-        .spyOn(ContentConfig, 'getAudioPath')
+        .spyOn(ContentSpec, 'getAudioPath')
         .mockImplementation((path: string) => path);
-      expect(lesson.items[3].symbolName?.length).toBe(1);
       const matchingExercise =
         ExerciseProvider.generateMatchingExercise(lesson);
       expect(matchingExercise.exerciseType).toBe('Matching');
@@ -103,7 +76,7 @@ describe('ExerciseProvider', () => {
   describe('.generateMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
       const spyGetAudioPath = jest
-        .spyOn(ContentConfig, 'getAudioPath')
+        .spyOn(ContentSpec, 'getAudioPath')
         .mockImplementation((path: string) => path);
       const multipleChoiceExercise =
         ExerciseProvider.generateMultipleChoiceExercise(lesson);
@@ -112,55 +85,23 @@ describe('ExerciseProvider', () => {
     });
   });
 
-  describe('.generateMultipleChoiceExplanationExercise()', () => {
+  describe('.generateExplanationMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
       const spyGetAudioPath = jest
-        .spyOn(ContentConfig, 'getAudioPath')
+        .spyOn(ContentSpec, 'getAudioPath')
         .mockImplementation((path: string) => path);
-      lesson = {
-        id: '17df7241-eb9d-4bea-904e-d51823d8fc85',
-        lessonIndex: 4,
-        lessonPath: '@/test-support/audio/',
-        clozeCount: 0,
-        explanationCount: 2,
-        sentenceCount: 0,
-        wordCount: 2,
-        items: [
-          {
-            id: 'd63f08dd-f8e6-4b47-940b-8d9d939034a6',
-            word: '姥姥',
-            audioName: '姥姥.mp3',
-            symbolName: ['mdiCellphoneWireless'],
-          },
-          {
-            id: 'cb6f4821-c2d6-4ccc-b9a1-465e2ddc5e4e',
-            explanation: '妈妈的妈妈',
-            explanationTargetId: 'd63f08dd-f8e6-4b47-940b-8d9d939034a6',
-            audioName: '妈妈的妈妈.mp3',
-            symbolName: ['mdiCellphoneWireless'],
-          },
-          {
-            id: '6c0f975c-4364-40c7-ae72-cfc2145da7e3',
-            word: '老爷',
-            audioName: '老爷.mp3',
-            symbolName: ['mdiCellphoneWireless'],
-          },
-          {
-            id: '4bc5c4ee-2a62-40ac-9c6b-c816dcde5330',
-            explanation: '妈妈的爸爸',
-            explanationTargetId: '6c0f975c-4364-40c7-ae72-cfc2145da7e3',
-            audioName: '妈妈的爸爸.mp3',
-            symbolName: ['mdiCellphoneWireless'],
-          },
-        ],
-      };
+      const spyPickRandomItem = jest
+        .spyOn(ExerciseProvider, 'pickRandomItem')
+        .mockImplementation((array) => {
+          return array[0];
+        });
       const multipleChoiceExercise =
-        ExerciseProvider.generateMultipleChoiceExplanationExercise(lesson) as {
+        ExerciseProvider.generateExplanationMultipleChoiceExercise(lesson) as {
           exerciseType: string;
           exerciseItems: MultipleChoiceExercise;
         };
       expect(multipleChoiceExercise.exerciseType).toBe('MultipleChoice');
-      expect(multipleChoiceExercise.exerciseItems.options.length).toBe(2);
+      expect(multipleChoiceExercise.exerciseItems.options.length).toBe(4);
       expect(
         multipleChoiceExercise.exerciseItems.explanationToMatch,
       ).toBeDefined();
@@ -171,27 +112,67 @@ describe('ExerciseProvider', () => {
       }
 
       // assert correct option is marked 'correct'
-      if (
-        multipleChoiceExercise.exerciseItems.explanationToMatch ===
-        lesson.items[1].explanation
-      ) {
-        const correctAlternative =
-          multipleChoiceExercise.exerciseItems.options.find(
-            (item) => item.correct,
-          );
-        expect(correctAlternative?.word).toBe(lesson.items[0].word);
-      }
-      if (
-        multipleChoiceExercise.exerciseItems.explanationToMatch ===
-        lesson.items[3].explanation
-      ) {
-        const correctAlternative =
-          multipleChoiceExercise.exerciseItems.options.find(
-            (item) => item.correct,
-          );
-        expect(correctAlternative?.word).toBe(lesson.items[2].word);
-      }
+      const correctAlternative =
+        multipleChoiceExercise.exerciseItems.options.find(
+          (option) => option.correct,
+        );
+      expect(correctAlternative?.word).toBe(
+        Object.keys(
+          lesson.exercises[2].explanationTargets?.validOption || [],
+        )[0],
+      );
       spyGetAudioPath.mockRestore();
+      spyPickRandomItem.mockRestore();
+    });
+  });
+
+  describe('.generateMultiClozeExercise()', () => {
+    it('correctly returns exercises', () => {
+      const spyGetAudioPath = jest
+        .spyOn(ContentSpec, 'getAudioPath')
+        .mockImplementation((path: string) => path);
+      // force exercise based on lesson item 2 (index 1)
+      const spyPickRandomItem = jest
+        .spyOn(ExerciseProvider, 'pickRandomItem')
+        .mockImplementation((array) => {
+          return array[1];
+        });
+
+      const multiClozeExercise =
+        ExerciseProvider.generateMultiClozeExercise(lesson);
+      expect(multiClozeExercise.exerciseType).toBe('MultiCloze');
+      expect(multiClozeExercise.exerciseItems.clozeText.length).toBe(
+        lesson.exercises[7].multiClozeText?.length,
+      );
+      expect(multiClozeExercise.exerciseItems.multiClozeOptions.length).toBe(4);
+      expect(multiClozeExercise.exerciseItems.clozeText[3].isBlank).toBe(false);
+      expect(multiClozeExercise.exerciseItems.clozeText[4].isBlank).toBe(true);
+      expect(multiClozeExercise.exerciseItems.clozeText[4].revealed).toBe(
+        false,
+      );
+      expect(multiClozeExercise.exerciseItems.clozeText[4].buzzing).toBe(false);
+      expect(multiClozeExercise.exerciseItems.clozeText[12].isBlank).toBe(true);
+      expect(multiClozeExercise.exerciseItems.clozeText[16].isBlank).toBe(true);
+      expect(multiClozeExercise.exerciseItems.clozeText[18].isBlank).toBe(true);
+      expect(multiClozeExercise.exerciseItems.clozeText[19].isBlank).toBe(
+        false,
+      );
+
+      expect(
+        multiClozeExercise.exerciseItems.multiClozeOptions.filter((option) =>
+          ['姐夫', '儿子', '两', '外甥女'].includes(option.word),
+        ).length,
+      ).toBe(4);
+
+      expect(
+        multiClozeExercise.exerciseItems.multiClozeOptions[1].disabled,
+      ).toBe(false);
+      expect(
+        multiClozeExercise.exerciseItems.multiClozeOptions[1].buzzing,
+      ).toBe(false);
+
+      spyGetAudioPath.mockRestore();
+      spyPickRandomItem.mockRestore();
     });
   });
 
@@ -200,24 +181,23 @@ describe('ExerciseProvider', () => {
       expect(() => ExerciseProvider.validateExerciseIndex(-1)).toThrow();
       expect(() => ExerciseProvider.validateExerciseIndex(0)).toThrow();
       expect(() => ExerciseProvider.validateExerciseIndex(1)).not.toThrow();
-      expect(() => ExerciseProvider.validateExerciseIndex(10)).not.toThrow();
-      expect(() => ExerciseProvider.validateExerciseIndex(11)).toThrow();
+      expect(() => ExerciseProvider.validateExerciseIndex(2)).toThrow();
     });
   });
 
-  describe('.validateLowerLimit()', () => {
+  describe('.hasAtLeast()', () => {
     it('correctly handles invalid params', () => {
-      // lesson.length === 4
-      const validLimits = [-1, 0, 1, 3, 4];
-      const invalidLimits = [5, 11];
+      const array = [1, 2, 3, 4, 5, 6, 7, 8];
+      const validLimits = [-1, 0, 1, 7, 8];
+      const invalidLimits = [9, 11];
       validLimits.forEach((validLimit) => {
         expect(() =>
-          ExerciseProvider.validateLowerLimit(lesson.items, validLimit, 1),
+          ExerciseProvider.hasAtLeast(array, validLimit, 1),
         ).not.toThrow();
       });
       invalidLimits.forEach((invalidLimit) => {
         expect(() =>
-          ExerciseProvider.validateLowerLimit(lesson.items, invalidLimit, 1),
+          ExerciseProvider.hasAtLeast(array, invalidLimit, 1),
         ).toThrow();
       });
     });
@@ -236,10 +216,11 @@ describe('ExerciseProvider', () => {
       for (let i = 0; i < 100; i += 1) {
         expect([
           'Matching',
-          'MatchingExplanation',
           'MultipleChoice',
-          'MultipleChoiceExplanation',
-          'Cloze',
+          'ExplanationMatching',
+          'ExplanationMultipleChoice',
+          'SingleCloze',
+          'MultiCloze',
         ]).toContain(ExerciseProvider.pickRandomExerciseType(lesson));
       }
     });

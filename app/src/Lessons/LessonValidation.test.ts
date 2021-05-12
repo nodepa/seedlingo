@@ -1,15 +1,23 @@
-import { Lesson, LessonItem } from '@/Lessons/LessonTypes';
-import ContentConfig from '@/Lessons/ContentConfig';
-const lessons = ContentConfig.getLessons();
+import { existsSync } from 'fs';
+import {
+  Blank,
+  ExerciseSpec,
+  LessonSpec,
+  WordRef,
+} from '@/Lessons/ContentTypes';
+process.env.NODE_ENV = 'production'; // force loading 'production' content
+import ContentSpec from '@/Lessons/ContentSpec';
+process.env.NODE_ENV = 'test';
+const lessons = ContentSpec.getLessons();
 
 describe('Integrity of JSON Lesson data', () => {
   describe('Global integrity', () => {
-    it("each 'lesson.id' & 'item.id' is unique", () => {
+    it("each 'lesson.id' & 'exercise.id' is unique", () => {
       const ids: string[] = [];
-      lessons.forEach((lesson: Lesson) => {
+      lessons.forEach((lesson: LessonSpec) => {
         ids.push(lesson.id);
-        lesson.items.forEach((lessonItem: LessonItem) => {
-          ids.push(lessonItem.id);
+        lesson.exercises.forEach((exercise: ExerciseSpec) => {
+          ids.push(exercise.id);
         });
       });
       expect(ids.length).toBe([...new Set(ids)].length);
@@ -17,7 +25,7 @@ describe('Integrity of JSON Lesson data', () => {
 
     it("each 'lessonIndex' is unique", () => {
       const lessonIndices: number[] = [];
-      lessons.forEach((lesson: Lesson) => {
+      lessons.forEach((lesson: LessonSpec) => {
         lessonIndices.push(lesson.lessonIndex);
       });
       expect(lessonIndices.length).toBe([...new Set(lessonIndices)].length);
@@ -25,48 +33,83 @@ describe('Integrity of JSON Lesson data', () => {
 
     it('has no empty fields', () => {
       lessons.forEach((lesson) => {
-        expect(lesson.id.length).toBe(36);
+        expect(lesson.id.length).toBeGreaterThanOrEqual(1);
         expect(lesson.lessonIndex).toBeGreaterThanOrEqual(1);
-        expect(lesson.clozeCount).toBeGreaterThanOrEqual(0);
+        expect(lesson.multipleChoiceCount).toBeGreaterThanOrEqual(0);
+        expect(lesson.matchingCount).toBeGreaterThanOrEqual(0);
         expect(lesson.explanationCount).toBeGreaterThanOrEqual(0);
-        expect(lesson.sentenceCount).toBeGreaterThanOrEqual(0);
-        expect(lesson.wordCount).toBeGreaterThanOrEqual(0);
-        lesson.items.forEach((lessonItem) => {
+        expect(lesson.singleClozeCount).toBeGreaterThanOrEqual(0);
+        expect(lesson.multiClozeCount).toBeGreaterThanOrEqual(0);
+        lesson.exercises.forEach((exercise) => {
           try {
-            expect(lessonItem.id.length).toBe(36);
-            if (lessonItem.word) {
-              expect(lessonItem.word.length).toBeGreaterThan(0);
+            expect(exercise.id.length).toBeGreaterThanOrEqual(1);
+            expect(exercise.type.length).toBeGreaterThanOrEqual(0);
+            if (['MultipleChoice', 'Matching'].includes(exercise.type)) {
+              expect(exercise.words?.length).toBeGreaterThan(1);
+            } else if (exercise.type === 'Explanation') {
+              expect(exercise.explanation?.length).toBeGreaterThan(0);
+              expect(
+                exercise.explanation?.filter(
+                  (wordRef) => wordRef[Object.keys(wordRef)[0]].length > 0,
+                ).length === exercise.explanation?.length,
+              ).toBe(true);
+              expect(!!exercise.explanationTargets).toBe(true);
+              if (exercise.explanationTargets) {
+                expect(
+                  exercise.explanationTargets.validOption[
+                    Object.keys(exercise.explanationTargets.validOption)[0]
+                  ].length,
+                ).toBeGreaterThan(0);
+                expect(
+                  exercise.explanationTargets.invalidOptions.length,
+                ).toBeGreaterThan(1);
+              }
+            } else if (exercise.type === 'SingleCloze') {
+              expect(exercise.singleClozeText?.length).toBeGreaterThan(1);
+              // at least one blank
+              expect(
+                exercise.singleClozeText?.filter(
+                  (word) => 'validOptions' in word,
+                ).length,
+              ).toBeGreaterThan(0);
+            } else if (exercise.type === 'MultiCloze') {
+              expect(exercise.multiClozeText?.length).toBeGreaterThan(1);
+              // at least one blank
+              expect(
+                exercise.multiClozeText?.filter(
+                  (word) => 'validOptions' in word,
+                ).length,
+              ).toBeGreaterThan(0);
+            } else {
+              throw new Error(
+                `Lesson ${lesson.lessonIndex} has an invalid 'type' field at exercise: ${exercise.id}`,
+              );
             }
-            if (lessonItem.sentence) {
-              expect(lessonItem.sentence.length).toBeGreaterThan(0);
+
+            if ('audio' in exercise) {
+              expect(typeof exercise.audio).toBe('string');
+              expect(exercise.audio?.length).toBeGreaterThan(0);
             }
-            if (lessonItem.explanation) {
-              expect(lessonItem.explanation.length).toBeGreaterThan(0);
+            if ('picture' in exercise) {
+              expect(typeof exercise.picture).toBe('string');
+              expect(exercise.picture?.length).toBeGreaterThan(0);
             }
-            if (lessonItem.explanationTargetId) {
-              expect(lessonItem.explanationTargetId.length).toBe(36);
+            if ('video' in exercise) {
+              expect(typeof exercise.video).toBe('string');
+              expect(exercise.video?.length).toBeGreaterThan(0);
             }
-            if (lessonItem.clozeText) {
-              expect(lessonItem.clozeText.length).toBeGreaterThan(0);
+            if ('symbol' in exercise) {
+              expect(exercise.symbol?.length).toBeGreaterThan(0);
             }
-            if (lessonItem.clozeSpecVariants) {
-              expect(lessonItem.clozeSpecVariants.length).toBeGreaterThan(0);
+            if ('suppressClozeAudio' in exercise) {
+              expect(typeof exercise.suppressClozeAudio).toBe('boolean');
             }
-            if (lessonItem.audioName) {
-              expect(lessonItem.audioName.length).toBeGreaterThan(0);
-            }
-            if (lessonItem.pictureName) {
-              expect(lessonItem.pictureName.length).toBeGreaterThan(0);
-            }
-            if (lessonItem.videoName) {
-              expect(lessonItem.videoName.length).toBeGreaterThan(0);
-            }
-            if (lessonItem.symbolName) {
-              expect(lessonItem.symbolName.length).toBeGreaterThan(0);
+            if ('suppressOptionAudio' in exercise) {
+              expect(typeof exercise.suppressOptionAudio).toBe('boolean');
             }
           } catch (e) {
             throw new Error(
-              `Lesson ${lesson.lessonIndex} has an error at item: ${lessonItem.id}\n${e}`,
+              `Lesson ${lesson.lessonIndex} has an error at exercise: ${exercise.id}\n${e}`,
             );
           }
         });
@@ -85,261 +128,299 @@ describe('Integrity of JSON Lesson data', () => {
           expect(lesson.lessonIndex).toBeGreaterThan(0);
         });
 
-        it(`lesson.${lesson.lessonIndex}.clozeCount=${lesson.clozeCount} is accurate`, () => {
+        it(`lesson.${lesson.lessonIndex}.singleClozeCount=${lesson.singleClozeCount} is accurate`, () => {
           let clozeCount = 0;
-          lesson.items.forEach((lessonItem) => {
-            if (
-              lessonItem.clozeText &&
-              lessonItem.clozeText.length > 0 &&
-              lessonItem.clozeSpecVariants &&
-              lessonItem.clozeSpecVariants.length > 0
-            ) {
+          let clozeConsistency = true;
+          lesson.exercises.forEach((exercise) => {
+            if (exercise.type === 'SingleCloze') {
               clozeCount += 1;
+              if (
+                !exercise.singleClozeText ||
+                exercise.singleClozeText.length < 1
+              ) {
+                clozeConsistency = false;
+              }
             }
           });
-          expect(clozeCount).toBe(lesson.clozeCount);
+          expect(clozeCount).toBe(lesson.singleClozeCount);
+          expect(clozeConsistency).toBe(true);
+        });
+
+        it(`lesson.${lesson.lessonIndex}.multiClozeCount=${lesson.multiClozeCount} is accurate`, () => {
+          let clozeCount = 0;
+          let clozeConsistency = true;
+          lesson.exercises.forEach((exercise) => {
+            if (exercise.type === 'MultiCloze') {
+              clozeCount += 1;
+              if (
+                !exercise.multiClozeText ||
+                exercise.multiClozeText.length < 2
+              ) {
+                clozeConsistency = false;
+              }
+            }
+          });
+          expect(clozeCount).toBe(lesson.multiClozeCount);
+          expect(clozeConsistency).toBe(true);
         });
 
         it(`lesson.${lesson.lessonIndex}.explanationCount=${lesson.explanationCount} is accurate`, () => {
           let explanationCount = 0;
-          let explanationTargetCount = 0;
-          const wordIds = lesson.items.map((lessonItem) =>
-            lessonItem.word && lessonItem.word.length > 0 ? lessonItem.id : '',
-          );
-          lesson.items.forEach((lessonItem) => {
-            if (lessonItem.explanation && lessonItem.explanation.length > 0) {
+          lesson.exercises.forEach((exercise) => {
+            if (exercise.type === 'Explanation') {
               explanationCount += 1;
-            }
-            if (
-              lessonItem.explanationTargetId &&
-              lessonItem.explanationTargetId.length > 0 &&
-              wordIds.includes(lessonItem.explanationTargetId)
-            ) {
-              explanationTargetCount += 1;
             }
           });
           expect(explanationCount).toBe(lesson.explanationCount);
-          expect(explanationTargetCount).toBe(lesson.explanationCount);
         });
 
-        it(`lesson.${lesson.lessonIndex}.sentenceCount=${lesson.sentenceCount} is accurate`, () => {
-          let sentenceCount = 0;
-          lesson.items.forEach((lessonItem) => {
-            if (lessonItem.sentence && lessonItem.sentence.length > 0) {
-              sentenceCount += 1;
+        it(`lesson.${lesson.lessonIndex}.multipleChoiceCount=${lesson.multipleChoiceCount} is accurate`, () => {
+          let multipleChoiceCount = 0;
+          lesson.exercises.forEach((exercise) => {
+            if (exercise.type === 'MultipleChoice') {
+              multipleChoiceCount = exercise.words?.length || 0;
             }
           });
-          expect(sentenceCount).toBe(lesson.sentenceCount);
+          expect(multipleChoiceCount).toBe(lesson.multipleChoiceCount);
         });
 
-        it(`lesson.${lesson.lessonIndex}.wordCount=${lesson.wordCount} is accurate`, () => {
-          let wordCount = 0;
-          lesson.items.forEach((lessonItem) => {
-            if (lessonItem.word && lessonItem.word.length > 0) {
-              wordCount += 1;
+        it(`lesson.${lesson.lessonIndex}.matchingCount=${lesson.matchingCount} is accurate`, () => {
+          let matchingCount = 0;
+          lesson.exercises.forEach((exercise) => {
+            if (exercise.type === 'Matching') {
+              matchingCount = exercise.words?.length || 0;
             }
           });
-          expect(wordCount).toBe(lesson.wordCount);
+          expect(matchingCount).toBe(lesson.matchingCount);
         });
       });
     });
 
-    describe('LessonItem-level integrity', () => {
-      lessons.forEach((lesson: Lesson) => {
+    describe('Exercise-level integrity', () => {
+      lessons.forEach((lesson: LessonSpec) => {
         describe(`lessonIndex.${lesson.lessonIndex}`, () => {
-          lesson.items.forEach((lessonItem: LessonItem) => {
-            describe(`id.${lessonItem.id}`, () => {
+          lesson.exercises.forEach((exercise: ExerciseSpec) => {
+            describe(`exercise.id.${exercise.id}`, () => {
               it("'id' is 36 char string", () => {
-                expect(typeof lessonItem.id).toBe('string');
-                expect(lessonItem.id.length).toBe(36);
+                expect(typeof exercise.id).toBe('string');
+                expect(exercise.id.length).toBe(36);
               });
 
-              it("'word' is nonempty string", () => {
-                if (lessonItem.word) {
-                  expect(typeof lessonItem.word).toBe('string');
-                  expect(lessonItem.word.length).toBeGreaterThan(0);
-                }
+              it("'type' is among valid options", () => {
+                expect(typeof exercise.type).toBe('string');
+                expect(
+                  [
+                    'MultipleChoice',
+                    'Matching',
+                    'Explanation',
+                    'SingleCloze',
+                    'MultiCloze',
+                  ].includes(exercise.type),
+                ).toBe(true);
               });
 
-              it("'sentence' is nonempty string", () => {
-                if (lessonItem.sentence) {
-                  expect(typeof lessonItem.sentence).toBe('string');
-                  expect(lessonItem.sentence.length).toBeGreaterThan(0);
-                }
-              });
-
-              it("'explanation' & 'explanationTargetId' is consistent", () => {
-                // all explanations have a target, and that target is a word
-                if (lessonItem.explanation) {
-                  expect(typeof lessonItem.explanation).toBe('string');
-                  expect(lessonItem.explanation.length).toBeGreaterThan(0);
-                  expect(lessonItem.explanationTargetId).toBeDefined();
-                  expect(typeof lessonItem.explanationTargetId).toBe('string');
-                  expect(lessonItem.explanationTargetId?.length).toBe(36);
-
-                  // an explanation can have only one target,
-                  // but an explanation target can be the target of many explanations
-                  const explanationTarget = lesson.items.find(
-                    (targetItem) =>
-                      targetItem.id === lessonItem.explanationTargetId,
-                  );
-                  expect(explanationTarget).toBeDefined();
-                  if (explanationTarget) {
-                    try {
-                      expect(explanationTarget.explanation).toBe(undefined);
-                      expect(explanationTarget.explanationTargetId).toBe(
-                        undefined,
-                      );
-                      expect(explanationTarget.word?.length).toBeGreaterThan(0);
-                    } catch (e) {
-                      throw new Error(
-                        `Lesson ${lesson.lessonIndex}'s item ${explanationTarget.id}cannot be an explanationTarget.\n${e}`,
-                      );
-                    }
-                  }
-                }
-                if (lessonItem.explanationTargetId) {
-                  expect(lessonItem.explanation).toBeDefined();
-                }
-              });
-
-              it("'clozeText' & 'clozeSpecVariants' is consistent", () => {
-                if (lessonItem.clozeText) {
-                  // must contain at least one blank
-                  const blankCount = lessonItem.clozeText.filter(
-                    (word) => word === '{blank}',
-                  )?.length;
-                  expect(blankCount).toBeGreaterThan(0);
-
-                  // must have at least one corresponding clozeSpecVariant
-                  expect(lessonItem.clozeSpecVariants?.length).toBeGreaterThan(
-                    0,
-                  );
-
-                  if (lessonItem.clozeSpecVariants) {
-                    lessonItem.clozeSpecVariants.forEach((clozeSpecVariant) => {
-                      // each clozeSpecVariant must cover all blanks in clozeText
-                      expect(clozeSpecVariant.blankSpecs.length).toBe(
-                        blankCount,
-                      );
-                      clozeSpecVariant.blankSpecs.forEach((blankSpec) => {
-                        // each blankSpecs must have validOptions
-                        expect(blankSpec.validOptions.length).toBeGreaterThan(
-                          0,
-                        );
-                        // if alwaysPreFilled -> no invalidOptions
-                        if (blankSpec.alwaysPreFilled) {
-                          try {
-                            expect(blankSpec.invalidOptions).toBe(undefined);
-                          } catch (e) {
-                            throw new Error(
-                              `Lesson ${lesson.lessonIndex}, item ${
-                                lessonItem.id
-                              }${
-                                clozeSpecVariant.variant
-                                  ? `, variant: ${clozeSpecVariant.variant}`
-                                  : ''
-                              }:\n${e}`,
-                            );
-                          }
-                        } else {
-                          try {
-                            expect(
-                              blankSpec.invalidOptions?.length,
-                            ).toBeGreaterThan(0);
-                          } catch (e) {
-                            throw new Error(
-                              `Lesson ${lesson.lessonIndex}, item ${
-                                lessonItem.id
-                              }${
-                                clozeSpecVariant.variant
-                                  ? `, variant: ${clozeSpecVariant.variant}`
-                                  : ''
-                              }:\n${e}`,
-                            );
-                          }
-                        }
-                        // if no invalidOptions -> alwaysPreFilled true
-                        if (!blankSpec.invalidOptions) {
-                          try {
-                            expect(blankSpec.alwaysPreFilled).toBe(true);
-                          } catch (e) {
-                            throw new Error(
-                              `Lesson ${lesson.lessonIndex}, item ${
-                                lessonItem.id
-                              }${
-                                clozeSpecVariant.variant
-                                  ? `, variant: ${clozeSpecVariant.variant}`
-                                  : ''
-                              }:\n${e}`,
-                            );
-                          }
-                        } else {
-                          try {
-                            expect(blankSpec.alwaysPreFilled).toBe(false);
-                          } catch (e) {
-                            throw new Error(
-                              `Lesson ${lesson.lessonIndex}, item ${
-                                lessonItem.id
-                              }${
-                                clozeSpecVariant.variant
-                                  ? `, variant: ${clozeSpecVariant.variant}`
-                                  : ''
-                              }:\n${e}`,
-                            );
-                          }
-                        }
-                      });
+              it("'words' references exist in WordSpec", () => {
+                if (['MultipleChoice', 'Matching'].includes(exercise.type)) {
+                  expect(!!exercise.words).toBe(true);
+                  if (exercise.words) {
+                    expect(exercise.words.length).toBeGreaterThan(1);
+                    exercise.words.forEach((wordRef) => {
+                      expect(
+                        ContentSpec.getWord(wordRef).word.length,
+                      ).toBeGreaterThan(0);
                     });
                   }
                 }
-                if (lessonItem.clozeSpecVariants) {
-                  // must have corresponding clozeText
-                  expect(lessonItem.clozeText).toBeDefined();
-                  expect(lessonItem.clozeText?.length).toBeGreaterThan(0);
+              });
+
+              it("'explanation' & 'explanationTargets' is consistent", () => {
+                if (exercise.type === 'Explanation') {
+                  expect(
+                    !!exercise.explanation && !!exercise.explanationTargets,
+                  ).toBe(true);
+                  if (exercise.explanation && exercise.explanationTargets) {
+                    expect(exercise.explanation.length).toBeGreaterThan(0);
+                    // every wordRef in explanation is found in WordSpec
+                    expect(
+                      exercise.explanation.filter(
+                        (wordRef) =>
+                          ContentSpec.getWord(wordRef).word.length > 0,
+                      ).length,
+                    ).toBe(exercise.explanation.length);
+
+                    expect(
+                      Object.keys(exercise.explanationTargets.validOption)
+                        .length,
+                    ).toBe(1);
+                    // explanationTargets.validOption is found in WordSpec
+                    expect(
+                      ContentSpec.getWord(
+                        exercise.explanationTargets.validOption,
+                      ).word.length,
+                    ).toBeGreaterThan(0);
+
+                    // explanationTargets.invalidOptions are found in WordSpec
+                    expect(
+                      exercise.explanationTargets.invalidOptions.filter(
+                        (wordRef) =>
+                          ContentSpec.getWord(wordRef).word.length > 0,
+                      ).length,
+                    ).toBeGreaterThan(0);
+                  }
                 }
               });
 
-              it("'audioName' is nonempty string", () => {
-                // verify url?
-                if (lessonItem.audioName) {
-                  expect(typeof lessonItem.audioName).toBe('string');
-                  expect(lessonItem.audioName.length).toBeGreaterThan(0);
-                }
-                // expect(
-                //   fs.existsSync(
-                //     `/src/assets/lessons/lesson${lessonIndex
-                //       .toString()
-                //       .padStart(2, '0')}/${item.audioName}`,
-                //   ),
-                // ).toBe(true);
-              });
+              it("'singleClozeText' is consistent", () => {
+                if (exercise.type === 'SingleCloze') {
+                  expect(exercise.singleClozeText?.length).toBeGreaterThan(1);
+                  if (exercise.singleClozeText) {
+                    const blankCount = exercise.singleClozeText.filter(
+                      (wordOrBlank) => 'validOptions' in wordOrBlank,
+                    )?.length;
+                    expect(blankCount).toBeGreaterThan(0);
+                    expect(
+                      exercise.singleClozeText.length - blankCount,
+                    ).toBeGreaterThan(0);
 
-              it("'pictureName' is nonempty string", () => {
-                // verify url?
-                if (lessonItem.pictureName) {
-                  expect(typeof lessonItem.pictureName).toBe('string');
-                  expect(lessonItem.pictureName.length).toBeGreaterThan(0);
-                }
-              });
-
-              it("'videoName' is nonempty string", () => {
-                // verify url?
-                if (lessonItem.videoName) {
-                  expect(typeof lessonItem.videoName).toBe('string');
-                  expect(lessonItem.videoName.length).toBeGreaterThan(0);
+                    const validWordRefs = exercise.singleClozeText.filter(
+                      (wordOrBlank) =>
+                        ('validOptions' in wordOrBlank &&
+                          (wordOrBlank as Blank).validOptions.filter(
+                            (wordRef) =>
+                              ContentSpec.getWord(wordRef).word.length,
+                          )) ||
+                        ContentSpec.getWord(wordOrBlank as WordRef).word.length,
+                    )?.length;
+                    expect(validWordRefs).toBe(exercise.singleClozeText.length);
+                  }
                 }
               });
 
-              it("'symbolName' is nonempty array of strings", () => {
+              it("'multiClozeText' is consistent", () => {
+                if (exercise.type === 'MultiCloze') {
+                  expect(exercise.multiClozeText?.length).toBeGreaterThan(1);
+                  if (exercise.multiClozeText) {
+                    const blankCount = exercise.multiClozeText.filter(
+                      (wordOrBlank) => 'validOptions' in wordOrBlank,
+                    )?.length;
+                    expect(blankCount).toBeGreaterThan(0);
+                    expect(
+                      exercise.multiClozeText.length - blankCount,
+                    ).toBeGreaterThan(0);
+
+                    const validWordRefs = exercise.multiClozeText.filter(
+                      (wordOrBlank) =>
+                        ('validOptions' in wordOrBlank &&
+                          (wordOrBlank as Blank).validOptions.filter(
+                            (wordRef) =>
+                              ContentSpec.getWord(wordRef).word.length,
+                          )) ||
+                        ContentSpec.getWord(wordOrBlank as WordRef).word.length,
+                    )?.length;
+                    expect(validWordRefs).toBe(exercise.multiClozeText.length);
+                  }
+                }
+              });
+
+              it("'suppressClozeAudio' & 'suppressOptionAudio' only in Cloze", () => {
+                if (
+                  'suppressClozeAudio' in exercise ||
+                  'suppressOptionAudio' in exercise
+                ) {
+                  expect(
+                    ['SingleCloze', 'MultiCloze'].includes(exercise.type),
+                  ).toBe(true);
+                }
+              });
+
+              it("'audio' is consistent", () => {
+                if ('audio' in exercise) {
+                  expect(typeof exercise.audio).toBe('string');
+                  expect(exercise.audio?.length).toBeGreaterThan(0);
+                  expect(existsSync(`../content/${exercise.audio}`)).toBe(true);
+                }
+              });
+
+              it("'picture' is consistent", () => {
+                if ('picture' in exercise) {
+                  expect(typeof exercise.picture).toBe('string');
+                  expect(exercise.picture?.length).toBeGreaterThan(0);
+                  expect(existsSync(`../content/${exercise.picture}`)).toBe(
+                    true,
+                  );
+                }
+              });
+
+              it("'video' is consistent", () => {
+                if ('video' in exercise) {
+                  expect(typeof exercise.video).toBe('string');
+                  expect(exercise.video?.length).toBeGreaterThan(0);
+                  expect(existsSync(`../content/${exercise.video}`)).toBe(true);
+                }
+              });
+
+              it("'symbol' is consistent", () => {
                 // verify presence in mdiIcons?
-                if (lessonItem.symbolName) {
-                  expect(typeof lessonItem.symbolName).toBe('object');
-                  expect(lessonItem.symbolName.length).toBeGreaterThan(0);
+                if ('symbol' in exercise) {
+                  expect(typeof exercise.symbol).toBe('object');
+                  expect(exercise.symbol?.length).toBeGreaterThan(0);
+                  exercise.symbol?.forEach((symbol) => {
+                    expect(
+                      ContentSpec.getMdiIcon(symbol).length,
+                    ).toBeGreaterThan(0);
+                  });
                 }
               });
             });
           });
+        });
+      });
+    });
+
+    describe('WordSpec integrity', () => {
+      it("'wordCount' is consistent", () => {
+        expect(ContentSpec.WordListSpec.wordCount).toEqual(
+          Object.keys(ContentSpec.WordListSpec.words).length,
+        );
+      });
+      it("'word', 'audio', 'picture', 'video', 'symbol' are consistent", () => {
+        Object.keys(ContentSpec.WordListSpec.words).forEach((wordId) => {
+          const entry = ContentSpec.WordListSpec.words[wordId];
+
+          if ('word' in entry) {
+            expect(typeof entry.word).toBe('string');
+            expect(entry.word.length).toBeGreaterThan(0);
+          } else {
+            throw new Error(
+              `The WordListSpec in ${ContentSpec.ContentPack.wordSpecFile} has an entry missing the 'word' field (id: ${wordId}`,
+            );
+          }
+
+          if ('audio' in entry) {
+            expect(typeof entry.audio).toBe('string');
+            expect(entry.audio?.length).toBeGreaterThan(0);
+            expect(existsSync(`../content/${entry.audio}`)).toBe(true);
+          }
+
+          if ('picture' in entry) {
+            expect(typeof entry.picture).toBe('string');
+            expect(entry.picture?.length).toBeGreaterThan(0);
+            expect(existsSync(`../content/${entry.picture}`)).toBe(true);
+          }
+
+          if ('video' in entry) {
+            expect(typeof entry.video).toBe('string');
+            expect(entry.video?.length).toBeGreaterThan(0);
+            expect(existsSync(`../content/${entry.video}`)).toBe(true);
+          }
+
+          if ('symbol' in entry) {
+            expect(typeof entry.symbol).toBe('object');
+            expect(entry.symbol?.length).toBeGreaterThan(0);
+            entry.symbol?.forEach((symbol) => {
+              expect(ContentSpec.getMdiIcon(symbol).length).toBeGreaterThan(0);
+            });
+          }
         });
       });
     });

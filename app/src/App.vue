@@ -44,6 +44,7 @@ const toggleTheme = () => {
       <div class="d-flex align-center">
         <v-img
           alt="立爱种字 Logo"
+          data-test="toggle"
           class="shrink mr-2 bg-primary rounded-pill"
           transition="scale-transition"
           :src="logoUrl"
