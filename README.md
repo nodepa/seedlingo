@@ -10,7 +10,7 @@ Available as 立爱种字 - Seedling for Putonghua Simplified Chinese, at [种�
 sudo apt install git
 
 # Clone this git repo
-git clone git@github.com:toshify/seedling.git
+git clone git@github.com:nodepa/seedling.git
 
 # Install [NVM](https://github.com/nvm-sh/nvm) to handle node versions (ensure v#.##.# is latest version):
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
