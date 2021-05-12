@@ -9,7 +9,7 @@
       >
         <ExerciseButton
           :data-test="`option-button-${+index + 1}`"
-          :playing="option.audio.playing"
+          :playing="option.audio && option.audio.playing"
           :buzzing.sync="option.buzzing"
           :color="option.color"
           @click="selectAndPlay(option, +index)"
@@ -94,11 +94,13 @@ export default class Matching extends Vue {
   selectAndPlay(option: MatchingItem, index: number): void {
     this.$data.selected = index;
     this.exerciseItems.forEach((item) => {
-      if (item.audio.playing) {
+      if (item.audio?.playing) {
         item.audio.cancel();
       }
     });
-    option.audio.play();
+    if (option.audio) {
+      option.audio.play();
+    }
   }
 
   @Watch('selected')

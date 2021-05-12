@@ -7,7 +7,7 @@ export interface ExerciseAudio {
 
 export interface MatchingItem {
   value: string | Array<string>;
-  audio: ExerciseAudio;
+  audio?: ExerciseAudio;
   match: number;
   color: string;
   isWord: boolean;
