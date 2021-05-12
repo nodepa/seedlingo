@@ -49,7 +49,7 @@ export default class Ripple extends Vue {
       this.animation.play();
     } else {
       const keyFrames = [
-        { opacity: '1', transform: 'scale(1, 1)' },
+        { opacity: '1', transform: 'scale(0.2, 0.2)' },
         {
           opacity: '0',
           transform: `scale(${this.scale}, ${this.scale})`,

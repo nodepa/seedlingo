@@ -5,6 +5,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import Cloze from '@/Cloze/components/Cloze.vue';
+import ClozeMatching from '@/Cloze/components/ClozeMatching.vue';
 import Matching from '@/Matching/components/Matching.vue';
 import MultipleChoice from '@/MultipleChoice/components/MultipleChoice.vue';
 import getMatchingTestData from '@/Matching/data/MatchingTestData';
@@ -12,6 +13,7 @@ import getMatchingExplanationTestData from '@/Matching/data/MatchingExplanationT
 import getMultipleChoiceTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
 import getMultipleChoiceExplanationTestData from '@/MultipleChoice/data/MultipleChoiceExplanationTestData';
 import getClozeTestData from '@/Cloze/data/ClozeTestData';
+import getClozeMatchingTestData from '@/Cloze/data/ClozeMatchingTestData';
 import { MatchingItem } from '@/Matching/MatchingTypes';
 import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
 import { ClozeExercise } from '@/Cloze/ClozeTypes';
@@ -21,6 +23,7 @@ import ExerciseProvider from '@/Lessons/ExerciseProvider';
   // eslint-disable-next-line no-undef
   components: {
     Cloze,
+    ClozeMatching,
     Matching,
     MultipleChoice,
   },
@@ -72,6 +75,9 @@ export default class Session extends Vue {
     } else if (this.$route.params.id === 'cloze-test') {
       this.$data.exerciseComponent = 'Cloze';
       this.$data.exerciseItems = getClozeTestData();
+    } else if (this.$route.params.id === 'cloze-matching-test') {
+      this.$data.exerciseComponent = 'ClozeMatching';
+      this.$data.exerciseItems = getClozeMatchingTestData();
     } else if (
       this.$route.params.id != null &&
       this.$route.params.id !== '' &&

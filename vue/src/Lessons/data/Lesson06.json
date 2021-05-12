@@ -17,7 +17,7 @@
               "description": "numbers",
               "alwaysPreFilled": true,
               "validOptions": [
-                { "lesson": 1, "words": [ "一", "两", "三" ] }
+                { "lesson": 1, "words": [ "两", "三", "四"] }
               ]
             },
             {

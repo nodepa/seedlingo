@@ -3,6 +3,7 @@ import 二 from '@/assets/audio/characters/二.mp3';
 import 三 from '@/assets/audio/characters/三.mp3';
 import 四 from '@/assets/audio/characters/四.mp3';
 import {
+  mdiCellphoneWireless,
   mdiDice3,
   mdiNumeric2Circle,
   mdiNumeric4Circle,
@@ -14,7 +15,8 @@ import { MatchingItem } from '../MatchingTypes';
 export default function MatchingTestData(): Array<MatchingItem> {
   return [
     {
-      value: [mdiNumeric2Circle],
+      // value: [mdiNumeric2Circle],
+      value: [mdiCellphoneWireless],
       audio: ExerciseProvider.createAudio(二),
       match: 2,
       color: 'primary',
@@ -26,7 +28,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
     },
     {
       value: '术',
-      audio: ExerciseProvider.createAudio(术),
+      // audio: ExerciseProvider.createAudio(术),
       match: 4,
       color: '',
       isWord: true,
@@ -37,7 +39,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
     },
     {
       value: '二',
-      audio: ExerciseProvider.createAudio(二),
+      // audio: ExerciseProvider.createAudio(二),
       match: 0,
       color: '',
       isWord: true,
@@ -47,7 +49,8 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: [mdiNumeric4Circle],
+      // value: [mdiNumeric4Circle],
+      value: [mdiCellphoneWireless],
       audio: ExerciseProvider.createAudio(四),
       match: 7,
       color: 'primary',
@@ -58,7 +61,8 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: [mdiPalmTree],
+      // value: [mdiPalmTree],
+      value: [mdiCellphoneWireless],
       audio: ExerciseProvider.createAudio(术),
       match: 1,
       color: 'primary',
@@ -69,7 +73,8 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: [mdiDice3],
+      // value: [mdiDice3],
+      value: [mdiCellphoneWireless],
       audio: ExerciseProvider.createAudio(三),
       match: 6,
       color: 'primary',
@@ -81,7 +86,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
     },
     {
       value: '三',
-      audio: ExerciseProvider.createAudio(三),
+      // audio: ExerciseProvider.createAudio(三),
       match: 5,
       color: '',
       isWord: true,
@@ -92,7 +97,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
     },
     {
       value: '四',
-      audio: ExerciseProvider.createAudio(四),
+      // audio: ExerciseProvider.createAudio(四),
       match: 3,
       color: '',
       isWord: true,

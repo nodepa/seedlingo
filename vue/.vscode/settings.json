@@ -157,5 +157,8 @@
     "webhook"
   ],
   "editor.glyphMargin": false,
-  "vim.visualstar": true
+  "vim.visualstar": true,
+  "workbench.editor.wrapTabs": true,
+  "workbench.editor.decorations.badges": true,
+  "workbench.editor.decorations.colors": true
 }
