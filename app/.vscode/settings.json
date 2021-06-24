@@ -5,37 +5,6 @@
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
-  "vim.insertModeKeyBindings": [
-    {
-      "before": [
-        "j",
-        "j"
-      ],
-      "after": [
-        "<Esc>"
-      ]
-    }
-  ],
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "<leader>",
-        "d"
-      ],
-      "after": [
-        "d",
-        "d"
-      ]
-    },
-    {
-      "before": [
-        "<C-n>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
-    }
-  ],
   "vim.leader": "<space>",
   "vim.handleKeys": {
     "<C-a>": false, // VSCode: Select all | vim: +1 under cursor
@@ -46,7 +15,6 @@
     "<C-j>": false  // vscode: toggle panel | vim: ?
   },
   "vim.sneakReplacesF": true,
-  "vim.neovimPath": "/usr/bin/nvim",
   "vim.enableNeovim": true,
   "vim.textwidth": 80,
   "editor.wordWrapColumn": 81,
@@ -64,11 +32,11 @@
     "MD012": false, //no-multiple-blanks
     "MD014": false, //commands-show-output
     "MD033": false, //no-inline-html
+    "MD036": false, //no-emphasis-as-heading
     "MD041": false //first-line-heading
   },
   "markdown.extension.toc.levels": "1..2",
   "editor.tabSize": 2,
-  "languageStylus.useSeparator": false,
   "typescript.surveys.enabled": false,
   "html.format.wrapLineLength": 80,
   "editor.formatOnPaste": true,
@@ -90,18 +58,22 @@
   },
   "typescript.validate.enable": false,
   "javascript.validate.enable": false,
-  "vetur.useWorkspaceDependencies": true,
   "cSpell.words": [
     "Arial",
     "Avenir",
+    "Byzanz",
     "Docker's",
+    "GIFs",
     "Gemfile",
     "Helvetica",
+    "LICEcap",
     "Linode",
     "MAILCHIMP",
     "MAILGUN",
     "PWAs",
     "Vuetify's",
+    "Putonghua",
+    "Silentcast",
     "activeallservices",
     "backgrounded",
     "behaviour",
@@ -127,21 +99,28 @@
     "fullscreen",
     "fullscreening",
     "genass",
+    "gitmessage",
+    "globalseedling",
     "grayscale",
     "greenlight",
     "initdb",
+    "initialisms",
     "liaishizi",
     "liang",
+    "linefeeds",
     "logrotate",
     "macos",
     "mariadb",
+    "markdownlint",
     "materialdesignicons",
     "millis",
     "msapplication",
+    "nodepa",
     "nslookup",
     "nvmrc",
     "omniauth",
     "printenv",
+    "rebased",
     "roboto",
     "rspec",
     "runningallservices",
@@ -153,6 +132,7 @@
     "somevalue",
     "svgs",
     "tesc",
+    "tada",
     "unsetting",
     "userid",
     "vnode",

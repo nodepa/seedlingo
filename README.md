@@ -19,55 +19,119 @@
     <td align="center"><a href="https://种字.com">种字.com</a></td>
   </tr>
 </table>
+
+<br/>
+<p align="center">
+  <a href="/docs/index.md">Documentation</a>
+  ·
+  <a href="/.github/CONTRIBUTING.md">Contributing</a>
+</p>
 <hr>
 
-## Development
+## Table of contents <!-- omit in toc -->
+
+- [What is Seedling](#what-is-seedling)
+- [Get started](#get-started)
+- [Community](#community)
+- [Code of conduct](#code-of-conduct)
+- [Contributing](#contributing)
+- [License](#license)
+
+## What is Seedling
+
+Seedling is a first-language digital learning tool for adults;
+a collection of literacy exercises
+that bundled content can make use of
+to provide lessons to learners
+unfamiliar with reading the particular content language.
+
+Current exercise types are:
+
+- multiple-choice audio-to-text
+- 4-by-4 audio-to-text matching
+- multiple-choice explanation-to-text
+- 3-by-3 explanation-to-text matching
+- cloze multiple-choice
+
+Developing cloze matching and text comprehension exercises
+are the next priorities.
+
+Seedling was originally developed by idea of - and for the benefit of -
+[Li Ai Education](https://liaieducation.com),
+with Putonghua and Simplified Chinese content
+available at [种字.com](https://种字.com)
+
+## Get started
+
+### Prerequisites
+
+- Install [git](https://git-scm.com) if not present
+- Install [Node.js](https://nodejs.org), which includes the
+  [npm](https://www.npmjs.com/get-npm) (Node Package Manager).
+  A good way to manage Node.js versions is to use
+  [NVM](https://github.com/nvm-sh/nvm)
+
+### Development setup
 
 ```sh
-# Install git
-sudo apt install git
-
-# Clone this git repo
+# Clone the Seedling repository
 git clone git@github.com:nodepa/seedling.git
-
-# Install [NVM](https://github.com/nvm-sh/nvm) to handle node versions (ensure v#.##.# is latest version):
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-
-# Reload terminal
-exit
-<Ctrl-Alt-T>
-# or instead
-source ~/.bashrc
 
 # Navigate to repo
 cd seedling/app
 
-# Then install recommended project version of Node & NPM
-# NVM will use the version specified in the .nvmrc file
+# Install recommended project version of Node & NPM
+# If you do not have NVM installed,
+# install Node.js according to your preference,
+# but use the version specified in the project's .nvmrc file.
+# If you do have NVM installed, it will use the .nvmrc version:
 nvm install
+nvm use
 
 # Install packages
 npm install
 
 # Start the app in local demo
-npm start
+npm start   # Then visit http://localhost:8080 in your web browser
+
+# Run full test suite (scripts for install & lint & test:unit:coverage & test:e2e)
+npm run verify
 ```
 
-## Update tools
+Play around with your own content
+by replacing the `content/` folder with your own.
+See the [Seedling documentation](/docs/index.md) about formats.
 
-### NVM
-Re-install [NVM](https://github.com/nvm-sh/nvm) to update (ensure v#.##.# is latest version):
-```sh
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-```
+## Community
 
-### Node
-```sh
-nvm install --lts # installs latest lts version
-```
+Engage the community and ask questions
+in [Seedling discussions](https://github.com/nodepa/seedling/discussions).
+Please stop by and say hi.
 
-### NPM
-```sh
-npm install -g npm@latest
-```
+## Code of conduct
 
+Please help us keep the Seedling community open and positive.
+Participate in the spirit of the
+[Seedling Code of Conduct](.github/CODE_OF_CONDUCT.md)
+and the [GitHub Community Guidelines](
+https://docs.github.com/en/github/site-policy/github-community-guidelines).
+
+## Contributing
+
+We would love to receive your contributions to Seedling.
+Read through our [contributing guidelines](.github/CONTRIBUTING.md)
+and get working on it!
+
+## License
+
+The Seedling project's [content/](content/) is released under a
+[Creative Commons Attribution-ShareAlike 4.0 International Public License](
+content/LICENSE.md).
+
+The Seedling project,
+EXCEPT all material in the [content/](content/) folder,
+is released under the [MIT License](LICENSE.md).
+
+By contributing to the Seedling project,
+you agree to license your contribution under these terms,
+and affirm that you have the right to do so.
