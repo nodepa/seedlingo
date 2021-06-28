@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/vue"
+    schedule:
+      interval: "daily"
+      time: "02:00"
+      timezone: "UTC"
+    reviewers:
+      - "toshify"
+    commit-message:
+      prefix: "infra:"
+
