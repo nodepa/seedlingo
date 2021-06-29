@@ -76,7 +76,7 @@
   "window.zoomLevel": 0,
   "eslint.format.enable": true,
   "eslint.alwaysShowStatus": true,
-  "eslint.packageManager": "yarn",
+  "eslint.packageManager": "npm",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },

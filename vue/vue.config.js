@@ -13,7 +13,7 @@ module.exports = {
     manifestOptions: {
       display: 'standalone', // standalone, fullscreen, minimal, browser
       background_color: '#0086ff',
-      // assumes assets generated with `yarn genass`, see packages.json
+      // assumes assets generated with `npm run genass`, see packages.json
       icons: [
         {
           src: 'logo/manifest-icon-512.png',

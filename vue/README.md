@@ -1,34 +1,41 @@
 # 立爱种字 - Seedling for Putonghua Simplified Chinese, at [种字.com](https://种字.com)
 
 ## Project setup
-```
-yarn install
+
+```sh
+npm install
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+### Compile and hot-reload for development
+
+```sh
+npm start
 ```
 
-### Compiles and minifies for production
-```
-yarn build
+### Compile and minify for production
+
+```sh
+npm run build
 ```
 
-### Run your unit tests
-```
-yarn test:unit
+### Run unit tests
+
+```sh
+npm run test:unit
 ```
 
-### Run your end-to-end tests
-```
-yarn test:e2e
+### Run end-to-end tests
+
+```sh
+npm run test:e2e
 ```
 
-### Lints and fixes files
-```
-yarn lint
+### Lint and fix files
+
+```sh
+npm run lint
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
