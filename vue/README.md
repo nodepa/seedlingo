@@ -9,7 +9,7 @@ npm install
 ### Compile and hot-reload for development
 
 ```sh
-npm run serve
+npm start
 ```
 
 ### Compile and minify for production
@@ -39,4 +39,3 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
