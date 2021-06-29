@@ -127,10 +127,12 @@ describe('Matching', () => {
 
       // re-orders matched items
       localExerciseItems = wrapper.vm.$data.localExerciseItems;
-      const newFirstIndex =
-        Object.values(localExerciseItems).indexOf(firstSelection);
-      const newSecondIndex =
-        Object.values(localExerciseItems).indexOf(secondSelection);
+      const newFirstIndex = Object.values(localExerciseItems).indexOf(
+        firstSelection,
+      );
+      const newSecondIndex = Object.values(localExerciseItems).indexOf(
+        secondSelection,
+      );
       expect(newFirstIndex).toBe(firstIndex > secondIndex ? 1 : 0);
       expect(newSecondIndex).toBe(firstIndex > secondIndex ? 0 : 1);
       expect(firstSelection.match).toBe(newSecondIndex);

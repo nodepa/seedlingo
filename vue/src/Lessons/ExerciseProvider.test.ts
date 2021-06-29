@@ -79,16 +79,18 @@ describe('ExerciseProvider', () => {
   describe('.generateMatchingExercise()', () => {
     it('correctly returns exercises', () => {
       expect(lesson.items[3].symbolName?.length).toBe(1);
-      const matchingExercise =
-        ExerciseProvider.generateMatchingExercise(lesson);
+      const matchingExercise = ExerciseProvider.generateMatchingExercise(
+        lesson,
+      );
       expect(matchingExercise.exerciseType).toBe('Matching');
     });
   });
 
   describe('.generateMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
-      const multipleChoiceExercise =
-        ExerciseProvider.generateMultipleChoiceExercise(lesson);
+      const multipleChoiceExercise = ExerciseProvider.generateMultipleChoiceExercise(
+        lesson,
+      );
       expect(multipleChoiceExercise.exerciseType).toBe('MultipleChoice');
     });
   });
@@ -131,11 +133,9 @@ describe('ExerciseProvider', () => {
           },
         ],
       };
-      const multipleChoiceExercise =
-        ExerciseProvider.generateMultipleChoiceExplanationExercise(lesson) as {
-          exerciseType: string;
-          exerciseItems: MultipleChoiceExercise;
-        };
+      const multipleChoiceExercise = ExerciseProvider.generateMultipleChoiceExplanationExercise(
+        lesson,
+      ) as { exerciseType: string; exerciseItems: MultipleChoiceExercise };
       expect(multipleChoiceExercise.exerciseType).toBe('MultipleChoice');
       expect(multipleChoiceExercise.exerciseItems.options.length).toBe(2);
       expect(
@@ -152,20 +152,18 @@ describe('ExerciseProvider', () => {
         multipleChoiceExercise.exerciseItems.explanationToMatch ===
         lesson.items[1].explanation
       ) {
-        const correctAlternative =
-          multipleChoiceExercise.exerciseItems.options.find(
-            (item) => item.correct,
-          );
+        const correctAlternative = multipleChoiceExercise.exerciseItems.options.find(
+          (item) => item.correct,
+        );
         expect(correctAlternative?.word).toBe(lesson.items[0].word);
       }
       if (
         multipleChoiceExercise.exerciseItems.explanationToMatch ===
         lesson.items[3].explanation
       ) {
-        const correctAlternative =
-          multipleChoiceExercise.exerciseItems.options.find(
-            (item) => item.correct,
-          );
+        const correctAlternative = multipleChoiceExercise.exerciseItems.options.find(
+          (item) => item.correct,
+        );
         expect(correctAlternative?.word).toBe(lesson.items[2].word);
       }
     });
