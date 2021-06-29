@@ -37,7 +37,9 @@ export default class ExerciseProvider {
     Lesson10,
   ] as Array<Lesson>;
 
-  public static async getExerciseFromLesson(indexFromOne: number): Promise<{
+  public static async getExerciseFromLesson(
+    indexFromOne: number,
+  ): Promise<{
     exerciseType: string;
     exerciseItems: Array<MatchingItem> | MultipleChoiceExercise | ClozeExercise;
   }> {
@@ -96,10 +98,9 @@ export default class ExerciseProvider {
     return this.pickRandomItem(validTypes);
   }
 
-  public static generateMatchingExercise(lesson: Lesson): {
-    exerciseType: ExerciseType;
-    exerciseItems: Array<MatchingItem>;
-  } {
+  public static generateMatchingExercise(
+    lesson: Lesson,
+  ): { exerciseType: ExerciseType; exerciseItems: Array<MatchingItem> } {
     const wordsInLesson = this.selectWordsInLesson(lesson);
     const selectedWords = this.selectRandomSubset(
       wordsInLesson,
@@ -119,10 +120,9 @@ export default class ExerciseProvider {
     return { exerciseType: 'Matching', exerciseItems: matchingExercises };
   }
 
-  public static generateMatchingExplanationExercise(lesson: Lesson): {
-    exerciseType: ExerciseType;
-    exerciseItems: Array<MatchingItem>;
-  } {
+  public static generateMatchingExplanationExercise(
+    lesson: Lesson,
+  ): { exerciseType: ExerciseType; exerciseItems: Array<MatchingItem> } {
     const explanationsInLesson = this.selectExplanationsInLesson(lesson);
     const wordsInLesson = this.selectWordsInLesson(lesson);
 
@@ -145,10 +145,9 @@ export default class ExerciseProvider {
     return { exerciseType: 'Matching', exerciseItems: matchingExercises };
   }
 
-  public static generateMultipleChoiceExercise(lesson: Lesson): {
-    exerciseType: ExerciseType;
-    exerciseItems: MultipleChoiceExercise;
-  } {
+  public static generateMultipleChoiceExercise(
+    lesson: Lesson,
+  ): { exerciseType: ExerciseType; exerciseItems: MultipleChoiceExercise } {
     const wordsInLesson = this.selectWordsInLesson(lesson);
     const selectedWords = this.selectRandomSubset(
       wordsInLesson,
@@ -176,10 +175,9 @@ export default class ExerciseProvider {
     };
   }
 
-  public static generateClozeExercise(lesson: Lesson): {
-    exerciseType: ExerciseType;
-    exerciseItems: ClozeExercise;
-  } {
+  public static generateClozeExercise(
+    lesson: Lesson,
+  ): { exerciseType: ExerciseType; exerciseItems: ClozeExercise } {
     const clozeItems = this.selectClozeItemsInLesson(lesson);
     if (clozeItems.length === 0) {
       throw new Error(
@@ -198,10 +196,9 @@ export default class ExerciseProvider {
     };
   }
 
-  public static generateMultipleChoiceExplanationExercise(lesson: Lesson): {
-    exerciseType: ExerciseType;
-    exerciseItems: MultipleChoiceExercise;
-  } {
+  public static generateMultipleChoiceExplanationExercise(
+    lesson: Lesson,
+  ): { exerciseType: ExerciseType; exerciseItems: MultipleChoiceExercise } {
     const explanationsInLesson = this.selectExplanationsInLesson(lesson);
 
     // ensure lesson has 1 or more explanations
