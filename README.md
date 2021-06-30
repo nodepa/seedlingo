@@ -22,7 +22,7 @@ exit
 source ~/.bashrc
 
 # Navigate to repo
-cd seedling/vue
+cd seedling/app
 
 # Then install recommended project version of Node & NPM
 # NVM will use the version specified in the .nvmrc file
