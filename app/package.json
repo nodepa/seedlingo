@@ -11,7 +11,7 @@
     "vue": "^2.6.14",
     "vue-class-component": "^7.2.2",
     "vue-property-decorator": "^9.1.2",
-    "vue-router": "^3.1.5",
+    "vue-router": "^3.5.2",
     "vuetify": "^2.5.6",
     "vuex": "^3.1.2"
   },
@@ -19,7 +19,7 @@
     "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
-    "@vue/cli-plugin-babel": "~4.5.10",
+    "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-plugin-e2e-cypress": "~4.5.13",
     "@vue/cli-plugin-eslint": "~4.5.13",
     "@vue/cli-plugin-pwa": "~4.5.13",
@@ -27,7 +27,7 @@
     "@vue/cli-plugin-typescript": "~4.5.13",
     "@vue/cli-plugin-unit-jest": "~4.5.13",
     "@vue/cli-plugin-vuex": "~4.5.13",
-    "@vue/cli-service": "~4.5.10",
+    "@vue/cli-service": "^4.5.13",
     "@vue/eslint-config-airbnb": "^5.0.2",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
@@ -42,7 +42,7 @@
     "sass-loader": "^10.1.1",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "typescript": "^4.3.4",
+    "typescript": "^4.3.5",
     "vue-cli-plugin-vuetify": "~2.4.1",
     "vue-svg-loader": "^0.16.0",
     "vue-template-compiler": "^2.6.14",
@@ -99,7 +99,6 @@
     "tuc": "npm run test:unit:coverage",
     "tuo": "npm run test:unit:once",
     "tuv": "npm run test:unit:verbose",
-    "verify": "npm install && npm run lint && npm run test:unit:coverage && npm run test:e2e",
-    "vupdate": "vue --version && npm update --global @vue/cli && vue --version && vue upgrade && npm update -g"
+    "verify": "npm install && npm run lint && npm run test:unit:coverage && npm run test:e2e"
   }
 }
