@@ -244,7 +244,7 @@ describe('Matching', () => {
   describe('.getSpacing()', () => {
     it('returns correct spacing class names', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const matching = wrapper.find(Matching).vm as any;
+      const matching = wrapper.findComponent(Matching).vm as any;
 
       // getSpacing(itemCount, index)
       expect(matching.getSpacing(0, 0)).toBe('');
