@@ -79,17 +79,15 @@ export class Instruction {
       this.addInstructionStyle();
     }
 
-    if (audioUrl) {
-      this.audioElement.src = audioUrl;
-      this.addAudioListeners();
-      this.hostElement.appendChild(this.audioElement);
-      Instruction.Collection.push(this.audioElement);
-    } else {
-      throw new Error(
-        'The v-instruction directive is missing an audio path, it should be: v-instruction="./path/to/audio.mp3"',
-      );
-    }
+    this.audioElement.src = audioUrl;
+    this.addAudioListeners();
+    this.hostElement.appendChild(this.audioElement);
+    Instruction.Collection.push(this.audioElement);
   } // end constructor
+
+  public setAudioSrc(audioUrl: string): void {
+    this.audioElement.src = audioUrl;
+  }
 
   public addEventListener(): void {
     this.hostElement.addEventListener(
@@ -249,6 +247,15 @@ export default function InstallInstructionDirective(
         throw new Error(
           'Expected VNode to have a .componentInstance, but found none. Only use the v-instruction directive on Vue components.',
         );
+      }
+    },
+
+    update(
+      hostElement: InstructionElement,
+      { value: audioUrl }: VNodeDirective,
+    ) {
+      if (hostElement.$instruction) {
+        hostElement.$instruction.setAudioSrc(audioUrl);
       }
     },
 

@@ -21,21 +21,21 @@
     >
       $instructions
     </v-icon>
-    <audio ref="instructionsButtonAudio" :src="说明耳朵" />
+    <audio ref="instructionsButtonAudio" :src="instructionPath" />
   </v-btn>
 </template>
 
 <script lang="ts">
 import { Component, PropSync, Vue } from 'vue-property-decorator';
-import 说明耳朵 from '@/Lessons/data/instructions/说明耳朵.mp3';
 import { Instruction } from '@/common/directives/InstructionDirective';
+import ContentConfig from '@/Lessons/ContentConfig';
 
 @Component
 export default class InstructionsButton extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data(): { 说明耳朵: string } {
+  data(): { instructionPath: string } {
     return {
-      说明耳朵,
+      instructionPath: 'await-async-path-in-mounted',
     };
   }
 
@@ -73,6 +73,12 @@ export default class InstructionsButton extends Vue {
   }
 
   mounted(): void {
+    ContentConfig.getInstructionPathFor('instructionsButton').then(
+      ({ default: path }) => {
+        this.$data.instructionPath = path;
+      },
+    );
+
     if (this.showGetInstructionsGraphic) {
       const animation = (this.$refs.instructionsButton as Vue).$el.animate(
         [

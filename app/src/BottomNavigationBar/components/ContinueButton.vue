@@ -3,7 +3,7 @@
     <v-btn
       v-if="showContinueButton()"
       ref="continueButton"
-      v-instruction="placeholderAudio"
+      v-instruction="continueInstructionPath"
       color="success"
       data-test="continue-button"
       icon
@@ -17,15 +17,15 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { mdiForward } from '@mdi/js';
-import placeholderAudio from '@/test-support/audio/placeholder-audio.mp3';
+import ContentConfig from '@/Lessons/ContentConfig';
 
 @Component
 export default class ContinueButton extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data(): { mdiForward: string; placeholderAudio: string } {
+  data(): { mdiForward: string; continueInstructionPath: string } {
     return {
       mdiForward,
-      placeholderAudio,
+      continueInstructionPath: 'await-async-path-in-mounted',
     };
   }
 
@@ -34,6 +34,12 @@ export default class ContinueButton extends Vue {
   }
 
   mounted(): void {
+    ContentConfig.getInstructionPathFor('continueButton').then(
+      ({ default: path }) => {
+        this.$data.continueInstructionPath = path;
+      },
+    );
+
     this.$watch(
       () => {
         return this.showContinueButton();

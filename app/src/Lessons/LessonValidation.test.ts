@@ -1,4 +1,4 @@
-import { Lesson, LessonItem } from '@/Lessons/data/LessonTypes';
+import { Lesson, LessonItem } from '@/Lessons/LessonTypes';
 import Lesson01 from '@/Lessons/data/lesson01/Lesson01.json';
 import Lesson02 from '@/Lessons/data/lesson02/Lesson02.json';
 import Lesson03 from '@/Lessons/data/lesson03/Lesson03.json';

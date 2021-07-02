@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    v-instruction="说明回家"
+    v-instruction="homeInstructionPath"
     icon
     exact
     :to="{ name: 'Home' }"
@@ -15,19 +15,27 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mdiHome } from '@mdi/js';
-import 说明回家 from '@/Lessons/data/instructions/说明回家.mp3';
+import ContentConfig from '@/Lessons/ContentConfig';
 
 @Component
 export default class HomeButton extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data(): { 说明回家: string; mdiHome: string } {
+  data(): { homeInstructionPath: string; mdiHome: string } {
     return {
-      说明回家,
+      homeInstructionPath: 'await-async-path-in-mounted',
       mdiHome,
     };
   }
 
   @Prop({ default: false }) readonly homeButtonDisabled!: boolean;
+
+  mounted(): void {
+    ContentConfig.getInstructionPathFor('homeButton').then(
+      ({ default: path }) => {
+        this.$data.homeInstructionPath = path;
+      },
+    );
+  }
 }
 </script>
 

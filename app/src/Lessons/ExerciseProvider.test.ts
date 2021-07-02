@@ -1,6 +1,6 @@
 import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
 import ExerciseProvider from './ExerciseProvider';
-import { Lesson } from './data/LessonTypes';
+import { Lesson } from './LessonTypes';
 
 let lesson: Lesson;
 beforeEach(() => {
