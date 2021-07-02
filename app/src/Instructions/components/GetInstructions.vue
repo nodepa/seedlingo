@@ -3,7 +3,7 @@
     <v-row align="center" justify="center">
       <v-col fill-height>
         <GetInstructionsGraphic class="get-instructions-graphic" />
-        <audio autoplay :src="欢迎" />
+        <audio autoplay :src="welcomeInstructionPath" />
       </v-col>
     </v-row>
   </v-container>
@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import 欢迎 from '@/Lessons/data/instructions/欢迎.mp3';
+import ContentConfig from '@/Lessons/ContentConfig';
 import GetInstructionsGraphic from './GetInstructionsGraphic.vue';
 
 @Component({
@@ -22,10 +22,16 @@ import GetInstructionsGraphic from './GetInstructionsGraphic.vue';
 })
 export default class GetInstructions extends Vue {
   // eslint-disable-next-line class-methods-use-this
-  data(): { 欢迎: string } {
+  data(): { welcomeInstructionPath: string } {
     return {
-      欢迎,
+      welcomeInstructionPath: 'await-async-path-in-mounted',
     };
+  }
+
+  mounted(): void {
+    ContentConfig.getInstructionPathFor('welcome').then(({ default: path }) => {
+      this.$data.welcomeInstructionPath = path;
+    });
   }
 }
 </script>

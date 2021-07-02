@@ -1,20 +1,12 @@
-import { Lesson, LessonItem, BlankOption } from '@/Lessons/data/LessonTypes';
 import { MatchingItem, ExerciseAudio } from '@/Matching/MatchingTypes';
 import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
 } from '@/MultipleChoice/MultipleChoiceTypes';
 import { ClozeExercise, ClozeOption } from '@/Cloze/ClozeTypes';
-import Lesson01 from '@/Lessons/data/lesson01/Lesson01.json';
-import Lesson02 from '@/Lessons/data/lesson02/Lesson02.json';
-import Lesson03 from '@/Lessons/data/lesson03/Lesson03.json';
-import Lesson04 from '@/Lessons/data/lesson04/Lesson04.json';
-import Lesson05 from '@/Lessons/data/lesson05/Lesson05.json';
-import Lesson06 from '@/Lessons/data/lesson06/Lesson06.json';
-import Lesson07 from '@/Lessons/data/lesson07/Lesson07.json';
-import Lesson08 from '@/Lessons/data/lesson08/Lesson08.json';
-import Lesson09 from '@/Lessons/data/lesson09/Lesson09.json';
-import Lesson10 from '@/Lessons/data/lesson10/Lesson10.json';
+import { Lesson, LessonItem, BlankOption } from './LessonTypes';
+
+import ContentConfig from './ContentConfig';
 
 export type ExerciseType =
   | 'Matching'
@@ -24,23 +16,13 @@ export type ExerciseType =
   | 'Cloze';
 
 export default class ExerciseProvider {
-  private static lessons = [
-    Lesson01,
-    Lesson02,
-    Lesson03,
-    Lesson04,
-    Lesson05,
-    Lesson06,
-    Lesson07,
-    Lesson08,
-    Lesson09,
-    Lesson10,
-  ] as Array<Lesson>;
+  private static lessons = [] as Array<Lesson>;
 
   public static async getExerciseFromLesson(indexFromOne: number): Promise<{
     exerciseType: string;
     exerciseItems: Array<MatchingItem> | MultipleChoiceExercise | ClozeExercise;
   }> {
+    ExerciseProvider.lessons = await ContentConfig.getLessons();
     this.validateExerciseIndex(indexFromOne);
     const indexFromZero = indexFromOne - 1;
     const lesson = this.lessons[indexFromZero] as Lesson;

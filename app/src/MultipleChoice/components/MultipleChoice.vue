@@ -4,7 +4,7 @@
       <v-col cols="11">
         <ExerciseButton
           ref="itemUnderTestButton"
-          v-instruction="placeholderAudio"
+          v-instruction="multipleChoiceInstructionPath"
           data-test="item-under-test-button"
           color="primary"
           :playing="exercise.itemUnderTestAudioPlaying"
@@ -63,14 +63,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import placeholderAudio from '@/test-support/audio/placeholder-audio.mp3';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
-// import { Instruction } from '@/common/directives/InstructionDirective';
 import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
 } from '@/MultipleChoice/MultipleChoiceTypes';
+import ContentConfig from '@/Lessons/ContentConfig';
 
 @Component({
   // eslint-disable-next-line no-undef
@@ -85,7 +84,6 @@ export default class MultipleChoice extends Vue {
   @Watch('localExercise.itemUnderTestAudio')
   onItemUnderTestAudioChanged(newVal: HTMLAudioElement): void {
     if (newVal instanceof HTMLAudioElement) {
-      // Instruction.Collection.push(newVal);
       this.playItemUnderTestAudio();
     }
   }
@@ -93,23 +91,27 @@ export default class MultipleChoice extends Vue {
   @Watch('exerciseProp')
   onExercisePropChanged(): void {
     // reset local state
-    Object.assign(this.$data, this.getDefaultData());
+    Object.assign(
+      this.$data,
+      this.getDefaultData(this.$data.multipleChoiceInstructionPath),
+    );
   }
 
   data(): {
-    placeholderAudio: string;
+    multipleChoiceInstructionPath: string;
     localExercise: MultipleChoiceExercise;
   } {
     return this.getDefaultData();
   }
 
   // eslint-disable-next-line class-methods-use-this
-  getDefaultData(): {
-    placeholderAudio: string;
+  getDefaultData(presetPath?: string): {
+    multipleChoiceInstructionPath: string;
     localExercise: MultipleChoiceExercise;
   } {
     return {
-      placeholderAudio,
+      multipleChoiceInstructionPath:
+        presetPath || 'await-async-path-in-mounted',
       localExercise: {} as MultipleChoiceExercise,
     };
   }
@@ -126,6 +128,12 @@ export default class MultipleChoice extends Vue {
   }
 
   mounted(): void {
+    ContentConfig.getInstructionPathFor('multipleChoiceExercise').then(
+      ({ default: path }) => {
+        this.$data.multipleChoiceInstructionPath = path;
+      },
+    );
+
     ((this.$refs.itemUnderTestButton as Vue).$el as HTMLElement).focus();
   }
 

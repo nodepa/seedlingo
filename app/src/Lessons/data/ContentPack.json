@@ -1,0 +1,73 @@
+{
+  "formatVersion": "1.0",
+  "instructions": {
+    "welcome": "instructions/欢迎.mp3",
+    "homeButton": "instructions/说明回家.mp3",
+    "continueButton": "instructions/placeholder-audio.mp3",
+    "instructionsButton": "instructions/说明耳朵.mp3",
+    "multipleChoiceExercise": "instructions/placeholder-audio.mp3",
+    "clozeExercise": "instructions/placeholder-audio.mp3"
+  },
+  "lessons": [
+    {
+      "name": "Numbers 1-5",
+      "icon": "mdiNumeric",
+      "audio": "instructions/说明第一课.mp3",
+      "lessonData": "lesson01/Lesson01.json"
+    },
+    {
+      "name": "Numbers 6-10",
+      "icon": "mdiNumeric",
+      "audio": "instructions/说明第二课.mp3",
+      "lessonData": "lesson02/Lesson02.json"
+    },
+    {
+      "name": "Family 1",
+      "icon": "mdiHumanFemaleBoy",
+      "audio": "instructions/说明第三课.mp3",
+      "lessonData": "lesson03/Lesson03.json"
+    },
+    {
+      "name": "Family 2",
+      "icon": "mdiHumanFemaleGirl",
+      "audio": "instructions/说明第四课.mp3",
+      "lessonData": "lesson04/Lesson04.json"
+    },
+    {
+      "name": "Family 3",
+      "icon": "mdiHumanFemaleBoy",
+      "audio": "instructions/说明第五课.mp3",
+      "lessonData": "lesson05/Lesson05.json"
+    },
+    {
+      "name": "Family 4",
+      "icon": "mdiHumanFemaleGirl",
+      "audio": "instructions/说明第六课.mp3",
+      "lessonData": "lesson06/Lesson06.json"
+    },
+    {
+      "name": "Family 5",
+      "icon": "mdiHumanMaleBoy",
+      "audio": "instructions/说明第七课.mp3",
+      "lessonData": "lesson07/Lesson07.json"
+    },
+    {
+      "name": "Family 6",
+      "icon": "mdiHumanMaleGirl",
+      "audio": "instructions/说明第八课.mp3",
+      "lessonData": "lesson08/Lesson08.json"
+    },
+    {
+      "name": "Family 7",
+      "icon": "mdiHumanMaleChild",
+      "audio": "instructions/说明第九课.mp3",
+      "lessonData": "lesson09/Lesson09.json"
+    },
+    {
+      "name": "Family 8",
+      "icon": "mdiHumanMaleChild",
+      "audio": "instructions/说明第十课.mp3",
+      "lessonData": "lesson10/Lesson10.json"
+    }
+  ]
+}

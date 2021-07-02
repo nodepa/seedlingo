@@ -3,7 +3,7 @@
     <v-row align="center" justify="center" style="height: 40%">
       <v-col cols="11">
         <v-card
-          v-instruction="placeholderAudio"
+          v-instruction="clozeInstructionPath"
           data-test="sentence-card"
           @click="playSentenceAudio()"
         >
@@ -73,11 +73,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import placeholderAudio from '@/test-support/audio/placeholder-audio.mp3';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 // import { Instruction } from '@/common/directives/InstructionDirective';
 import { mdiCellphoneWireless } from '@mdi/js';
+import ContentConfig from '@/Lessons/ContentConfig';
 import { ClozeExercise, ClozeOption } from '../ClozeTypes';
 
 @Component({
@@ -105,7 +105,7 @@ export default class Cloze extends Vue {
   }
 
   data(): {
-    placeholderAudio: string;
+    clozeInstructionPath: string;
     mdiCellphoneWireless: string;
     localExercise: ClozeExercise;
   } {
@@ -114,12 +114,12 @@ export default class Cloze extends Vue {
 
   // eslint-disable-next-line class-methods-use-this
   getDefaultData(): {
-    placeholderAudio: string;
+    clozeInstructionPath: string;
     mdiCellphoneWireless: string;
     localExercise: ClozeExercise;
   } {
     return {
-      placeholderAudio,
+      clozeInstructionPath: 'await-async-path-in-mounted',
       mdiCellphoneWireless,
       localExercise: {} as ClozeExercise,
     };
@@ -134,6 +134,14 @@ export default class Cloze extends Vue {
 
   set exercise(item: ClozeExercise) {
     this.$data.localExercise = item;
+  }
+
+  mounted(): void {
+    ContentConfig.getInstructionPathFor('clozeExercise').then(
+      ({ default: path }) => {
+        this.$data.clozeInstructionPath = path;
+      },
+    );
   }
 
   determineCorrectness(option: ClozeOption): void {
