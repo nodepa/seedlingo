@@ -7,6 +7,7 @@ import store from './store';
 import './registerServiceWorker';
 import App from './App.vue';
 import InstructionDirective from './common/directives/InstructionDirective';
+import ContentConfig from './Lessons/ContentConfig';
 
 // Use custom directive v-instruction to add instructions audio
 Vue.use(InstructionDirective, {
@@ -22,10 +23,12 @@ const vm = new Vue({
   render: (h) => h(App),
 });
 
-// Delay mounting until min 2000 millis after page load initiation
-// Fallback to max if performance.timing.navigationStart undefined
-const timeSinceNavStart =
-  Date.now() - (performance?.timing?.navigationStart || Infinity);
-const minDelay = process.env.NODE_ENV === 'production' ? 3000 : 2000;
-const delayMountAmount = Math.max(minDelay - timeSinceNavStart, 0);
-setTimeout(() => vm.$mount('#app'), delayMountAmount);
+ContentConfig.getLessons().then(() => {
+  // Delay mounting until min 2000 millis after page load initiation
+  // Fallback to max if performance.timing.navigationStart undefined
+  const timeSinceNavStart =
+    Date.now() - (performance?.timing?.navigationStart || Infinity);
+  const minDelay = process.env.NODE_ENV === 'production' ? 3000 : 2000;
+  const delayMountAmount = Math.max(minDelay - timeSinceNavStart, 0);
+  setTimeout(() => vm.$mount('#app'), delayMountAmount);
+});
