@@ -51,13 +51,15 @@ describe('Lessons.vue (shallow)', () => {
 
     it('displays instructions when in instructions mode', async () => {
       expect(
-        wrapper.find('[data-test="lesson-button"]').element.style.zIndex,
+        (wrapper.find('[data-test="lesson-button"]').element as HTMLElement)
+          .style.zIndex,
       ).not.toBe('4');
       await wrapper.vm.$store.dispatch(
         'instructionsStore/toggleInstructionsMode',
       );
       expect(
-        wrapper.find('[data-test="lesson-button"]').element.style.zIndex,
+        (wrapper.find('[data-test="lesson-button"]').element as HTMLElement)
+          .style.zIndex,
       ).toBe('4');
     });
   });
