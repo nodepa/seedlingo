@@ -72,7 +72,7 @@ describe('class Instruction', () => {
   });
 
   it('constructor: instance added to instruction collection', () => {
-    expect(Instruction.Collection.length).toBe(1);
+    expect(Instruction.AudioCollection.length).toBe(1);
   });
 
   it('addEventListener: adds event listeners', () => {
@@ -217,12 +217,12 @@ describe('class Instruction', () => {
     const el = Object.values(vm.$el.children).find((elm) => {
       return elm.tagName === 'AUDIO';
     }) as HTMLAudioElement;
-    const count = Instruction.Collection.length;
-    expect(Instruction.Collection.includes(el)).toBe(true);
+    const count = Instruction.AudioCollection.length;
+    expect(Instruction.AudioCollection.includes(el)).toBe(true);
 
     instruction.delist();
 
-    expect(Instruction.Collection.length).toBe(count - 1);
-    expect(Instruction.Collection.includes(el)).toBe(false);
+    expect(Instruction.AudioCollection.length).toBe(count - 1);
+    expect(Instruction.AudioCollection.includes(el)).toBe(false);
   });
 });

@@ -59,7 +59,7 @@ export default class InstructionsButton extends Vue {
 
       // Add <audio> element to Instruction.Collection to provoke cancelling whenever another instruction starts playing
       const audioEl = this.$refs.instructionsButtonAudio as HTMLAudioElement;
-      Instruction.Collection.push(audioEl);
+      Instruction.AudioCollection.push(audioEl);
       audioEl.currentTime = 0;
       audioEl.play();
     }
