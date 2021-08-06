@@ -15,7 +15,10 @@
 </template>
 
 <script lang="ts">
-export default { name: 'InstructionsIcon' };
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component
+export default class InstructionsIcon extends Vue {}
 </script>
 
 <style lang="stylus" scoped>

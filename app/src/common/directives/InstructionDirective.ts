@@ -28,7 +28,7 @@ export interface InstructionsOptions {
 }
 
 export class Instruction {
-  public static Collection: Array<HTMLAudioElement> = [];
+  public static AudioCollection: Array<HTMLAudioElement> = [];
 
   private hostElement: InstructionElement;
 
@@ -82,7 +82,7 @@ export class Instruction {
     this.audioElement.src = audioUrl;
     this.addAudioListeners();
     this.hostElement.appendChild(this.audioElement);
-    Instruction.Collection.push(this.audioElement);
+    Instruction.AudioCollection.push(this.audioElement);
   } // end constructor
 
   public setAudioSrc(audioUrl: string): void {
@@ -146,8 +146,8 @@ export class Instruction {
   }
 
   public delist(): void {
-    Instruction.Collection.splice(
-      Instruction.Collection.indexOf(this.audioElement),
+    Instruction.AudioCollection.splice(
+      Instruction.AudioCollection.indexOf(this.audioElement),
       1,
     );
   }
@@ -158,7 +158,7 @@ export class Instruction {
         this.animation1.$props.playing = true;
         this.animation2.$props.playing = true;
       }
-      Instruction.Collection.forEach((audioElement) => {
+      Instruction.AudioCollection.forEach((audioElement) => {
         if (audioElement !== this.audioElement && !audioElement.paused) {
           audioElement.pause();
         }

@@ -1132,7 +1132,7 @@ Instruction {
   "badge": Badge {
     "$attrs": Object {},
     "$children": Array [
-      VueComponent {
+      InstructionsIcon {
         "$attrs": Object {},
         "$children": Array [],
         "$createElement": [Function],
@@ -1202,7 +1202,7 @@ Instruction {
             "ns": undefined,
             "parent": undefined,
             "raw": false,
-            "tag": "vue-component-409-InstructionsIcon",
+            "tag": "vue-component-407-InstructionsIcon",
             "text": undefined,
           },
           "_renderChildren": undefined,
@@ -1263,7 +1263,7 @@ Instruction {
           "ns": undefined,
           "parent": undefined,
           "raw": false,
-          "tag": "vue-component-409-InstructionsIcon",
+          "tag": "vue-component-407-InstructionsIcon",
           "text": undefined,
         },
         "$vuetify": [Circular],
@@ -1277,7 +1277,7 @@ Instruction {
         "_isDestroyed": false,
         "_isMounted": true,
         "_isVue": true,
-        "_renderProxy": VueComponent {
+        "_renderProxy": InstructionsIcon {
           "$attrs": Object {},
           "$children": Array [],
           "$createElement": [Function],
@@ -1347,7 +1347,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-409-InstructionsIcon",
+              "tag": "vue-component-407-InstructionsIcon",
               "text": undefined,
             },
             "_renderChildren": undefined,
@@ -1408,7 +1408,7 @@ Instruction {
             "ns": undefined,
             "parent": undefined,
             "raw": false,
-            "tag": "vue-component-409-InstructionsIcon",
+            "tag": "vue-component-407-InstructionsIcon",
             "text": undefined,
           },
           "$vuetify": [Circular],
@@ -1550,7 +1550,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-409-InstructionsIcon",
+              "tag": "vue-component-407-InstructionsIcon",
               "text": undefined,
             },
             "raw": false,
@@ -1729,7 +1729,7 @@ Instruction {
             "ns": undefined,
             "parent": undefined,
             "raw": false,
-            "tag": "vue-component-409-InstructionsIcon",
+            "tag": "vue-component-407-InstructionsIcon",
             "text": undefined,
           },
           "raw": false,
@@ -1861,7 +1861,7 @@ Instruction {
     "_renderProxy": Badge {
       "$attrs": Object {},
       "$children": Array [
-        VueComponent {
+        InstructionsIcon {
           "$attrs": Object {},
           "$children": Array [],
           "$createElement": [Function],
@@ -1931,7 +1931,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-409-InstructionsIcon",
+              "tag": "vue-component-407-InstructionsIcon",
               "text": undefined,
             },
             "_renderChildren": undefined,
@@ -1992,7 +1992,7 @@ Instruction {
             "ns": undefined,
             "parent": undefined,
             "raw": false,
-            "tag": "vue-component-409-InstructionsIcon",
+            "tag": "vue-component-407-InstructionsIcon",
             "text": undefined,
           },
           "$vuetify": [Circular],
@@ -2006,7 +2006,7 @@ Instruction {
           "_isDestroyed": false,
           "_isMounted": true,
           "_isVue": true,
-          "_renderProxy": VueComponent {
+          "_renderProxy": InstructionsIcon {
             "$attrs": Object {},
             "$children": Array [],
             "$createElement": [Function],
@@ -2076,7 +2076,7 @@ Instruction {
                 "ns": undefined,
                 "parent": undefined,
                 "raw": false,
-                "tag": "vue-component-409-InstructionsIcon",
+                "tag": "vue-component-407-InstructionsIcon",
                 "text": undefined,
               },
               "_renderChildren": undefined,
@@ -2137,7 +2137,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-409-InstructionsIcon",
+              "tag": "vue-component-407-InstructionsIcon",
               "text": undefined,
             },
             "$vuetify": [Circular],
@@ -2279,7 +2279,7 @@ Instruction {
                 "ns": undefined,
                 "parent": undefined,
                 "raw": false,
-                "tag": "vue-component-409-InstructionsIcon",
+                "tag": "vue-component-407-InstructionsIcon",
                 "text": undefined,
               },
               "raw": false,
@@ -2458,7 +2458,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-409-InstructionsIcon",
+              "tag": "vue-component-407-InstructionsIcon",
               "text": undefined,
             },
             "raw": false,
@@ -2603,7 +2603,7 @@ Instruction {
                 "asyncFactory": undefined,
                 "asyncMeta": undefined,
                 "children": undefined,
-                "componentInstance": VueComponent {
+                "componentInstance": InstructionsIcon {
                   "$attrs": Object {},
                   "$children": Array [],
                   "$createElement": [Function],
@@ -2646,7 +2646,7 @@ Instruction {
                   "_isDestroyed": false,
                   "_isMounted": true,
                   "_isVue": true,
-                  "_renderProxy": VueComponent {
+                  "_renderProxy": InstructionsIcon {
                     "$attrs": Object {},
                     "$children": Array [],
                     "$createElement": [Function],
@@ -2990,7 +2990,7 @@ Instruction {
                 "ns": undefined,
                 "parent": undefined,
                 "raw": false,
-                "tag": "vue-component-409-InstructionsIcon",
+                "tag": "vue-component-407-InstructionsIcon",
                 "text": undefined,
               },
             ],
@@ -3145,7 +3145,7 @@ Instruction {
               "asyncFactory": undefined,
               "asyncMeta": undefined,
               "children": undefined,
-              "componentInstance": VueComponent {
+              "componentInstance": InstructionsIcon {
                 "$attrs": Object {},
                 "$children": Array [],
                 "$createElement": [Function],
@@ -3188,7 +3188,7 @@ Instruction {
                 "_isDestroyed": false,
                 "_isMounted": true,
                 "_isVue": true,
-                "_renderProxy": VueComponent {
+                "_renderProxy": InstructionsIcon {
                   "$attrs": Object {},
                   "$children": Array [],
                   "$createElement": [Function],
@@ -3532,7 +3532,7 @@ Instruction {
               "ns": undefined,
               "parent": undefined,
               "raw": false,
-              "tag": "vue-component-409-InstructionsIcon",
+              "tag": "vue-component-407-InstructionsIcon",
               "text": undefined,
             },
           ],
