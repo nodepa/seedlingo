@@ -42,14 +42,14 @@ beforeEach(() => {
 
 describe('ExerciseProvider', () => {
   describe('.getExerciseFromLesson()', () => {
-    it('correctly returns exercises', () => {
+    it('correctly returns exercises', async () => {
       // mock: Matching
       const { pickRandomExerciseType } = ExerciseProvider;
       ExerciseProvider.pickRandomExerciseType = jest.fn(() => 'Matching');
 
-      ExerciseProvider.getExerciseFromLesson(1).then((exercise) => {
-        expect(exercise.exerciseType).toBe('Matching');
-      });
+      let exercise = await ExerciseProvider.getExerciseFromLesson(1);
+      expect(ExerciseProvider.pickRandomExerciseType).toHaveBeenCalled();
+      expect(exercise.exerciseType).toBe('Matching');
 
       expect(lesson.items[3].symbolName?.length).toBe(1);
       lesson.items[3].symbolName = [];
@@ -62,12 +62,15 @@ describe('ExerciseProvider', () => {
       const { randomIndexLessThan } = ExerciseProvider;
       ExerciseProvider.randomIndexLessThan = jest.fn(() => 3);
 
-      ExerciseProvider.getExerciseFromLesson(1).then((exercise) => {
-        expect(exercise.exerciseType).toBe('MultipleChoice');
-        expect(
-          (exercise.exerciseItems as MultipleChoiceExercise).options[0].word,
-        ).toBe(lesson.items[0].word);
-      });
+      exercise = await ExerciseProvider.getExerciseFromLesson(1);
+      expect(ExerciseProvider.pickRandomExerciseType).toHaveBeenCalled();
+      expect(ExerciseProvider.selectRandomSubset).toHaveBeenCalled();
+      expect(ExerciseProvider.randomIndexLessThan).toHaveBeenCalled();
+
+      expect(exercise.exerciseType).toBe('MultipleChoice');
+      expect(
+        (exercise.exerciseItems as MultipleChoiceExercise).options[0].word,
+      ).toBe(lesson.items[0].word);
 
       // reset mocks
       ExerciseProvider.pickRandomExerciseType = pickRandomExerciseType;
