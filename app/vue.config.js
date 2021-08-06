@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
+
 const name = '立爱种字';
 module.exports = {
   devServer: {
@@ -46,24 +49,20 @@ module.exports = {
     },
   },
   transpileDependencies: ['vuetify'],
+  configureWebpack: {
+    entry: './app/src/main.ts',
+    context: path.resolve(__dirname, '..'),
+  },
   chainWebpack: (config) => {
-    // Interfers with vuetify's loading of svgs, use webpack overload instead
-    // i.e. "import Icon from '!vue-svg-loader!@/assets/icons/icon.svg';"
-    // const svgRule = config.module.rule('svg');
-    // svgRule.uses.clear();
-    // svgRule
-    //   .use('babel-loader')
-    //   .loader('babel-loader')
-    //   .end()
-    //   .use('vue-svg-loader')
-    //   .loader('vue-svg-loader');
+    config.plugin('fork-ts-checker').tap((args) => {
+      args[0].tsconfig = './app/tsconfig.json'; // eslint-disable-line no-param-reassign
+      return args;
+    });
 
     // Can be configured to generate progressive images
     // https://github.com/vuetifyjs/vuetify-loader
-    // config.plugin('VuetifyLoaderPlugin').tap((args) => [
     config.plugin('VuetifyLoaderPlugin').tap(() => [
       {
-        // match(originalTag, { kebabTag, camelTag, path, component }) {
         match(originalTag, { kebabTag, camelTag }) {
           if (kebabTag.startsWith('core-')) {
             return [
@@ -83,5 +82,7 @@ module.exports = {
       args[0].title = name; // eslint-disable-line no-param-reassign
       return args;
     });
+
+    config.resolve.alias.set('@content', path.resolve(__dirname, '../content'));
   },
 };

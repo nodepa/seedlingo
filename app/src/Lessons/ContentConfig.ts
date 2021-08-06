@@ -1,5 +1,5 @@
 /* eslint-disable prefer-template */
-import _contentPack from '@/Lessons/data/ContentPack.json';
+import _contentPack from '@content/ContentPack.json';
 import { PackageConfig } from './ContentPackTypes';
 import { Lesson } from './LessonTypes';
 import { LessonMenuItems } from './LessonMenuTypes';
@@ -12,7 +12,7 @@ export default class ContentConfig {
   ): Promise<{ default: string }> {
     const path = ContentPack.instructions[scope];
     // We prefer template strings (`${path}`), but trips Jest watch mode
-    return import('@/Lessons/data/' + path);
+    return import('@content/' + path);
   }
 
   public static getLessonsMenu(): LessonMenuItems {
@@ -30,7 +30,7 @@ export default class ContentConfig {
       });
       const audioPath = lesson.audio;
       // We prefer template strings (`${audioPath}`), but it trips Jest
-      import('@/Lessons/data/' + audioPath).then(({ default: path }) => {
+      import('@content/' + audioPath).then(({ default: path }) => {
         lessons[oneBasedIndex].audio = path;
       });
     });
@@ -44,7 +44,7 @@ export default class ContentConfig {
       const lessonPath = ContentPack.lessons[i].lessonData;
       // We prefer template strings (`${lessonPath}`), but it trips Jest
       // eslint-disable-next-line no-await-in-loop
-      lessons.push(await import('@/Lessons/data/' + lessonPath));
+      lessons.push(await import('@content/' + lessonPath));
     }
     return lessons;
   }

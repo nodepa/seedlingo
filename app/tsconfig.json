@@ -11,15 +11,18 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "baseUrl": ".",
     "types": [
       "webpack-env",
       "vuetify",
       "jest"
     ],
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "@content/*": [
+        "../content/*"
       ]
     },
     "lib": [

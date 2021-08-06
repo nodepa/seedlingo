@@ -17,11 +17,12 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'import/no-extraneous-dependencies': [
-      'error',
-      { devDependencies: ['**/*.test.ts', '**/*.spec.ts'] },
-    ],
+    // 'import/no-extraneous-dependencies': [
+    //   'error',
+    //   { devDependencies: ['**/*.test.ts', '**/*.spec.ts'] },
+    // ],
     'no-use-before-define': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
   overrides: [
     {

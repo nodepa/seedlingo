@@ -222,7 +222,7 @@ export default class ExerciseProvider {
     } as MultipleChoiceItem;
 
     import(
-      `@/Lessons/data/lesson${lesson.lessonIndex.toString().padStart(2, '0')}/${
+      `@content/lesson${lesson.lessonIndex.toString().padStart(2, '0')}/${
         targetOfExplanation.audioName
       }`
     ).then(({ default: path }) => {
@@ -247,9 +247,9 @@ export default class ExerciseProvider {
         buzzing: false,
       } as MultipleChoiceItem;
       import(
-        `@/Lessons/data/lesson${lesson.lessonIndex
-          .toString()
-          .padStart(2, '0')}/${lessonItem.audioName}`
+        `@content/lesson${lesson.lessonIndex.toString().padStart(2, '0')}/${
+          lessonItem.audioName
+        }`
       ).then(({ default: path }) => {
         incorrectInterpretation.audio = new Audio(path);
       });
@@ -377,7 +377,7 @@ export default class ExerciseProvider {
 
       if (lessonItem.audioName) {
         import(
-          `@/Lessons/data/lesson${lessonIndex.toString().padStart(2, '0')}/${
+          `@content/lesson${lessonIndex.toString().padStart(2, '0')}/${
             lessonItem.audioName
           }`
         ).then(({ default: path }) => {
@@ -440,7 +440,7 @@ export default class ExerciseProvider {
       // wordPart.match = symPart;
 
       import(
-        `@/Lessons/data/lesson${lessonIndex.toString().padStart(2, '0')}/${
+        `@content/lesson${lessonIndex.toString().padStart(2, '0')}/${
           explanationItem.audioName
         }`
       ).then(({ default: path }) => {
@@ -448,7 +448,7 @@ export default class ExerciseProvider {
       });
 
       import(
-        `@/Lessons/data/lesson${lessonIndex.toString().padStart(2, '0')}/${
+        `@content/lesson${lessonIndex.toString().padStart(2, '0')}/${
           interpretationItem.audioName
         }`
       ).then(({ default: path }) => {
@@ -556,7 +556,7 @@ export default class ExerciseProvider {
         buzzing: false,
       } as MultipleChoiceItem;
       import(
-        `@/Lessons/data/lesson${lessonIndex.toString().padStart(2, '0')}/${
+        `@content/lesson${lessonIndex.toString().padStart(2, '0')}/${
           item.audioName
         }`
       ).then(({ default: path }) => {
@@ -723,7 +723,7 @@ export default class ExerciseProvider {
     multipleChoiceExercise.options[correctIndex].correct = true;
 
     import(
-      `@/Lessons/data/lesson${lessonIndex.toString().padStart(2, '0')}/${
+      `@content/lesson${lessonIndex.toString().padStart(2, '0')}/${
         correctItem.audioName
       }`
     ).then(({ default: path }) => {

@@ -62,7 +62,8 @@
       "**/?(*.)+(test).ts"
     ],
     "moduleNameMapper": {
-      "\\.mp3$": "<rootDir>/tests/unit/__mocks__/mp3Mock.js"
+      "\\.mp3$": "<rootDir>/tests/unit/__mocks__/mp3Mock.js",
+      "@content/(.*)": "<rootDir>/../content/$1"
     }
   },
   "gitHooks": {
