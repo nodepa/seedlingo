@@ -44,11 +44,12 @@ describe('ExerciseProvider', () => {
   describe('.getExerciseFromLesson()', () => {
     it('correctly returns exercises', async () => {
       // mock: Matching
-      const { pickRandomExerciseType } = ExerciseProvider;
-      ExerciseProvider.pickRandomExerciseType = jest.fn(() => 'Matching');
+      const spyPickRandomExerciseTypeMatching = jest
+        .spyOn(ExerciseProvider, 'pickRandomExerciseType')
+        .mockImplementation(() => 'Matching');
 
       let exercise = await ExerciseProvider.getExerciseFromLesson(1);
-      expect(ExerciseProvider.pickRandomExerciseType).toHaveBeenCalled();
+      expect(spyPickRandomExerciseTypeMatching).toHaveBeenCalled();
       expect(exercise.exerciseType).toBe('Matching');
 
       expect(lesson.items[3].symbolName?.length).toBe(1);
@@ -56,16 +57,20 @@ describe('ExerciseProvider', () => {
       expect(lesson.items[3].symbolName?.length).toBe(0);
 
       // mock: MultipleChoice with items of `lesson`, index 3 as correct answer
-      ExerciseProvider.pickRandomExerciseType = jest.fn(() => 'MultipleChoice');
-      const { selectRandomSubset } = ExerciseProvider;
-      ExerciseProvider.selectRandomSubset = jest.fn(() => lesson.items);
-      const { randomIndexLessThan } = ExerciseProvider;
-      ExerciseProvider.randomIndexLessThan = jest.fn(() => 3);
+      const spyPickRandomExerciseTypeMultipleChoice = jest
+        .spyOn(ExerciseProvider, 'pickRandomExerciseType')
+        .mockImplementation(() => 'MultipleChoice');
+      const spySelectRandomSubset = jest
+        .spyOn(ExerciseProvider, 'selectRandomSubset')
+        .mockImplementation(() => lesson.items);
+      const spyRandomIndexLessThan = jest
+        .spyOn(ExerciseProvider, 'randomIndexLessThan')
+        .mockImplementation(() => 3);
 
       exercise = await ExerciseProvider.getExerciseFromLesson(1);
-      expect(ExerciseProvider.pickRandomExerciseType).toHaveBeenCalled();
-      expect(ExerciseProvider.selectRandomSubset).toHaveBeenCalled();
-      expect(ExerciseProvider.randomIndexLessThan).toHaveBeenCalled();
+      expect(spyPickRandomExerciseTypeMultipleChoice).toHaveBeenCalled();
+      expect(spySelectRandomSubset).toHaveBeenCalled();
+      expect(spyRandomIndexLessThan).toHaveBeenCalled();
 
       expect(exercise.exerciseType).toBe('MultipleChoice');
       expect(
@@ -73,9 +78,10 @@ describe('ExerciseProvider', () => {
       ).toBe(lesson.items[0].word);
 
       // reset mocks
-      ExerciseProvider.pickRandomExerciseType = pickRandomExerciseType;
-      ExerciseProvider.selectRandomSubset = selectRandomSubset;
-      ExerciseProvider.randomIndexLessThan = randomIndexLessThan;
+      spyPickRandomExerciseTypeMatching.mockRestore();
+      spyPickRandomExerciseTypeMultipleChoice.mockRestore();
+      spySelectRandomSubset.mockRestore();
+      spyRandomIndexLessThan.mockRestore();
     });
   });
 
