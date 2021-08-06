@@ -1,14 +1,14 @@
 import { Lesson, LessonItem } from '@/Lessons/LessonTypes';
-import Lesson01 from '@/Lessons/data/lesson01/Lesson01.json';
-import Lesson02 from '@/Lessons/data/lesson02/Lesson02.json';
-import Lesson03 from '@/Lessons/data/lesson03/Lesson03.json';
-import Lesson04 from '@/Lessons/data/lesson04/Lesson04.json';
-import Lesson05 from '@/Lessons/data/lesson05/Lesson05.json';
-import Lesson06 from '@/Lessons/data/lesson06/Lesson06.json';
-import Lesson07 from '@/Lessons/data/lesson07/Lesson07.json';
-import Lesson08 from '@/Lessons/data/lesson08/Lesson08.json';
-import Lesson09 from '@/Lessons/data/lesson09/Lesson09.json';
-import Lesson10 from '@/Lessons/data/lesson10/Lesson10.json';
+import Lesson01 from '@content/lesson01/Lesson01.json';
+import Lesson02 from '@content/lesson02/Lesson02.json';
+import Lesson03 from '@content/lesson03/Lesson03.json';
+import Lesson04 from '@content/lesson04/Lesson04.json';
+import Lesson05 from '@content/lesson05/Lesson05.json';
+import Lesson06 from '@content/lesson06/Lesson06.json';
+import Lesson07 from '@content/lesson07/Lesson07.json';
+import Lesson08 from '@content/lesson08/Lesson08.json';
+import Lesson09 from '@content/lesson09/Lesson09.json';
+import Lesson10 from '@content/lesson10/Lesson10.json';
 
 const lessons: Array<Lesson> = [
   Lesson01,
