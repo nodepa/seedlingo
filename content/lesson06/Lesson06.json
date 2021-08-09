@@ -49,7 +49,7 @@
               "validOptions": [
                 { "lesson": 3, "words": [ "妈妈", "爸爸", "姐姐", "妹妹",
                                           "弟弟", "哥哥" ] },
-                { "lesson": 4, "words": [ "姥姥", "老爷", "奶奶", "爷爷" ] },
+                { "lesson": 4, "words": [ "姥姥", "姥爷", "奶奶", "爷爷" ] },
                 { "lesson": 5, "words": [ "丈夫", "妻子", "大姐", "二姐", "大哥",
                                           "二哥", "大妹妹", "小妹妹", "大弟弟", "小弟弟" ] }
               ],
@@ -75,7 +75,7 @@
               "alwaysPreFilled": false,
               "validOptions": [
                 { "lesson": 3, "words": [ "妈妈", "爸爸" ] },
-                { "lesson": 4, "words": [ "姥姥", "老爷", "奶奶", "爷爷" ] },
+                { "lesson": 4, "words": [ "姥姥", "姥爷", "奶奶", "爷爷" ] },
                 { "lesson": 5, "words": [ "丈夫", "妻子" ] }
               ],
               "invalidOptions": [
