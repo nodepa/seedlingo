@@ -1,8 +1,8 @@
+import { mdiCellphoneWireless } from '@mdi/js';
 import 一 from '@/test-support/audio/characters/一.mp3';
 import 二 from '@/test-support/audio/characters/二.mp3';
 import 三 from '@/test-support/audio/characters/三.mp3';
 import 四 from '@/test-support/audio/characters/四.mp3';
-import { mdiCellphoneWireless } from '@mdi/js';
 import { MultipleChoiceExercise } from '../MultipleChoiceTypes';
 
 export default function MultipleChoiceTestData(): MultipleChoiceExercise {

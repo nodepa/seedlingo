@@ -1,4 +1,3 @@
-import { Lesson, LessonItem } from '@/Lessons/LessonTypes';
 import Lesson01 from '@content/lesson01/Lesson01.json';
 import Lesson02 from '@content/lesson02/Lesson02.json';
 import Lesson03 from '@content/lesson03/Lesson03.json';
@@ -9,6 +8,7 @@ import Lesson07 from '@content/lesson07/Lesson07.json';
 import Lesson08 from '@content/lesson08/Lesson08.json';
 import Lesson09 from '@content/lesson09/Lesson09.json';
 import Lesson10 from '@content/lesson10/Lesson10.json';
+import { Lesson, LessonItem } from '@/Lessons/LessonTypes';
 
 const lessons: Array<Lesson> = [
   Lesson01,

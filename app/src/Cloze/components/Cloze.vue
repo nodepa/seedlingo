@@ -73,10 +73,10 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { mdiCellphoneWireless } from '@mdi/js';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 // import { Instruction } from '@/common/directives/InstructionDirective';
-import { mdiCellphoneWireless } from '@mdi/js';
 import ContentConfig from '@/Lessons/ContentConfig';
 import { ClozeExercise, ClozeOption } from '../ClozeTypes';
 
