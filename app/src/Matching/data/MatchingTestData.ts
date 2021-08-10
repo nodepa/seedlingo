@@ -1,13 +1,13 @@
-import 术 from '@/test-support/audio/characters/术.mp3';
-import 二 from '@/test-support/audio/characters/二.mp3';
-import 三 from '@/test-support/audio/characters/三.mp3';
-import 四 from '@/test-support/audio/characters/四.mp3';
 import {
   mdiDice3,
   mdiNumeric2Circle,
   mdiNumeric4Circle,
   mdiPalmTree,
 } from '@mdi/js';
+import 术 from '@/test-support/audio/characters/术.mp3';
+import 二 from '@/test-support/audio/characters/二.mp3';
+import 三 from '@/test-support/audio/characters/三.mp3';
+import 四 from '@/test-support/audio/characters/四.mp3';
 import ExerciseProvider from '@/Lessons/ExerciseProvider';
 import { MatchingItem } from '../MatchingTypes';
 

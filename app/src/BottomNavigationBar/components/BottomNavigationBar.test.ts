@@ -3,13 +3,13 @@ import Vue from 'vue';
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
+import { createLocalVue, mount, Wrapper } from '@vue/test-utils';
 import store from '@/store';
 import Badge from '@/common/components/Badge.vue';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import InstructionDirective from '@/common/directives/InstructionDirective';
 
 // Helpers
-import { createLocalVue, mount, Wrapper } from '@vue/test-utils';
 import { animate, pause, play } from '@/test-support/FunctionOverrides';
 
 // Item under test

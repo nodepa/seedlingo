@@ -1,7 +1,7 @@
 // Libraries, plugins, components
 import Vue from 'vue';
-import store from '@/store';
 import Vuetify from 'vuetify';
+import store from '@/store';
 import Badge from '@/common/components/Badge.vue';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 
