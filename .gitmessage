@@ -1,16 +1,23 @@
 feat: Add feature (use imperative mood)
 # └── feat, fix, refactor, style, docs, test, content or infra─────────┤
 
-# Motivation - Why is this change necessary?
+- [ ] I certify that <!-- Check the box to certify: [X] -->
+- I have read the [contributing guidelines](
+  https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+- I agree to apply Seedling's [LICENSE](
+  https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+  to the attached contributions and I have the legal rights to apply it.
+
+**Motivation - Why is this change necessary?**
 Because
 
-# Impact - How will this commit address the need?
+**Impact - How will this commit address the need?**
 this commit will:
 - add
 
-# Other context
+**Other context** <!-- Optional section -->
 
-# Issues - What issues are involved?
+**Issues - What issues are involved?**
 Resolves #12
 Resolves #23
 
@@ -21,25 +28,45 @@ Resolves #23
 # ─────────────────────────────────────────────────────────────────────┐
 # refactor: Improve readability
 #
+# - [ ] I certify that <!-- Check the box to certify: [X] -->
+# - I have read the [contributing guidelines](
+#   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# - I agree to apply Seedling's [LICENSE](
+#   https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+#   to the attached contributions and I have the legal rights to apply it.
+#
+# **Motivation - Why is this change necessary?**
 # Because the original name is uninformative
 # and make it unnecessarily hard to follow the logic,
 #
+# **Impact - How will this commit address the need?**
 # this commit will:
 # - reduce effort needed to comprehend logic
 # - rename varB to audioElement in InstructionsDirective.ts
 #
+# **Issues - What issues are involved?**
 # Resolves #12
 # ─────────────────────────────────────────────────────────────────────┘
 #
 # ─────────────────────────────────────────────────────────────────────┐
 # docs: Contrast web and native in get_started.md
 #
+# - [ ] I certify that <!-- Check the box to certify: [X] -->
+# - I have read the [contributing guidelines](
+#   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# - I agree to apply Seedling's [LICENSE](
+#   https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+#   to the attached contributions and I have the legal rights to apply it.
+#
+# **Motivation - Why is this change necessary?**
 # Because users are confused and stuck when trying to install the PWA,
 #
+# **Impact - How will this commit address the need?**
 # this commit will:
 # - clarify differences between the web/PWA experience,
 #   and the native app experience.
 #
+# **Issues - What issues are involved?**
 # Closes #12
 # Refs #23 (will not auto-close issue)
 # ─────────────────────────────────────────────────────────────────────┘
@@ -47,37 +74,65 @@ Resolves #23
 # ─────────────────────────────────────────────────────────────────────┐
 # fix: Prevent crash on return to home screen
 #
+# - [ ] I certify that <!-- Check the box to certify: [X] -->
+# - I have read the [contributing guidelines](
+#   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# - I agree to apply Seedling's [LICENSE](
+#   https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+#   to the attached contributions and I have the legal rights to apply it.
+#
+# **Motivation - Why is this change necessary?**
 # Because users experience a crashes when returning to home screen
 # due to a hardcoded path that is incorrectly referenced,
 #
+# **Impact - How will this commit address the need?**
 # this commit will:
 # - improve crash resilience for navigation
 #   - replace hardcoded path with named route for Home screen
 #   - add regression test
 #
-# Fixes #123
+# **Issues - What issues are involved?**
+# Fixes #12
 # ─────────────────────────────────────────────────────────────────────┘
 #
 # ─────────────────────────────────────────────────────────────────────┐
 # fix: Revert to broadly compatible format
 #
+# - [ ] I certify that <!-- Check the box to certify: [X] -->
+# - I have read the [contributing guidelines](
+#   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# - I agree to apply Seedling's [LICENSE](
+#   https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+#   to the attached contributions and I have the legal rights to apply it.
+#
+# **Motivation - Why is this change necessary?**
 # Users report audio not playing
 # due to their system lacking support for <specific format>.
 # A more widely supported format is <other format>,
 # and the difference in compression is < 5%.
 # Sound quality differences are negligible.
 #
+# **Impact - How will this commit address the need?**
 # This commit will:
 # - revert all audio files to <other format>
 #   used prior to commit <some hash>
 # - remove unused dependency
 #
-# Fixes #924
+# **Issues - What issues are involved?**
+# Fixes #12
 # ─────────────────────────────────────────────────────────────────────┘
 #
 # ─────────────────────────────────────────────────────────────────────┐
 # fix: Revert to broadly compatible format
 #
+# - [ ] I certify that <!-- Check the box to certify: [X] -->
+# - I have read the [contributing guidelines](
+#   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# - I agree to apply Seedling's [LICENSE](
+#   https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+#   to the attached contributions and I have the legal rights to apply it.
+#
+# **Motivation - Why is this change necessary?**
 # Because
 # - users report audio not playing
 #   due to their systems lacking support for <specific format>
@@ -85,12 +140,14 @@ Resolves #23
 # - difference in compression is < 5%
 # - sound quality differences are negligible
 #
+# **Impact - How will this commit address the need?**
 # this commit will:
 # - revert all audio files to <other format>
 #   used prior to commit <some hash>
 # - remove unused dependency
 #
-# Fixes #924
+# **Issues - What issues are involved?**
+# Fixes #12
 # ─────────────────────────────────────────────────────────────────────┘
 
 
@@ -129,7 +186,16 @@ Resolves #23
 # ─────────────────────────────────────────────────────────────────────┐
 # Wrap the message body at max 72 characters per line.
 #
-# Start the body of the message with the <motivation> for this commit.
+# Start the body of the message with the following statement,
+# and fill an X into the [ ] to certify.
+# - [ ] I certify that <!-- Check the box to certify: [X] -->
+# - I have read the [contributing guidelines](
+#   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# - I agree to apply Seedling's [LICENSE](
+#   https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+#   to the attached contributions and I have the legal rights to apply it.
+#
+# Next, justify the commit with a <motivation>.
 # Try to answer: "Why is this change necessary?"
 # Consider to start the answer with "Because".
 #
@@ -150,7 +216,8 @@ Resolves #23
 # GitHub will automatically close those issues
 # when the pull request is merged into the main branch.
 #
-# Feel free to end with a sign-off (not required):
+# Feel free to end with a sign-off
+# (can be automated by adding --signoff to the 'git commit' command):
 # Signed-off by: Name/username <email>
 # ─────────────────────────────────────────────────────────────wrap<=72┘
 
