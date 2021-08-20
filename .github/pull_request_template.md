@@ -1,45 +1,34 @@
-<!--
-If this pull request contains a single commit,
-there should already be a pull request title and message above.
-If they diverge significantly from the .gitmessage template,
-please (re-)write the pull request according to these guidelines:
+<!-- If this pull request contains a single commit,
+there should already be a pull request TITLE and MESSAGE above ^^^.
+If they differ significantly from the template below,
+please (re-)write the pull request accordingly:
 https://github.com/nodepa/seedling/blob/main/.gitmessage
 
-Commit message guidelines:
+TITLE format:
 feat: Add feature (use imperative mood)
-# └── feat, fix, refactor, style, docs, test, content or infra─────────┤
+  └── feat, fix, refactor, style, docs, test, content or infra
 
-# Motivation - Why is this change necessary?
+MESSAGE format: -->
+**Motivation - Why is this change necessary?**
 Because
 
-# Impact - How will this commit address the need?
+**Impact - How will this commit address the need?**
 this commit will:
 - add
 
-# Other context
+**Context - Additional information** <!-- Optional section -->
 
-# Issues - What issues are involved?
+**Issues - What issues are involved?**
 Resolves #12
 Resolves #23
 
-# ─── END OF COMMIT MESSAGE ───────────────────────────────────wrap<=72┘ -->
+**Certification**
+- [ ] I certify that <!-- Check the box to certify: [X] -->
+- I have read the [contributing guidelines](
+  https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+- I agree to license these contributions to the public under Seedling's
+  [LICENSE](https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+  and have the rights to do so.
 
-- [ ] I did all of the following:
-  <!-- Check the box by putting an X between the brackets: [X] -->
-  - read the [contributing guidelines](
-      https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
-
-## Motivation - Why is this change necessary?
-
-Because
-
-## Impact - How will this commit address the need?
-
-this commit will:
-
-- add
-
-## Issues - What issues are involved?
-
-Resolves #12
-Resolves #23
+Signed-off-by:
+<!-- Signed-off-by: gituser <email@address.com> -->

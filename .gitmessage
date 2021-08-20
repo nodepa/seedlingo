@@ -1,18 +1,29 @@
 feat: Add feature (use imperative mood)
 # └── feat, fix, refactor, style, docs, test, content or infra─────────┤
 
-# Motivation - Why is this change necessary?
+# **Motivation - Why is this change necessary?**
 Because
 
-# Impact - How will this commit address the need?
+# **Impact - How will this commit address the need?**
 this commit will:
 - add
 
-# Other context
+# **Context - Additional information** <!-- Optional section -->
 
-# Issues - What issues are involved?
+# **Issues - What issues are involved?**
 Resolves #12
 Resolves #23
+
+**Certification**
+- [ ] I certify that <!-- Check the box to certify: [X] -->
+- I have read the [contributing guidelines](
+  https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+- I agree to license these contributions to the public under Seedling's
+  [LICENSE](https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+  and have the rights to do so.
+
+# Signed-off-by: Name/username <email>
+
 
 # ─── END OF COMMIT MESSAGE ───────────────────────────────────wrap<=72┘
 
@@ -29,6 +40,15 @@ Resolves #23
 # - rename varB to audioElement in InstructionsDirective.ts
 #
 # Resolves #12
+#
+# - [ ] I certify that <!-- Check the box to certify: [X] -->
+# - I have read the [contributing guidelines](
+#   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# - I agree to license these contributions to the public under Seedling's
+#   [LICENSE](https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+#   and have the rights to do so.
+#
+# Signed-off-by: gituser <email@address.com>
 # ─────────────────────────────────────────────────────────────────────┘
 #
 # ─────────────────────────────────────────────────────────────────────┐
@@ -42,6 +62,15 @@ Resolves #23
 #
 # Closes #12
 # Refs #23 (will not auto-close issue)
+#
+# - [ ] I certify that <!-- Check the box to certify: [X] -->
+# - I have read the [contributing guidelines](
+#   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# - I agree to license these contributions to the public under Seedling's
+#   [LICENSE](https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+#   and have the rights to do so.
+#
+# Signed-off-by: gituser <email@address.com>
 # ─────────────────────────────────────────────────────────────────────┘
 #
 # ─────────────────────────────────────────────────────────────────────┐
@@ -55,7 +84,16 @@ Resolves #23
 #   - replace hardcoded path with named route for Home screen
 #   - add regression test
 #
-# Fixes #123
+# Fixes #12
+#
+# - [ ] I certify that <!-- Check the box to certify: [X] -->
+# - I have read the [contributing guidelines](
+#   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# - I agree to license these contributions to the public under Seedling's
+#   [LICENSE](https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+#   and have the rights to do so.
+#
+# Signed-off-by: gituser <email@address.com>
 # ─────────────────────────────────────────────────────────────────────┘
 #
 # ─────────────────────────────────────────────────────────────────────┐
@@ -72,7 +110,16 @@ Resolves #23
 #   used prior to commit <some hash>
 # - remove unused dependency
 #
-# Fixes #924
+# Fixes #12
+#
+# - [ ] I certify that <!-- Check the box to certify: [X] -->
+# - I have read the [contributing guidelines](
+#   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# - I agree to license these contributions to the public under Seedling's
+#   [LICENSE](https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+#   and have the rights to do so.
+#
+# Signed-off-by: gituser <email@address.com>
 # ─────────────────────────────────────────────────────────────────────┘
 #
 # ─────────────────────────────────────────────────────────────────────┐
@@ -90,7 +137,16 @@ Resolves #23
 #   used prior to commit <some hash>
 # - remove unused dependency
 #
-# Fixes #924
+# Fixes #12
+#
+# - [ ] I certify that <!-- Check the box to certify: [X] -->
+# - I have read the [contributing guidelines](
+#   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# - I agree to license these contributions to the public under Seedling's
+#   [LICENSE](https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+#   and have the rights to do so.
+#
+# Signed-off-by: gituser <email@address.com>
 # ─────────────────────────────────────────────────────────────────────┘
 
 
@@ -103,9 +159,11 @@ Resolves #23
 #
 # <impact>
 #
-# <other context>
+# <context>
 #
-# <footer>
+# <issues>
+#
+# <certification>
 # ─────────────────────────────────────────────────────────────wrap<=72┘
 #
 # Subject line: <type>: <summary>
@@ -125,7 +183,7 @@ Resolves #23
 # Do not end the line with punctuation.
 # ─────────────────────────────────────────────────────────────────────┘
 #
-# Message: <motivation><impact><footer>
+# Message: <motivation><impact><context><issues><certification>
 # ─────────────────────────────────────────────────────────────────────┐
 # Wrap the message body at max 72 characters per line.
 #
@@ -139,18 +197,19 @@ Resolves #23
 # followed by a list of actions (preferably) written in imperative mood.
 # Leave the specifics to the actual code/changeset/diff.
 #
-# If there is a need to add any additional context, like requirements,
-# environment configurations or other context notes,
-# add it here.
+# If there is a need to add any <other context>, like requirements,
+# environment configurations or additional notes, add it here.
 #
-# Finally, use the <footer> to reference GitHub issues.
-# Closes #123, fixes #123, resolves #123 and resolves #234
-# are keywords that GitHub will recognize.
-# If the corresponding pull request also contains one or more of those,
-# GitHub will automatically close those issues
+# Remember to reference relevant GitHub <issues>.
+# Closes #11, fixes #11, resolves #11 and resolves #12
+# are keywords that tell GitHub to automatically close those issues
 # when the pull request is merged into the main branch.
 #
-# Feel free to end with a sign-off (not required):
-# Signed-off by: Name/username <email>
+# Finally, certify that you have read the contributing guidelines
+# https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+# and have the will and rights to publish the contribution to the public
+# under this https://github.com/nodepa/seedling/blob/main/LICENSE.md.
+# End with a sign-off (automatically added with 'git commit --signoff'):
+# Signed-off-by: Name/username <email>
 # ─────────────────────────────────────────────────────────────wrap<=72┘
 
