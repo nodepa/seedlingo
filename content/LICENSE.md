@@ -1,4 +1,4 @@
-# Creative Commons Attribution-ShareAlike 4.0 International
+# Creative Commons Attribution-ShareAlike 4.0
 
 Official translations of this license are available [in other languages](https://creativecommons.org/licenses/by-sa/4.0/legalcode#languages).
 

@@ -1,0 +1,7 @@
+contact_links:
+  - name: Ask a question
+    url: https://github.com/nodepa/seedling/discussions/new
+    about: Ask and discuss questions with other Seedling community members
+  - name: Report Security Vulnerabilities
+    url: https://github.com/nodepa/seedling/blob/main/.github/SECURITY.md
+    about: Please report security vulnerabilities here.
