@@ -1,2 +1,4 @@
-title: "Seedling Documentation"
-remote_theme: pmarsceill/just-the-docs
+title: "Global Seedling"
+remote_theme: "mmistakes/minimal-mistakes"
+plugins:
+  - jekyll-include-cache
