@@ -1,7 +1,7 @@
 <h1 align="center">Seedling</h1>
 
 <p align="center">
-  <img src="docs/seedling-logo-blue.svg"
+  <img src="docs/assets/images/seedling-logo-blue.svg"
     alt="seedling-logo" height="160px" width="160px"/>
   <br/>
   <b>Modern mobile multi-language literacy</b>
@@ -65,11 +65,11 @@ available at [种字.com](https://种字.com)
 
 ### Prerequisites
 
-- Install [git](https://git-scm.com) if not present
+- Install [git](https://git-scm.com) if not present.
 - Install [Node.js](https://nodejs.org), which includes the
   [npm](https://www.npmjs.com/get-npm) (Node Package Manager).
   A good way to manage Node.js versions is to use
-  [NVM](https://github.com/nvm-sh/nvm)
+  [NVM](https://github.com/nvm-sh/nvm).
 
 ### Development setup
 
@@ -124,14 +124,14 @@ and get working on it!
 
 ## License
 
-The Seedling project's [content/](content/) is released under a
+The Seedling project,
+EXCEPT all material in the [content/](content/) folder,
+is licensed to the public under the [MIT License](LICENSE.md).
+
+The Seedling project's [content/](content/) is licensed to the public under a
 [Creative Commons Attribution-ShareAlike 4.0 International Public License](
 content/LICENSE.md).
 
-The Seedling project,
-EXCEPT all material in the [content/](content/) folder,
-is released under the [MIT License](LICENSE.md).
-
 By contributing to the Seedling project,
-you agree to license your contribution under these terms,
+you agree to license your contribution to the public under these terms,
 and affirm that you have the right to do so.
