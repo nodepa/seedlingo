@@ -29,10 +29,10 @@ description: >- # this means to ignore newlines until next yaml entry
 atom_feed:
   hide: true
 
-# footer:
-#   links:
-#     - label: Privacy policy
-#       url: "privacy-policy"
+footer:
+  links:
+    - label: Privacy policy
+      url: "privacy-policy"
 
 defaults:
   # _pages

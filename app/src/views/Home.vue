@@ -3,6 +3,7 @@
     <v-row align="center" justify="center">
       <v-col>
         <Lessons />
+        <Footer />
       </v-col>
     </v-row>
   </v-container>
@@ -11,11 +12,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Lessons from '@/Lessons/components/Lessons.vue';
+import Footer from '@/Footer/components/Footer.vue';
 
 @Component({
-  // eslint-disable-next-line no-undef
   components: {
     Lessons,
+    Footer,
   },
 })
 export default class Home extends Vue {}
