@@ -20,7 +20,6 @@
 
 logo: assets/images/seedling-logo-blue.svg
 title: Seedling
-subtitle: Modern mobile multi-language literacy
 description: >- # this means to ignore newlines until next yaml entry
   Seedling is a first-language digital learning tool for adults;
   a collection of literacy exercises that bundled content can make use of
