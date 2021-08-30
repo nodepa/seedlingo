@@ -1,0 +1,14 @@
+main:
+  - title: Get started
+    url: /get-started
+
+sidebar-documentation:
+  - title: Get started
+    url: /get-started
+  - title: Content
+    url: /content
+    children:
+      - title: Replace default content
+        url: /replace-content
+      - title: Content specification
+        url: /content-spec

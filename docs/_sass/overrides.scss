@@ -1,0 +1,34 @@
+$masthead-height: 4em;
+
+.site-logo img {
+  width: 2rem;
+}
+
+.feature__item {
+  text-align: center;
+}
+.archive__item-teaser img {
+  width: 60%;
+}
+
+.masthead {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $masthead-height;
+  background-color: #fff;
+}
+
+.initial-content, .search-content {
+  margin-top: $masthead-height;
+}
+
+@media (min-width: 64em) {
+  .sticky {
+    top: $masthead-height * 1.5;
+  }
+  .sidebar__right.sticky {
+    top: $masthead-height * 2;
+  }
+}
+

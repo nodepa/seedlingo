@@ -252,9 +252,11 @@ if no existing issues cover your intended contribution.
     which will update your pull request:
 
     ```bash
-    git pull -ff upstream main # update main branch to latest upstream version
-    git rebase main -i         # rebase onto updated main
-    git push -f                # push rebased branch to overwrite remote
+    git remote -v            # Ensure `upstream` points to `nodepa/seedling.git`
+    git remote add upstream git@github.com:nodepa/seedling.git
+    git pull --ff upstream main # update main branch to latest upstream version
+    git rebase main -i       # rebase onto updated main
+    git push -f              # push rebased branch to overwrite remote
     ```
 
 13. Get notified when approved and merged.
@@ -262,7 +264,7 @@ if no existing issues cover your intended contribution.
     you may want to clean up your fork:
 
     ```bash
-    git pull -ff upstream main         # update main to latest upstream version
+    git pull --ff upstream main         # update main to latest upstream version
     git checkout main -f                          # check out main branch
     git push origin --delete docs/add-get-started # delete remote branch
     git branch -D docs/add-get-started            # delete local branch
@@ -357,9 +359,11 @@ if no existing issues cover your intended contribution.
     which will update your pull request:
 
     ```bash
-    git pull -ff upstream main # update main branch to latest upstream version
-    git rebase main -i         # rebase onto updated main
-    git push -f                # push rebased branch to overwrite remote
+    git remote -v            # Ensure `upstream` points to `nodepa/seedling.git`
+    git remote add upstream git@github.com:nodepa/seedling.git
+    git pull --ff upstream main # update main branch to latest upstream version
+    git rebase main -i       # rebase onto updated main
+    git push -f              # push rebased branch to overwrite remote
     ```
 
 15. Get notified when approved and merged.
@@ -367,7 +371,7 @@ if no existing issues cover your intended contribution.
     you may want to clean up your fork:
 
     ```bash
-    git pull -ff upstream main      # update main to latest upstream version
+    git pull --ff upstream main      # update main to latest upstream version
     git checkout main -f                       # check out main branch
     git push origin --delete fix/restore-audio # delete remote branch
     git branch -D fix/restore-audio            # delete local branch
@@ -456,7 +460,9 @@ Note: This section is incomplete.
     which will update your pull request:
 
     ```bash
-    git pull -ff upstream main # update main branch to latest upstream version
+    git remote -v            # Ensure `upstream` points to `nodepa/seedling.git`
+    git remote add upstream git@github.com:nodepa/seedling.git
+    git pull --ff upstream main # update main branch to latest upstream version
     git rebase main -i         # rebase onto updated main
     git push -f                # push rebased branch to overwrite remote
     ```
@@ -466,7 +472,7 @@ Note: This section is incomplete.
     you may want to clean up your fork:
 
     ```bash
-    git pull -ff upstream main       # update main to latest upstream version
+    git pull --ff upstream main       # update main to latest upstream version
     git checkout main -f                              # check out main branch
     git push origin --delete content/cn-relationships # delete remote branch
     git branch -D content/cn-relationships            # delete local branch
@@ -643,14 +649,14 @@ Trigger lint with `npm run lint`.
 
 ## License
 
-The Seedling project's [content/](../content/) is released under a
+The Seedling project,
+EXCEPT all material in the [content/](../content/) folder,
+is licensed to the public under the [MIT License](../LICENSE.md).
+
+The Seedling project's [content/](../content/) is licensed to the public under a
 [Creative Commons Attribution-ShareAlike 4.0 International Public License](
 ../content/LICENSE.md).
 
-The Seedling project,
-EXCEPT all material in the [content/](../content/) folder,
-is released under the [MIT License](../LICENSE.md).
-
 By contributing to the Seedling project,
-you agree to license your contribution under these terms,
+you agree to license your contribution to the public under these terms,
 and affirm that you have the right to do so.
