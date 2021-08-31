@@ -1,9 +1,3 @@
-This license covers everything in the Seedling project
-EXCEPT all material in the [content/](content/) folder,
-which is covered by a
-[Creative Commons Attribution-ShareAlike 4.0 International Public License](
-content/LICENSE.md).
-
 MIT License
 
 Copyright (c) 2020-2021 Norwegian Development Partners
