@@ -32,7 +32,7 @@ atom_feed:
 footer:
   links:
     - label: Privacy policy
-      url: "privacy-policy"
+      url: "/privacy-policy"
       icon: none
 
 defaults:
