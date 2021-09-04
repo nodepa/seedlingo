@@ -20,7 +20,7 @@
 
 logo: assets/images/seedling-logo-blue.svg
 title: Seedling
-description: >- # this means to ignore newlines until next yaml entry
+description: >- # ignore newlines until next yaml entry
   Seedling is a first-language digital learning tool for adults;
   a collection of literacy exercises that bundled content can make use of
   to provide lessons to learners unfamiliar with reading
@@ -33,6 +33,7 @@ footer:
   links:
     - label: Privacy policy
       url: "privacy-policy"
+      icon: none
 
 defaults:
   # _pages
