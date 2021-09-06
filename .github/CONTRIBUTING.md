@@ -32,7 +32,7 @@ https://docs.github.com/en/github/site-policy/github-community-guidelines).
   in [Seedling discussions](https://github.com/nodepa/seedling/discussions).
   Please stop by and say hi.
 - Explore the project *documentation*
-  in the [docs/](/docs) folder of the code repository.
+  at [GlobalSeedling - Get started](https://globalseedling.com/get-started).
 - Inspect the *nuts and bolts* of Seedling
   by cloning the [repository](https://github.com/nodepa/seedling).
   See the README-section on [Development setup](../README.md#development-setup)

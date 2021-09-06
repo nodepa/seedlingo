@@ -22,7 +22,7 @@
 
 <br/>
 <p align="center">
-  <a href="/docs/index.md">Documentation</a>
+  <a href="https://globalseedling.com/get-started">Documentation</a>
   ·
   <a href="/.github/CONTRIBUTING.md">Contributing</a>
 </p>
@@ -73,34 +73,62 @@ available at [种字.com](https://种字.com)
 
 ### Development setup
 
+#### Clone the Seedling repository
+
 ```sh
-# Clone the Seedling repository
 git clone git@github.com:nodepa/seedling.git
+```
 
-# Navigate to repo
+#### Navigate to repo
+
+```sh
 cd seedling/app
+```
 
-# Install recommended project version of Node & NPM
-# If you do not have NVM installed,
-# install Node.js according to your preference,
-# but use the version specified in the project's .nvmrc file.
-# If you do have NVM installed, it will use the .nvmrc version:
+#### Install Node & NPM
+
+If you do not have NVM installed,
+install Node.js according to your preference,
+but *use the version specified in the project's `.nvmrc` file*.
+If you do have NVM installed, these commands will use the `.nvmrc` version:
+
+```sh
 nvm install
 nvm use
+```
 
-# Install packages
+#### Install packages
+
+```sh
 npm install
+```
 
-# Start the app in local demo
+#### Start the app in local demo
+
+```sh
 npm start   # Then visit http://localhost:8080 in your web browser
+```
 
-# Run full test suite (scripts for install & lint & test:unit:coverage & test:e2e)
+#### Run full test suite
+
+This is a command that combines the scripts for
+
+- install
+- lint
+- test:unit:coverage
+- test:e2e
+
+```sh
 npm run verify
 ```
 
+### Misc
+
 Play around with your own content
-by replacing the `content/` folder with your own.
-See the [Seedling documentation](/docs/index.md) about formats.
+by replacing the `content/` folder (parallel to the `app/` folder)
+with your own.
+See the [Seedling documentation](https://globalseedling.com/get-started)
+about formats.
 
 ## Community
 
