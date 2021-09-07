@@ -18,7 +18,7 @@
     "typescript"],
   "main": "src/main.js",
   "dependencies": {
-    "@mdi/font": "^5.9.55",
+    "@mdi/font": "^6.1.95",
     "@mdi/js": "^5.0.45",
     "core-js": "^3.17.2",
     "register-service-worker": "^1.6.2",
