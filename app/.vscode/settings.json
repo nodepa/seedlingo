@@ -116,6 +116,7 @@
     "nslookup",
     "nvmrc",
     "omniauth",
+    "onremove",
     "printenv",
     "Putonghua",
     "PWAs",

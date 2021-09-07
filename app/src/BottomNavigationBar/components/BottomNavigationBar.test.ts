@@ -10,7 +10,7 @@ import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import InstructionDirective from '@/common/directives/InstructionDirective';
 
 // Helpers
-import { animate, pause, play } from '@/test-support/FunctionOverrides';
+import { animate, pause, play } from '@/test-support/Overrides';
 
 // Item under test
 import BottomNavigationBar from './BottomNavigationBar.vue';

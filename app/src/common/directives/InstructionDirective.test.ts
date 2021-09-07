@@ -6,7 +6,7 @@ import Badge from '@/common/components/Badge.vue';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 
 // Helpers
-import { pause, play } from '@/test-support/FunctionOverrides';
+import { pause, play } from '@/test-support/Overrides';
 
 // Item under test
 import {

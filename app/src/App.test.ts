@@ -9,7 +9,7 @@ import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import InstructionDirective from '@/common/directives/InstructionDirective';
 
 // Helpers
-import { animate, play } from '@/test-support/FunctionOverrides';
+import { animate, play } from '@/test-support/Overrides';
 
 // Item under test
 import App from '@/App.vue';
