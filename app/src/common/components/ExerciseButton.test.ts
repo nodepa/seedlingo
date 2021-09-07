@@ -4,7 +4,7 @@ import Vuetify from 'vuetify';
 
 // Helpers
 import { shallowMount, Wrapper } from '@vue/test-utils';
-import { animate } from '@/test-support/FunctionOverrides';
+import { animate } from '@/test-support/Overrides';
 
 // Item under test
 import ExerciseButton from './ExerciseButton.vue';

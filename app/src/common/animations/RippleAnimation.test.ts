@@ -4,7 +4,7 @@ import Vuetify from 'vuetify';
 
 // Helpers
 import { shallowMount, Wrapper } from '@vue/test-utils';
-import { Animation, animate } from '@/test-support/FunctionOverrides';
+import { Animation, animate } from '@/test-support/Overrides';
 
 // Item under test
 import RippleAnimation from './RippleAnimation.vue';

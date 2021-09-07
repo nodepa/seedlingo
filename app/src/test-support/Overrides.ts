@@ -19,6 +19,10 @@ export class Animation {
     /* do nothing */
   }
 
+  commitStyles(): void {
+    /* do nothing */
+  }
+
   currentTime = null;
 
   dispatchEvent(): boolean {
@@ -41,15 +45,21 @@ export class Animation {
 
   onfinish = null;
 
+  onremove = null;
+
   pause(): void {
+    /* do nothing */
+  }
+
+  pending = false;
+
+  persist(): void {
     /* do nothing */
   }
 
   play(): void {
     /* do nothing */
   }
-
-  pending = false;
 
   playState = 'idle' as AnimationPlayState;
 
@@ -63,17 +73,19 @@ export class Animation {
     /* do nothing */
   }
 
-  reverse(): void {
-    /* do nothing */
-  }
+  replaceState = 'active' as AnimationReplaceState;
 
-  updatePlaybackRate(): void {
+  reverse(): void {
     /* do nothing */
   }
 
   startTime = null;
 
   timeline = document.timeline;
+
+  updatePlaybackRate(): void {
+    /* do nothing */
+  }
 
   // eslint-disable-next-line no-useless-constructor
   constructor(
