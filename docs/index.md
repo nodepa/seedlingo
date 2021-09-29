@@ -43,7 +43,7 @@ feature_row:
     Match up blue explanation tiles with gray word tiles"
   - image_path: /assets/images/cloze-multiple-choice.png
     excerpt: "<b>Cloze multiple-choice</b><br/>
-    Fill-the-bland with the appropriate word"
+    Fill-the-blank with the appropriate word"
 ---
 {% include feature_row id="feature_row_intro" type="center" %}
 {% include feature_row %}
