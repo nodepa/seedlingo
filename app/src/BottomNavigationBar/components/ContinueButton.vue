@@ -1,73 +1,64 @@
-<template>
-  <transition>
-    <v-btn
-      v-if="showContinueButton()"
-      ref="continueButton"
-      v-instruction="continueInstructionPath"
-      color="success"
-      data-test="continue-button"
-      icon
-      @click="$store.commit('showContinueButton', false)"
-    >
-      <v-icon size="50" color="success">{{ mdiForward }}</v-icon>
-    </v-btn>
-  </transition>
-</template>
-
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import { computed, ComputedRef, ref, watch } from 'vue';
+import { useStore } from 'vuex';
 import { mdiForward } from '@mdi/js';
 import ContentConfig from '@/Lessons/ContentConfig';
 
-@Component
-export default class ContinueButton extends Vue {
-  // eslint-disable-next-line class-methods-use-this
-  data(): { mdiForward: string; continueInstructionPath: string } {
-    return {
-      mdiForward,
-      continueInstructionPath: 'await-async-path-in-mounted',
-    };
-  }
+const continueButton = ref(null);
+watch(
+  () => continueButton.value,
+  (continueButton) => {
+    if (continueButton) {
+      const animation = continueButton.$el.animate(
+        [
+          { backgroundColor: 'inherit' },
+          {
+            backgroundColor: `${continueButton.$vuetify.theme.themes[
+              continueButton.$vuetify.theme.current
+            ].colors.primary.toString()}66`,
+          },
+          { backgroundColor: 'inherit' },
+        ],
+        { duration: 1300, iterations: Infinity },
+      );
 
-  showContinueButton(): boolean {
-    return this.$store.state.showContinueButton;
-  }
+      continueButton.$el.addEventListener('click', () => {
+        animation.cancel();
+      });
+    }
+  },
+);
 
-  mounted(): void {
-    ContentConfig.getInstructionPathFor('continueButton').then(
-      ({ default: path }) => {
-        this.$data.continueInstructionPath = path;
-      },
-    );
+const store = useStore();
+const showContinueButton: ComputedRef<boolean> = computed(() => {
+  return store.state.showContinueButton;
+});
 
-    this.$watch(
-      () => {
-        return this.showContinueButton();
-      },
-      (show: boolean) => {
-        if (show) {
-          const animation = (this.$refs.continueButton as Vue).$el.animate(
-            [
-              { backgroundColor: 'inherit' },
-              {
-                backgroundColor: `${this.$vuetify.theme.currentTheme.success}66`,
-              },
-              { backgroundColor: 'inherit' },
-            ],
-            { duration: 1300, iterations: Infinity },
-          );
-
-          (this.$refs.continueButton as Vue).$el.addEventListener(
-            'click',
-            () => {
-              animation.cancel();
-            },
-          );
-        }
-      },
-    );
-  }
-}
+const continueInstructionPath: ComputedRef<string> = computed(() => {
+  return ContentConfig.getInstructionPathFor('continueButton');
+});
 </script>
 
-<style lang="stylus"></style>
+<template>
+  <v-btn
+    v-if="showContinueButton"
+    icon
+    ref="continueButton"
+    data-test="continue-button"
+    @click="store.dispatch('setShowContinueButton', false)"
+    v-instruction="continueInstructionPath"
+  >
+    <v-icon
+      :icon="mdiForward"
+      size="3rem"
+      color="success"
+      aria-hidden="false"
+    />
+  </v-btn>
+</template>
+
+<style scoped>
+.v-bottom-navigation .v-btn {
+  opacity: 1;
+}
+</style>

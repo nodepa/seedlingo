@@ -1,37 +1,38 @@
-import { shallowMount, Wrapper } from '@vue/test-utils';
+// Libraries, plugins, components
+import store from '@/common/store/RootStore';
 
-import getTestData from '../data/MatchingTestData';
+// Helpers
+import { mount, VueWrapper } from '@vue/test-utils';
+import vuetify from '@/test-support/VuetifyInstance';
+import getTestData from '@/Matching/data/MatchingTestData';
+import { animate, play } from '@/test-support/Overrides';
+window.Element.prototype.animate = animate;
+HTMLMediaElement.prototype.play = play;
 
+// Item under test
 import Matching from './Matching.vue';
 import { MatchingItem } from '../MatchingTypes';
 
 describe('Matching', () => {
-  let wrapper: Wrapper<Vue>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let wrapper: VueWrapper<any>;
 
   beforeEach(() => {
-    wrapper = shallowMount(Matching, {
-      mocks: {
-        $store: { commit: () => true },
-        $route: { params: { id: 'test' } },
-      },
-      propsData: {
+    wrapper = mount(Matching, {
+      // shallow: true,
+      props: {
         exerciseProp: getTestData(),
       },
+      global: {
+        plugins: [store, vuetify],
+      },
     });
-  });
-
-  afterEach(() => {
-    wrapper.destroy();
   });
 
   describe('initial state', () => {
-    it('is a Vue instance', () => {
-      expect(wrapper.isVueInstance).toBeTruthy();
-    });
-
     it('has correct defaults', () => {
-      expect(wrapper.vm.$data.localExerciseItems.length).toBe(8);
-      expect(wrapper.vm.$data.selected).toBe(-1);
+      expect(wrapper.vm.exerciseItems.length).toBe(8);
+      expect(wrapper.vm.selected).toBe(-1);
     });
   });
 
@@ -40,16 +41,16 @@ describe('Matching', () => {
       // #############
       // ### setup ###
       // #############
-      expect(wrapper.vm.$data.selected).toBe(-1);
-      await wrapper.setData({ selected: 1 });
-      expect(wrapper.vm.$data.selected).toBe(1);
+      expect(wrapper.vm.selected).toBe(-1);
+      await wrapper.find('[data-test="option-button-2"]').trigger('click');
+      expect(wrapper.vm.selected).toBe(1);
 
       // ##############
       // ### assert ###
       // ##############
       let countSelected = 0;
       let countMatched = 0;
-      wrapper.vm.$data.localExerciseItems.forEach((option: MatchingItem) => {
+      wrapper.vm.exerciseItems.forEach((option: MatchingItem) => {
         if (option.selected) {
           countSelected += 1;
         }
@@ -60,8 +61,7 @@ describe('Matching', () => {
 
       expect(countSelected).toEqual(1);
       expect(countMatched).toEqual(0);
-      const selectedOption = wrapper.vm.$data
-        .localExerciseItems[1] as MatchingItem;
+      const selectedOption = wrapper.vm.exerciseItems[1] as MatchingItem;
       const preSelectionOption = getTestData()[1] as MatchingItem;
       expect(selectedOption.value).toBe(preSelectionOption.value);
       expect(selectedOption.match).toBe(preSelectionOption.match);
@@ -83,20 +83,24 @@ describe('Matching', () => {
       const secondIndex = 0;
       const firstIsWord = true;
       const expectedWord = '二';
-      let { localExerciseItems } = wrapper.vm.$data;
-      const firstSelection = localExerciseItems[firstIndex] as MatchingItem;
-      const secondSelection = localExerciseItems[secondIndex] as MatchingItem;
+      let { exerciseItems } = wrapper.vm;
+      const firstSelection = exerciseItems[firstIndex] as MatchingItem;
+      const secondSelection = exerciseItems[secondIndex] as MatchingItem;
       expect(firstSelection.match).toBe(secondIndex);
       expect(secondSelection.match).toBe(firstIndex);
 
       // select option 1
-      expect(wrapper.vm.$data.selected).toBe(-1);
-      await wrapper.setData({ selected: firstIndex });
-      expect(wrapper.vm.$data.selected).toBe(firstIndex);
+      expect(wrapper.vm.selected).toBe(-1);
+      await wrapper
+        .find(`[data-test="option-button-${firstIndex + 1}"]`)
+        .trigger('click');
+      expect(wrapper.vm.selected).toBe(firstIndex);
       expect(firstSelection.selected).toBe(true);
 
       // select option 3
-      await wrapper.setData({ selected: secondIndex });
+      await wrapper
+        .find(`[data-test="option-button-${secondIndex + 1}"]`)
+        .trigger('click');
 
       // ##############
       // ### assert ###
@@ -110,7 +114,7 @@ describe('Matching', () => {
       ] as MatchingItem;
 
       // deselects after processing match
-      expect(wrapper.vm.$data.selected).toBe(-1);
+      expect(wrapper.vm.selected).toBe(-1);
       expect(firstSelection.selected).toBe(false);
       expect(secondSelection.selected).toBe(false);
 
@@ -126,11 +130,11 @@ describe('Matching', () => {
       expect(firstSelection.color).toBe(secondSelection.color);
 
       // re-orders matched items
-      localExerciseItems = wrapper.vm.$data.localExerciseItems;
+      exerciseItems = wrapper.vm.exerciseItems;
       const newFirstIndex =
-        Object.values(localExerciseItems).indexOf(firstSelection);
+        Object.values(exerciseItems).indexOf(firstSelection);
       const newSecondIndex =
-        Object.values(localExerciseItems).indexOf(secondSelection);
+        Object.values(exerciseItems).indexOf(secondSelection);
       expect(newFirstIndex).toBe(firstIndex > secondIndex ? 1 : 0);
       expect(newSecondIndex).toBe(firstIndex > secondIndex ? 0 : 1);
       expect(firstSelection.match).toBe(newSecondIndex);
@@ -164,26 +168,26 @@ describe('Matching', () => {
       expect(originalOptions[6].match).toBe(5);
       expect(originalOptions[7].match).toBe(3);
       // verify new sort order
-      expect(localExerciseItems[0].value).toEqual(originalOptions[0].value);
-      expect(localExerciseItems[1].value).toEqual(originalOptions[2].value);
-      expect(localExerciseItems[2].value).toEqual(originalOptions[1].value);
-      expect(localExerciseItems[3].value).toEqual(originalOptions[3].value);
-      expect(localExerciseItems[4].value).toEqual(originalOptions[4].value);
-      expect(localExerciseItems[5].value).toEqual(originalOptions[5].value);
-      expect(localExerciseItems[6].value).toEqual(originalOptions[6].value);
-      expect(localExerciseItems[7].value).toEqual(originalOptions[7].value);
+      expect(exerciseItems[0].value).toEqual(originalOptions[0].value);
+      expect(exerciseItems[1].value).toEqual(originalOptions[2].value);
+      expect(exerciseItems[2].value).toEqual(originalOptions[1].value);
+      expect(exerciseItems[3].value).toEqual(originalOptions[3].value);
+      expect(exerciseItems[4].value).toEqual(originalOptions[4].value);
+      expect(exerciseItems[5].value).toEqual(originalOptions[5].value);
+      expect(exerciseItems[6].value).toEqual(originalOptions[6].value);
+      expect(exerciseItems[7].value).toEqual(originalOptions[7].value);
       // verify new matches
-      expect(localExerciseItems[0].match).toBe(1);
-      expect(localExerciseItems[1].match).toBe(0);
-      expect(localExerciseItems[2].match).toBe(4);
-      expect(localExerciseItems[3].match).toBe(7);
-      expect(localExerciseItems[4].match).toBe(2);
-      expect(localExerciseItems[5].match).toBe(6);
-      expect(localExerciseItems[6].match).toBe(5);
-      expect(localExerciseItems[7].match).toBe(3);
+      expect(exerciseItems[0].match).toBe(1);
+      expect(exerciseItems[1].match).toBe(0);
+      expect(exerciseItems[2].match).toBe(4);
+      expect(exerciseItems[3].match).toBe(7);
+      expect(exerciseItems[4].match).toBe(2);
+      expect(exerciseItems[5].match).toBe(6);
+      expect(exerciseItems[6].match).toBe(5);
+      expect(exerciseItems[7].match).toBe(3);
 
       // verify state
-      expect(wrapper.vm.$data.selected).toBe(-1);
+      expect(wrapper.vm.selected).toBe(-1);
     });
 
     it('matches all matches with re-ordering', async () => {
@@ -203,41 +207,41 @@ describe('Matching', () => {
       // 7: 三 -> 6    => 🌴 -> 4    => 🌴 -> 5    => 术 -> 8    => 术 -> 8
       // 8: 四 -> 4    => 四 -> 6    => 四 -> 6    => 🌴 -> 7    => 🌴 -> 7
       // match 3️⃣+三(6+7)
-      await wrapper.setData({ selected: 5 });
-      await wrapper.setData({ selected: 6 });
+      await wrapper.find('[data-test="option-button-6"]').trigger('click');
+      await wrapper.find('[data-test="option-button-7"]').trigger('click');
       // match 二+2️⃣(5+3)
-      await wrapper.setData({ selected: 4 });
-      await wrapper.setData({ selected: 2 });
+      await wrapper.find('[data-test="option-button-5"]').trigger('click');
+      await wrapper.find('[data-test="option-button-3"]').trigger('click');
       // match 四+4️⃣(8+6)
-      await wrapper.setData({ selected: 7 });
-      await wrapper.setData({ selected: 5 });
+      await wrapper.find('[data-test="option-button-8"]').trigger('click');
+      await wrapper.find('[data-test="option-button-6"]').trigger('click');
       // match 术+🌴(7+8)
-      await wrapper.setData({ selected: 6 });
-      await wrapper.setData({ selected: 7 });
+      await wrapper.find('[data-test="option-button-7"]').trigger('click');
+      await wrapper.find('[data-test="option-button-8"]').trigger('click');
 
       // ##############
       // ### assert ###
       // ##############
       // expected new order
-      const { localExerciseItems } = wrapper.vm.$data;
+      const { exerciseItems } = wrapper.vm;
       // verify new sort order
-      expect(localExerciseItems[0].value).toEqual(originalOptions[5].value);
-      expect(localExerciseItems[1].value).toEqual(originalOptions[6].value);
-      expect(localExerciseItems[2].value).toEqual(originalOptions[0].value);
-      expect(localExerciseItems[3].value).toEqual(originalOptions[2].value);
-      expect(localExerciseItems[4].value).toEqual(originalOptions[3].value);
-      expect(localExerciseItems[5].value).toEqual(originalOptions[7].value);
-      expect(localExerciseItems[6].value).toEqual(originalOptions[1].value);
-      expect(localExerciseItems[7].value).toEqual(originalOptions[4].value);
+      expect(exerciseItems[0].value).toEqual(originalOptions[5].value);
+      expect(exerciseItems[1].value).toEqual(originalOptions[6].value);
+      expect(exerciseItems[2].value).toEqual(originalOptions[0].value);
+      expect(exerciseItems[3].value).toEqual(originalOptions[2].value);
+      expect(exerciseItems[4].value).toEqual(originalOptions[3].value);
+      expect(exerciseItems[5].value).toEqual(originalOptions[7].value);
+      expect(exerciseItems[6].value).toEqual(originalOptions[1].value);
+      expect(exerciseItems[7].value).toEqual(originalOptions[4].value);
       // verify new matches
-      expect(localExerciseItems[0].match).toBe(1);
-      expect(localExerciseItems[1].match).toBe(0);
-      expect(localExerciseItems[2].match).toBe(3);
-      expect(localExerciseItems[3].match).toBe(2);
-      expect(localExerciseItems[4].match).toBe(5);
-      expect(localExerciseItems[5].match).toBe(4);
-      expect(localExerciseItems[6].match).toBe(7);
-      expect(localExerciseItems[7].match).toBe(6);
+      expect(exerciseItems[0].match).toBe(1);
+      expect(exerciseItems[1].match).toBe(0);
+      expect(exerciseItems[2].match).toBe(3);
+      expect(exerciseItems[3].match).toBe(2);
+      expect(exerciseItems[4].match).toBe(5);
+      expect(exerciseItems[5].match).toBe(4);
+      expect(exerciseItems[6].match).toBe(7);
+      expect(exerciseItems[7].match).toBe(6);
     });
   });
 
@@ -249,9 +253,9 @@ describe('Matching', () => {
       // getSpacing(itemCount, index)
       expect(matching.getSpacing(0, 0)).toBe('');
       expect(matching.getSpacing(1, 0)).toBe('');
-      expect(matching.getSpacing(2, 0)).toBe('mr-n4');
-      expect(matching.getSpacing(2, 1)).toBe('ml-n4');
-      expect(matching.getSpacing(3, 1)).toBe('mx-n4');
+      expect(matching.getSpacing(2, 0)).toBe('mr-n2');
+      expect(matching.getSpacing(2, 1)).toBe('ml-n2');
+      expect(matching.getSpacing(3, 1)).toBe('mx-n2');
     });
   });
 });

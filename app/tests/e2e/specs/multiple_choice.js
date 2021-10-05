@@ -1,3 +1,9 @@
+const app = '[data-test="app"]';
+const loader = '[data-test="loader"]';
+const getInstructionComponent = '[data-test="get-instruction-component"]';
+const errorColor = 'rgb(229, 57, 53)';
+const successColor = 'rgb(0, 150, 136)';
+
 describe('马丽 interacts with the "multiple-choice" system', () => {
   it(
     'Displays the multiple-choice screen with ' +
@@ -16,11 +22,9 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
           cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
         },
       });
-      cy.get('[data-test="loader"]').should('not.be.visible');
-      cy.get('[data-test="app"]').should('be.visible');
-      cy.get('[data-test="get-instructions-component"]').should(
-        'not.be.visible',
-      );
+      cy.get(loader).should('not.be.visible');
+      cy.get(app).should('be.visible');
+      cy.get(getInstructionComponent).should('not.exist');
       cy.get('[data-test="item-under-test-button"]').should('be.visible');
       // 3 ani.animate called: 1 toggle-instructions, 2 item-under-test--button
       cy.get('@animation.animate').should('have.callCount', 3);
@@ -72,8 +76,9 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       cy.get('@option1')
         // click incorrect option
         .click()
+        .wait(20)
         // item turned red
-        .should('have.css', 'background-color', 'rgb(255, 82, 82)');
+        .should('have.css', 'background-color', errorColor);
       // item audio plays
       cy.get('@audio.play').should('have.callCount', 3); // 2 + 1
       //   item buzzes
@@ -130,11 +135,9 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
           cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
         },
       });
-      cy.get('[data-test="loader"]').should('not.be.visible');
-      cy.get('[data-test="app"]').should('be.visible');
-      cy.get('[data-test="get-instructions-component"]').should(
-        'not.be.visible',
-      );
+      cy.get(loader).should('not.be.visible');
+      cy.get(app).should('be.visible');
+      cy.get(getInstructionComponent).should('not.exist');
       cy.get('[data-test="item-under-test-button"]')
         .should('be.visible')
         .then((el) => {
@@ -154,22 +157,16 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
       cy.get('[data-test="option-button-1"]')
         .as('option1')
         .should('be.visible')
-        .then((el) => {
-          cy.contains(' 一 ').should('match', el);
-        });
+        .should('contain', '一');
       cy.get('[data-test="option-button-2"]')
         .as('option2')
         .should('be.visible')
-        .then((el) => {
-          cy.contains('四').should('match', el);
-        });
+        .should('contain', '四');
       cy.get('[data-test="option-button-3"]')
         .as('option3')
         .should('be.visible')
-        .then((el) => {
-          cy.contains('三').should('match', el);
-        });
-      cy.get('[data-test="option-button-4"]').should('not.be.visible');
+        .should('contain', '三');
+      cy.get('[data-test="option-button-4"]').should('not.exist');
 
       cy.log('**3. 马丽 taps wrong word/non-corresponding word**');
       cy.log('-- sees the word vibrate, flash red');
@@ -183,8 +180,8 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
       cy.get('@option1')
         // click incorrect option
         .click()
-        // item turned red
-        .should('have.css', 'background-color', 'rgb(255, 82, 82)');
+        .wait(20)
+        .should('have.css', 'background-color', errorColor);
       // item audio plays
       cy.get('@audio.play').should('have.callCount', 1); // 0 + 1
       //   item buzzes
@@ -203,10 +200,10 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
       cy.log('-- hears the audio for the correct word');
       cy.log('-- sees the other words become disabled and non-interactive');
       cy.log('-- sees the continue button available');
-      cy.get('[data-test="continue-button"').should('not.be.visible');
+      cy.get('[data-test="continue-button"').should('not.exist');
       cy.get('@option3')
         .click()
-        .should('have.css', 'background-color', 'rgb(76, 175, 80)');
+        .should('have.css', 'background-color', successColor);
       cy.get('@option2').should('be.disabled');
       cy.get('[data-test="continue-button"').should('be.visible');
       // end

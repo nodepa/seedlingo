@@ -1,92 +1,91 @@
+<script setup lang="ts">
+import { computed, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+import logoUrl from '@/assets/logo/logo.svg';
+import BottomNavigationBar from '@/BottomNavigationBar/components/BottomNavigationBar.vue';
+import GetInstruction from '@/Instruction/components/GetInstruction.vue';
+import InstructionOverlay from '@/Instruction/components/InstructionOverlay.vue';
+
+const route = useRoute();
+const store = useStore();
+
+const branch = ref(process.env.VUE_APP_BRANCH);
+const jobId = ref(
+  process.env.VUE_APP_JOB_ID
+    ? (process.env.VUE_APP_JOB_ID as string).replace(/^0+/, '')
+    : '',
+);
+
+const showGetInstructionGraphic = computed(
+  () =>
+    route.name?.toString() === 'Home' && store.state.showGetInstructionGraphic,
+);
+
+const isInstructionMode = computed(() => {
+  return store.state.instructionStore.isInstructionMode;
+});
+
+interface Props {
+  theme?: string;
+}
+const props = withDefaults(defineProps<Props>(), {
+  theme: 'light',
+});
+const theme = ref(props.theme);
+const toggleTheme = () => {
+  theme.value = theme.value === 'light' ? 'dark' : 'light';
+};
+</script>
+
 <template>
-  <v-app data-test="app">
-    <v-app-bar app flat color="background">
+  <v-app data-test="app" :theme="theme">
+    <v-app-bar app style="z-index: 5">
       <div class="d-flex align-center">
         <v-img
           alt="立爱种字 Logo"
-          class="shrink mr-2"
-          contain
+          class="shrink mr-2 bg-primary rounded-pill"
           transition="scale-transition"
-          src="@/assets/logo/logo.svg"
+          :src="logoUrl"
           width="40"
           height="40"
-          :style="`border-radius: 100%; background-color: ${$vuetify.theme.currentTheme.primary}`"
-          @click="$vuetify.theme.dark = !$vuetify.theme.dark"
+          @click="toggleTheme"
         />
+        <span class="shrink mt-1" min-width="100" width="100">立爱种字</span>
         <span
-          :class="`shrink mt-1${branch && jobId ? '' : ' hidden-sm-and-down'}`"
-          min-width="100"
-          width="100"
-        >
-          立爱种字
-        </span>
-        <span class="caption white--text" if="branch && jobId"
+          class="caption text-white"
+          v-if="branch && jobId && theme == 'dark'"
           >({{ branch }}/{{ jobId }})
         </span>
       </div>
     </v-app-bar>
 
     <v-main>
-      <GetInstructions v-if="showGetInstructionsGraphic" />
-      <router-view v-if="!showGetInstructionsGraphic" />
-      <v-overlay
-        v-if="isInstructionsMode"
-        z-index="3"
-        data-test="instructions-overlay"
-      />
+      <InstructionOverlay v-if="isInstructionMode" />
+      <GetInstruction v-if="showGetInstructionGraphic" />
+      <router-view v-if="!showGetInstructionGraphic" />
     </v-main>
 
     <BottomNavigationBar
-      :initiate-home-button-disabled="showGetInstructionsGraphic"
+      :home-button-disabled="showGetInstructionGraphic"
+      style="z-index: 5"
     />
   </v-app>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
-import BottomNavigationBar from '@/BottomNavigationBar/components/BottomNavigationBar.vue';
-import GetInstructions from '@/Instructions/components/GetInstructions.vue';
-
-@Component({
-  // eslint-disable-next-line no-undef
-  components: {
-    BottomNavigationBar,
-    GetInstructions,
-  },
-})
-export default class App extends Vue {
-  // eslint-disable-next-line class-methods-use-this
-  data(): { branch: string; jobId: string } {
-    return {
-      branch: process.env.VUE_APP_BRANCH,
-      jobId: process.env.VUE_APP_JOB_ID
-        ? process.env.VUE_APP_JOB_ID.replace(/^0+/, '')
-        : '',
-    };
-  }
-
-  get showGetInstructionsGraphic(): boolean {
-    return (
-      this.$route.name === 'Home' &&
-      this.$store.state.instructionsStore.showGetInstructionsGraphic
-    );
-  }
-
-  get isInstructionsMode(): boolean {
-    return this.$store.state.instructionsStore.isInstructionsMode;
-  }
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  user-select: none;
+  overflow-x: hidden;
 }
-</script>
-
-<style lang="stylus">
-#app
-  font-family Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  user-select none
-
-a
-  text-decoration none
+a {
+  text-decoration: none;
+}
+.v-icon__svg {
+  width: inherit;
+}
 </style>

@@ -1,3 +1,65 @@
+<script setup lang="ts">
+import { ComponentPublicInstance, ref, watch } from 'vue';
+import RippleAnimation from '@/common/animations/RippleAnimation.vue';
+
+interface Props {
+  playing?: boolean;
+  color?: string;
+  disabled?: boolean;
+  height?: string;
+  buzzing?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  playing: false,
+  color: '',
+  disabled: false,
+  height: '100%',
+  buzzing: false,
+});
+
+const emit = defineEmits<{
+  (event: 'update:buzzing', buzzing: boolean): void;
+  (event: 'click'): void;
+}>();
+
+watch(
+  () => props.buzzing,
+  (buzzing: boolean) => {
+    if (buzzing) {
+      playAnimation();
+    }
+  },
+);
+
+const button = ref<ComponentPublicInstance | null>(null);
+
+let animation: Animation;
+function playAnimation(): void {
+  if (animation) {
+    animation.play();
+  } else {
+    const keyFrames = [
+      { transform: 'translate(0px, 0px)' },
+      { transform: 'translate(-3px, 2px)' },
+      { transform: 'translate(2px, 2px)' },
+      { transform: 'translate(0px, -2px)' },
+      { transform: 'translate(-2px, 3px)' },
+      { transform: 'translate(0px, 0px)' },
+    ];
+    animation = button.value?.$el.animate(keyFrames, {
+      duration: 200,
+      iterations: 2,
+      easing: 'ease-in-out',
+    });
+
+    animation.onfinish = () => {
+      emit('update:buzzing', false);
+    };
+  }
+}
+</script>
+
 <template>
   <v-btn
     ref="button"
@@ -6,7 +68,7 @@
     elevation="5"
     :disabled="disabled"
     :height="height"
-    :color="errorColor ? errorColor : color"
+    :class="{ 'bg-error': buzzing }"
     @click="$emit('click')"
   >
     <slot />
@@ -14,75 +76,5 @@
     <RippleAnimation :playing="playing" :delay="200" />
   </v-btn>
 </template>
-
-<script lang="ts">
-import { Component, Prop, PropSync, Vue, Watch } from 'vue-property-decorator';
-import RippleAnimation from '@/common/animations/RippleAnimation.vue';
-
-@Component({
-  // eslint-disable-next-line no-undef
-  components: {
-    RippleAnimation,
-  },
-})
-export default class ExerciseButton extends Vue {
-  animation?: Animation;
-
-  // eslint-disable-next-line class-methods-use-this
-  data(): { errorColor: string } {
-    return {
-      errorColor: '',
-    };
-  }
-
-  @Prop({ default: false }) readonly playing!: boolean;
-
-  @Prop({ default: '' }) readonly color!: string;
-
-  @Prop({ default: false }) readonly disabled!: boolean;
-
-  @Prop({ default: '100%' }) readonly height!: string;
-
-  @PropSync('buzzing', { type: Boolean, default: false })
-  syncedBuzzing!: boolean;
-
-  @Watch('buzzing')
-  onBuzzingChanged(buzzing: boolean): void {
-    if (buzzing) {
-      this.$data.errorColor = this.$vuetify.theme.currentTheme.error as string;
-      this.playAnimation();
-    } else {
-      this.$data.errorColor = '';
-    }
-  }
-
-  playAnimation(): void {
-    if (this.animation) {
-      this.animation.play();
-    } else {
-      const keyFrames = [
-        { transform: 'translate(0px, 0px)' },
-        { transform: 'translate(-3px, 2px)' },
-        { transform: 'translate(2px, 2px)' },
-        { transform: 'translate(0px, -2px)' },
-        { transform: 'translate(-2px, 3px)' },
-        { transform: 'translate(0px, 0px)' },
-      ];
-      this.animation = ((this.$refs.button as Vue).$el as HTMLElement).animate(
-        keyFrames,
-        {
-          duration: 200,
-          iterations: 2,
-          easing: 'ease-in-out',
-        },
-      );
-
-      this.animation.onfinish = () => {
-        this.syncedBuzzing = false;
-      };
-    }
-  }
-}
-</script>
 
 <style scoped></style>

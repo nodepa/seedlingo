@@ -4,17 +4,19 @@
     "module": "esnext",
     "strict": true,
     "jsx": "preserve",
-    "importHelpers": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "experimentalDecorators": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
     "sourceMap": true,
     "types": [
-      "webpack-env",
+      "jest",
+      "node",
       "vuetify",
-      "jest"
+      "webpack-env"
     ],
     "baseUrl": ".",
     "paths": {

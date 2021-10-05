@@ -1,30 +1,45 @@
 /**
  * Requires
- * - vuex, defaulting to an instructionsStore module storing an
- *   isInstructionsMode state
+ * - vuex, defaulting to an instructionStore module storing an
+ *   isInstructionMode state
  * - directive being used on a vue component, not a HTML element
  *
  * Setup
- * import InstructionDirective from '.common/directives/InstructionDirective';
- * Vue.use(InstructionDirective, { Badge: Badge, Animation: Animation });
+ * import InstructionDirective from './common/directives/InstructionDirective';
+ * app.use(InstructionDirective, { Badge: MyBadge });
  *   where:
- *     - Badge is a Vue component overlaid the host element in instructions-mode
- *     - Animation is a Vue component animating when playing the instruction
+ *     - MyBadge is a Vue component overlaid the host element in instruction-mode
+ *       with the optional prop 'playing' indicating to animate or not
  *
  * Basic Usage
- * <v-btn v-instructions="./path/to/instructions.mp3" />
+ * <v-btn v-instruction="./path/to/instruction.mp3" />
  */
 
-import _Vue, { VNode, VNodeDirective, VueConstructor } from 'vue';
-import { MutationPayload } from 'vuex';
+import {
+  App,
+  ComponentPublicInstance,
+  createApp,
+  DefineComponent,
+  DirectiveBinding,
+  ref,
+} from 'vue';
+import { MutationPayload, Store } from 'vuex';
 
 export interface InstructionElement extends HTMLElement {
   $instruction?: Instruction;
 }
 
-export interface InstructionsOptions {
-  Badge: VueConstructor;
-  Animation: VueConstructor;
+export interface InstructionOptions {
+  // eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any
+  Badge: DefineComponent<{}, {}, any>;
+}
+
+export interface InstructionRootState {
+  instructionStore: InstructionState;
+}
+
+export interface InstructionState {
+  isInstructionMode: boolean;
 }
 
 export class Instruction {
@@ -34,51 +49,48 @@ export class Instruction {
 
   private audioElement: HTMLAudioElement;
 
-  private vm: Vue;
+  private vm: ComponentPublicInstance;
 
-  private badge: Vue;
-
-  private animation1: Vue;
-
-  private animation2: Vue;
+  private badge: ComponentPublicInstance;
 
   private originalStyle: {
     zIndex: string;
   };
 
-  private unsubscribeInstructionsModeWatch?: VoidFunction;
+  private unsubscribeInstructionModeWatch?: VoidFunction;
+  private store: Store<InstructionRootState>;
+
+  private showAudioRipple = ref(false);
 
   constructor(
     hostElement: InstructionElement,
     audioUrl: string,
-    vm: Vue,
-    Badge: VueConstructor,
-    Animation: VueConstructor,
+    vm: ComponentPublicInstance,
+    // eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any
+    Badge: DefineComponent<{}, {}, any>,
+    store: Store<InstructionRootState>,
   ) {
     this.hostElement = hostElement;
     this.audioElement = document.createElement('audio');
     this.vm = vm;
 
-    this.badge = new Badge().$mount();
-    this.animation1 = new Animation().$mount();
-    this.animation2 = new Animation({
-      propsData: { delay: 200 },
-    }).$mount();
-    this.badge.$el.appendChild(this.animation1.$el);
-    this.badge.$el.appendChild(this.animation2.$el);
+    const badgeDiv = document.createElement('div');
+    this.badge = createApp(Badge, { playing: this.showAudioRipple }).mount(
+      badgeDiv,
+    );
+
+    this.store = store;
 
     this.originalStyle = {
       zIndex: this.hostElement.style.zIndex,
     };
 
-    this.makeResponsiveToInstructionsModeChange();
-    this.makeResponsiveToThemeModeChange();
-    // In case already isInstructionsMode
-    if (this.vm.$store.state.instructionsStore.isInstructionsMode) {
+    this.makeResponsiveToInstructionModeChange();
+    // In case already isInstructionMode
+    if (this.store.state.instructionStore?.isInstructionMode) {
       this.addEventListener();
       this.addInstructionStyle();
     }
-
     this.audioElement.src = audioUrl;
     this.addAudioListeners();
     this.hostElement.appendChild(this.audioElement);
@@ -107,7 +119,7 @@ export class Instruction {
 
   public addInstructionStyle(): void {
     this.hostElement.style.zIndex = '4';
-    this.hostElement.classList.add('accent');
+    this.hostElement.classList.add('bg-info');
     if (this.hostElement.firstChild) {
       this.hostElement.insertBefore(
         this.badge.$el,
@@ -120,7 +132,7 @@ export class Instruction {
 
   public removeInstructionStyle(): void {
     this.hostElement.style.zIndex = this.originalStyle.zIndex;
-    this.hostElement.classList.remove('accent');
+    this.hostElement.classList.remove('bg-info');
     if (this.hostElement.getElementsByClassName(this.badge.$el.className)[0]) {
       this.hostElement.removeChild(this.badge.$el);
     }
@@ -136,8 +148,8 @@ export class Instruction {
   }
 
   public unsubscribe(): void {
-    if (this.unsubscribeInstructionsModeWatch) {
-      this.unsubscribeInstructionsModeWatch();
+    if (this.unsubscribeInstructionModeWatch) {
+      this.unsubscribeInstructionModeWatch();
     } else {
       throw new Error(
         'The v-instruction directive is trying to unsubscribe from watching the vuex state, but no unsubscribe function has been provided.',
@@ -154,10 +166,7 @@ export class Instruction {
 
   public addAudioListeners(): void {
     this.audioElement.addEventListener('playing', () => {
-      if (this.animation1 && this.animation2) {
-        this.animation1.$props.playing = true;
-        this.animation2.$props.playing = true;
-      }
+      this.showAudioRipple.value = true;
       Instruction.AudioCollection.forEach((audioElement) => {
         if (audioElement !== this.audioElement && !audioElement.paused) {
           audioElement.pause();
@@ -166,28 +175,22 @@ export class Instruction {
     });
 
     this.audioElement.addEventListener('pause', () => {
-      if (this.animation1 && this.animation2) {
-        this.animation1.$props.playing = false;
-        this.animation2.$props.playing = false;
-      }
+      this.showAudioRipple.value = false;
     });
 
     this.audioElement.addEventListener('ended', () => {
-      if (this.animation1 && this.animation2) {
-        this.animation1.$props.playing = false;
-        this.animation2.$props.playing = false;
-      }
-      if (this.vm.$store.state.instructionsStore.isInstructionsMode) {
-        this.vm.$store.dispatch('instructionsStore/toggleInstructionsMode');
+      this.showAudioRipple.value = false;
+      if (this.store.state.instructionStore?.isInstructionMode) {
+        this.store.dispatch('instructionStore/toggleInstructionMode');
       }
     });
   }
 
-  private makeResponsiveToInstructionsModeChange() {
-    this.unsubscribeInstructionsModeWatch = this.vm.$store.subscribe(
+  private makeResponsiveToInstructionModeChange() {
+    this.unsubscribeInstructionModeWatch = this.store.subscribe(
       (mutation: MutationPayload, state) => {
-        if (mutation.type === 'instructionsStore/TOGGLE_INSTRUCTIONS_MODE') {
-          if (state.instructionsStore.isInstructionsMode) {
+        if (mutation.type === 'instructionStore/TOGGLE_INSTRUCTIONS_MODE') {
+          if (state.instructionStore?.isInstructionMode) {
             this.addEventListener();
             this.addInstructionStyle();
           } else {
@@ -199,16 +202,6 @@ export class Instruction {
         }
       },
     );
-  }
-
-  private makeResponsiveToThemeModeChange() {
-    this.vm.$watch('$vuetify.theme.dark', () => {
-      if (this.vm.$store.state.instructionsStore.isInstructionsMode) {
-        this.addInstructionStyle();
-      } else {
-        this.removeInstructionStyle();
-      }
-    });
   }
 
   static playInstructionClick(this: InstructionElement, event: Event): void {
@@ -224,48 +217,45 @@ export class Instruction {
   }
 }
 
-export default function InstallInstructionDirective(
-  Vue: typeof _Vue,
-  { Badge, Animation }: InstructionsOptions,
-): void {
-  Vue.directive('instruction', {
-    bind(
-      hostElement: InstructionElement,
-      { value: audioUrl }: VNodeDirective,
-      { componentInstance: vm }: VNode,
-    ) {
-      if (vm) {
-        // eslint-disable-next-line no-param-reassign
-        hostElement.$instruction = new Instruction(
-          hostElement,
-          audioUrl,
-          vm,
-          Badge,
-          Animation,
-        );
-      } else {
-        throw new Error(
-          'Expected VNode to have a .componentInstance, but found none. Only use the v-instruction directive on Vue components.',
-        );
-      }
-    },
+export default {
+  install(app: App, { Badge }: InstructionOptions): void {
+    app.directive('instruction', {
+      mounted(
+        hostElement: InstructionElement,
+        { instance: vm, value: audioUrl }: DirectiveBinding,
+      ) {
+        if (vm) {
+          hostElement.$instruction = new Instruction(
+            hostElement,
+            audioUrl,
+            vm,
+            Badge,
+            app.config.globalProperties.$store,
+          );
+        } else {
+          throw new Error(
+            'Expected VNode to have a .componentInstance, but found none. Only use the v-instruction directive on Vue components.',
+          );
+        }
+      },
 
-    update(
-      hostElement: InstructionElement,
-      { value: audioUrl }: VNodeDirective,
-    ) {
-      if (hostElement.$instruction) {
-        hostElement.$instruction.setAudioSrc(audioUrl);
-      }
-    },
+      beforeUpdate(
+        hostElement: InstructionElement,
+        { value: audioUrl }: DirectiveBinding,
+      ) {
+        if (hostElement.$instruction) {
+          hostElement.$instruction.setAudioSrc(audioUrl);
+        }
+      },
 
-    // e.g. when moving from /home to /about, removed elements will be unbound
-    unbind(hostElement: InstructionElement) {
-      if (hostElement.$instruction) {
-        hostElement.$instruction.unsubscribe();
-        hostElement.$instruction.removeEventListener();
-        hostElement.$instruction.delist();
-      }
-    },
-  });
-}
+      // e.g. when moving from /home to /about, removed elements will be unbound
+      unmounted(hostElement: InstructionElement) {
+        if (hostElement.$instruction) {
+          hostElement.$instruction.unsubscribe();
+          hostElement.$instruction.removeEventListener();
+          hostElement.$instruction.delist();
+        }
+      },
+    });
+  },
+};

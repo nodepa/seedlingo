@@ -1,54 +1,57 @@
 // Libraries, plugins, components
-import Vue from 'vue';
-import Vuetify from 'vuetify';
-import store from '@/store';
+import { Store } from 'vuex';
+import store from '@/common/store/RootStore';
 import Badge from '@/common/components/Badge.vue';
-import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 
 // Helpers
+import { mount, VueWrapper } from '@vue/test-utils';
 import { pause, play } from '@/test-support/Overrides';
+window.HTMLMediaElement.prototype.pause = pause;
+window.HTMLMediaElement.prototype.play = play;
 
 // Item under test
 import {
   Instruction,
   InstructionElement,
+  InstructionRootState,
 } from '@/common/directives/InstructionDirective';
-
-window.HTMLMediaElement.prototype.pause = pause;
-window.HTMLMediaElement.prototype.play = play;
 
 const spyAddAudioListeners = jest.spyOn(
   Instruction.prototype,
   'addAudioListeners',
 );
 
-let vm: Vue;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let wrapper: VueWrapper<any>;
 let instruction: Instruction;
-let vuetify: Vuetify;
 const audioPath = 'http://just.a.test/audio.mp3';
 
 beforeEach(() => {
   // Setup
-  store.dispatch('instructionsStore/resetState');
+  store.dispatch('resetState');
   spyAddAudioListeners.mockClear();
-  vuetify = new Vuetify();
-  vm = new Vue({
-    render(createElement) {
-      return createElement('button');
+
+  wrapper = mount(
+    {
+      template: `<button />`,
     },
-    store,
-    vuetify,
-  }).$mount();
+    {
+      global: {
+        plugins: [store],
+      },
+    },
+  );
+
   instruction = new Instruction(
-    vm.$el as InstructionElement,
+    wrapper.vm.$el as InstructionElement,
     audioPath,
-    vm,
+    wrapper.vm,
     Badge,
-    RippleAnimation,
+    store as Store<InstructionRootState>,
   );
 
   // As set up in the "bind"-function at directive installation
-  if (vm.$store.state.instructionsStore.isInstructionsMode) {
+  if (wrapper.vm.$store.state.instructionStore.isInstructionMode) {
     instruction.addEventListener();
     instruction.addInstructionStyle();
   }
@@ -60,7 +63,6 @@ afterEach(() => {
   instruction.unsubscribe();
   instruction.removeEventListener();
   instruction.delist();
-  vm.$destroy(); // added for completeness
 });
 
 describe('class Instruction', () => {
@@ -85,9 +87,9 @@ describe('class Instruction', () => {
   });
 
   it('addEventListener: adds event listeners', () => {
-    const spy = jest.spyOn(vm.$el, 'addEventListener');
+    const spy = jest.spyOn(wrapper.vm.$el, 'addEventListener');
     expect(spy).toHaveBeenCalledTimes(0);
-    store.dispatch('instructionsStore/toggleInstructionsMode');
+    store.dispatch('instructionStore/toggleInstructionMode');
     expect(spy).toHaveBeenCalledTimes(1);
     instruction.addEventListener();
     expect(spy).toHaveBeenCalledTimes(2);
@@ -106,8 +108,8 @@ describe('class Instruction', () => {
   });
 
   it('removeEventListener: removes event listeners', () => {
-    const spyAdd = jest.spyOn(vm.$el, 'addEventListener');
-    const spyRemove = jest.spyOn(vm.$el, 'removeEventListener');
+    const spyAdd = jest.spyOn(wrapper.vm.$el, 'addEventListener');
+    const spyRemove = jest.spyOn(wrapper.vm.$el, 'removeEventListener');
     expect(spyAdd).toHaveBeenCalledTimes(0);
     expect(spyRemove).toHaveBeenCalledTimes(0);
     instruction.addEventListener();
@@ -120,7 +122,7 @@ describe('class Instruction', () => {
 
   it('addInstructionStyle: adds styling to the element', () => {
     // Setup pre-state
-    const el = vm.$el as HTMLButtonElement;
+    const el = wrapper.vm.$el as HTMLButtonElement;
     el.style.backgroundColor = '#FF0000';
     el.style.zIndex = '0';
     const elToRemove: Element[] = [];
@@ -148,7 +150,7 @@ describe('class Instruction', () => {
   it('removeInstructionStyle: removes/restores styling to the element', () => {
     // Setup pre-state
     instruction.addInstructionStyle();
-    const el = vm.$el as HTMLButtonElement;
+    const el = wrapper.vm.$el as HTMLButtonElement;
     el.style.backgroundColor = '#FF0000';
     el.style.zIndex = '9';
     expect(el.childElementCount).toBe(2); // 1 badge, 1 audio, 0 animations
@@ -165,7 +167,7 @@ describe('class Instruction', () => {
 
   it('playInstruction: plays attached audio', () => {
     // Setup and assert pre-state
-    const parentEl = vm.$el;
+    const parentEl = wrapper.vm.$el;
     expect(parentEl.children[0].tagName).toBe('AUDIO');
     expect(parentEl.childElementCount).toBe(1); // 1 audio, 0 animations
     const el = parentEl.children[0] as HTMLAudioElement;
@@ -183,7 +185,7 @@ describe('class Instruction', () => {
 
   it('cancelInstruction: stops playing attached audio', () => {
     // Setup and assert pre-state
-    const parentEl = vm.$el;
+    const parentEl = wrapper.vm.$el;
     expect(parentEl.children[0].tagName).toBe('AUDIO');
     expect(parentEl.childElementCount).toBe(1); // 1 audio, 0 animations
     const el = parentEl.children[0] as HTMLAudioElement;
@@ -202,29 +204,29 @@ describe('class Instruction', () => {
   it('unsubscribe: calls unsubscribe function from store', () => {
     // Setup and assert pre-state
     // A side-effect of subscribing a watch to the store's
-    // toggleInstructionsMode value, is that - if toggleInstructionsMode is
+    // toggleInstructionMode value, is that - if toggleInstructionMode is
     // false - cancelInstruction() is called. Conversely, after unsubscribing,
     // cancelInstruction() should no longer be called.
     const spy = jest.spyOn(instruction, 'cancelInstruction');
 
     // Assert that we can provoke invocation of cancelInstruction()
     expect(spy).toHaveBeenCalledTimes(0);
-    store.dispatch('instructionsStore/toggleInstructionsMode');
-    store.dispatch('instructionsStore/toggleInstructionsMode');
+    store.dispatch('instructionStore/toggleInstructionMode');
+    store.dispatch('instructionStore/toggleInstructionMode');
     expect(spy).toHaveBeenCalledTimes(1);
 
     // Apply function
     instruction.unsubscribe();
 
     // Assert that we can NO LONGER provoke invocation of cancelInstruction()
-    store.dispatch('instructionsStore/toggleInstructionsMode');
-    store.dispatch('instructionsStore/toggleInstructionsMode');
+    store.dispatch('instructionStore/toggleInstructionMode');
+    store.dispatch('instructionStore/toggleInstructionMode');
     expect(spy).toHaveBeenCalledTimes(1); // Still 1
   });
 
   it('delist: current instance is removed from Instruction.Collection', () => {
-    const el = Object.values(vm.$el.children).find((elm) => {
-      return elm.tagName === 'AUDIO';
+    const el = Object.values(wrapper.vm.$el.children).find((elm) => {
+      return (elm as Element).tagName === 'AUDIO';
     }) as HTMLAudioElement;
     const count = Instruction.AudioCollection.length;
     expect(Instruction.AudioCollection.includes(el)).toBe(true);

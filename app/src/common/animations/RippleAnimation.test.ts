@@ -1,40 +1,26 @@
-// Libraries, plugins, components
-import Vue from 'vue';
-import Vuetify from 'vuetify';
-
 // Helpers
-import { shallowMount, Wrapper } from '@vue/test-utils';
+import { shallowMount, VueWrapper } from '@vue/test-utils';
+import vuetify from '@/test-support/VuetifyInstance';
 import { Animation, animate } from '@/test-support/Overrides';
+window.Animation = Animation;
+window.Element.prototype.animate = animate;
 
 // Item under test
 import RippleAnimation from './RippleAnimation.vue';
 
-window.Animation = Animation;
-window.Element.prototype.animate = animate;
-
-Vue.use(Vuetify);
-
 describe('RippleAnimation', () => {
-  let wrapper: Wrapper<Vue>;
-  let vuetify: Vuetify;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let wrapper: VueWrapper<any>;
 
   beforeEach(() => {
-    vuetify = new Vuetify();
     wrapper = shallowMount(RippleAnimation, {
-      vuetify,
+      global: {
+        plugins: [vuetify],
+      },
     });
-  });
-
-  afterEach(() => {
-    wrapper.destroy();
-    jest.clearAllMocks();
   });
 
   describe('initial state', () => {
-    it('is a Vue instance', () => {
-      expect(wrapper.isVueInstance).toBeTruthy();
-    });
-
     it('has correct defaults', () => {
       expect(wrapper.vm.$props.playing).toBe(false);
       expect(wrapper.vm.$props.duration).toBe(500);
@@ -43,7 +29,7 @@ describe('RippleAnimation', () => {
       expect(wrapper.vm.$props.borderWidth).toBe('4px');
       expect(wrapper.vm.$props.size).toBe('40px');
       expect(wrapper.vm.$props.scale).toBe('4');
-      expect(wrapper.vm.$props.borderColor).toBe('rgba(0,0,0,0.2)');
+      expect(wrapper.vm.$props.borderColor).toBe('rgba(0,0,0,0.3)');
     });
 
     it('animates when `playing`', async () => {
@@ -55,6 +41,7 @@ describe('RippleAnimation', () => {
       await wrapper.setProps({ playing: false });
       expect(spyAnimate).toBeCalledTimes(1);
       expect(spyCancel).toBeCalledTimes(1);
+      jest.restoreAllMocks();
     });
   });
 });

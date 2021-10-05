@@ -1,6 +1,7 @@
 export interface Lesson {
   id: string;
   lessonIndex: number;
+  lessonPath: string;
   clozeCount: number;
   explanationCount: number;
   sentenceCount: number;

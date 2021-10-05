@@ -19,7 +19,9 @@ if (process.env.NODE_ENV === 'production') {
       console.log('New content is available.');
       if (registration.waiting) {
         console.log('Automatically refreshing.');
+
         registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+        window.location.reload();
       }
     },
     offline() {

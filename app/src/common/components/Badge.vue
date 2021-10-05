@@ -1,32 +1,44 @@
+<script setup lang="ts">
+import InstructionIcon from '@/common/icons/InstructionIcon';
+import RippleAnimation from '@/common/animations/RippleAnimation.vue';
+import { Ref, ref } from 'vue';
+
+interface Props {
+  playing?: Ref<boolean>;
+}
+const props = withDefaults(defineProps<Props>(), {
+  playing: ref(false),
+});
+
+const playing = ref(props.playing);
+</script>
+
 <template>
   <span class="badge-container">
-    <span class="badge primary white--text">
-      <InstructionsIcon />
+    <span class="badge bg-primary white-text text-button">
+      <svg
+        class="v-icon__svg"
+        viewBox="0 0 24 24"
+        role="img"
+        aria-hidden="true"
+      >
+        <path :d="InstructionIcon" />
+      </svg>
     </span>
+    <RippleAnimation :playing="playing" />
+    <RippleAnimation :delay="200" :playing="playing" />
   </span>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import InstructionsIcon from '@/common/icons/InstructionsIcon.vue';
-
-@Component({
-  // eslint-disable-next-line no-undef
-  components: {
-    InstructionsIcon,
-  },
-})
-export default class Badge extends Vue {}
-</script>
-
-<style lang="stylus">
-.badge-container
+<style>
+.badge-container {
   position: absolute;
   top: 0px;
   left: 0px;
   width: 100%;
   height: 100%;
-.badge
+}
+.badge {
   position: absolute;
   border-radius: 100%;
   padding: 2px;
@@ -35,4 +47,5 @@ export default class Badge extends Vue {}
   left: 52%;
   width: 3em;
   height: 3em;
+}
 </style>

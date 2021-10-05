@@ -1,4 +1,7 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify';
+// import Vue from 'vue';
+// import Vuetify from 'vuetify';
 
-Vue.use(Vuetify);
+// Vue.use(Vuetify);
+
+import registerRequireContextHook from 'babel-plugin-require-context-hook/register';
+registerRequireContextHook();

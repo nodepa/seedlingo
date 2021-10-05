@@ -1,3 +1,11 @@
+const app = '[data-test="app"]';
+const loader = '[data-test="loader"]';
+const getInstructionComponent = '[data-test="get-instruction-component"]';
+const continueButton = '[data-test="continue-button"]';
+const sentenceCard = '[data-test="sentence-card"]';
+const errorColor = 'rgb(229, 57, 53)';
+const successColor = 'rgb(0, 150, 136)';
+
 describe('马丽 interacts with the "cloze" system', () => {
   it(
     'Displays the cloze screen with ' +
@@ -22,11 +30,9 @@ describe('马丽 interacts with the "cloze" system', () => {
           cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
         },
       });
-      cy.get('[data-test="loader"]').should('not.be.visible');
-      cy.get('[data-test="app"]').should('be.visible');
-      cy.get('[data-test="get-instructions-component"]').should(
-        'not.be.visible',
-      );
+      cy.get(loader).should('not.be.visible');
+      cy.get(app).should('be.visible');
+      cy.get(getInstructionComponent).should('not.exist');
       // Expected test-data:
       // 0: option1 术
       // 1: option2 两 (correct option)
@@ -56,9 +62,9 @@ describe('马丽 interacts with the "cloze" system', () => {
         .then((el) => {
           cy.contains('五减二').should('match', el);
         });
-      cy.get('[data-test="sentence-card"]').as('sentence').should('be.visible');
+      cy.get(sentenceCard).should('be.visible');
       cy.contains('我有个弟弟，不过没有别的兄弟姐妹。').should('exist');
-      cy.get('[data-test="continue-button"]').should('not.be.visible');
+      cy.get(continueButton).should('not.exist');
 
       // *****
       // * 2 *
@@ -68,7 +74,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log('-- otherwise she hears no audio at all.');
       // sentence audio plays on load:              +1 (0)
       cy.get('@audio.play').should('have.callCount', 1);
-      // toggle-instructions pulse & sentence ripple x2:   +3 (0)
+      // toggle-instruction pulse & sentence ripple x2:   +3 (0)
       cy.get('@animation.animate').should('have.callCount', 3);
       // no ani repeats:                                +0 (0)
       cy.get('@animation.play').should('have.callCount', 0);
@@ -82,7 +88,8 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log('-- sees the word turn red, buzz and become inactive.');
       cy.get('@option1')
         .click()
-        .should('have.css', 'background-color', 'rgb(255, 82, 82)');
+        .wait(20)
+        .should('have.css', 'background-color', errorColor);
       // item is disabled
       cy.get('@option1').should('be.disabled');
       // item audio plays, then sentence audio:     +2 (1)
@@ -100,7 +107,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log('**4. 马丽 taps the sentence**, and');
       cy.log("-- hears the full sentence's audio again");
       cy.log('-- (if present, otherwise no audio is played)');
-      cy.get('@sentence').click();
+      cy.get(sentenceCard).click();
       // sentence audio plays:                      +1 (3)
       cy.get('@audio.play').should('have.callCount', 4);
       // no new animations:                                +0 (6)
@@ -120,9 +127,9 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log('-- sees the continue button become visible.');
       cy.get('@option2')
         .click()
-        .should('have.css', 'background-color', 'rgb(76, 175, 80)');
+        .should('have.css', 'background-color', successColor);
       cy.contains('我有两个弟弟，不过没有别的兄弟姐妹。').should('exist');
-      // cy.get('@sentence').should(
+      // cy.get(sentenceCard).should(
       //   'have.css',
       //   'background-color',
       //   'rbg(76, 175, 80)',
@@ -130,7 +137,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.get('@option1').should('be.disabled');
       cy.get('@option3').should('be.disabled');
       cy.get('@option4').should('be.disabled');
-      cy.get('[data-test="continue-button"]').should('be.visible');
+      cy.get(continueButton).should('be.visible');
       // item audio plays:                          +1 (4)
       cy.get('@audio.play').should('have.callCount', 5);
       // item plays ripple x2 & continue pulse:            +3 (6)

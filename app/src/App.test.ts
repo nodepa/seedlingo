@@ -1,95 +1,92 @@
 // Libraries, plugins, components
-import Vuetify from 'vuetify';
-import VueRouter from 'vue-router';
-import Vuex from 'vuex';
-import { createLocalVue, mount } from '@vue/test-utils';
-import store from '@/store';
+import { createRouter, createWebHistory } from 'vue-router';
+import store from '@/common/store/RootStore';
 import Badge from '@/common/components/Badge.vue';
-import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import InstructionDirective from '@/common/directives/InstructionDirective';
+import Home from '@/views/Home.vue';
 
 // Helpers
-import { animate, play } from '@/test-support/Overrides';
-
-// Item under test
-import App from '@/App.vue';
-
+import { mount } from '@vue/test-utils';
+import vuetify from '@/test-support/VuetifyInstance';
+import { animate, play } from './test-support/Overrides';
 window.Element.prototype.animate = animate;
 HTMLMediaElement.prototype.play = play;
 
-const localVue = createLocalVue();
-localVue.use(VueRouter);
-localVue.use(Vuex);
-localVue.use(InstructionDirective, {
-  Badge,
-  Animation: RippleAnimation,
-});
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+// Item under test
+import App from './App.vue';
+
+const router = createRouter({
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
       name: 'Home',
+      component: Home,
     },
   ],
 });
 
 describe('App.vue', () => {
-  let vuetify: Vuetify;
+  it('renders bottom nav bar', () => {
+    const wrapper = mount(App, {
+      global: {
+        plugins: [router, store, vuetify, [InstructionDirective, { Badge }]],
+        stubs: ['router-view'],
+      },
+    });
 
-  beforeEach(() => {
-    vuetify = new Vuetify();
+    expect(wrapper.find('[data-test="bottom-navigation-bar"').exists()).toBe(
+      true,
+    );
   });
 
   it(
-    'renders instructions, ' +
+    'renders instruction, ' +
       'then awaits user response, ' +
       'then renders router-view',
     async () => {
       const wrapper = mount(App, {
-        localVue,
-        router,
-        vuetify,
-        stubs: ['router-view'],
-        store,
+        global: {
+          plugins: [router, store, vuetify, [InstructionDirective, { Badge }]],
+          stubs: ['router-view'],
+        },
       });
 
-      // Initially, the get-instructions graphic is shown
+      expect(wrapper.find('router-view-stub').exists()).toBe(false);
       expect(
-        wrapper.find('[data-test="get-instructions-component"]').exists(),
+        wrapper.find('[data-test="get-instruction-component"]').exists(),
       ).toBe(true);
-      // Then, the user clicks the toggle-instructions button
+
       await wrapper
-        .find('[data-test="toggle-instructions-button"]')
+        .find('[data-test="toggle-instruction-button"]')
         .trigger('click');
-      // Then, the router view is shown
+
       expect(wrapper.find('router-view-stub').exists()).toBe(true);
+      expect(
+        wrapper.find('[data-test="get-instruction-component"]').exists(),
+      ).toBe(false);
     },
   );
 
-  it('renders bottom nav bar', () => {
-    const wrapper = mount(App, {
-      localVue,
-      router,
-      vuetify,
-      store,
-    });
-
-    expect(wrapper.find('.v-bottom-navigation').exists()).toBe(true);
-  });
-
   it('shows jobId and branch when available', () => {
-    // jest.mock('process.env');
-    process.env.VUE_APP_BRANCH = 'master';
-    process.env.VUE_APP_JOB_ID = '000000900';
+    const branch = 'seedling-main-branch-value';
+    const paddedId = '0000009999900';
+    const trimmedId = paddedId.replace(/^0+/, '');
+    process.env.VUE_APP_BRANCH = branch;
+    process.env.VUE_APP_JOB_ID = paddedId;
+
     const wrapper = mount(App, {
-      localVue,
-      router,
-      vuetify,
-      store,
+      global: {
+        plugins: [router, store, vuetify, [InstructionDirective, { Badge }]],
+        stubs: ['router-view'],
+      },
+      props: {
+        theme: 'dark',
+      },
     });
-    expect(wrapper.vm.$data.branch).toBe('master');
-    expect(wrapper.vm.$data.jobId).toBe('900');
+
+    expect(wrapper.get('[data-test="app"').html()).toContain(branch);
+    expect(wrapper.get('[data-test="app"').html()).not.toContain(paddedId);
+    expect(wrapper.get('[data-test="app"').html()).toContain(trimmedId);
   });
 });

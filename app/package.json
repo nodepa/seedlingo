@@ -15,86 +15,58 @@
     "edtech",
     "reading",
     "vuejs",
-    "typescript"],
+    "typescript"
+  ],
   "main": "src/main.js",
   "dependencies": {
-    "@mdi/font": "^6.1.95",
-    "@mdi/js": "^6.1.95",
-    "core-js": "^3.18.0",
-    "register-service-worker": "^1.6.2",
+    "core-js": "^3.8.3",
+    "register-service-worker": "^1.7.2",
     "roboto-fontface": "*",
-    "vue": "^2.6.14",
-    "vue-class-component": "^7.2.2",
-    "vue-property-decorator": "^9.1.2",
-    "vue-router": "^3.5.2",
-    "vuetify": "^2.5.8",
-    "vuex": "^3.1.2"
+    "vue": "^3.2.6",
+    "vue-router": "^4.0.3",
+    "vuetify": "^3.0.0-alpha.0",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.31.2",
-    "@typescript-eslint/parser": "^4.31.2",
-    "@vue/cli-plugin-babel": "^4.5.13",
-    "@vue/cli-plugin-e2e-cypress": "~4.5.13",
-    "@vue/cli-plugin-eslint": "~4.5.13",
-    "@vue/cli-plugin-pwa": "~4.5.13",
-    "@vue/cli-plugin-router": "~4.5.13",
-    "@vue/cli-plugin-typescript": "~4.5.13",
-    "@vue/cli-plugin-unit-jest": "^5.0.0-beta.3",
-    "@vue/cli-plugin-vuex": "~4.5.13",
-    "@vue/cli-service": "^4.5.13",
-    "@vue/eslint-config-airbnb": "^5.0.2",
+    "@mdi/js": "^6.2.95",
+    "@types/jest": "^27.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "@vue/cli-plugin-babel": "~5.0.0-beta.4",
+    "@vue/cli-plugin-e2e-cypress": "~5.0.0-beta.4",
+    "@vue/cli-plugin-eslint": "~5.0.0-beta.4",
+    "@vue/cli-plugin-pwa": "~5.0.0-beta.4",
+    "@vue/cli-plugin-router": "~5.0.0-beta.4",
+    "@vue/cli-plugin-typescript": "~5.0.0-beta.4",
+    "@vue/cli-plugin-unit-jest": "~5.0.0-beta.4",
+    "@vue/cli-plugin-vuex": "~5.0.0-beta.4",
+    "@vue/cli-service": "~5.0.0-beta.4",
+    "@vue/compiler-sfc": "^3.2.6",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
-    "@vue/test-utils": "^1.2.2",
-    "eslint": "^7.32.0",
-    "eslint-plugin-prettier": "^3.4.1",
-    "eslint-plugin-vue": "^7.18.0",
+    "@vue/test-utils": "^2.0.0-0",
+    "@vue/vue3-jest": "^27.0.0-alpha.1",
+    "babel-jest": "^27.0.6",
+    "babel-plugin-require-context-hook": "^1.0.0",
+    "cypress": "^8.3.0",
+    "eslint": "^7.20.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.2.0",
     "http-server": "^13.0.2",
     "husky": "^7.0.2",
-    "lint-staged": "^11.1.2",
-    "prettier": "^2.4.1",
-    "sass": "^1.42.0",
-    "sass-loader": "^10.2.0",
-    "stylus": "^0.55.0",
-    "stylus-loader": "^3.0.2",
-    "ts-jest": "^26.5.6",
-    "typescript": "^4.4.3",
-    "vue-cli-plugin-vuetify": "~2.4.2",
-    "vue-jest": "^4.0.1",
-    "vue-svg-loader": "^0.16.0",
-    "vue-template-compiler": "^2.6.14",
-    "vuetify-loader": "^1.7.3",
-    "webpack-strip-block": "^0.3.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ],
-  "jest": {
-    "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel",
-    "setupFilesAfterEnv": [
-      "./tests/unit/jest.setup.js"
-    ],
-    "testMatch": [
-      "**/?(*.)+(test).ts"
-    ],
-    "moduleNameMapper": {
-      "\\.mp3$": "<rootDir>/tests/unit/__mocks__/mp3Mock.js",
-      "@content/(.*)": "<rootDir>/../content/$1"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
-      "vue-cli-service lint"
-    ]
+    "jest": "^27.0.5",
+    "prettier": "^2.2.1",
+    "sass": "^1.32.7",
+    "sass-loader": "^12.0.0",
+    "ts-jest": "^27.0.4",
+    "typescript": "~4.1.5",
+    "vue-cli-plugin-vuetify": "~2.4.2"
   },
   "scripts": {
     "build": "vue-cli-service build",
     "buildm": "vue-cli-service build --modern",
     "genass": "cd public && pwd && npx pwa-asset-generator --background 'linear-gradient(#19D2FE, #1E64F0)' --padding '0px' --favicon --single-quotes --type png ../src/assets/logo/logo.svg ./logo",
     "lint": "vue-cli-service lint",
-    "prepare": "cd ../ && husky install ./app/.husky",
     "servebuild": "http-server ./dist --gzip --brotli -c-1",
     "start": "vue-cli-service serve",
     "starts": "vue-cli-service serve --https",
@@ -115,6 +87,7 @@
     "tuc": "npm run test:unit:coverage",
     "tuo": "npm run test:unit:once",
     "tuv": "npm run test:unit:verbose",
-    "verify": "npm install && npm run lint && npm run test:unit:coverage && npm run test:e2e"
+    "verify": "npm install && npm run lint && npm run test:unit:coverage && npm run test:e2e",
+    "prepare": "cd ../ && husky install ./app/.husky"
   }
 }
