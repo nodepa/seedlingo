@@ -19,7 +19,7 @@
   ],
   "main": "src/main.js",
   "dependencies": {
-    "core-js": "^3.8.3",
+    "core-js": "^3.18.3",
     "register-service-worker": "^1.7.2",
     "roboto-fontface": "*",
     "vue": "^3.2.6",
