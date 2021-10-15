@@ -1,47 +1,69 @@
-import _contentPack from '@content/ContentPack.json';
 import { PackageConfig } from './ContentPackTypes';
 import { Lesson } from './LessonTypes';
 import { LessonMenuItems } from './LessonMenuTypes';
+import * as mdiIcons from '@mdi/js';
 
-const ContentPack: PackageConfig = _contentPack;
+const mp3 = require.context('../../../content', true, /\.mp3$/);
+const json = require.context('../../../content', true, /\.json$/);
 
 export default class ContentConfig {
+  private static contentPrefix = './';
+
+  private static ContentPack = json(
+    `${this.contentPrefix}ContentPack.json`,
+  ) as PackageConfig;
+
   public static getInstructionPathFor(
     scope: keyof PackageConfig['instructions'],
-  ): Promise<{ default: string }> {
-    const path = ContentPack.instructions[scope];
-    return import(`@content/${path}`);
+  ): string {
+    return mp3(`${this.contentPrefix}${this.ContentPack.instructions[scope]}`)
+      .default;
   }
 
   public static getLessonsMenu(): LessonMenuItems {
     const lessons = {} as LessonMenuItems;
-    ContentPack.lessons.forEach((lesson, index) => {
-      const oneBasedIndex = index + 1;
+    for (let i = 0; i < this.ContentPack.lessons.length; i += 1) {
+      const lesson = this.ContentPack.lessons[i];
+      const oneBasedIndex = i + 1;
       lessons[oneBasedIndex] = {
         name: lesson.name,
         icon: '',
         audio: '',
       };
-      import('@mdi/js').then((mod: typeof import('@mdi/js')) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        lessons[oneBasedIndex].icon = (mod as any)[lesson.icon];
-      });
-      const audioPath = lesson.audio;
-      import(`@content/${audioPath}`).then(({ default: path }) => {
-        lessons[oneBasedIndex].audio = path;
-      });
-    });
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      lessons[oneBasedIndex].icon = (mdiIcons as any)[lesson.icon];
+
+      lessons[oneBasedIndex].audio = mp3(
+        `${this.contentPrefix}${lesson.instructionAudio}`,
+      ).default;
+    }
 
     return lessons;
   }
 
-  public static async getLessons(): Promise<Array<Lesson>> {
+  public static getLessons(): Array<Lesson> {
     const lessons = [] as Array<Lesson>;
-    for (let i = 0; i < ContentPack.lessons.length; i += 1) {
-      const lessonPath = ContentPack.lessons[i].lessonData;
-      // eslint-disable-next-line no-await-in-loop
-      lessons.push(await import(`@content/${lessonPath}`));
+    for (let i = 0; i < this.ContentPack.lessons.length; i += 1) {
+      const lessonPath = this.ContentPack.lessons[i].lessonData;
+      const lesson: Lesson = {
+        ...json(`${this.contentPrefix}${lessonPath}`),
+        lessonPath: `${this.contentPrefix}${lessonPath.replace(
+          /\/.*\.json/,
+          '/',
+        )}`,
+      } as Lesson;
+      lessons.push(lesson);
     }
     return lessons;
+  }
+
+  public static getAudioPath(path: string): string {
+    return mp3(path).default;
+  }
+
+  public static getMdiIcon(key: string): string {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (mdiIcons as any)[key];
   }
 }

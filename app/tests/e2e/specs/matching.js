@@ -1,9 +1,13 @@
+const app = '[data-test="app"]';
+const loader = '[data-test="loader"]';
+const getInstructionComponent = '[data-test="get-instruction-component"]';
+const continueButton = '[data-test="continue-button"]';
 const firstHighlightColor = 'rgb(103, 58, 183)'; // deep-purple
 const secondHighlightColor = 'rgb(233, 30, 99)'; // pink
 const thirdHighlightColor = 'rgb(255, 152, 0)'; // orange
 const fourthHighlightColor = 'rgb(0, 150, 136)'; // teal
-const errorColor = 'rgb(255, 82, 82)'; // error
-const wordColor = 'rgb(245, 245, 245)'; // default
+const errorColor = 'rgb(229, 57, 53)'; // error
+const wordColor = 'rgb(255, 255, 255)'; // default
 const nonWordColor = 'rgb(25, 118, 210)'; // primary
 
 describe('马丽 interacts with the "matching" system', () => {
@@ -27,11 +31,9 @@ describe('马丽 interacts with the "matching" system', () => {
           cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
         },
       });
-      cy.get('[data-test="loader"]').should('not.be.visible');
-      cy.get('[data-test="app"]').should('be.visible');
-      cy.get('[data-test="get-instructions-component"]').should(
-        'not.be.visible',
-      );
+      cy.get(loader).should('not.be.visible');
+      cy.get(app).should('be.visible');
+      cy.get(getInstructionComponent).should('not.exist');
 
       // Expected test-data:
       // 0: option1 '2'
@@ -124,6 +126,7 @@ describe('马丽 interacts with the "matching" system', () => {
       // both went red
       cy.get('@option1') // numeric 2
         .click()
+        .wait(20)
         .should('have.css', 'background-color', errorColor);
       cy.get('@option2').should('have.css', 'background-color', errorColor);
       // then both reverted to original color
@@ -198,14 +201,14 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@option2') // 四
         .should('have.css', 'background-color', secondHighlightColor);
       // option4 and option8 are reordered as first 2 of option buttons
-      cy.get('[data-test|="option"]').then((els) => {
-        cy.get('@option1').should('match', els[0]);
+      cy.get('[data-test|="option"]').then((elements) => {
+        cy.get('@option1').should('match', elements[0]);
         cy.get('@option2')
-          .should('match', els[1])
+          .should('match', elements[1])
           .find('p')
-          .should('have.text', ' 四 ');
-        // cy.get('@option4').should('match', els[3]);
-        // cy.get('@option8').should('match', els[7]);
+          .should('have.text', '四');
+        // cy.get('@option4').should('match', elements[3]);
+        // cy.get('@option8').should('match', elements[7]);
       });
       // the button's audio was played
       cy.get('@audio.play').should('have.callCount', 5); // 4 + 1
@@ -294,7 +297,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@animation.animate').should('have.callCount', 17); // 11 + 6
       // 8 ripples canceled on audio ended
       cy.get('@animation.cancel').should('have.callCount', 26); // 16 + 10
-      cy.get('[data-test="continue-button"]').should('not.be.visible');
+      cy.get(continueButton).should('not.exist');
 
       cy.get('@option8') // 三
         .click()
@@ -309,7 +312,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@animation.cancel').should('have.callCount', 28); // 26 + 2
 
       // celebration state
-      cy.get('[data-test="continue-button"]').should('be.visible');
+      cy.get(continueButton).should('be.visible');
     },
   );
 });
@@ -335,11 +338,9 @@ describe('马丽 interacts with the "matching explanation" system', () => {
           cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
         },
       });
-      cy.get('[data-test="loader"]').should('not.be.visible');
-      cy.get('[data-test="app"]').should('be.visible');
-      cy.get('[data-test="get-instructions-component"]').should(
-        'not.be.visible',
-      );
+      cy.get(loader).should('not.be.visible');
+      cy.get(app).should('be.visible');
+      cy.get(getInstructionComponent).should('not.exist');
 
       // Expected test-data:
       // 0: option1 五减二

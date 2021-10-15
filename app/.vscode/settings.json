@@ -75,8 +75,7 @@
     "chown",
     "cloze",
     "comms",
-    "conferencejoy",
-    "conjoy",
+    "composables",
     "creds",
     "dbstorage",
     "Docker's",
@@ -96,6 +95,7 @@
     "grayscale",
     "greenlight",
     "Helvetica",
+    "iconsets",
     "initdb",
     "initialisms",
     "liaishizi",
@@ -117,6 +117,8 @@
     "nvmrc",
     "omniauth",
     "onremove",
+    "precache",
+    "precaching",
     "printenv",
     "Putonghua",
     "PWAs",
@@ -136,6 +138,7 @@
     "tesc",
     "unsetting",
     "userid",
+    "vite",
     "vnode",
     "vuejs",
     "vuetify",
@@ -146,5 +149,6 @@
     "zhongzi"
   ],
   "editor.glyphMargin": false,
-  "vim.visualstar": true
+  "vim.visualstar": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

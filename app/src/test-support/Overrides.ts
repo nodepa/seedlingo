@@ -73,7 +73,8 @@ export class Animation {
     /* do nothing */
   }
 
-  replaceState = 'active' as AnimationReplaceState;
+  // replaceState = 'active' as AnimationReplaceState;
+  replaceState = 'active';
 
   reverse(): void {
     /* do nothing */

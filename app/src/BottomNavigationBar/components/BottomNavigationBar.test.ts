@@ -1,206 +1,212 @@
 // Libraries, plugins, components
-import Vue from 'vue';
-import Vuetify from 'vuetify';
-import VueRouter from 'vue-router';
-import Vuex from 'vuex';
-import { createLocalVue, mount, Wrapper } from '@vue/test-utils';
-import store from '@/store';
+import { createRouter, createWebHistory } from 'vue-router';
+import store from '@/common/store/RootStore';
 import Badge from '@/common/components/Badge.vue';
-import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import InstructionDirective from '@/common/directives/InstructionDirective';
+import Home from '@/views/Home.vue';
 
 // Helpers
+import { mount, VueWrapper } from '@vue/test-utils';
+import vuetify from '@/test-support/VuetifyInstance';
 import { animate, pause, play } from '@/test-support/Overrides';
-
-// Item under test
-import BottomNavigationBar from './BottomNavigationBar.vue';
-
 window.Element.prototype.animate = animate;
 window.HTMLMediaElement.prototype.pause = pause;
 window.HTMLMediaElement.prototype.play = play;
 
-Vue.use(Vuetify);
+// Item under test
+import BottomNavigationBar from './BottomNavigationBar.vue';
+import HomeButton from './HomeButton.vue';
 
-const localVue = createLocalVue();
-localVue.use(VueRouter);
-localVue.use(Vuex);
-localVue.use(InstructionDirective, {
-  Badge,
-  Animation: RippleAnimation,
-});
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+const router = createRouter({
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
       name: 'Home',
+      component: Home,
     },
   ],
 });
 
 const homeButton = '[data-test="home-button"]';
-const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
-const instructionsIcon = '[data-test="instructions-icon"]';
-const instructionsCloseIcon = '[data-test="instructions-close-icon"]';
-const bottomNavigationBar = '[data-test="bottom-navigation-bar"]';
+const continueButton = '[data-test="continue-button"]';
+const toggleInstructionButton = '[data-test="toggle-instruction-button"]';
+const instructionIcon = '[data-test="instruction-icon"]';
+const instructionCloseIcon = '[data-test="instruction-close-icon"]';
 
-describe('BottomNavigationBar.vue (deep)', () => {
-  let wrapper: Wrapper<Vue>;
-  let vuetify: Vuetify;
+function mountFunction(
+  options: { homeButtonDisabled: boolean } = { homeButtonDisabled: true },
+  returnAs: { unwrapped: boolean } = { unwrapped: true },
+) {
+  const { homeButtonDisabled } = options;
+
+  const wrapper = mount(
+    {
+      data() {
+        return { homeButtonDisabled };
+      },
+      template: `
+          <VLayout>
+            <BottomNavigationBar :home-button-disabled=homeButtonDisabled />
+          </VLayout>
+        `,
+      components: {
+        BottomNavigationBar,
+      },
+    },
+    {
+      global: {
+        plugins: [router, store, vuetify, [InstructionDirective, { Badge }]],
+      },
+    },
+  );
+
+  if (returnAs.unwrapped) {
+    return wrapper.findComponent(BottomNavigationBar);
+  } else {
+    return wrapper;
+  }
+}
+
+describe('BottomNavigationBar.vue', () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let wrapper: VueWrapper<any>;
 
   beforeEach(() => {
-    store.dispatch('instructionsStore/resetState');
-    vuetify = new Vuetify();
-    wrapper = mount(BottomNavigationBar, {
-      localVue,
-      router,
-      vuetify,
-      store,
-      propsData: {
-        initiateHomeButtonDisabled: true,
-      },
-    });
-  });
-
-  afterEach(() => {
-    wrapper.destroy();
+    store.dispatch('resetState');
+    wrapper = mountFunction();
   });
 
   // Component has expected elements
   describe('initial state', () => {
-    it('is a Vue instance', () => {
-      expect(wrapper.isVueInstance).toBeTruthy();
-    });
-
-    it('renders a go home button and a toggle instructions button', () => {
+    it('renders a go home button and a toggle instruction button', () => {
       expect(wrapper.find(homeButton).exists()).toBe(true);
-      expect(wrapper.find(toggleInstructionsButton).exists()).toBe(true);
+      expect(wrapper.find(continueButton).exists()).toBe(false);
+      expect(wrapper.find(toggleInstructionButton).exists()).toBe(true);
     });
   });
 
   // Elements have initial states
   describe('home-button', () => {
     it('is disabled on first load', () => {
-      expect(
-        wrapper.find(bottomNavigationBar).props().initiateHomeButtonDisabled,
-      ).toBe(true);
-      expect(
-        wrapper.find(bottomNavigationBar).vm.$data.homeButtonDisabled,
-      ).toBe(true);
-      expect(wrapper.find(homeButton).props().homeButtonDisabled).toBe(true);
+      expect(wrapper.vm.homeButtonDisabled).toBe(true);
+      expect(wrapper.findComponent(HomeButton).vm.homeButtonDisabled).toBe(
+        true,
+      );
       expect(
         wrapper.find(homeButton).element.classList.contains('v-btn--disabled'),
       ).toBe(true);
     });
     it('links to home', () => {
-      expect(wrapper.find(homeButton).vm.$route.path).toBe('/');
+      expect(wrapper.findComponent(HomeButton).vm.$route.path).toBe('/');
     });
   });
 
-  // Elements have expected behaviour
-  describe('toggle-instructions-button', () => {
-    it('on first click: hides the "get instructions" graphic', () => {
-      expect(
-        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
-      ).toBe(true);
-      wrapper.find(toggleInstructionsButton).trigger('click');
-      expect(
-        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
-      ).toBe(false);
+  // // Elements have expected behaviour
+  describe('toggle-instruction-button', () => {
+    it('on first click: hides the "get instruction" graphic', async () => {
+      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(true);
+      await wrapper.find(toggleInstructionButton).trigger('click');
+      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(false);
     });
 
     it('on first click: enables the home button', async () => {
-      expect(wrapper.vm.$data.homeButtonDisabled).toBe(true);
-      await wrapper.find(toggleInstructionsButton).trigger('click');
-      expect(wrapper.vm.$data.homeButtonDisabled).toBe(false);
-    });
-
-    it('on first click: toggles on instructions mode', async () => {
-      await wrapper.find(toggleInstructionsButton).trigger('click');
-      expect(
-        wrapper
-          .find(toggleInstructionsButton)
-          .find(instructionsCloseIcon)
-          .exists(),
-      ).toBe(true);
-      expect(
-        wrapper.find(toggleInstructionsButton).find(instructionsIcon).exists(),
-      ).toBe(false);
-      expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
+      wrapper = mountFunction(
+        { homeButtonDisabled: true },
+        { unwrapped: false },
+      );
+      expect(wrapper.findComponent(HomeButton).vm.homeButtonDisabled).toBe(
         true,
       );
-    });
+      expect(wrapper.find(homeButton).element.classList).toContain(
+        'v-btn--disabled',
+      );
 
-    it('toggles the instructions overlay on multiple clicks', () => {
-      const instructionsButton = wrapper.find(toggleInstructionsButton);
+      // update the BottomNavigationBar-prop homeButtonDisabled
+      await wrapper.setData({ homeButtonDisabled: false });
 
-      // initial state
-      expect(wrapper.vm.$data.homeButtonDisabled).toBe(true);
-      expect(
-        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
-      ).toBe(true);
-      expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
+      expect(wrapper.findComponent(HomeButton).vm.homeButtonDisabled).toBe(
         false,
       );
-      expect(instructionsButton.emitted('update:homeButtonDisabled')).toBe(
-        undefined,
+      expect(wrapper.find(homeButton).element.classList).not.toContain(
+        'v-btn--disabled',
+      );
+    });
+
+    it('on first click: toggles on instruction mode', async () => {
+      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
+        false,
+      );
+      expect(
+        wrapper.find(toggleInstructionButton).find(instructionIcon).exists(),
+      ).toBe(true);
+      expect(
+        wrapper
+          .find(toggleInstructionButton)
+          .find(instructionCloseIcon)
+          .exists(),
+      ).toBe(false);
+
+      await wrapper.find(toggleInstructionButton).trigger('click');
+
+      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
+        true,
+      );
+      expect(
+        wrapper.find(toggleInstructionButton).find(instructionIcon).exists(),
+      ).toBe(false);
+      expect(
+        wrapper
+          .find(toggleInstructionButton)
+          .find(instructionCloseIcon)
+          .exists(),
+      ).toBe(true);
+    });
+
+    it('toggles the instruction overlay on multiple clicks', async () => {
+      const instructionButton = wrapper.find(toggleInstructionButton);
+
+      // initial state
+      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(true);
+      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
+        false,
       );
 
       // first click
-      instructionsButton.trigger('click');
+      await instructionButton.trigger('click');
 
       // current state
-      expect(wrapper.vm.$data.homeButtonDisabled).toBe(false);
-      expect(
-        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
-      ).toBe(false);
-      expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
+      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(false);
+      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
         true,
       );
-      expect(
-        instructionsButton.emitted('update:homeButtonDisabled')?.length,
-      ).toBe(1);
 
       // second click
-      instructionsButton.trigger('click');
+      await instructionButton.trigger('click');
 
       // current state
-      expect(wrapper.vm.$data.homeButtonDisabled).toBe(false);
-      expect(
-        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
-      ).toBe(false);
-      expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
+      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(false);
+      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
         false,
       );
-      expect(
-        instructionsButton.emitted('update:homeButtonDisabled')?.length,
-      ).toBe(2);
 
       // third click
-      instructionsButton.trigger('click');
+      await instructionButton.trigger('click');
 
       // current state
-      expect(wrapper.vm.$data.homeButtonDisabled).toBe(false);
-      expect(
-        wrapper.vm.$store.state.instructionsStore.showGetInstructionsGraphic,
-      ).toBe(false);
-      expect(wrapper.vm.$store.state.instructionsStore.isInstructionsMode).toBe(
+      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(false);
+      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
         true,
       );
-      expect(
-        instructionsButton.emitted('update:homeButtonDisabled')?.length,
-      ).toBe(3);
     });
   });
 
   describe('continue-button', () => {
     it('on click: hides itself and toggles state', async () => {
       expect(wrapper.vm.$store.state.showContinueButton).toBe(false);
-      await wrapper.vm.$store.commit('showContinueButton', true);
+      await wrapper.vm.$store.dispatch('setShowContinueButton', true);
       expect(wrapper.vm.$store.state.showContinueButton).toBe(true);
-      const continueButton = '[data-test="continue-button"]';
-      wrapper.find(continueButton).trigger('click');
+      await wrapper.find(continueButton).trigger('click');
       expect(wrapper.vm.$store.state.showContinueButton).toBe(false);
     });
   });

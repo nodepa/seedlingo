@@ -1,9 +1,11 @@
 <template>
-  <component :is="exerciseComponent" :exercise-prop="exerciseItems" />
+  <component :is="exerciseComponent" :exercise-prop="exerciseItems"></component>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+<script setup lang="ts">
+import { onMounted, ref, shallowRef, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 import Cloze from '@/Cloze/components/Cloze.vue';
 import Matching from '@/Matching/components/Matching.vue';
 import MultipleChoice from '@/MultipleChoice/components/MultipleChoice.vue';
@@ -17,92 +19,115 @@ import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
 import { ClozeExercise } from '@/Cloze/ClozeTypes';
 import ExerciseProvider from '@/Lessons/ExerciseProvider';
 
-@Component({
-  // eslint-disable-next-line no-undef
-  components: {
-    Cloze,
-    Matching,
-    MultipleChoice,
-  },
-})
-export default class Session extends Vue {
-  // eslint-disable-next-line class-methods-use-this
-  data(): {
-    exerciseComponent: string;
-    exerciseItems: Array<MatchingItem> | MultipleChoiceExercise | ClozeExercise;
-    currentIteration: number;
-  } {
-    return {
-      exerciseComponent: 'MultipleChoice',
-      exerciseItems: [],
-      currentIteration: 1,
-    };
-  }
+const store = useStore();
+const route = useRoute();
+const router = useRouter();
 
-  @Watch('$store.state.showContinueButton')
-  // eslint-disable-next-line class-methods-use-this
-  onShowContinueButtonChanged(show: boolean): void {
+type ExerciseComponent = typeof Matching | typeof MultipleChoice | typeof Cloze;
+
+const ExerciseMapping: { [key: string]: ExerciseComponent } = {
+  Matching: Matching,
+  MatchingExplanation: Matching,
+  MultipleChoice: MultipleChoice,
+  MultipleChoiceExplanation: MultipleChoice,
+  Cloze: Cloze,
+};
+
+const exerciseComponent = shallowRef<ExerciseComponent | string>(
+  MultipleChoice,
+);
+const exerciseItems = ref<
+  Array<MatchingItem> | MultipleChoiceExercise | ClozeExercise
+>([]);
+const currentIteration = ref<number>(1);
+
+watch(
+  () => store.state.showContinueButton,
+  (show: boolean) => {
     if (!show) {
       // the continue button has been clicked, time to refresh or return home
-      if (this.$data.currentIteration >= 5) {
-        this.$router.push({ name: 'Home' });
+      if (currentIteration.value >= 5) {
+        router.push({ name: 'Home' });
       } else {
-        this.getExercise();
-        this.$data.currentIteration += 1;
+        getExercise();
+        currentIteration.value += 1;
       }
     }
-  }
+  },
+);
 
-  getExercise(): void {
-    if (
-      this.$route.params.id === 'matching-test' ||
-      +this.$route.params.id > 10
-    ) {
-      this.$data.exerciseComponent = 'Matching';
-      this.$data.exerciseItems = getMatchingTestData();
-    } else if (this.$route.params.id === 'multiple-choice-test') {
-      this.$data.exerciseComponent = 'MultipleChoice';
-      this.$data.exerciseItems = getMultipleChoiceTestData();
-    } else if (this.$route.params.id === 'multiple-choice-explanation-test') {
-      this.$data.exerciseComponent = 'MultipleChoice';
-      this.$data.exerciseItems = getMultipleChoiceExplanationTestData();
-    } else if (this.$route.params.id === 'matching-explanation-test') {
-      this.$data.exerciseComponent = 'Matching';
-      this.$data.exerciseItems = getMatchingExplanationTestData();
-    } else if (this.$route.params.id === 'cloze-test') {
-      this.$data.exerciseComponent = 'Cloze';
-      this.$data.exerciseItems = getClozeTestData();
-    } else if (
-      this.$route.params.id != null &&
-      this.$route.params.id !== '' &&
-      !Number.isNaN(+this.$route.params.id)
-    ) {
-      const lessonIndex = +this.$route.params.id;
-      // eslint-disable-next-line @typescript-eslint/no-this-alias
-      const vm = this;
-      ExerciseProvider.getExerciseFromLesson(lessonIndex).then(
-        (exercise: {
-          exerciseType: string;
-          exerciseItems:
-            | Array<MatchingItem>
-            | MultipleChoiceExercise
-            | ClozeExercise;
-        }) => {
-          vm.$data.exerciseItems = exercise.exerciseItems;
-          if (exercise.exerciseType === 'MultipleChoiceExplanation') {
-            vm.$data.exerciseComponent = 'MultipleChoice';
-          } else {
-            vm.$data.exerciseComponent = exercise.exerciseType;
-          }
-        },
-      );
-    }
-  }
+function getExercise(): void {
+  const restoreAfterMock = ExerciseProvider.pickRandomExerciseType;
+  if ('matching-test' === route.params.id || +route.params.id > 10) {
+    exerciseComponent.value = Matching;
+    exerciseItems.value = getMatchingTestData();
+  } else if ('matching' === route.params.id) {
+    exerciseComponent.value = Matching;
+    ExerciseProvider.pickRandomExerciseType = () => 'Matching';
+    exerciseItems.value =
+      ExerciseProvider.getExerciseFromLesson(3).exerciseItems;
+    ExerciseProvider.pickRandomExerciseType = restoreAfterMock;
+  } else if ('multiple-choice-test' === route.params.id) {
+    exerciseComponent.value = MultipleChoice;
+    exerciseItems.value = getMultipleChoiceTestData();
+  } else if ('multiple-choice' === route.params.id) {
+    exerciseComponent.value = MultipleChoice;
+    ExerciseProvider.pickRandomExerciseType = () => 'MultipleChoice';
+    exerciseItems.value =
+      ExerciseProvider.getExerciseFromLesson(3).exerciseItems;
+    ExerciseProvider.pickRandomExerciseType = restoreAfterMock;
+  } else if ('multiple-choice-explanation-test' === route.params.id) {
+    exerciseComponent.value = MultipleChoice;
+    exerciseItems.value = getMultipleChoiceExplanationTestData();
+  } else if ('multiple-choice-explanation' === route.params.id) {
+    exerciseComponent.value = MultipleChoice;
+    ExerciseProvider.pickRandomExerciseType = () => 'MultipleChoiceExplanation';
+    exerciseItems.value =
+      ExerciseProvider.getExerciseFromLesson(4).exerciseItems;
+    ExerciseProvider.pickRandomExerciseType = restoreAfterMock;
+  } else if ('matching-explanation-test' === route.params.id) {
+    exerciseComponent.value = Matching;
+    exerciseItems.value = getMatchingExplanationTestData();
+  } else if ('matching-explanation' === route.params.id) {
+    exerciseComponent.value = Matching;
+    ExerciseProvider.pickRandomExerciseType = () => 'MatchingExplanation';
+    exerciseItems.value =
+      ExerciseProvider.getExerciseFromLesson(4).exerciseItems;
+    ExerciseProvider.pickRandomExerciseType = restoreAfterMock;
+  } else if ('cloze-test' === route.params.id) {
+    exerciseComponent.value = Cloze;
+    exerciseItems.value = getClozeTestData();
+  } else if ('cloze' === route.params.id) {
+    exerciseComponent.value = Cloze;
+    ExerciseProvider.pickRandomExerciseType = () => 'Cloze';
+    exerciseItems.value =
+      ExerciseProvider.getExerciseFromLesson(6).exerciseItems;
+    ExerciseProvider.pickRandomExerciseType = restoreAfterMock;
+  } else if (
+    route.params.id != null &&
+    route.params.id !== '' &&
+    !Number.isNaN(+route.params.id)
+  ) {
+    const lessonIndex = +route.params.id;
+    const { exerciseType, exerciseItems: items } =
+      ExerciseProvider.getExerciseFromLesson(lessonIndex);
+    exerciseComponent.value = ExerciseMapping[exerciseType];
+    exerciseItems.value = items;
 
-  mounted(): void {
-    this.getExercise();
+    // ExerciseProvider.getExerciseFromLesson(lessonIndex).then(
+    //   (exercise: {
+    //     exerciseType: string
+    //     exerciseItems:
+    //       | Array<MatchingItem>
+    //       | MultipleChoiceExercise
+    //       | ClozeExercise
+    //   }) => {
+    //     exerciseItems.value = exercise.exerciseItems;
+    //     exerciseComponent.value = ExerciseMapping[exercise.exerciseType];
+    //   }
+    // )
   }
 }
-</script>
 
-<style lang="stylus" scoped></style>
+onMounted(() => getExercise());
+</script>

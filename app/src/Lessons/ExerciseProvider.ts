@@ -5,6 +5,7 @@ import {
 } from '@/MultipleChoice/MultipleChoiceTypes';
 import { ClozeExercise, ClozeOption } from '@/Cloze/ClozeTypes';
 import { Lesson, LessonItem, BlankOption } from './LessonTypes';
+import { ref } from 'vue';
 
 import ContentConfig from './ContentConfig';
 
@@ -18,22 +19,16 @@ export type ExerciseType =
 export default class ExerciseProvider {
   private static lessons = [] as Array<Lesson>;
 
-  public static async getExerciseFromLesson(indexFromOne: number): Promise<{
-    exerciseType: string;
+  public static getExerciseFromLesson(indexFromOne: number): {
+    exerciseType: ExerciseType;
     exerciseItems: Array<MatchingItem> | MultipleChoiceExercise | ClozeExercise;
-  }> {
-    ExerciseProvider.lessons = await ContentConfig.getLessons();
+  } {
+    ExerciseProvider.lessons = ContentConfig.getLessons();
     this.validateExerciseIndex(indexFromOne);
     const indexFromZero = indexFromOne - 1;
     const lesson = this.lessons[indexFromZero] as Lesson;
 
     const exerciseType = this.pickRandomExerciseType(lesson);
-    // const exerciseType = 'Matching' as ExerciseType;
-    // const exerciseType = 'MatchingExplanation' as ExerciseType;
-    // const exerciseType = 'MultipleChoice' as ExerciseType;
-    // const exerciseType = 'MultipleChoiceExplanation' as ExerciseType;
-    // const exerciseType = 'Cloze' as ExerciseType;
-
     if (exerciseType === 'Matching') {
       return this.generateMatchingExercise(lesson);
     }
@@ -94,7 +89,7 @@ export default class ExerciseProvider {
 
     const matchingExercises = this.createPairsFromWords(
       selectedWords,
-      lesson.lessonIndex,
+      lesson.lessonPath,
     );
 
     this.shuffleMatchingItemsInPlace(matchingExercises);
@@ -120,7 +115,7 @@ export default class ExerciseProvider {
     const matchingExercises = this.createPairsFromExplanationsAndWords(
       selectedExplanations,
       wordsInLesson,
-      lesson.lessonIndex,
+      lesson.lessonPath,
     );
 
     this.shuffleMatchingItemsInPlace(matchingExercises);
@@ -143,13 +138,13 @@ export default class ExerciseProvider {
 
     const multipleChoiceExercise = this.createMultipleChoiceExerciseFromWords(
       selectedWords,
-      lesson.lessonIndex,
+      lesson.lessonPath,
     );
 
     this.makeRandomItemCorrectOption(
       multipleChoiceExercise,
       selectedWords,
-      lesson.lessonIndex,
+      lesson.lessonPath,
     );
 
     return {
@@ -221,13 +216,10 @@ export default class ExerciseProvider {
       buzzing: false,
     } as MultipleChoiceItem;
 
-    import(
-      `@content/lesson${lesson.lessonIndex.toString().padStart(2, '0')}/${
-        targetOfExplanation.audioName
-      }`
-    ).then(({ default: path }) => {
-      correctOption.audio = new Audio(path);
-    });
+    const path = ContentConfig.getAudioPath(
+      `${lesson.lessonPath}${targetOfExplanation.audioName}`,
+    );
+    correctOption.audio = new Audio(path);
 
     multipleChoiceExercise.options.push(correctOption);
 
@@ -246,13 +238,11 @@ export default class ExerciseProvider {
         playing: false,
         buzzing: false,
       } as MultipleChoiceItem;
-      import(
-        `@content/lesson${lesson.lessonIndex.toString().padStart(2, '0')}/${
-          lessonItem.audioName
-        }`
-      ).then(({ default: path }) => {
-        incorrectInterpretation.audio = new Audio(path);
-      });
+
+      const path = ContentConfig.getAudioPath(
+        `${lesson.lessonPath}${lessonItem.audioName}`,
+      );
+      incorrectInterpretation.audio = new Audio(path);
       multipleChoiceExercise.options.push(incorrectInterpretation);
     });
 
@@ -336,7 +326,7 @@ export default class ExerciseProvider {
 
   public static createPairsFromWords(
     words: Array<LessonItem>,
-    lessonIndex: number,
+    lessonPath: string,
   ): Array<MatchingItem> {
     const matchingExercises = [] as Array<MatchingItem>;
     words.forEach((lessonItem: LessonItem, index: number) => {
@@ -366,24 +356,18 @@ export default class ExerciseProvider {
       } as MatchingItem;
       // wordPart.match = symPart;
 
-      import('@mdi/js').then((mod: typeof import('@mdi/js')) => {
-        if (lessonItem.symbolName) {
-          lessonItem.symbolName.forEach((name) => {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (symPart.value as Array<string>).push((mod as any)[name]);
-          });
-        }
-      });
+      if (lessonItem.symbolName) {
+        lessonItem.symbolName.forEach((name) => {
+          (symPart.value as Array<string>).push(ContentConfig.getMdiIcon(name));
+        });
+      }
 
       if (lessonItem.audioName) {
-        import(
-          `@content/lesson${lessonIndex.toString().padStart(2, '0')}/${
-            lessonItem.audioName
-          }`
-        ).then(({ default: path }) => {
-          wordPart.audio = this.createAudio(path);
-          symPart.audio = this.createAudio(path);
-        });
+        const path = ContentConfig.getAudioPath(
+          `${lessonPath}${lessonItem.audioName}`,
+        );
+        wordPart.audio = this.createAudio(path);
+        symPart.audio = this.createAudio(path);
       }
 
       matchingExercises.push(wordPart);
@@ -395,7 +379,7 @@ export default class ExerciseProvider {
   public static createPairsFromExplanationsAndWords(
     explanationItems: Array<LessonItem>,
     targetItems: Array<LessonItem>,
-    lessonIndex: number,
+    lessonPath: string,
   ): Array<MatchingItem> {
     const matchingExercises = [] as Array<MatchingItem>;
     explanationItems.forEach((explanationItem: LessonItem, index: number) => {
@@ -439,21 +423,15 @@ export default class ExerciseProvider {
       } as MatchingItem;
       // wordPart.match = symPart;
 
-      import(
-        `@content/lesson${lessonIndex.toString().padStart(2, '0')}/${
-          explanationItem.audioName
-        }`
-      ).then(({ default: path }) => {
-        explanationPart.audio = this.createAudio(path);
-      });
+      let path = ContentConfig.getAudioPath(
+        `${lessonPath}${explanationItem.audioName}`,
+      );
+      explanationPart.audio = this.createAudio(path);
 
-      import(
-        `@content/lesson${lessonIndex.toString().padStart(2, '0')}/${
-          interpretationItem.audioName
-        }`
-      ).then(({ default: path }) => {
-        wordPart.audio = this.createAudio(path);
-      });
+      path = ContentConfig.getAudioPath(
+        `${lessonPath}${interpretationItem.audioName}`,
+      );
+      wordPart.audio = this.createAudio(path);
 
       matchingExercises.push(explanationPart);
       matchingExercises.push(wordPart);
@@ -466,7 +444,7 @@ export default class ExerciseProvider {
     const el = new Audio(src);
     const audio = {
       el,
-      playing: false,
+      playing: ref(false),
       play() {
         el.currentTime = 0;
         el.play();
@@ -477,13 +455,13 @@ export default class ExerciseProvider {
     } as ExerciseAudio;
 
     el.onplaying = () => {
-      audio.playing = true;
+      audio.playing.value = true;
     };
     el.onpause = () => {
-      audio.playing = false;
+      audio.playing.value = false;
     };
     el.onended = () => {
-      audio.playing = false;
+      audio.playing.value = false;
     };
 
     return audio;
@@ -498,19 +476,14 @@ export default class ExerciseProvider {
         // update match targets
         if (matchingExercises[i].match === j) {
           // if matches are each others matches
-          // eslint-disable-next-line no-param-reassign
           matchingExercises[i].match = i;
-          // eslint-disable-next-line no-param-reassign
           matchingExercises[j].match = j;
         } else {
           // if item.match points to a pre-swap index, inject post-swap index
-          // eslint-disable-next-line no-param-reassign
           matchingExercises[matchingExercises[i].match].match = j;
-          // eslint-disable-next-line no-param-reassign
           matchingExercises[matchingExercises[j].match].match = i;
         }
         // swap location in list
-        // eslint-disable-next-line no-param-reassign
         [matchingExercises[i], matchingExercises[j]] = [
           matchingExercises[j],
           matchingExercises[i],
@@ -526,7 +499,6 @@ export default class ExerciseProvider {
       const j = this.randomIndexLessThan(i + 1);
       if (j !== i) {
         // swap location in list
-        // eslint-disable-next-line no-param-reassign
         [multipleChoiceItems[i], multipleChoiceItems[j]] = [
           multipleChoiceItems[j],
           multipleChoiceItems[i],
@@ -537,7 +509,7 @@ export default class ExerciseProvider {
 
   public static createMultipleChoiceExerciseFromWords(
     selectedItems: Array<LessonItem>,
-    lessonIndex: number,
+    lessonPath: string,
   ): MultipleChoiceExercise {
     const multipleChoiceExercise = {
       itemUnderTestAudio: {} as HTMLAudioElement,
@@ -555,13 +527,8 @@ export default class ExerciseProvider {
         playing: false,
         buzzing: false,
       } as MultipleChoiceItem;
-      import(
-        `@content/lesson${lessonIndex.toString().padStart(2, '0')}/${
-          item.audioName
-        }`
-      ).then(({ default: path }) => {
-        exerciseItem.audio = new Audio(path);
-      });
+      const path = ContentConfig.getAudioPath(`${lessonPath}${item.audioName}`);
+      exerciseItem.audio = new Audio(path);
       multipleChoiceExercise.options.push(exerciseItem);
     });
     return multipleChoiceExercise;
@@ -704,7 +671,7 @@ export default class ExerciseProvider {
         playing: false,
         buzzing: false,
         color: 'primary',
-      });
+      } as ClozeOption);
     });
     clozeExercise.options[randomLocationInAnswerOptions].correct = true;
 
@@ -714,36 +681,29 @@ export default class ExerciseProvider {
   public static makeRandomItemCorrectOption(
     multipleChoiceExercise: MultipleChoiceExercise,
     selectedItems: Array<LessonItem>,
-    lessonIndex: number,
+    lessonPath: string,
   ): void {
     // pick random item as correct option
     const correctIndex = this.randomIndexLessThan(selectedItems.length);
     const correctItem = selectedItems[correctIndex];
-    // eslint-disable-next-line no-param-reassign
     multipleChoiceExercise.options[correctIndex].correct = true;
 
-    import(
-      `@content/lesson${lessonIndex.toString().padStart(2, '0')}/${
-        correctItem.audioName
-      }`
-    ).then(({ default: path }) => {
-      // eslint-disable-next-line no-param-reassign
-      multipleChoiceExercise.itemUnderTestAudio = new Audio(path);
-    });
+    const path = ContentConfig.getAudioPath(
+      `${lessonPath}${correctItem.audioName}`,
+    );
+    multipleChoiceExercise.itemUnderTestAudio = new Audio(path);
 
-    import('@mdi/js').then((mod: typeof import('@mdi/js')) => {
-      if (correctItem.symbolName && correctItem.symbolName.length > 0) {
-        correctItem.symbolName.forEach((name) => {
-          (multipleChoiceExercise.iconToMatch as Array<string>).push(
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (mod as any)[name],
-          );
-        });
-      } else {
-        // eslint-disable-next-line no-param-reassign
-        multipleChoiceExercise.iconToMatch = [mod.mdiCellphoneWireless];
-      }
-    });
+    if (correctItem.symbolName && correctItem.symbolName.length > 0) {
+      correctItem.symbolName.forEach((name) => {
+        (multipleChoiceExercise.iconToMatch as Array<string>).push(
+          ContentConfig.getMdiIcon(name),
+        );
+      });
+    } else {
+      multipleChoiceExercise.iconToMatch = [
+        ContentConfig.getMdiIcon('mdiCellphoneWireless'),
+      ];
+    }
   }
 
   public static getBlankOptionWordItems(

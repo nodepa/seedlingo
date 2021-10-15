@@ -9,7 +9,7 @@
       <v-col cols="10" class="text-left">
         <sup>Effective date: 2021-09-01</sup>
         <p class="mb-0"><strong>In short</strong></p>
-        <ul class="mb-3">
+        <ul class="mb-3 pl-6">
           <li>
             The only data we collect from you is your IP address, browser,
             device and time when you access this web app.
@@ -23,8 +23,8 @@
           </li>
           <li>
             We store on your device the number of times you have seen the "get
-            instructions"-animation, so we can stop showing it after a few
-            times. This information is never transfered anywhere else.
+            instruction"-animation, so we can stop showing it after a few times.
+            This information is never transfered anywhere else.
           </li>
         </ul>
         <h2>Who we are</h2>
@@ -133,7 +133,7 @@
           request your device makes for updated data to the web app, including
           your:
         </p>
-        <ul class="mb-3">
+        <ul class="mb-3 pl-6">
           <li>IP address</li>
           <li>date and time of request</li>
           <li>description of your browser and device</li>
@@ -176,11 +176,11 @@
         </p>
         <p>
           We do store on your device the number of times you have seen the "get
-          instructions"-animation, so we can stop showing it after a few times.
+          instruction"-animation, so we can stop showing it after a few times.
           This information is never transfered anywhere else.
         </p>
         <h3>Information we do not collect</h3>
-        <ul class="mb-3">
+        <ul class="mb-3 pl-6">
           <li>
             We do not intentionally or knowingly collect information from anyone
             under the age of 18 (<a
@@ -233,7 +233,7 @@
         </p>
         <h2>Your rights to your data</h2>
         <p class="mb-0">You have the right to:</p>
-        <ul class="mb-3">
+        <ul class="mb-3 pl-6">
           <li>
             be informed about the collection and use of your personal data
           </li>
@@ -254,7 +254,7 @@
           or by email to seedling@nodepa.org
         </p>
         <p class="mb-0">Please reach out to us if you:</p>
-        <ul class="mb-3">
+        <ul class="mb-3 pl-6">
           <li>have any questions about this privacy policy</li>
           <li>want to make a request about your personal data</li>
         </ul>
@@ -283,16 +283,10 @@
   </v-container>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import { onMounted } from 'vue';
 
-@Component
-export default class Privacy extends Vue {
-  // eslint-disable-next-line class-methods-use-this
-  mounted(): void {
-    window.scrollTo(0, 0);
-  }
-}
+onMounted(() => {
+  window.scrollTo(0, 0);
+});
 </script>
-
-<style lang="stylus" scoped></style>

@@ -1,3 +1,8 @@
+const getInstructionComponent = '[data-test="get-instruction-component"]';
+const instructionOverlay = '[data-test="instruction-overlay"]';
+const homeButton = '[data-test="home-button"]';
+const toggleInstructionButton = '[data-test="toggle-instruction-button"]';
+
 describe('马丽 interacts with the "instruction" system', () => {
   it(
     'Displays the instruction mode with audio elements,' +
@@ -16,38 +21,30 @@ describe('马丽 interacts with the "instruction" system', () => {
         },
       });
 
-      cy.get('[data-test="get-instructions-component"]').should('be.visible');
-      cy.get('[data-test="toggle-instructions-button"]')
-        .as('ToggleInstructionsButton')
-        .should('be.visible')
-        .click();
-      cy.get('[data-test="get-instructions-component"]').should(
-        'not.be.visible',
-      );
-      cy.get('[data-test="instructions-overlay"]')
-        .as('InstructionsOverlay')
-        .should('exist');
+      cy.get(getInstructionComponent).should('be.visible');
+      cy.get(toggleInstructionButton).should('be.visible').click();
+      cy.get(getInstructionComponent).should('not.exist');
+      cy.get(instructionOverlay).should('exist').should('not.be.visible');
       // not working: cy.get('[data-test="home-button"]').should('not.be.disabled');
-      cy.get('[data-test="home-button"]')
-        .as('HomeButton')
+      cy.get(homeButton)
         .should('not.have.class', 'v-btn--disabled')
         .should('have.css', 'z-index', '4')
         .find('.badge')
         .should('exist');
 
       cy.get('@audio.play').should('have.callCount', 1); // on first load
-      cy.get('@HomeButton').click();
+      cy.get(homeButton).click();
       cy.get('@audio.play').should('have.callCount', 2);
 
-      cy.get('@ToggleInstructionsButton').click();
-      cy.get('@InstructionsOverlay').should('not.exist');
-      cy.get('@HomeButton')
-        .should('have.css', 'z-index', 'auto')
+      cy.get(toggleInstructionButton).click();
+      cy.get(instructionOverlay).should('not.exist');
+      cy.get(homeButton)
+        .should('have.css', 'z-index', '1')
         .find('.badge')
         .should('not.exist');
 
-      cy.get('@ToggleInstructionsButton').click();
-      cy.get('@InstructionsOverlay').should('exist');
+      cy.get(toggleInstructionButton).click();
+      cy.get(instructionOverlay).should('exist');
 
       // ensure overlay disappears after audio
       // - click instruction toggle

@@ -8,14 +8,14 @@ export interface PackageConfig {
     welcome: string;
     homeButton: string;
     continueButton: string;
-    instructionsButton: string;
+    instructionButton: string;
     multipleChoiceExercise: string;
     clozeExercise: string;
   };
   lessons: Array<{
     name: string;
     icon: string;
-    audio: string;
+    instructionAudio: string;
     lessonData: string;
   }>;
 }

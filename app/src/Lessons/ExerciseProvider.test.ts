@@ -1,4 +1,5 @@
 import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
+import ContentConfig from './ContentConfig';
 import ExerciseProvider from './ExerciseProvider';
 import { Lesson } from './LessonTypes';
 
@@ -7,6 +8,7 @@ beforeEach(() => {
   lesson = {
     id: '9b56ad90-9bee-48b7-baf5-e8372e2001b6',
     lessonIndex: 1,
+    lessonPath: './test-support/audio/',
     clozeCount: 0,
     explanationCount: 0,
     sentenceCount: 0,
@@ -87,26 +89,38 @@ describe('ExerciseProvider', () => {
 
   describe('.generateMatchingExercise()', () => {
     it('correctly returns exercises', () => {
+      const spyGetAudioPath = jest
+        .spyOn(ContentConfig, 'getAudioPath')
+        .mockImplementation((path: string) => path);
       expect(lesson.items[3].symbolName?.length).toBe(1);
       const matchingExercise =
         ExerciseProvider.generateMatchingExercise(lesson);
       expect(matchingExercise.exerciseType).toBe('Matching');
+      spyGetAudioPath.mockRestore();
     });
   });
 
   describe('.generateMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
+      const spyGetAudioPath = jest
+        .spyOn(ContentConfig, 'getAudioPath')
+        .mockImplementation((path: string) => path);
       const multipleChoiceExercise =
         ExerciseProvider.generateMultipleChoiceExercise(lesson);
       expect(multipleChoiceExercise.exerciseType).toBe('MultipleChoice');
+      spyGetAudioPath.mockRestore();
     });
   });
 
   describe('.generateMultipleChoiceExplanationExercise()', () => {
     it('correctly returns exercises', () => {
+      const spyGetAudioPath = jest
+        .spyOn(ContentConfig, 'getAudioPath')
+        .mockImplementation((path: string) => path);
       lesson = {
         id: '17df7241-eb9d-4bea-904e-d51823d8fc85',
         lessonIndex: 4,
+        lessonPath: '@/test-support/audio/',
         clozeCount: 0,
         explanationCount: 2,
         sentenceCount: 0,
@@ -177,6 +191,7 @@ describe('ExerciseProvider', () => {
           );
         expect(correctAlternative?.word).toBe(lesson.items[2].word);
       }
+      spyGetAudioPath.mockRestore();
     });
   });
 

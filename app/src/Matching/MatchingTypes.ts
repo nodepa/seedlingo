@@ -1,6 +1,8 @@
+import { Ref } from 'vue';
+
 export interface ExerciseAudio {
   el: HTMLAudioElement;
-  playing: boolean;
+  playing: Ref<boolean>;
   play(): void;
   cancel(): void;
 }
