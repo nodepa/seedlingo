@@ -32,15 +32,15 @@
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",
-    "@vue/cli-plugin-babel": "~5.0.0-beta.4",
-    "@vue/cli-plugin-e2e-cypress": "~5.0.0-beta.4",
-    "@vue/cli-plugin-eslint": "~5.0.0-beta.4",
-    "@vue/cli-plugin-pwa": "~5.0.0-beta.4",
-    "@vue/cli-plugin-router": "~5.0.0-beta.4",
-    "@vue/cli-plugin-typescript": "~5.0.0-beta.4",
-    "@vue/cli-plugin-unit-jest": "~5.0.0-beta.4",
-    "@vue/cli-plugin-vuex": "~5.0.0-beta.4",
-    "@vue/cli-service": "~5.0.0-beta.4",
+    "@vue/cli-plugin-babel": "~5.0.0-beta.6",
+    "@vue/cli-plugin-e2e-cypress": "~5.0.0-beta.6",
+    "@vue/cli-plugin-eslint": "~5.0.0-beta.6",
+    "@vue/cli-plugin-pwa": "~5.0.0-beta.6",
+    "@vue/cli-plugin-router": "~5.0.0-beta.6",
+    "@vue/cli-plugin-typescript": "~5.0.0-beta.6",
+    "@vue/cli-plugin-unit-jest": "~5.0.0-beta.6",
+    "@vue/cli-plugin-vuex": "~5.0.0-beta.6",
+    "@vue/cli-service": "~5.0.0-beta.6",
     "@vue/compiler-sfc": "^3.2.6",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
@@ -49,7 +49,7 @@
     "babel-jest": "^27.0.6",
     "babel-plugin-require-context-hook": "^1.0.0",
     "cypress": "^8.6.0",
-    "eslint": "^7.20.0",
+    "eslint": "^8.0.1",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.2.0",
     "http-server": "^13.0.2",
@@ -60,13 +60,14 @@
     "sass-loader": "^12.0.0",
     "ts-jest": "^27.0.7",
     "typescript": "~4.1.5",
-    "vue-cli-plugin-vuetify": "~2.4.2"
+    "vue-cli-plugin-vuetify": "~2.4.3"
   },
   "scripts": {
     "build": "vue-cli-service build",
     "buildm": "vue-cli-service build --modern",
     "genass": "cd public && pwd && npx pwa-asset-generator --background 'linear-gradient(#19D2FE, #1E64F0)' --padding '0px' --favicon --single-quotes --type png ../src/assets/logo/logo.svg ./logo",
     "lint": "vue-cli-service lint",
+    "prepare": "cd ../ && husky install ./app/.husky",
     "servebuild": "http-server ./dist --gzip --brotli -c-1",
     "start": "vue-cli-service serve",
     "starts": "vue-cli-service serve --https",
@@ -87,7 +88,6 @@
     "tuc": "npm run test:unit:coverage",
     "tuo": "npm run test:unit:once",
     "tuv": "npm run test:unit:verbose",
-    "verify": "npm install && npm run lint && npm run test:unit:coverage && npm run test:e2e",
-    "prepare": "cd ../ && husky install ./app/.husky"
+    "verify": "npm install && npm run lint && npm run test:unit:coverage && npm run test:e2e"
   }
 }
