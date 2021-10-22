@@ -14,7 +14,7 @@ import { MatchingItem } from '../MatchingTypes';
 export default function MatchingTestData(): Array<MatchingItem> {
   return [
     {
-      value: [mdiNumeric2Circle],
+      wordOrIcons: [mdiNumeric2Circle],
       audio: ExerciseProvider.createAudio(二),
       match: 2,
       color: 'primary',
@@ -25,7 +25,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: '术',
+      wordOrIcons: '术',
       audio: ExerciseProvider.createAudio(术),
       match: 4,
       color: '',
@@ -36,7 +36,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: '二',
+      wordOrIcons: '二',
       audio: ExerciseProvider.createAudio(二),
       match: 0,
       color: '',
@@ -47,7 +47,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: [mdiNumeric4Circle],
+      wordOrIcons: [mdiNumeric4Circle],
       audio: ExerciseProvider.createAudio(四),
       match: 7,
       color: 'primary',
@@ -58,7 +58,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: [mdiPalmTree],
+      wordOrIcons: [mdiPalmTree],
       audio: ExerciseProvider.createAudio(术),
       match: 1,
       color: 'primary',
@@ -69,7 +69,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: [mdiDice3],
+      wordOrIcons: [mdiDice3],
       audio: ExerciseProvider.createAudio(三),
       match: 6,
       color: 'primary',
@@ -80,7 +80,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: '三',
+      wordOrIcons: '三',
       audio: ExerciseProvider.createAudio(三),
       match: 5,
       color: '',
@@ -91,7 +91,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: '四',
+      wordOrIcons: '四',
       audio: ExerciseProvider.createAudio(四),
       match: 3,
       color: '',

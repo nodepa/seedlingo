@@ -4,7 +4,6 @@ import {
   computed,
   ComputedRef,
   onMounted,
-  Ref,
   ref,
 } from 'vue';
 import { useStore } from 'vuex';
@@ -15,11 +14,11 @@ import InstructionCloseIcon from '@/common/icons/InstructionCloseIcon';
 
 const store = useStore();
 
-const instructionButton: Ref<ComponentPublicInstance | null> = ref(null);
+const instructionButton = ref({} as ComponentPublicInstance);
 const showGetInstructionGraphic: ComputedRef<boolean> = computed(() => {
   return store.state.showGetInstructionGraphic;
 });
-onMounted(async () => {
+onMounted(() => {
   if (showGetInstructionGraphic.value && instructionButton.value) {
     const animation = instructionButton.value.$el.animate(
       [

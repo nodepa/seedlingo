@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { computed, ComputedRef, ref, watch } from 'vue';
+import {
+  ComponentPublicInstance,
+  computed,
+  ComputedRef,
+  ref,
+  watch,
+} from 'vue';
 import { useStore } from 'vuex';
 import { mdiForward } from '@mdi/js';
 import ContentConfig from '@/Lessons/ContentConfig';
 
-const continueButton = ref(null);
+const continueButton = ref({} as ComponentPublicInstance);
 watch(
   () => continueButton.value,
   (continueButton) => {

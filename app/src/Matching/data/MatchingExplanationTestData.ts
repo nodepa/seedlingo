@@ -8,7 +8,7 @@ import { MatchingItem } from '../MatchingTypes';
 export default function MatchingExplanationTestData(): Array<MatchingItem> {
   return [
     {
-      value: '五减二',
+      wordOrIcons: '五减二',
       audio: ExerciseProvider.createAudio(五减二),
       match: 2,
       color: 'primary',
@@ -19,7 +19,7 @@ export default function MatchingExplanationTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: '四',
+      wordOrIcons: '四',
       audio: ExerciseProvider.createAudio(四),
       match: 3,
       color: '',
@@ -30,7 +30,7 @@ export default function MatchingExplanationTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: '三',
+      wordOrIcons: '三',
       audio: ExerciseProvider.createAudio(三),
       match: 0,
       color: '',
@@ -41,7 +41,7 @@ export default function MatchingExplanationTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      value: '二加二',
+      wordOrIcons: '二加二',
       audio: ExerciseProvider.createAudio(二加二),
       match: 1,
       color: 'primary',

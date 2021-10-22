@@ -7,7 +7,7 @@ interface Props {
   playing?: Ref<boolean>;
 }
 const props = withDefaults(defineProps<Props>(), {
-  playing: ref(false),
+  playing: () => ref(false),
 });
 
 const playing = ref(props.playing);

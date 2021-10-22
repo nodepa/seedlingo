@@ -19,12 +19,7 @@ import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
 import { ClozeExercise } from '@/Cloze/ClozeTypes';
 import ExerciseProvider from '@/Lessons/ExerciseProvider';
 
-const store = useStore();
-const route = useRoute();
-const router = useRouter();
-
 type ExerciseComponent = typeof Matching | typeof MultipleChoice | typeof Cloze;
-
 const ExerciseMapping: { [key: string]: ExerciseComponent } = {
   Matching: Matching,
   MatchingExplanation: Matching,
@@ -32,15 +27,17 @@ const ExerciseMapping: { [key: string]: ExerciseComponent } = {
   MultipleChoiceExplanation: MultipleChoice,
   Cloze: Cloze,
 };
-
 const exerciseComponent = shallowRef<ExerciseComponent | string>(
   MultipleChoice,
 );
+
 const exerciseItems = ref<
   Array<MatchingItem> | MultipleChoiceExercise | ClozeExercise
->([]);
-const currentIteration = ref<number>(1);
+>([] as Array<MatchingItem>);
 
+const router = useRouter();
+const store = useStore();
+const currentIteration = ref<number>(1);
 watch(
   () => store.state.showContinueButton,
   (show: boolean) => {
@@ -56,6 +53,7 @@ watch(
   },
 );
 
+const route = useRoute();
 function getExercise(): void {
   const restoreAfterMock = ExerciseProvider.pickRandomExerciseType;
   if ('matching-test' === route.params.id || +route.params.id > 10) {

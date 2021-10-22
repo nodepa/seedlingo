@@ -63,7 +63,7 @@ describe('Matching', () => {
       expect(countMatched).toEqual(0);
       const selectedOption = wrapper.vm.exerciseItems[1] as MatchingItem;
       const preSelectionOption = getTestData()[1] as MatchingItem;
-      expect(selectedOption.value).toBe(preSelectionOption.value);
+      expect(selectedOption.wordOrIcons).toBe(preSelectionOption.wordOrIcons);
       expect(selectedOption.match).toBe(preSelectionOption.match);
       expect(selectedOption.color).not.toBe(preSelectionOption.color);
       expect(selectedOption.isWord).toBe(preSelectionOption.isWord);
@@ -142,10 +142,10 @@ describe('Matching', () => {
 
       if (firstIsWord) {
         expect(firstSelection.isWord).toBe(true);
-        expect(firstSelection.value).toBe(expectedWord);
+        expect(firstSelection.wordOrIcons).toBe(expectedWord);
       } else {
         expect(secondSelection.isWord).toBe(true);
-        expect(secondSelection.value).toBe(expectedWord);
+        expect(secondSelection.wordOrIcons).toBe(expectedWord);
       }
 
       // re-orders unmatched items after matching 2️⃣ + 二
@@ -168,14 +168,30 @@ describe('Matching', () => {
       expect(originalOptions[6].match).toBe(5);
       expect(originalOptions[7].match).toBe(3);
       // verify new sort order
-      expect(exerciseItems[0].value).toEqual(originalOptions[0].value);
-      expect(exerciseItems[1].value).toEqual(originalOptions[2].value);
-      expect(exerciseItems[2].value).toEqual(originalOptions[1].value);
-      expect(exerciseItems[3].value).toEqual(originalOptions[3].value);
-      expect(exerciseItems[4].value).toEqual(originalOptions[4].value);
-      expect(exerciseItems[5].value).toEqual(originalOptions[5].value);
-      expect(exerciseItems[6].value).toEqual(originalOptions[6].value);
-      expect(exerciseItems[7].value).toEqual(originalOptions[7].value);
+      expect(exerciseItems[0].wordOrIcons).toEqual(
+        originalOptions[0].wordOrIcons,
+      );
+      expect(exerciseItems[1].wordOrIcons).toEqual(
+        originalOptions[2].wordOrIcons,
+      );
+      expect(exerciseItems[2].wordOrIcons).toEqual(
+        originalOptions[1].wordOrIcons,
+      );
+      expect(exerciseItems[3].wordOrIcons).toEqual(
+        originalOptions[3].wordOrIcons,
+      );
+      expect(exerciseItems[4].wordOrIcons).toEqual(
+        originalOptions[4].wordOrIcons,
+      );
+      expect(exerciseItems[5].wordOrIcons).toEqual(
+        originalOptions[5].wordOrIcons,
+      );
+      expect(exerciseItems[6].wordOrIcons).toEqual(
+        originalOptions[6].wordOrIcons,
+      );
+      expect(exerciseItems[7].wordOrIcons).toEqual(
+        originalOptions[7].wordOrIcons,
+      );
       // verify new matches
       expect(exerciseItems[0].match).toBe(1);
       expect(exerciseItems[1].match).toBe(0);
@@ -225,14 +241,30 @@ describe('Matching', () => {
       // expected new order
       const { exerciseItems } = wrapper.vm;
       // verify new sort order
-      expect(exerciseItems[0].value).toEqual(originalOptions[5].value);
-      expect(exerciseItems[1].value).toEqual(originalOptions[6].value);
-      expect(exerciseItems[2].value).toEqual(originalOptions[0].value);
-      expect(exerciseItems[3].value).toEqual(originalOptions[2].value);
-      expect(exerciseItems[4].value).toEqual(originalOptions[3].value);
-      expect(exerciseItems[5].value).toEqual(originalOptions[7].value);
-      expect(exerciseItems[6].value).toEqual(originalOptions[1].value);
-      expect(exerciseItems[7].value).toEqual(originalOptions[4].value);
+      expect(exerciseItems[0].wordOrIcons).toEqual(
+        originalOptions[5].wordOrIcons,
+      );
+      expect(exerciseItems[1].wordOrIcons).toEqual(
+        originalOptions[6].wordOrIcons,
+      );
+      expect(exerciseItems[2].wordOrIcons).toEqual(
+        originalOptions[0].wordOrIcons,
+      );
+      expect(exerciseItems[3].wordOrIcons).toEqual(
+        originalOptions[2].wordOrIcons,
+      );
+      expect(exerciseItems[4].wordOrIcons).toEqual(
+        originalOptions[3].wordOrIcons,
+      );
+      expect(exerciseItems[5].wordOrIcons).toEqual(
+        originalOptions[7].wordOrIcons,
+      );
+      expect(exerciseItems[6].wordOrIcons).toEqual(
+        originalOptions[1].wordOrIcons,
+      );
+      expect(exerciseItems[7].wordOrIcons).toEqual(
+        originalOptions[4].wordOrIcons,
+      );
       // verify new matches
       expect(exerciseItems[0].match).toBe(1);
       expect(exerciseItems[1].match).toBe(0);
