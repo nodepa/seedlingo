@@ -1,14 +1,12 @@
-import { Ref } from 'vue';
-
 export interface ExerciseAudio {
   el: HTMLAudioElement;
-  playing: Ref<boolean>;
+  playing: boolean;
   play(): void;
   cancel(): void;
 }
 
 export interface MatchingItem {
-  value: string | Array<string>;
+  wordOrIcons: string | Array<string>;
   audio: ExerciseAudio;
   match: number;
   color: string;

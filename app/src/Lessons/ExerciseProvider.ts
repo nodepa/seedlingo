@@ -5,7 +5,7 @@ import {
 } from '@/MultipleChoice/MultipleChoiceTypes';
 import { ClozeExercise, ClozeOption } from '@/Cloze/ClozeTypes';
 import { Lesson, LessonItem, BlankOption } from './LessonTypes';
-import { ref } from 'vue';
+import { reactive } from 'vue';
 
 import ContentConfig from './ContentConfig';
 
@@ -331,7 +331,7 @@ export default class ExerciseProvider {
     const matchingExercises = [] as Array<MatchingItem>;
     words.forEach((lessonItem: LessonItem, index: number) => {
       const wordPart = {
-        value: lessonItem.word,
+        wordOrIcons: lessonItem.word,
         audio: {} as ExerciseAudio,
         // match: {} as MatchingItem
         match: index * 2 + 1,
@@ -343,7 +343,7 @@ export default class ExerciseProvider {
         buzzing: false,
       } as MatchingItem;
       const symPart = {
-        value: [] as Array<string>,
+        wordOrIcons: [] as Array<string>,
         audio: {} as ExerciseAudio,
         // match: wordPart,
         match: index * 2,
@@ -358,7 +358,9 @@ export default class ExerciseProvider {
 
       if (lessonItem.symbolName) {
         lessonItem.symbolName.forEach((name) => {
-          (symPart.value as Array<string>).push(ContentConfig.getMdiIcon(name));
+          (symPart.wordOrIcons as Array<string>).push(
+            ContentConfig.getMdiIcon(name),
+          );
         });
       }
 
@@ -384,7 +386,7 @@ export default class ExerciseProvider {
     const matchingExercises = [] as Array<MatchingItem>;
     explanationItems.forEach((explanationItem: LessonItem, index: number) => {
       const explanationPart = {
-        value: explanationItem.explanation,
+        wordOrIcons: explanationItem.explanation,
         audio: {} as ExerciseAudio,
         // match: {} as MatchingItem
         match: index * 2 + 1,
@@ -410,7 +412,7 @@ export default class ExerciseProvider {
         );
       }
       const wordPart = {
-        value: interpretationItem.word,
+        wordOrIcons: interpretationItem.word,
         audio: {} as ExerciseAudio,
         // match: wordPart,
         match: index * 2,
@@ -442,9 +444,9 @@ export default class ExerciseProvider {
 
   public static createAudio(src: string): ExerciseAudio {
     const el = new Audio(src);
-    const audio = {
+    const audio = reactive({
       el,
-      playing: ref(false),
+      playing: false,
       play() {
         el.currentTime = 0;
         el.play();
@@ -452,16 +454,16 @@ export default class ExerciseProvider {
       cancel() {
         el.pause();
       },
-    } as ExerciseAudio;
+    }) as ExerciseAudio;
 
     el.onplaying = () => {
-      audio.playing.value = true;
+      audio.playing = true;
     };
     el.onpause = () => {
-      audio.playing.value = false;
+      audio.playing = false;
     };
     el.onended = () => {
-      audio.playing.value = false;
+      audio.playing = false;
     };
 
     return audio;
@@ -641,11 +643,11 @@ export default class ExerciseProvider {
     );
 
     // insert correct option among answers at random index
-    const randomLocationInAnswerOptions = this.randomIndexLessThan(
+    const randomPositionInAnswerOptions = this.randomIndexLessThan(
       answerOptions.length,
     );
     const validWordItem = validBlankItems[blankIndexToRequest];
-    answerOptions.splice(randomLocationInAnswerOptions, 0, validWordItem);
+    answerOptions.splice(randomPositionInAnswerOptions, 0, validWordItem);
 
     // format as a ClozeExercise
     const indexOfBlankToRequest = blankMap[blankIndexToRequest];
@@ -673,7 +675,7 @@ export default class ExerciseProvider {
         color: 'primary',
       } as ClozeOption);
     });
-    clozeExercise.options[randomLocationInAnswerOptions].correct = true;
+    clozeExercise.options[randomPositionInAnswerOptions].correct = true;
 
     return clozeExercise;
   }

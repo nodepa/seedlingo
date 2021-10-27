@@ -219,18 +219,21 @@ function getSpacing(itemCount: number, index: number): string {
           @click="selectAndPlay(option, +index)"
         >
           <template v-if="option.isIcon">
+            <!-- awaiting post-alpha vue3-jest:
+              v-for="(icon, iconIndex) in (option.wordOrIcons as Array<string>)" -->
             <v-icon
-              v-for="(icon, iconIndex) in option.value"
+              v-for="(icon, iconIndex) in option.wordOrIcons"
               :key="iconIndex"
-              :class="`${getSpacing(option.value.length, +iconIndex)} text-h${
-                option.value.length + 2
-              }`"
+              :class="`${getSpacing(
+                option.wordOrIcons.length,
+                +iconIndex,
+              )} text-h${option.wordOrIcons.length + 2}`"
               :icon="icon"
-            />
+            ></v-icon>
           </template>
           <template v-else>
-            <p :class="`text-h${option.value.length + 3}`">
-              {{ option.value }}
+            <p :class="`text-h${option.wordOrIcons.length + 3}`">
+              {{ option.wordOrIcons }}
             </p>
           </template>
         </ExerciseButton>

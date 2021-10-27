@@ -75,6 +75,7 @@ function playItemUnderTestAudio(): void {
         // eslint-disable-next-line vue/no-mutating-props
         props.exerciseProp.itemUnderTestAudioPlaying = false;
     };
+    testAudio.currentTime = 0;
     testAudio.play();
   }
 }
@@ -88,8 +89,6 @@ function playOptionAudio(option: MultipleChoiceItem): void {
   });
   if (props.exerciseProp.itemUnderTestAudio) {
     props.exerciseProp.itemUnderTestAudio.pause();
-    // eslint-disable-next-line vue/no-mutating-props
-    props.exerciseProp.itemUnderTestAudio.currentTime = 0;
   }
 
   // prepare to handle playtime events
