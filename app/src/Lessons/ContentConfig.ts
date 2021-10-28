@@ -35,7 +35,7 @@ export default class ContentConfig {
       lessons[oneBasedIndex].icon = (mdiIcons as any)[lesson.icon];
 
       lessons[oneBasedIndex].audio = mp3(
-        `${this.contentPrefix}${lesson.instructionAudio}`,
+        `${this.contentPrefix}${lesson.introductionAudio}`,
       ).default;
     }
 

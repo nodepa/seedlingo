@@ -15,7 +15,7 @@ export interface PackageConfig {
   lessons: Array<{
     name: string;
     icon: string;
-    instructionAudio: string;
+    introductionAudio: string;
     lessonData: string;
   }>;
 }
