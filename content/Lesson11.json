@@ -13,7 +13,7 @@
       "id": "6b941a32-89f3-4436-ac53-f2769cb0d3b3",
       "type": "MultiCloze",
       "suppressClozeAudio": false,
-      "suppressOptionAudio": true,
+      "suppressOptionAudio": false,
       "multiClozeText": [
         { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
         { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
@@ -62,8 +62,8 @@
     {
       "id": "ac8bf1c9-fd63-4db7-bbdc-a80644e3ae5a",
       "type": "MultiCloze",
-      "suppressClozeAudio": true,
-      "suppressOptionAudio": true,
+      "suppressClozeAudio": false,
+      "suppressOptionAudio": false,
       "multiClozeText": [
         { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
         { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
@@ -112,8 +112,8 @@
     {
       "id": "88440975-1acc-42fd-99cb-dea272274d67",
       "type": "MultiCloze",
-      "suppressClozeAudio": true,
-      "suppressOptionAudio": true,
+      "suppressClozeAudio": false,
+      "suppressOptionAudio": false,
       "multiClozeText": [
         { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
         { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
@@ -162,8 +162,8 @@
     {
       "id": "09ab2d47-4c75-4f51-8f45-225caf346559",
       "type": "MultiCloze",
-      "suppressClozeAudio": true,
-      "suppressOptionAudio": true,
+      "suppressClozeAudio": false,
+      "suppressOptionAudio": false,
       "multiClozeText": [
         { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
         { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
@@ -212,7 +212,7 @@
     {
       "id": "4778cd13-f19f-4c74-9d1b-136f127051d9",
       "type": "MultiCloze",
-      "suppressClozeAudio": true,
+      "suppressClozeAudio": false,
       "multiClozeText": [
         { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
         { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
@@ -255,7 +255,7 @@
     {
       "id": "4b6ad989-ec1d-489c-b6b7-bc023da77b6f",
       "type": "MultiCloze",
-      "suppressClozeAudio": true,
+      "suppressClozeAudio": false,
       "multiClozeText": [
         { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
         { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
@@ -298,7 +298,7 @@
     {
       "id": "ed35d94f-07db-4443-a945-2c94f9721665",
       "type": "MultiCloze",
-      "suppressClozeAudio": true,
+      "suppressClozeAudio": false,
       "multiClozeText": [
         { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
         { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
@@ -341,7 +341,7 @@
     {
       "id": "84197d33-5c9a-4b78-afd5-c94a52f1a181",
       "type": "MultiCloze",
-      "suppressClozeAudio": true,
+      "suppressClozeAudio": false,
       "multiClozeText": [
         { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
         { "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754" },
