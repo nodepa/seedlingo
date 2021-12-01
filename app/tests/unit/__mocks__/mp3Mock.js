@@ -1,1 +1,1 @@
-module.exports = 'this-file-has-been-mocked';
+module.exports = { default: 'this-mp3-file-has-been-mocked' };

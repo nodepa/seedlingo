@@ -7,7 +7,7 @@ import {
   ref,
 } from 'vue';
 import { useStore } from 'vuex';
-import ContentConfig from '@/Lessons/ContentConfig';
+import ContentConfig from '@/Lessons/ContentSpec';
 import { Instruction } from '@/common/directives/InstructionDirective';
 import InstructionIcon from '@/common/icons/InstructionIcon';
 import InstructionCloseIcon from '@/common/icons/InstructionCloseIcon';

@@ -1,0 +1,135 @@
+{
+  "wordCount": 29,
+  "words": {
+    "a681b683-d909-4f5b-834e-8347633df4b1": {
+      "word": "数字",
+      "audio": "audio/数字.mp3",
+      "symbol": ["mdiNumeric"]
+    },
+    "8d2a8043-7eaa-4aee-927d-a42313036970": {
+      "word": "零",
+      "audio": "audio/零.mp3",
+      "symbol": ["mdiNumeric0Circle"]
+    },
+    "1d936b6b-e44c-466c-8d04-ab52643670c2": {
+      "word": "一",
+      "audio": "audio/一.mp3",
+      "symbol": ["mdiNumeric1Circle"]
+    },
+    "698cced9-2080-4226-87f0-07837add7938": {
+      "word": "二",
+      "audio": "audio/二.mp3",
+      "symbol": ["mdiNumeric2Circle"]
+    },
+    "5dbf7670-f66d-46e4-b971-8f8d6de95a5c": {
+      "word": "两",
+      "audio": "audio/两.mp3",
+      "symbol": ["mdiNumeric2CircleOutline"]
+    },
+    "da473305-758c-40c0-a61b-d9de0aefb5a4": {
+      "word": "四",
+      "audio": "audio/四.mp3",
+      "symbol": ["mdiNumeric4Circle"]
+    },
+    "8da1e3a6-3268-40da-8707-be2a2c902c16": {
+      "word": "妈妈",
+      "audio": "audio/妈妈.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    "843f4af4-5dcb-44a4-b690-759db29999c4": {
+      "word": "的",
+      "audio": "audio/的.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    "6c0f975c-4364-40c7-ae72-cfc2145da7e3": {
+      "word": "姥爷",
+      "audio": "audio/姥爷.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    "5cd464a3-a04a-4ad2-9565-091036425550": {
+      "word": "奶奶",
+      "audio": "audio/奶奶.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    "1ad7f2f9-521a-4a00-b549-bd4ee081149b": {
+      "word": "爷爷",
+      "audio": "audio/爷爷.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    "3773c800-4f9b-4951-b7a7-9e0c9861d089": {
+      "word": "爸爸",
+      "audio": "audio/爸爸.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    "d63f08dd-f8e6-4b47-940b-8d9d939034a6": {
+      "word": "姥姥",
+      "audio": "audio/姥姥.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    "c53add23-aba4-42f5-9fbb-d6a6d1d8882c": {
+      "word": "他",
+      "audio": "audio/他.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    "bc1ec01c-0fde-4e63-82e6-c0f78d01529e": {
+      "word": "是",
+      "audio": "audio/是.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    "9f4c842a-e36a-48b1-aa4b-955aedef35d2": {
+      "word": "我",
+      "audio": "audio/我.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    "a1e806d9-f9bd-48fe-95eb-293d6753d421": {
+      "word": "岁",
+      "audio": "audio/岁.mp3",
+      "symbol": ["mdiCellphoneWireless"]
+    },
+    "5d0f410c-83ff-43bd-a31e-922b42b054ef": {
+      "word": "。"
+    },
+    "35389a5a-4493-44e5-a8ae-dc0a30c98dbf": {
+      "word": "有",
+      "audio": "audio/有.mp3"
+    },
+    "90f79865-ac90-4644-9a8b-88eaad30e979": {
+      "word": "个",
+      "audio": "audio/个.mp3"
+    },
+    "c8de49d6-d26a-4d62-b959-83cf57327387": {
+      "word": "孩子",
+      "audio": "audio/孩子.mp3"
+    },
+    "526a8ee7-7525-4b0f-a3a2-92e29618bed3": {
+      "word": ":"
+    },
+    "af7cc883-0091-4d24-800e-95ca67ee451c": {
+      "word": "儿子",
+      "audio": "audio/儿子.mp3"
+    },
+    "3fde2b11-aa78-4a96-9bd4-75c8462132b6": {
+      "word": "，"
+    },
+    "34d92533-9c8c-4469-b050-2638f2b5f4d5": {
+      "word": "女儿",
+      "audio": "audio/女儿.mp3"
+    },
+    "b521f4d2-1084-4f17-af18-1bd6738d23a0": {
+      "word": "姐姐",
+      "audio": "audio/姐姐.mp3"
+    },
+    "802939da-7ac0-409c-bfb2-b0d6f81e2f56": {
+      "word": "弟弟",
+      "audio": "audio/弟弟.mp3"
+    },
+    "c48bf08b-df1b-4fa8-a41b-15405ecebf49": {
+      "word": "姐夫",
+      "audio": "audio/姐夫.mp3"
+    },
+    "b6ebbe69-9834-41f3-a353-4a9142d599b3": {
+      "word": "外甥女",
+      "audio": "audio/外甥女.mp3"
+    }
+  }
+}

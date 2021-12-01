@@ -1,22 +1,4 @@
 {
-  "vim.easymotion": true,
-  "vim.sneak": true,
-  "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
-  "vim.leader": "<space>",
-  "vim.handleKeys": {
-    "<C-a>": false, // VSCode: Select all | vim: +1 under cursor
-    "<C-v>": false, // VSCode: Paste | vim: Visual Block mode
-    "<C-k>": false, // VSCode: Enter shortcut mode | vim: ?
-    "<C-f>": false, // vscode: find | vim: go 1 page down
-    "<C-b>": false, // vscode: toogle side bar | vim: go 1 page up
-    "<C-j>": false  // vscode: toggle panel | vim: ?
-  },
-  "vim.sneakReplacesF": true,
-  "vim.enableNeovim": true,
-  "vim.textwidth": 80,
   "editor.wordWrapColumn": 81,
   //trying out wordwrap from https://stackoverflow.com/a/45763713
   "editor.wordWrap": "wordWrapColumn",
@@ -24,7 +6,6 @@
   "editor.minimap.enabled": true,
   "breadcrumbs.enabled": true,
   "editor.renderControlCharacters": false,
-  "workbench.startupEditor": "welcomePage",
   "markdown.extension.preview.autoShowPreviewToSide": true,
   "markdown.extension.toc.githubCompatibility": true,
   "markdown.extension.list.indentationSize": "inherit",
@@ -149,6 +130,5 @@
     "zhongzi"
   ],
   "editor.glyphMargin": false,
-  "vim.visualstar": true,
   "typescript.tsdk": "node_modules/typescript/lib"
 }

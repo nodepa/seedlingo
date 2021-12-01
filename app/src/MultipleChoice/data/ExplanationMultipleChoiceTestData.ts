@@ -3,7 +3,7 @@ import 三 from '@/test-support/audio/characters/三.mp3';
 import 四 from '@/test-support/audio/characters/四.mp3';
 import { MultipleChoiceExercise } from '../MultipleChoiceTypes';
 
-export default function MultipleChoiceExplanationTestData(): MultipleChoiceExercise {
+export default function ExplanationMultipleChoiceTestData(): MultipleChoiceExercise {
   return {
     itemUnderTestAudio: undefined,
     itemUnderTestAudioPlaying: undefined,

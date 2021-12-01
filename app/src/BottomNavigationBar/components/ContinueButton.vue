@@ -8,7 +8,7 @@ import {
 } from 'vue';
 import { useStore } from 'vuex';
 import { mdiForward } from '@mdi/js';
-import ContentConfig from '@/Lessons/ContentConfig';
+import ContentConfig from '@/Lessons/ContentSpec';
 
 const continueButton = ref({} as ComponentPublicInstance);
 watch(

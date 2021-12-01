@@ -2,7 +2,7 @@
 import store from '@/common/store/RootStore';
 import Badge from '@/common/components/Badge.vue';
 import InstructionDirective from '@/common/directives/InstructionDirective';
-import ContentConfig from '@/Lessons/ContentConfig';
+import ContentSpec from '@/Lessons/ContentSpec';
 
 // Helpers
 import { mount, VueWrapper } from '@vue/test-utils';
@@ -19,7 +19,7 @@ describe('Lessons.vue (shallow)', () => {
   let wrapper: VueWrapper<any>;
 
   beforeAll(() => {
-    jest.spyOn(ContentConfig, 'getLessonsMenu').mockImplementation(() => {
+    jest.spyOn(ContentSpec, 'getLessonsMenu').mockImplementation(() => {
       return {
         1: { name: 'TestLesson1', icon: 'TestIcon1', audio: 'TestAudio1' },
         2: { name: 'TestLesson2', icon: 'TestIcon2', audio: 'TestAudio2' },

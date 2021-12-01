@@ -4,7 +4,7 @@ import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
 } from '@/MultipleChoice/MultipleChoiceTypes';
-import ContentConfig from '@/Lessons/ContentConfig';
+import ContentConfig from '@/Lessons/ContentSpec';
 import { computed, ComputedRef, onUpdated, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 

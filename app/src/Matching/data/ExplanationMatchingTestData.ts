@@ -5,7 +5,7 @@ import 四 from '@/test-support/audio/characters/四.mp3';
 import ExerciseProvider from '@/Lessons/ExerciseProvider';
 import { MatchingItem } from '../MatchingTypes';
 
-export default function MatchingExplanationTestData(): Array<MatchingItem> {
+export default function ExplanationMatchingTestData(): Array<MatchingItem> {
   return [
     {
       wordOrIcons: '五减二',

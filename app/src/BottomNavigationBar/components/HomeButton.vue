@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ComputedRef } from 'vue';
 import { mdiHome } from '@mdi/js';
-import ContentConfig from '@/Lessons/ContentConfig';
+import ContentConfig from '@/Lessons/ContentSpec';
 
 interface Props {
   homeButtonDisabled?: boolean;

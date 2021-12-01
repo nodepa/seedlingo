@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ContentConfig from '@/Lessons/ContentConfig';
+import ContentConfig from '@/Lessons/ContentSpec';
 import GetInstructionGraphic from './GetInstructionGraphic.vue';
 import { computed, ComputedRef } from 'vue';
 
