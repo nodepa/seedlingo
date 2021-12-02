@@ -144,7 +144,7 @@ describe('ExerciseProvider', () => {
       expect(multiClozeExercise.exerciseItems.clozeText.length).toBe(
         lesson.exercises[7].multiClozeText?.length,
       );
-      expect(multiClozeExercise.exerciseItems.multiClozeOptions.length).toBe(4);
+      expect(multiClozeExercise.exerciseItems.clozeOptions.length).toBe(4);
       expect(multiClozeExercise.exerciseItems.clozeText[3].isBlank).toBe(false);
       expect(multiClozeExercise.exerciseItems.clozeText[4].isBlank).toBe(true);
       expect(multiClozeExercise.exerciseItems.clozeText[4].revealed).toBe(
@@ -159,17 +159,17 @@ describe('ExerciseProvider', () => {
       );
 
       expect(
-        multiClozeExercise.exerciseItems.multiClozeOptions.filter((option) =>
+        multiClozeExercise.exerciseItems.clozeOptions.filter((option) =>
           ['姐夫', '儿子', '两', '外甥女'].includes(option.word),
         ).length,
       ).toBe(4);
 
-      expect(
-        multiClozeExercise.exerciseItems.multiClozeOptions[1].disabled,
-      ).toBe(false);
-      expect(
-        multiClozeExercise.exerciseItems.multiClozeOptions[1].buzzing,
-      ).toBe(false);
+      expect(multiClozeExercise.exerciseItems.clozeOptions[1].disabled).toBe(
+        false,
+      );
+      expect(multiClozeExercise.exerciseItems.clozeOptions[1].buzzing).toBe(
+        false,
+      );
 
       spyGetAudioPath.mockRestore();
       spyPickRandomItem.mockRestore();
@@ -178,10 +178,22 @@ describe('ExerciseProvider', () => {
 
   describe('.validateExerciseIndex()', () => {
     it('correctly handles invalid params', () => {
-      expect(() => ExerciseProvider.validateExerciseIndex(-1)).toThrow();
-      expect(() => ExerciseProvider.validateExerciseIndex(0)).toThrow();
-      expect(() => ExerciseProvider.validateExerciseIndex(1)).not.toThrow();
-      expect(() => ExerciseProvider.validateExerciseIndex(2)).toThrow();
+      const lessons = [lesson, lesson, lesson];
+      expect(() =>
+        ExerciseProvider.validateExerciseIndex(-1, lessons),
+      ).toThrow();
+      expect(() =>
+        ExerciseProvider.validateExerciseIndex(0, lessons),
+      ).toThrow();
+      expect(() =>
+        ExerciseProvider.validateExerciseIndex(1, lessons),
+      ).not.toThrow();
+      expect(() =>
+        ExerciseProvider.validateExerciseIndex(3, lessons),
+      ).not.toThrow();
+      expect(() =>
+        ExerciseProvider.validateExerciseIndex(4, lessons),
+      ).toThrow();
     });
   });
 

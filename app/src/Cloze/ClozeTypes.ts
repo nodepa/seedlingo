@@ -3,11 +3,7 @@ import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
 export interface ClozeExercise {
   clozeOptions: Array<ClozeOption>;
   clozeText: Array<ClozeWord>;
-}
-
-export interface MultiClozeExercise {
-  clozeText: Array<ClozeWord>;
-  multiClozeOptions: Array<ClozeOption>;
+  clozeType: 'SingleCloze' | 'MultiCloze';
 }
 
 export interface ClozeWord {

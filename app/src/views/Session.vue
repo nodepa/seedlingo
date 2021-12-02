@@ -6,8 +6,7 @@
 import { onMounted, ref, shallowRef, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import SingleCloze from '@/Cloze/components/SingleCloze.vue';
-import MultiCloze from '@/Cloze/components/MultiCloze.vue';
+import Cloze from '@/Cloze/components/Cloze.vue';
 import Matching from '@/Matching/components/Matching.vue';
 import MultipleChoice from '@/MultipleChoice/components/MultipleChoice.vue';
 import getMatchingTestData from '@/Matching/data/MatchingTestData';
@@ -19,18 +18,14 @@ import getMultiClozeTestData from '@/Cloze/data/MultiClozeTestData';
 import { MatchingItem } from '@/Matching/MatchingTypes';
 import ExerciseProvider, { ExerciseItems } from '@/Lessons/ExerciseProvider';
 
-type ExerciseComponent =
-  | typeof Matching
-  | typeof MultipleChoice
-  | typeof SingleCloze
-  | typeof MultiCloze;
+type ExerciseComponent = typeof Matching | typeof MultipleChoice | typeof Cloze;
 const ExerciseMapping: { [key: string]: ExerciseComponent } = {
   Matching,
   MultipleChoice,
   ExplanationMatching: Matching,
   ExplanationMultipleChoice: MultipleChoice,
-  SingleCloze,
-  MultiCloze,
+  SingleCloze: Cloze,
+  MultiCloze: Cloze,
 };
 const exerciseComponent = shallowRef<ExerciseComponent | string>(
   MultipleChoice,
@@ -92,18 +87,18 @@ function getExercise(): void {
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(4).exerciseItems;
   } else if ('single-cloze-test' === route.params.id) {
-    exerciseComponent.value = SingleCloze;
+    exerciseComponent.value = Cloze;
     exerciseItems.value = getSingleClozeTestData();
   } else if ('single-cloze' === route.params.id) {
-    exerciseComponent.value = SingleCloze;
+    exerciseComponent.value = Cloze;
     ExerciseProvider.pickRandomExerciseType = () => 'SingleCloze';
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(6).exerciseItems;
   } else if ('multi-cloze-test' === route.params.id) {
-    exerciseComponent.value = MultiCloze;
+    exerciseComponent.value = Cloze;
     exerciseItems.value = getMultiClozeTestData();
   } else if ('multi-cloze' === route.params.id) {
-    exerciseComponent.value = MultiCloze;
+    exerciseComponent.value = Cloze;
     ExerciseProvider.pickRandomExerciseType = () => 'MultiCloze';
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(11).exerciseItems;
