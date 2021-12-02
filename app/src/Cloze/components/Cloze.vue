@@ -117,14 +117,8 @@ const clozeInstructionPath: ComputedRef<string> = computed(() => {
               <span
                 v-if="word.isBlank && !word.revealed"
                 :data-test="`sentence-word-${index + 1}`"
-                class="
-                  ripple-container
-                  cloze-blank
-                  text-primary text-h5 text-sm-h3
-                  no-wrap
-                "
-              >
-                <RippleAnimation :playing="word.audio?.playing" />
+                class="ripple-container cloze-blank text-primary text-h5 text-sm-h3 no-wrap"
+                ><RippleAnimation :playing="word.audio?.playing" />
                 <RippleAnimation :playing="word.audio?.playing" :delay="200" />
               </span>
               <span
@@ -132,8 +126,7 @@ const clozeInstructionPath: ComputedRef<string> = computed(() => {
                 :data-test="`sentence-word-${index + 1}`"
                 class="ripple-container bg-success text-h5 text-sm-h3 no-wrap"
                 @click="word.audio?.play()"
-              >
-                {{ word.word
+                >{{ word.word
                 }}<RippleAnimation :playing="word.audio?.playing" />
                 <RippleAnimation :playing="word.audio?.playing" :delay="200" />
               </span>
@@ -142,8 +135,7 @@ const clozeInstructionPath: ComputedRef<string> = computed(() => {
                 :data-test="`sentence-word-${index + 1}`"
                 class="ripple-container text-h5 text-sm-h3 no-wrap"
                 @click="if (!word.suppressClozeAudio) word.audio?.play();"
-              >
-                {{ word.word
+                >{{ word.word
                 }}<RippleAnimation :playing="word.audio?.playing" />
                 <RippleAnimation :playing="word.audio?.playing" :delay="200" />
               </span>
