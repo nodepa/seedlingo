@@ -28,27 +28,52 @@ watch(
     exercise.value = exerciseProp;
   },
 );
+
 const blanks = computed((): Array<ClozeWord> => {
   return exercise.value.clozeText.filter((val) => val.isBlank);
 });
 
 const store = useStore();
-function determineCorrectness(option: ClozeOption): void {
-  if (!option.suppressOptionAudio) {
-    playOptionAudio(option);
+function determineCorrectness(selectedOption: ClozeOption): void {
+  if (!selectedOption.suppressOptionAudio) {
+    playOptionAudio(selectedOption);
   }
 
-  const firstStillHiddenIndex = blanks.value.findIndex((val) => !val.revealed);
-  if (blanks.value[firstStillHiddenIndex].word == option.word) {
-    blanks.value[firstStillHiddenIndex].revealed = true;
-    option.disabled = true;
+  if (exercise.value.clozeType === 'SingleCloze') {
+    if (selectedOption.correct) {
+      selectedOption.color = 'success';
+      exercise.value.clozeOptions.forEach((option: ClozeOption) => {
+        if (option !== selectedOption) {
+          option.disabled = true;
+        }
+      });
+      blanks.value[0].revealed = true;
+      store.dispatch('setShowContinueButton', true);
+    } else {
+      selectedOption.buzzing = true;
+      watch(
+        () => selectedOption.buzzing,
+        (buzzing: boolean) => {
+          if (!buzzing) {
+            selectedOption.disabled = true;
+          }
+        },
+      );
+    }
   } else {
-    option.buzzing = true;
-  }
-
-  // check if all are matched up
-  if (firstStillHiddenIndex === blanks.value.length - 1) {
-    store.dispatch('setShowContinueButton', true);
+    // MultiCloze
+    const firstStillHiddenIndex = blanks.value.findIndex(
+      (val) => !val.revealed,
+    );
+    if (blanks.value[firstStillHiddenIndex].word == selectedOption.word) {
+      blanks.value[firstStillHiddenIndex].revealed = true;
+      selectedOption.disabled = true;
+    } else {
+      selectedOption.buzzing = true;
+    }
+    if (firstStillHiddenIndex === blanks.value.length - 1) {
+      store.dispatch('setShowContinueButton', true);
+    }
   }
 }
 
@@ -63,8 +88,12 @@ function playOptionAudio(option: ClozeOption): void {
   option.audio?.play();
 }
 
-const multiClozeInstructionPath: ComputedRef<string> = computed(() => {
-  return ContentSpec.getInstructionPathFor('multiClozeExercise');
+const clozeInstructionPath: ComputedRef<string> = computed(() => {
+  if (exercise.value.clozeType === 'SingleCloze') {
+    return ContentSpec.getInstructionPathFor('singleClozeExercise');
+  } else {
+    return ContentSpec.getInstructionPathFor('multiClozeExercise');
+  }
 });
 </script>
 
@@ -73,7 +102,7 @@ const multiClozeInstructionPath: ComputedRef<string> = computed(() => {
     <v-row align="center" justify="center" style="height: 40%">
       <v-col cols="11">
         <v-card
-          v-instruction="multiClozeInstructionPath"
+          v-instruction="clozeInstructionPath"
           data-test="sentence-card"
           class="overflow-visible"
         >

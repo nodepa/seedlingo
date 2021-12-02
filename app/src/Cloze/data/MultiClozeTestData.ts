@@ -1,10 +1,11 @@
 import placeholderAudio from '@/test-support/audio/placeholder-audio.mp3';
 import 两 from '@/test-support/audio/characters/两.mp3';
-import { MultiClozeExercise } from '@/Cloze/ClozeTypes';
+import { ClozeExercise } from '@/Cloze/ClozeTypes';
 import ExerciseProvider from '@/Lessons/ExerciseProvider';
 
-export default function MultiClozeTestData(): MultiClozeExercise {
+export default function MultiClozeTestData(): ClozeExercise {
   return {
+    clozeType: 'MultiCloze',
     clozeText: [
       {
         word: '我',
@@ -61,7 +62,7 @@ export default function MultiClozeTestData(): MultiClozeExercise {
         word: '。',
       },
     ],
-    multiClozeOptions: [
+    clozeOptions: [
       {
         word: '兄弟姐妹',
         disabled: false,

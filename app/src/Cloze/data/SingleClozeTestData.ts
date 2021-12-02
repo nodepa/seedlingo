@@ -8,6 +8,7 @@ import ExerciseProvider from '@/Lessons/ExerciseProvider';
 
 export default function SingleClozeTestData(): ClozeExercise {
   return {
+    clozeType: 'SingleCloze',
     clozeText: [
       {
         audio: ExerciseProvider.createAudio(placeholderAudio),

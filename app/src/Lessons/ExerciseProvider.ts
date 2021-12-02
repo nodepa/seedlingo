@@ -5,12 +5,7 @@ import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
 } from '@/MultipleChoice/MultipleChoiceTypes';
-import {
-  ClozeExercise,
-  MultiClozeExercise,
-  ClozeOption,
-  ClozeWord,
-} from '@/Cloze/ClozeTypes';
+import { ClozeExercise, ClozeOption, ClozeWord } from '@/Cloze/ClozeTypes';
 import {
   Blank,
   ExerciseSpec,
@@ -28,11 +23,11 @@ export type ExerciseType =
   | 'ExplanationMultipleChoice'
   | 'SingleCloze'
   | 'MultiCloze';
+
 export type ExerciseItems =
   | Array<MatchingItem>
   | MultipleChoiceExercise
-  | ClozeExercise
-  | MultiClozeExercise;
+  | ClozeExercise;
 
 export interface Exercise {
   exerciseType: ExerciseType;
@@ -53,20 +48,21 @@ export default class ExerciseProvider {
   };
 
   public static getExerciseFromLesson(indexFromOne: number): Exercise {
-    ExerciseProvider.lessons = ContentSpec.getLessons();
-    this.validateExerciseIndex(indexFromOne);
+    const lessons = ContentSpec.getLessons();
+    this.validateExerciseIndex(indexFromOne, lessons);
     const indexFromZero = indexFromOne - 1;
-    const lesson = this.lessons[indexFromZero] as LessonSpec;
+    const lesson = lessons[indexFromZero];
     return this.GenerateExerciseOfType[
       this.pickRandomExerciseType(lesson)
     ].bind(this)(lesson);
   }
 
-  public static validateExerciseIndex(indexFromOne: number): void {
-    if (indexFromOne < 1 || indexFromOne > ExerciseProvider.lessons.length) {
-      throw new Error(
-        `Please choose a lesson between 1 and ${ExerciseProvider.lessons.length}`,
-      );
+  public static validateExerciseIndex(
+    indexFromOne: number,
+    lessons: Array<LessonSpec>,
+  ): void {
+    if (indexFromOne < 1 || indexFromOne > lessons.length) {
+      throw new Error(`Please choose a lesson between 1 and ${lessons.length}`);
     }
   }
 
@@ -296,9 +292,9 @@ export default class ExerciseProvider {
 
   public static generateMultiClozeExercise(lesson: LessonSpec): {
     exerciseType: ExerciseType;
-    exerciseItems: MultiClozeExercise;
+    exerciseItems: ClozeExercise;
   } {
-    const multiClozeItems = this.selectMultiClozeItemsInLesson(lesson);
+    const multiClozeItems = this.selectMultiClozeSpecs(lesson);
     if (multiClozeItems.length === 0) {
       throw new Error(
         `Lesson ${lesson.lessonIndex} has zero multi-blank cloze items, which is too few to generate an exercise.`,
@@ -316,9 +312,7 @@ export default class ExerciseProvider {
     };
   }
 
-  public static selectMultiClozeItemsInLesson(
-    lesson: LessonSpec,
-  ): Array<ExerciseSpec> {
+  public static selectMultiClozeSpecs(lesson: LessonSpec): Array<ExerciseSpec> {
     return lesson.exercises.filter((exercise: ExerciseSpec) => {
       return exercise.multiClozeText && exercise.multiClozeText.length > 0;
     });
@@ -706,6 +700,7 @@ export default class ExerciseProvider {
     this.shuffleItemsInPlace(clozeOptions);
 
     return {
+      clozeType: 'SingleCloze',
       clozeText,
       clozeOptions,
     } as ClozeExercise;
@@ -714,7 +709,7 @@ export default class ExerciseProvider {
   public static createMultiClozeExerciseFromClozeItem(
     clozeItem: ExerciseSpec,
     lessonIndex: number,
-  ): MultiClozeExercise {
+  ): ClozeExercise {
     if (!clozeItem.multiClozeText || clozeItem.multiClozeText.length < 3) {
       throw new Error(
         `Lesson ${lessonIndex}'s item ${clozeItem.id} does not have enough elements in multiClozeText to generate an exercise.`,
@@ -797,9 +792,10 @@ export default class ExerciseProvider {
     this.shuffleItemsInPlace(multiClozeOptions);
 
     return {
+      clozeType: 'MultiCloze',
       clozeText,
-      multiClozeOptions: multiClozeOptions,
-    };
+      clozeOptions: multiClozeOptions,
+    } as ClozeExercise;
   }
 
   public static makeRandomItemCorrectOption(
