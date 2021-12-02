@@ -10,3 +10,7 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
+
+self.addEventListener('activate', () => {
+  self.clients.claim();
+});
