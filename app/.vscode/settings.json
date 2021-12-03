@@ -4,7 +4,6 @@
   "editor.wordWrap": "wordWrapColumn",
   "editor.wrappingIndent": "same",
   "editor.minimap.enabled": true,
-  "breadcrumbs.enabled": true,
   "editor.renderControlCharacters": false,
   "markdown.extension.preview.autoShowPreviewToSide": true,
   "markdown.extension.toc.githubCompatibility": true,

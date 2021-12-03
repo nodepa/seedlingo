@@ -99,15 +99,6 @@
       transform: translate(-50%, -50%);
     }
 
-    .pulse {
-      animation: pulse-animation 1.5s infinite;
-    }
-
-    .wave {
-      animation: wave-animation 2s infinite;
-      transform-origin: 50% 50%;
-    }
-
     @keyframes pulse-animation {
 
       0%,
@@ -135,6 +126,15 @@
       50% {
         transform: rotate(-2deg)
       }
+    }
+
+    .pulse {
+      animation: pulse-animation 1.5s infinite;
+    }
+
+    .wave {
+      animation: wave-animation 2s infinite;
+      transform-origin: 50% 50%;
     }
   </style>
 
