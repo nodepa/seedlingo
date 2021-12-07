@@ -22,7 +22,7 @@
     "core-js": "^3.18.3",
     "register-service-worker": "^1.7.2",
     "roboto-fontface": "*",
-    "vue": "^3.2.6",
+    "vue": "^3.2.24",
     "vue-router": "^4.0.3",
     "vuetify": "^3.0.0-alpha.0",
     "vuex": "^4.0.0"
