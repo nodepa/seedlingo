@@ -36,7 +36,7 @@ export default class ContentSpec {
   }
 
   public static getAudioPath(path: string): string {
-    return mp3(`${this.contentPrefix}${path}`).default;
+    return mp3(`${this.contentPrefix}${path}`);
   }
 
   public static getMdiIcon(key: string): string {
@@ -60,7 +60,7 @@ export default class ContentSpec {
 
       lessons[oneBasedIndex].audio = mp3(
         `${this.contentPrefix}${lesson.introductionAudio}`,
-      ).default;
+      );
     }
 
     return lessons;

@@ -39,7 +39,7 @@ describe('马丽 interacts with the "instruction" system', () => {
       cy.get(toggleInstructionButton).click();
       cy.get(instructionOverlay).should('not.exist');
       cy.get(homeButton)
-        .should('have.css', 'z-index', '1')
+        .should('have.css', 'z-index', 'auto')
         .find('.badge')
         .should('not.exist');
 

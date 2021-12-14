@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Lessons from '@/Lessons/components/Lessons.vue';
-import Footer from '@/Footer/components/Footer.vue';
+import FooterSection from '@/FooterSection/components/FooterSection.vue';
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import Footer from '@/Footer/components/Footer.vue';
     <v-row justify="center">
       <v-col>
         <Lessons />
-        <Footer />
+        <FooterSection />
       </v-col>
     </v-row>
   </v-container>

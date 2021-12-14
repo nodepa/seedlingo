@@ -57,7 +57,7 @@ describe('马丽 opens the app to lessons overview', () => {
       cy.log(
         'A short auto-played audio clip invites 马丽 to tap the interactive icon.',
       );
-      cy.wait(200);
+      cy.wait(400);
       cy.get(getInstructionComponent)
         .find('audio')
         .then(($el) => {
@@ -98,7 +98,7 @@ describe('马丽 opens the app to lessons overview', () => {
         // Should auto-hide overlay after audio finishes
         // Waits for audio to finish if less than 5 sec. Time consuming
         .then(() => {
-          cy.wait(2000);
+          cy.wait(1000);
           cy.get(instructionOverlay).should('not.exist');
         });
     },
