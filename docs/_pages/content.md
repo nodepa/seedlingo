@@ -2,6 +2,7 @@
 layout: single
 title: Content
 permalink: /content/
+toc: false
 ---
 
 The Seedling app fetches content from the `seedling/content` folder. The content consist of

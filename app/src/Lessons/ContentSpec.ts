@@ -8,24 +8,24 @@ import {
 import { LessonMenuItems } from './LessonMenuTypes';
 import * as mdiIcons from '@mdi/js';
 
-let mp3: __WebpackModuleApi.RequireContext,
-  json: __WebpackModuleApi.RequireContext;
+let mp3Base64Sources: __WebpackModuleApi.RequireContext,
+  jsonSources: __WebpackModuleApi.RequireContext;
 if (process.env.NODE_ENV === 'test') {
-  mp3 = require.context('../test-support', true, /\.mp3$/);
-  json = require.context('../test-support', true, /\.json$/);
+  mp3Base64Sources = require.context('../test-support', true, /\.mp3.audio/);
+  jsonSources = require.context('../test-support', true, /\.json$/);
 } else {
-  mp3 = require.context('../../../content', true, /\.mp3$/);
-  json = require.context('../../../content', true, /\.json$/);
+  mp3Base64Sources = require.context('../../../content', true, /\.mp3.audio$/);
+  jsonSources = require.context('../../../content', true, /\.json$/);
 }
 
 export default class ContentSpec {
   public static contentPrefix = './';
 
-  public static ContentPack = json(
+  public static ContentPack = jsonSources(
     `${this.contentPrefix}ContentPack.json`,
   ) as PackageConfig;
 
-  public static WordListSpec = json(
+  public static WordListSpec = jsonSources(
     `${this.contentPrefix}${ContentSpec.ContentPack.wordSpecFile}`,
   ) as WordListSpec;
 
@@ -36,7 +36,9 @@ export default class ContentSpec {
   }
 
   public static getAudioPath(path: string): string {
-    return mp3(`${this.contentPrefix}${path}`);
+    return `data:audio/mpeg;base64,${mp3Base64Sources(
+      `${this.contentPrefix}${path}.audio`,
+    )}`;
   }
 
   public static getMdiIcon(key: string): string {
@@ -58,9 +60,9 @@ export default class ContentSpec {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       lessons[oneBasedIndex].icon = (mdiIcons as any)[lesson.icon];
 
-      lessons[oneBasedIndex].audio = mp3(
-        `${this.contentPrefix}${lesson.introductionAudio}`,
-      );
+      lessons[oneBasedIndex].audio = `data:audio/mpeg;base64,${mp3Base64Sources(
+        `${this.contentPrefix}${lesson.introductionAudio}.audio`,
+      )}`;
     }
 
     return lessons;
@@ -71,7 +73,7 @@ export default class ContentSpec {
     for (let i = 0; i < this.ContentPack.lessons.length; i += 1) {
       const lessonSpecFile = this.ContentPack.lessons[i].lessonSpecFile;
       const lesson: LessonSpec = {
-        ...json(`${this.contentPrefix}${lessonSpecFile}`),
+        ...jsonSources(`${this.contentPrefix}${lessonSpecFile}`),
       };
       lessons.push(lesson);
     }

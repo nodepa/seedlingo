@@ -39,4 +39,14 @@ module.exports = {
       // clientsClaim: true,
     },
   },
+  configureWebpack: {
+    module: {
+      rules: [
+        {
+          test: /\.mp3.audio/,
+          type: 'asset/source',
+        },
+      ],
+    },
+  },
 };

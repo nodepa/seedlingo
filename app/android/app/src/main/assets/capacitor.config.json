@@ -1,0 +1,6 @@
+{
+	"appId": "org.nodepa.seedling",
+	"appName": "种字",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}
