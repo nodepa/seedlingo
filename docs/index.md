@@ -19,9 +19,10 @@ excerpt: Modern mobile multi-language literacy
 feature_row_intro:
   - title: What is Seedling?
     excerpt: "Seedling is a digital learning tool for adults;<br/>
-a collection of literacy exercise templates<br/>
-that bundled content can use to present<br/>
-curated lessons for first-language learners.<br/><br/>
+      a collection of exercise templates<br/>
+      that bundled content can use<br/>
+      to present curated lessons<br/>
+      for first-language learners.<br/><br/>
 
 [Li Ai Education](https://liaieducation.com) used Seedling
 to make [立爱种字](https://种字.com),<br/>
@@ -29,21 +30,25 @@ to help [Standard Chinese (Putonghua)](
   https://en.wikipedia.org/wiki/Standard_Chinese) speaking adults<br/>
 learn to read simplified Chinese characters."
 feature_row:
-  - image_path: /assets/images/audio-word-multiple-choice.png
-    excerpt: "<b>Audio to word multiple-choice</b><br/>
-    Listen to the pronunciation and choose the correct word among the gray tiles"
-  - image_path: /assets/images/audio-word-matching.png
-    excerpt: "<b>Audio to word matching</b><br/>
-    Match up blue audio tiles with gray word tiles"
-  - image_path: /assets/images/explanation-multiple-choice.png
-    excerpt: "<b>Explanation to word multiple-choice</b><br/>
+  - image_path: /assets/images/mockup-audio-multiple-choice.png
+    excerpt: "<b>Audio-to-word multiple-choice</b><br/>
+    Listen to the pronunciation and tap the matching word-tile"
+  - image_path: /assets/images/mockup-audio-matching.png
+    excerpt: "<b>Audio-to-word matching</b><br/>
+    Match up blue audio-tiles with white word-tiles"
+  - image_path: /assets/images/mockup-explanation-multiple-choice.png
+    excerpt: "<b>Explanation-to-word multiple-choice</b><br/>
     Read the explanation and choose the correct word"
-  - image_path: /assets/images/explanation-matching.png
-    excerpt: "<b>Explanation to word matching</b><br/>
-    Match up blue explanation tiles with gray word tiles"
-  - image_path: /assets/images/cloze-multiple-choice.png
-    excerpt: "<b>Cloze multiple-choice</b><br/>
+  - image_path: /assets/images/mockup-explanation-matching.png
+    excerpt: "<b>Explanation-to-word matching</b><br/>
+    Match up blue explanation-tiles with white word-tiles"
+  - image_path: /assets/images/mockup-single-cloze.png
+    excerpt: "<b>Single-blank cloze</b><br/>
     Fill-the-blank with the appropriate word"
+  - image_path: /assets/images/mockup-multi-cloze.png
+    excerpt: "<b>Multi-blank cloze</b><br/>
+    Fill-the-blank exercise with multiple blanks and corresponding words"
+
 ---
 {% include feature_row id="feature_row_intro" type="center" %}
 {% include feature_row %}

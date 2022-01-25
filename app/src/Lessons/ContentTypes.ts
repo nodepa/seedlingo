@@ -27,6 +27,7 @@ export interface PackageConfig {
 }
 
 export interface WordListSpec {
+  formatVersion: string;
   wordCount: number;
   words: { [key: string]: WordSpec };
 }
@@ -40,6 +41,7 @@ export interface WordSpec {
 }
 
 export interface LessonSpec {
+  formatVersion: string;
   id: string;
   lessonIndex: number;
   multipleChoiceCount: number;
@@ -47,7 +49,7 @@ export interface LessonSpec {
   explanationCount: number;
   singleClozeCount: number;
   multiClozeCount: number;
-  wordCount: number;
+  wordsExercisedCount?: number;
   exercises: Array<ExerciseSpec>;
 }
 
