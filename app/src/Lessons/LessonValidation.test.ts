@@ -40,6 +40,9 @@ describe('Integrity of JSON Lesson data', () => {
         expect(lesson.explanationCount).toBeGreaterThanOrEqual(0);
         expect(lesson.singleClozeCount).toBeGreaterThanOrEqual(0);
         expect(lesson.multiClozeCount).toBeGreaterThanOrEqual(0);
+        if (lesson.wordsExercisedCount) {
+          expect(lesson.wordsExercisedCount).toBeGreaterThanOrEqual(0);
+        }
         lesson.exercises.forEach((exercise) => {
           try {
             expect(exercise.id.length).toBeGreaterThanOrEqual(1);
@@ -128,6 +131,36 @@ describe('Integrity of JSON Lesson data', () => {
           expect(lesson.lessonIndex).toBeGreaterThan(0);
         });
 
+        it(`lesson.${lesson.lessonIndex}.multipleChoiceCount=${lesson.multipleChoiceCount} is accurate`, () => {
+          let multipleChoiceCount = 0;
+          lesson.exercises.forEach((exercise) => {
+            if (exercise.type === 'MultipleChoice') {
+              multipleChoiceCount = exercise.words?.length || 0;
+            }
+          });
+          expect(multipleChoiceCount).toBe(lesson.multipleChoiceCount);
+        });
+
+        it(`lesson.${lesson.lessonIndex}.matchingCount=${lesson.matchingCount} is accurate`, () => {
+          let matchingCount = 0;
+          lesson.exercises.forEach((exercise) => {
+            if (exercise.type === 'Matching') {
+              matchingCount = exercise.words?.length || 0;
+            }
+          });
+          expect(matchingCount).toBe(lesson.matchingCount);
+        });
+
+        it(`lesson.${lesson.lessonIndex}.explanationCount=${lesson.explanationCount} is accurate`, () => {
+          let explanationCount = 0;
+          lesson.exercises.forEach((exercise) => {
+            if (exercise.type === 'Explanation') {
+              explanationCount += 1;
+            }
+          });
+          expect(explanationCount).toBe(lesson.explanationCount);
+        });
+
         it(`lesson.${lesson.lessonIndex}.singleClozeCount=${lesson.singleClozeCount} is accurate`, () => {
           let clozeCount = 0;
           let clozeConsistency = true;
@@ -164,34 +197,64 @@ describe('Integrity of JSON Lesson data', () => {
           expect(clozeConsistency).toBe(true);
         });
 
-        it(`lesson.${lesson.lessonIndex}.explanationCount=${lesson.explanationCount} is accurate`, () => {
-          let explanationCount = 0;
+        it(`lesson.${lesson.lessonIndex}.wordsExercisedCount=${lesson.wordsExercisedCount} is accurate`, () => {
+          const wordsExercised: Set<string> = new Set();
           lesson.exercises.forEach((exercise) => {
+            if (['MultipleChoice', 'Matching'].includes(exercise.type)) {
+              if (exercise.words) {
+                exercise.words.forEach((wordRef) => {
+                  if (!wordsExercised.has(Object.values(wordRef)[0])) {
+                    wordsExercised.add(Object.values(wordRef)[0]);
+                  }
+                });
+              }
+            }
             if (exercise.type === 'Explanation') {
-              explanationCount += 1;
+              if (exercise.explanationTargets) {
+                if (
+                  !wordsExercised.has(
+                    Object.values(exercise.explanationTargets.validOption)[0],
+                  )
+                ) {
+                  wordsExercised.add(
+                    Object.values(exercise.explanationTargets.validOption)[0],
+                  );
+                }
+              }
+            }
+            if (exercise.type === 'SingleCloze' && exercise.singleClozeText) {
+              exercise.singleClozeText
+                .filter(
+                  (clozeItem): clozeItem is Blank => !!clozeItem.validOptions,
+                )
+                .forEach((clozeItem) => {
+                  clozeItem.validOptions.forEach((wordRef) => {
+                    if (!wordsExercised.has(Object.values(wordRef)[0])) {
+                      wordsExercised.add(Object.values(wordRef)[0]);
+                    }
+                  });
+                });
+            }
+            if (exercise.type === 'MultiCloze' && exercise.multiClozeText) {
+              exercise.multiClozeText
+                .filter(
+                  (clozeItem): clozeItem is Blank => !!clozeItem.validOptions,
+                )
+                .forEach((clozeItem) => {
+                  clozeItem.validOptions.forEach((wordRef) => {
+                    if (!wordsExercised.has(Object.values(wordRef)[0])) {
+                      wordsExercised.add(Object.values(wordRef)[0]);
+                    }
+                  });
+                });
             }
           });
-          expect(explanationCount).toBe(lesson.explanationCount);
-        });
-
-        it(`lesson.${lesson.lessonIndex}.multipleChoiceCount=${lesson.multipleChoiceCount} is accurate`, () => {
-          let multipleChoiceCount = 0;
-          lesson.exercises.forEach((exercise) => {
-            if (exercise.type === 'MultipleChoice') {
-              multipleChoiceCount = exercise.words?.length || 0;
-            }
-          });
-          expect(multipleChoiceCount).toBe(lesson.multipleChoiceCount);
-        });
-
-        it(`lesson.${lesson.lessonIndex}.matchingCount=${lesson.matchingCount} is accurate`, () => {
-          let matchingCount = 0;
-          lesson.exercises.forEach((exercise) => {
-            if (exercise.type === 'Matching') {
-              matchingCount = exercise.words?.length || 0;
-            }
-          });
-          expect(matchingCount).toBe(lesson.matchingCount);
+          //           console.log(
+          //             `Unique words exercised in Lesson ${lesson.lessonIndex}
+          // (wordsExercisedCount: ${lesson.wordsExercisedCount})
+          // (wordsCounted:        ${wordsExercised.size})`,
+          //           );
+          expect(wordsExercised.size).toBe(lesson.wordsExercisedCount);
         });
       });
     });

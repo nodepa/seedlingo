@@ -9,6 +9,8 @@ sidebar-documentation:
     url: /content
     children:
       - title: Replace default content
-        url: /replace-content
+        url: /content/replace-content
       - title: Content specification
-        url: /content-spec
+        url: /content/content-spec
+      - title: Content validation
+        url: /content/content-validation

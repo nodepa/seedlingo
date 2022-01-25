@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.1",
+  "formatVersion": "1.1.0",
   "instructions": {
       "welcome": "audio/instructions/欢迎.mp3",
       "homeButton": "audio/instructions/说明回家.mp3",
