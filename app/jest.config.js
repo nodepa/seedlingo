@@ -12,11 +12,13 @@ module.exports = {
     'scss',
   ],
   moduleNameMapper: {
-    '\\.mp3$': '<rootDir>/tests/unit/__mocks__/mp3Mock.js',
+    '\\.mp3.audio$': '<rootDir>/tests/unit/__mocks__/mp3AudioMock.js',
     '@content/(.*)': '<rootDir>/../content/$1',
   },
   setupFilesAfterEnv: ['./tests/unit/jest.setup.js'],
   testMatch: ['**/?(*.)+(test).ts'],
   transform: { '^.*\\.[mc]js$': 'babel-jest' },
-  transformIgnorePatterns: ['<rootDir>/node_modules/(?!vuetify)'],
+  transformIgnorePatterns: [
+    '<rootDir>/node_modules/(?!vuetify|@ionic/vue|@ionic/vue-router|@ionic/core|@stencil/core|ionicons)',
+  ],
 };

@@ -3,13 +3,13 @@ import ContentSpec from './ContentSpec';
 describe('ContentConfig.ts', () => {
   it('.getInstructionPathFor()', () => {
     expect(ContentSpec.getInstructionPathFor('continueButton')).toBe(
-      'this-mp3-file-has-been-mocked',
+      'data:audio/mpeg;base64,this-mp3-file-has-been-mocked',
     );
   });
 
   it('.getAudioPath()', () => {
     expect(ContentSpec.getAudioPath('audio/placeholder-audio.mp3')).toBe(
-      'this-mp3-file-has-been-mocked',
+      'data:audio/mpeg;base64,this-mp3-file-has-been-mocked',
     );
   });
 
@@ -24,7 +24,7 @@ describe('ContentConfig.ts', () => {
     expect(lessonMenu[2]).toBe(undefined);
     expect(lessonMenu[1]).toMatchObject({
       name: 'first',
-      audio: 'this-mp3-file-has-been-mocked',
+      audio: 'data:audio/mpeg;base64,this-mp3-file-has-been-mocked',
     });
     expect(lessonMenu[1].icon.length).toBeGreaterThan(0);
   });

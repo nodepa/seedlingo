@@ -1,0 +1,7 @@
+{
+  "name": "Seedling",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}

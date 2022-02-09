@@ -3,9 +3,9 @@ export interface PackageConfig {
 
   instructions: {
     // All instruction paths must be relative to <project root>/content/:
-    // some/audio/path.mp3
+    // some/audio/path.mp3.audio
     // will be resolved to:
-    // <project root>/content/some/audio/path.mp3
+    // <project root>/content/some/audio/path.mp3.audio
     welcome: string;
     homeButton: string;
     continueButton: string;

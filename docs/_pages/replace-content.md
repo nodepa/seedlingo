@@ -2,6 +2,7 @@
 layout: single
 title: Replace content
 permalink: /content/replace-content/
+toc: false
 ---
 
 Replace any and all files in the `seedling/content` folder with your own files.

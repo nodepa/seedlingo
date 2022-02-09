@@ -22,8 +22,6 @@ describe('马丽 opens the app to lessons overview', () => {
           cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
         },
       });
-      cy.get(app).should('not.exist'); // gets visible fast
-      cy.get(loader).should('be.visible'); // gets hidden fast
       cy.get('@animation.cancel').should('have.callCount', 0); // not called yet
       cy.get('@audio.play').should('have.callCount', 0); // not called yet
       cy.get('@animation.play').should('have.callCount', 0); // not called yet

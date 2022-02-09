@@ -1,9 +1,17 @@
+import { isPlatform } from '@ionic/vue';
+if (isPlatform('capacitor')) {
+  // eslint-disable-next-line no-console
+  console.log('Capacitor - native wrapped webview');
+} else {
+  // eslint-disable-next-line no-console
+  console.log('Webapp/PWA - standalone browser');
+  import('@/registerServiceWorker');
+}
+
 import { createApp } from 'vue';
 import router from '@/common/router';
 import store from '@/common/store/RootStore';
 import vuetify from '@/common/plugins/vuetify';
-
-import '@/registerServiceWorker';
 
 import Badge from './common/components/Badge.vue';
 import InstructionDirective from './common/directives/InstructionDirective';

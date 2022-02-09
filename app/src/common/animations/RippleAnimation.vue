@@ -37,18 +37,20 @@ const zIndex = computed(() => (props.playing ? 10 : -10));
 watch(
   () => props.playing,
   (playing: boolean): void => {
-    if (playing) {
-      if (animation) {
+    if (animation) {
+      if (playing) {
         animation.play();
       } else {
-        animation = ripple.value?.animate(keyFrames, {
+        animation.cancel();
+      }
+    } else {
+      if (!!playing && ripple.value) {
+        animation = ripple.value.animate(keyFrames, {
           delay: props.delay,
           duration: props.duration,
           iterations: props.iterations,
         });
       }
-    } else {
-      animation?.cancel();
     }
   },
 );
