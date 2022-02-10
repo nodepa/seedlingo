@@ -1,93 +1,92 @@
 ---
-layout: splash
-toc: false
+home: true
 sidebar: false
-search: false
-title: <img align="center" src="assets/images/seedling-logo-blue.svg"
-  alt="seedling-logo" style="width:4.1em"/>
-  <br/>
-  Seedling
-header:
-  overlay_color: "#000"
-  overlay_filter: 0.5
-  overlay_image: /assets/images/open-book.jpg
-  actions:
-    - label: Get started
-      url: /get-started
-  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
-excerpt: Modern mobile multi-language literacy
-feature_row_intro:
-  - title: What is Seedling?
-    excerpt: "Seedling is a digital learning tool for adults;<br/>
-      a collection of exercise templates<br/>
-      that bundled content can use<br/>
-      to present curated lessons<br/>
-      for first-language learners.<br/><br/>
+heroImage: /images/seedling-logo-blue.svg
+heroAlt: A seedling sprouting from an open book towards the sun
+heroText: Seedling
+tagline: Modern mobile multi-language literacy
+actions:
+  - text: Get started
+    link: /get-started/get-started
+    type: primary
+  - text: What is Seedling?
+    link: '#what-is-seedling'
+    type: secondary
+features:
+  - title: Audio-to-word multiple choice
+    details: Listen to the pronunciation and tap the matching word-tile
+    imagePath: /images/mockup-audio-multiple-choice.png
+  - title: Audio-to-word matching
+    details: Match up blue audio-tiles with white word-tiles
+    imagePath: /images/mockup-audio-matching.png
+  - title: Explanation-to-word multiple-choice
+    details: Read the explanation and choose the correct word
+    imagePath: /images/mockup-explanation-multiple-choice.png
+  - title: Explanation-to-word matching
+    details: Match up blue explanation-tiles with white word-tiles
+    imagePath: /images/mockup-explanation-matching.png
+  - title: Single-blank cloze
+    details: Fill-the-blank with the appropriate word
+    imagePath: /images/mockup-single-cloze.png
+  - title: Multi-blank cloze
+    details: Fill-the-blank exercise with multiple blanks and corresponding words
+    imagePath: /images/mockup-multi-cloze.png
+
+footerHtml: true
+footer: '<a href="/privacy-policy/privacy-policy">Privacy policy</a><br/><br/><a href="https://nodepa.org">Copyright &copy; 2019-2022 Norwegian Development Partners</a>'
+---
+
+## What is Seedling?
+
+Seedling is a digital learning tool for adults;
+a collection of exercise templates
+that bundled content can use
+to present curated lessons
+for first-language learners.
 
 [Li Ai Education](https://liaieducation.com) used Seedling
-to make [立爱种字](https://种字.com),<br/>
+to make [立爱种字](https://种字.com),
 to help [Standard Chinese (Putonghua)](
-  https://en.wikipedia.org/wiki/Standard_Chinese) speaking adults<br/>
-learn to read simplified Chinese characters."
-feature_row:
-  - image_path: /assets/images/mockup-audio-multiple-choice.png
-    excerpt: "<b>Audio-to-word multiple-choice</b><br/>
-    Listen to the pronunciation and tap the matching word-tile"
-  - image_path: /assets/images/mockup-audio-matching.png
-    excerpt: "<b>Audio-to-word matching</b><br/>
-    Match up blue audio-tiles with white word-tiles"
-  - image_path: /assets/images/mockup-explanation-multiple-choice.png
-    excerpt: "<b>Explanation-to-word multiple-choice</b><br/>
-    Read the explanation and choose the correct word"
-  - image_path: /assets/images/mockup-explanation-matching.png
-    excerpt: "<b>Explanation-to-word matching</b><br/>
-    Match up blue explanation-tiles with white word-tiles"
-  - image_path: /assets/images/mockup-single-cloze.png
-    excerpt: "<b>Single-blank cloze</b><br/>
-    Fill-the-blank with the appropriate word"
-  - image_path: /assets/images/mockup-multi-cloze.png
-    excerpt: "<b>Multi-blank cloze</b><br/>
-    Fill-the-blank exercise with multiple blanks and corresponding words"
+  https://en.wikipedia.org/wiki/Standard_Chinese) speaking adults
+learn to read simplified Chinese characters.
 
----
-{% include feature_row id="feature_row_intro" type="center" %}
-{% include feature_row %}
+## Get involved
 
-# Get involved
-
-Please visit the [Seedling](https://github.com/nodepa/seedling) project on GitHub
+Visit the [Seedling project on GitHub](https://github.com/nodepa/seedling)
 to contribute or interact with the community.
 
-## Community
+### Community
 
 Engage the community and ask questions
 in [Seedling discussions](https://github.com/nodepa/seedling/discussions).
 Please stop by and say hi.
 
-## Code of conduct
+### Code of conduct
 
-Please help us keep the Seedling community open and positive.
+Help us keep the Seedling community open and positive.
 Participate in the spirit of the
 [Seedling Code of Conduct](
   https://github.com/nodepa/seedling/blob/main/.github/CODE_OF_CONDUCT.md)
 and the [GitHub Community Guidelines](
 https://docs.github.com/en/github/site-policy/github-community-guidelines).
 
-## Contributing
+### Contributing
 
-We would love to receive your contributions to Seedling.
+We would love to collaborate with you
+to make features and content available to the people you care about.
 Read through our [contributing guidelines](
   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
 and get working on it!
 
-# License
+## License
 
-The Seedling project,
-EXCEPT all material in the [content/](
-  https://github.com/nodepa/seedling/tree/main/content/) folder,
-is licensed to the public under the [MIT License](https://github.com/nodepa/seedling/blob/main/LICENSE.md).
+The Seedling project
+(EXCEPT all material [in the content folder](
+  https://github.com/nodepa/seedling/tree/main/content/))
+is licensed to the public under a [MIT License](
+  https://github.com/nodepa/seedling/blob/main/LICENSE.md).
 
-The Seedling project's [content/](
+The Seedling project's [content](
   https://github.com/nodepa/seedling/tree/main/content/)
 is licensed to the public under a
 [Creative Commons Attribution-ShareAlike 4.0 International Public License](
