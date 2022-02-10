@@ -1,7 +1,7 @@
 <h1 align="center">Seedling</h1>
 
 <p align="center">
-  <img src="docs/assets/images/seedling-logo-blue.svg"
+  <img src="docs/.vuepress/public/images/seedling-logo-blue.svg"
     alt="seedling-logo" height="160px" width="160px"/>
   <br/>
   <b>Modern mobile multi-language literacy</b>
