@@ -55,7 +55,7 @@
     "babel-plugin-require-context-hook": "^1.0.0",
     "cypress": "^9.5.0",
     "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.4.1",
     "http-server": "^14.1.0",
