@@ -7,10 +7,10 @@ heroText: Seedling
 tagline: Modern mobile multi-language literacy
 actions:
   - text: Get started
-    link: /get-started/get-started
+    link: /get-started/get-started.html
     type: primary
   - text: What is Seedling?
-    link: '#what-is-seedling'
+    link: 'index.html#what-is-seedling'
     type: secondary
 features:
   - title: Audio-to-word multiple choice
@@ -33,7 +33,7 @@ features:
     imagePath: /images/mockup-multi-cloze.png
 
 footerHtml: true
-footer: '<a href="/privacy-policy/privacy-policy">Privacy policy</a><br/><br/><a href="https://nodepa.org">Copyright &copy; 2019-2022 Norwegian Development Partners</a>'
+footer: '<a href="/privacy-policy/privacy-policy.html">Privacy policy</a><br/><br/><a href="https://nodepa.org">Copyright &copy; 2019-2022 Norwegian Development Partners</a>'
 ---
 
 ## What is Seedling?

@@ -15,5 +15,5 @@ The content consist of
 - audio files giving the users instructions about how to interact and progress
 
 If you want to deploy Seedling with your own content,
-follow the [Replace default content](replace-content)-guide.
-The content must be formatted according to the [Content specification](content-spec).
+follow the [Replace default content](replace-content.md)-guide.
+The content must be formatted according to the [Content specification](content-spec.md).

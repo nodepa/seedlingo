@@ -118,7 +118,7 @@ Mandatory field of type `number`.
 `wordCount` is the number of words specified in the word-specification. This
 number can be counted by searching the file for `audio`, a mandatory sub-field,
 and counting the occurrences. Running the [content specification
-validation](/content/content-validation) will inform you if the number is
+validation](/content/content-validation.md) will inform you if the number is
 incorrect.
 
 ### words

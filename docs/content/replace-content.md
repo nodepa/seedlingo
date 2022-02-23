@@ -10,4 +10,4 @@ Providing a `LICENSE.md` file is not technically required. The
 to update the `LICENSE.md` with copyright information when content files have
 changed).
 
-The content must follow the [Content Specification](/content/content-spec).
+The content must follow the [Content Specification](/content/content-spec.md).

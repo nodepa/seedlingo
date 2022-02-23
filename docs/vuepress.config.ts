@@ -9,7 +9,8 @@ export default defineUserConfig<DefaultThemeOptions>({
   head: [
     ['link', { rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180', href: 'favicon/apple-icon-180.png' }],
     ['link', { rel: 'icon', type: 'image/png', sizes: '196x196', href: '/favicon/favicon-196.png' }],
-    ['link', { rel: 'shortcut icon', href: '/favicon/favicon.ico' }],
+    ['link', { rel: 'shortcut icon', href: '/favicon.ico' }],
+    ['link', { rel: 'preconnect', href: 'https://DBU4PMHNAN-dsn.algolia.net', crossorigin: '' }],
   ],
 
   theme: path.resolve(__dirname, '.vuepress/theme'),
@@ -23,7 +24,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       '/get-started/get-started.md',
       {
         text: 'Content',
-        link: '/content/content.md',
+        link: '/content/content.html',
         children: [
           '/content/replace-content.md',
           '/content/content-spec.md',
@@ -37,13 +38,17 @@ export default defineUserConfig<DefaultThemeOptions>({
     docsDir: 'docs',
     toggleDarkMode: 'Toggle dark mode',
     lastUpdated: true,
-    footerHtml: true,
-    footer: '<a href="/privacy-policy/privacy-policy">Privacy policy</a></br></br><a href="https://nodepa.org">Copyright &copy; 2019-2022 Norwegian Development Partners</a>',
+  },
+  markdown: {
+    pageSuffix: '',
   },
   plugins: [
     [
-      '@vuepress/plugin-search',
+      '@vuepress/docsearch',
       {
+        apiKey: 'f697003c57e07694a70993bfb1b6a532',
+        appId: 'DBU4PMHNAN',
+        indexName: 'globalseedling',
         locales: {
           '/': {
             placeholder: 'Search',
