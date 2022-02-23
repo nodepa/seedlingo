@@ -5,9 +5,8 @@ import InstructionDirective from '@/common/directives/InstructionDirective';
 
 // Helpers
 import { mount, VueWrapper } from '@vue/test-utils';
-import vuetify from '@/test-support/VuetifyInstance';
 import getTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
-import { animate, pause, play } from '@/test-support/Overrides';
+import { animate, pause, play } from '@/test-support/MockImplementations';
 window.Element.prototype.animate = animate;
 HTMLMediaElement.prototype.play = play;
 HTMLMediaElement.prototype.pause = pause;
@@ -27,7 +26,7 @@ describe('MultipleChoice', () => {
         exerciseProp: getTestData(),
       },
       global: {
-        plugins: [store, vuetify, [InstructionDirective, { Badge }]],
+        plugins: [store, [InstructionDirective, { Badge }]],
       },
     });
   });
@@ -69,9 +68,11 @@ describe('MultipleChoice', () => {
       // getSpacing(itemCount, index)
       expect(wrapper.vm.getSpacing(0, 0)).toBe('');
       expect(wrapper.vm.getSpacing(1, 0)).toBe('');
-      expect(wrapper.vm.getSpacing(2, 0)).toBe('mr-n4');
-      expect(wrapper.vm.getSpacing(2, 1)).toBe('ml-n4');
-      expect(wrapper.vm.getSpacing(3, 1)).toBe('mx-n4');
+      expect(wrapper.vm.getSpacing(2, 0)).toBe('margin-right: -16px');
+      expect(wrapper.vm.getSpacing(2, 1)).toBe('margin-left: -16px');
+      expect(wrapper.vm.getSpacing(3, 1)).toBe(
+        'margin-right: -16px;margin-left: -16px',
+      );
     });
   });
 });

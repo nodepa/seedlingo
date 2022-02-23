@@ -13,6 +13,7 @@ export interface ClozeWord {
   revealed?: boolean;
   suppressClozeAudio?: boolean;
   word: string;
+  isPunctuation?: boolean;
 }
 
 export interface ClozeOption {

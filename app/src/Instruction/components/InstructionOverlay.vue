@@ -1,22 +1,30 @@
 <template>
-  <div
-    class="instruction-overlay"
-    v-click-outside="false"
-    data-test="instruction-overlay"
-  />
+  <div data-test="instruction-overlay" class="instruction-overlay" />
 </template>
 
 <style>
 .instruction-overlay {
-  display: flex;
-  position: fixed;
-  left: 0;
-  top: 64px;
-  bottom: 74px;
-  right: 0;
-  pointer-events: none;
-  z-index: 3;
-  opacity: 0.4;
-  background-color: black;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  z-index: 110;
+  opacity: 0.5;
+  background-color: var(--ion-text-color);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(var(--ion-color-medium-rgb), 0.2),
+    rgba(var(--ion-color-medium-rgb), 0.2) 15px,
+    transparent 15px,
+    transparent 30px
+  );
+}
+.pop-through:not(ion-button) {
+  z-index: 120 !important;
+  cursor: pointer;
+}
+ion-button.pop-through::part(native) {
+  z-index: 120 !important;
 }
 </style>

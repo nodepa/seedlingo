@@ -1,35 +1,41 @@
 <script setup lang="ts">
-import { computed, ComputedRef } from 'vue';
-import { mdiHome } from '@mdi/js';
-import ContentConfig from '@/Lessons/ContentSpec';
+import { IonButton, IonIcon } from '@ionic/vue';
+import { home, homeSharp } from 'ionicons/icons';
 
 interface Props {
+  homeInstructionPath: string;
   homeButtonDisabled?: boolean;
+  homeButtonFocused?: boolean;
 }
 withDefaults(defineProps<Props>(), {
   homeButtonDisabled: false,
-});
-
-const homeInstructionPath: ComputedRef<string> = computed(() => {
-  return ContentConfig.getInstructionPathFor('homeButton');
+  homeButtonFocused: false,
 });
 </script>
 
 <template>
-  <v-btn
-    exact
-    icon
-    :to="{ name: 'Home' }"
+  <ion-button
     data-test="home-button"
     :disabled="homeButtonDisabled"
+    :router-link="{ name: 'Home' }"
+    router-direction="root"
     v-instruction="homeInstructionPath"
   >
-    <v-icon :icon="mdiHome" size="3rem" color="primary" aria-hidden="false" />
-  </v-btn>
+    <ion-icon
+      :md="homeSharp"
+      :ios="home"
+      :color="homeButtonFocused ? 'primary' : 'medium'"
+      aria-hidden="false"
+    />
+  </ion-button>
 </template>
 
-<style>
-.v-bottom-navigation .v-btn.v-btn--disabled {
-  filter: grayscale(1);
+<style scoped>
+ion-button {
+  min-height: 3.5rem;
+  min-width: 6rem;
+}
+ion-icon {
+  font-size: 2rem;
 }
 </style>

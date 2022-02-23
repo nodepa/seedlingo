@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ComputedRef, ref, watch } from 'vue';
+import { IonCard, IonCardContent, IonCol, IonGrid, IonRow } from '@ionic/vue';
 import { useStore } from 'vuex';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
@@ -98,76 +99,116 @@ const clozeInstructionPath: ComputedRef<string> = computed(() => {
 </script>
 
 <template>
-  <v-container fluid style="height: 100%">
-    <v-row align="center" justify="center" style="height: 40%">
-      <v-col cols="11">
-        <v-card
-          v-instruction="clozeInstructionPath"
+  <ion-grid>
+    <ion-row class="top-row ion-justify-content-center ion-align-items-center">
+      <ion-col size="11">
+        <ion-card
           data-test="sentence-card"
-          class="overflow-visible"
+          v-instruction="clozeInstructionPath"
         >
-          <v-card-text
-            class="text-h5 text-sm-h3 text-center"
-            style="user-select: text"
-          >
+          <ion-card-content class="ion-text-center">
             <template
               v-for="(word, index) in exercise.clozeText"
               :key="`start-${index}`"
             >
-              <span
-                v-if="word.isBlank && !word.revealed"
-                :data-test="`sentence-word-${index + 1}`"
-                class="ripple-container cloze-blank text-primary text-h5 text-sm-h3 no-wrap"
-                ><RippleAnimation :playing="word.audio?.playing" />
-                <RippleAnimation :playing="word.audio?.playing" :delay="200" />
-              </span>
-              <span
-                v-else-if="word.isBlank && word.revealed"
-                :data-test="`sentence-word-${index + 1}`"
-                class="ripple-container bg-success text-h5 text-sm-h3 no-wrap"
-                @click="word.audio?.play()"
-                >{{ word.word
-                }}<RippleAnimation :playing="word.audio?.playing" />
-                <RippleAnimation :playing="word.audio?.playing" :delay="200" />
-              </span>
-              <span
-                v-else
-                :data-test="`sentence-word-${index + 1}`"
-                class="ripple-container text-h5 text-sm-h3 no-wrap"
-                @click="if (!word.suppressClozeAudio) word.audio?.play();"
-                >{{ word.word
-                }}<RippleAnimation :playing="word.audio?.playing" />
-                <RippleAnimation :playing="word.audio?.playing" :delay="200" />
+              <span class="no-wrap">
+                <span
+                  :data-test="`sentence-word-${index + 1}`"
+                  :class="[
+                    'no-wrap',
+                    'ripple-container',
+                    { revealed: word.isBlank && word.revealed },
+                    { selectable: !word.isBlank || word.revealed },
+                  ]"
+                  @click="
+                    if (
+                      !word.suppressClozeAudio &&
+                      (!word.isBlank || word.revealed)
+                    )
+                      word.audio?.play();
+                  "
+                >
+                  <span
+                    v-if="word.isBlank && !word.revealed"
+                    class="cloze-blank"
+                  />
+                  <template
+                    v-else-if="
+                      !word.isPunctuation && (!word.isBlank || word.revealed)
+                    "
+                  >
+                    {{ word.word }}
+                  </template>
+                  <RippleAnimation :playing="word.audio?.playing" />
+                </span>
+                <span
+                  v-if="
+                    exercise.clozeText[index + 1] &&
+                    exercise.clozeText[index + 1].isPunctuation
+                  "
+                  :data-test="`sentence-word-${index + 1}-punctuation`"
+                  >{{ exercise.clozeText[index + 1].word }}
+                </span>
               </span>
             </template>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row align="stretch" justify="space-around" style="height: 60%">
-      <v-col
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row
+      class="bottom-row ion-justify-content-around ion-align-items-stretch"
+    >
+      <ion-col
         v-for="(option, index) in exercise.clozeOptions"
         :key="index"
-        cols="6"
+        size="6"
       >
         <ExerciseButton
           :data-test="`option-button-${index + 1}`"
           :playing="option.audio?.playing"
           v-model:buzzing="option.buzzing"
           :disabled="option.disabled"
-          :class="`bg-${option.color}`"
           @click="determineCorrectness(option)"
+          :color="option.color"
         >
-          <span :class="`text-h${option.word.length + 1}`">
+          <span :style="`font-size: ${4 - option.word.length * 0.6}rem;`">
             {{ option.word }}
           </span>
         </ExerciseButton>
-      </v-col>
-    </v-row>
-  </v-container>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </template>
 
 <style scoped>
+ion-grid {
+  --ion-grid-column-padding: 0px;
+  height: 100%;
+  width: 100%;
+}
+.top-row {
+  height: 40%;
+}
+.bottom-row {
+  height: 60%;
+}
+ion-card {
+  background-color: var(--ion-color-card);
+  color: var(--ion-color-card-contrast);
+  overflow: visible;
+}
+ion-card-content {
+  font-size: 1.8rem;
+}
+span {
+  display: inline-block;
+}
+.no-wrap {
+  word-break: keep-all;
+}
+.ripple-container {
+  position: relative;
+}
 .cloze-blank {
   display: inline-block;
   width: 1.6em;
@@ -176,18 +217,22 @@ const clozeInstructionPath: ComputedRef<string> = computed(() => {
   vertical-align: text-bottom;
   border-color: inherit;
   border-style: dotted;
-  cursor: text;
+  border-width: 3px;
+  cursor: default;
+  color: var(--ion-color-primary);
 }
-.ripple-container {
-  position: relative;
+.revealed {
+  color: var(--ion-color-success-contrast);
+  background-color: var(--ion-color-success);
 }
-.text-sm-h3 {
-  line-height: 1.4em;
+.selectable {
+  user-select: text;
+  cursor: pointer;
 }
-.text-h5 {
-  line-height: 1.4em;
-}
-.no-wrap {
-  word-break: keep-all;
+ion-button {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  margin: 0px;
 }
 </style>

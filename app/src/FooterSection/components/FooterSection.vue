@@ -1,16 +1,35 @@
+<script setup lang="ts">
+import { IonButton, IonCol, IonFooter, IonGrid, IonRow } from '@ionic/vue';
+</script>
+
 <template>
-  <v-footer color="transparent" class="mt-12 pt-4">
-    <v-row justify="center">
-      <v-col cols="12">
-        <v-btn to="/privacy" text="Privacy policy" />
-      </v-col>
-      <v-col cols="12">
-        &copy; 2019-21<br />
-        <a target="_blank" href="https://liaieducation.com">Li Ai Education</a>
-        <br />
-        <a target="_blank" href="https://nodepa.org">Nodepa</a>
-        <br />
-      </v-col>
-    </v-row>
-  </v-footer>
+  <ion-footer>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="auto">
+          <ion-button router-link="/privacy" router-direction="forward">
+            Privacy policy
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="auto" class="ion-text-center">
+          <p>&copy; 2019-22</p>
+          <p>
+            <a target="_blank" href="https://liaieducation.com"
+              >Li Ai Education
+            </a>
+          </p>
+          <p><a target="_blank" href="https://nodepa.org">Nodepa</a></p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
 </template>
+
+<style scoped>
+p {
+  margin-block-start: 0.5rem;
+  margin-block-end: 0.5rem;
+}
+</style>

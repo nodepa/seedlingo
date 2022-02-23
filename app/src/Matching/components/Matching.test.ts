@@ -5,9 +5,8 @@ import InstructionDirective from '@/common/directives/InstructionDirective';
 
 // Helpers
 import { mount, VueWrapper } from '@vue/test-utils';
-import vuetify from '@/test-support/VuetifyInstance';
 import getTestData from '@/Matching/data/MatchingTestData';
-import { animate, play } from '@/test-support/Overrides';
+import { animate, play } from '@/test-support/MockImplementations';
 window.Element.prototype.animate = animate;
 HTMLMediaElement.prototype.play = play;
 
@@ -26,7 +25,7 @@ describe('Matching', () => {
         exerciseProp: getTestData(),
       },
       global: {
-        plugins: [store, vuetify, [InstructionDirective, { Badge }]],
+        plugins: [store, [InstructionDirective, { Badge }]],
       },
     });
   });
@@ -281,15 +280,16 @@ describe('Matching', () => {
 
   describe('.getSpacing()', () => {
     it('returns correct spacing class names', () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const matching = wrapper.findComponent(Matching).vm as any;
+      const matching = wrapper.findComponent(Matching).vm;
 
       // getSpacing(itemCount, index)
       expect(matching.getSpacing(0, 0)).toBe('');
       expect(matching.getSpacing(1, 0)).toBe('');
-      expect(matching.getSpacing(2, 0)).toBe('mr-n2');
-      expect(matching.getSpacing(2, 1)).toBe('ml-n2');
-      expect(matching.getSpacing(3, 1)).toBe('mx-n2');
+      expect(matching.getSpacing(2, 0)).toBe('margin-right: -8px');
+      expect(matching.getSpacing(2, 1)).toBe('margin-left: -8px');
+      expect(matching.getSpacing(3, 1)).toBe(
+        'margin-right: -8px;margin-left: -8px',
+      );
     });
   });
 });

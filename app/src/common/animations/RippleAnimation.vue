@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
+import { createAnimation, Animation } from '@ionic/vue';
 
 interface Props {
   playing?: boolean;
@@ -14,7 +15,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   playing: false,
   duration: 500,
-  delay: 0,
+  delay: 200,
   iterations: Infinity,
   borderWidth: '4px',
   size: '40px',
@@ -23,33 +24,48 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const ripple = ref<HTMLElement | null>(null);
-let animation: Animation | undefined;
-const keyFrames = [
-  { opacity: '1', transform: 'scale(1, 1)' },
-  {
-    opacity: '0',
-    transform: `scale(${props.scale}, ${props.scale})`,
-  },
-];
+const rippleDelayed = ref<HTMLElement | null>(null);
+let animation: Animation, animationDelayed: Animation;
 
-const zIndex = computed(() => (props.playing ? 10 : -10));
+const zIndex = computed(() => (props.playing ? 140 : -10));
 
 watch(
   () => props.playing,
   (playing: boolean): void => {
-    if (animation) {
+    if (animation && animationDelayed) {
       if (playing) {
         animation.play();
+        animationDelayed.play();
       } else {
-        animation.cancel();
+        animation.stop();
+        animationDelayed.stop();
       }
     } else {
-      if (!!playing && ripple.value) {
-        animation = ripple.value.animate(keyFrames, {
-          delay: props.delay,
-          duration: props.duration,
-          iterations: props.iterations,
-        });
+      if (!!playing && ripple.value && rippleDelayed.value) {
+        animation = createAnimation()
+          .addElement(ripple.value)
+          .delay(0)
+          .duration(props.duration)
+          .iterations(props.iterations)
+          .fromTo('opacity', 1, 0)
+          .fromTo(
+            'transform',
+            'scale(1, 1)',
+            `scale(${props.scale}, ${props.scale})`,
+          );
+        animation.play();
+        animationDelayed = createAnimation()
+          .addElement(rippleDelayed.value)
+          .delay(props.delay)
+          .duration(props.duration)
+          .iterations(props.iterations)
+          .fromTo('opacity', '1', '0')
+          .fromTo(
+            'transform',
+            'scale(1, 1)',
+            `scale(${props.scale}, ${props.scale})`,
+          );
+        animationDelayed.play();
       }
     }
   },
@@ -67,16 +83,31 @@ watch(
       borderColor,
     }"
   />
+  <span
+    ref="rippleDelayed"
+    class="ripple"
+    :style="{
+      height: size,
+      width: size,
+      borderWidth,
+      borderColor,
+    }"
+  />
 </template>
 
-<style>
+<style scoped>
 .ripple {
+  position: absolute;
   z-index: v-bind(zIndex);
+  top: calc(50% - v-bind(size) / 2);
+  left: calc(50% - v-bind(size) / 2);
+  height: v-bind(size);
+  width: v-bind(size);
+  border-width: v-bind(borderWidth);
+  border-color: v-bind(borderColor);
   opacity: 0;
   border-style: solid;
   border-radius: 100%;
-  position: absolute;
-  top: calc(50% - v-bind(size) / 2);
-  left: calc(50% - v-bind(size) / 2);
+  pointer-events: none;
 }
 </style>

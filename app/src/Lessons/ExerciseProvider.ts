@@ -622,6 +622,12 @@ export default class ExerciseProvider {
             ContentSpec.getAudioPath(wordSpec.audio),
           );
         }
+        if (
+          wordSpec.isPunctuation &&
+          [true, 'true'].includes(wordSpec.isPunctuation)
+        ) {
+          clozeWord.isPunctuation = true;
+        }
 
         if (
           'invalidOptions' in wordRefOrBlank &&
@@ -687,6 +693,12 @@ export default class ExerciseProvider {
           clozeWord.audio = this.createAudio(
             ContentSpec.getAudioPath(wordSpec.audio),
           );
+        }
+        if (
+          wordSpec.isPunctuation &&
+          [true, 'true'].includes(wordSpec.isPunctuation)
+        ) {
+          clozeWord.isPunctuation = true;
         }
       }
 
@@ -766,6 +778,12 @@ export default class ExerciseProvider {
             option.audio = this.createAudio(
               ContentSpec.getAudioPath(wordSpec.audio),
             );
+            if (
+              wordSpec.isPunctuation &&
+              [true, 'true'].includes(wordSpec.isPunctuation)
+            ) {
+              multiClozeWord.isPunctuation = true;
+            }
           }
           if (clozeItem.suppressOptionAudio) {
             option.suppressOptionAudio = true;
@@ -780,6 +798,13 @@ export default class ExerciseProvider {
             multiClozeWord.audio = this.createAudio(
               ContentSpec.getAudioPath(wordSpec.audio),
             );
+          }
+          if (
+            wordSpec &&
+            wordSpec.isPunctuation &&
+            [true, 'true'].includes(wordSpec.isPunctuation)
+          ) {
+            multiClozeWord.isPunctuation = true;
           }
         }
         if (clozeItem.suppressClozeAudio) {

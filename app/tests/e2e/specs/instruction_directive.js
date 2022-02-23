@@ -1,4 +1,4 @@
-const getInstructionComponent = '[data-test="get-instruction-component"]';
+const getInstructionComponent = '[data-test="instruction-explainer-component"]';
 const instructionOverlay = '[data-test="instruction-overlay"]';
 const homeButton = '[data-test="home-button"]';
 const toggleInstructionButton = '[data-test="toggle-instruction-button"]';
@@ -13,11 +13,14 @@ describe('马丽 interacts with the "instruction" system', () => {
       cy.visit('/', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
-          cy.spy(window.Animation.prototype, 'play').as('animation.play');
-          cy.spy(window.HTMLElement.prototype, 'animate').as(
-            'animation.animate',
-          );
-          cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
+          cy.stub(window, 'matchMedia', () => {
+            return {
+              matches: false,
+              addEventListener() {
+                /**/
+              },
+            };
+          });
         },
       });
 
@@ -25,23 +28,21 @@ describe('马丽 interacts with the "instruction" system', () => {
       cy.get(toggleInstructionButton).should('be.visible').click();
       cy.get(getInstructionComponent).should('not.exist');
       cy.get(instructionOverlay).should('exist').should('not.be.visible');
-      // not working: cy.get('[data-test="home-button"]').should('not.be.disabled');
       cy.get(homeButton)
-        .should('not.have.class', 'v-btn--disabled')
-        .should('have.css', 'z-index', '4')
+        .should('not.have.class', 'button-disabled')
         .find('.badge')
-        .should('exist');
+        .should('exist')
+        .should('be.visible');
 
       cy.get('@audio.play').should('have.callCount', 1); // on first load
+      cy.get('@audio.play').invoke('resetHistory');
       cy.get(homeButton).click();
-      cy.get('@audio.play').should('have.callCount', 2);
+      cy.get('@audio.play').should('have.callCount', 1);
+      cy.get('@audio.play').invoke('resetHistory');
 
       cy.get(toggleInstructionButton).click();
       cy.get(instructionOverlay).should('not.exist');
-      cy.get(homeButton)
-        .should('have.css', 'z-index', 'auto')
-        .find('.badge')
-        .should('not.exist');
+      cy.get(homeButton).find('.badge').should('not.exist');
 
       cy.get(toggleInstructionButton).click();
       cy.get(instructionOverlay).should('exist');

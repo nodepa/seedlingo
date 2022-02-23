@@ -15,18 +15,12 @@ const playing = ref(props.playing);
 
 <template>
   <span class="badge-container">
-    <span class="badge bg-primary white-text text-button">
-      <svg
-        class="v-icon__svg"
-        viewBox="0 0 24 24"
-        role="img"
-        aria-hidden="true"
-      >
+    <span class="badge">
+      <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
         <path :d="InstructionIcon" />
       </svg>
     </span>
     <RippleAnimation :playing="playing" />
-    <RippleAnimation :delay="200" :playing="playing" />
   </span>
 </template>
 
@@ -40,12 +34,16 @@ const playing = ref(props.playing);
 }
 .badge {
   position: absolute;
-  border-radius: 100%;
-  padding: 2px;
-  z-index: 5;
+  z-index: 130;
   top: 52%;
   left: 52%;
-  width: 3em;
-  height: 3em;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  padding: 1px;
+  fill: var(--ion-color-primary-contrast);
+  background-color: var(--ion-color-primary);
+  box-shadow: 2px 2px 8px var(--ion-text-color);
+  box-shadow: 2px 2px 8px var(--ion-color-medium-contrast);
 }
 </style>

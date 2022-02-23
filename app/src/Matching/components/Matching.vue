@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed, ComputedRef, Ref, ref, watch } from 'vue';
+import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import { useStore } from 'vuex';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import { MatchingItem } from '../MatchingTypes';
 import ContentConfig from '@/Lessons/ContentSpec';
 
-const startColors = ['deep-purple', 'pink', 'orange', 'teal'];
+const startColors = ['purple', 'pink', 'orange', 'teal'];
 const colors: Array<string> = Array.from(startColors);
 const selected: Ref<number> = ref(-1);
 function reset() {
@@ -196,54 +197,62 @@ const matchingInstructionPath: ComputedRef<string> = computed(() => {
 function getSpacing(itemCount: number, index: number): string {
   if (itemCount > 1) {
     if (index === 0) {
-      return 'mr-n2';
+      return 'margin-right: -8px';
     }
     if (index === itemCount - 1) {
-      return 'ml-n2';
+      return 'margin-left: -8px';
     }
-    return 'mx-n2';
+    return 'margin-right: -8px;margin-left: -8px';
   }
   return '';
 }
 </script>
 
 <template>
-  <v-container style="height: 100%" fluid>
-    <v-row justify="space-around" style="height: 100%">
-      <v-col
-        v-for="(option, index) in exerciseItems"
-        :key="index"
-        cols="6"
-        sm="3"
-      >
+  <ion-grid style="height: 100%; width: 100%">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6" v-for="(option, index) in exerciseItems" :key="index">
         <ExerciseButton
-          v-instruction="matchingInstructionPath"
           :data-test="`option-button-${+index + 1}`"
           :playing="option.audio && option.audio.playing"
-          :class="`bg-${option.color}`"
           v-model:buzzing="option.buzzing"
           @click="selectAndPlay(option, +index)"
+          v-instruction="matchingInstructionPath"
+          :color="option.color || 'card'"
+          style="width: 100%; height: 100%; padding: 15px; margin: 0px"
         >
           <template v-if="option.isIcon">
             <!-- awaiting post-alpha vue3-jest:
-              v-for="(icon, iconIndex) in (option.wordOrIcons as Array<string>)" -->
-            <v-icon
+              v-for="(icon, iconIndex) in (option.wordOrIcons as Array<string>)"
+            -->
+            <ion-icon
               v-for="(icon, iconIndex) in option.wordOrIcons"
               :key="iconIndex"
-              :class="`${getSpacing(
-                option.wordOrIcons.length,
-                +iconIndex,
-              )} text-h${option.wordOrIcons.length + 2}`"
+              :style="`font-size: ${4 - option.wordOrIcons.length * 0.6}rem;
+              ${getSpacing(option.wordOrIcons.length, +iconIndex)}`"
               :icon="icon"
-            ></v-icon>
+            />
           </template>
           <template v-else>
-            <p :class="`text-h${option.wordOrIcons.length + 3}`">
+            <p
+              :style="`font-size: ${
+                3 - option.wordOrIcons.length * 0.3
+              }rem; margin: 0px`"
+            >
               {{ option.wordOrIcons }}
             </p>
           </template>
         </ExerciseButton>
-      </v-col>
-    </v-row>
-  </v-container>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </template>
+
+<style scoped>
+ion-grid {
+  --ion-grid-column-padding: 0px;
+}
+ion-row {
+  height: 100%;
+}
+</style>

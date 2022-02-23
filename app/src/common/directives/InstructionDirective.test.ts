@@ -5,7 +5,7 @@ import Badge from '@/common/components/Badge.vue';
 
 // Helpers
 import { mount, VueWrapper } from '@vue/test-utils';
-import { pause, play } from '@/test-support/Overrides';
+import { pause, play } from '@/test-support/MockImplementations';
 window.HTMLMediaElement.prototype.pause = pause;
 window.HTMLMediaElement.prototype.play = play;
 
@@ -50,7 +50,7 @@ beforeEach(() => {
     store as Store<InstructionRootState>,
   );
 
-  // As set up in the "bind"-function at directive installation
+  // Replicates the "bind"-function
   if (wrapper.vm.$store.state.instructionStore.isInstructionMode) {
     instruction.addEventListener();
     instruction.addInstructionStyle();
@@ -58,8 +58,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  // Teardown
-  // As set up in the "unbind"-function at directive installation
+  // Replicates the "unbind"-function
   instruction.unsubscribe();
   instruction.removeEventListener();
   instruction.delist();
@@ -70,16 +69,6 @@ describe('class Instruction', () => {
     expect(instruction).toBeInstanceOf(Instruction);
     expect(instruction).toHaveProperty('audioElement');
     expect(instruction).toHaveProperty('vm');
-    // We need to re-evaluate the need for this snapshot
-    // After updating to vue-plugin-unit-jest@5.0.0-beta.2,
-    // the snapshot caused multiple:
-    // console.error
-    // [Vue warn]: Property or method "$$typeof" is not defined on the instance
-    // but referenced during render. Make sure that this property is reactive,
-    // either in the data option, or for class-based components, by initializing
-    // the property. See:
-    // https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties.
-    // expect(instruction).toMatchSnapshot();
   });
 
   it('constructor: instance added to instruction collection', () => {
@@ -123,8 +112,6 @@ describe('class Instruction', () => {
   it('addInstructionStyle: adds styling to the element', () => {
     // Setup pre-state
     const el = wrapper.vm.$el as HTMLButtonElement;
-    el.style.backgroundColor = '#FF0000';
-    el.style.zIndex = '0';
     const elToRemove: Element[] = [];
     for (let i = 0; i < el.children.length; i += 1) {
       if (el.children[i].tagName === 'DIV') {
@@ -140,8 +127,7 @@ describe('class Instruction', () => {
     instruction.addInstructionStyle();
 
     // Assert post-state
-    expect(el.style.backgroundColor).toBe('rgb(255, 0, 0)');
-    expect(el.style.zIndex).toBe('4');
+    expect(el.classList).toContain('pop-through');
     expect(el.childElementCount).toBe(2); // 1 badge, 1 audio, 0 animations
     expect(el.children[0].tagName).toBe('SPAN');
     expect(el.children[1].tagName).toBe('AUDIO');
@@ -151,16 +137,14 @@ describe('class Instruction', () => {
     // Setup pre-state
     instruction.addInstructionStyle();
     const el = wrapper.vm.$el as HTMLButtonElement;
-    el.style.backgroundColor = '#FF0000';
-    el.style.zIndex = '9';
+    expect(el.classList).toContain('pop-through');
     expect(el.childElementCount).toBe(2); // 1 badge, 1 audio, 0 animations
 
     // Apply function
     instruction.removeInstructionStyle();
 
     // Assert post-state
-    expect(el.style.backgroundColor).toBe('rgb(255, 0, 0)');
-    expect(el.style.zIndex).toBe('');
+    expect(el.classList).not.toContain('pop-through');
     expect(el.childElementCount).toBe(1); // 1 audio, 0 animations
     expect(el.children[0].tagName).toBe('AUDIO'); // audio is 1rst elm
   });
@@ -183,33 +167,16 @@ describe('class Instruction', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('cancelInstruction: stops playing attached audio', () => {
-    // Setup and assert pre-state
-    const parentEl = wrapper.vm.$el;
-    expect(parentEl.children[0].tagName).toBe('AUDIO');
-    expect(parentEl.childElementCount).toBe(1); // 1 audio, 0 animations
-    const el = parentEl.children[0] as HTMLAudioElement;
-    expect(el.tagName).toBe('AUDIO');
-    expect(el.src).toBe(audioPath);
-
-    const spy = jest.spyOn(el, 'pause');
-    expect(spy).toHaveBeenCalledTimes(0);
-
-    // Apply function
-    instruction.cancelInstruction();
-
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   it('unsubscribe: calls unsubscribe function from store', () => {
     // Setup and assert pre-state
-    // A side-effect of subscribing a watch to the store's
-    // toggleInstructionMode value, is that - if toggleInstructionMode is
-    // false - cancelInstruction() is called. Conversely, after unsubscribing,
-    // cancelInstruction() should no longer be called.
-    const spy = jest.spyOn(instruction, 'cancelInstruction');
+    // A side-effect of the store's toggleInstructionMode value changing to false
+    // is that pauseRegisteredInstructionAudio() is called.
+    // After unsubscribing,
+    // pauseRegisteredInstructionAudio() should no longer be called
+    // when toggleInstructionMode turns false.
+    const spy = jest.spyOn(Instruction, 'pauseRegisteredInstructionAudio');
 
-    // Assert that we can provoke invocation of cancelInstruction()
+    // Assert invocating pauseRegisteredInstructionAudio()
     expect(spy).toHaveBeenCalledTimes(0);
     store.dispatch('instructionStore/toggleInstructionMode');
     store.dispatch('instructionStore/toggleInstructionMode');
@@ -218,7 +185,7 @@ describe('class Instruction', () => {
     // Apply function
     instruction.unsubscribe();
 
-    // Assert that we can NO LONGER provoke invocation of cancelInstruction()
+    // Assert NO LONGER invocating pauseRegisteredInstructionAudio()
     store.dispatch('instructionStore/toggleInstructionMode');
     store.dispatch('instructionStore/toggleInstructionMode');
     expect(spy).toHaveBeenCalledTimes(1); // Still 1

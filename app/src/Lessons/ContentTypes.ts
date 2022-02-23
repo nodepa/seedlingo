@@ -38,6 +38,7 @@ export interface WordSpec {
   picture?: string;
   video?: string;
   symbol?: Array<string>;
+  isPunctuation?: string | boolean;
 }
 
 export interface LessonSpec {

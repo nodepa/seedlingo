@@ -7,30 +7,33 @@ import {
   watch,
 } from 'vue';
 import { useStore } from 'vuex';
-import { mdiForward } from '@mdi/js';
-import ContentConfig from '@/Lessons/ContentSpec';
+import { createAnimation, IonButton, IonIcon } from '@ionic/vue';
+import { arrowForward } from 'ionicons/icons';
+
+defineProps<{
+  continueInstructionPath: string;
+}>();
 
 const continueButton = ref({} as ComponentPublicInstance);
 watch(
   () => continueButton.value,
   (continueButton) => {
     if (continueButton) {
-      const animation = continueButton.$el.animate(
-        [
-          { backgroundColor: 'inherit' },
+      const animation = createAnimation()
+        .addElement(continueButton.$el)
+        .duration(2000)
+        .iterations(Infinity)
+        .keyframes([
+          { offset: 0, backgroundColor: 'inherit' },
           {
-            backgroundColor: `${continueButton.$vuetify.theme.themes[
-              continueButton.$vuetify.theme.current
-            ].colors.primary.toString()}66`,
+            offset: 0.5,
+            backgroundColor: 'rgba(var(--ion-color-success-rgb), 0.3)',
           },
-          { backgroundColor: 'inherit' },
-        ],
-        { duration: 1300, iterations: Infinity },
-      );
-
+        ]);
       continueButton.$el.addEventListener('click', () => {
-        animation.cancel();
+        animation.stop();
       });
+      animation.play();
     }
   },
 );
@@ -39,32 +42,26 @@ const store = useStore();
 const showContinueButton: ComputedRef<boolean> = computed(() => {
   return store.state.showContinueButton;
 });
-
-const continueInstructionPath: ComputedRef<string> = computed(() => {
-  return ContentConfig.getInstructionPathFor('continueButton');
-});
 </script>
 
 <template>
-  <v-btn
+  <ion-button
     v-if="showContinueButton"
-    icon
-    ref="continueButton"
     data-test="continue-button"
+    ref="continueButton"
     @click="store.dispatch('setShowContinueButton', false)"
     v-instruction="continueInstructionPath"
   >
-    <v-icon
-      :icon="mdiForward"
-      size="3rem"
-      color="success"
-      aria-hidden="false"
-    />
-  </v-btn>
+    <ion-icon :icon="arrowForward" color="success" aria-hidden="false" />
+  </ion-button>
 </template>
 
 <style scoped>
-.v-bottom-navigation .v-btn {
-  opacity: 1;
+ion-button {
+  min-height: 3.5rem;
+  min-width: 6rem;
+}
+ion-icon {
+  font-size: 2.5rem;
 }
 </style>

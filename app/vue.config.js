@@ -1,8 +1,7 @@
 module.exports = {
-  transpileDependencies: ['vuetify'],
   pwa: {
     name: '立爱种字', // used for apple-mobile-web-app-title
-    themeColor: '#ffffff', // color of notification bar if present?
+    themeColor: '#1976d2', // color of notification bar if present?
     msTileColor: '#0086ff', // bg color for Start menu tile?
     appleMobileWebAppCapable: 'yes', // opens link directly in separate ios app?
     appleMobileWebAppStatusBarStyle: 'default', // default, black, black-translucent

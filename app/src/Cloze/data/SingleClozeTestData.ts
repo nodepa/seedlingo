@@ -67,6 +67,7 @@ export default function SingleClozeTestData(): ClozeExercise {
         revealed: false,
         suppressClozeAudio: false,
         word: '，',
+        isPunctuation: true,
       },
       {
         audio: ExerciseProvider.createAudio(
@@ -117,6 +118,7 @@ export default function SingleClozeTestData(): ClozeExercise {
         revealed: false,
         suppressClozeAudio: false,
         word: '。',
+        isPunctuation: true,
       },
     ],
     clozeOptions: [

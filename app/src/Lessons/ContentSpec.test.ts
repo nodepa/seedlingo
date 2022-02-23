@@ -15,7 +15,7 @@ describe('ContentConfig.ts', () => {
 
   it('.getMdiIcon()', () => {
     expect(ContentSpec.getMdiIcon('mdiNumeric').length).toBeGreaterThan(0);
-    expect(ContentSpec.getMdiIcon('non-existing')).toBe(undefined);
+    expect(ContentSpec.getMdiIcon('non-existing')).toBe('');
   });
 
   it('.getLessonsMenu()', () => {

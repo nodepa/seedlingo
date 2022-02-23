@@ -7,41 +7,46 @@ import {
   ref,
 } from 'vue';
 import { useStore } from 'vuex';
-import ContentConfig from '@/Lessons/ContentSpec';
+import { createAnimation, IonButton, IonIcon } from '@ionic/vue';
+import InstructionIcon from '@/common/icons/InstructionIcon.svg';
+import InstructionCloseIcon from '@/common/icons/InstructionCloseIcon.svg';
 import { Instruction } from '@/common/directives/InstructionDirective';
-import InstructionIcon from '@/common/icons/InstructionIcon';
-import InstructionCloseIcon from '@/common/icons/InstructionCloseIcon';
+import ContentConfig from '@/Lessons/ContentSpec';
 
-const store = useStore();
+interface Props {
+  showInstructionExplainer?: boolean;
+}
+const props = withDefaults(defineProps<Props>(), {
+  showInstructionExplainer: false,
+});
 
 const instructionButton = ref({} as ComponentPublicInstance);
-const showGetInstructionGraphic: ComputedRef<boolean> = computed(() => {
-  return store.state.showGetInstructionGraphic;
-});
 onMounted(() => {
-  if (showGetInstructionGraphic.value && instructionButton.value) {
-    const animation = instructionButton.value.$el.animate(
-      [
-        { backgroundColor: 'inherit' },
+  if (props.showInstructionExplainer && instructionButton.value) {
+    const animation = createAnimation()
+      .addElement(instructionButton.value.$el)
+      .duration(2000)
+      .iterations(Infinity)
+      .keyframes([
+        { offset: 0, backgroundColor: 'inherit' },
         {
-          backgroundColor: `${instructionButton.value.$vuetify.theme.themes[
-            instructionButton.value.$vuetify.theme.current
-          ].colors.primary.toString()}66`,
+          offset: 0.5,
+          backgroundColor: 'rgba(var(--ion-color-primary-rgb), 0.3)',
         },
-        { backgroundColor: 'inherit' },
-      ],
-      { duration: 1300, iterations: Infinity },
-    );
-    instructionButton.value.$el.addEventListener('click', () =>
-      animation.cancel(),
-    );
+      ]);
+    instructionButton.value.$el.addEventListener('click', () => {
+      animation.stop();
+    });
+    animation.play();
   }
 });
 
+const store = useStore();
+
 const instructionButtonAudio = ref<HTMLAudioElement | null>(null);
 const toggleInstructionMode = (): void => {
-  if (showGetInstructionGraphic.value) {
-    store.dispatch('setShowGetInstructionGraphic', false);
+  if (props.showInstructionExplainer) {
+    store.dispatch('setShowInstructionExplainer', false);
 
     // Add <audio> element to Instruction.Collection to trigger cancelling whenever another instruction starts playing
     const audioEl = instructionButtonAudio.value as HTMLAudioElement;
@@ -63,31 +68,36 @@ const instructionPath: ComputedRef<string> = computed(() => {
 </script>
 
 <template>
-  <v-btn
-    ref="instructionButton"
-    icon
-    :input-value="isInstructionMode"
-    @click="toggleInstructionMode()"
+  <ion-button
     data-test="toggle-instruction-button"
-    :class="{ 'v-btn--active': showGetInstructionGraphic }"
+    ref="instructionButton"
+    @click="toggleInstructionMode()"
   >
-    <v-icon
+    <ion-icon
       v-if="isInstructionMode"
       data-test="instruction-close-icon"
-      size="3rem"
+      color="primary"
       :icon="InstructionCloseIcon"
       aria-hidden="false"
-    >
-    </v-icon>
-    <v-icon
+    />
+    <ion-icon
       v-else
-      :color="showGetInstructionGraphic ? 'primary' : 'inherit'"
       data-test="instruction-icon"
-      size="3rem"
       :icon="InstructionIcon"
+      :color="showInstructionExplainer ? 'primary' : 'medium'"
       aria-hidden="false"
-    >
-    </v-icon>
+    />
     <audio ref="instructionButtonAudio" :src="instructionPath" />
-  </v-btn>
+  </ion-button>
 </template>
+
+<style scoped>
+ion-button {
+  min-height: 3.5rem;
+  min-width: 6rem;
+}
+ion-icon {
+  font-size: 2.5rem;
+  stroke-width: 0px;
+}
+</style>

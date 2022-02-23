@@ -1,10 +1,16 @@
 <template>
-  <component :is="exerciseComponent" :exercise-prop="exerciseItems"></component>
+  <ion-page>
+    <component
+      :is="exerciseComponent"
+      :exercise-prop="exerciseItems"
+    ></component>
+  </ion-page>
 </template>
 
 <script setup lang="ts">
+import { IonPage, useIonRouter } from '@ionic/vue';
 import { onMounted, ref, shallowRef, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import Cloze from '@/Cloze/components/Cloze.vue';
 import Matching from '@/Matching/components/Matching.vue';
@@ -33,7 +39,7 @@ const exerciseComponent = shallowRef<ExerciseComponent | string>(
 
 const exerciseItems = ref<ExerciseItems>([] as Array<MatchingItem>);
 
-const router = useRouter();
+const ionRouter = useIonRouter();
 const store = useStore();
 const currentIteration = ref<number>(1);
 watch(
@@ -42,10 +48,10 @@ watch(
     if (!show) {
       // the continue button has been clicked, time to refresh or return home
       if (currentIteration.value >= 5) {
-        router.push({ name: 'Home' });
+        ionRouter.navigate({ name: 'Home' }, 'root', 'replace');
       } else {
-        getExercise();
         currentIteration.value += 1;
+        getExercise();
       }
     }
   },
@@ -70,18 +76,18 @@ function getExercise(): void {
     ExerciseProvider.pickRandomExerciseType = () => 'MultipleChoice';
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(3).exerciseItems;
-  } else if ('multiple-choice-explanation-test' === route.params.id) {
+  } else if ('explanation-multiple-choice-test' === route.params.id) {
     exerciseComponent.value = MultipleChoice;
     exerciseItems.value = getExplanationMultipleChoiceTestData();
-  } else if ('multiple-choice-explanation' === route.params.id) {
+  } else if ('explanation-multiple-choice' === route.params.id) {
     exerciseComponent.value = MultipleChoice;
     ExerciseProvider.pickRandomExerciseType = () => 'ExplanationMultipleChoice';
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(4).exerciseItems;
-  } else if ('matching-explanation-test' === route.params.id) {
+  } else if ('explanation-matching-test' === route.params.id) {
     exerciseComponent.value = Matching;
     exerciseItems.value = getExplanationMatchingTestData();
-  } else if ('matching-explanation' === route.params.id) {
+  } else if ('explanation-matching' === route.params.id) {
     exerciseComponent.value = Matching;
     ExerciseProvider.pickRandomExerciseType = () => 'ExplanationMatching';
     exerciseItems.value =

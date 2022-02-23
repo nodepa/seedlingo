@@ -43,6 +43,7 @@ export default function MultiClozeTestData(): ClozeExercise {
       },
       {
         word: '，',
+        isPunctuation: true,
       },
       {
         word: '不过',
@@ -76,6 +77,7 @@ export default function MultiClozeTestData(): ClozeExercise {
       },
       {
         word: '。',
+        isPunctuation: true,
       },
     ],
     clozeOptions: [

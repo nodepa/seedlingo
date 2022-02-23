@@ -43,7 +43,10 @@ export default class ContentSpec {
 
   public static getMdiIcon(key: string): string {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (mdiIcons as any)[key];
+    const drawPath = (mdiIcons as any)[key];
+    return drawPath
+      ? `data:image/svg+xml,<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="${drawPath}"/></svg>`
+      : '';
   }
 
   public static getLessonsMenu(): LessonMenuItems {
@@ -58,7 +61,8 @@ export default class ContentSpec {
       };
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      lessons[oneBasedIndex].icon = (mdiIcons as any)[lesson.icon];
+      // lessons[oneBasedIndex].icon = (mdiIcons as any)[lesson.icon];
+      lessons[oneBasedIndex].icon = this.getMdiIcon(lesson.icon);
 
       lessons[oneBasedIndex].audio = `data:audio/mpeg;base64,${mp3Base64Sources(
         `${this.contentPrefix}${lesson.introductionAudio}.audio`,
