@@ -6,8 +6,7 @@ import ContentSpec from '@/Lessons/ContentSpec';
 
 // Helpers
 import { mount, VueWrapper } from '@vue/test-utils';
-import vuetify from '@/test-support/VuetifyInstance';
-import { pause, play } from '@/test-support/Overrides';
+import { pause, play } from '@/test-support/MockImplementations';
 window.HTMLMediaElement.prototype.pause = pause;
 window.HTMLMediaElement.prototype.play = play;
 
@@ -32,8 +31,7 @@ describe('Lessons.vue (shallow)', () => {
     wrapper = mount(Lessons, {
       // shallow: true,
       global: {
-        // plugins: [store, vuetify],
-        plugins: [store, vuetify, [InstructionDirective, { Badge }]],
+        plugins: [store, [InstructionDirective, { Badge }]],
       },
     });
   });
@@ -45,7 +43,7 @@ describe('Lessons.vue (shallow)', () => {
   // Component has expected elements
   describe('initial state', () => {
     it('renders a list of lesson buttons', () => {
-      expect(wrapper.find('[data-test="lessons-list"]').exists()).toBe(true);
+      expect(wrapper.find('[data-test="lesson-list"]').exists()).toBe(true);
       expect(wrapper.find('[data-test="lesson-button-00"]').exists()).toBe(
         false,
       );
@@ -69,15 +67,15 @@ describe('Lessons.vue (shallow)', () => {
       );
       expect(
         (wrapper.find('[data-test="lesson-button-01"]').element as HTMLElement)
-          .style.zIndex,
-      ).not.toBe('4');
+          .className,
+      ).not.toBe('pop-through');
       await wrapper.vm.$store.dispatch(
         'instructionStore/toggleInstructionMode',
       );
       expect(
         (wrapper.find('[data-test="lesson-button-01"]').element as HTMLElement)
-          .style.zIndex,
-      ).toBe('4');
+          .className,
+      ).toBe('pop-through');
     });
   });
 });

@@ -1,4 +1,4 @@
-import { mdiCellphoneWireless } from '@mdi/js';
+import ContentSpec from '@/Lessons/ContentSpec';
 import 一 from '@/test-support/audio/characters/一.mp3.audio';
 import 二 from '@/test-support/audio/characters/二.mp3.audio';
 import 三 from '@/test-support/audio/characters/三.mp3.audio';
@@ -9,7 +9,7 @@ export default function MultipleChoiceTestData(): MultipleChoiceExercise {
   return {
     itemUnderTestAudio: new Audio(`data:audio/mpeg;base64,${二}`),
     itemUnderTestAudioPlaying: false,
-    iconToMatch: [mdiCellphoneWireless],
+    iconToMatch: [ContentSpec.getMdiIcon('mdiCellphoneWireless')],
     options: [
       {
         word: '三',

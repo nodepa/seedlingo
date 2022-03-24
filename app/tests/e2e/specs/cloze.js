@@ -1,17 +1,15 @@
 const app = '[data-test="app"]';
 const loader = '[data-test="loader"]';
-const getInstructionComponent = '[data-test="get-instruction-component"]';
+const getInstructionComponent = '[data-test="instruction-explainer-component"]';
 const continueButton = '[data-test="continue-button"]';
 const sentenceCard = '[data-test="sentence-card"]';
 const sentenceBlank = '[data-test="sentence-word-3"]';
-const errorColor = 'rgb(229, 57, 53)';
-const primaryColor = 'rgb(25, 118, 210)';
 const successColor = 'rgb(0, 150, 136)';
 
 describe('马丽 interacts with the "cloze" system', () => {
   beforeEach(() => {
-    // Avoid dealing with "get instructions" side effects.
-    localStorage.setItem('GetInstructionGraphicShownCount', 5);
+    // Avoid dealing with "instruction explainer" side effects.
+    localStorage.setItem('InstructionExplainerShownCount', 5);
   });
 
   it(
@@ -32,7 +30,14 @@ describe('马丽 interacts with the "cloze" system', () => {
           cy.spy(window.HTMLElement.prototype, 'animate').as(
             'animation.animate',
           );
-          cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
+          cy.stub(window, 'matchMedia', () => {
+            return {
+              matches: false,
+              addEventListener() {
+                /**/
+              },
+            };
+          });
         },
       });
       cy.get(loader).should('not.be.visible');
@@ -69,21 +74,24 @@ describe('马丽 interacts with the "cloze" system', () => {
       // *****
       cy.log('**2. 马丽 taps an incorrect word**, and');
       cy.log('-- sees the word turn red, buzz and become inactive.');
+      cy.get('@audio.play').should('have.callCount', 0);
+      cy.get('@animation.play').should('have.callCount', 0);
+      cy.get('@animation.animate').should('have.callCount', 0);
       cy.get('@option1')
         .click()
         .wait(20)
-        .should('have.css', 'background-color', errorColor);
-      // item is disabled
-      cy.get('@option1').should('be.disabled');
+        .should('have.class', 'ion-color-danger');
+      cy.get('@option1').should('have.class', 'button-disabled');
 
-      // 1 item audio played:                       +1 (0)
+      // 1 item audio played
       cy.get('@audio.play').should('have.callCount', 1);
-      // 1 item buzz 1 + 2 item ripples:                   +3 (0)
+      cy.get('@audio.play').invoke('resetHistory');
+      // 2 audio ripples played
+      cy.get('@animation.play').should('have.callCount', 2);
+      cy.get('@animation.play').invoke('resetHistory');
+      // 2 audio ripples created + 1 button buzz
       cy.get('@animation.animate').should('have.callCount', 3);
-      // 0 ripples replayed:                            +0 (0)
-      cy.get('@animation.play').should('have.callCount', 0);
-      // 2 audio ripples canceled:                        +2 (0)
-      cy.get('@animation.cancel').should('have.callCount', 2);
+      cy.get('@animation.animate').invoke('resetHistory');
 
       // *****
       // * 3 *
@@ -95,26 +103,28 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log('-- sees the continue button become visible.');
       cy.get('@option2')
         .click()
-        .should('have.css', 'background-color', successColor);
+        .should('have.class', 'ion-color-success')
+        .should('not.have.class', 'button-disabled');
       cy.get(sentenceCard).contains('我有两个弟弟，不过没有别的兄弟姐妹。');
       cy.get(sentenceBlank).should(
         'have.css',
         'background-color',
         successColor,
       );
-      cy.get('@option1').should('be.disabled');
-      cy.get('@option3').should('be.disabled');
-      cy.get('@option4').should('be.disabled');
+      cy.get('@option1').should('have.class', 'button-disabled');
+      cy.get('@option3').should('have.class', 'button-disabled');
+      cy.get('@option4').should('have.class', 'button-disabled');
       cy.get(continueButton).should('be.visible');
 
-      // 1 item audio plays:                        +1 (1)
-      cy.get('@audio.play').should('have.callCount', 2);
-      // 2 item ripples + 1 continue pulse:                +3 (3)
-      cy.get('@animation.animate').should('have.callCount', 6);
-      // no animation replays:                          +0 (0)
-      cy.get('@animation.play').should('have.callCount', 0);
-      // item ripples x2 canceled after audio:             +2 (2)
-      cy.get('@animation.cancel').should('have.callCount', 4);
+      // 1 item audio plays
+      cy.get('@audio.play').should('have.callCount', 1);
+      cy.get('@audio.play').invoke('resetHistory');
+      // 2 audio ripples played + 1 continue pulse
+      cy.get('@animation.play').should('have.callCount', 3);
+      cy.get('@animation.play').invoke('resetHistory');
+      // 2 audio ripples created + 1 continue pulse, 0 buzz
+      cy.get('@animation.animate').should('have.callCount', 3);
+      cy.get('@animation.animate').invoke('resetHistory');
     },
   );
 
@@ -138,7 +148,14 @@ describe('马丽 interacts with the "cloze" system', () => {
           cy.spy(window.HTMLElement.prototype, 'animate').as(
             'animation.animate',
           );
-          cy.spy(window.Animation.prototype, 'cancel').as('animation.cancel');
+          cy.stub(window, 'matchMedia', () => {
+            return {
+              matches: false,
+              addEventListener() {
+                /**/
+              },
+            };
+          });
         },
       });
       cy.get(loader).should('not.be.visible');
@@ -175,14 +192,12 @@ describe('马丽 interacts with the "cloze" system', () => {
       // *****
       cy.log('**2. 马丽 does not hear auto-played audio of the sentence**,');
 
-      // 0 sentence audio played on load:           +0 (0)
+      // 1 item audio plays
       cy.get('@audio.play').should('have.callCount', 0);
-      // 0 sentence audio ripples:                         +0 (0)
-      cy.get('@animation.animate').should('have.callCount', 0);
-      // 0 ani repeats:                                 +0 (0)
+      // 0 audio ripples played, 0 buzz
       cy.get('@animation.play').should('have.callCount', 0);
-      // 0 sentence ripples canceled after audio ended:   +0 (0)
-      cy.get('@animation.cancel').should('have.callCount', 0);
+      // 0 audio ripples played, 0 buzz
+      cy.get('@animation.animate').should('have.callCount', 0);
 
       // *****
       // * 3 *
@@ -193,23 +208,32 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log('-- sees the word turn red and buzz');
       cy.log("-- hears the word's audio");
       cy.log('-- sees the word return to original state.');
+      cy.get('@option1').then(($el) => {
+        cy.wrap($el[0].attributes['color'].value).should('equal', 'primary');
+      });
       cy.get('@option1')
         .click()
         .wait(20)
-        .should('have.css', 'background-color', errorColor);
+        .should('have.class', 'ion-color-danger')
+        .then(($el) => {
+          cy.wrap($el[0].attributes['color'].value).should('equal', 'danger');
+        });
+
       // item returns to normal
       cy.get('@option1')
-        .should('not.be.disabled')
-        .should('have.css', 'background-color', primaryColor);
+        .should('not.have.class', 'button-disabled')
+        .should('not.have.class', 'ion-color-danger')
+        .should('have.class', 'ion-color-primary');
 
-      // 1 item audio played:                       +1 (0)
+      // 1 audio played
       cy.get('@audio.play').should('have.callCount', 1);
-      // 1 item buzz + 2 item ripples:                     +3 (0)
+      cy.get('@audio.play').invoke('resetHistory');
+      // 2 audio ripples played
+      cy.get('@animation.play').should('have.callCount', 2);
+      cy.get('@animation.play').invoke('resetHistory');
+      // 2 audio ripples created + 1 buzz
       cy.get('@animation.animate').should('have.callCount', 3);
-      // 0 ani repeats:                                 +0 (0)
-      cy.get('@animation.play').should('have.callCount', 0);
-      // 2 item ripples canceled:                         +2 (0)
-      cy.get('@animation.cancel').should('have.callCount', 2);
+      cy.get('@animation.animate').invoke('resetHistory');
 
       // *****
       // * 4 *
@@ -220,19 +244,23 @@ describe('马丽 interacts with the "cloze" system', () => {
         '-- sees the first blank in the sentence reveal the word in green',
       );
       cy.log("-- hears the word's audio");
-      cy.get('@option4').click().wait(20).should('be.disabled');
+      cy.get('@option4')
+        .click()
+        .wait(20)
+        .should('have.class', 'button-disabled');
       cy.get('[data-test="sentence-word-2"]')
         .should('have.css', 'background-color', successColor)
         .contains('有');
 
-      // 1 item audio played:                       +1 (1)
-      cy.get('@audio.play').should('have.callCount', 2);
-      // 2 item ripples:                                   +2 (3)
-      cy.get('@animation.animate').should('have.callCount', 5);
-      // 0 ani repeats:                                 +0 (0)
-      cy.get('@animation.play').should('have.callCount', 0);
-      // 2 item ripples canceled:                         +2 (2)
-      cy.get('@animation.cancel').should('have.callCount', 4);
+      // 1 audio played
+      cy.get('@audio.play').should('have.callCount', 1);
+      cy.get('@audio.play').invoke('resetHistory');
+      // 2 audio ripples played
+      cy.get('@animation.play').should('have.callCount', 2);
+      cy.get('@animation.play').invoke('resetHistory');
+      // 2 audio ripples created + 0 buzz
+      cy.get('@animation.animate').should('have.callCount', 2);
+      cy.get('@animation.animate').invoke('resetHistory');
 
       // *****
       // * 5 *
@@ -247,58 +275,61 @@ describe('马丽 interacts with the "cloze" system', () => {
       // non-blank word
       cy.get('[data-test="sentence-word-1"]')
         .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
-        .contains('我')
-        .click();
-      // 1 item audio played:                       +1 (2)
-      cy.get('@audio.play').should('have.callCount', 3);
-      // 2 item ripples:                                   +2 (5)
-      cy.get('@animation.animate').should('have.callCount', 7);
-      // 0 ani repeats:                                 +0 (0)
-      cy.get('@animation.play').should('have.callCount', 0);
-      // 2 item ripples canceled:                         +2 (4)
-      cy.get('@animation.cancel').should('have.callCount', 6);
+        .contains('我');
+      cy.get('[data-test="sentence-word-1"]').click();
+      // 1 audio played
+      cy.get('@audio.play').should('have.callCount', 1);
+      cy.get('@audio.play').invoke('resetHistory');
+      // 2 audio ripples played
+      cy.get('@animation.play').should('have.callCount', 2);
+      cy.get('@animation.play').invoke('resetHistory');
+      // 2 audio ripples created + 0 buzz
+      cy.get('@animation.animate').should('have.callCount', 2);
+      cy.get('@animation.animate').invoke('resetHistory');
 
       // revealed blank-word
       cy.get('[data-test="sentence-word-2"]')
         .should('have.css', 'background-color', successColor)
         .contains('有')
         .click();
-      // 1 item audio played:                       +1 (3)
-      cy.get('@audio.play').should('have.callCount', 4);
-      // 2 item ripples:                                   +2 (7)
-      cy.get('@animation.animate').should('have.callCount', 9);
-      // 0 ani repeats:                                 +0 (0)
-      cy.get('@animation.play').should('have.callCount', 0);
-      // 2 item ripples canceled:                         +2 (6)
-      cy.get('@animation.cancel').should('have.callCount', 8);
+      // 1 audio played
+      cy.get('@audio.play').should('have.callCount', 1);
+      cy.get('@audio.play').invoke('resetHistory');
+      // 2 audio ripples played
+      cy.get('@animation.play').should('have.callCount', 2);
+      cy.get('@animation.play').invoke('resetHistory');
+      // 2 audio ripples created + 0 buzz
+      cy.get('@animation.animate').should('have.callCount', 2);
+      cy.get('@animation.animate').invoke('resetHistory');
 
       // unrevealed blank plays no audio until revealed
       cy.get('[data-test="sentence-word-3"]')
         .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
         .should('not.contain', '两')
         .click();
-      // 0 item audio played:                       +0 (4)
-      cy.get('@audio.play').should('have.callCount', 4);
-      // 0 item ripples:                                   +0 (9)
-      cy.get('@animation.animate').should('have.callCount', 9);
-      // 0 ani repeats:                                 +0 (0)
+      // 0 audio played
+      cy.get('@audio.play').should('have.callCount', 0);
+      // 0 audio ripples played
       cy.get('@animation.play').should('have.callCount', 0);
-      // 0 item ripples canceled:                         +0 (8)
-      cy.get('@animation.cancel').should('have.callCount', 8);
+      // 0 audio ripples created + 0 buzz
+      cy.get('@animation.animate').should('have.callCount', 0);
 
       // no audio for punctuation
-      cy.get('[data-test="sentence-word-6"]')
-        .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
+      cy.get('[data-test="sentence-word-5"]').should(
+        'have.css',
+        'background-color',
+        'rgba(0, 0, 0, 0)',
+      );
+      cy.get('[data-test="sentence-word-5-punctuation"]')
         .contains('，')
-        .click();
-      // 0 item audio played:                       +0 (4)
-      cy.get('@audio.play').should('have.callCount', 4);
-      // 0 item ripples:                                   +0 (9)
-      cy.get('@animation.animate').should('have.callCount', 9);
-      // 0 ani repeats:                                 +0 (0)
+        .click()
+        .should('not.contain', '.ripple');
+      // 0 audio played
+      cy.get('@audio.play').should('have.callCount', 0);
+      // 0 audio ripples played
       cy.get('@animation.play').should('have.callCount', 0);
-      // 0 item ripples canceled:                         +0 (8)
-      cy.get('@animation.cancel').should('have.callCount', 8);
+      // 0 audio ripples created + 0 buzz
+      cy.get('@animation.animate').should('have.callCount', 0);
 
       // *****
       // * 6 *
@@ -313,19 +344,23 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.get('[data-test="sentence-word-3"]')
         .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
         .should('not.contain', '两');
-      cy.get('@option2').click().wait(20).should('be.disabled');
+      cy.get('@option2')
+        .click()
+        .wait(20)
+        .should('have.class', 'button-disabled');
+
       cy.get('[data-test="sentence-word-3"]')
         .should('have.css', 'background-color', successColor)
         .should('contain', '两');
-
-      // 1 item audio played:                       +1 (4)
-      cy.get('@audio.play').should('have.callCount', 5);
-      // 2 item ripples:                                   +2 (9)
-      cy.get('@animation.animate').should('have.callCount', 11);
-      // 0 ani repeats:                                 +0 (0)
-      cy.get('@animation.play').should('have.callCount', 0);
-      // 2 item ripples canceled:                         +2 (8)
-      cy.get('@animation.cancel').should('have.callCount', 10);
+      // 1 audio played
+      cy.get('@audio.play').should('have.callCount', 1);
+      cy.get('@audio.play').invoke('resetHistory');
+      // 2 audio ripples played
+      cy.get('@animation.play').should('have.callCount', 2);
+      cy.get('@animation.play').invoke('resetHistory');
+      // 2 audio ripples created + 0 buzz
+      cy.get('@animation.animate').should('have.callCount', 2);
+      cy.get('@animation.animate').invoke('resetHistory');
 
       // *****
       // * 7 *
@@ -340,48 +375,54 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.get('[data-test="sentence-word-8"]')
         .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
         .should('not.contain', '没有');
-      cy.get('@option3').click().wait(20).should('be.disabled');
+      cy.get('@option3')
+        .click()
+        .wait(20)
+        .should('have.class', 'button-disabled');
       cy.get('[data-test="sentence-word-8"]')
         .should('have.css', 'background-color', successColor)
         .should('contain', '没有');
 
-      // 1 item audio played:                       +1 (5)
-      cy.get('@audio.play').should('have.callCount', 6);
-      // 2 item ripples:                                   +2 (11)
-      cy.get('@animation.animate').should('have.callCount', 13);
-      // 0 ani repeats:                                 +0 (0)
-      cy.get('@animation.play').should('have.callCount', 0);
-      // 2 item ripples canceled:                         +2 (10)
-      cy.get('@animation.cancel').should('have.callCount', 12);
+      // 1 audio played
+      cy.get('@audio.play').should('have.callCount', 1);
+      cy.get('@audio.play').invoke('resetHistory');
+      // 2 audio ripples played
+      cy.get('@animation.play').should('have.callCount', 2);
+      cy.get('@animation.play').invoke('resetHistory');
+      // 2 audio ripples created + 0 buzz
+      cy.get('@animation.animate').should('have.callCount', 2);
+      cy.get('@animation.animate').invoke('resetHistory');
 
       // *****
       // * 8 *
       // *****
       cy.log('**8. 马丽 taps the *correct* option for the last blank**, and');
       cy.log('-- sees the word button become disabled (no buzz)');
-      cy.log(
-        '-- sees the first blank in the sentence reveal the word in green',
-      );
+      cy.log('-- sees the last blank in the sentence reveal the word in green');
       cy.log("-- hears the word's audio");
       cy.log('-- sees the continue button visible and flashing');
 
       cy.get('[data-test="sentence-word-10"]')
         .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
         .should('not.contain', '兄弟姐妹');
-      cy.get('@option1').click().wait(20).should('be.disabled');
+      cy.get('@option1')
+        .click()
+        .wait(20)
+        .should('have.class', 'button-disabled');
       cy.get('[data-test="sentence-word-10"]')
         .should('have.css', 'background-color', successColor)
         .should('contain', '兄弟姐妹');
       cy.get(continueButton).should('be.visible');
 
-      // 1 item audio played:                       +1 (6)
-      cy.get('@audio.play').should('have.callCount', 7);
-      // 1 continue pulse:                                  +1 (13)
-      cy.get('@animation.animate').should('have.callCount', 14);
-      // 2 item ripples repeats:                        +2 (0)
-      cy.get('@animation.play').should('have.callCount', 2);
-      // 2 item ripples canceled:                         +2 (12)
-      cy.get('@animation.cancel').should('have.callCount', 14);
+      // 1 audio played
+      cy.get('@audio.play').should('have.callCount', 1);
+      cy.get('@audio.play').invoke('resetHistory');
+      // 2 audio ripples played + 1 continue pulse
+      cy.get('@animation.play').should('have.callCount', 3);
+      cy.get('@animation.play').invoke('resetHistory');
+      // 2 audio ripples created + 0 buzz + 1 continue pulse
+      cy.get('@animation.animate').should('have.callCount', 3);
+      cy.get('@animation.animate').invoke('resetHistory');
     },
   );
 });

@@ -11,6 +11,15 @@ export function pause(): void {
 }
 
 export class Animation {
+  // eslint-disable-next-line no-useless-constructor
+  constructor(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    effect?: AnimationEffect | null | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    timeline?: AnimationTimeline | null | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+  ) {}
+
   addEventListener(): void {
     /* do nothing */
   }
@@ -86,7 +95,9 @@ export class Animation {
   updatePlaybackRate(): void {
     /* do nothing */
   }
+}
 
+export class AnimationEffect {
   // eslint-disable-next-line no-useless-constructor
   constructor(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -95,6 +106,18 @@ export class Animation {
     timeline?: AnimationTimeline | null | undefined,
     // eslint-disable-next-line @typescript-eslint/no-empty-function
   ) {}
+
+  getTiming(): ComputedEffectTiming {
+    return {};
+  }
+
+  getComputedTiming(): ComputedEffectTiming {
+    return {};
+  }
+
+  updateTiming(): void {
+    /* do nothing */
+  }
 }
 
 export function animate(
@@ -104,4 +127,30 @@ export function animate(
   options?: number | KeyframeAnimationOptions | undefined,
 ): Animation {
   return new Animation();
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function matchMedia(query: string) {
+  return {
+    matches: false,
+    media: '',
+    addListener: () => null,
+    removeListener: () => null,
+    addEventListener: () => null,
+    removeEventListener: () => null,
+    onchange: function (
+      this: MediaQueryList,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ev: MediaQueryListEvent,
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+    ) {},
+    dispatchEvent: function (
+      this: MediaQueryList,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ev: MediaQueryListEvent,
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+    ) {
+      return false;
+    },
+  };
 }

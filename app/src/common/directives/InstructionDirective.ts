@@ -53,10 +53,6 @@ export class Instruction {
 
   private badge: ComponentPublicInstance;
 
-  private originalStyle: {
-    zIndex: string;
-  };
-
   private unsubscribeInstructionModeWatch?: VoidFunction;
   private store: Store<InstructionRootState>;
 
@@ -80,10 +76,6 @@ export class Instruction {
     );
 
     this.store = store;
-
-    this.originalStyle = {
-      zIndex: this.hostElement.style.zIndex,
-    };
 
     this.makeResponsiveToInstructionModeChange();
     // In case already isInstructionMode
@@ -118,8 +110,7 @@ export class Instruction {
   }
 
   public addInstructionStyle(): void {
-    this.hostElement.style.zIndex = '4';
-    this.hostElement.classList.add('bg-info');
+    this.hostElement.classList.add('pop-through');
     if (this.hostElement.firstChild) {
       this.hostElement.insertBefore(
         this.badge.$el,
@@ -131,8 +122,7 @@ export class Instruction {
   }
 
   public removeInstructionStyle(): void {
-    this.hostElement.style.zIndex = this.originalStyle.zIndex;
-    this.hostElement.classList.remove('bg-info');
+    this.hostElement.classList.remove('pop-through');
     if (this.hostElement.getElementsByClassName(this.badge.$el.className)[0]) {
       this.hostElement.removeChild(this.badge.$el);
     }
@@ -141,10 +131,6 @@ export class Instruction {
   public playInstruction(): void {
     this.audioElement.currentTime = 0;
     this.audioElement.play();
-  }
-
-  public cancelInstruction(): void {
-    this.audioElement.pause();
   }
 
   public unsubscribe(): void {
@@ -167,11 +153,7 @@ export class Instruction {
   public addAudioListeners(): void {
     this.audioElement.addEventListener('playing', () => {
       this.showAudioRipple.value = true;
-      Instruction.AudioCollection.forEach((audioElement) => {
-        if (audioElement !== this.audioElement && !audioElement.paused) {
-          audioElement.pause();
-        }
-      });
+      Instruction.pauseRegisteredInstructionAudio(this.audioElement);
     });
 
     this.audioElement.addEventListener('pause', () => {
@@ -196,8 +178,9 @@ export class Instruction {
           } else {
             this.removeEventListener();
             this.removeInstructionStyle();
-            // Cancel audio and animation if manually toggled while playing
-            this.cancelInstruction();
+            // Cancel audio and animation if manually toggled while still playing
+            Instruction.pauseRegisteredInstructionAudio();
+            this.showAudioRipple.value = false;
           }
         }
       },
@@ -214,6 +197,14 @@ export class Instruction {
     } else {
       throw new Error('Element has no "$instruction" property');
     }
+  }
+
+  static pauseRegisteredInstructionAudio(excluded?: HTMLAudioElement): void {
+    Instruction.AudioCollection.forEach((audioElement) => {
+      if (audioElement !== excluded && !audioElement.paused) {
+        audioElement.pause();
+      }
+    });
   }
 }
 

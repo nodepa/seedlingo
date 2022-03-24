@@ -1,14 +1,14 @@
 // Libraries, plugins, components
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from '@ionic/vue-router';
 import store from '@/common/store/RootStore';
+import { IonicVue, IonApp } from '@ionic/vue';
 import Badge from '@/common/components/Badge.vue';
 import InstructionDirective from '@/common/directives/InstructionDirective';
 import Home from '@/views/Home.vue';
 
 // Helpers
 import { mount, VueWrapper } from '@vue/test-utils';
-import vuetify from '@/test-support/VuetifyInstance';
-import { animate, pause, play } from '@/test-support/Overrides';
+import { animate, pause, play } from '@/test-support/MockImplementations';
 window.Element.prototype.animate = animate;
 window.HTMLMediaElement.prototype.pause = pause;
 window.HTMLMediaElement.prototype.play = play;
@@ -43,20 +43,35 @@ function mountFunction(
   const wrapper = mount(
     {
       data() {
-        return { homeButtonDisabled };
+        return {
+          homeInstructionPath: 'home-instr',
+          continueInstructionPath: 'continue-instr',
+          instructionPath: 'instr',
+          homeButtonDisabled,
+          isInstructionMode: false,
+          showInstructionExplainer: true,
+        };
       },
       template: `
-          <VLayout>
-            <BottomNavigationBar :home-button-disabled=homeButtonDisabled />
-          </VLayout>
+          <ion-app>
+            <BottomNavigationBar
+              :home-instruction-path="homeInstructionPath"
+              :home-button-disabled="homeButtonDisabled"
+              :home-button-focused="!isInstructionMode && !showInstructionExplainer"
+              :continue-instruction-path="continueInstructionPath"
+              :instruction-path="instructionPath"
+              :show-instruction-explainer="showInstructionExplainer"
+            />
+          </ion-app>
         `,
       components: {
+        IonApp,
         BottomNavigationBar,
       },
     },
     {
       global: {
-        plugins: [router, store, vuetify, [InstructionDirective, { Badge }]],
+        plugins: [IonicVue, router, store, [InstructionDirective, { Badge }]],
       },
     },
   );
@@ -93,9 +108,6 @@ describe('BottomNavigationBar.vue', () => {
       expect(wrapper.findComponent(HomeButton).vm.homeButtonDisabled).toBe(
         true,
       );
-      expect(
-        wrapper.find(homeButton).element.classList.contains('v-btn--disabled'),
-      ).toBe(true);
     });
     it('links to home', () => {
       expect(wrapper.findComponent(HomeButton).vm.$route.path).toBe('/');
@@ -104,10 +116,10 @@ describe('BottomNavigationBar.vue', () => {
 
   // // Elements have expected behaviour
   describe('toggle-instruction-button', () => {
-    it('on first click: hides the "get instruction" graphic', async () => {
-      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(true);
+    it('on first click: hides the "instruction explainer" graphic', async () => {
+      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(true);
       await wrapper.find(toggleInstructionButton).trigger('click');
-      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(false);
+      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(false);
     });
 
     it('on first click: enables the home button', async () => {
@@ -118,18 +130,12 @@ describe('BottomNavigationBar.vue', () => {
       expect(wrapper.findComponent(HomeButton).vm.homeButtonDisabled).toBe(
         true,
       );
-      expect(wrapper.find(homeButton).element.classList).toContain(
-        'v-btn--disabled',
-      );
 
       // update the BottomNavigationBar-prop homeButtonDisabled
       await wrapper.setData({ homeButtonDisabled: false });
 
       expect(wrapper.findComponent(HomeButton).vm.homeButtonDisabled).toBe(
         false,
-      );
-      expect(wrapper.find(homeButton).element.classList).not.toContain(
-        'v-btn--disabled',
       );
     });
 
@@ -167,7 +173,7 @@ describe('BottomNavigationBar.vue', () => {
       const instructionButton = wrapper.find(toggleInstructionButton);
 
       // initial state
-      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(true);
+      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(true);
       expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
         false,
       );
@@ -176,7 +182,7 @@ describe('BottomNavigationBar.vue', () => {
       await instructionButton.trigger('click');
 
       // current state
-      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(false);
+      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(false);
       expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
         true,
       );
@@ -185,7 +191,7 @@ describe('BottomNavigationBar.vue', () => {
       await instructionButton.trigger('click');
 
       // current state
-      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(false);
+      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(false);
       expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
         false,
       );
@@ -194,7 +200,7 @@ describe('BottomNavigationBar.vue', () => {
       await instructionButton.trigger('click');
 
       // current state
-      expect(wrapper.vm.$store.state.showGetInstructionGraphic).toBe(false);
+      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(false);
       expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
         true,
       );

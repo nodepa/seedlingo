@@ -87,7 +87,8 @@
       "symbol": ["mdiCellphoneWireless"]
     },
     "5d0f410c-83ff-43bd-a31e-922b42b054ef": {
-      "word": "。"
+      "word": "。",
+      "punctuation": true
     },
     "35389a5a-4493-44e5-a8ae-dc0a30c98dbf": {
       "word": "有",
@@ -102,14 +103,16 @@
       "audio": "audio/孩子.mp3"
     },
     "526a8ee7-7525-4b0f-a3a2-92e29618bed3": {
-      "word": ":"
+      "word": ":",
+      "punctuation": true
     },
     "af7cc883-0091-4d24-800e-95ca67ee451c": {
       "word": "儿子",
       "audio": "audio/儿子.mp3"
     },
     "3fde2b11-aa78-4a96-9bd4-75c8462132b6": {
-      "word": "，"
+      "word": "，",
+      "punctuation": true
     },
     "34d92533-9c8c-4469-b050-2638f2b5f4d5": {
       "word": "女儿",

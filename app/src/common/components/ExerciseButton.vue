@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ComponentPublicInstance, ref, watch } from 'vue';
+import { IonButton } from '@ionic/vue';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 
 interface Props {
@@ -61,20 +62,24 @@ function playAnimation(): void {
 </script>
 
 <template>
-  <v-btn
+  <ion-button
     ref="button"
     block
     raised
     elevation="5"
     :disabled="disabled"
     :height="height"
-    :class="{ 'bg-error': buzzing }"
+    :color="buzzing ? 'danger' : color"
     @click="$emit('click')"
   >
     <slot />
     <RippleAnimation :playing="playing" />
-    <RippleAnimation :playing="playing" :delay="200" />
-  </v-btn>
+  </ion-button>
 </template>
 
-<style scoped></style>
+<style scoped>
+.button-disabled::part(native) {
+  color: var(--ion-color-tint);
+  background-color: var(--ion-color-contrast);
+}
+</style>

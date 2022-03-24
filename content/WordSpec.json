@@ -395,16 +395,19 @@
       "symbol": ["mdiCellphoneWireless"]
     },
     "5d0f410c-83ff-43bd-a31e-922b42b054ef": {
-      "unused": "true",
-      "word": "。"
+      "unused": "punctuation",
+      "word": "。",
+      "isPunctuation": true
     },
     "526a8ee7-7525-4b0f-a3a2-92e29618bed3": {
-      "unused": "true",
-      "word": "："
+      "unused": "punctuation",
+      "word": "：",
+      "isPunctuation": true
     },
     "3fde2b11-aa78-4a96-9bd4-75c8462132b6": {
-      "unused": "true",
-      "word": "，"
+      "unused": "punctuation",
+      "word": "，",
+      "isPunctuation": true
     }
   }
 }

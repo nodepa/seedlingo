@@ -19,6 +19,6 @@ module.exports = {
   testMatch: ['**/?(*.)+(test).ts'],
   transform: { '^.*\\.[mc]js$': 'babel-jest' },
   transformIgnorePatterns: [
-    '<rootDir>/node_modules/(?!vuetify|@ionic/vue|@ionic/vue-router|@ionic/core|@stencil/core|ionicons)',
+    '<rootDir>/node_modules/(?!@ionic/vue|@ionic/vue-router|@ionic/core|@stencil/core|ionicons)',
   ],
 };

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import { IonButton, IonIcon, IonLabel, IonList, IonItem } from '@ionic/vue';
 import ContentSpec from '../ContentSpec';
 import { LessonMenuItems } from '../LessonMenuTypes';
 
@@ -10,23 +11,44 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-list flat rounded data-test="lessons-list">
-    <v-list-item v-for="(lesson, order) in lessons" :key="order">
-      <v-col cols="6" offset="3">
-        <v-btn
-          v-instruction="lesson.audio"
-          class="pa-5 text-h4 text-sm-h2 rounded-xl"
+  <ion-list data-test="lesson-list" lines="none">
+    <ion-item v-for="(lesson, order) in lessons" :key="order">
+      <div class="justify-center">
+        <ion-button
           :data-test="`lesson-button-${String(order).padStart(2, '0')}`"
-          block
-          elevation="5"
-          height="100%"
-          color="primary"
-          :to="{ path: `/lesson/${order}` }"
+          v-instruction="lesson.audio"
+          :router-link="{ path: `/lesson/${order}` }"
+          router-direction="none"
         >
-          <span class="text-secondary">{{ order }}</span>
-          <v-icon size="large" class="pl-1 pl-sm-6" :icon="lesson.icon" />
-        </v-btn>
-      </v-col>
-    </v-list-item>
-  </v-list>
+          <ion-label>{{ order }}</ion-label>
+          <ion-icon :icon="lesson.icon" />
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
 </template>
+
+<style scoped>
+ion-item {
+  margin: 2rem 0px;
+}
+.justify-center {
+  margin: auto;
+}
+ion-button {
+  margin: 0px;
+  min-height: 7rem;
+  min-width: 12rem;
+  font-size: 2rem;
+}
+ion-button::part(native) {
+  border-radius: 24px;
+}
+ion-label {
+  color: var(--ion-color-secondary) !important;
+}
+ion-icon {
+  font-size: 4rem;
+  margin-left: 1rem;
+}
+</style>

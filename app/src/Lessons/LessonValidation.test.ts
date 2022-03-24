@@ -249,11 +249,6 @@ describe('Integrity of JSON Lesson data', () => {
                 });
             }
           });
-          //           console.log(
-          //             `Unique words exercised in Lesson ${lesson.lessonIndex}
-          // (wordsExercisedCount: ${lesson.wordsExercisedCount})
-          // (wordsCounted:        ${wordsExercised.size})`,
-          //           );
           expect(wordsExercised.size).toBe(lesson.wordsExercisedCount);
         });
       });

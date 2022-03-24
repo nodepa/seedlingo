@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
 } from '@/MultipleChoice/MultipleChoiceTypes';
 import ContentConfig from '@/Lessons/ContentSpec';
-import { computed, ComputedRef, onUpdated, ref, watch } from 'vue';
+import { computed, ComputedRef, onMounted, onUpdated, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
@@ -23,6 +24,14 @@ watch(
   },
   { flush: 'post' },
 );
+onMounted(() => {
+  if (
+    props.exerciseProp.itemUnderTestAudio &&
+    props.exerciseProp.itemUnderTestAudio instanceof HTMLAudioElement
+  ) {
+    playItemUnderTestAudio();
+  }
+});
 
 function determineCorrectness(option: MultipleChoiceItem): void {
   if (option.correct) {
@@ -111,12 +120,12 @@ function playOptionAudio(option: MultipleChoiceItem): void {
 function getSpacing(itemCount: number, index: number): string {
   if (itemCount > 1) {
     if (index === 0) {
-      return 'mr-n4';
+      return 'margin-right: -16px';
     }
     if (index === itemCount - 1) {
-      return 'ml-n4';
+      return 'margin-left: -16px';
     }
-    return 'mx-n4';
+    return 'margin-right: -16px;margin-left: -16px';
   }
   return '';
 }
@@ -132,27 +141,34 @@ onUpdated(() => {
 </script>
 
 <template>
-  <v-container style="height: 100%" fluid>
-    <v-row justify="center" style="height: 30%">
-      <v-col cols="11">
+  <ion-grid style="height: 100%; width: 100%">
+    <ion-row class="ion-justify-content-center" style="height: 30%">
+      <ion-col size="10">
         <ExerciseButton
-          ref="itemUnderTestButton"
-          v-instruction="multipleChoiceInstructionPath"
           data-test="item-under-test-button"
-          class="bg-primary text-h2"
+          ref="itemUnderTestButton"
           :playing="exerciseProp.itemUnderTestAudioPlaying"
           @click="playItemUnderTestAudio"
+          v-instruction="multipleChoiceInstructionPath"
+          color="card"
+          style="
+            width: 100%;
+            height: 100%;
+            padding-top: 5px;
+            padding-bottom: 15px;
+            font-size: 3rem;
+          "
         >
           <template
             v-if="
               exerciseProp.iconToMatch && exerciseProp.iconToMatch.length > 0
             "
           >
-            <v-icon
+            <ion-icon
               v-for="(icon, iconIndex) in exerciseProp.iconToMatch"
               :key="iconIndex"
               :icon="icon"
-              :class="getSpacing(exerciseProp.iconToMatch.length, iconIndex)"
+              :style="getSpacing(exerciseProp.iconToMatch.length, iconIndex)"
             />
           </template>
           <template
@@ -161,39 +177,43 @@ onUpdated(() => {
               exerciseProp.explanationToMatch.length > 0
             "
           >
-            <p
+            <span
               :style="`font-size: ${
-                4.4 - 0.4 * exerciseProp.explanationToMatch.length
+                3 - exerciseProp.explanationToMatch.length * 0.15
               }rem`"
             >
               {{ exerciseProp.explanationToMatch }}
-            </p>
+            </span>
           </template>
         </ExerciseButton>
-      </v-col>
-    </v-row>
-    <v-row justify="space-around" style="height: 70%">
-      <v-col
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 70%" class="ion-justify-content-center">
+      <ion-col
+        size="6"
         v-for="(option, index) in exerciseProp.options"
         :key="index"
-        cols="6"
       >
         <ExerciseButton
           :data-test="`option-button-${index + 1}`"
+          :disabled="option.disabled && !option.buzzing"
           :playing="option.playing"
           v-model:buzzing="option.buzzing"
-          :disabled="option.disabled && !option.buzzing"
-          :class="`bg-${option.color}`"
           @click="determineCorrectness(option)"
+          :color="option.color || 'primary'"
+          style="width: 100%; height: 100%; padding: 15px; margin: 0px"
         >
-          <p
-            :class="getSpacing(0, 0)"
-            :style="`font-size: ${3.4 - 0.4 * option.word.length}rem`"
-          >
+          <span :style="`font-size: ${4 - option.word.length * 0.6}rem;`">
             {{ option.word }}
-          </p>
+          </span>
         </ExerciseButton>
-      </v-col>
-    </v-row>
-  </v-container>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </template>
+
+<style scoped>
+ion-grid {
+  --ion-grid-column-padding: 0px;
+}
+</style>

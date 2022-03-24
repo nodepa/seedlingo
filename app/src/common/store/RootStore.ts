@@ -6,8 +6,8 @@ const getDefaultState = (): RootState => {
   return {
     version: '1.0.0',
     showContinueButton: false,
-    showGetInstructionGraphic: !(
-      Number(localStorage.getItem('GetInstructionGraphicShownCount')) > 4
+    showInstructionExplainer: !(
+      Number(localStorage.getItem('InstructionExplainerShownCount')) > 4
     ),
   };
 };
@@ -16,8 +16,8 @@ const actions: ActionTree<RootState, RootState> = {
   setShowContinueButton({ commit }, show) {
     commit('SHOW_CONTINUE_BUTTON', show);
   },
-  setShowGetInstructionGraphic({ commit }, showGetInstructionGraphic) {
-    commit('SET_SHOW_GET_INSTRUCTIONS_GRAPHIC', showGetInstructionGraphic);
+  setShowInstructionExplainer({ commit }, showInstructionExplainer) {
+    commit('SET_SHOW_INSTRUCTION_EXPLAINER', showInstructionExplainer);
   },
   resetState({ commit }) {
     commit('RESET_STATE');
@@ -28,17 +28,14 @@ const mutations: MutationTree<RootState> = {
   SHOW_CONTINUE_BUTTON(state: RootState, show: boolean) {
     state.showContinueButton = show;
   },
-  SET_SHOW_GET_INSTRUCTIONS_GRAPHIC(
+  SET_SHOW_INSTRUCTION_EXPLAINER(
     state: RootState,
-    showGetInstructionGraphic: boolean,
+    showInstructionExplainer: boolean,
   ) {
     const shownCount =
-      Number(localStorage.getItem('GetInstructionGraphicShownCount')) || 0;
-    localStorage.setItem(
-      'GetInstructionGraphicShownCount',
-      `${shownCount + 1}`,
-    );
-    state.showGetInstructionGraphic = showGetInstructionGraphic;
+      Number(localStorage.getItem('InstructionExplainerShownCount')) || 0;
+    localStorage.setItem('InstructionExplainerShownCount', `${shownCount + 1}`);
+    state.showInstructionExplainer = showInstructionExplainer;
   },
   RESET_STATE(state) {
     Object.assign(state, getDefaultState());
