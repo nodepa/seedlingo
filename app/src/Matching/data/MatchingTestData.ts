@@ -1,4 +1,4 @@
-import ContentSpec from '@/Lessons/ContentSpec';
+import Content from '@/Lessons/Content';
 import 术 from '@/test-support/audio/characters/术.mp3.audio';
 import 二 from '@/test-support/audio/characters/二.mp3.audio';
 import 三 from '@/test-support/audio/characters/三.mp3.audio';
@@ -9,7 +9,7 @@ import { MatchingItem } from '../MatchingTypes';
 export default function MatchingTestData(): Array<MatchingItem> {
   return [
     {
-      wordOrIcons: [ContentSpec.getMdiIcon('mdiNumeric2Circle')],
+      wordOrIcons: [Content.getIcon('mdiNumeric2Circle')],
       audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${二}`),
       match: 2,
       color: 'primary',
@@ -42,7 +42,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      wordOrIcons: [ContentSpec.getMdiIcon('mdiNumeric4Circle')],
+      wordOrIcons: [Content.getIcon('mdiNumeric4Circle')],
       audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${四}`),
       match: 7,
       color: 'primary',
@@ -53,7 +53,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      wordOrIcons: [ContentSpec.getMdiIcon('mdiPalmTree')],
+      wordOrIcons: [Content.getIcon('mdiPalmTree')],
       audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${术}`),
       match: 1,
       color: 'primary',
@@ -64,7 +64,7 @@ export default function MatchingTestData(): Array<MatchingItem> {
       buzzing: false,
     },
     {
-      wordOrIcons: [ContentSpec.getMdiIcon('mdiDice3')],
+      wordOrIcons: [Content.getIcon('mdiDice3')],
       audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${三}`),
       match: 6,
       color: 'primary',

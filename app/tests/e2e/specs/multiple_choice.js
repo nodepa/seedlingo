@@ -1,6 +1,7 @@
 const app = '[data-test="app"]';
 const loader = '[data-test="loader"]';
-const getInstructionComponent = '[data-test="instruction-explainer-component"]';
+const instructionsExplainerComponent =
+  '[data-test="instructions-explainer-component"]';
 const itemUnderTestButton = '[data-test="item-under-test-button"]';
 const errorColor = 'ion-color-danger'; // 'rgb(229, 115, 115)';
 const successColor = 'ion-color-success'; // 'rgb(0, 150, 136)';
@@ -20,6 +21,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
           cy.spy(window.HTMLElement.prototype, 'animate').as(
             'animation.animate',
           );
+          // avoid dark mode
           cy.stub(window, 'matchMedia', () => {
             return {
               matches: false,
@@ -32,7 +34,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       }).wait(20);
       cy.get(loader).should('not.be.visible');
       cy.get(app).should('be.visible');
-      cy.get(getInstructionComponent).should('not.exist');
+      cy.get(instructionsExplainerComponent).should('not.exist');
       cy.get(itemUnderTestButton).should('be.visible');
       // 1 item audio auto-played
       cy.get('@audio.play').should('have.callCount', 1);
@@ -112,7 +114,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       // ###############
       // ADDITIONAL DETAILS
       // ensure overlay disappears after audio
-      // - click instruction toggle
+      // - click instructions toggle
       // - click home button
       // - ensure plays audio
       // - ensure plays animation
@@ -136,6 +138,7 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
           cy.spy(window.HTMLElement.prototype, 'animate').as(
             'animation.animate',
           );
+          // avoid dark mode
           cy.stub(window, 'matchMedia', () => {
             return {
               matches: false,
@@ -148,7 +151,7 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
       });
       cy.get(loader).should('not.be.visible');
       cy.get(app).should('be.visible');
-      cy.get(getInstructionComponent).should('not.exist');
+      cy.get(instructionsExplainerComponent).should('not.exist');
       cy.get(itemUnderTestButton)
         .should('be.visible')
         .should('contain', '一加二');

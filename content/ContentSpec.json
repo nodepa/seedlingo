@@ -4,7 +4,7 @@
       "welcome": "audio/instructions/欢迎.mp3",
       "homeButton": "audio/instructions/说明回家.mp3",
       "continueButton": "audio/instructions/说明继续.mp3",
-      "instructionButton": "audio/instructions/说明耳朵.mp3",
+      "toggleInstructionsButton": "audio/instructions/说明耳朵.mp3",
       "matchingExercise": "audio/instructions/说明连起来题.mp3",
       "multipleChoiceExercise": "audio/instructions/说明多项选择题.mp3",
       "singleClozeExercise": "audio/instructions/说明单填充题.mp3",

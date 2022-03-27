@@ -3,12 +3,13 @@
 
 # Content specification
 
-The most recent content format specification as expected by and processable by Seedling version `0.9.0` or above is format version `1.1.0`.
+Seedling version `0.9.0` requires format version `1.1.0`.
+Seedling version `0.91.0` and above requires format version `1.1.1`.
 
-## ContentPack.json
+## ContentSpec.json
 
-The root content specification file is `ContentPack.json`. It must be present
-under that name. `ContentPack.json` describes the file structure of the content.
+The root content specification file is `ContentSpec.json`. It must be present
+under that name. `ContentSpec.json` describes the file structure of the content.
 
 ### formatVersion
 
@@ -43,7 +44,7 @@ Mandatory sub-fields of type `string`:
 - `welcome`
 - `homeButton`
 - `continueButton`
-- `instructionButton`
+- `toggleInstructionsButton`
 - `matchingExercise`
 - `multipleChoiceExercise`
 - `singleClozeExercise`
@@ -69,7 +70,7 @@ Mandatory field of type `Array`; must contain at least one lesson.
   {
     "name": "My first lesson",
     "icon": "mdiNumeric",
-    "instructionAudio": "audio/instruction/DescriptionOfLesson1.mp3",
+    "introductionAudio": "audio/introduction/DescriptionOfLesson1.mp3",
     "lessonSpecFile": "Lesson1Spec.json"
   },
   {...}

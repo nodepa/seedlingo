@@ -1,18 +1,20 @@
-const getInstructionComponent = '[data-test="instruction-explainer-component"]';
-const instructionOverlay = '[data-test="instruction-overlay"]';
+const instructionsExplainerComponent =
+  '[data-test="instructions-explainer-component"]';
+const instructionsOverlay = '[data-test="instructions-overlay"]';
 const homeButton = '[data-test="home-button"]';
-const toggleInstructionButton = '[data-test="toggle-instruction-button"]';
+const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
 
-describe('马丽 interacts with the "instruction" system', () => {
+describe('马丽 interacts with the "instructions" system', () => {
   it(
-    'Displays the instruction mode with audio elements,' +
+    'Displays the instructions mode with audio elements,' +
       'overlay and background shading',
     () => {
-      /* 马丽 arrives at the instruction overlay
+      /* 马丽 arrives at the instructions overlay
        */
       cy.visit('/', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
+          // avoid dark mode
           cy.stub(window, 'matchMedia', () => {
             return {
               matches: false,
@@ -24,10 +26,11 @@ describe('马丽 interacts with the "instruction" system', () => {
         },
       });
 
-      cy.get(getInstructionComponent).should('be.visible');
-      cy.get(toggleInstructionButton).should('be.visible').click();
-      cy.get(getInstructionComponent).should('not.exist');
-      cy.get(instructionOverlay).should('exist').should('not.be.visible');
+      cy.get(instructionsOverlay).should('not.exist');
+      cy.get(instructionsExplainerComponent).should('be.visible');
+      cy.get(toggleInstructionsButton).should('be.visible').click();
+      cy.get(instructionsExplainerComponent).should('not.exist');
+      cy.get(instructionsOverlay).should('exist');
       cy.get(homeButton)
         .should('not.have.class', 'button-disabled')
         .find('.badge')
@@ -40,26 +43,26 @@ describe('马丽 interacts with the "instruction" system', () => {
       cy.get('@audio.play').should('have.callCount', 1);
       cy.get('@audio.play').invoke('resetHistory');
 
-      cy.get(toggleInstructionButton).click();
-      cy.get(instructionOverlay).should('not.exist');
+      cy.get(toggleInstructionsButton).click();
+      cy.get(instructionsOverlay).should('not.exist');
       cy.get(homeButton).find('.badge').should('not.exist');
 
-      cy.get(toggleInstructionButton).click();
-      cy.get(instructionOverlay).should('exist');
+      cy.get(toggleInstructionsButton).click();
+      cy.get(instructionsOverlay).should('exist');
 
       // ensure overlay disappears after audio
-      // - click instruction toggle
+      // - click instructions toggle
       // - click home button
       // - ensure plays audio
       // - ensure plays animation
       // - ensure overlay disappears after audio done (wire up short audio or mock play)
       // ensure audio silenced if instructions dismissed manually
-      // - click instruction toggle
+      // - click instructions toggle
       // - click home button
-      // - click instruction toggle
+      // - click instructions toggle
       // - ensure audio stopped
-      // ensure only one concurrent instruction
-      // - click instruction toggle
+      // ensure only one set of concurrent instructions
+      // - click instructions toggle
       // - click lesson 1 button
       // - ensure lesson 1 audio playing
       // - ensure lesson 1 animation playing
@@ -70,7 +73,7 @@ describe('马丽 interacts with the "instruction" system', () => {
       // ensure instructions mode stays through navigation
       // - visit /about
       // - click home
-      // - click instruction toggle
+      // - click instructions toggle
       // - go back (to /about)
       // - ensure instructions overlay still showing
       // - click home
@@ -81,8 +84,8 @@ describe('马丽 interacts with the "instruction" system', () => {
       // a message about the instructions system is played
       // that message needs to be paused if:
       // the ear is clicked again, so that instructions mode is dismissed
-      // another instruction is clicked
-      // add instructionButton as element in Instruction.Collection?
+      // another set of instructions is clicked
+      // add toggleInstructionsButton as element in Instructions.AudioCollection?
     },
   );
 });

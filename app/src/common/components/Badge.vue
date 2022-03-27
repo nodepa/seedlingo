@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import InstructionIcon from '@/common/icons/InstructionIcon';
+import ToggleInstructionsOnIcon from '@/common/icons/ToggleInstructionsOnIcon';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import { Ref, ref } from 'vue';
 
@@ -17,7 +17,7 @@ const playing = ref(props.playing);
   <span class="badge-container">
     <span class="badge">
       <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-        <path :d="InstructionIcon" />
+        <path :d="ToggleInstructionsOnIcon" />
       </svg>
     </span>
     <RippleAnimation :playing="playing" />
@@ -31,6 +31,7 @@ const playing = ref(props.playing);
   left: 0px;
   width: 100%;
   height: 100%;
+  font-size: 1rem;
 }
 .badge {
   position: absolute;
@@ -39,11 +40,12 @@ const playing = ref(props.playing);
   left: 52%;
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 100%;
   padding: 1px;
+  padding-top: 2px;
+  border: 2px solid var(--ion-color-primary-contrast);
+  border-radius: 100%;
   fill: var(--ion-color-primary-contrast);
   background-color: var(--ion-color-primary);
-  box-shadow: 2px 2px 8px var(--ion-text-color);
-  box-shadow: 2px 2px 8px var(--ion-color-medium-contrast);
+  box-shadow: 3px 3px 12px var(--ion-color-medium-contrast);
 }
 </style>

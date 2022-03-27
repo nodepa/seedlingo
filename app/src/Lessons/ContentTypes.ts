@@ -1,15 +1,15 @@
-export interface PackageConfig {
-  formatVersion: string;
+export interface ContentSpec {
+  formatVersion: '1.1.1';
 
   instructions: {
-    // All instruction paths must be relative to <project root>/content/:
+    // Paths to instructions audio must be relative to <project root>/content/:
     // some/audio/path.mp3.audio
     // will be resolved to:
     // <project root>/content/some/audio/path.mp3.audio
     welcome: string;
     homeButton: string;
     continueButton: string;
-    instructionButton: string;
+    toggleInstructionsButton: string;
     matchingExercise: string;
     multipleChoiceExercise: string;
     singleClozeExercise: string;
@@ -27,7 +27,7 @@ export interface PackageConfig {
 }
 
 export interface WordListSpec {
-  formatVersion: string;
+  formatVersion: '1.1.1';
   wordCount: number;
   words: { [key: string]: WordSpec };
 }
@@ -42,7 +42,7 @@ export interface WordSpec {
 }
 
 export interface LessonSpec {
-  formatVersion: string;
+  formatVersion: '1.1.1';
   id: string;
   lessonIndex: number;
   multipleChoiceCount: number;

@@ -170,9 +170,10 @@ onMounted(() => {
               do not use any tracking technologies or web beacons.
             </p>
             <p>
-              We store on your device the number of times you have seen the "get
-              instruction"-animation, so we can stop showing it after a few
-              times. This information is never transferred anywhere else.
+              We store on your device the number of times you have seen the
+              "instructions explainer"-animation, so we can stop showing it
+              after a few times. This information is never transferred anywhere
+              else.
             </p>
             <h3>Information we do not collect</h3>
             <ul>

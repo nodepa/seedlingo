@@ -1,15 +1,16 @@
 const app = '[data-test="app"]';
 const loader = '[data-test="loader"]';
-const getInstructionComponent = '[data-test="instruction-explainer-component"]';
+const instructionsExplainerComponent =
+  '[data-test="instructions-explainer-component"]';
 const continueButton = '[data-test="continue-button"]';
-const instructionButton = '[data-test="toggle-instruction-button"]';
+const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
 const firstHighlightColor = 'ion-color-purple'; // 'rgb(103, 58, 183)';
 const secondHighlightColor = 'ion-color-pink'; // 'rgb(233, 30, 99)';
 const thirdHighlightColor = 'ion-color-orange'; // 'rgb(255, 152, 0)';
 const fourthHighlightColor = 'ion-color-teal'; // 'rgb(0, 150, 136)';
 const errorColor = 'ion-color-danger'; // 'rgb(229, 115, 115)';
-const wordColor = 'ion-color-card'; // 'rgb(255, 255, 255)'; // default
-const nonWordColor = 'ion-color-primary'; // 'rgb(25, 118, 210)';
+const wordColor = 'ion-color-primary'; // 'rgb(25, 118, 210)';
+const nonWordColor = 'ion-color-card'; // 'rgb(255, 255, 255)'; // default
 
 describe('马丽 interacts with the "matching" system', () => {
   it(
@@ -29,6 +30,7 @@ describe('马丽 interacts with the "matching" system', () => {
           cy.spy(window.HTMLElement.prototype, 'animate').as(
             'animation.animate',
           );
+          // avoid dark mode
           cy.stub(window, 'matchMedia', () => {
             return {
               matches: false,
@@ -41,8 +43,8 @@ describe('马丽 interacts with the "matching" system', () => {
       });
       cy.get(loader).should('not.be.visible');
       cy.get(app).should('be.visible');
-      cy.get(getInstructionComponent).should('not.exist');
-      cy.get(instructionButton).should('exist').should('be.visible');
+      cy.get(instructionsExplainerComponent).should('not.exist');
+      cy.get(toggleInstructionsButton).should('exist').should('be.visible');
 
       // Expected test-data:
       // 0: option1 '2'
@@ -347,6 +349,7 @@ describe('马丽 interacts with the "explanation matching" system', () => {
           cy.spy(window.HTMLElement.prototype, 'animate').as(
             'animation.animate',
           );
+          // avoid dark mode
           cy.stub(window, 'matchMedia', () => {
             return {
               matches: false,
@@ -359,7 +362,7 @@ describe('马丽 interacts with the "explanation matching" system', () => {
       });
       cy.get(loader).should('not.be.visible');
       cy.get(app).should('be.visible');
-      cy.get(getInstructionComponent).should('not.exist');
+      cy.get(instructionsExplainerComponent).should('not.exist');
 
       // Expected test-data:
       // 0: option1 五减二

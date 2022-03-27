@@ -14,7 +14,7 @@ import {
   WordRef,
 } from './ContentTypes';
 
-import ContentSpec from './ContentSpec';
+import Content from './Content';
 
 export type ExerciseType =
   | 'Matching'
@@ -25,6 +25,7 @@ export type ExerciseType =
   | 'MultiCloze';
 
 export type ExerciseItems =
+  | Array<string>
   | Array<MatchingItem>
   | MultipleChoiceExercise
   | ClozeExercise;
@@ -35,7 +36,6 @@ export interface Exercise {
 }
 
 export default class ExerciseProvider {
-  private static lessons = [] as Array<LessonSpec>;
   private static GenerateExerciseOfType: {
     [key in ExerciseType]: (lesson: LessonSpec) => Exercise;
   } = {
@@ -48,10 +48,9 @@ export default class ExerciseProvider {
   };
 
   public static getExerciseFromLesson(indexFromOne: number): Exercise {
-    const lessons = ContentSpec.getLessons();
-    this.validateExerciseIndex(indexFromOne, lessons);
+    this.validateExerciseIndex(indexFromOne, Content.LessonSpecs);
     const indexFromZero = indexFromOne - 1;
-    const lesson = lessons[indexFromZero];
+    const lesson = Content.LessonSpecs[indexFromZero];
     return this.GenerateExerciseOfType[
       this.pickRandomExerciseType(lesson)
     ].bind(this)(lesson);
@@ -106,7 +105,7 @@ export default class ExerciseProvider {
     );
 
     const selectedWords = selectedWordRefs.map((wordRef) =>
-      ContentSpec.getWord(wordRef),
+      Content.getWord(wordRef),
     );
 
     const matchingExercises = this.createPairsFromWords(selectedWords);
@@ -156,7 +155,7 @@ export default class ExerciseProvider {
     );
 
     const selectedWords = selectedWordRefs.map((wordRef) =>
-      ContentSpec.getWord(wordRef),
+      Content.getWord(wordRef),
     );
 
     const multipleChoiceExercise =
@@ -197,12 +196,12 @@ export default class ExerciseProvider {
     // create collection of options, starting with correct interpretation
     const multipleChoiceExercise = {
       explanationToMatch: explanationSpec.explanation
-        .map((wordRef) => ContentSpec.getWord(wordRef).word)
+        .map((wordRef) => Content.getWord(wordRef).word)
         .join(''),
       options: [] as Array<MultipleChoiceItem>,
     } as MultipleChoiceExercise;
 
-    const validWord = ContentSpec.getWord(
+    const validWord = Content.getWord(
       explanationSpec.explanationTargets?.validOption,
     );
 
@@ -220,14 +219,14 @@ export default class ExerciseProvider {
       buzzing: false,
     } as MultipleChoiceItem;
 
-    const path = ContentSpec.getAudioPath(`${validWord.audio}`);
+    const path = Content.getAudioPath(`${validWord.audio}`);
     correctOption.audio = new Audio(path);
 
     multipleChoiceExercise.options.push(correctOption);
 
     const invalidOptions =
       explanationSpec.explanationTargets?.invalidOptions.map((wordRef) =>
-        ContentSpec.getWord(wordRef),
+        Content.getWord(wordRef),
       );
 
     const selectedOptions = this.selectRandomSubset(
@@ -249,7 +248,7 @@ export default class ExerciseProvider {
         buzzing: false,
       } as MultipleChoiceItem;
 
-      const path = ContentSpec.getAudioPath(`${wordSpec.audio}`);
+      const path = Content.getAudioPath(`${wordSpec.audio}`);
       incorrectInterpretation.audio = new Audio(path);
       multipleChoiceExercise.options.push(incorrectInterpretation);
     });
@@ -359,7 +358,6 @@ export default class ExerciseProvider {
         audio: {} as ExerciseAudio,
         // match: {} as MatchingItem
         match: index * 2 + 1,
-        color: '',
         isWord: true,
         isIcon: false,
         matched: false,
@@ -371,7 +369,6 @@ export default class ExerciseProvider {
         audio: {} as ExerciseAudio,
         // match: wordPart,
         match: index * 2,
-        color: 'primary',
         isWord: false,
         isIcon: true,
         matched: false,
@@ -382,14 +379,12 @@ export default class ExerciseProvider {
 
       if (wordSpec.symbol) {
         wordSpec.symbol.forEach((symbol) => {
-          (symPart.wordOrIcons as Array<string>).push(
-            ContentSpec.getMdiIcon(symbol),
-          );
+          (symPart.wordOrIcons as Array<string>).push(Content.getIcon(symbol));
         });
       }
 
       if (wordSpec.audio) {
-        const path = ContentSpec.getAudioPath(`${wordSpec.audio}`);
+        const path = Content.getAudioPath(`${wordSpec.audio}`);
         wordPart.audio = this.createAudio(path);
         symPart.audio = this.createAudio(path);
       }
@@ -418,12 +413,11 @@ export default class ExerciseProvider {
       }
       const explanationPart = {
         wordOrIcons: explanationItem.explanation
-          ?.map((wordRef) => ContentSpec.getWord(wordRef).word)
+          ?.map((wordRef) => Content.getWord(wordRef).word)
           .join(''),
         audio: {} as ExerciseAudio,
         // match: {} as MatchingItem
         match: index * 2 + 1,
-        color: 'primary',
         isWord: false,
         isIcon: false,
         matched: false,
@@ -431,7 +425,7 @@ export default class ExerciseProvider {
         buzzing: false,
       } as MatchingItem;
 
-      const interpretationItem = ContentSpec.getWord(
+      const interpretationItem = Content.getWord(
         explanationItem.explanationTargets?.validOption,
       );
       if (
@@ -448,7 +442,6 @@ export default class ExerciseProvider {
         audio: {} as ExerciseAudio,
         // match: wordPart,
         match: index * 2,
-        color: '',
         isWord: true,
         isIcon: false,
         matched: false,
@@ -457,10 +450,10 @@ export default class ExerciseProvider {
       } as MatchingItem;
       // wordPart.match = symPart;
 
-      let path = ContentSpec.getAudioPath(`${explanationItem.audio}`);
+      let path = Content.getAudioPath(`${explanationItem.audio}`);
       explanationPart.audio = this.createAudio(path);
 
-      path = ContentSpec.getAudioPath(`${interpretationItem.audio}`);
+      path = Content.getAudioPath(`${interpretationItem.audio}`);
       wordPart.audio = this.createAudio(path);
 
       matchingExercises.push(explanationPart);
@@ -568,7 +561,7 @@ export default class ExerciseProvider {
         playing: false,
         buzzing: false,
       } as MultipleChoiceItem;
-      const path = ContentSpec.getAudioPath(`${wordSpec.audio}`);
+      const path = Content.getAudioPath(`${wordSpec.audio}`);
       exerciseItem.audio = new Audio(path);
       multipleChoiceExercise.options.push(exerciseItem);
     });
@@ -615,11 +608,11 @@ export default class ExerciseProvider {
         const validOption = this.pickRandomItem(
           (wordRefOrBlank as Blank).validOptions,
         );
-        const wordSpec = ContentSpec.getWord(validOption);
+        const wordSpec = Content.getWord(validOption);
         clozeWord.word = wordSpec.word;
         if (wordSpec.audio) {
           clozeWord.audio = this.createAudio(
-            ContentSpec.getAudioPath(wordSpec.audio),
+            Content.getAudioPath(wordSpec.audio),
           );
         }
         if (
@@ -641,11 +634,10 @@ export default class ExerciseProvider {
               correct: true,
               buzzing: false,
               disabled: false,
-              color: 'primary',
             };
             if (wordSpec.audio) {
               clozeOption.audio = this.createAudio(
-                ContentSpec.getAudioPath(wordSpec.audio),
+                Content.getAudioPath(wordSpec.audio),
               );
             }
             if (clozeSpec.suppressOptionAudio) {
@@ -663,17 +655,16 @@ export default class ExerciseProvider {
             );
             clozeOptions.push(
               ...wordRefs.map((wordRef) => {
-                const wordSpec = ContentSpec.getWord(wordRef);
+                const wordSpec = Content.getWord(wordRef);
                 const clozeOption: ClozeOption = {
                   word: wordSpec.word,
                   correct: false,
                   buzzing: false,
                   disabled: false,
-                  color: 'primary',
                 };
                 if (wordSpec.audio) {
                   clozeOption.audio = this.createAudio(
-                    ContentSpec.getAudioPath(wordSpec.audio),
+                    Content.getAudioPath(wordSpec.audio),
                   );
                 }
                 if (clozeSpec.suppressOptionAudio) {
@@ -687,11 +678,11 @@ export default class ExerciseProvider {
         }
       } else {
         // WordRef
-        const wordSpec = ContentSpec.getWord(wordRefOrBlank as WordRef);
+        const wordSpec = Content.getWord(wordRefOrBlank as WordRef);
         clozeWord.word = wordSpec.word;
         if (wordSpec.audio) {
           clozeWord.audio = this.createAudio(
-            ContentSpec.getAudioPath(wordSpec.audio),
+            Content.getAudioPath(wordSpec.audio),
           );
         }
         if (
@@ -764,19 +755,18 @@ export default class ExerciseProvider {
           const option: ClozeOption = {
             word: multiClozeWord.word.toString(),
             buzzing: false,
-            color: 'primary',
             disabled: false,
           };
           wordRef = (wordRefOrBlank as Blank).validOptions[0][
             multiClozeWord.word
           ];
-          const wordSpec = ContentSpec.getWord(wordRef);
+          const wordSpec = Content.getWord(wordRef);
           if (wordSpec && wordSpec.audio) {
             multiClozeWord.audio = this.createAudio(
-              ContentSpec.getAudioPath(wordSpec.audio),
+              Content.getAudioPath(wordSpec.audio),
             );
             option.audio = this.createAudio(
-              ContentSpec.getAudioPath(wordSpec.audio),
+              Content.getAudioPath(wordSpec.audio),
             );
             if (
               wordSpec.isPunctuation &&
@@ -793,10 +783,10 @@ export default class ExerciseProvider {
           // wordRef
           multiClozeWord.word = Object.keys(wordRefOrBlank)[0];
           wordRef = (wordRefOrBlank as WordRef)[multiClozeWord.word];
-          const wordSpec = ContentSpec.getWord(wordRef);
+          const wordSpec = Content.getWord(wordRef);
           if (wordSpec && wordSpec.audio) {
             multiClozeWord.audio = this.createAudio(
-              ContentSpec.getAudioPath(wordSpec.audio),
+              Content.getAudioPath(wordSpec.audio),
             );
           }
           if (
@@ -832,18 +822,18 @@ export default class ExerciseProvider {
     const correctItem = selectedItems[correctIndex];
     multipleChoiceExercise.options[correctIndex].correct = true;
 
-    const path = ContentSpec.getAudioPath(`${correctItem.audio}`);
+    const path = Content.getAudioPath(`${correctItem.audio}`);
     multipleChoiceExercise.itemUnderTestAudio = new Audio(path);
 
     if (correctItem.symbol && correctItem.symbol.length > 0) {
       correctItem.symbol.forEach((symbol) => {
         (multipleChoiceExercise.iconToMatch as Array<string>).push(
-          ContentSpec.getMdiIcon(symbol),
+          Content.getIcon(symbol),
         );
       });
     } else {
       multipleChoiceExercise.iconToMatch = [
-        ContentSpec.getMdiIcon('mdiCellphoneWireless'),
+        Content.getIcon('mdiCellphoneWireless'),
       ];
     }
   }

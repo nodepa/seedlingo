@@ -4,7 +4,7 @@ import { IonCard, IonCardContent, IonCol, IonGrid, IonRow } from '@ionic/vue';
 import { useStore } from 'vuex';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
-import ContentSpec from '@/Lessons/ContentSpec';
+import Content from '@/Lessons/Content';
 
 import { ClozeExercise, ClozeOption, ClozeWord } from '../ClozeTypes';
 
@@ -89,11 +89,11 @@ function playOptionAudio(option: ClozeOption): void {
   option.audio?.play();
 }
 
-const clozeInstructionPath: ComputedRef<string> = computed(() => {
+const clozeInstructionsPath: ComputedRef<string> = computed(() => {
   if (exercise.value.clozeType === 'SingleCloze') {
-    return ContentSpec.getInstructionPathFor('singleClozeExercise');
+    return Content.getInstructionsAudio('singleClozeExercise');
   } else {
-    return ContentSpec.getInstructionPathFor('multiClozeExercise');
+    return Content.getInstructionsAudio('multiClozeExercise');
   }
 });
 </script>
@@ -104,7 +104,8 @@ const clozeInstructionPath: ComputedRef<string> = computed(() => {
       <ion-col size="11">
         <ion-card
           data-test="sentence-card"
-          v-instruction="clozeInstructionPath"
+          v-instructions="clozeInstructionsPath"
+          color="card"
         >
           <ion-card-content class="ion-text-center">
             <template
@@ -169,7 +170,7 @@ const clozeInstructionPath: ComputedRef<string> = computed(() => {
           v-model:buzzing="option.buzzing"
           :disabled="option.disabled"
           @click="determineCorrectness(option)"
-          :color="option.color"
+          :color="option.color || 'primary'"
         >
           <span :style="`font-size: ${4 - option.word.length * 0.6}rem;`">
             {{ option.word }}
@@ -193,8 +194,6 @@ ion-grid {
   height: 60%;
 }
 ion-card {
-  background-color: var(--ion-color-card);
-  color: var(--ion-color-card-contrast);
   overflow: visible;
 }
 ion-card-content {

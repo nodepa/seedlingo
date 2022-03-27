@@ -1,8 +1,8 @@
-import { InstructionState } from '@/common/directives/InstructionDirective';
+import { InstructionsModeState } from '@/common/directives/InstructionsDirective';
 
 export interface RootState {
   version: string;
   showContinueButton: boolean;
-  showInstructionExplainer: boolean;
-  instructionStore?: InstructionState;
+  showInstructionsExplainer: boolean;
+  instructionsModeStore?: InstructionsModeState;
 }

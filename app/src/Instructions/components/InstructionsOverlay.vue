@@ -1,21 +1,22 @@
 <template>
-  <div data-test="instruction-overlay" class="instruction-overlay" />
+  <div data-test="instructions-overlay" class="instructions-overlay" />
 </template>
 
 <style>
-.instruction-overlay {
+.instructions-overlay {
+  pointer-events: none;
   position: absolute;
   top: 0px;
   left: 0px;
   bottom: 0px;
   right: 0px;
   z-index: 110;
-  opacity: 0.5;
-  background-color: var(--ion-text-color);
+  opacity: 0.3;
+  background-color: var(--ion-color-medium-contrast);
   background-image: repeating-linear-gradient(
     -45deg,
-    rgba(var(--ion-color-medium-rgb), 0.2),
-    rgba(var(--ion-color-medium-rgb), 0.2) 15px,
+    rgba(var(--ion-background-color-rgb), 0.1),
+    rgba(var(--ion-background-color-rgb), 0.1) 15px,
     transparent 15px,
     transparent 30px
   );
@@ -26,5 +27,8 @@
 }
 ion-button.pop-through::part(native) {
   z-index: 120 !important;
+}
+ion-button::part(native) {
+  overflow: visible;
 }
 </style>

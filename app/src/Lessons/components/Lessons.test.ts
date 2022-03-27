@@ -1,8 +1,8 @@
 // Libraries, plugins, components
 import store from '@/common/store/RootStore';
 import Badge from '@/common/components/Badge.vue';
-import InstructionDirective from '@/common/directives/InstructionDirective';
-import ContentSpec from '@/Lessons/ContentSpec';
+import InstructionsDirective from '@/common/directives/InstructionsDirective';
+import Content from '@/Lessons/Content';
 
 // Helpers
 import { mount, VueWrapper } from '@vue/test-utils';
@@ -18,12 +18,22 @@ describe('Lessons.vue (shallow)', () => {
   let wrapper: VueWrapper<any>;
 
   beforeAll(() => {
-    jest.spyOn(ContentSpec, 'getLessonsMenu').mockImplementation(() => {
-      return {
-        1: { name: 'TestLesson1', icon: 'TestIcon1', audio: 'TestAudio1' },
-        2: { name: 'TestLesson2', icon: 'TestIcon2', audio: 'TestAudio2' },
-      };
-    });
+    Content.LessonsMeta = {
+      1: {
+        name: 'TestLesson1',
+        icon: 'TestIcon1',
+        audio: 'TestAudio1',
+        words: [{ word: 'zero' }, { word: 'one' }],
+        newWords: [{ word: 'zero' }, { word: 'one' }],
+      },
+      2: {
+        name: 'TestLesson2',
+        icon: 'TestIcon2',
+        audio: 'TestAudio2',
+        words: [{ word: 'one' }, { word: 'two' }],
+        newWords: [{ word: 'two' }],
+      },
+    };
   });
 
   beforeEach(() => {
@@ -31,7 +41,7 @@ describe('Lessons.vue (shallow)', () => {
     wrapper = mount(Lessons, {
       // shallow: true,
       global: {
-        plugins: [store, [InstructionDirective, { Badge }]],
+        plugins: [store, [InstructionsDirective, { Badge }]],
       },
     });
   });
@@ -61,7 +71,7 @@ describe('Lessons.vue (shallow)', () => {
       );
     });
 
-    it('displays instructions when in instruction mode', async () => {
+    it('displays instructions when in instructions mode', async () => {
       expect(wrapper.find('[data-test="lesson-button-01"]').exists()).toBe(
         true,
       );
@@ -70,7 +80,7 @@ describe('Lessons.vue (shallow)', () => {
           .className,
       ).not.toBe('pop-through');
       await wrapper.vm.$store.dispatch(
-        'instructionStore/toggleInstructionMode',
+        'instructionsModeStore/toggleInstructionsMode',
       );
       expect(
         (wrapper.find('[data-test="lesson-button-01"]').element as HTMLElement)
