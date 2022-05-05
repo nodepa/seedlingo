@@ -1,32 +1,32 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import Home from '@/views/Home.vue';
-import Session from '@/views/Session.vue';
-import Review from '@/views/Review.vue';
+import HomeView from '@/views/HomeView.vue';
+import ExerciseSession from '@/views/ExerciseSession.vue';
+import ReviewSession from '@/views/ReviewSession.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: HomeView,
   },
   {
     path: '/lesson/:lessonIndex',
-    component: Session,
+    component: ExerciseSession,
   },
   {
     path: '/lesson/:lessonIndex(\\d+)/review',
-    component: Review,
+    component: ReviewSession,
   },
   {
     path: '/privacy',
     name: 'Privacy policy',
-    component: () => import('@/views/Privacy.vue'),
+    component: () => import('@/views/PrivacyPolicy.vue'),
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/About.vue'),
+    component: () => import('@/views/AboutView.vue'),
   },
 ];
 

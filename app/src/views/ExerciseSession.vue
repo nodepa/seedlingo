@@ -12,9 +12,9 @@ import { IonPage, useIonRouter } from '@ionic/vue';
 import { onMounted, ref, shallowRef, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
-import Cloze from '@/Cloze/components/Cloze.vue';
-import Matching from '@/Matching/components/Matching.vue';
-import MultipleChoice from '@/MultipleChoice/components/MultipleChoice.vue';
+import ClozeExercise from '@/Cloze/components/ClozeExercise.vue';
+import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
+import MultipleChoiceExercise from '@/MultipleChoice/components/MultipleChoiceExercise.vue';
 import getMatchingTestData from '@/Matching/data/MatchingTestData';
 import getExplanationMatchingTestData from '@/Matching/data/ExplanationMatchingTestData';
 import getMultipleChoiceTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
@@ -24,17 +24,20 @@ import getMultiClozeTestData from '@/Cloze/data/MultiClozeTestData';
 import { MatchingItem } from '@/Matching/MatchingTypes';
 import ExerciseProvider, { ExerciseItems } from '@/Lessons/ExerciseProvider';
 
-type ExerciseComponent = typeof Matching | typeof MultipleChoice | typeof Cloze;
+type ExerciseComponent =
+  | typeof MatchingExercise
+  | typeof MultipleChoiceExercise
+  | typeof ClozeExercise;
 const ExerciseMapping: { [key: string]: ExerciseComponent } = {
-  Matching,
-  MultipleChoice,
-  ExplanationMatching: Matching,
-  ExplanationMultipleChoice: MultipleChoice,
-  SingleCloze: Cloze,
-  MultiCloze: Cloze,
+  Matching: MatchingExercise,
+  MultipleChoice: MultipleChoiceExercise,
+  ExplanationMatching: MatchingExercise,
+  ExplanationMultipleChoice: MultipleChoiceExercise,
+  SingleCloze: ClozeExercise,
+  MultiCloze: ClozeExercise,
 };
 const exerciseComponent = shallowRef<ExerciseComponent | string>(
-  MultipleChoice,
+  MultipleChoiceExercise,
 );
 
 const exerciseItems = ref<ExerciseItems>([] as Array<MatchingItem>);
@@ -61,50 +64,50 @@ const route = useRoute();
 function getExercise(): void {
   const restoreAfterMock = ExerciseProvider.pickRandomExerciseType;
   if ('matching-test' === route.params.lessonIndex) {
-    exerciseComponent.value = Matching;
+    exerciseComponent.value = MatchingExercise;
     exerciseItems.value = getMatchingTestData();
   } else if ('matching' === route.params.lessonIndex) {
-    exerciseComponent.value = Matching;
+    exerciseComponent.value = MatchingExercise;
     ExerciseProvider.pickRandomExerciseType = () => 'Matching';
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(3).exerciseItems;
   } else if ('multiple-choice-test' === route.params.lessonIndex) {
-    exerciseComponent.value = MultipleChoice;
+    exerciseComponent.value = MultipleChoiceExercise;
     exerciseItems.value = getMultipleChoiceTestData();
   } else if ('multiple-choice' === route.params.lessonIndex) {
-    exerciseComponent.value = MultipleChoice;
+    exerciseComponent.value = MultipleChoiceExercise;
     ExerciseProvider.pickRandomExerciseType = () => 'MultipleChoice';
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(3).exerciseItems;
   } else if ('explanation-multiple-choice-test' === route.params.lessonIndex) {
-    exerciseComponent.value = MultipleChoice;
+    exerciseComponent.value = MultipleChoiceExercise;
     exerciseItems.value = getExplanationMultipleChoiceTestData();
   } else if ('explanation-multiple-choice' === route.params.lessonIndex) {
-    exerciseComponent.value = MultipleChoice;
+    exerciseComponent.value = MultipleChoiceExercise;
     ExerciseProvider.pickRandomExerciseType = () => 'ExplanationMultipleChoice';
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(4).exerciseItems;
   } else if ('explanation-matching-test' === route.params.lessonIndex) {
-    exerciseComponent.value = Matching;
+    exerciseComponent.value = MatchingExercise;
     exerciseItems.value = getExplanationMatchingTestData();
   } else if ('explanation-matching' === route.params.lessonIndex) {
-    exerciseComponent.value = Matching;
+    exerciseComponent.value = MatchingExercise;
     ExerciseProvider.pickRandomExerciseType = () => 'ExplanationMatching';
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(4).exerciseItems;
   } else if ('single-cloze-test' === route.params.lessonIndex) {
-    exerciseComponent.value = Cloze;
+    exerciseComponent.value = ClozeExercise;
     exerciseItems.value = getSingleClozeTestData();
   } else if ('single-cloze' === route.params.lessonIndex) {
-    exerciseComponent.value = Cloze;
+    exerciseComponent.value = ClozeExercise;
     ExerciseProvider.pickRandomExerciseType = () => 'SingleCloze';
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(6).exerciseItems;
   } else if ('multi-cloze-test' === route.params.lessonIndex) {
-    exerciseComponent.value = Cloze;
+    exerciseComponent.value = ClozeExercise;
     exerciseItems.value = getMultiClozeTestData();
   } else if ('multi-cloze' === route.params.lessonIndex) {
-    exerciseComponent.value = Cloze;
+    exerciseComponent.value = ClozeExercise;
     ExerciseProvider.pickRandomExerciseType = () => 'MultiCloze';
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(11).exerciseItems;

@@ -1,6 +1,6 @@
 // Libraries, plugins, components
-import store from '@/common/store/RootStore';
-import Badge from '@/common/components/Badge.vue';
+import rootStore from '@/common/store/RootStore';
+import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 
 // Helpers
@@ -11,21 +11,24 @@ window.Element.prototype.animate = animate;
 HTMLMediaElement.prototype.play = play;
 
 // Item under test
-import Matching from './Matching.vue';
+import MatchingExercise from './MatchingExercise.vue';
 import { MatchingItem } from '../MatchingTypes';
 
-describe('Matching', () => {
+describe('MatchingExercise', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let wrapper: VueWrapper<any>;
 
   beforeEach(() => {
-    wrapper = mount(Matching, {
+    wrapper = mount(MatchingExercise, {
       // shallow: true,
       props: {
         exerciseProp: getTestData(),
       },
       global: {
-        plugins: [store, [InstructionsDirective, { Badge }]],
+        plugins: [
+          rootStore,
+          [InstructionsDirective, { Badge: InstructionsBadge }],
+        ],
       },
     });
   });
@@ -280,7 +283,7 @@ describe('Matching', () => {
 
   describe('.getSpacing()', () => {
     it('returns correct spacing class names', () => {
-      const matching = wrapper.findComponent(Matching).vm;
+      const matching = wrapper.findComponent(MatchingExercise).vm;
 
       // getSpacing(itemCount, index)
       expect(matching.getSpacing(0, 0)).toBe('');

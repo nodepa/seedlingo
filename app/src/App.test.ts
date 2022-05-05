@@ -1,10 +1,10 @@
 // Libraries, plugins, components
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-import store from '@/common/store/RootStore';
+import rootStore from '@/common/store/RootStore';
 import { IonicVue, IonRouterOutlet } from '@ionic/vue';
-import Badge from '@/common/components/Badge.vue';
+import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
-import Home from '@/views/Home.vue';
+import HomeView from '@/views/HomeView.vue';
 
 // Helpers
 import { mount } from '@vue/test-utils';
@@ -14,7 +14,7 @@ window.matchMedia = matchMedia;
 
 // Item under test
 import App from './App.vue';
-import Header from '@/Header/components/Header.vue';
+import AppHeader from '@/AppHeader/components/AppHeader.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -22,16 +22,21 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: Home,
+      component: HomeView,
     },
   ],
 });
 
-describe('App.vue', () => {
+describe('App', () => {
   it('renders bottom nav bar', () => {
     const wrapper = mount(App, {
       global: {
-        plugins: [IonicVue, router, store, [InstructionsDirective, { Badge }]],
+        plugins: [
+          IonicVue,
+          router,
+          rootStore,
+          [InstructionsDirective, { Badge: InstructionsBadge }],
+        ],
       },
     });
 
@@ -50,8 +55,8 @@ describe('App.vue', () => {
           plugins: [
             IonicVue,
             router,
-            store,
-            [InstructionsDirective, { Badge }],
+            rootStore,
+            [InstructionsDirective, { Badge: InstructionsBadge }],
           ],
         },
       });
@@ -81,7 +86,12 @@ describe('App.vue', () => {
 
     const wrapper = mount(App, {
       global: {
-        plugins: [IonicVue, router, store, [InstructionsDirective, { Badge }]],
+        plugins: [
+          IonicVue,
+          router,
+          rootStore,
+          [InstructionsDirective, { Badge: InstructionsBadge }],
+        ],
       },
     });
 
@@ -94,17 +104,22 @@ describe('App.vue', () => {
   it('toggles light/dark theme', () => {
     const wrapper = mount(App, {
       global: {
-        plugins: [IonicVue, router, store, [InstructionsDirective, { Badge }]],
+        plugins: [
+          IonicVue,
+          router,
+          rootStore,
+          [InstructionsDirective, { Badge: InstructionsBadge }],
+        ],
       },
     });
 
-    expect(wrapper.findComponent(Header).vm.darkTheme).toBe(false);
+    expect(wrapper.findComponent(AppHeader).vm.darkTheme).toBe(false);
     wrapper.get('[data-test="toggle"]').trigger('click');
 
-    expect(wrapper.findComponent(Header).vm.darkTheme).toBe(true);
+    expect(wrapper.findComponent(AppHeader).vm.darkTheme).toBe(true);
 
-    wrapper.findComponent(Header).vm.toggleDarkTheme();
+    wrapper.findComponent(AppHeader).vm.toggleDarkTheme();
 
-    expect(wrapper.findComponent(Header).vm.darkTheme).toBe(false);
+    expect(wrapper.findComponent(AppHeader).vm.darkTheme).toBe(false);
   });
 });

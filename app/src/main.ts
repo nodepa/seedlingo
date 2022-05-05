@@ -23,7 +23,7 @@ import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 import '@/common/styles/theme.scss';
 
-import Badge from './common/components/Badge.vue';
+import Badge from './common/components/InstructionsBadge.vue';
 import InstructionsDirective from './common/directives/InstructionsDirective';
 import App from './App.vue';
 import router from '@/common/router';
