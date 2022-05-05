@@ -1,6 +1,6 @@
 // Libraries, plugins, components
-import store from '@/common/store/RootStore';
-import Badge from '@/common/components/Badge.vue';
+import rootStore from '@/common/store/RootStore';
+import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import Content from '@/Lessons/Content';
 
@@ -11,9 +11,9 @@ window.HTMLMediaElement.prototype.pause = pause;
 window.HTMLMediaElement.prototype.play = play;
 
 // Item under test
-import Lessons from './Lessons.vue';
+import LessonsMenu from './LessonsMenu.vue';
 
-describe('Lessons.vue (shallow)', () => {
+describe('LessonsMenu (shallow)', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let wrapper: VueWrapper<any>;
 
@@ -37,11 +37,14 @@ describe('Lessons.vue (shallow)', () => {
   });
 
   beforeEach(() => {
-    store.dispatch('resetState');
-    wrapper = mount(Lessons, {
+    rootStore.dispatch('resetState');
+    wrapper = mount(LessonsMenu, {
       // shallow: true,
       global: {
-        plugins: [store, [InstructionsDirective, { Badge }]],
+        plugins: [
+          rootStore,
+          [InstructionsDirective, { Badge: InstructionsBadge }],
+        ],
       },
     });
   });

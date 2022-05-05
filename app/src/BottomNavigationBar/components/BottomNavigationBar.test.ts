@@ -1,10 +1,10 @@
 // Libraries, plugins, components
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-import store from '@/common/store/RootStore';
+import rootStore from '@/common/store/RootStore';
 import { IonicVue, IonApp } from '@ionic/vue';
-import Badge from '@/common/components/Badge.vue';
+import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
-import Home from '@/views/Home.vue';
+import HomeView from '@/views/HomeView.vue';
 
 // Helpers
 import { mount, VueWrapper } from '@vue/test-utils';
@@ -23,7 +23,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: Home,
+      component: HomeView,
     },
   ],
 });
@@ -71,7 +71,12 @@ function mountFunction(
     },
     {
       global: {
-        plugins: [IonicVue, router, store, [InstructionsDirective, { Badge }]],
+        plugins: [
+          IonicVue,
+          router,
+          rootStore,
+          [InstructionsDirective, { Badge: InstructionsBadge }],
+        ],
       },
     },
   );
@@ -88,7 +93,7 @@ describe('BottomNavigationBar.vue', () => {
   let wrapper: VueWrapper<any>;
 
   beforeEach(() => {
-    store.dispatch('resetState');
+    rootStore.dispatch('resetState');
     wrapper = mountFunction();
   });
 

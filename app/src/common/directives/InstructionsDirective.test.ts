@@ -1,7 +1,7 @@
 // Libraries, plugins, components
 import { Store } from 'vuex';
-import store from '@/common/store/RootStore';
-import Badge from '@/common/components/Badge.vue';
+import rootStore from '@/common/store/RootStore';
+import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 
 // Helpers
 import { mount, VueWrapper } from '@vue/test-utils';
@@ -28,7 +28,7 @@ const audioPath = 'http://just.a.test/audio.mp3';
 
 beforeEach(() => {
   // Setup
-  store.dispatch('resetState');
+  rootStore.dispatch('resetState');
   spyAddAudioListeners.mockClear();
 
   wrapper = mount(
@@ -37,7 +37,7 @@ beforeEach(() => {
     },
     {
       global: {
-        plugins: [store],
+        plugins: [rootStore],
       },
     },
   );
@@ -46,8 +46,8 @@ beforeEach(() => {
     wrapper.vm.$el as InstructionsElement,
     audioPath,
     wrapper.vm,
-    Badge,
-    store as Store<InstructionsModeRootState>,
+    InstructionsBadge,
+    rootStore as Store<InstructionsModeRootState>,
   );
 
   // Replicates the "bind"-function
@@ -78,7 +78,7 @@ describe('class Instructions', () => {
   it('addEventListener: adds event listeners', () => {
     const spy = jest.spyOn(wrapper.vm.$el, 'addEventListener');
     expect(spy).toHaveBeenCalledTimes(0);
-    store.dispatch('instructionsModeStore/toggleInstructionsMode');
+    rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
     expect(spy).toHaveBeenCalledTimes(1);
     instructions.addEventListener();
     expect(spy).toHaveBeenCalledTimes(2);
@@ -179,16 +179,16 @@ describe('class Instructions', () => {
 
     // Assert invocating pauseRegisteredInstructionsAudio()
     expect(spy).toHaveBeenCalledTimes(0);
-    store.dispatch('instructionsModeStore/toggleInstructionsMode');
-    store.dispatch('instructionsModeStore/toggleInstructionsMode');
+    rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
+    rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
     expect(spy).toHaveBeenCalledTimes(1);
 
     // Apply function
     instructions.unsubscribe();
 
     // Assert NO LONGER invocating pauseRegisteredInstructionsAudio()
-    store.dispatch('instructionsModeStore/toggleInstructionsMode');
-    store.dispatch('instructionsModeStore/toggleInstructionsMode');
+    rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
+    rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
     expect(spy).toHaveBeenCalledTimes(1); // Still 1
   });
 

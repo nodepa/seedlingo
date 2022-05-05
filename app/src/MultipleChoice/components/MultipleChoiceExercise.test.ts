@@ -1,6 +1,6 @@
 // Libraries, plugins, components
-import store from '@/common/store/RootStore';
-import Badge from '@/common/components/Badge.vue';
+import rootStore from '@/common/store/RootStore';
+import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 
 // Helpers
@@ -12,21 +12,24 @@ HTMLMediaElement.prototype.play = play;
 HTMLMediaElement.prototype.pause = pause;
 
 // Item under test
-import MultipleChoice from './MultipleChoice.vue';
+import MultipleChoiceExercise from './MultipleChoiceExercise.vue';
 import { MultipleChoiceItem } from '../MultipleChoiceTypes';
 
-describe('MultipleChoice', () => {
+describe('MultipleChoiceExercise', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let wrapper: VueWrapper<any>;
 
   beforeEach(() => {
-    wrapper = mount(MultipleChoice, {
+    wrapper = mount(MultipleChoiceExercise, {
       // shallow: true,
       props: {
         exerciseProp: getTestData(),
       },
       global: {
-        plugins: [store, [InstructionsDirective, { Badge }]],
+        plugins: [
+          rootStore,
+          [InstructionsDirective, { Badge: InstructionsBadge }],
+        ],
       },
     });
   });

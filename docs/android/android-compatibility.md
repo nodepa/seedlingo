@@ -37,3 +37,4 @@ That may not necessarily be the case for older phones.
 
 Ionic 6 officially supports Android 5.0/minSdkVersion 21,
 though compatibility beyond opening the app probably requires Chrome > 60.
+

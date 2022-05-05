@@ -19,32 +19,32 @@ Mounts App.vue inside the public/index.html's `<div id="app" />` with `app.mount
 
 ## src/App.vue
 
-Lays out the `Header` section with logo and title,
-`Footer` with `BottomNavigationBar`
-containing `HomeButton`, `ContinueButton` and `ToggleInstructionsButton`,
-and `ion-content` section that is handled by the router (`ion-router-outlet`).
+Lays out the `AppHeader` section with logo and title,
+`BottomNavigationBar` in the footer containing
+`HomeButton`, `ContinueButton` and `ToggleInstructionsButton`,
+and an `ion-content` section that is handled by the router (`ion-router-outlet`).
 src/common/router/index.ts lists all routes
-and defines src/views/Home.vue as the base route.
+and defines src/views/HomeView.vue as the base route.
 
-## src/views/Home.vue
+## src/views/HomeView.vue
 
-Displays src/Lessons/components/Lessons.vue and src/FooterSection/components/FooterSection.vue
+Displays src/Lessons/components/LessonsMenu.vue and src/FooterLinks/components/FooterLinks.vue
 
-## src/Lessons/components/Lessons.vue
+## src/Lessons/components/LessonsMenu.vue
 
 Lists all the lessons as specified in the content folder
 using `Content.LessonsMeta`,
 which returns an array of objects with name, icon and audio for each lesson.
 Each lesson is wired with a `router-link` of the pattern `/lesson/:id`,
-e.g. /lesson/4 directs links of that pattern to src/views/Session.vue
+e.g. /lesson/4 directs links of that pattern to src/views/ExerciseSession.vue
 
-## src/views/Session.vue
+## src/views/ExerciseSession.vue
 
-`Session` presents one of the exercise components
-Matching.vue, MultipleChoice.vue or Cloze.vue
+`ExerciseSession` presents one of the exercise components
+MatchingExercise.vue, MultipleChoiceExercise.vue or ClozeExercise.vue
 based on the `exercise`/`exerciseItems` generated
 by src/Lessons/ExerciseProvider.ts.
-When `Session` is made available in the page/mounted,
+When `ExerciseSession` is made available in the page/mounted,
 `getExercise()` is used to identify the correct lesson
 specified by the `/lesson/:id` route param in the browser's address bar.
 The number from the path is taken to represent the current lesson number,
@@ -70,15 +70,15 @@ Then one of the four words are selected randomly to be the correct option
 and the exercise object is expanded to account for that.
 The correct option's symbol(i.e. icon) is fetched from the passed in lesson data
 and stored for display as `iconToMatch`.
-The `exercise` object is returned to `Session`,
-and `Session` sets its dynamic component
+The `exercise` object is returned to `ExerciseSession`,
+and `ExerciseSession` sets its dynamic component
 according to the exercise type from `ExerciseProvider`,
 and passes the exercise object along
-to e.g. `MultipleChoice.vue` as a prop (`exercise-prop`).
+to e.g. `MultipleChoiceExercise.vue` as a prop (`exercise-prop`).
 
-## src/MultipleChoice/components/MultipleChoice.vue
+## src/MultipleChoice/components/MultipleChoiceExercise.vue
 
-`MultipleChoice` takes the `exerciseProp` and wires up the correct option's audio
+`MultipleChoiceSession` takes the `exerciseProp` and wires up the correct option's audio
 to auto-play on page-load (`onMounted)` or re-load (through `watch()`).
 In the `<template>`,
 the first `<ion-row>` contains an `ExerciseButton` (custom `ion-button`)
