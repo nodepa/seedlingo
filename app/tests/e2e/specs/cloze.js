@@ -1,6 +1,7 @@
 const app = '[data-test="app"]';
 const loader = '[data-test="loader"]';
-const getInstructionComponent = '[data-test="instruction-explainer-component"]';
+const instructionsExplainerComponent =
+  '[data-test="instructions-explainer-component"]';
 const continueButton = '[data-test="continue-button"]';
 const sentenceCard = '[data-test="sentence-card"]';
 const sentenceBlank = '[data-test="sentence-word-3"]';
@@ -8,8 +9,8 @@ const successColor = 'rgb(0, 150, 136)';
 
 describe('马丽 interacts with the "cloze" system', () => {
   beforeEach(() => {
-    // Avoid dealing with "instruction explainer" side effects.
-    localStorage.setItem('InstructionExplainerShownCount', 5);
+    // Avoid dealing with "instructions explainer" side effects.
+    localStorage.setItem('InstructionsExplainerShownCount', 5);
   });
 
   it(
@@ -30,6 +31,7 @@ describe('马丽 interacts with the "cloze" system', () => {
           cy.spy(window.HTMLElement.prototype, 'animate').as(
             'animation.animate',
           );
+          // avoid dark mode
           cy.stub(window, 'matchMedia', () => {
             return {
               matches: false,
@@ -42,7 +44,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       });
       cy.get(loader).should('not.be.visible');
       cy.get(app).should('be.visible');
-      cy.get(getInstructionComponent).should('not.exist');
+      cy.get(instructionsExplainerComponent).should('not.exist');
       // Expected test-data:
       // 0: option1 术
       // 1: option2 两 (correct option)
@@ -148,6 +150,7 @@ describe('马丽 interacts with the "cloze" system', () => {
           cy.spy(window.HTMLElement.prototype, 'animate').as(
             'animation.animate',
           );
+          // avoid dark mode
           cy.stub(window, 'matchMedia', () => {
             return {
               matches: false,
@@ -160,7 +163,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       });
       cy.get(loader).should('not.be.visible');
       cy.get(app).should('be.visible');
-      cy.get(getInstructionComponent).should('not.exist');
+      cy.get(instructionsExplainerComponent).should('not.exist');
       // Expected test-data:
       // 0: option1 兄弟姐妹
       // 1: option2 两

@@ -1,36 +1,36 @@
-import ContentSpec from './ContentSpec';
+import Content from './Content';
 
-describe('ContentConfig.ts', () => {
-  it('.getInstructionPathFor()', () => {
-    expect(ContentSpec.getInstructionPathFor('continueButton')).toBe(
+describe('Content.ts', () => {
+  it('.getInstructionsPathFor()', () => {
+    expect(Content.getInstructionsAudio('continueButton')).toBe(
       'data:audio/mpeg;base64,this-mp3-file-has-been-mocked',
     );
   });
 
   it('.getAudioPath()', () => {
-    expect(ContentSpec.getAudioPath('audio/placeholder-audio.mp3')).toBe(
+    expect(Content.getAudioPath('audio/placeholder-audio.mp3')).toBe(
       'data:audio/mpeg;base64,this-mp3-file-has-been-mocked',
     );
   });
 
-  it('.getMdiIcon()', () => {
-    expect(ContentSpec.getMdiIcon('mdiNumeric').length).toBeGreaterThan(0);
-    expect(ContentSpec.getMdiIcon('non-existing')).toBe('');
+  it('.getIcon()', () => {
+    expect(Content.getIcon('mdiNumeric').length).toBeGreaterThan(0);
+    expect(Content.getIcon('non-existing')).toBe('');
   });
 
   it('.getLessonsMenu()', () => {
-    const lessonMenu = ContentSpec.getLessonsMenu();
-    expect(lessonMenu[0]).toBe(undefined);
-    expect(lessonMenu[2]).toBe(undefined);
-    expect(lessonMenu[1]).toMatchObject({
+    const lessonsMeta = Content.LessonsMeta;
+    expect(lessonsMeta[0]).toBe(undefined);
+    expect(lessonsMeta[2]).toBe(undefined);
+    expect(lessonsMeta[1]).toMatchObject({
       name: 'first',
       audio: 'data:audio/mpeg;base64,this-mp3-file-has-been-mocked',
     });
-    expect(lessonMenu[1].icon.length).toBeGreaterThan(0);
+    expect(lessonsMeta[1].icon.length).toBeGreaterThan(0);
   });
 
   it('.getLessons()', () => {
-    const lessons = ContentSpec.getLessons();
+    const lessons = Content.LessonSpecs;
     expect(lessons.length).toBe(1);
     expect(lessons[1]).toBe(undefined);
 

@@ -7,7 +7,6 @@ interface Props {
   playing?: boolean;
   color?: string;
   disabled?: boolean;
-  height?: string;
   buzzing?: boolean;
 }
 
@@ -15,7 +14,6 @@ const props = withDefaults(defineProps<Props>(), {
   playing: false,
   color: '',
   disabled: false,
-  height: '100%',
   buzzing: false,
 });
 
@@ -64,11 +62,7 @@ function playAnimation(): void {
 <template>
   <ion-button
     ref="button"
-    block
-    raised
-    elevation="5"
     :disabled="disabled"
-    :height="height"
     :color="buzzing ? 'danger' : color"
     @click="$emit('click')"
   >

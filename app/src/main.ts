@@ -24,7 +24,7 @@ import '@ionic/vue/css/display.css';
 import '@/common/styles/theme.scss';
 
 import Badge from './common/components/Badge.vue';
-import InstructionDirective from './common/directives/InstructionDirective';
+import InstructionsDirective from './common/directives/InstructionsDirective';
 import App from './App.vue';
 import router from '@/common/router';
 import store from '@/common/store/RootStore';
@@ -33,7 +33,7 @@ const app = createApp(App);
 app.use(IonicVue);
 app.use(store);
 app.use(router);
-app.use(InstructionDirective, { Badge });
+app.use(InstructionsDirective, { Badge });
 
 if (process.env.NODE_ENV === 'production') {
   const timeSinceNavStart =

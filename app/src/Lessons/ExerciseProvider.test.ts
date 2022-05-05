@@ -1,5 +1,5 @@
 import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
-import ContentSpec from './ContentSpec';
+import Content from './Content';
 import ExerciseProvider from './ExerciseProvider';
 import { LessonSpec } from './ContentTypes';
 
@@ -17,7 +17,7 @@ describe('ExerciseProvider', () => {
         .spyOn(ExerciseProvider, 'selectRandomSubset')
         .mockImplementation(() => lesson.exercises[1].words || []);
       const spyGetAudioPath = jest
-        .spyOn(ContentSpec, 'getAudioPath')
+        .spyOn(Content, 'getAudioPath')
         .mockImplementation((path: string) => path);
 
       let exercise = ExerciseProvider.getExerciseFromLesson(1);
@@ -64,7 +64,7 @@ describe('ExerciseProvider', () => {
   describe('.generateMatchingExercise()', () => {
     it('correctly returns exercises', () => {
       const spyGetAudioPath = jest
-        .spyOn(ContentSpec, 'getAudioPath')
+        .spyOn(Content, 'getAudioPath')
         .mockImplementation((path: string) => path);
       const matchingExercise =
         ExerciseProvider.generateMatchingExercise(lesson);
@@ -76,7 +76,7 @@ describe('ExerciseProvider', () => {
   describe('.generateMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
       const spyGetAudioPath = jest
-        .spyOn(ContentSpec, 'getAudioPath')
+        .spyOn(Content, 'getAudioPath')
         .mockImplementation((path: string) => path);
       const multipleChoiceExercise =
         ExerciseProvider.generateMultipleChoiceExercise(lesson);
@@ -88,7 +88,7 @@ describe('ExerciseProvider', () => {
   describe('.generateExplanationMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
       const spyGetAudioPath = jest
-        .spyOn(ContentSpec, 'getAudioPath')
+        .spyOn(Content, 'getAudioPath')
         .mockImplementation((path: string) => path);
       const spyPickRandomItem = jest
         .spyOn(ExerciseProvider, 'pickRandomItem')
@@ -129,7 +129,7 @@ describe('ExerciseProvider', () => {
   describe('.generateMultiClozeExercise()', () => {
     it('correctly returns exercises', () => {
       const spyGetAudioPath = jest
-        .spyOn(ContentSpec, 'getAudioPath')
+        .spyOn(Content, 'getAudioPath')
         .mockImplementation((path: string) => path);
       // force exercise based on lesson item 2 (index 1)
       const spyPickRandomItem = jest

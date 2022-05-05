@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import HomeButton from './HomeButton.vue';
 import ContinueButton from './ContinueButton.vue';
-import InstructionButton from './InstructionButton.vue';
+import ToggleInstructionsButton from './ToggleInstructionsButton.vue';
 import { IonButtons, IonFooter, IonToolbar } from '@ionic/vue';
 
 defineProps<{
-  continueInstructionPath: string;
-  homeInstructionPath: string;
-  instructionPath: string;
+  continueButtonInstructions: string;
+  homeButtonInstructions: string;
+  toggleInstructionsButtonInstructions: string;
   homeButtonDisabled?: boolean;
   homeButtonFocused?: boolean;
-  showInstructionExplainer?: boolean;
+  showInstructionsExplainer?: boolean;
 }>();
 </script>
 
@@ -21,12 +21,16 @@ defineProps<{
         <HomeButton
           :home-button-disabled="homeButtonDisabled"
           :home-button-focused="homeButtonFocused"
-          :home-instruction-path="homeInstructionPath"
+          :home-button-instructions="homeButtonInstructions"
         />
-        <ContinueButton :continue-instruction-path="continueInstructionPath" />
-        <InstructionButton
-          :instruction-path="instructionPath"
-          :show-instruction-explainer="showInstructionExplainer"
+        <ContinueButton
+          :continue-button-instructions="continueButtonInstructions"
+        />
+        <ToggleInstructionsButton
+          :toggle-instructions-button-instructions="
+            toggleInstructionsButtonInstructions
+          "
+          :show-instructions-explainer="showInstructionsExplainer"
         />
       </ion-buttons>
     </ion-toolbar>
@@ -36,8 +40,5 @@ defineProps<{
 <style scoped>
 ion-buttons {
   justify-content: space-evenly;
-}
-ion-button::part(native) {
-  overflow: visible;
 }
 </style>

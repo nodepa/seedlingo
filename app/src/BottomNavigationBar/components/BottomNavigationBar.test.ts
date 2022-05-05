@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import store from '@/common/store/RootStore';
 import { IonicVue, IonApp } from '@ionic/vue';
 import Badge from '@/common/components/Badge.vue';
-import InstructionDirective from '@/common/directives/InstructionDirective';
+import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import Home from '@/views/Home.vue';
 
 // Helpers
@@ -30,9 +30,9 @@ const router = createRouter({
 
 const homeButton = '[data-test="home-button"]';
 const continueButton = '[data-test="continue-button"]';
-const toggleInstructionButton = '[data-test="toggle-instruction-button"]';
-const instructionIcon = '[data-test="instruction-icon"]';
-const instructionCloseIcon = '[data-test="instruction-close-icon"]';
+const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
+const toggleInstructionsOnIcon = '[data-test="toggle-instructions-on-icon"]';
+const toggleInstructionsOffIcon = '[data-test="toggle-instructions-off-icon"]';
 
 function mountFunction(
   options: { homeButtonDisabled: boolean } = { homeButtonDisabled: true },
@@ -44,23 +44,23 @@ function mountFunction(
     {
       data() {
         return {
-          homeInstructionPath: 'home-instr',
-          continueInstructionPath: 'continue-instr',
-          instructionPath: 'instr',
           homeButtonDisabled,
-          isInstructionMode: false,
-          showInstructionExplainer: true,
+          homeButtonInstructions: 'home-instr',
+          continueButtonInstructions: 'continue-instr',
+          toggleInstructionsButtonInstructions: 'toggle-instr',
+          isInstructionsMode: false,
+          showInstructionsExplainer: true,
         };
       },
       template: `
           <ion-app>
             <BottomNavigationBar
-              :home-instruction-path="homeInstructionPath"
               :home-button-disabled="homeButtonDisabled"
-              :home-button-focused="!isInstructionMode && !showInstructionExplainer"
-              :continue-instruction-path="continueInstructionPath"
-              :instruction-path="instructionPath"
-              :show-instruction-explainer="showInstructionExplainer"
+              :home-button-focused="!isInstructionsMode && !showInstructionsExplainer"
+              :home-button-instructions="homeButtonInstructions"
+              :continue-button-instructions="continueButtonInstructions"
+              :toggle-instructions-button-instructions="toggleInstructionsButtonInstructions"
+              :show-instructions-explainer="showInstructionsExplainer"
             />
           </ion-app>
         `,
@@ -71,7 +71,7 @@ function mountFunction(
     },
     {
       global: {
-        plugins: [IonicVue, router, store, [InstructionDirective, { Badge }]],
+        plugins: [IonicVue, router, store, [InstructionsDirective, { Badge }]],
       },
     },
   );
@@ -94,10 +94,10 @@ describe('BottomNavigationBar.vue', () => {
 
   // Component has expected elements
   describe('initial state', () => {
-    it('renders a go home button and a toggle instruction button', () => {
+    it('renders a go home button and a toggle instructions button', () => {
       expect(wrapper.find(homeButton).exists()).toBe(true);
       expect(wrapper.find(continueButton).exists()).toBe(false);
-      expect(wrapper.find(toggleInstructionButton).exists()).toBe(true);
+      expect(wrapper.find(toggleInstructionsButton).exists()).toBe(true);
     });
   });
 
@@ -115,11 +115,11 @@ describe('BottomNavigationBar.vue', () => {
   });
 
   // // Elements have expected behaviour
-  describe('toggle-instruction-button', () => {
-    it('on first click: hides the "instruction explainer" graphic', async () => {
-      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(true);
-      await wrapper.find(toggleInstructionButton).trigger('click');
-      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(false);
+  describe('toggle-instructions-button', () => {
+    it('on first click: hides the "instructions explainer" graphic', async () => {
+      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(true);
+      await wrapper.find(toggleInstructionsButton).trigger('click');
+      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(false);
     });
 
     it('on first click: enables the home button', async () => {
@@ -139,71 +139,75 @@ describe('BottomNavigationBar.vue', () => {
       );
     });
 
-    it('on first click: toggles on instruction mode', async () => {
-      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
-        false,
-      );
+    it('on first click: toggles on instructions mode', async () => {
       expect(
-        wrapper.find(toggleInstructionButton).find(instructionIcon).exists(),
+        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
+      ).toBe(false);
+      expect(
+        wrapper
+          .find(toggleInstructionsButton)
+          .find(toggleInstructionsOnIcon)
+          .exists(),
       ).toBe(true);
       expect(
         wrapper
-          .find(toggleInstructionButton)
-          .find(instructionCloseIcon)
+          .find(toggleInstructionsButton)
+          .find(toggleInstructionsOffIcon)
           .exists(),
       ).toBe(false);
 
-      await wrapper.find(toggleInstructionButton).trigger('click');
+      await wrapper.find(toggleInstructionsButton).trigger('click');
 
-      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
-        true,
-      );
       expect(
-        wrapper.find(toggleInstructionButton).find(instructionIcon).exists(),
+        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
+      ).toBe(true);
+      expect(
+        wrapper
+          .find(toggleInstructionsButton)
+          .find(toggleInstructionsOnIcon)
+          .exists(),
       ).toBe(false);
       expect(
         wrapper
-          .find(toggleInstructionButton)
-          .find(instructionCloseIcon)
+          .find(toggleInstructionsButton)
+          .find(toggleInstructionsOffIcon)
           .exists(),
       ).toBe(true);
     });
 
-    it('toggles the instruction overlay on multiple clicks', async () => {
-      const instructionButton = wrapper.find(toggleInstructionButton);
-
+    it('toggles the instructions mode on multiple clicks', async () => {
       // initial state
-      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(true);
-      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
-        false,
-      );
+      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(true);
+      expect(
+        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
+      ).toBe(false);
 
       // first click
-      await instructionButton.trigger('click');
+      await wrapper.find(toggleInstructionsButton).trigger('click');
 
       // current state
-      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(false);
-      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
-        true,
-      );
+      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(false);
+      expect(
+        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
+      ).toBe(true);
 
       // second click
-      await instructionButton.trigger('click');
+      await wrapper.find(toggleInstructionsButton).trigger('click');
 
       // current state
-      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(false);
-      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
-        false,
-      );
+      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(false);
+      expect(
+        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
+      ).toBe(false);
 
       // third click
-      await instructionButton.trigger('click');
+      await wrapper.find(toggleInstructionsButton).trigger('click');
 
       // current state
-      expect(wrapper.vm.$store.state.showInstructionExplainer).toBe(false);
-      expect(wrapper.vm.$store.state.instructionStore.isInstructionMode).toBe(
-        true,
-      );
+      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(false);
+      expect(
+        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
+      ).toBe(true);
     });
   });
 

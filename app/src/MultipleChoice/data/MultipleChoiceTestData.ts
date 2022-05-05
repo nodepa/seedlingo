@@ -1,4 +1,4 @@
-import ContentSpec from '@/Lessons/ContentSpec';
+import Content from '@/Lessons/Content';
 import 一 from '@/test-support/audio/characters/一.mp3.audio';
 import 二 from '@/test-support/audio/characters/二.mp3.audio';
 import 三 from '@/test-support/audio/characters/三.mp3.audio';
@@ -9,7 +9,7 @@ export default function MultipleChoiceTestData(): MultipleChoiceExercise {
   return {
     itemUnderTestAudio: new Audio(`data:audio/mpeg;base64,${二}`),
     itemUnderTestAudioPlaying: false,
-    iconToMatch: [ContentSpec.getMdiIcon('mdiCellphoneWireless')],
+    iconToMatch: [Content.getIcon('mdiCellphoneWireless')],
     options: [
       {
         word: '三',

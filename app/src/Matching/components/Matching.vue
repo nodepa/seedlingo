@@ -4,7 +4,7 @@ import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import { useStore } from 'vuex';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import { MatchingItem } from '../MatchingTypes';
-import ContentConfig from '@/Lessons/ContentSpec';
+import Content from '@/Lessons/Content';
 
 const startColors = ['purple', 'pink', 'orange', 'teal'];
 const colors: Array<string> = Array.from(startColors);
@@ -38,8 +38,8 @@ watch(
   },
 );
 
-const nonWordColor = 'primary';
-const wordColor = '';
+const nonWordColor = 'card';
+const wordColor = 'primary';
 function selectAndPlay(option: MatchingItem, index: number): void {
   selected.value = index;
   exerciseItems.value.forEach((item) => {
@@ -190,8 +190,8 @@ function checkForMatchAndReOrder(
   }
 }
 
-const matchingInstructionPath: ComputedRef<string> = computed(() => {
-  return ContentConfig.getInstructionPathFor('matchingExercise');
+const matchingInstructionsPath: ComputedRef<string> = computed(() => {
+  return Content.getInstructionsAudio('matchingExercise');
 });
 
 function getSpacing(itemCount: number, index: number): string {
@@ -217,8 +217,8 @@ function getSpacing(itemCount: number, index: number): string {
           :playing="option.audio && option.audio.playing"
           v-model:buzzing="option.buzzing"
           @click="selectAndPlay(option, +index)"
-          v-instruction="matchingInstructionPath"
-          :color="option.color || 'card'"
+          v-instructions="matchingInstructionsPath"
+          :color="option.color || (option.isWord ? wordColor : nonWordColor)"
           style="width: 100%; height: 100%; padding: 15px; margin: 0px"
         >
           <template v-if="option.isIcon">

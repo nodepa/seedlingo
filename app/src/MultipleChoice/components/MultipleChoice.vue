@@ -5,7 +5,7 @@ import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
 } from '@/MultipleChoice/MultipleChoiceTypes';
-import ContentConfig from '@/Lessons/ContentSpec';
+import Content from '@/Lessons/Content';
 import { computed, ComputedRef, onMounted, onUpdated, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 
@@ -130,8 +130,8 @@ function getSpacing(itemCount: number, index: number): string {
   return '';
 }
 
-const multipleChoiceInstructionPath: ComputedRef<string> = computed(() => {
-  return ContentConfig.getInstructionPathFor('multipleChoiceExercise');
+const multipleChoiceInstructionsPath: ComputedRef<string> = computed(() => {
+  return Content.getInstructionsAudio('multipleChoiceExercise');
 });
 
 const itemUnderTestButton = ref<typeof ExerciseButton | null>(null);
@@ -149,7 +149,7 @@ onUpdated(() => {
           ref="itemUnderTestButton"
           :playing="exerciseProp.itemUnderTestAudioPlaying"
           @click="playItemUnderTestAudio"
-          v-instruction="multipleChoiceInstructionPath"
+          v-instructions="multipleChoiceInstructionsPath"
           color="card"
           style="
             width: 100%;

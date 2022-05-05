@@ -1,6 +1,8 @@
 import { path } from '@vuepress/utils';
 import { defineUserConfig } from 'vuepress';
 import type { DefaultThemeOptions } from 'vuepress';
+import localTheme from './.vuepress/theme/index.ts';
+import docsearch from '@vuepress/plugin-docsearch';
 
 export default defineUserConfig<DefaultThemeOptions>({
   lang: 'en-US',
@@ -13,8 +15,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     ['link', { rel: 'preconnect', href: 'https://DBU4PMHNAN-dsn.algolia.net', crossorigin: '' }],
   ],
 
-  theme: path.resolve(__dirname, '.vuepress/theme'),
-  themeConfig: {
+  theme: localTheme({
     logo: 'images/seedling-logo-blue.svg',
     navbar: [
       '/get-started/get-started.md',
@@ -31,6 +32,7 @@ export default defineUserConfig<DefaultThemeOptions>({
           '/content/content-validation.md',
         ],
       },
+      '/architecture/architecture.md',
     ],
     repo: 'nodepa/seedling',
     docsRepo: 'nodepa/seedling',
@@ -38,14 +40,13 @@ export default defineUserConfig<DefaultThemeOptions>({
     docsDir: 'docs',
     toggleDarkMode: 'Toggle dark mode',
     lastUpdated: true,
-  },
+  }),
   markdown: {
     pageSuffix: '',
   },
   plugins: [
     [
-      '@vuepress/docsearch',
-      {
+      docsearch({
         apiKey: 'f697003c57e07694a70993bfb1b6a532',
         appId: 'DBU4PMHNAN',
         indexName: 'globalseedling',
@@ -54,7 +55,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             placeholder: 'Search',
           },
         },
-      },
+      }),
     ],
   ],
 });

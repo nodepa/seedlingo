@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import Home from '@/views/Home.vue';
 import Session from '@/views/Session.vue';
+import Review from '@/views/Review.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,8 +11,12 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: '/lesson/:id',
+    path: '/lesson/:lessonIndex',
     component: Session,
+  },
+  {
+    path: '/lesson/:lessonIndex(\\d+)/review',
+    component: Review,
   },
   {
     path: '/privacy',

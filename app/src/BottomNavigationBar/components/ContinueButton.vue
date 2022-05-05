@@ -11,7 +11,7 @@ import { createAnimation, IonButton, IonIcon } from '@ionic/vue';
 import { arrowForward } from 'ionicons/icons';
 
 defineProps<{
-  continueInstructionPath: string;
+  continueButtonInstructions: string;
 }>();
 
 const continueButton = ref({} as ComponentPublicInstance);
@@ -50,7 +50,7 @@ const showContinueButton: ComputedRef<boolean> = computed(() => {
     data-test="continue-button"
     ref="continueButton"
     @click="store.dispatch('setShowContinueButton', false)"
-    v-instruction="continueInstructionPath"
+    v-instructions="continueButtonInstructions"
   >
     <ion-icon :icon="arrowForward" color="success" aria-hidden="false" />
   </ion-button>

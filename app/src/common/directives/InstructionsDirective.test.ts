@@ -11,19 +11,19 @@ window.HTMLMediaElement.prototype.play = play;
 
 // Item under test
 import {
-  Instruction,
-  InstructionElement,
-  InstructionRootState,
-} from '@/common/directives/InstructionDirective';
+  Instructions,
+  InstructionsElement,
+  InstructionsModeRootState,
+} from '@/common/directives/InstructionsDirective';
 
 const spyAddAudioListeners = jest.spyOn(
-  Instruction.prototype,
+  Instructions.prototype,
   'addAudioListeners',
 );
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let wrapper: VueWrapper<any>;
-let instruction: Instruction;
+let instructions: Instructions;
 const audioPath = 'http://just.a.test/audio.mp3';
 
 beforeEach(() => {
@@ -42,45 +42,45 @@ beforeEach(() => {
     },
   );
 
-  instruction = new Instruction(
-    wrapper.vm.$el as InstructionElement,
+  instructions = new Instructions(
+    wrapper.vm.$el as InstructionsElement,
     audioPath,
     wrapper.vm,
     Badge,
-    store as Store<InstructionRootState>,
+    store as Store<InstructionsModeRootState>,
   );
 
   // Replicates the "bind"-function
-  if (wrapper.vm.$store.state.instructionStore.isInstructionMode) {
-    instruction.addEventListener();
-    instruction.addInstructionStyle();
+  if (wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode) {
+    instructions.addEventListener();
+    instructions.addStyling();
   }
 });
 
 afterEach(() => {
   // Replicates the "unbind"-function
-  instruction.unsubscribe();
-  instruction.removeEventListener();
-  instruction.delist();
+  instructions.unsubscribe();
+  instructions.removeEventListener();
+  instructions.delist();
 });
 
-describe('class Instruction', () => {
+describe('class Instructions', () => {
   it('constructor: functional', () => {
-    expect(instruction).toBeInstanceOf(Instruction);
-    expect(instruction).toHaveProperty('audioElement');
-    expect(instruction).toHaveProperty('vm');
+    expect(instructions).toBeInstanceOf(Instructions);
+    expect(instructions).toHaveProperty('audioElement');
+    expect(instructions).toHaveProperty('vm');
   });
 
-  it('constructor: instance added to instruction collection', () => {
-    expect(Instruction.AudioCollection.length).toBe(1);
+  it('constructor: instance added to instructions collection', () => {
+    expect(Instructions.AudioCollection.length).toBe(1);
   });
 
   it('addEventListener: adds event listeners', () => {
     const spy = jest.spyOn(wrapper.vm.$el, 'addEventListener');
     expect(spy).toHaveBeenCalledTimes(0);
-    store.dispatch('instructionStore/toggleInstructionMode');
+    store.dispatch('instructionsModeStore/toggleInstructionsMode');
     expect(spy).toHaveBeenCalledTimes(1);
-    instruction.addEventListener();
+    instructions.addEventListener();
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
@@ -91,7 +91,7 @@ describe('class Instruction', () => {
     );
     expect(spyAddAudioListeners).toHaveBeenCalledTimes(1);
     spyAudioAddEventListener.mockClear();
-    instruction.addAudioListeners();
+    instructions.addAudioListeners();
     expect(spyAddAudioListeners).toHaveBeenCalledTimes(2);
     expect(spyAudioAddEventListener).toHaveBeenCalledTimes(3);
   });
@@ -101,15 +101,15 @@ describe('class Instruction', () => {
     const spyRemove = jest.spyOn(wrapper.vm.$el, 'removeEventListener');
     expect(spyAdd).toHaveBeenCalledTimes(0);
     expect(spyRemove).toHaveBeenCalledTimes(0);
-    instruction.addEventListener();
+    instructions.addEventListener();
     expect(spyAdd).toHaveBeenCalledTimes(1);
     expect(spyRemove).toHaveBeenCalledTimes(0);
-    instruction.removeEventListener();
+    instructions.removeEventListener();
     expect(spyAdd).toHaveBeenCalledTimes(1);
     expect(spyRemove).toHaveBeenCalledTimes(1);
   });
 
-  it('addInstructionStyle: adds styling to the element', () => {
+  it('addStyling: adds styling to the element', () => {
     // Setup pre-state
     const el = wrapper.vm.$el as HTMLButtonElement;
     const elToRemove: Element[] = [];
@@ -124,7 +124,7 @@ describe('class Instruction', () => {
     expect(el.childElementCount).toBe(1); // 1 audio, 0 animations
 
     // Apply function
-    instruction.addInstructionStyle();
+    instructions.addStyling();
 
     // Assert post-state
     expect(el.classList).toContain('pop-through');
@@ -133,15 +133,15 @@ describe('class Instruction', () => {
     expect(el.children[1].tagName).toBe('AUDIO');
   });
 
-  it('removeInstructionStyle: removes/restores styling to the element', () => {
+  it('removeStyling: removes/restores styling to the element', () => {
     // Setup pre-state
-    instruction.addInstructionStyle();
+    instructions.addStyling();
     const el = wrapper.vm.$el as HTMLButtonElement;
     expect(el.classList).toContain('pop-through');
     expect(el.childElementCount).toBe(2); // 1 badge, 1 audio, 0 animations
 
     // Apply function
-    instruction.removeInstructionStyle();
+    instructions.removeStyling();
 
     // Assert post-state
     expect(el.classList).not.toContain('pop-through');
@@ -149,7 +149,7 @@ describe('class Instruction', () => {
     expect(el.children[0].tagName).toBe('AUDIO'); // audio is 1rst elm
   });
 
-  it('playInstruction: plays attached audio', () => {
+  it('playInstructions: plays attached audio', () => {
     // Setup and assert pre-state
     const parentEl = wrapper.vm.$el;
     expect(parentEl.children[0].tagName).toBe('AUDIO');
@@ -162,45 +162,46 @@ describe('class Instruction', () => {
     expect(spy).toHaveBeenCalledTimes(0);
 
     // Apply function
-    instruction.playInstruction();
+    instructions.playInstructions();
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('unsubscribe: calls unsubscribe function from store', () => {
     // Setup and assert pre-state
-    // A side-effect of the store's toggleInstructionMode value changing to false
-    // is that pauseRegisteredInstructionAudio() is called.
+    // A side-effect of the store's toggleInstructionsMode value
+    // changing to false
+    // is that pauseRegisteredInstructionsAudio() is called.
     // After unsubscribing,
-    // pauseRegisteredInstructionAudio() should no longer be called
-    // when toggleInstructionMode turns false.
-    const spy = jest.spyOn(Instruction, 'pauseRegisteredInstructionAudio');
+    // pauseRegisteredInstructionsAudio() should no longer be called
+    // when toggleInstructionsMode turns false.
+    const spy = jest.spyOn(Instructions, 'pauseRegisteredInstructionsAudio');
 
-    // Assert invocating pauseRegisteredInstructionAudio()
+    // Assert invocating pauseRegisteredInstructionsAudio()
     expect(spy).toHaveBeenCalledTimes(0);
-    store.dispatch('instructionStore/toggleInstructionMode');
-    store.dispatch('instructionStore/toggleInstructionMode');
+    store.dispatch('instructionsModeStore/toggleInstructionsMode');
+    store.dispatch('instructionsModeStore/toggleInstructionsMode');
     expect(spy).toHaveBeenCalledTimes(1);
 
     // Apply function
-    instruction.unsubscribe();
+    instructions.unsubscribe();
 
-    // Assert NO LONGER invocating pauseRegisteredInstructionAudio()
-    store.dispatch('instructionStore/toggleInstructionMode');
-    store.dispatch('instructionStore/toggleInstructionMode');
+    // Assert NO LONGER invocating pauseRegisteredInstructionsAudio()
+    store.dispatch('instructionsModeStore/toggleInstructionsMode');
+    store.dispatch('instructionsModeStore/toggleInstructionsMode');
     expect(spy).toHaveBeenCalledTimes(1); // Still 1
   });
 
-  it('delist: current instance is removed from Instruction.Collection', () => {
+  it('delist: current instance is removed from Instructions.AudioCollection', () => {
     const el = Object.values(wrapper.vm.$el.children).find((elm) => {
       return (elm as Element).tagName === 'AUDIO';
     }) as HTMLAudioElement;
-    const count = Instruction.AudioCollection.length;
-    expect(Instruction.AudioCollection.includes(el)).toBe(true);
+    const count = Instructions.AudioCollection.length;
+    expect(Instructions.AudioCollection.includes(el)).toBe(true);
 
-    instruction.delist();
+    instructions.delist();
 
-    expect(Instruction.AudioCollection.length).toBe(count - 1);
-    expect(Instruction.AudioCollection.includes(el)).toBe(false);
+    expect(Instructions.AudioCollection.length).toBe(count - 1);
+    expect(Instructions.AudioCollection.includes(el)).toBe(false);
   });
 });

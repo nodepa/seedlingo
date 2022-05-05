@@ -19,7 +19,7 @@ export interface ClozeWord {
 export interface ClozeOption {
   audio?: ExerciseAudio;
   buzzing: boolean;
-  color: string;
+  color?: string;
   correct?: boolean;
   disabled: boolean;
   suppressOptionAudio?: boolean;

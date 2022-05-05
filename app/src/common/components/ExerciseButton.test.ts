@@ -20,7 +20,6 @@ describe('ExerciseButton', () => {
       expect(wrapper.vm.$props.playing).toBe(false);
       expect(wrapper.vm.$props.color).toBe('');
       expect(wrapper.vm.$props.disabled).toBe(false);
-      expect(wrapper.vm.$props.height).toBe('100%');
       expect(wrapper.vm.$props.buzzing).toBe(false);
     });
 

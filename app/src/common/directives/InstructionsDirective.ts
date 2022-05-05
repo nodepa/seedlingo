@@ -1,18 +1,19 @@
 /**
  * Requires
- * - vuex, defaulting to an instructionStore module storing an
- *   isInstructionMode state
+ * - vuex, defaulting to an instructionsModeStore module storing an
+ *   isInstructionsMode state
  * - directive being used on a vue component, not a HTML element
  *
  * Setup
- * import InstructionDirective from './common/directives/InstructionDirective';
- * app.use(InstructionDirective, { Badge: MyBadge });
+ * import InstructionsDirective from './common/directives/InstructionsDirective';
+ * app.use(InstructionsDirective, { Badge: MyBadge });
  *   where:
- *     - MyBadge is a Vue component overlaid the host element in instruction-mode
- *       with the optional prop 'playing' indicating to animate or not
+ *     - MyBadge is a Vue component overlaid the host element when in
+ *       instructions-mode with the optional prop 'playing' indicating to
+ *       animate or not
  *
  * Basic Usage
- * <v-btn v-instruction="./path/to/instruction.mp3" />
+ * <v-btn v-instructions="./path/to/instructions.mp3" />
  */
 
 import {
@@ -25,27 +26,27 @@ import {
 } from 'vue';
 import { MutationPayload, Store } from 'vuex';
 
-export interface InstructionElement extends HTMLElement {
-  $instruction?: Instruction;
+export interface InstructionsElement extends HTMLElement {
+  $instructions?: Instructions;
 }
 
-export interface InstructionOptions {
+export interface InstructionsOptions {
   // eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any
   Badge: DefineComponent<{}, {}, any>;
 }
 
-export interface InstructionRootState {
-  instructionStore: InstructionState;
+export interface InstructionsModeRootState {
+  instructionsModeStore: InstructionsModeState;
 }
 
-export interface InstructionState {
-  isInstructionMode: boolean;
+export interface InstructionsModeState {
+  isInstructionsMode: boolean;
 }
 
-export class Instruction {
+export class Instructions {
   public static AudioCollection: Array<HTMLAudioElement> = [];
 
-  private hostElement: InstructionElement;
+  private hostElement: InstructionsElement;
 
   private audioElement: HTMLAudioElement;
 
@@ -53,18 +54,18 @@ export class Instruction {
 
   private badge: ComponentPublicInstance;
 
-  private unsubscribeInstructionModeWatch?: VoidFunction;
-  private store: Store<InstructionRootState>;
+  private unsubscribeInstructionsModeWatch?: VoidFunction;
+  private store: Store<InstructionsModeRootState>;
 
   private showAudioRipple = ref(false);
 
   constructor(
-    hostElement: InstructionElement,
+    hostElement: InstructionsElement,
     audioUrl: string,
     vm: ComponentPublicInstance,
     // eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any
     Badge: DefineComponent<{}, {}, any>,
-    store: Store<InstructionRootState>,
+    store: Store<InstructionsModeRootState>,
   ) {
     this.hostElement = hostElement;
     this.audioElement = document.createElement('audio');
@@ -77,16 +78,16 @@ export class Instruction {
 
     this.store = store;
 
-    this.makeResponsiveToInstructionModeChange();
-    // In case already isInstructionMode
-    if (this.store.state.instructionStore?.isInstructionMode) {
+    this.makeResponsiveToInstructionsModeChange();
+    // In case already isInstructionsMode
+    if (this.store.state.instructionsModeStore?.isInstructionsMode) {
       this.addEventListener();
-      this.addInstructionStyle();
+      this.addStyling();
     }
     this.audioElement.src = audioUrl;
     this.addAudioListeners();
     this.hostElement.appendChild(this.audioElement);
-    Instruction.AudioCollection.push(this.audioElement);
+    Instructions.AudioCollection.push(this.audioElement);
   } // end constructor
 
   public setAudioSrc(audioUrl: string): void {
@@ -96,7 +97,7 @@ export class Instruction {
   public addEventListener(): void {
     this.hostElement.addEventListener(
       'click',
-      Instruction.playInstructionClick,
+      Instructions.playInstructionsClick,
       true,
     );
   }
@@ -104,12 +105,12 @@ export class Instruction {
   public removeEventListener(): void {
     this.hostElement.removeEventListener(
       'click',
-      Instruction.playInstructionClick,
+      Instructions.playInstructionsClick,
       true,
     );
   }
 
-  public addInstructionStyle(): void {
+  public addStyling(): void {
     this.hostElement.classList.add('pop-through');
     if (this.hostElement.firstChild) {
       this.hostElement.insertBefore(
@@ -121,31 +122,31 @@ export class Instruction {
     }
   }
 
-  public removeInstructionStyle(): void {
+  public removeStyling(): void {
     this.hostElement.classList.remove('pop-through');
     if (this.hostElement.getElementsByClassName(this.badge.$el.className)[0]) {
       this.hostElement.removeChild(this.badge.$el);
     }
   }
 
-  public playInstruction(): void {
+  public playInstructions(): void {
     this.audioElement.currentTime = 0;
     this.audioElement.play();
   }
 
   public unsubscribe(): void {
-    if (this.unsubscribeInstructionModeWatch) {
-      this.unsubscribeInstructionModeWatch();
+    if (this.unsubscribeInstructionsModeWatch) {
+      this.unsubscribeInstructionsModeWatch();
     } else {
       throw new Error(
-        'The v-instruction directive is trying to unsubscribe from watching the vuex state, but no unsubscribe function has been provided.',
+        'The v-instructions directive is trying to unsubscribe from watching the vuex state, but no unsubscribe function has been provided.',
       );
     }
   }
 
   public delist(): void {
-    Instruction.AudioCollection.splice(
-      Instruction.AudioCollection.indexOf(this.audioElement),
+    Instructions.AudioCollection.splice(
+      Instructions.AudioCollection.indexOf(this.audioElement),
       1,
     );
   }
@@ -153,7 +154,7 @@ export class Instruction {
   public addAudioListeners(): void {
     this.audioElement.addEventListener('playing', () => {
       this.showAudioRipple.value = true;
-      Instruction.pauseRegisteredInstructionAudio(this.audioElement);
+      Instructions.pauseRegisteredInstructionsAudio(this.audioElement);
     });
 
     this.audioElement.addEventListener('pause', () => {
@@ -162,24 +163,26 @@ export class Instruction {
 
     this.audioElement.addEventListener('ended', () => {
       this.showAudioRipple.value = false;
-      if (this.store.state.instructionStore?.isInstructionMode) {
-        this.store.dispatch('instructionStore/toggleInstructionMode');
+      if (this.store.state.instructionsModeStore?.isInstructionsMode) {
+        this.store.dispatch('instructionsModeStore/toggleInstructionsMode');
       }
     });
   }
 
-  private makeResponsiveToInstructionModeChange() {
-    this.unsubscribeInstructionModeWatch = this.store.subscribe(
+  private makeResponsiveToInstructionsModeChange() {
+    this.unsubscribeInstructionsModeWatch = this.store.subscribe(
       (mutation: MutationPayload, state) => {
-        if (mutation.type === 'instructionStore/TOGGLE_INSTRUCTIONS_MODE') {
-          if (state.instructionStore?.isInstructionMode) {
+        if (
+          mutation.type === 'instructionsModeStore/TOGGLE_INSTRUCTIONS_MODE'
+        ) {
+          if (state.instructionsModeStore?.isInstructionsMode) {
             this.addEventListener();
-            this.addInstructionStyle();
+            this.addStyling();
           } else {
             this.removeEventListener();
-            this.removeInstructionStyle();
+            this.removeStyling();
             // Cancel audio and animation if manually toggled while still playing
-            Instruction.pauseRegisteredInstructionAudio();
+            Instructions.pauseRegisteredInstructionsAudio();
             this.showAudioRipple.value = false;
           }
         }
@@ -187,20 +190,20 @@ export class Instruction {
     );
   }
 
-  static playInstructionClick(this: InstructionElement, event: Event): void {
+  static playInstructionsClick(this: InstructionsElement, event: Event): void {
     // prevent triggering the button's regular action
     event.preventDefault();
     event.stopPropagation();
-    // instead, play the attached instruction
-    if (this && this.$instruction) {
-      this.$instruction.playInstruction();
+    // instead, play the attached instructions
+    if (this && this.$instructions) {
+      this.$instructions.playInstructions();
     } else {
-      throw new Error('Element has no "$instruction" property');
+      throw new Error('Element has no "$instructions" property');
     }
   }
 
-  static pauseRegisteredInstructionAudio(excluded?: HTMLAudioElement): void {
-    Instruction.AudioCollection.forEach((audioElement) => {
+  static pauseRegisteredInstructionsAudio(excluded?: HTMLAudioElement): void {
+    Instructions.AudioCollection.forEach((audioElement) => {
       if (audioElement !== excluded && !audioElement.paused) {
         audioElement.pause();
       }
@@ -209,14 +212,14 @@ export class Instruction {
 }
 
 export default {
-  install(app: App, { Badge }: InstructionOptions): void {
-    app.directive('instruction', {
+  install(app: App, { Badge }: InstructionsOptions): void {
+    app.directive('instructions', {
       mounted(
-        hostElement: InstructionElement,
+        hostElement: InstructionsElement,
         { instance: vm, value: audioUrl }: DirectiveBinding,
       ) {
         if (vm) {
-          hostElement.$instruction = new Instruction(
+          hostElement.$instructions = new Instructions(
             hostElement,
             audioUrl,
             vm,
@@ -225,26 +228,26 @@ export default {
           );
         } else {
           throw new Error(
-            'Expected VNode to have a .componentInstance, but found none. Only use the v-instruction directive on Vue components.',
+            'Expected VNode to have a .componentInstance, but found none. Only use the v-instructions directive on Vue components.',
           );
         }
       },
 
       beforeUpdate(
-        hostElement: InstructionElement,
+        hostElement: InstructionsElement,
         { value: audioUrl }: DirectiveBinding,
       ) {
-        if (hostElement.$instruction) {
-          hostElement.$instruction.setAudioSrc(audioUrl);
+        if (hostElement.$instructions) {
+          hostElement.$instructions.setAudioSrc(audioUrl);
         }
       },
 
       // e.g. when moving from /home to /about, removed elements will be unbound
-      unmounted(hostElement: InstructionElement) {
-        if (hostElement.$instruction) {
-          hostElement.$instruction.unsubscribe();
-          hostElement.$instruction.removeEventListener();
-          hostElement.$instruction.delist();
+      unmounted(hostElement: InstructionsElement) {
+        if (hostElement.$instructions) {
+          hostElement.$instructions.unsubscribe();
+          hostElement.$instructions.removeEventListener();
+          hostElement.$instructions.delist();
         }
       },
     });

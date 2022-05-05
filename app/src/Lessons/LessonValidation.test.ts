@@ -6,15 +6,14 @@ import {
   WordRef,
 } from '@/Lessons/ContentTypes';
 process.env.NODE_ENV = 'production'; // force loading 'production' content
-import ContentSpec from '@/Lessons/ContentSpec';
+import Content from '@/Lessons/Content';
 process.env.NODE_ENV = 'test';
-const lessons = ContentSpec.getLessons();
 
 describe('Integrity of JSON Lesson data', () => {
   describe('Global integrity', () => {
     it("each 'lesson.id' & 'exercise.id' is unique", () => {
       const ids: string[] = [];
-      lessons.forEach((lesson: LessonSpec) => {
+      Content.LessonSpecs.forEach((lesson: LessonSpec) => {
         ids.push(lesson.id);
         lesson.exercises.forEach((exercise: ExerciseSpec) => {
           ids.push(exercise.id);
@@ -25,14 +24,14 @@ describe('Integrity of JSON Lesson data', () => {
 
     it("each 'lessonIndex' is unique", () => {
       const lessonIndices: number[] = [];
-      lessons.forEach((lesson: LessonSpec) => {
+      Content.LessonSpecs.forEach((lesson: LessonSpec) => {
         lessonIndices.push(lesson.lessonIndex);
       });
       expect(lessonIndices.length).toBe([...new Set(lessonIndices)].length);
     });
 
     it('has no empty fields', () => {
-      lessons.forEach((lesson) => {
+      Content.LessonSpecs.forEach((lesson) => {
         expect(lesson.id.length).toBeGreaterThanOrEqual(1);
         expect(lesson.lessonIndex).toBeGreaterThanOrEqual(1);
         expect(lesson.multipleChoiceCount).toBeGreaterThanOrEqual(0);
@@ -120,7 +119,7 @@ describe('Integrity of JSON Lesson data', () => {
     });
 
     describe('Lesson-level integrity', () => {
-      lessons.forEach((lesson) => {
+      Content.LessonSpecs.forEach((lesson) => {
         it(`lesson.${lesson.lessonIndex}.id is 36 char string`, () => {
           expect(typeof lesson.id).toBe('string');
           expect(lesson.id.length).toBe(36);
@@ -255,7 +254,7 @@ describe('Integrity of JSON Lesson data', () => {
     });
 
     describe('Exercise-level integrity', () => {
-      lessons.forEach((lesson: LessonSpec) => {
+      Content.LessonSpecs.forEach((lesson: LessonSpec) => {
         describe(`lessonIndex.${lesson.lessonIndex}`, () => {
           lesson.exercises.forEach((exercise: ExerciseSpec) => {
             describe(`exercise.id.${exercise.id}`, () => {
@@ -284,7 +283,7 @@ describe('Integrity of JSON Lesson data', () => {
                     expect(exercise.words.length).toBeGreaterThan(1);
                     exercise.words.forEach((wordRef) => {
                       expect(
-                        ContentSpec.getWord(wordRef).word.length,
+                        Content.getWord(wordRef).word.length,
                       ).toBeGreaterThan(0);
                     });
                   }
@@ -301,8 +300,7 @@ describe('Integrity of JSON Lesson data', () => {
                     // every wordRef in explanation is found in WordSpec
                     expect(
                       exercise.explanation.filter(
-                        (wordRef) =>
-                          ContentSpec.getWord(wordRef).word.length > 0,
+                        (wordRef) => Content.getWord(wordRef).word.length > 0,
                       ).length,
                     ).toBe(exercise.explanation.length);
 
@@ -312,16 +310,14 @@ describe('Integrity of JSON Lesson data', () => {
                     ).toBe(1);
                     // explanationTargets.validOption is found in WordSpec
                     expect(
-                      ContentSpec.getWord(
-                        exercise.explanationTargets.validOption,
-                      ).word.length,
+                      Content.getWord(exercise.explanationTargets.validOption)
+                        .word.length,
                     ).toBeGreaterThan(0);
 
                     // explanationTargets.invalidOptions are found in WordSpec
                     expect(
                       exercise.explanationTargets.invalidOptions.filter(
-                        (wordRef) =>
-                          ContentSpec.getWord(wordRef).word.length > 0,
+                        (wordRef) => Content.getWord(wordRef).word.length > 0,
                       ).length,
                     ).toBeGreaterThan(0);
                   }
@@ -344,10 +340,9 @@ describe('Integrity of JSON Lesson data', () => {
                       (wordOrBlank) =>
                         ('validOptions' in wordOrBlank &&
                           (wordOrBlank as Blank).validOptions.filter(
-                            (wordRef) =>
-                              ContentSpec.getWord(wordRef).word.length,
+                            (wordRef) => Content.getWord(wordRef).word.length,
                           )) ||
-                        ContentSpec.getWord(wordOrBlank as WordRef).word.length,
+                        Content.getWord(wordOrBlank as WordRef).word.length,
                     )?.length;
                     expect(validWordRefs).toBe(exercise.singleClozeText.length);
                   }
@@ -370,10 +365,9 @@ describe('Integrity of JSON Lesson data', () => {
                       (wordOrBlank) =>
                         ('validOptions' in wordOrBlank &&
                           (wordOrBlank as Blank).validOptions.filter(
-                            (wordRef) =>
-                              ContentSpec.getWord(wordRef).word.length,
+                            (wordRef) => Content.getWord(wordRef).word.length,
                           )) ||
-                        ContentSpec.getWord(wordOrBlank as WordRef).word.length,
+                        Content.getWord(wordOrBlank as WordRef).word.length,
                     )?.length;
                     expect(validWordRefs).toBe(exercise.multiClozeText.length);
                   }
@@ -423,9 +417,7 @@ describe('Integrity of JSON Lesson data', () => {
                   expect(typeof exercise.symbol).toBe('object');
                   expect(exercise.symbol?.length).toBeGreaterThan(0);
                   exercise.symbol?.forEach((symbol) => {
-                    expect(
-                      ContentSpec.getMdiIcon(symbol).length,
-                    ).toBeGreaterThan(0);
+                    expect(Content.getIcon(symbol).length).toBeGreaterThan(0);
                   });
                 }
               });
@@ -437,20 +429,20 @@ describe('Integrity of JSON Lesson data', () => {
 
     describe('WordSpec integrity', () => {
       it("'wordCount' is consistent", () => {
-        expect(ContentSpec.WordListSpec.wordCount).toEqual(
-          Object.keys(ContentSpec.WordListSpec.words).length,
+        expect(Content.WordListSpec.wordCount).toEqual(
+          Object.keys(Content.WordListSpec.words).length,
         );
       });
       it("'word', 'audio', 'picture', 'video', 'symbol' are consistent", () => {
-        Object.keys(ContentSpec.WordListSpec.words).forEach((wordId) => {
-          const entry = ContentSpec.WordListSpec.words[wordId];
+        Object.keys(Content.WordListSpec.words).forEach((wordId) => {
+          const entry = Content.WordListSpec.words[wordId];
 
           if ('word' in entry) {
             expect(typeof entry.word).toBe('string');
             expect(entry.word.length).toBeGreaterThan(0);
           } else {
             throw new Error(
-              `The WordListSpec in ${ContentSpec.ContentPack.wordSpecFile} has an entry missing the 'word' field (id: ${wordId}`,
+              `The WordListSpec in ${Content.ContentSpec.wordSpecFile} has an entry missing the 'word' field (id: ${wordId}`,
             );
           }
 
@@ -476,7 +468,7 @@ describe('Integrity of JSON Lesson data', () => {
             expect(typeof entry.symbol).toBe('object');
             expect(entry.symbol?.length).toBeGreaterThan(0);
             entry.symbol?.forEach((symbol) => {
-              expect(ContentSpec.getMdiIcon(symbol).length).toBeGreaterThan(0);
+              expect(Content.getIcon(symbol).length).toBeGreaterThan(0);
             });
           }
         });

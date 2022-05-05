@@ -5,57 +5,61 @@ import { useStore } from 'vuex';
 import { IonApp, IonContent, IonRouterOutlet } from '@ionic/vue';
 import Header from '@/Header/components/Header.vue';
 import BottomNavigationBar from '@/BottomNavigationBar/components/BottomNavigationBar.vue';
-import InstructionExplainer from '@/Instruction/components/InstructionExplainer.vue';
-import InstructionOverlay from '@/Instruction/components/InstructionOverlay.vue';
-import ContentConfig from '@/Lessons/ContentSpec';
+import InstructionsExplainer from '@/Instructions/components/InstructionsExplainer.vue';
+import InstructionsOverlay from '@/Instructions/components/InstructionsOverlay.vue';
+import Content from '@/Lessons/Content';
 
 const route = useRoute();
 const store = useStore();
 
-const showInstructionExplainer = computed(
+const showInstructionsExplainer = computed(
   () =>
-    route.name?.toString() === 'Home' && store.state.showInstructionExplainer,
+    route.name?.toString() === 'Home' && store.state.showInstructionsExplainer,
 );
 
-const isInstructionMode = computed(() => {
-  return store.state.instructionStore.isInstructionMode;
+const isInstructionsMode = computed(() => {
+  return store.state.instructionsModeStore.isInstructionsMode;
 });
 
-const welcomeInstructionPath: ComputedRef<string> = computed(() => {
-  return ContentConfig.getInstructionPathFor('welcome');
+const welcomeInstructions: ComputedRef<string> = computed(() => {
+  return Content.getInstructionsAudio('welcome');
 });
 
-const homeInstructionPath: ComputedRef<string> = computed(() => {
-  return ContentConfig.getInstructionPathFor('homeButton');
+const homeButtonInstructions: ComputedRef<string> = computed(() => {
+  return Content.getInstructionsAudio('homeButton');
 });
 
-const continueInstructionPath: ComputedRef<string> = computed(() => {
-  return ContentConfig.getInstructionPathFor('continueButton');
+const continueButtonInstructions: ComputedRef<string> = computed(() => {
+  return Content.getInstructionsAudio('continueButton');
 });
 
-const instructionPath: ComputedRef<string> = computed(() => {
-  return ContentConfig.getInstructionPathFor('instructionButton');
-});
+const toggleInstructionsButtonInstructions: ComputedRef<string> = computed(
+  () => {
+    return Content.getInstructionsAudio('toggleInstructionsButton');
+  },
+);
 </script>
 
 <template>
   <ion-app data-test="app">
     <Header />
     <ion-content>
-      <InstructionExplainer
-        v-if="showInstructionExplainer"
-        :welcome-instruction-path="welcomeInstructionPath"
+      <InstructionsExplainer
+        v-if="showInstructionsExplainer"
+        :welcome-instructions-path="welcomeInstructions"
       />
       <ion-router-outlet v-else />
-      <InstructionOverlay v-if="isInstructionMode" />
+      <InstructionsOverlay v-if="isInstructionsMode" />
     </ion-content>
     <BottomNavigationBar
-      :home-instruction-path="homeInstructionPath"
-      :home-button-disabled="showInstructionExplainer"
-      :home-button-focused="!isInstructionMode && !showInstructionExplainer"
-      :continue-instruction-path="continueInstructionPath"
-      :instruction-path="instructionPath"
-      :show-instruction-explainer="showInstructionExplainer"
+      :home-button-instructions="homeButtonInstructions"
+      :home-button-disabled="showInstructionsExplainer"
+      :home-button-focused="!isInstructionsMode && !showInstructionsExplainer"
+      :continue-button-instructions="continueButtonInstructions"
+      :toggle-instructions-button-instructions="
+        toggleInstructionsButtonInstructions
+      "
+      :show-instructions-explainer="showInstructionsExplainer"
     />
   </ion-app>
 </template>
@@ -71,7 +75,7 @@ a {
 }
 
 /*
-Below are stacking fixes for v-instruction directive:
+Below are stacking fixes for v-instructions directive:
 https://developer.mozilla.org/en-US/docs/Web/CSS/contain
 https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
 The CSS property `contain` creates a new stacking context
@@ -81,8 +85,8 @@ The composite value `content` -> `layout paint`
 A child element in a new stacking context can not stack in front of a parent
 element of the new stacking context regardless of how high the `z-index` value.
 Ionic uses 'contain' extensively.  We need to reset 'contain' to allow the
-v-instruction directive to force elements with instructions attached to pop
-through/stack over the v-instruction backdrop/InstructionOverlay to display as
+v-instructions directive to force elements with instructions attached to pop
+through/stack over the v-instructions backdrop/InstructionsOverlay to display as
 highlighted elements inviting interaction (vs elements that do not carry
 instructions and do not pop through and therefore do not invite interaction)
 Ionic's use of z-index on certain elements can also create a local stacking
@@ -91,26 +95,30 @@ iOS Safari/WebKit also creates a new stacking context for
 -webkit-overflow-scrolling.
 */
 ::part(scroll) {
-  /*Ionic> -webkit-overflow-scrolling: touch; z-index: 0 */
+  /* Ionic> -webkit-overflow-scrolling: touch; z-index: 0 */
   -webkit-overflow-scrolling: initial;
   z-index: auto;
 }
 ion-router-outlet {
-  /*Ionic> contain: size layout style; z-index: 0 */
+  /* Ionic> contain: size layout style; z-index: 0 */
   contain: size style;
   z-index: auto;
 }
 .ion-page {
-  /*Ionic> contain: layout size style; z-index: 100/101 */
+  /* Ionic> contain: layout size style; z-index: 100/101 */
   contain: size style;
   z-index: auto !important;
 }
 ion-list {
-  /*Ionic> contain: content (-> layout paint) */
+  /* Ionic> contain: content (-> layout paint) */
   contain: initial;
 }
 ion-item::part(native) {
-  /*Ionic> z-index: 1 */
+  /* Ionic> z-index: 1 */
   z-index: auto;
+}
+ion-card {
+  /* Ionic> transform: translateZ(0px) */
+  transform: inherit;
 }
 </style>

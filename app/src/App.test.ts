@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import store from '@/common/store/RootStore';
 import { IonicVue, IonRouterOutlet } from '@ionic/vue';
 import Badge from '@/common/components/Badge.vue';
-import InstructionDirective from '@/common/directives/InstructionDirective';
+import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import Home from '@/views/Home.vue';
 
 // Helpers
@@ -31,7 +31,7 @@ describe('App.vue', () => {
   it('renders bottom nav bar', () => {
     const wrapper = mount(App, {
       global: {
-        plugins: [IonicVue, router, store, [InstructionDirective, { Badge }]],
+        plugins: [IonicVue, router, store, [InstructionsDirective, { Badge }]],
       },
     });
 
@@ -41,28 +41,33 @@ describe('App.vue', () => {
   });
 
   it(
-    'renders instruction, ' +
+    'renders instructions explainer, ' +
       'then awaits user response, ' +
       'then renders router-view',
     async () => {
       const wrapper = mount(App, {
         global: {
-          plugins: [IonicVue, router, store, [InstructionDirective, { Badge }]],
+          plugins: [
+            IonicVue,
+            router,
+            store,
+            [InstructionsDirective, { Badge }],
+          ],
         },
       });
 
       expect(wrapper.findComponent(IonRouterOutlet).exists()).toBe(false);
       expect(
-        wrapper.find('[data-test="instruction-explainer-component"]').exists(),
+        wrapper.find('[data-test="instructions-explainer-component"]').exists(),
       ).toBe(true);
 
       await wrapper
-        .find('[data-test="toggle-instruction-button"]')
+        .find('[data-test="toggle-instructions-button"]')
         .trigger('click');
 
       expect(wrapper.findComponent(IonRouterOutlet).exists()).toBe(true);
       expect(
-        wrapper.find('[data-test="instruction-explainer-component"]').exists(),
+        wrapper.find('[data-test="instructions-explainer-component"]').exists(),
       ).toBe(false);
     },
   );
@@ -76,7 +81,7 @@ describe('App.vue', () => {
 
     const wrapper = mount(App, {
       global: {
-        plugins: [IonicVue, router, store, [InstructionDirective, { Badge }]],
+        plugins: [IonicVue, router, store, [InstructionsDirective, { Badge }]],
       },
     });
 
@@ -89,7 +94,7 @@ describe('App.vue', () => {
   it('toggles light/dark theme', () => {
     const wrapper = mount(App, {
       global: {
-        plugins: [IonicVue, router, store, [InstructionDirective, { Badge }]],
+        plugins: [IonicVue, router, store, [InstructionsDirective, { Badge }]],
       },
     });
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-defineProps<{ welcomeInstructionPath?: string }>();
+defineProps<{ welcomeInstructionsPath?: string }>();
 </script>
 
 <template>
-  <div data-test="instruction-explainer-component">
+  <div data-test="instructions-explainer-component">
     <svg
-      class="instruction-explainer-graphic"
+      class="instructions-explainer-graphic"
       viewBox="0 0 1074 1614"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
@@ -56,8 +56,8 @@ defineProps<{ welcomeInstructionPath?: string }>();
       </g>
     </svg>
     <audio
-      v-if="!!welcomeInstructionPath"
-      :src="welcomeInstructionPath"
+      v-if="!!welcomeInstructionsPath"
+      :src="welcomeInstructionsPath"
       autoplay
     />
   </div>
@@ -74,13 +74,13 @@ div {
 </style>
 
 <style>
-.instruction-explainer-graphic {
+.instructions-explainer-graphic {
   flex: 1;
   max-height: 95%;
   max-width: 95%;
 }
 
-.instruction-explainer-graphic g {
+.instructions-explainer-graphic g {
   animation: touch 3s linear infinite;
 }
 
