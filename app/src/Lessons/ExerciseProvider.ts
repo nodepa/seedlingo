@@ -1,19 +1,26 @@
 import { reactive } from 'vue';
-import { ExerciseAudio } from '../common/types/ExerciseAudioType';
-import { MatchingItem } from '../Matching/MatchingTypes';
+import { ClozeExercise, ClozeOption, ClozeWord } from '@/Cloze/ClozeTypes';
+import {
+  ComprehensionExercise,
+  ComprehensionOption,
+  ComprehensionQuestion,
+  ComprehensionStage,
+  ComprehensionWord,
+} from '@/Comprehension/ComprehensionTypes';
+import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
+import { MatchingExercise, MatchingItem } from '@/Matching/MatchingTypes';
 import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
-} from '../MultipleChoice/MultipleChoiceTypes';
-import { ClozeExercise, ClozeOption, ClozeWord } from '../Cloze/ClozeTypes';
+} from '@/MultipleChoice/MultipleChoiceTypes';
 import {
   Blank,
   ExerciseSpec,
   LessonSpec,
   WordSpec,
   WordRef,
+  ComprehensionSpec,
 } from './ContentTypes';
-
 import Content from './Content';
 
 export type ExerciseType =
@@ -22,13 +29,15 @@ export type ExerciseType =
   | 'ExplanationMatching'
   | 'ExplanationMultipleChoice'
   | 'SingleCloze'
-  | 'MultiCloze';
+  | 'MultiCloze'
+  | 'Comprehension';
 
 export type ExerciseItems =
   | Array<string>
-  | Array<MatchingItem>
+  | MatchingExercise
   | MultipleChoiceExercise
-  | ClozeExercise;
+  | ClozeExercise
+  | ComprehensionExercise;
 
 export interface Exercise {
   exerciseType: ExerciseType;
@@ -45,6 +54,7 @@ export default class ExerciseProvider {
     ExplanationMultipleChoice: this.generateExplanationMultipleChoiceExercise,
     SingleCloze: this.generateSingleClozeExercise,
     MultiCloze: this.generateMultiClozeExercise,
+    Comprehension: this.generateComprehensionExercise,
   };
 
   public static getExerciseFromLesson(indexFromOne: number): Exercise {
@@ -85,22 +95,22 @@ export default class ExerciseProvider {
     if (lesson.multiClozeCount >= 1) {
       validTypes.push('MultiCloze');
     }
+    if (lesson.comprehensionCount >= 1) {
+      validTypes.push('Comprehension');
+    }
     return this.pickRandomItem(validTypes);
   }
 
   public static generateMatchingExercise(lesson: LessonSpec): {
     exerciseType: ExerciseType;
-    exerciseItems: Array<MatchingItem>;
+    exerciseItems: MatchingExercise;
   } {
-    const exerciseSpec = this.pickRandomItem(
+    const exerciseFromSpec = this.pickRandomItem(
       lesson.exercises.filter((exercise) => exercise.type === 'Matching'),
     );
     const selectedWordRefs = this.selectRandomSubset(
-      exerciseSpec.words || [],
-      {
-        minItems: 2,
-        maxItems: 4,
-      },
+      exerciseFromSpec.matchingWords || [],
+      { minItems: 2, maxItems: 4 },
       lesson.lessonIndex,
     );
 
@@ -116,7 +126,7 @@ export default class ExerciseProvider {
 
   public static generateExplanationMatchingExercise(lesson: LessonSpec): {
     exerciseType: ExerciseType;
-    exerciseItems: Array<MatchingItem>;
+    exerciseItems: MatchingExercise;
   } {
     const explanationSpecs = lesson.exercises.filter(
       (exercise) => exercise.type === 'Explanation',
@@ -124,10 +134,7 @@ export default class ExerciseProvider {
 
     const selectedExplanations = this.selectRandomSubset(
       explanationSpecs,
-      {
-        minItems: 2,
-        maxItems: 2,
-      },
+      { minItems: 2, maxItems: 2 },
       lesson.lessonIndex,
     );
 
@@ -142,15 +149,12 @@ export default class ExerciseProvider {
     exerciseType: ExerciseType;
     exerciseItems: MultipleChoiceExercise;
   } {
-    const exerciseSpec = this.pickRandomItem(
+    const exerciseFromSpec = this.pickRandomItem(
       lesson.exercises.filter((exercise) => exercise.type === 'MultipleChoice'),
     );
     const selectedWordRefs = this.selectRandomSubset(
-      exerciseSpec.words || [],
-      {
-        minItems: 4,
-        maxItems: 4,
-      },
+      exerciseFromSpec.multipleChoiceWords || [],
+      { minItems: 4, maxItems: 4 },
       lesson.lessonIndex,
     );
 
@@ -173,10 +177,11 @@ export default class ExerciseProvider {
     exerciseType: ExerciseType;
     exerciseItems: MultipleChoiceExercise;
   } {
-    const explanationSpecs = lesson.exercises.filter(
+    const explanationExercises = lesson.exercises.filter(
       (exercise) => exercise.type === 'Explanation',
     );
-    const explanationSpec = this.pickRandomItem(explanationSpecs);
+    const explanationExercise = this.pickRandomItem(explanationExercises);
+    const explanationSpec = explanationExercise.explanationSpec;
 
     // ensure lesson has 1 or more explanations
     if (
@@ -207,7 +212,7 @@ export default class ExerciseProvider {
 
     if (!validWord) {
       throw new Error(
-        `Lesson ${lesson.lessonIndex} has an explanation (${explanationSpec.id}) without a valid matching target (${explanationSpec.explanationTargets?.validOption}).`,
+        `Lesson ${lesson.lessonIndex} has an explanation (${explanationExercise.id}) without a valid matching target (${explanationSpec.explanationTargets?.validOption}).`,
       );
     }
     const correctOption = {
@@ -231,10 +236,7 @@ export default class ExerciseProvider {
 
     const selectedOptions = this.selectRandomSubset(
       invalidOptions,
-      {
-        minItems: 1,
-        maxItems: 3,
-      },
+      { minItems: 1, maxItems: 3 },
       lesson.lessonIndex,
     );
 
@@ -254,7 +256,7 @@ export default class ExerciseProvider {
     });
 
     // shuffle options
-    this.shuffleMultipleChoiceItemsInPlace(multipleChoiceExercise.options);
+    this.shuffleItemsInPlace(multipleChoiceExercise.options);
     return {
       exerciseType: 'MultipleChoice',
       exerciseItems: multipleChoiceExercise,
@@ -265,21 +267,13 @@ export default class ExerciseProvider {
     exerciseType: ExerciseType;
     exerciseItems: ClozeExercise;
   } {
-    const exerciseSpecs = lesson.exercises.filter(
-      (exercise) =>
-        exercise.type === 'SingleCloze' &&
-        exercise.singleClozeText &&
-        exercise.singleClozeText.length > 0,
+    const selectedExerciseSpec = this.selectClozeExerciseFromSpec(
+      lesson,
+      'SingleCloze',
     );
 
-    if (exerciseSpecs.length === 0) {
-      throw new Error(
-        `Lesson ${lesson.lessonIndex} has zero single-blank cloze items, which is too few to generate an exercise.`,
-      );
-    }
-    const selectedSingleClozeSpec = this.pickRandomItem(exerciseSpecs);
-    const singleClozeExercise = this.createSingleClozeExerciseFromClozeSpec(
-      selectedSingleClozeSpec,
+    const singleClozeExercise = this.createExerciseFromSingleClozeSpec(
+      selectedExerciseSpec,
       lesson.lessonIndex,
     );
 
@@ -293,15 +287,13 @@ export default class ExerciseProvider {
     exerciseType: ExerciseType;
     exerciseItems: ClozeExercise;
   } {
-    const multiClozeItems = this.selectMultiClozeSpecs(lesson);
-    if (multiClozeItems.length === 0) {
-      throw new Error(
-        `Lesson ${lesson.lessonIndex} has zero multi-blank cloze items, which is too few to generate an exercise.`,
-      );
-    }
-    const selectedMultiClozeItem = this.pickRandomItem(multiClozeItems);
-    const multiClozeExercise = this.createMultiClozeExerciseFromClozeItem(
-      selectedMultiClozeItem,
+    const selectedExerciseSpec = this.selectClozeExerciseFromSpec(
+      lesson,
+      'MultiCloze',
+    );
+
+    const multiClozeExercise = this.createExerciseFromMultiClozeSpec(
+      selectedExerciseSpec,
       lesson.lessonIndex,
     );
 
@@ -311,21 +303,78 @@ export default class ExerciseProvider {
     };
   }
 
-  public static selectMultiClozeSpecs(lesson: LessonSpec): Array<ExerciseSpec> {
-    return lesson.exercises.filter((exercise: ExerciseSpec) => {
-      return exercise.multiClozeText && exercise.multiClozeText.length > 0;
-    });
+  public static selectClozeExerciseFromSpec(
+    lesson: LessonSpec,
+    clozeType: 'SingleCloze' | 'MultiCloze',
+  ): ExerciseSpec {
+    let exerciseSpecs = [] as Array<ExerciseSpec>;
+    if (clozeType === 'SingleCloze') {
+      exerciseSpecs = lesson.exercises.filter(
+        (exercise) =>
+          exercise.type === 'SingleCloze' &&
+          exercise.singleClozeSpec?.text &&
+          exercise.singleClozeSpec?.text.length > 0,
+      );
+    } else if (clozeType === 'MultiCloze') {
+      exerciseSpecs = lesson.exercises.filter(
+        (exercise) =>
+          exercise.type === 'MultiCloze' &&
+          exercise.multiClozeSpec?.text &&
+          exercise.multiClozeSpec?.text.length > 0,
+      );
+    }
+
+    if (exerciseSpecs.length === 0) {
+      throw new Error(
+        `Lesson ${lesson.lessonIndex} has zero multi-blank cloze items, which is too few to generate an exercise.`,
+      );
+    }
+    return this.pickRandomItem(exerciseSpecs);
+  }
+
+  public static generateComprehensionExercise(lesson: LessonSpec): {
+    exerciseType: ExerciseType;
+    exerciseItems: ComprehensionExercise;
+  } {
+    const exerciseSpecs = lesson.exercises.filter(
+      (exercise) => exercise.type === 'Comprehension',
+    );
+
+    if (exerciseSpecs.length === 0) {
+      throw new Error(
+        `Lesson ${lesson.lessonIndex} has zero comprehension exercises, which is too few to generate an exercise.`,
+      );
+    }
+
+    const selectedExercise = this.pickRandomItem(exerciseSpecs);
+
+    if (selectedExercise.comprehensionSpec === undefined) {
+      throw new Error(
+        `Lesson ${lesson.lessonIndex} has a comprehension exercise (${selectedExercise.id}) without a "comprehensionSpec", therefore lacking necessary data to generate an exercise.`,
+      );
+    }
+
+    const comprehensionExercise = this.createExerciseFromComprehensionSpec(
+      selectedExercise.comprehensionSpec,
+      selectedExercise.id,
+      lesson.lessonIndex,
+    );
+
+    return {
+      exerciseType: 'Comprehension',
+      exerciseItems: comprehensionExercise,
+    };
   }
 
   public static selectRandomSubset<T>(
     items: Array<T>,
-    limits: { minItems: number; maxItems: number },
+    { minItems, maxItems }: { minItems: number; maxItems: number },
     lessonIndex: number,
   ): Array<T> {
-    this.hasAtLeast(items, limits.minItems, lessonIndex);
+    this.hasAtLeast(items, minItems, lessonIndex);
     const selected = [];
     const itemIndices = [...Array(items.length).keys()];
-    const maxItemsAccepted = Math.min(limits.maxItems, items.length);
+    const maxItemsAccepted = Math.min(maxItems, items.length);
     for (let i = 0; i < maxItemsAccepted; i += 1) {
       const randomUniqueIndex = itemIndices.splice(
         this.randomIndexLessThan(itemIndices.length),
@@ -348,10 +397,8 @@ export default class ExerciseProvider {
     }
   }
 
-  public static createPairsFromWords(
-    words: Array<WordSpec>,
-  ): Array<MatchingItem> {
-    const matchingExercises = [] as Array<MatchingItem>;
+  public static createPairsFromWords(words: Array<WordSpec>): MatchingExercise {
+    const matchingItems = [] as Array<MatchingItem>;
     words.forEach((wordSpec: WordSpec, index: number) => {
       const wordPart = {
         wordOrIcons: wordSpec.word,
@@ -392,30 +439,31 @@ export default class ExerciseProvider {
         symPart.audio = this.createAudio(path);
       }
 
-      matchingExercises.push(wordPart);
-      matchingExercises.push(symPart);
+      matchingItems.push(wordPart);
+      matchingItems.push(symPart);
     });
-    return matchingExercises;
+    return matchingItems;
   }
 
   public static createExplanationInterpretationPairs(
     explanationItems: Array<ExerciseSpec>,
-  ): Array<MatchingItem> {
+  ): MatchingExercise {
     const matchingExercises = [] as Array<MatchingItem>;
 
     explanationItems.forEach((explanationItem: ExerciseSpec, index: number) => {
+      const explanationSpec = explanationItem.explanationSpec;
       if (
-        !explanationItem.explanationTargets ||
-        !explanationItem.explanationTargets.validOption ||
-        !explanationItem.explanationTargets.invalidOptions ||
-        explanationItem.explanationTargets.invalidOptions.length < 1
+        !explanationSpec?.explanationTargets ||
+        !explanationSpec?.explanationTargets.validOption ||
+        !explanationSpec?.explanationTargets.invalidOptions ||
+        explanationSpec?.explanationTargets.invalidOptions.length < 1
       ) {
         throw new Error(
           `The explanation (${explanationItem.id}) is not valid.`,
         );
       }
       const explanationPart = {
-        wordOrIcons: explanationItem.explanation
+        wordOrIcons: explanationSpec.explanation
           ?.map((wordRef) => Content.getWord(wordRef).word)
           .join(''),
         audio: {} as ExerciseAudio,
@@ -429,7 +477,7 @@ export default class ExerciseProvider {
       } as MatchingItem;
 
       const interpretationItem = Content.getWord(
-        explanationItem.explanationTargets?.validOption,
+        explanationSpec.explanationTargets?.validOption,
       );
       if (
         !interpretationItem ||
@@ -453,11 +501,13 @@ export default class ExerciseProvider {
       } as MatchingItem;
       // wordPart.match = symPart;
 
-      let path = Content.getAudioData(`${explanationItem.audio}`);
-      explanationPart.audio = this.createAudio(path);
+      explanationPart.audio = this.createAudio(
+        Content.getAudioData(`${explanationSpec.audio}`),
+      );
 
-      path = Content.getAudioData(`${interpretationItem.audio}`);
-      wordPart.audio = this.createAudio(path);
+      wordPart.audio = this.createAudio(
+        Content.getAudioData(`${interpretationItem.audio}`),
+      );
 
       matchingExercises.push(explanationPart);
       matchingExercises.push(wordPart);
@@ -494,33 +544,31 @@ export default class ExerciseProvider {
   }
 
   public static shuffleMatchingItemsInPlace(
-    matchingExercises: Array<MatchingItem>,
+    matchingExercise: Array<MatchingItem>,
   ): void {
-    for (let i = matchingExercises.length - 1; i > 0; i -= 1) {
+    for (let i = matchingExercise.length - 1; i > 0; i -= 1) {
       const j = this.randomIndexLessThan(i + 1);
       if (j !== i) {
         // update match targets
-        if (matchingExercises[i].match === j) {
+        if (matchingExercise[i].match === j) {
           // if matches are each others matches
-          matchingExercises[i].match = i;
-          matchingExercises[j].match = j;
+          matchingExercise[i].match = i;
+          matchingExercise[j].match = j;
         } else {
           // if item.match points to a pre-swap index, inject post-swap index
-          matchingExercises[matchingExercises[i].match].match = j;
-          matchingExercises[matchingExercises[j].match].match = i;
+          matchingExercise[matchingExercise[i].match].match = j;
+          matchingExercise[matchingExercise[j].match].match = i;
         }
         // swap location in list
-        [matchingExercises[i], matchingExercises[j]] = [
-          matchingExercises[j],
-          matchingExercises[i],
+        [matchingExercise[i], matchingExercise[j]] = [
+          matchingExercise[j],
+          matchingExercise[i],
         ];
       }
     }
   }
 
-  public static shuffleItemsInPlace(
-    items: Array<MultipleChoiceItem> | Array<ClozeOption>,
-  ): void {
+  public static shuffleItemsInPlace<T>(items: Array<T>): void {
     for (let i = items.length - 1; i > 0; i -= 1) {
       const j = this.randomIndexLessThan(i + 1);
       if (j !== i) {
@@ -530,26 +578,10 @@ export default class ExerciseProvider {
     }
   }
 
-  public static shuffleMultipleChoiceItemsInPlace(
-    multipleChoiceItems: Array<MultipleChoiceItem>,
-  ): void {
-    for (let i = multipleChoiceItems.length - 1; i > 0; i -= 1) {
-      const j = this.randomIndexLessThan(i + 1);
-      if (j !== i) {
-        // swap location in list
-        [multipleChoiceItems[i], multipleChoiceItems[j]] = [
-          multipleChoiceItems[j],
-          multipleChoiceItems[i],
-        ];
-      }
-    }
-  }
-
   public static createMultipleChoiceExerciseFromWords(
     selectedItems: Array<WordSpec>,
   ): MultipleChoiceExercise {
     const multipleChoiceExercise = {
-      itemUnderTestAudio: {} as HTMLAudioElement,
       itemUnderTestAudioPlaying: false,
       iconToMatch: [] as Array<string>,
       options: [] as Array<MultipleChoiceItem>,
@@ -571,17 +603,20 @@ export default class ExerciseProvider {
     return multipleChoiceExercise;
   }
 
-  public static createSingleClozeExerciseFromClozeSpec(
-    clozeSpec: ExerciseSpec,
+  public static createExerciseFromSingleClozeSpec(
+    singleClozeExercise: ExerciseSpec,
     lessonIndex: number,
   ): ClozeExercise {
-    if (!clozeSpec.singleClozeText || clozeSpec.singleClozeText.length < 2) {
+    if (
+      !singleClozeExercise.singleClozeSpec?.text ||
+      singleClozeExercise.singleClozeSpec.text.length < 2
+    ) {
       throw new Error(
-        `Lesson ${lessonIndex}'s item ${clozeSpec.id} does not have a clozeText with enough words and blanks to generate an exercise.`,
+        `Lesson ${lessonIndex}'s item ${singleClozeExercise.id} does not have a clozeText with enough words and blanks to generate an exercise.`,
       );
     }
 
-    const blanksCount = clozeSpec.singleClozeText.filter(
+    const blanksCount = singleClozeExercise.singleClozeSpec.text.filter(
       (wordRefOrBlank) =>
         'validOptions' in wordRefOrBlank &&
         wordRefOrBlank.validOptions &&
@@ -595,7 +630,7 @@ export default class ExerciseProvider {
 
     const clozeText: Array<ClozeWord> = [];
     const clozeOptions: Array<ClozeOption> = [];
-    clozeSpec.singleClozeText.forEach((wordRefOrBlank) => {
+    singleClozeExercise.singleClozeSpec.text.forEach((wordRefOrBlank) => {
       const clozeWord: ClozeWord = {
         word: '',
         buzzing: false,
@@ -628,17 +663,15 @@ export default class ExerciseProvider {
         );
 
         // if validOption is not array, expect 1 ref, otherwise handle composite
-        let validOptionWordSpecs: WordSpec[];
-        if (!Array.isArray(validOption)) {
-          validOptionWordSpecs = [Content.getWord(validOption)];
-        } else {
-          validOptionWordSpecs = validOption.map((wordRef) =>
-            Content.getWord(wordRef),
-          );
-        }
+        const validOptionWordSpecs = Array.isArray(validOption)
+          ? // validOption is a composite WordRef[]
+            validOption.map((wordRef) => Content.getWord(wordRef))
+          : // validOption is a single WordRef
+            [Content.getWord(validOption)];
 
         validOptionWordSpecs.forEach((wordSpec) => {
           clozeWord.word += wordSpec.word;
+          // TODO: Handle successive audio
           if (wordSpec.audio) {
             clozeWord.audio = this.createAudio(
               Content.getAudioData(wordSpec.audio),
@@ -668,17 +701,15 @@ export default class ExerciseProvider {
             if (clozeWord.audio?.el.src) {
               clozeOption.audio = this.createAudio(clozeWord.audio.el.src);
             }
-            if (clozeSpec.suppressOptionAudio) {
-              clozeOption.suppressOptionAudio = clozeSpec.suppressOptionAudio;
+            if (singleClozeExercise.singleClozeSpec?.suppressOptionAudio) {
+              clozeOption.suppressOptionAudio =
+                singleClozeExercise.singleClozeSpec.suppressOptionAudio;
             }
             clozeOptions.push(clozeOption);
 
             const wordRefs = this.selectRandomSubset(
               (wordRefOrBlank as Blank).invalidOptions || [],
-              {
-                minItems: 3,
-                maxItems: 3,
-              },
+              { minItems: 3, maxItems: 3 },
               lessonIndex,
             );
             clozeOptions.push(
@@ -695,7 +726,12 @@ export default class ExerciseProvider {
                     Content.getAudioData(wordSpec.audio),
                   );
                 }
-                if (clozeSpec.suppressOptionAudio) {
+                if (
+                  singleClozeExercise.singleClozeSpec?.suppressOptionAudio &&
+                  [true, 'true'].includes(
+                    singleClozeExercise.singleClozeSpec.suppressOptionAudio,
+                  )
+                ) {
                   clozeOption.suppressOptionAudio = true;
                 }
                 return clozeOption;
@@ -706,7 +742,12 @@ export default class ExerciseProvider {
         }
       }
 
-      if (clozeSpec.suppressClozeAudio) {
+      if (
+        singleClozeExercise.singleClozeSpec?.suppressClozeAudio &&
+        [true, 'true'].includes(
+          singleClozeExercise.singleClozeSpec.suppressClozeAudio,
+        )
+      ) {
         clozeWord.suppressClozeAudio = true;
       }
 
@@ -722,29 +763,32 @@ export default class ExerciseProvider {
     } as ClozeExercise;
   }
 
-  public static createMultiClozeExerciseFromClozeItem(
-    clozeItem: ExerciseSpec,
+  public static createExerciseFromMultiClozeSpec(
+    clozeSpec: ExerciseSpec,
     lessonIndex: number,
   ): ClozeExercise {
-    if (!clozeItem.multiClozeText || clozeItem.multiClozeText.length < 3) {
+    if (
+      !clozeSpec.multiClozeSpec?.text ||
+      clozeSpec.multiClozeSpec?.text.length < 3
+    ) {
       throw new Error(
-        `Lesson ${lessonIndex}'s item ${clozeItem.id} does not have enough elements in multiClozeText to generate an exercise.`,
+        `Lesson ${lessonIndex}'s item "${clozeSpec.id}" does not have enough elements in multiClozeSpec.text to generate an exercise.`,
       );
     }
 
-    const blanks = clozeItem.multiClozeText.filter(
+    const blanks = clozeSpec.multiClozeSpec.text.filter(
       (wordRefOrBlank) =>
         wordRefOrBlank.validOptions && wordRefOrBlank.validOptions.length > 0,
     );
 
     if (!blanks || blanks.length <= 1) {
       throw new Error(
-        `Lesson ${lessonIndex}'s item ${clozeItem.id} does not have enough blanks in multiClozeText to generate an exercise.`,
+        `Lesson ${lessonIndex}'s item ${clozeSpec.id} does not have enough blanks in multiClozeSpec.text to generate an exercise.`,
       );
     }
 
     const multiClozeOptions: Array<ClozeOption> = [];
-    const clozeText: Array<ClozeWord> = clozeItem.multiClozeText.map(
+    const clozeText: Array<ClozeWord> = clozeSpec.multiClozeSpec.text.map(
       (wordRefOrBlank) => {
         const multiClozeWord: ClozeWord = {
           word: '',
@@ -772,19 +816,14 @@ export default class ExerciseProvider {
         } else {
           // current wordRefOrBlank is a Blank
           multiClozeWord.isBlank = true;
-
           // assume spec has exactly one valid option for multiCloze
-          // but that option is a single WordRef or a composite of WordRefs
-          let wordSpecs: WordSpec[];
-          if (!Array.isArray(wordRefOrBlank.validOptions[0])) {
-            // valid option is a single WordRef
-            wordSpecs = [Content.getWord(wordRefOrBlank.validOptions[0])];
-          } else {
-            // valid option is a composite of WordRef[]
-            wordSpecs = wordRefOrBlank.validOptions[0].map((wordRef) =>
-              Content.getWord(wordRef),
-            );
-          }
+          const validOption = wordRefOrBlank.validOptions[0];
+          // but that option can be a single WordRef or a composite of WordRefs
+          const wordSpecs = Array.isArray(validOption)
+            ? // validOption is a composite WordRef[]
+              validOption.map((wordRef) => Content.getWord(wordRef))
+            : // validOption is a single WordRef
+              [Content.getWord(validOption)];
 
           const option: ClozeOption = {
             word: '',
@@ -793,6 +832,7 @@ export default class ExerciseProvider {
           };
           wordSpecs.forEach((wordSpec) => {
             multiClozeWord.word += wordSpec.word;
+            // TODO: Handle successive audio
             if (wordSpec.audio) {
               multiClozeWord.audio = this.createAudio(
                 Content.getAudioData(wordSpec.audio),
@@ -825,12 +865,20 @@ export default class ExerciseProvider {
           //     multiClozeWord.isPunctuation = true;
           //   }
           // }
-          if (clozeItem.suppressOptionAudio) {
+          if (
+            clozeSpec.multiClozeSpec?.suppressOptionAudio &&
+            [true, 'true'].includes(
+              clozeSpec.multiClozeSpec.suppressOptionAudio,
+            )
+          ) {
             option.suppressOptionAudio = true;
           }
           multiClozeOptions.push(option);
         }
-        if (clozeItem.suppressClozeAudio) {
+        if (
+          clozeSpec.multiClozeSpec?.suppressClozeAudio &&
+          [true, 'true'].includes(clozeSpec.multiClozeSpec.suppressClozeAudio)
+        ) {
           multiClozeWord.suppressClozeAudio = true;
         }
         return multiClozeWord;
@@ -844,6 +892,192 @@ export default class ExerciseProvider {
       clozeText,
       clozeOptions: multiClozeOptions,
     } as ClozeExercise;
+  }
+
+  public static createExerciseFromComprehensionSpec(
+    comprehensionSpec: ComprehensionSpec,
+    exerciseId: string,
+    lessonIndex: number,
+  ): ComprehensionExercise {
+    if (!comprehensionSpec.text || comprehensionSpec.text.length < 2) {
+      throw new Error(
+        `Lesson ${lessonIndex} has a "comprehensionSpec" (${exerciseId}) with a too short "text" to generate an exercise.`,
+      );
+    }
+
+    const comprehensionExercise = {} as ComprehensionExercise;
+
+    comprehensionExercise.stages = comprehensionSpec.comprehensionStages?.map(
+      (stageSpec) => {
+        const stage = {} as ComprehensionStage;
+        if (stageSpec.instructionText) {
+          stage.instructionText = stageSpec.instructionText;
+        }
+        if (stageSpec.instructionAudio) {
+          stage.instructionAudio = this.createAudio(
+            Content.getAudioData(`${stageSpec.instructionAudio}`),
+          );
+        }
+        if (
+          stageSpec.questionnaire &&
+          [true, 'true'].includes(stageSpec.questionnaire)
+        ) {
+          stage.questionnaire = true;
+        }
+        return stage;
+      },
+    ) as Array<ComprehensionStage>;
+
+    comprehensionExercise.comprehensionText = comprehensionSpec.text.map(
+      (wordRef) => {
+        const comprehensionWord = {} as ComprehensionWord;
+        const wordSpec = Content.getWord(wordRef);
+        if (wordSpec.audio) {
+          comprehensionWord.audio = this.createAudio(
+            Content.getAudioData(`${wordSpec.audio}`),
+          );
+        }
+        comprehensionWord.suppressComprehensionAudio = false;
+        comprehensionWord.word = wordSpec.word;
+        comprehensionWord.isNew =
+          !!comprehensionSpec.multipleChoiceWords?.find(
+            (ref) => Object.values(ref)[0] === Object.values(wordRef)[0],
+          ) ||
+          !!comprehensionSpec.matchingWords?.find(
+            (ref) => Object.values(ref)[0] === Object.values(wordRef)[0],
+          );
+        if (
+          wordSpec.isPunctuation &&
+          [true, 'true'].includes(wordSpec.isPunctuation)
+        ) {
+          comprehensionWord.isPunctuation = true;
+        }
+        return comprehensionWord;
+      },
+    );
+
+    comprehensionExercise.questions =
+      comprehensionSpec.comprehensionQuestions?.map((questionSpec) => {
+        const question = {} as ComprehensionQuestion;
+        question.questionText = questionSpec.questionText;
+        question.questionAudio = this.createAudio(
+          Content.getAudioData(`${questionSpec.questionAudio}`),
+        );
+        question.options = [];
+        questionSpec.options.forEach((optionSpec) => {
+          const option = { word: '' } as ComprehensionOption;
+          const wordSpecs = Array.isArray(optionSpec.word)
+            ? // word is a composite WordRef[]
+              optionSpec.word.map((wordRef) => Content.getWord(wordRef))
+            : // word is a single WordRef
+              [Content.getWord(optionSpec.word)];
+
+          wordSpecs.forEach((wordSpec) => {
+            option.word += wordSpec.word;
+            // TODO: Handle successive audio
+            if (wordSpec.audio) {
+              option.audio = this.createAudio(
+                Content.getAudioData(wordSpec.audio),
+              );
+            }
+          });
+
+          if (
+            optionSpec.correct &&
+            [true, 'true'].includes(optionSpec.correct)
+          ) {
+            option.correct = true;
+          }
+          option.buzzing = false;
+          option.disabled = false;
+
+          question.options.push(option);
+        });
+        return question;
+      }) as Array<ComprehensionQuestion>;
+
+    comprehensionExercise.newWordsExercises = [] as Array<
+      MultipleChoiceExercise | MatchingExercise
+    >;
+
+    const matchingWords = comprehensionSpec.matchingWords?.map((wordRef) =>
+      Content.getWord(wordRef),
+    );
+
+    if (matchingWords) {
+      if (matchingWords?.length <= 1) {
+        throw new Error(
+          `Lesson ${lessonIndex} has a "comprehensionSpec" (${exerciseId}) with a "matchingWords" field that contains too few elements to generate an exercise.`,
+        );
+      } else {
+        this.shuffleItemsInPlace(matchingWords);
+        // This algorithm can be improved
+        // If the number of words are divisible by 3
+        // we generate (words / 3) number of matchable pairs
+        // If the remainder when number of words are divided by 3 is 1
+        // we generate 2 exercises with 2 pairs, and the rest with 3 pairs
+        // If the remainder when number of words are divided by 3 is 2
+        // we generate 1 exercises with 2 pairs, and the rest with 3 pairs
+        // This isolates each matching exercise with unique words,
+        // which may not be desirable,
+        // since mixing some new and some familiar words may increase retention
+        // TODO Add configuration for exercises to overlap 0, 1 or 2 words
+        const groupsWith2Map = [0, 2, 1];
+        let groupsWith2Count = groupsWith2Map[matchingWords.length % 3];
+        const numberOfExercises = Math.floor((matchingWords.length + 2) / 3);
+        for (let i = 0; i < numberOfExercises; i += 1) {
+          const matchingExercise =
+            groupsWith2Count > 0
+              ? this.createPairsFromWords(matchingWords.splice(0, 2))
+              : this.createPairsFromWords(matchingWords.splice(0, 3));
+          groupsWith2Count -= 1;
+          this.shuffleMatchingItemsInPlace(matchingExercise);
+          comprehensionExercise.newWordsExercises.push(matchingExercise);
+        }
+      }
+    }
+
+    const multipleChoiceWords = comprehensionSpec.multipleChoiceWords?.map(
+      (wordRef) => Content.getWord(wordRef),
+    );
+    multipleChoiceWords?.forEach((word) => {
+      const selectedWords = this.selectRandomSubset(
+        multipleChoiceWords,
+        { minItems: 2, maxItems: 4 },
+        lessonIndex,
+      );
+      // Get word's index or replace item at random index with word
+      let index: number;
+      if ((index = selectedWords.indexOf(word)) < 0) {
+        index = this.randomIndexLessThan(selectedWords.length);
+        selectedWords.splice(index, 1, word);
+      }
+      const multipleChoiceExercise =
+        this.createMultipleChoiceExerciseFromWords(selectedWords);
+      multipleChoiceExercise.options[index].correct = true;
+      multipleChoiceExercise.itemUnderTestAudio = new Audio(
+        Content.getAudioData(`${word.audio}`),
+      );
+
+      if (word.symbol && word.symbol.length > 0) {
+        word.symbol.forEach((symbol) => {
+          (multipleChoiceExercise.iconToMatch as Array<string>).push(
+            Content.getIcon(symbol),
+          );
+        });
+      } else if (word.picture && word.picture.length > 0) {
+        multipleChoiceExercise.pictureToMatch = Content.getPicPath(
+          word.picture,
+        );
+      }
+      comprehensionExercise.newWordsExercises?.push(multipleChoiceExercise);
+    });
+
+    // if (comprehensionExercise.newWordsExercises.length > 0) {
+    //   this.shuffleItemsInPlace(comprehensionExercise.newWordsExercises);
+    // }
+
+    return comprehensionExercise;
   }
 
   public static makeRandomItemCorrectOption(

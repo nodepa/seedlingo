@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { createAnimation, Animation } from '@ionic/vue';
 
 interface Props {
@@ -32,44 +32,50 @@ const zIndex = computed(() => (props.playing ? 140 : -10));
 watch(
   () => props.playing,
   (playing: boolean): void => {
-    if (animation && animationDelayed) {
-      if (playing) {
-        animation.play();
-        animationDelayed.play();
-      } else {
-        animation.stop();
-        animationDelayed.stop();
-      }
-    } else {
-      if (!!playing && ripple.value && rippleDelayed.value) {
-        animation = createAnimation()
-          .addElement(ripple.value)
-          .delay(0)
-          .duration(props.duration)
-          .iterations(props.iterations)
-          .fromTo('opacity', 1, 0)
-          .fromTo(
-            'transform',
-            'scale(1, 1)',
-            `scale(${props.scale}, ${props.scale})`,
-          );
-        animation.play();
-        animationDelayed = createAnimation()
-          .addElement(rippleDelayed.value)
-          .delay(props.delay)
-          .duration(props.duration)
-          .iterations(props.iterations)
-          .fromTo('opacity', '1', '0')
-          .fromTo(
-            'transform',
-            'scale(1, 1)',
-            `scale(${props.scale}, ${props.scale})`,
-          );
-        animationDelayed.play();
-      }
-    }
+    updatePlaying(playing);
   },
 );
+onMounted(() => {
+  updatePlaying(props.playing);
+});
+function updatePlaying(playing: boolean): void {
+  if (animation && animationDelayed) {
+    if (playing) {
+      animation.play();
+      animationDelayed.play();
+    } else {
+      animation.stop();
+      animationDelayed.stop();
+    }
+  } else {
+    if (!!playing && ripple.value && rippleDelayed.value) {
+      animation = createAnimation()
+        .addElement(ripple.value)
+        .delay(0)
+        .duration(props.duration)
+        .iterations(props.iterations)
+        .fromTo('opacity', 1, 0)
+        .fromTo(
+          'transform',
+          'scale(1, 1)',
+          `scale(${props.scale}, ${props.scale})`,
+        );
+      animation.play();
+      animationDelayed = createAnimation()
+        .addElement(rippleDelayed.value)
+        .delay(props.delay)
+        .duration(props.duration)
+        .iterations(props.iterations)
+        .fromTo('opacity', '1', '0')
+        .fromTo(
+          'transform',
+          'scale(1, 1)',
+          `scale(${props.scale}, ${props.scale})`,
+        );
+      animationDelayed.play();
+    }
+  }
+}
 </script>
 
 <template>

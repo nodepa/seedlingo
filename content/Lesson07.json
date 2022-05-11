@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.1.0",
+  "formatVersion": "1.2.0",
   "id": "783fe6ed-cfde-4d31-9eb6-b7bbc04e2713",
   "lessonIndex": 7,
   "multipleChoiceCount": 9,
@@ -7,12 +7,13 @@
   "explanationCount": 4,
   "singleClozeCount": 0,
   "multiClozeCount": 0,
+  "comprehensionCount": 0,
   "wordsExercisedCount": 9,
   "exercises": [
     {
       "id": "e25f9230-0227-4e1a-baf9-e2156d875936",
       "type": "MultipleChoice",
-      "words": [
+      "multipleChoiceWords": [
         { "姐夫": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
         { "妹夫": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
         { "嫂子": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
@@ -27,7 +28,7 @@
     {
       "id": "cd232c1e-48df-408c-b975-eaf83d036079",
       "type": "Matching",
-      "words": [
+      "matchingWords": [
         { "姐夫": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
         { "妹夫": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
         { "嫂子": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
@@ -42,74 +43,82 @@
     {
       "id": "89d2e517-5e19-4ee5-9261-8ebc59887d55",
       "type": "Explanation",
-      "explanation": [
-        { "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
-        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-        { "丈夫": "76004162-7f5b-4e28-bda5-bbcb39be8165" }
-      ],
-      "explanationTargets": {
-        "validOption": { "姐夫": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
-        "invalidOptions": [
-          { "妹夫": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
-          { "嫂子": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
-          { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" }
-        ]
-      },
-      "audio": "audio/姐姐的丈夫.mp3"
+      "explanationSpec": {
+        "explanation": [
+          { "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
+          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+          { "丈夫": "76004162-7f5b-4e28-bda5-bbcb39be8165" }
+        ],
+        "explanationTargets": {
+          "validOption": { "姐夫": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+          "invalidOptions": [
+            { "妹夫": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+            { "嫂子": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
+            { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" }
+          ]
+        },
+        "audio": "audio/姐姐的丈夫.mp3"
+      }
     },
     {
       "id": "c68eba35-041a-44a6-b2c4-043aeb906722",
       "type": "Explanation",
-      "explanation": [
-        { "妹妹": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
-        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-        { "丈夫": "76004162-7f5b-4e28-bda5-bbcb39be8165" }
-      ],
-      "explanationTargets": {
-        "validOption": { "妹夫": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
-        "invalidOptions": [
-          { "姐夫": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
-          { "嫂子": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
-          { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" }
-        ]
-      },
-      "audio": "audio/妹妹的丈夫.mp3"
+      "explanationSpec": {
+        "explanation": [
+          { "妹妹": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
+          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+          { "丈夫": "76004162-7f5b-4e28-bda5-bbcb39be8165" }
+        ],
+        "explanationTargets": {
+          "validOption": { "妹夫": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+          "invalidOptions": [
+            { "姐夫": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+            { "嫂子": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
+            { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" }
+          ]
+        },
+        "audio": "audio/妹妹的丈夫.mp3"
+      }
     },
     {
       "id": "52adc65e-26d3-4072-a182-362e447a3cbb",
       "type": "Explanation",
-      "explanation": [
-        { "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754" },
-        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-        { "妻子": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" }
-      ],
-      "explanationTargets": {
-        "validOption": { "嫂子": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
-        "invalidOptions": [
-          { "姐夫": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
-          { "妹夫": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
-          { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" }
-        ]
-      },
-      "audio": "audio/哥哥的妻子.mp3"
+      "explanationSpec": {
+        "explanation": [
+          { "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754" },
+          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+          { "妻子": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" }
+        ],
+        "explanationTargets": {
+          "validOption": { "嫂子": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
+          "invalidOptions": [
+            { "姐夫": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+            { "妹夫": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+            { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" }
+          ]
+        },
+        "audio": "audio/哥哥的妻子.mp3"
+      }
     },
     {
       "id": "dd8a8457-3739-4ae7-869d-2e829c3242b4",
       "type": "Explanation",
-      "explanation": [
-        { "弟弟": "802939da-7ac0-409c-bfb2-b0d6f81e2f56" },
-        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-        { "妻子": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" }
-      ],
-      "explanationTargets": {
-        "validOption": { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" },
-        "invalidOptions": [
-          { "姐夫": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
-          { "妹夫": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
-          { "嫂子": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" }
-        ]
-      },
-      "audio": "audio/弟弟的妻子.mp3"
+      "explanationSpec": {
+        "explanation": [
+          { "弟弟": "802939da-7ac0-409c-bfb2-b0d6f81e2f56" },
+          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+          { "妻子": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" }
+        ],
+        "explanationTargets": {
+          "validOption": { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" },
+          "invalidOptions": [
+            { "姐夫": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+            { "妹夫": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+            { "嫂子": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" }
+          ]
+        },
+        "audio": "audio/弟弟的妻子.mp3"
+      }
     }
   ]
 }

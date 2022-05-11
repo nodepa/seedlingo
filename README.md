@@ -54,9 +54,9 @@ Current exercise types are:
 - multiple-choice explanation-to-text
 - 3-by-3 explanation-to-text matching
 - cloze multiple-choice
+- text comprehension
 
-Developing cloze matching and text comprehension exercises
-are the next priorities.
+Developing a content editor is high on the list of priorities.
 
 Seedling was originally developed by idea of - and for the benefit of -
 [Li Ai Education](https://liaieducation.com),
@@ -92,7 +92,7 @@ cd seedling/app
 If you do not have NVM installed,
 install Node.js according to your preference,
 but *use the version specified in the project's `.nvmrc` file*.
-If you do have NVM installed, these commands will use the `.nvmrc` version:
+If you *do* have NVM installed, these commands will use the `.nvmrc` version:
 
 ```sh
 nvm install
@@ -108,7 +108,7 @@ npm install
 #### Start the app in local demo
 
 ```sh
-npm start   # Then visit http://localhost:8080 in your web browser
+npm start   # Then visit http://localhost:4173 in your web browser
 ```
 
 #### Run full test suite
@@ -121,15 +121,15 @@ This is a command that combines the scripts for
 - test:e2e
 
 ```sh
-npm run verify
+npm test
 ```
 
 ### Misc
 
 Play around with your own content
 by replacing the `content/` folder (parallel to the `app/` folder)
-with your own.
-See the [Seedling documentation](https://globalseedling.com/get-started/get-started.html)
+with your own content.
+See the [Seedling documentation](https://globalseedling.com/content/content.html)
 about formats.
 
 ## Community

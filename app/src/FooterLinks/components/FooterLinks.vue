@@ -14,7 +14,7 @@ import { IonButton, IonCol, IonFooter, IonGrid, IonRow } from '@ionic/vue';
       </ion-row>
       <ion-row class="ion-justify-content-center">
         <ion-col size="auto" class="ion-text-center">
-          <p>&copy; 2019-22</p>
+          <p>&copy; 2019-23</p>
           <p>
             <a target="_blank" href="https://liaieducation.com"
               >Li Ai Education
@@ -28,6 +28,10 @@ import { IonButton, IonCol, IonFooter, IonGrid, IonRow } from '@ionic/vue';
 </template>
 
 <style scoped>
+ion-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
 p {
   margin-block-start: 0.5rem;
   margin-block-end: 0.5rem;

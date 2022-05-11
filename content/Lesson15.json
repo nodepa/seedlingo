@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.1.0",
+  "formatVersion": "1.2.0",
   "id": "3b618f1d-fb6b-4ee8-a762-b03b4e408f93",
   "lessonIndex": 15,
   "multipleChoiceCount": 18,
@@ -7,12 +7,13 @@
   "explanationCount": 0,
   "singleClozeCount": 0,
   "multiClozeCount": 0,
+  "comprehensionCount": 0,
   "wordsExercisedCount": 18,
   "exercises": [
     {
       "id": "4f718e6b-5ece-49c3-86c5-c9b6b21340cf",
       "type": "MultipleChoice",
-      "words": [
+      "multipleChoiceWords": [
         { "上班": "efeebf93-9617-4813-9a64-eac66771a4e0" },
         { "下班": "e9eaeaf5-b02d-4990-878a-c7ac04797ae2" },
         { "点": "8d0b743e-25cc-40d2-b03d-a3164021f2ee" },
@@ -36,7 +37,7 @@
     {
       "id": "430e21bf-cc70-4e2c-bbe3-4796fbe078c2",
       "type": "Matching",
-      "words": [
+      "matchingWords": [
         { "上班": "efeebf93-9617-4813-9a64-eac66771a4e0" },
         { "下班": "e9eaeaf5-b02d-4990-878a-c7ac04797ae2" },
         { "点": "8d0b743e-25cc-40d2-b03d-a3164021f2ee" },

@@ -1,7 +1,7 @@
 ---
 ---
 
-# Seedling's architecture
+# Architecture
 
 Seedling is built using the [VueJS](https://vuejs.org) web framework
 to build a client-side single page application (SPA)

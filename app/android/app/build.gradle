@@ -6,8 +6,8 @@ android {
         applicationId "org.nodepa.seedling"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 7
-        versionName "0.95.0"
+        versionCode 12
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -18,7 +18,7 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
 		def debug = variant.buildType.name == 'debug' ? '.DEBUG' : ''
-		output.outputFileName = 'seedling_v' + defaultConfig.versionName + '_' + defaultConfig.versionCode + debug + '.usig.apk'
+		output.outputFileName = 'seedling_v' + defaultConfig.versionName + '_' + defaultConfig.versionCode + debug + '.unsigned.apk'
         }
     }
     buildTypes {

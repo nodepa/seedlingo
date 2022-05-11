@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.1.0",
+  "formatVersion": "1.2.0",
   "id": "8feb3eec-b30b-46ec-9383-7eea0d3800ae",
   "lessonIndex": 13,
   "multipleChoiceCount": 24,
@@ -7,12 +7,13 @@
   "explanationCount": 0,
   "singleClozeCount": 0,
   "multiClozeCount": 0,
+  "comprehensionCount": 0,
   "wordsExercisedCount": 24,
   "exercises": [
     {
       "id": "6f898149-3067-4c1a-8e05-23055922b99f",
       "type": "MultipleChoice",
-      "words": [
+      "multipleChoiceWords": [
         { "是": "bc1ec01c-0fde-4e63-82e6-c0f78d01529e" },
         { "岁": "a1e806d9-f9bd-48fe-95eb-293d6753d421" },
         { "今年": "56c1f3ad-81ac-495e-b10b-803d5b15ecaf" },
@@ -42,7 +43,7 @@
     {
       "id": "3a5e3b69-7b1d-40c7-bc17-2bcde5f0ea6c",
       "type": "Matching",
-      "words": [
+      "matchingWords": [
         { "是": "bc1ec01c-0fde-4e63-82e6-c0f78d01529e" },
         { "岁": "a1e806d9-f9bd-48fe-95eb-293d6753d421" },
         { "今年": "56c1f3ad-81ac-495e-b10b-803d5b15ecaf" },

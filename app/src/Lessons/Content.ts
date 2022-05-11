@@ -101,19 +101,28 @@ export default class Content {
     const words: Set<WordSpec> = new Set();
     lessonSpec.exercises.forEach((exercise) => {
       if (['MultipleChoice', 'Matching'].includes(exercise.type)) {
-        if (exercise.words) {
-          exercise.words.forEach((wordRef) => {
+        if (exercise.multipleChoiceWords) {
+          exercise.multipleChoiceWords.forEach((wordRef) => {
+            words.add(this.getWord(wordRef));
+          });
+        }
+        if (exercise.matchingWords) {
+          exercise.matchingWords.forEach((wordRef) => {
             words.add(this.getWord(wordRef));
           });
         }
       }
       if (exercise.type === 'Explanation') {
-        if (exercise.explanationTargets) {
-          words.add(this.getWord(exercise.explanationTargets.validOption));
+        if (exercise.explanationSpec?.explanationTargets) {
+          words.add(
+            this.getWord(
+              exercise.explanationSpec.explanationTargets.validOption,
+            ),
+          );
         }
       }
-      if (exercise.type === 'SingleCloze' && exercise.singleClozeText) {
-        exercise.singleClozeText
+      if (exercise.type === 'SingleCloze' && exercise.singleClozeSpec?.text) {
+        exercise.singleClozeSpec.text
           .filter((clozeItem): clozeItem is Blank => !!clozeItem.validOptions)
           .forEach((clozeItem) => {
             clozeItem.validOptions.forEach((wordRefOrRefs) => {
@@ -129,8 +138,8 @@ export default class Content {
             });
           });
       }
-      if (exercise.type === 'MultiCloze' && exercise.multiClozeText) {
-        exercise.multiClozeText
+      if (exercise.type === 'MultiCloze' && exercise.multiClozeSpec?.text) {
+        exercise.multiClozeSpec.text
           .filter((clozeItem): clozeItem is Blank => !!clozeItem.validOptions)
           .forEach((clozeItem) => {
             clozeItem.validOptions.forEach((wordRefOrRefs) => {
@@ -146,6 +155,15 @@ export default class Content {
             });
           });
       }
+      // TODO Revisit to evaluate whether to re-add new words review for comprehension exercises
+      // if (exercise.type === 'Comprehension' && exercise.comprehensionSpec) {
+      //   exercise.comprehensionSpec.multipleChoiceWords?.forEach((wordRef) => {
+      //     words.add(this.getWord(wordRef));
+      //   });
+      //   exercise.comprehensionSpec.matchingWords?.forEach((wordRef) => {
+      //     words.add(this.getWord(wordRef));
+      //   });
+      // }
     });
     return [...words];
   }
@@ -167,8 +185,7 @@ export default class Content {
   }
 
   public static getIcon(key: string): string {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const drawPath = (mdiIcons as any)[key];
+    const drawPath = (mdiIcons as { [key: string]: string })[key];
     return drawPath
       ? `data:image/svg+xml,<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="${drawPath}"/></svg>`
       : '';

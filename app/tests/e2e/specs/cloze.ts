@@ -6,7 +6,7 @@ describe('马丽 interacts with the "cloze" system', () => {
   const continueButton = '[data-test="continue-button"]';
   const sentenceCard = '[data-test="sentence-card"]';
   const sentenceBlank = '[data-test="sentence-word-3"]';
-  const successColor = 'rgb(0, 150, 136)';
+  const transparentBackground = 'rgba(0, 0, 0, 0)';
 
   beforeEach(() => {
     // Avoid dealing with "instructions explainer" side effects.
@@ -68,7 +68,7 @@ describe('马丽 interacts with the "cloze" system', () => {
         .contains('五减二');
       cy.get(sentenceCard)
         .should('be.visible')
-        .contains('我有个弟弟，不过没有别的兄弟姐妹。');
+        .contains('我有 个弟弟，不过没有别的兄弟姐妹。');
       cy.get(continueButton).should('not.exist');
 
       // *****
@@ -108,7 +108,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.get(sentenceBlank).should(
         'have.css',
         'background-color',
-        successColor,
+        transparentBackground,
       );
       cy.get('@option1').should('have.class', 'button-disabled');
       cy.get('@option3').should('have.class', 'button-disabled');
@@ -184,7 +184,7 @@ describe('马丽 interacts with the "cloze" system', () => {
         .contains('有');
       cy.get(sentenceCard)
         .should('be.visible')
-        .contains('我个弟弟，不过别的。');
+        .contains('我 个弟弟，不过 别的 。');
       cy.get(continueButton).should('not.exist');
 
       // *****
@@ -249,7 +249,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log("-- hears the word's audio");
       cy.get('@option4').click().should('have.class', 'button-disabled');
       cy.get('[data-test="sentence-word-2"]')
-        .should('have.css', 'background-color', successColor)
+        .should('have.css', 'background-color', transparentBackground)
         .contains('有');
 
       // 1 audio played
@@ -274,7 +274,7 @@ describe('马丽 interacts with the "cloze" system', () => {
 
       // non-blank word
       cy.get('[data-test="sentence-word-1"]')
-        .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
+        .should('have.css', 'background-color', transparentBackground)
         .contains('我');
       cy.get('[data-test="sentence-word-1"]').click();
       // 1 audio played
@@ -289,7 +289,7 @@ describe('马丽 interacts with the "cloze" system', () => {
 
       // revealed blank-word
       cy.get('[data-test="sentence-word-2"]')
-        .should('have.css', 'background-color', successColor)
+        .should('have.css', 'background-color', transparentBackground)
         .contains('有')
         .click();
       // 1 audio played
@@ -304,7 +304,7 @@ describe('马丽 interacts with the "cloze" system', () => {
 
       // unrevealed blank plays no audio until revealed
       cy.get('[data-test="sentence-word-3"]')
-        .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
+        .should('have.css', 'background-color', transparentBackground)
         .should('not.contain', '两')
         .click();
       // 0 audio played
@@ -318,7 +318,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.get('[data-test="sentence-word-5"]').should(
         'have.css',
         'background-color',
-        'rgba(0, 0, 0, 0)',
+        transparentBackground,
       );
       cy.get('[data-test="sentence-word-5-punctuation"]')
         .contains('，')
@@ -342,12 +342,12 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log("-- hears the word's audio");
 
       cy.get('[data-test="sentence-word-3"]')
-        .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
+        .should('have.css', 'background-color', transparentBackground)
         .should('not.contain', '两');
       cy.get('@option2').click().should('have.class', 'button-disabled');
 
       cy.get('[data-test="sentence-word-3"]')
-        .should('have.css', 'background-color', successColor)
+        .should('have.css', 'background-color', transparentBackground)
         .should('contain', '两');
       // 1 audio played
       cy.get('@audio.play').should('have.callCount', 1);
@@ -370,11 +370,11 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log("-- hears the word's audio");
 
       cy.get('[data-test="sentence-word-8"]')
-        .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
+        .should('have.css', 'background-color', transparentBackground)
         .should('not.contain', '没有');
       cy.get('@option3').click().should('have.class', 'button-disabled');
       cy.get('[data-test="sentence-word-8"]')
-        .should('have.css', 'background-color', successColor)
+        .should('have.css', 'background-color', transparentBackground)
         .should('contain', '没有');
 
       // 1 audio played
@@ -397,11 +397,11 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log('-- sees the continue button visible and flashing');
 
       cy.get('[data-test="sentence-word-10"]')
-        .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
+        .should('have.css', 'background-color', transparentBackground)
         .should('not.contain', '兄弟姐妹');
       cy.get('@option1').click().should('have.class', 'button-disabled');
       cy.get('[data-test="sentence-word-10"]')
-        .should('have.css', 'background-color', successColor)
+        .should('have.css', 'background-color', transparentBackground)
         .should('contain', '兄弟姐妹');
       cy.get(continueButton).should('be.visible');
 

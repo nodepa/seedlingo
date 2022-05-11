@@ -68,7 +68,7 @@ This command combines the scripts for:
 - test:e2e (i.e. end-to-end)
 
 ```sh
-npm run test
+npm test
 ```
 
 ## Misc

@@ -43,6 +43,6 @@ describe('Content.ts', () => {
     expect(lessons[0].explanationCount).toBe(2);
     expect(lessons[0].singleClozeCount).toBe(2);
     expect(lessons[0].multiClozeCount).toBe(2);
-    expect(lessons[0].exercises.length).toBe(8);
+    expect(lessons[0].exercises.length).toBe(9);
   });
 });

@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.1.0",
+  "formatVersion": "1.2.0",
   "id": "981252ba-3fba-465f-a204-3517f336dbcb",
   "lessonIndex": 3,
   "multipleChoiceCount": 10,
@@ -7,12 +7,13 @@
   "explanationCount": 0,
   "singleClozeCount": 0,
   "multiClozeCount": 0,
+  "comprehensionCount": 0,
   "wordsExercisedCount": 10,
   "exercises": [
     {
       "id": "0477935f-158f-4ac1-a646-299f7e1038b8",
       "type": "MultipleChoice",
-      "words": [
+      "multipleChoiceWords": [
         { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
         { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
         { "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
@@ -28,7 +29,7 @@
     {
       "id": "83e49a65-bc85-4f76-a4e8-6773f4629f56",
       "type": "Matching",
-      "words": [
+      "matchingWords": [
         { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
         { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
         { "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },

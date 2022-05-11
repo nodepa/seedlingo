@@ -1,35 +1,47 @@
 {
-  "wordCount": 29,
+  "wordCount": 30,
   "words": {
     "a681b683-d909-4f5b-834e-8347633df4b1": {
       "word": "数字",
       "audio": "audio/数字.mp3",
-      "symbol": ["mdiNumeric"]
+      "symbol": [
+        "mdiNumeric"
+      ]
     },
     "8d2a8043-7eaa-4aee-927d-a42313036970": {
       "word": "零",
       "audio": "audio/零.mp3",
-      "symbol": ["mdiNumeric0Circle"]
+      "symbol": [
+        "mdiNumeric0Circle"
+      ]
     },
     "1d936b6b-e44c-466c-8d04-ab52643670c2": {
       "word": "一",
       "audio": "audio/一.mp3",
-      "symbol": ["mdiNumeric1Circle"]
+      "symbol": [
+        "mdiNumeric1Circle"
+      ]
     },
     "698cced9-2080-4226-87f0-07837add7938": {
       "word": "二",
       "audio": "audio/二.mp3",
-      "symbol": ["mdiNumeric2Circle"]
+      "symbol": [
+        "mdiNumeric2Circle"
+      ]
     },
     "5dbf7670-f66d-46e4-b971-8f8d6de95a5c": {
       "word": "两",
       "audio": "audio/两.mp3",
-      "symbol": ["mdiNumeric2CircleOutline"]
+      "symbol": [
+        "mdiNumeric2CircleOutline"
+      ]
     },
     "da473305-758c-40c0-a61b-d9de0aefb5a4": {
       "word": "四",
       "audio": "audio/四.mp3",
-      "symbol": ["mdiNumeric4Circle"]
+      "symbol": [
+        "mdiNumeric4Circle"
+      ]
     },
     "8da1e3a6-3268-40da-8707-be2a2c902c16": {
       "word": "妈妈",
@@ -62,6 +74,10 @@
     "c53add23-aba4-42f5-9fbb-d6a6d1d8882c": {
       "word": "他",
       "audio": "audio/他.mp3"
+    },
+    "de11e0d7-2ac0-4f35-966d-abb0d820a3cb": {
+      "word": "她",
+      "audio": "audio/她.mp3"
     },
     "bc1ec01c-0fde-4e63-82e6-c0f78d01529e": {
       "word": "是",
@@ -122,6 +138,10 @@
     "b6ebbe69-9834-41f3-a353-4a9142d599b3": {
       "word": "外甥女",
       "audio": "audio/外甥女.mp3"
+    },
+    "54ff3fa1-141e-4620-861d-335376b3f8f2": {
+      "word": "外甥",
+      "audio": "audio/外甥.mp3"
     }
   }
 }

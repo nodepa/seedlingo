@@ -1,5 +1,7 @@
 import { ExerciseAudio } from '../common/types/ExerciseAudioType';
 
+export type MatchingExercise = Array<MatchingItem>;
+
 export interface MatchingItem {
   wordOrIcons: string | Array<string>;
   audio?: ExerciseAudio;

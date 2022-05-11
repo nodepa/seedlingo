@@ -16,7 +16,7 @@ export default defineConfig({
         name: '立爱种字',
         short_name: '种字',
         description: '现代的流动的识字',
-        theme_color: '#ffffff',
+        theme_color: '#1976d2',
         icons: [
           {
             src: 'logo/manifest-icon-192.png',

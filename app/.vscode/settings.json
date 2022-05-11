@@ -2,6 +2,9 @@
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
@@ -79,6 +82,7 @@
     "rspec",
     "runningallservices",
     "scripthost",
+    "seilte",
     "selfssl",
     "servebuild",
     "sidekiq",
@@ -88,6 +92,7 @@
     "svgs",
     "tada",
     "tesc",
+    "tresko",
     "unsetting",
     "userid",
     "vite",
@@ -105,9 +110,6 @@
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
-  "editor.wordWrap": "wordWrapColumn",
-  "editor.wordWrapColumn": 80,
-  "eslint.alwaysShowStatus": true,
   "eslint.format.enable": true,
   "eslint.packageManager": "npm",
   "eslint.validate": [
@@ -115,7 +117,6 @@
     "typescript",
     "vue"
   ],
-  "javascript.validate.enable": false,
   "markdown.extension.list.indentationSize": "inherit",
   "markdown.extension.toc.levels": "1..2",
   "markdownlint.config": {
@@ -125,6 +126,5 @@
     "MD036": false, //no-emphasis-as-heading
     "MD041": false //first-line-heading
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.validate.enable": false,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
