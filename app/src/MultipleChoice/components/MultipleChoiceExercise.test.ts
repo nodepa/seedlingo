@@ -39,6 +39,7 @@ describe('MultipleChoiceExercise', () => {
       expect(wrapper.vm.exerciseProp.itemUnderTestAudio).toBeDefined();
       expect(wrapper.vm.exerciseProp.itemUnderTestAudioPlaying).toBe(false);
       expect(wrapper.vm.exerciseProp.iconToMatch).toBeDefined();
+      expect(wrapper.vm.exerciseProp.pictureToMatch).toBeUndefined();
       expect(wrapper.vm.exerciseProp.explanationToMatch).toBeUndefined();
       expect(wrapper.vm.exerciseProp.options.length).toBe(4);
     });

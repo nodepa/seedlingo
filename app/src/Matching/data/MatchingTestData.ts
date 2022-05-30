@@ -3,6 +3,7 @@ import 术 from '@/test-support/audio/characters/术.mp3.audio';
 import 二 from '@/test-support/audio/characters/二.mp3.audio';
 import 三 from '@/test-support/audio/characters/三.mp3.audio';
 import 四 from '@/test-support/audio/characters/四.mp3.audio';
+import pic from '@/test-support/pics/test-number2.png';
 import ExerciseProvider from '@/Lessons/ExerciseProvider';
 import { MatchingItem } from '../MatchingTypes';
 
@@ -11,9 +12,10 @@ export default function MatchingTestData(): Array<MatchingItem> {
     {
       wordOrIcons: [Content.getIcon('mdiNumeric2Circle')],
       audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${二}`),
+      picture: pic,
       match: 2,
       isWord: false,
-      isIcon: true,
+      isIcon: false, //true,
       matched: false,
       selected: false,
       buzzing: false,

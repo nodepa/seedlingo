@@ -85,6 +85,14 @@ onMounted(() => {
                     :icon="Content.getIcon(icon)"
                   />
                 </template>
+                <template v-else-if="word.picture && word.picture.length > 0">
+                  <img
+                    :src="Content.getPicPath(word.picture)"
+                    width="200"
+                    height="128"
+                    style="object-fit: contain"
+                  />
+                </template>
               </ion-card-title>
             </ion-card-header>
             <ion-card-content>

@@ -8,6 +8,7 @@ export default function ExplanationMultipleChoiceTestData(): MultipleChoiceExerc
     iconToMatch: undefined,
     explanationToMatch: "My parent's brother",
     // explanationToMatch: '妈妈的妈妈',
+    pictureToMatch: undefined,
     options: [
       {
         word: 'Uncle',

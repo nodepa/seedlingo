@@ -11,14 +11,17 @@ import { LessonsMeta } from './LessonsMetaType';
 import * as mdiIcons from '@mdi/js';
 
 let mp3Base64Sources: __WebpackModuleApi.RequireContext,
-  jsonSources: __WebpackModuleApi.RequireContext;
+  jsonSources: __WebpackModuleApi.RequireContext,
+  picSources: __WebpackModuleApi.RequireContext;
 if (process.env.NODE_ENV === 'test') {
   // only unit tests, e2e tests run in production mode
   mp3Base64Sources = require.context('../test-support', true, /\.mp3.audio/);
   jsonSources = require.context('../test-support', true, /\.json$/);
+  picSources = require.context('../test-support', true, /\.jpg|jpeg|png|gif$/);
 } else {
   mp3Base64Sources = require.context('../../../content', true, /\.mp3.audio$/);
   jsonSources = require.context('../../../content', true, /\.json$/);
+  picSources = require.context('../../../content', true, /\.jpg|jpeg|png|gif$/);
 }
 
 const prefix = './';
@@ -125,6 +128,10 @@ export default class Content {
     return `data:audio/mpeg;base64,${mp3Base64Sources(
       `${prefix}${path}.audio`,
     )}`;
+  }
+
+  public static getPicPath(path: string): string {
+    return picSources(`${prefix}${path}`);
   }
 
   public static getInstructionsAudio(

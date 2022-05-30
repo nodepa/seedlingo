@@ -381,6 +381,9 @@ export default class ExerciseProvider {
         wordSpec.symbol.forEach((symbol) => {
           (symPart.wordOrIcons as Array<string>).push(Content.getIcon(symbol));
         });
+      } else if (wordSpec.picture) {
+        symPart.picture = Content.getPicPath(wordSpec.picture);
+        symPart.isIcon = false;
       }
 
       if (wordSpec.audio) {
@@ -831,6 +834,10 @@ export default class ExerciseProvider {
           Content.getIcon(symbol),
         );
       });
+    } else if (correctItem.picture && correctItem.picture.length > 0) {
+      multipleChoiceExercise.pictureToMatch = Content.getPicPath(
+        correctItem.picture,
+      );
     } else {
       multipleChoiceExercise.iconToMatch = [
         Content.getIcon('mdiCellphoneWireless'),
