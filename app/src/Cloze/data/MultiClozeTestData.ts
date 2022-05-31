@@ -85,7 +85,6 @@ export default function MultiClozeTestData(): ClozeExercise {
         word: '兄弟姐妹',
         disabled: false,
         buzzing: false,
-        color: 'primary',
         audio: ExerciseProvider.createAudio(
           `data:audio/mpeg;base64,${placeholderAudio}`,
         ),
@@ -94,14 +93,12 @@ export default function MultiClozeTestData(): ClozeExercise {
         word: '两',
         disabled: false,
         buzzing: false,
-        color: 'primary',
         audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${两}`),
       },
       {
         word: '没有',
         disabled: false,
         buzzing: false,
-        color: 'primary',
         audio: ExerciseProvider.createAudio(
           `data:audio/mpeg;base64,${placeholderAudio}`,
         ),
@@ -110,7 +107,6 @@ export default function MultiClozeTestData(): ClozeExercise {
         word: '有',
         disabled: false,
         buzzing: false,
-        color: 'primary',
         audio: ExerciseProvider.createAudio(
           `data:audio/mpeg;base64,${placeholderAudio}`,
         ),

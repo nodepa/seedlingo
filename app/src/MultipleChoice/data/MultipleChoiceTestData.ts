@@ -9,10 +9,14 @@ export default function MultipleChoiceTestData(): MultipleChoiceExercise {
   return {
     itemUnderTestAudio: new Audio(`data:audio/mpeg;base64,${二}`),
     itemUnderTestAudioPlaying: false,
-    iconToMatch: [Content.getIcon('mdiCellphoneWireless')],
+    iconToMatch: [
+      Content.getIcon('mdiNumeric3'),
+      Content.getIcon('mdiPlus'),
+      Content.getIcon('mdiNumeric4'),
+    ],
     options: [
       {
-        word: '三',
+        word: '3',
         audio: new Audio(`data:audio/mpeg;base64,${三}`),
         correct: false,
         disabled: false,
@@ -20,7 +24,7 @@ export default function MultipleChoiceTestData(): MultipleChoiceExercise {
         buzzing: false,
       },
       {
-        word: '二',
+        word: '2',
         audio: new Audio(`data:audio/mpeg;base64,${二}`),
         correct: true,
         disabled: false,
@@ -28,7 +32,7 @@ export default function MultipleChoiceTestData(): MultipleChoiceExercise {
         buzzing: false,
       },
       {
-        word: '四',
+        word: '4',
         audio: new Audio(`data:audio/mpeg;base64,${四}`),
         correct: false,
         disabled: false,
@@ -36,7 +40,7 @@ export default function MultipleChoiceTestData(): MultipleChoiceExercise {
         buzzing: false,
       },
       {
-        word: '一',
+        word: '1',
         audio: new Audio(`data:audio/mpeg;base64,${一}`),
         correct: false,
         disabled: false,

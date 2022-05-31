@@ -179,8 +179,8 @@ onUpdated(() => {
           >
             <span
               :style="`font-size: ${
-                3 - exerciseProp.explanationToMatch.length * 0.15
-              }rem`"
+                2.7 - exerciseProp.explanationToMatch.length * 0.05
+              }rem; white-space: break-spaces;`"
             >
               {{ exerciseProp.explanationToMatch }}
             </span>
@@ -203,7 +203,7 @@ onUpdated(() => {
           :color="option.color || 'primary'"
           style="width: 100%; height: 100%; padding: 15px; margin: 0px"
         >
-          <span :style="`font-size: ${4 - option.word.length * 0.6}rem;`">
+          <span :style="`font-size: ${4 - option.word.length * 0.4}rem;`">
             {{ option.word }}
           </span>
         </ExerciseButton>
