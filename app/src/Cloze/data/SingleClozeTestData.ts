@@ -125,7 +125,6 @@ export default function SingleClozeTestData(): ClozeExercise {
       {
         audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${术}`),
         buzzing: false,
-        color: 'primary',
         correct: false,
         disabled: false,
         word: '术',
@@ -133,7 +132,6 @@ export default function SingleClozeTestData(): ClozeExercise {
       {
         audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${两}`),
         buzzing: false,
-        color: 'primary',
         correct: true,
         disabled: false,
         word: '两',
@@ -141,7 +139,6 @@ export default function SingleClozeTestData(): ClozeExercise {
       {
         audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${二}`),
         buzzing: false,
-        color: 'primary',
         correct: false,
         disabled: false,
         word: '二',
@@ -149,7 +146,6 @@ export default function SingleClozeTestData(): ClozeExercise {
       {
         audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${五减二}`),
         buzzing: false,
-        color: 'primary',
         correct: false,
         disabled: false,
         word: '五减二',

@@ -46,7 +46,7 @@ const store = useStore();
 const toggleInstructionsButtonAudio = ref<HTMLAudioElement | null>(null);
 const toggleInstructionsMode = (): void => {
   if (props.showInstructionsExplainer) {
-    store.dispatch('setShowInstructionsExplainer', false);
+    store.dispatch('hideInstructionsExplainer');
 
     // Add <audio> element to Instructions.AudioCollection to trigger cancelling whenever other instructions start playing
     const audioEl = toggleInstructionsButtonAudio.value as HTMLAudioElement;

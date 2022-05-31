@@ -237,7 +237,7 @@ function getSpacing(itemCount: number, index: number): string {
             <p
               :style="`font-size: ${
                 3 - option.wordOrIcons.length * 0.3
-              }rem; margin: 0px`"
+              }rem; margin: 0px; white-space: break-spaces;`"
             >
               {{ option.wordOrIcons }}
             </p>

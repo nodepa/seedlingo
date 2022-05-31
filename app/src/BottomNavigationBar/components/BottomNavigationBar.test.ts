@@ -93,6 +93,7 @@ describe('BottomNavigationBar.vue', () => {
   let wrapper: VueWrapper<any>;
 
   beforeEach(() => {
+    localStorage.clear();
     rootStore.dispatch('resetState');
     wrapper = mountFunction();
   });

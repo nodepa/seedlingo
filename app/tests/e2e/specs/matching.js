@@ -334,14 +334,14 @@ describe('马丽 interacts with the "matching" system', () => {
 describe('马丽 interacts with the "explanation matching" system', () => {
   it(
     'Displays the matching screen with ' +
-      '2 "word" cards and 2 "explanation" cards',
+      '3 "word" cards and 3 "explanation" cards',
     () => {
       // *****
       // * 1 *
       // *****
       cy.log('**1. 马丽 sees**');
-      cy.log('-- 2 *explanation* buttons');
-      cy.log('-- 2 corresponding *word* buttons');
+      cy.log('-- 3 *explanation* buttons');
+      cy.log('-- 3 corresponding *word* buttons');
       cy.visit('/lesson/explanation-matching-test', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
@@ -365,14 +365,16 @@ describe('马丽 interacts with the "explanation matching" system', () => {
       cy.get(instructionsExplainerComponent).should('not.exist');
 
       // Expected test-data:
-      // 0: option1 五减二
+      // 0: option1 My parent's brother
       // 1: option2 四
-      // 2: option3 三
+      // 2: option3 Uncle
       // 3: option4 二加二
+      // 4: option5 8*3
+      // 5: option6 24
       cy.get('[data-test="option-button-1"]')
         .as('option1')
         .should('be.visible')
-        .should('contain', '五减二');
+        .should('contain', "My parent's brother");
       cy.get('[data-test="option-button-2"]')
         .as('option2')
         .should('be.visible')
@@ -380,11 +382,19 @@ describe('马丽 interacts with the "explanation matching" system', () => {
       cy.get('[data-test="option-button-3"]')
         .as('option3')
         .should('be.visible')
-        .should('contain', '三');
+        .should('contain', 'Uncle');
       cy.get('[data-test="option-button-4"]')
         .as('option4')
         .should('be.visible')
         .should('contain', '二加二');
+      cy.get('[data-test="option-button-5"]')
+        .as('option4')
+        .should('be.visible')
+        .should('contain', '8*3');
+      cy.get('[data-test="option-button-6"]')
+        .as('option4')
+        .should('be.visible')
+        .should('contain', '24');
       // 0 item audio played
       cy.get('@audio.play').should('have.callCount', 0);
       cy.get('@audio.play').invoke('resetHistory');

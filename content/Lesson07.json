@@ -2,12 +2,12 @@
   "formatVersion": "1.1.0",
   "id": "783fe6ed-cfde-4d31-9eb6-b7bbc04e2713",
   "lessonIndex": 7,
-  "multipleChoiceCount": 7,
-  "matchingCount": 7,
+  "multipleChoiceCount": 9,
+  "matchingCount": 9,
   "explanationCount": 4,
   "singleClozeCount": 0,
   "multiClozeCount": 0,
-  "wordsExercisedCount": 7,
+  "wordsExercisedCount": 9,
   "exercises": [
     {
       "id": "e25f9230-0227-4e1a-baf9-e2156d875936",
@@ -19,7 +19,9 @@
         { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" },
         { "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387" },
         { "女儿": "34d92533-9c8c-4469-b050-2638f2b5f4d5" },
-        { "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c" }
+        { "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c" },
+        { "有": "35389a5a-4493-44e5-a8ae-dc0a30c98dbf" },
+        { "个": "90f79865-ac90-4644-9a8b-88eaad30e979" }
       ]
     },
     {
@@ -32,7 +34,9 @@
         { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" },
         { "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387" },
         { "女儿": "34d92533-9c8c-4469-b050-2638f2b5f4d5" },
-        { "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c" }
+        { "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c" },
+        { "有": "35389a5a-4493-44e5-a8ae-dc0a30c98dbf" },
+        { "个": "90f79865-ac90-4644-9a8b-88eaad30e979" }
       ]
     },
     {

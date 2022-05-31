@@ -1,6 +1,4 @@
-import 一 from '@/test-support/audio/characters/一.mp3.audio';
-import 三 from '@/test-support/audio/characters/三.mp3.audio';
-import 四 from '@/test-support/audio/characters/四.mp3.audio';
+import placeholder from '@/test-support/audio/placeholder-audio.mp3.audio';
 import { MultipleChoiceExercise } from '../MultipleChoiceTypes';
 
 export default function ExplanationMultipleChoiceTestData(): MultipleChoiceExercise {
@@ -8,28 +6,41 @@ export default function ExplanationMultipleChoiceTestData(): MultipleChoiceExerc
     itemUnderTestAudio: undefined,
     itemUnderTestAudioPlaying: undefined,
     iconToMatch: undefined,
-    explanationToMatch: '一加二',
+    explanationToMatch: "My parent's brother",
+    // explanationToMatch: '妈妈的妈妈',
     options: [
       {
-        word: '一',
-        audio: new Audio(`data:audio/mpeg;base64,${一}`),
-        correct: false,
-        disabled: false,
-        playing: false,
-        buzzing: false,
-      },
-      {
-        word: '四',
-        audio: new Audio(`data:audio/mpeg;base64,${四}`),
-        correct: false,
-        disabled: false,
-        playing: false,
-        buzzing: false,
-      },
-      {
-        word: '三',
-        audio: new Audio(`data:audio/mpeg;base64,${三}`),
+        word: 'Uncle',
+        // word: '姥姥',
+        audio: new Audio(`data:audio/mpeg;base64,${placeholder}`),
         correct: true,
+        disabled: false,
+        playing: false,
+        buzzing: false,
+      },
+      {
+        word: 'Cousin',
+        // word: '姥爷',
+        audio: new Audio(`data:audio/mpeg;base64,${placeholder}`),
+        correct: false,
+        disabled: false,
+        playing: false,
+        buzzing: false,
+      },
+      {
+        word: 'Aunt',
+        // word: '阿姨',
+        audio: new Audio(`data:audio/mpeg;base64,${placeholder}`),
+        correct: false,
+        disabled: false,
+        playing: false,
+        buzzing: false,
+      },
+      {
+        word: 'Grandma',
+        // word: '叔叔',
+        audio: new Audio(`data:audio/mpeg;base64,${placeholder}`),
+        correct: false,
         disabled: false,
         playing: false,
         buzzing: false,
