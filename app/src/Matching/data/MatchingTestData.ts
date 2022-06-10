@@ -3,7 +3,7 @@ import 术 from '@/test-support/audio/characters/术.mp3.audio';
 import 二 from '@/test-support/audio/characters/二.mp3.audio';
 import 三 from '@/test-support/audio/characters/三.mp3.audio';
 import 四 from '@/test-support/audio/characters/四.mp3.audio';
-import pic from '@/test-support/pics/test-number2.png';
+import pic from '@/test-support/pics/两.jpg';
 import ExerciseProvider from '@/Lessons/ExerciseProvider';
 import { MatchingItem } from '../MatchingTypes';
 
