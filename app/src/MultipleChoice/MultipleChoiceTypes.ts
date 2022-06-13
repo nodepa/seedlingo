@@ -2,6 +2,7 @@ export interface MultipleChoiceExercise {
   itemUnderTestAudio?: HTMLMediaElement;
   itemUnderTestAudioPlaying?: boolean;
   iconToMatch?: Array<string>;
+  pictureToMatch?: string;
   explanationToMatch?: string;
   options: Array<MultipleChoiceItem>;
 }

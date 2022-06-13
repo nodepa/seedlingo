@@ -1,19 +1,23 @@
-import Content from '@/Lessons/Content';
+// import Content from '@/Lessons/Content';
 import 一 from '@/test-support/audio/characters/一.mp3.audio';
 import 二 from '@/test-support/audio/characters/二.mp3.audio';
 import 三 from '@/test-support/audio/characters/三.mp3.audio';
 import 四 from '@/test-support/audio/characters/四.mp3.audio';
+import pic from '@/test-support/pics/两.jpg';
 import { MultipleChoiceExercise } from '../MultipleChoiceTypes';
 
 export default function MultipleChoiceTestData(): MultipleChoiceExercise {
   return {
     itemUnderTestAudio: new Audio(`data:audio/mpeg;base64,${二}`),
     itemUnderTestAudioPlaying: false,
-    iconToMatch: [
-      Content.getIcon('mdiNumeric3'),
-      Content.getIcon('mdiPlus'),
-      Content.getIcon('mdiNumeric4'),
-    ],
+    // iconToMatch: [
+    //   Content.getIcon('mdiNumeric1'),
+    //   Content.getIcon('mdiPlus'),
+    //   Content.getIcon('mdiNumeric5'),
+    //   Content.getIcon('mdiMinus'),
+    //   Content.getIcon('mdiNumeric4'),
+    // ],
+    pictureToMatch: pic,
     options: [
       {
         word: '3',

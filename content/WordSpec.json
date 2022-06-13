@@ -25,7 +25,7 @@
     "5dbf7670-f66d-46e4-b971-8f8d6de95a5c": {
       "word": "两",
       "audio": "audio/两.mp3",
-      "symbol": ["mdiNumeric2CircleOutline"]
+      "picture": "pics/两.jpg"
     },
     "84dcd43f-3f86-4be8-a1b0-541ac92133d3": {
       "word": "三",
@@ -190,32 +190,32 @@
     "8da1e3a6-3268-40da-8707-be2a2c902c16": {
       "word": "妈妈",
       "audio": "audio/妈妈.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "picture": "pics/妈妈.jpg"
     },
     "3773c800-4f9b-4951-b7a7-9e0c9861d089": {
       "word": "爸爸",
       "audio": "audio/爸爸.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "picture": "pics/爸爸.jpg"
     },
     "b521f4d2-1084-4f17-af18-1bd6738d23a0": {
       "word": "姐姐",
       "audio": "audio/姐姐.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "picture": "pics/姐姐.jpg"
     },
     "8ee121b4-8522-4e16-91b7-8a2af070efd8": {
       "word": "妹妹",
       "audio": "audio/妹妹.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "picture": "pics/妹妹.jpg"
     },
     "802939da-7ac0-409c-bfb2-b0d6f81e2f56": {
       "word": "弟弟",
       "audio": "audio/弟弟.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "picture": "pics/弟弟.jpg"
     },
     "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754": {
       "word": "哥哥",
       "audio": "audio/哥哥.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "picture": "pics/哥哥.jpg"
     },
     "d63f08dd-f8e6-4b47-940b-8d9d939034a6": {
       "word": "姥姥",

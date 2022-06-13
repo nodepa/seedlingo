@@ -11,7 +11,7 @@
     "oderwat.indent-rainbow",
     "yzhang.markdown-all-in-one",
     "davidanson.vscode-markdownlint",
-    "johnsoncodehk.volar",
+    "Vue.volar"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": [

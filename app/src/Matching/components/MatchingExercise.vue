@@ -233,6 +233,14 @@ function getSpacing(itemCount: number, index: number): string {
               :icon="icon"
             />
           </template>
+          <template v-else-if="option.picture && option.picture.length > 0">
+            <img
+              :src="option.picture"
+              width="120"
+              height="60"
+              style="object-fit: contain"
+            />
+          </template>
           <template v-else>
             <p
               :style="`font-size: ${

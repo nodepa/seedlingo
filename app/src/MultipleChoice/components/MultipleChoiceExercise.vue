@@ -173,6 +173,19 @@ onUpdated(() => {
           </template>
           <template
             v-else-if="
+              exerciseProp.pictureToMatch &&
+              exerciseProp.pictureToMatch.length > 0
+            "
+          >
+            <img
+              :src="exerciseProp.pictureToMatch"
+              width="200"
+              height="128"
+              style="object-fit: contain"
+            />
+          </template>
+          <template
+            v-else-if="
               exerciseProp.explanationToMatch &&
               exerciseProp.explanationToMatch.length > 0
             "
