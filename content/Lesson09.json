@@ -45,8 +45,7 @@
           { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
         ]
       },
-      "audio": "audio/姐姐的孩子.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/姐姐的孩子.mp3"
     },
     {
       "id": "64aeff99-8821-4659-9e24-2b9edbefecac",
@@ -64,8 +63,7 @@
           { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
         ]
       },
-      "audio": "audio/妹妹的女儿.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/妹妹的女儿.mp3"
     },
     {
       "id": "2ec33882-f247-42d3-b84a-ee24f72fe130",
@@ -83,8 +81,7 @@
           { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
         ]
       },
-      "audio": "audio/妹妹的孩子.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/妹妹的孩子.mp3"
     },
     {
       "id": "1ef691db-a4d4-40e0-9dbb-943627b8f99b",
@@ -102,8 +99,7 @@
           { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
         ]
       },
-      "audio": "audio/姐姐的儿子.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/姐姐的儿子.mp3"
     },
     {
       "id": "51b402f3-50a3-4d7c-942b-1a7bd1b71228",
@@ -121,8 +117,7 @@
           { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
         ]
       },
-      "audio": "audio/哥哥的孩子.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/哥哥的孩子.mp3"
     },
     {
       "id": "7d63aafa-5923-49be-870b-489c1925a4d1",
@@ -140,8 +135,7 @@
           { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
         ]
       },
-      "audio": "audio/弟弟的女儿.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/弟弟的女儿.mp3"
     },
     {
       "id": "b17bf354-c988-4f42-b817-0ad587429895",
@@ -159,8 +153,7 @@
           { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" }
         ]
       },
-      "audio": "audio/弟弟的孩子.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/弟弟的孩子.mp3"
     },
     {
       "id": "d9bb9c8c-1b07-4aaf-a597-fdbc20ab7c91",
@@ -178,8 +171,7 @@
           { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" }
         ]
       },
-      "audio": "audio/哥哥的儿子.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/哥哥的儿子.mp3"
     }
   ]
 }

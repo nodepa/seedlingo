@@ -55,8 +55,7 @@
           { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" }
         ]
       },
-      "audio": "audio/姐姐的丈夫.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/姐姐的丈夫.mp3"
     },
     {
       "id": "c68eba35-041a-44a6-b2c4-043aeb906722",
@@ -74,8 +73,7 @@
           { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" }
         ]
       },
-      "audio": "audio/妹妹的丈夫.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/妹妹的丈夫.mp3"
     },
     {
       "id": "52adc65e-26d3-4072-a182-362e447a3cbb",
@@ -93,8 +91,7 @@
           { "弟妹": "75a122a7-4a08-4333-acf1-072483f6a570" }
         ]
       },
-      "audio": "audio/哥哥的妻子.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/哥哥的妻子.mp3"
     },
     {
       "id": "dd8a8457-3739-4ae7-869d-2e829c3242b4",
@@ -112,8 +109,7 @@
           { "嫂子": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" }
         ]
       },
-      "audio": "audio/弟弟的妻子.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/弟弟的妻子.mp3"
     }
   ]
 }

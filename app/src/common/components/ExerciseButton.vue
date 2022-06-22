@@ -72,6 +72,9 @@ function playAnimation(): void {
 </template>
 
 <style scoped>
+ion-button {
+  margin: 0px;
+}
 .button-disabled::part(native) {
   color: var(--ion-color-tint);
   background-color: var(--ion-color-contrast);

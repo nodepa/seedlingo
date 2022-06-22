@@ -33,58 +33,47 @@
     },
     "8da1e3a6-3268-40da-8707-be2a2c902c16": {
       "word": "妈妈",
-      "audio": "audio/妈妈.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/妈妈.mp3"
     },
     "843f4af4-5dcb-44a4-b690-759db29999c4": {
       "word": "的",
-      "audio": "audio/的.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/的.mp3"
     },
     "6c0f975c-4364-40c7-ae72-cfc2145da7e3": {
       "word": "姥爷",
-      "audio": "audio/姥爷.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/姥爷.mp3"
     },
     "5cd464a3-a04a-4ad2-9565-091036425550": {
       "word": "奶奶",
-      "audio": "audio/奶奶.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/奶奶.mp3"
     },
     "1ad7f2f9-521a-4a00-b549-bd4ee081149b": {
       "word": "爷爷",
-      "audio": "audio/爷爷.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/爷爷.mp3"
     },
     "3773c800-4f9b-4951-b7a7-9e0c9861d089": {
       "word": "爸爸",
-      "audio": "audio/爸爸.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/爸爸.mp3"
     },
     "d63f08dd-f8e6-4b47-940b-8d9d939034a6": {
       "word": "姥姥",
-      "audio": "audio/姥姥.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/姥姥.mp3"
     },
     "c53add23-aba4-42f5-9fbb-d6a6d1d8882c": {
       "word": "他",
-      "audio": "audio/他.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/他.mp3"
     },
     "bc1ec01c-0fde-4e63-82e6-c0f78d01529e": {
       "word": "是",
-      "audio": "audio/是.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/是.mp3"
     },
     "9f4c842a-e36a-48b1-aa4b-955aedef35d2": {
       "word": "我",
-      "audio": "audio/我.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/我.mp3"
     },
     "a1e806d9-f9bd-48fe-95eb-293d6753d421": {
       "word": "岁",
-      "audio": "audio/岁.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/岁.mp3"
     },
     "5d0f410c-83ff-43bd-a31e-922b42b054ef": {
       "word": "。",

@@ -8,6 +8,7 @@ import {
   MultipleChoiceItem,
 } from '../MultipleChoiceTypes';
 import Content from '../../Lessons/Content';
+import { earOutline } from 'ionicons/icons';
 
 const store = useStore();
 
@@ -141,8 +142,8 @@ onUpdated(() => {
 </script>
 
 <template>
-  <ion-grid style="height: 100%; width: 100%">
-    <ion-row class="ion-justify-content-center" style="height: 30%">
+  <ion-grid fixed>
+    <ion-row class="top-row ion-justify-content-center">
       <ion-col size="10">
         <ExerciseButton
           ref="itemUnderTestButton"
@@ -150,17 +151,18 @@ onUpdated(() => {
           data-test="item-under-test-button"
           :playing="exerciseProp.itemUnderTestAudioPlaying"
           color="card"
-          style="
-            width: 100%;
-            height: 100%;
-            padding-top: 5px;
-            padding-bottom: 15px;
-            font-size: 3rem;
-          "
           @click="playItemUnderTestAudio"
         >
           <template
             v-if="
+              exerciseProp.pictureToMatch &&
+              exerciseProp.pictureToMatch.length > 0
+            "
+          >
+            <img :src="exerciseProp.pictureToMatch" />
+          </template>
+          <template
+            v-else-if="
               exerciseProp.iconToMatch && exerciseProp.iconToMatch.length > 0
             "
           >
@@ -173,38 +175,29 @@ onUpdated(() => {
           </template>
           <template
             v-else-if="
-              exerciseProp.pictureToMatch &&
-              exerciseProp.pictureToMatch.length > 0
-            "
-          >
-            <img
-              :src="exerciseProp.pictureToMatch"
-              width="200"
-              height="128"
-              style="object-fit: contain"
-            />
-          </template>
-          <template
-            v-else-if="
               exerciseProp.explanationToMatch &&
               exerciseProp.explanationToMatch.length > 0
             "
           >
             <span
               :style="`font-size: ${
-                2.7 - exerciseProp.explanationToMatch.length * 0.05
+                2.5 - exerciseProp.explanationToMatch.length * 0.15
               }rem; white-space: break-spaces;`"
             >
               {{ exerciseProp.explanationToMatch }}
             </span>
           </template>
+          <template v-else>
+            <ion-icon :icon="earOutline" :style="getSpacing(1, 0)" />
+          </template>
         </ExerciseButton>
       </ion-col>
     </ion-row>
-    <ion-row style="height: 70%" class="ion-justify-content-center">
+    <ion-row class="bottom-row ion-justify-content-around">
       <ion-col
         v-for="(option, index) in exerciseProp.options"
         :key="index"
+        size-xs="6"
         size="6"
       >
         <ExerciseButton
@@ -213,10 +206,13 @@ onUpdated(() => {
           :disabled="option.disabled && !option.buzzing"
           :playing="option.playing"
           :color="option.color || 'primary'"
-          style="width: 100%; height: 100%; padding: 15px; margin: 0px"
           @click="determineCorrectness(option)"
         >
-          <span :style="`font-size: ${4 - option.word.length * 0.4}rem;`">
+          <span
+            :style="`font-size: ${
+              2.5 - option.word.length * 0.15
+            }rem; margin: 0px; white-space: break-spaces;`"
+          >
             {{ option.word }}
           </span>
         </ExerciseButton>
@@ -226,7 +222,31 @@ onUpdated(() => {
 </template>
 
 <style scoped>
-ion-grid {
-  --ion-grid-column-padding: 0px;
+.top-row {
+  height: 30%;
+  font-size: 3rem;
+}
+.bottom-row {
+  height: 70%;
+}
+.top-row ion-button {
+  font-size: 3rem;
+}
+.top-row ion-button::part(native) {
+  padding: 10px;
+}
+ion-button {
+  width: 100%;
+  height: 100%;
+}
+ion-button::part(native) {
+  contain: size;
+  padding: 0.8rem;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 </style>

@@ -21,6 +21,7 @@ export default function MultipleChoiceTestData(): MultipleChoiceExercise {
     options: [
       {
         word: '3',
+        // word: 'jeg og du og vi to seilte i en tresko',
         audio: new Audio(`data:audio/mpeg;base64,${三}`),
         correct: false,
         disabled: false,
@@ -29,6 +30,7 @@ export default function MultipleChoiceTestData(): MultipleChoiceExercise {
       },
       {
         word: '2',
+        // word: '我',
         audio: new Audio(`data:audio/mpeg;base64,${二}`),
         correct: true,
         disabled: false,
@@ -37,6 +39,7 @@ export default function MultipleChoiceTestData(): MultipleChoiceExercise {
       },
       {
         word: '4',
+        // word: '我的家庭',
         audio: new Audio(`data:audio/mpeg;base64,${四}`),
         correct: false,
         disabled: false,
@@ -45,6 +48,7 @@ export default function MultipleChoiceTestData(): MultipleChoiceExercise {
       },
       {
         word: '1',
+        // word: '他们',
         audio: new Audio(`data:audio/mpeg;base64,${一}`),
         correct: false,
         disabled: false,
