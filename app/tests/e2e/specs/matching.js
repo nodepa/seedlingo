@@ -100,6 +100,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@option2')
         .should('have.class', wordColor)
         .click()
+        .wait(100)
         .should('have.class', firstHighlightColor);
       // 1 item audio played
       cy.get('@audio.play').should('have.callCount', 1);
