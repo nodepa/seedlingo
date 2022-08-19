@@ -31,7 +31,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
             };
           });
         },
-      }).wait(20);
+      });
       cy.get(loader).should('not.be.visible');
       cy.get(app).should('be.visible');
       cy.get(instructionsExplainerComponent).should('not.exist');
@@ -62,7 +62,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
         .should('be.visible');
 
       cy.log('**3. 马丽 taps the loudspeaker to hear the audio again.**');
-      cy.get(itemUnderTestButton).click().wait(400);
+      cy.get(itemUnderTestButton).wait(400).click();
       // 1 item audio played
       cy.get('@audio.play').should('have.callCount', 1);
       cy.get('@audio.play').invoke('resetHistory');
