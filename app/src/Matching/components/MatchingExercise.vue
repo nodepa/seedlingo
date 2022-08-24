@@ -2,9 +2,9 @@
 import { computed, ComputedRef, Ref, ref, watch } from 'vue';
 import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import { useStore } from 'vuex';
-import ExerciseButton from '@/common/components/ExerciseButton.vue';
+import ExerciseButton from '../../common/components/ExerciseButton.vue';
 import { MatchingItem } from '../MatchingTypes';
-import Content from '@/Lessons/Content';
+import Content from '../../Lessons/Content';
 
 const startColors = ['purple', 'pink', 'orange', 'teal'];
 const colors: Array<string> = Array.from(startColors);
@@ -211,15 +211,15 @@ function getSpacing(itemCount: number, index: number): string {
 <template>
   <ion-grid style="height: 100%; width: 100%">
     <ion-row class="ion-justify-content-center">
-      <ion-col size="6" v-for="(option, index) in exerciseItems" :key="index">
+      <ion-col v-for="(option, index) in exerciseItems" :key="index" size="6">
         <ExerciseButton
+          v-model:buzzing="option.buzzing"
+          v-instructions="matchingInstructionsPath"
           :data-test="`option-button-${+index + 1}`"
           :playing="option.audio && option.audio.playing"
-          v-model:buzzing="option.buzzing"
-          @click="selectAndPlay(option, +index)"
-          v-instructions="matchingInstructionsPath"
           :color="option.color || (option.isWord ? wordColor : nonWordColor)"
           style="width: 100%; height: 100%; padding: 15px; margin: 0px"
+          @click="selectAndPlay(option, +index)"
         >
           <template v-if="option.isIcon">
             <!-- awaiting post-alpha vue3-jest:

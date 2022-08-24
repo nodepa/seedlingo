@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { onMounted, Ref, ref } from 'vue';
 import { IonHeader, IonImg, IonTitle, IonToolbar } from '@ionic/vue';
-import logoUrl from '@/assets/logo/logo.svg';
+import logoUrl from '../../assets/logo/logo.svg';
 
-const branch = ref(process.env.VUE_APP_BRANCH);
-const jobId = ref(
-  process.env.VUE_APP_JOB_ID
-    ? (process.env.VUE_APP_JOB_ID as string).replace(/^0+/, '')
-    : '',
-);
+const branch = __AWS_BRANCH__ || '';
+const jobId = __AWS_JOB_ID__ ? __AWS_JOB_ID__.replace(/^0+/, '') : '';
 
 const darkTheme: Ref<boolean> = ref(false);
 window

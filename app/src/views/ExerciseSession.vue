@@ -12,17 +12,17 @@ import { IonPage, useIonRouter } from '@ionic/vue';
 import { onMounted, ref, shallowRef, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
-import ClozeExercise from '@/Cloze/components/ClozeExercise.vue';
-import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
-import MultipleChoiceExercise from '@/MultipleChoice/components/MultipleChoiceExercise.vue';
-import getMatchingTestData from '@/Matching/data/MatchingTestData';
-import getExplanationMatchingTestData from '@/Matching/data/ExplanationMatchingTestData';
-import getMultipleChoiceTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
-import getExplanationMultipleChoiceTestData from '@/MultipleChoice/data/ExplanationMultipleChoiceTestData';
-import getSingleClozeTestData from '@/Cloze/data/SingleClozeTestData';
-import getMultiClozeTestData from '@/Cloze/data/MultiClozeTestData';
-import { MatchingItem } from '@/Matching/MatchingTypes';
-import ExerciseProvider, { ExerciseItems } from '@/Lessons/ExerciseProvider';
+import ClozeExercise from '../Cloze/components/ClozeExercise.vue';
+import MatchingExercise from '../Matching/components/MatchingExercise.vue';
+import MultipleChoiceExercise from '../MultipleChoice/components/MultipleChoiceExercise.vue';
+import getMatchingTestData from '../Matching/data/MatchingTestData';
+import getExplanationMatchingTestData from '../Matching/data/ExplanationMatchingTestData';
+import getMultipleChoiceTestData from '../MultipleChoice/data/MultipleChoiceTestData';
+import getExplanationMultipleChoiceTestData from '../MultipleChoice/data/ExplanationMultipleChoiceTestData';
+import getSingleClozeTestData from '../Cloze/data/SingleClozeTestData';
+import getMultiClozeTestData from '../Cloze/data/MultiClozeTestData';
+import { MatchingItem } from '../Matching/MatchingTypes';
+import ExerciseProvider, { ExerciseItems } from '../Lessons/ExerciseProvider';
 
 type ExerciseComponent =
   | typeof MatchingExercise

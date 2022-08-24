@@ -14,7 +14,7 @@ npm install
 ### Compile and hot-reload for development
 
 ```sh
-npm start
+npm dev
 ```
 
 ### Compile and minify for production
@@ -39,6 +39,8 @@ npm run test:e2e
 
 ```sh
 npm run lint
+# or
+npm run lint:tsc
 ```
 
 ### Customize configuration
@@ -61,4 +63,3 @@ To use latest `workbox` independently of `workbox-webpack-plugin` v. < 5.0.0:
    to inject `modulePathPrefix` automatically,
    or `workboxOptions.importWorkboxFrom: 'disabled'`
    to only inject dependencies and handle the rest in `service-worker.js`
-

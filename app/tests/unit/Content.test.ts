@@ -1,15 +1,17 @@
-import Content from './Content';
+import { describe, it, expect } from 'vitest';
+import Content from '@/Lessons/Content';
+import mp3 from '@/test-support/audio/placeholder-audio.mp3.audio?raw';
 
 describe('Content.ts', () => {
   it('.getInstructionsPathFor()', () => {
     expect(Content.getInstructionsAudio('continueButton')).toBe(
-      'data:audio/mpeg;base64,this-mp3-file-has-been-mocked',
+      `data:audio/mpeg;base64,${mp3}`,
     );
   });
 
   it('.getAudioPath()', () => {
     expect(Content.getAudioPath('audio/placeholder-audio.mp3')).toBe(
-      'data:audio/mpeg;base64,this-mp3-file-has-been-mocked',
+      `data:audio/mpeg;base64,${mp3}`,
     );
   });
 
@@ -24,7 +26,7 @@ describe('Content.ts', () => {
     expect(lessonsMeta[2]).toBe(undefined);
     expect(lessonsMeta[1]).toMatchObject({
       name: 'first',
-      audio: 'data:audio/mpeg;base64,this-mp3-file-has-been-mocked',
+      audio: `data:audio/mpeg;base64,${mp3}`,
     });
     expect(lessonsMeta[1].icon.length).toBeGreaterThan(0);
   });

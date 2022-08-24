@@ -1,4 +1,4 @@
-import { WordSpec } from '@/Lessons/ContentTypes';
+import { WordSpec } from './ContentTypes';
 export interface LessonsMeta {
   [index: number]: {
     name: string;

@@ -1,9 +1,9 @@
-// import Content from '@/Lessons/Content';
-import 一 from '@/test-support/audio/characters/一.mp3.audio';
-import 二 from '@/test-support/audio/characters/二.mp3.audio';
-import 三 from '@/test-support/audio/characters/三.mp3.audio';
-import 四 from '@/test-support/audio/characters/四.mp3.audio';
-import pic from '@/test-support/pics/两.jpg';
+// import Content from '../../Lessons/Content';
+import 一 from '../../test-support/audio/characters/一.mp3.audio?raw';
+import 二 from '../../test-support/audio/characters/二.mp3.audio?raw';
+import 三 from '../../test-support/audio/characters/三.mp3.audio?raw';
+import 四 from '../../test-support/audio/characters/四.mp3.audio?raw';
+import pic from '../../test-support/pics/两.jpg';
 import { MultipleChoiceExercise } from '../MultipleChoiceTypes';
 
 export default function MultipleChoiceTestData(): MultipleChoiceExercise {

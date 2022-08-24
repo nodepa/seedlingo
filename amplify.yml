@@ -29,8 +29,8 @@ applications:
             - npm install mocha mochawesome mochawesome-merge mochawesome-report-generator
         test:
           commands:
-            - npm run test:unit:once
-            - npm run test:e2e -- --reporter mochawesome --reporter-options "reportDir=tests/e2e/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"
+            - npm run test:unit
+            - npm run test:e2e:ci
         postTest:
           commands:
             - npx mochawesome-merge tests/e2e/report/mochawesome-report/mochawesome*.json -o  tests/e2e/report/mochawesome.json

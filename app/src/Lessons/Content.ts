@@ -10,38 +10,57 @@ import type {
 import { LessonsMeta } from './LessonsMetaType';
 import * as mdiIcons from '@mdi/js';
 
-let mp3Base64Sources: __WebpackModuleApi.RequireContext,
-  jsonSources: __WebpackModuleApi.RequireContext,
-  picSources: __WebpackModuleApi.RequireContext;
-if (process.env.NODE_ENV === 'test') {
-  // only unit tests, e2e tests run in production mode
-  mp3Base64Sources = require.context('../test-support', true, /\.mp3.audio/);
-  jsonSources = require.context('../test-support', true, /\.json$/);
-  picSources = require.context('../test-support', true, /\.jpg|jpeg|png|gif$/);
+let mp3Base64Sources: Record<string, unknown>,
+  jsonSources: Record<string, unknown>,
+  picSources: Record<string, unknown>;
+let prefix = '';
+if (import.meta.env.MODE === 'test') {
+  // applies to unit tests; e2e tests run in production mode
+  prefix = '/src/test-support/';
+  mp3Base64Sources = import.meta.glob('/src/test-support/**/*.mp3.audio', {
+    eager: true,
+    as: 'raw',
+  });
+  jsonSources = import.meta.glob('/src/test-support/**/*.json', {
+    eager: true,
+    import: 'default',
+  });
+  picSources = import.meta.glob('/src/test-support/**/*.jpg|jpeg|png|gif', {
+    eager: true,
+    import: 'default',
+  });
 } else {
-  mp3Base64Sources = require.context('../../../content', true, /\.mp3.audio$/);
-  jsonSources = require.context('../../../content', true, /\.json$/);
-  picSources = require.context('../../../content', true, /\.jpg|jpeg|png|gif$/);
+  prefix = '../../../content/';
+  mp3Base64Sources = import.meta.glob('../../../content/**/*.mp3.audio', {
+    eager: true,
+    as: 'raw',
+  });
+  jsonSources = import.meta.glob('../../../content/**/*.json', {
+    eager: true,
+    import: 'default',
+  });
+  picSources = import.meta.glob('../../../content/**/*.jpg|jpeg|png|gif', {
+    eager: true,
+    import: 'default',
+  });
 }
 
-const prefix = './';
-
 export default class Content {
-  public static ContentSpec = jsonSources(
-    `${prefix}ContentSpec.json`,
-  ) as ContentSpec;
+  public static ContentSpec = jsonSources[
+    `${prefix}ContentSpec.json`
+  ] as ContentSpec;
 
-  public static WordListSpec = jsonSources(
-    `${prefix}${this.ContentSpec.wordSpecFile}`,
-  ) as WordListSpec;
+  public static WordListSpec = jsonSources[
+    `${prefix}${this.ContentSpec.wordSpecFile}`
+  ] as WordListSpec;
 
   public static LessonSpecs: Array<LessonSpec> = (() => {
     const lessons = [] as Array<LessonSpec>;
     for (let i = 0; i < this.ContentSpec.lessons.length; i += 1) {
       const lessonSpecFile = this.ContentSpec.lessons[i].lessonSpecFile;
-      const lesson: LessonSpec = {
-        ...jsonSources(`${prefix}${lessonSpecFile}`),
-      };
+      const lesson: LessonSpec = jsonSources[
+        `${prefix}${lessonSpecFile}`
+      ] as LessonSpec;
       lessons.push(lesson);
     }
     return lessons;
@@ -125,13 +144,13 @@ export default class Content {
   }
 
   public static getAudioPath(path: string): string {
-    return `data:audio/mpeg;base64,${mp3Base64Sources(
-      `${prefix}${path}.audio`,
-    )}`;
+    return `data:audio/mpeg;base64,${
+      mp3Base64Sources[`${prefix}${path}.audio`]
+    }`;
   }
 
   public static getPicPath(path: string): string {
-    return picSources(`${prefix}${path}`);
+    return picSources[`${prefix}${path}`] as string;
   }
 
   public static getInstructionsAudio(

@@ -1,19 +1,27 @@
-// Libraries, plugins, components
 import rootStore from '@/common/store/RootStore';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import Content from '@/Lessons/Content';
 
 // Helpers
+import {
+  afterAll,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import { mount, VueWrapper } from '@vue/test-utils';
 import { pause, play } from '@/test-support/MockImplementations';
 window.HTMLMediaElement.prototype.pause = pause;
 window.HTMLMediaElement.prototype.play = play;
 
 // Item under test
-import LessonsMenu from './LessonsMenu.vue';
+import LessonsMenu from '@/Lessons/components/LessonsMenu.vue';
 
-describe('LessonsMenu (shallow)', () => {
+describe('LessonsMenu', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let wrapper: VueWrapper<any>;
 
@@ -39,7 +47,7 @@ describe('LessonsMenu (shallow)', () => {
   beforeEach(() => {
     rootStore.dispatch('resetState');
     wrapper = mount(LessonsMenu, {
-      // shallow: true,
+      shallow: false,
       global: {
         plugins: [
           rootStore,
@@ -50,7 +58,7 @@ describe('LessonsMenu (shallow)', () => {
   });
 
   afterAll(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   // Component has expected elements

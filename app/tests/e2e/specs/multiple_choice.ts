@@ -1,12 +1,11 @@
-const app = '[data-test="app"]';
-const loader = '[data-test="loader"]';
-const instructionsExplainerComponent =
-  '[data-test="instructions-explainer-component"]';
-const itemUnderTestButton = '[data-test="item-under-test-button"]';
-const errorColor = 'ion-color-danger'; // 'rgb(229, 115, 115)';
-const successColor = 'ion-color-success'; // 'rgb(0, 150, 136)';
-
 describe('马丽 interacts with the "multiple-choice" system', () => {
+  const app = '[data-test="app"]';
+  const loader = '[data-test="loader"]';
+  const instructionsExplainerComponent =
+    '[data-test="instructions-explainer-component"]';
+  const itemUnderTestButton = '[data-test="item-under-test-button"]';
+  const errorColor = 'ion-color-danger'; // 'rgb(229, 115, 115)';
+
   it(
     'Displays the multiple-choice screen with ' +
       'vibrating loudspeaker/mouth talking, ' +
@@ -37,14 +36,15 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       cy.get(instructionsExplainerComponent).should('not.exist');
       cy.get(itemUnderTestButton).should('be.visible');
       // 1 item audio auto-played
-      cy.get('@audio.play').should('have.callCount', 1);
-      cy.get('@audio.play').invoke('resetHistory');
+      cy.get('@audio.play').should('have.callCount', 1).invoke('resetHistory');
       // 2 audio ripples played
-      cy.get('@animation.play').should('have.callCount', 2);
-      cy.get('@animation.play').invoke('resetHistory');
+      cy.get('@animation.play')
+        .should('have.callCount', 2)
+        .invoke('resetHistory');
       // 2 audio ripples created + 0 button buzz
-      cy.get('@animation.animate').should('have.callCount', 2);
-      cy.get('@animation.animate').invoke('resetHistory');
+      cy.get('@animation.animate')
+        .should('have.callCount', 2)
+        .invoke('resetHistory');
 
       cy.log('**2. 马丽 sees 4 words**');
       cy.log('-- of which one is the correct match to the audio played.');
@@ -64,15 +64,16 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       cy.log('**3. 马丽 taps the loudspeaker to hear the audio again.**');
       cy.get(itemUnderTestButton).wait(400).click();
       // 1 item audio played
-      cy.get('@audio.play').should('have.callCount', 1);
-      cy.get('@audio.play').invoke('resetHistory');
+      cy.get('@audio.play').should('have.callCount', 1).invoke('resetHistory');
 
       // 2 audio ripples played
-      cy.get('@animation.play').should('have.callCount', 2);
-      cy.get('@animation.play').invoke('resetHistory');
+      cy.get('@animation.play')
+        .should('have.callCount', 2)
+        .invoke('resetHistory');
       // 2 audio ripples created + 0 button buzz
-      cy.get('@animation.animate').should('have.callCount', 2);
-      cy.get('@animation.animate').invoke('resetHistory');
+      cy.get('@animation.animate')
+        .should('have.callCount', 2)
+        .invoke('resetHistory');
 
       cy.log('**4. 马丽 taps wrong word/non-corresponding word**');
       cy.log('-- sees the word vibrate, flash red');
@@ -84,17 +85,18 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
       cy.log('-- animations stop');
       cy.log('-- previous incorrect entry is immediately rendered disabled.');
       // click incorrect option
-      cy.get('@option1').click().wait(100).should('have.class', errorColor);
+      cy.get('@option1').click().should('have.class', errorColor);
       cy.get('@option1').should('have.class', 'button-disabled');
       // 2 item audio played
-      cy.get('@audio.play').should('have.callCount', 2);
-      cy.get('@audio.play').invoke('resetHistory');
+      cy.get('@audio.play').should('have.callCount', 2).invoke('resetHistory');
       // 4 audio ripples played
-      cy.get('@animation.play').should('have.callCount', 4);
-      cy.get('@animation.play').invoke('resetHistory');
+      cy.get('@animation.play')
+        .should('have.callCount', 4)
+        .invoke('resetHistory');
       // 4 audio ripples created + 1 button buzz
-      cy.get('@animation.animate').should('have.callCount', 5);
-      cy.get('@animation.animate').invoke('resetHistory');
+      cy.get('@animation.animate')
+        .should('have.callCount', 5)
+        .invoke('resetHistory');
 
       // the above can be interrupted, i.e. redo, tap other, verify
       //   item audio stops
@@ -125,6 +127,14 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
 });
 
 describe('马丽 interacts with the "multiple-choice explanation" system', () => {
+  const app = '[data-test="app"]';
+  const loader = '[data-test="loader"]';
+  const instructionsExplainerComponent =
+    '[data-test="instructions-explainer-component"]';
+  const itemUnderTestButton = '[data-test="item-under-test-button"]';
+  const errorColor = 'ion-color-danger'; // 'rgb(229, 115, 115)';
+  const successColor = 'ion-color-success'; // 'rgb(0, 150, 136)';
+
   it(
     'Displays the multiple-choice screen with ' +
       'an explanation, ' +
@@ -190,16 +200,17 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
       // explanation: My parent's brother
       // option 1: Uncle, option 2: Cousin, option 3: Aunt, option 4: Grandma
       // click incorrect option 2
-      cy.get('@option2').click().wait(50).should('have.class', errorColor);
+      cy.get('@option2').click().should('have.class', errorColor);
       // 1 item audio played
-      cy.get('@audio.play').should('have.callCount', 1);
-      cy.get('@audio.play').invoke('resetHistory');
+      cy.get('@audio.play').should('have.callCount', 1).invoke('resetHistory');
       // 2 audio ripples played
-      cy.get('@animation.play').should('have.callCount', 2);
-      cy.get('@animation.play').invoke('resetHistory');
+      cy.get('@animation.play')
+        .should('have.callCount', 2)
+        .invoke('resetHistory');
       // 2 audio ripples created + 1 button buzz
-      cy.get('@animation.animate').should('have.callCount', 3);
-      cy.get('@animation.animate').invoke('resetHistory');
+      cy.get('@animation.animate')
+        .should('have.callCount', 3)
+        .invoke('resetHistory');
 
       cy.get('@option2').should('have.class', 'button-disabled');
       // there's no itemUnderTest audio to play
@@ -218,3 +229,5 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
     },
   );
 });
+
+export {};

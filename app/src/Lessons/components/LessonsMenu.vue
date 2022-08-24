@@ -22,9 +22,9 @@ const weightLifter = Content.getIcon('mdiWeightLifter');
 <template>
   <ion-list data-test="lesson-list" lines="none">
     <ion-item
-      :data-test="`lesson-${String(index).padStart(2, '0')}`"
       v-for="(lessonContext, index) in lessonsMeta"
       :key="index"
+      :data-test="`lesson-${String(index).padStart(2, '0')}`"
     >
       <ion-card class="margin-auto">
         <ion-card-header>
@@ -35,23 +35,23 @@ const weightLifter = Content.getIcon('mdiWeightLifter');
         <ion-card-content class="center-content">
           <ion-button
             v-if="lessonContext.newWords.length > 0"
+            v-instructions="lessonContext.audio"
             size="large"
             :data-test="`lesson-review-button-${String(index).padStart(
               2,
               '0',
             )}`"
-            v-instructions="lessonContext.audio"
             :router-link="{ path: `/lesson/${index}/review` }"
-            router-direction="none"
+            router-direction="forward"
           >
             <ion-icon slot="icon-only" :icon="eye" />
           </ion-button>
           <ion-button
+            v-instructions="lessonContext.audio"
             size="large"
             :data-test="`lesson-button-${String(index).padStart(2, '0')}`"
-            v-instructions="lessonContext.audio"
             :router-link="{ path: `/lesson/${index}` }"
-            router-direction="none"
+            router-direction="forward"
           >
             <ion-icon slot="icon-only" :icon="weightLifter" />
           </ion-button>
@@ -60,6 +60,12 @@ const weightLifter = Content.getIcon('mdiWeightLifter');
     </ion-item>
   </ion-list>
 </template>
+
+<style>
+.ion-page {
+  background-color: var(--ion-background-color);
+}
+</style>
 
 <style scoped>
 .margin-auto {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ComponentPublicInstance, ref, watch } from 'vue';
 import { IonButton } from '@ionic/vue';
-import RippleAnimation from '@/common/animations/RippleAnimation.vue';
+import RippleAnimation from '../animations/RippleAnimation.vue';
 
 interface Props {
   playing?: boolean;

@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { existsSync } from 'fs';
 import {
   Blank,
@@ -5,9 +6,9 @@ import {
   LessonSpec,
   WordRef,
 } from '@/Lessons/ContentTypes';
-process.env.NODE_ENV = 'production'; // force loading 'production' content
+import.meta.env.MODE = 'production'; // force loading 'production' content
 import Content from '@/Lessons/Content';
-process.env.NODE_ENV = 'test';
+import.meta.env.MODE = 'test';
 
 describe('Integrity of JSON Lesson data', () => {
   describe('Global integrity', () => {

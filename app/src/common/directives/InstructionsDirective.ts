@@ -18,9 +18,9 @@
 
 import {
   App,
+  Component,
   ComponentPublicInstance,
   createApp,
-  DefineComponent,
   DirectiveBinding,
   ref,
 } from 'vue';
@@ -31,8 +31,7 @@ export interface InstructionsElement extends HTMLElement {
 }
 
 export interface InstructionsOptions {
-  // eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any
-  Badge: DefineComponent<{}, {}, any>;
+  Badge: Component;
 }
 
 export interface InstructionsModeRootState {
@@ -63,8 +62,7 @@ export class Instructions {
     hostElement: InstructionsElement,
     audioUrl: string,
     vm: ComponentPublicInstance,
-    // eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any
-    Badge: DefineComponent<{}, {}, any>,
+    Badge: Component,
     store: Store<InstructionsModeRootState>,
   ) {
     this.hostElement = hostElement;

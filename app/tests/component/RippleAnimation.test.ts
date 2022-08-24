@@ -1,23 +1,23 @@
-// Helpers
-import { shallowMount, VueWrapper } from '@vue/test-utils';
+import { beforeEach, describe, it, expect, vi } from 'vitest';
+import { mount, VueWrapper } from '@vue/test-utils';
 import {
   animate,
   Animation,
   AnimationEffect,
 } from '@/test-support/MockImplementations';
+
+import RippleAnimation from '@/common/animations/RippleAnimation.vue';
+
 window.Element.prototype.animate = animate;
 window.Animation = Animation;
 window.AnimationEffect = AnimationEffect;
-
-// Item under test
-import RippleAnimation from './RippleAnimation.vue';
 
 describe('RippleAnimation', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let wrapper: VueWrapper<any>;
 
   beforeEach(() => {
-    wrapper = shallowMount(RippleAnimation);
+    wrapper = mount(RippleAnimation, { shallowMount: true });
   });
 
   describe('initial state', () => {
@@ -31,10 +31,12 @@ describe('RippleAnimation', () => {
       expect(wrapper.vm.$props.scale).toBe('4');
       expect(wrapper.vm.$props.borderColor).toBe('rgba(0,0,0,0.3)');
     });
+  });
 
+  describe('animation', () => {
     it('animates when `playing`', async () => {
-      const spyAnimate = jest.spyOn(window.Element.prototype, 'animate');
-      const spyCancel = jest.spyOn(window.Animation.prototype, 'cancel');
+      const spyAnimate = vi.spyOn(window.Element.prototype, 'animate');
+      const spyCancel = vi.spyOn(window.Animation.prototype, 'cancel');
       expect(spyAnimate).toBeCalledTimes(0);
       expect(spyCancel).toBeCalledTimes(0);
       await wrapper.setProps({ playing: true });

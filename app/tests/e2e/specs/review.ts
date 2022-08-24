@@ -1,13 +1,13 @@
-const app = '[data-test="app"]';
-const loader = '[data-test="loader"]';
-const instructionsExplainerComponent =
-  '[data-test="instructions-explainer-component"]';
-const continueButton = '[data-test="continue-button"]';
-
 describe('马丽 interacts with the "review" system', () => {
+  const app = '[data-test="app"]';
+  const loader = '[data-test="loader"]';
+  const instructionsExplainerComponent =
+    '[data-test="instructions-explainer-component"]';
+  const continueButton = '[data-test="continue-button"]';
+
   beforeEach(() => {
     // Avoid dealing with "instructions explainer" side effects.
-    localStorage.setItem('InstructionsExplainerShownCount', 5);
+    localStorage.setItem('InstructionsExplainerShownCount', '5');
   });
 
   it('Displays the review screen with a word and the corresponding symbol', () => {
@@ -101,3 +101,5 @@ describe('马丽 interacts with the "review" system', () => {
     cy.get(continueButton).should('exist').should('be.visible');
   });
 });
+
+export {};

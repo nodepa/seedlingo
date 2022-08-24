@@ -1,26 +1,29 @@
-// Libraries, plugins, components
+import { Component, ComponentPublicInstance } from 'vue';
 import { Store } from 'vuex';
-import rootStore from '@/common/store/RootStore';
-import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
-
-// Helpers
+import { beforeEach, afterEach, describe, it, expect, vi } from 'vitest';
 import { mount, VueWrapper } from '@vue/test-utils';
 import { pause, play } from '@/test-support/MockImplementations';
-window.HTMLMediaElement.prototype.pause = pause;
-window.HTMLMediaElement.prototype.play = play;
-
-// Item under test
+import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
+import rootStore from '@/common/store/RootStore';
 import {
   Instructions,
   InstructionsElement,
   InstructionsModeRootState,
 } from '@/common/directives/InstructionsDirective';
 
-const spyAddAudioListeners = jest.spyOn(
+window.HTMLMediaElement.prototype.pause = pause;
+window.HTMLMediaElement.prototype.play = play;
+
+const spyAddAudioListeners = vi.spyOn(
   Instructions.prototype,
   'addAudioListeners',
 );
 
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $store: Store<InstructionsModeRootState>;
+  }
+}
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let wrapper: VueWrapper<any>;
 let instructions: Instructions;
@@ -45,8 +48,8 @@ beforeEach(() => {
   instructions = new Instructions(
     wrapper.vm.$el as InstructionsElement,
     audioPath,
-    wrapper.vm,
-    InstructionsBadge,
+    wrapper.vm as ComponentPublicInstance,
+    InstructionsBadge as Component,
     rootStore as Store<InstructionsModeRootState>,
   );
 
@@ -76,7 +79,7 @@ describe('class Instructions', () => {
   });
 
   it('addEventListener: adds event listeners', () => {
-    const spy = jest.spyOn(wrapper.vm.$el, 'addEventListener');
+    const spy = vi.spyOn(wrapper.vm.$el, 'addEventListener');
     expect(spy).toHaveBeenCalledTimes(0);
     rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
     expect(spy).toHaveBeenCalledTimes(1);
@@ -85,7 +88,7 @@ describe('class Instructions', () => {
   });
 
   it('addAudioListeners: adds event listeners', () => {
-    const spyAudioAddEventListener = jest.spyOn(
+    const spyAudioAddEventListener = vi.spyOn(
       HTMLAudioElement.prototype,
       'addEventListener',
     );
@@ -97,8 +100,8 @@ describe('class Instructions', () => {
   });
 
   it('removeEventListener: removes event listeners', () => {
-    const spyAdd = jest.spyOn(wrapper.vm.$el, 'addEventListener');
-    const spyRemove = jest.spyOn(wrapper.vm.$el, 'removeEventListener');
+    const spyAdd = vi.spyOn(wrapper.vm.$el, 'addEventListener');
+    const spyRemove = vi.spyOn(wrapper.vm.$el, 'removeEventListener');
     expect(spyAdd).toHaveBeenCalledTimes(0);
     expect(spyRemove).toHaveBeenCalledTimes(0);
     instructions.addEventListener();
@@ -127,7 +130,7 @@ describe('class Instructions', () => {
     instructions.addStyling();
 
     // Assert post-state
-    expect(el.classList).toContain('pop-through');
+    expect(el.classList.value).toContain('pop-through');
     expect(el.childElementCount).toBe(2); // 1 badge, 1 audio, 0 animations
     expect(el.children[0].tagName).toBe('SPAN');
     expect(el.children[1].tagName).toBe('AUDIO');
@@ -137,14 +140,14 @@ describe('class Instructions', () => {
     // Setup pre-state
     instructions.addStyling();
     const el = wrapper.vm.$el as HTMLButtonElement;
-    expect(el.classList).toContain('pop-through');
+    expect(el.classList.value).toContain('pop-through');
     expect(el.childElementCount).toBe(2); // 1 badge, 1 audio, 0 animations
 
     // Apply function
     instructions.removeStyling();
 
     // Assert post-state
-    expect(el.classList).not.toContain('pop-through');
+    expect(el.classList.value).not.toContain('pop-through');
     expect(el.childElementCount).toBe(1); // 1 audio, 0 animations
     expect(el.children[0].tagName).toBe('AUDIO'); // audio is 1rst elm
   });
@@ -158,7 +161,7 @@ describe('class Instructions', () => {
     expect(el.tagName).toBe('AUDIO');
     expect(el.src).toBe(audioPath);
 
-    const spy = jest.spyOn(el, 'play');
+    const spy = vi.spyOn(el, 'play');
     expect(spy).toHaveBeenCalledTimes(0);
 
     // Apply function
@@ -175,7 +178,7 @@ describe('class Instructions', () => {
     // After unsubscribing,
     // pauseRegisteredInstructionsAudio() should no longer be called
     // when toggleInstructionsMode turns false.
-    const spy = jest.spyOn(Instructions, 'pauseRegisteredInstructionsAudio');
+    const spy = vi.spyOn(Instructions, 'pauseRegisteredInstructionsAudio');
 
     // Assert invocating pauseRegisteredInstructionsAudio()
     expect(spy).toHaveBeenCalledTimes(0);
