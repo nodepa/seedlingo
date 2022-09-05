@@ -17,12 +17,12 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <ion-button
+    v-instructions="homeButtonInstructions"
     data-test="home-button"
     :disabled="homeButtonDisabled"
     :router-link="{ name: 'Home' }"
     router-direction="root"
     @click="store.dispatch('setShowContinueButton', false)"
-    v-instructions="homeButtonInstructions"
   >
     <ion-icon
       :md="homeSharp"

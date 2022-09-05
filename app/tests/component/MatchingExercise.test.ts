@@ -1,21 +1,19 @@
-// Libraries, plugins, components
+import { beforeEach, describe, expect, it } from 'vitest';
+import { mount, VueWrapper } from '@vue/test-utils';
+import { animate, play } from '@/test-support/MockImplementations';
 import rootStore from '@/common/store/RootStore';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
-
-// Helpers
-import { mount, VueWrapper } from '@vue/test-utils';
 import getTestData from '@/Matching/data/MatchingTestData';
-import { animate, play } from '@/test-support/MockImplementations';
+import { MatchingItem } from '@/Matching/MatchingTypes';
+
+import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
+
 window.Element.prototype.animate = animate;
 HTMLMediaElement.prototype.play = play;
 
-// Item under test
-import MatchingExercise from './MatchingExercise.vue';
-import { MatchingItem } from '../MatchingTypes';
-
 describe('MatchingExercise', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   let wrapper: VueWrapper<any>;
 
   beforeEach(() => {
@@ -286,11 +284,11 @@ describe('MatchingExercise', () => {
       const matching = wrapper.findComponent(MatchingExercise).vm;
 
       // getSpacing(itemCount, index)
-      expect(matching.getSpacing(0, 0)).toBe('');
-      expect(matching.getSpacing(1, 0)).toBe('');
-      expect(matching.getSpacing(2, 0)).toBe('margin-right: -8px');
-      expect(matching.getSpacing(2, 1)).toBe('margin-left: -8px');
-      expect(matching.getSpacing(3, 1)).toBe(
+      expect((matching as any).getSpacing(0, 0)).toBe('');
+      expect((matching as any).getSpacing(1, 0)).toBe('');
+      expect((matching as any).getSpacing(2, 0)).toBe('margin-right: -8px');
+      expect((matching as any).getSpacing(2, 1)).toBe('margin-left: -8px');
+      expect((matching as any).getSpacing(3, 1)).toBe(
         'margin-right: -8px;margin-left: -8px',
       );
     });

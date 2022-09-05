@@ -1,4 +1,4 @@
-import { InstructionsModeState } from '@/common/directives/InstructionsDirective';
+import { InstructionsModeState } from '../directives/InstructionsDirective';
 
 export interface RootState {
   version: string;

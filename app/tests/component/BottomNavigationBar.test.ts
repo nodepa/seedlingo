@@ -7,6 +7,7 @@ import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import HomeView from '@/views/HomeView.vue';
 
 // Helpers
+import { beforeEach, describe, expect, it } from 'vitest';
 import { mount, VueWrapper } from '@vue/test-utils';
 import { animate, pause, play } from '@/test-support/MockImplementations';
 window.Element.prototype.animate = animate;
@@ -14,8 +15,8 @@ window.HTMLMediaElement.prototype.pause = pause;
 window.HTMLMediaElement.prototype.play = play;
 
 // Item under test
-import BottomNavigationBar from './BottomNavigationBar.vue';
-import HomeButton from './HomeButton.vue';
+import BottomNavigationBar from '@/BottomNavigationBar/components/BottomNavigationBar.vue';
+import HomeButton from '@/BottomNavigationBar/components/HomeButton.vue';
 
 const router = createRouter({
   history: createWebHistory(),

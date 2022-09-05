@@ -1,13 +1,13 @@
-const app = '[data-test="app"]';
-const loader = '[data-test="loader"]';
-const instructionsExplainerComponent =
-  '[data-test="instructions-explainer-component"]';
-const instructionsOverlay = '[data-test="instructions-overlay"]';
-const homeButton = '[data-test="home-button"]';
-const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
-const lessonsList = '[data-test="lesson-list"]';
-
 describe("马丽 opens the app to the home screen's list of lessons", () => {
+  const app = '[data-test="app"]';
+  const loader = '[data-test="loader"]';
+  const instructionsExplainerComponent =
+    '[data-test="instructions-explainer-component"]';
+  const instructionsOverlay = '[data-test="instructions-overlay"]';
+  const homeButton = '[data-test="home-button"]';
+  const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
+  const lessonsList = '[data-test="lesson-list"]';
+
   it(
     'Displays start-up splash animation, ' +
       'then "introductions explainer" graphic, ' +
@@ -101,3 +101,5 @@ describe("马丽 opens the app to the home screen's list of lessons", () => {
     },
   );
 });
+
+export {};

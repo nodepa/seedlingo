@@ -1,4 +1,4 @@
-import placeholder from '@/test-support/audio/placeholder-audio.mp3.audio';
+import placeholder from '../../test-support/audio/placeholder-audio.mp3.audio?raw';
 import { MultipleChoiceExercise } from '../MultipleChoiceTypes';
 
 export default function ExplanationMultipleChoiceTestData(): MultipleChoiceExercise {

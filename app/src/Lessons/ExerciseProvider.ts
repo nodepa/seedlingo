@@ -1,11 +1,11 @@
 import { reactive } from 'vue';
-import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
-import { MatchingItem } from '@/Matching/MatchingTypes';
+import { ExerciseAudio } from '../common/types/ExerciseAudioType';
+import { MatchingItem } from '../Matching/MatchingTypes';
 import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
-} from '@/MultipleChoice/MultipleChoiceTypes';
-import { ClozeExercise, ClozeOption, ClozeWord } from '@/Cloze/ClozeTypes';
+} from '../MultipleChoice/MultipleChoiceTypes';
+import { ClozeExercise, ClozeOption, ClozeWord } from '../Cloze/ClozeTypes';
 import {
   Blank,
   ExerciseSpec,

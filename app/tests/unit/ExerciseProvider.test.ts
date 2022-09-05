@@ -1,22 +1,28 @@
-import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
-import Content from './Content';
-import ExerciseProvider from './ExerciseProvider';
-import { LessonSpec } from './ContentTypes';
+import { describe, it, expect, vi } from 'vitest';
 
-import lessonTestData from '../test-support/LessonSpecFile.json';
+import { LessonSpec } from '@/Lessons/ContentTypes';
+import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
+import { ExerciseType } from '@/Lessons/ExerciseProvider';
+
+import Content from '@/Lessons/Content';
+
+import lessonTestData from '@/test-support/LessonSpecFile.json';
 const lesson = lessonTestData as LessonSpec;
+
+// Item under test
+import ExerciseProvider from '@/Lessons/ExerciseProvider';
 
 describe('ExerciseProvider', () => {
   describe('.getExerciseFromLesson()', () => {
     it('correctly returns exercises', () => {
       // mock: Matching on 2nd exercise
-      const spyPickRandomExerciseTypeMatching = jest
+      const spyPickRandomExerciseTypeMatching = vi
         .spyOn(ExerciseProvider, 'pickRandomExerciseType')
-        .mockImplementation(() => 'Matching');
-      const spySelectRandomSubsetMatching = jest
+        .mockImplementation((): ExerciseType => 'Matching');
+      const spySelectRandomSubsetMatching = vi
         .spyOn(ExerciseProvider, 'selectRandomSubset')
         .mockImplementation(() => lesson.exercises[1].words || []);
-      const spyGetAudioPath = jest
+      const spyGetAudioPath = vi
         .spyOn(Content, 'getAudioPath')
         .mockImplementation((path: string) => path);
 
@@ -29,13 +35,13 @@ describe('ExerciseProvider', () => {
       spySelectRandomSubsetMatching.mockRestore();
 
       // mock: MultipleChoice on 1st exercise, word 3 as correct answer
-      const spyPickRandomExerciseTypeMultipleChoice = jest
+      const spyPickRandomExerciseTypeMultipleChoice = vi
         .spyOn(ExerciseProvider, 'pickRandomExerciseType')
-        .mockImplementation(() => 'MultipleChoice');
-      const spySelectRandomSubsetMultipleChoice = jest
+        .mockImplementation((): ExerciseType => 'MultipleChoice');
+      const spySelectRandomSubsetMultipleChoice = vi
         .spyOn(ExerciseProvider, 'selectRandomSubset')
         .mockImplementation(() => lesson.exercises[0].words || []);
-      const spyRandomIndexLessThan = jest
+      const spyRandomIndexLessThan = vi
         .spyOn(ExerciseProvider, 'randomIndexLessThan')
         .mockImplementation(() => 3);
 
@@ -63,7 +69,7 @@ describe('ExerciseProvider', () => {
 
   describe('.generateMatchingExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioPath = jest
+      const spyGetAudioPath = vi
         .spyOn(Content, 'getAudioPath')
         .mockImplementation((path: string) => path);
       const matchingExercise =
@@ -75,7 +81,7 @@ describe('ExerciseProvider', () => {
 
   describe('.generateMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioPath = jest
+      const spyGetAudioPath = vi
         .spyOn(Content, 'getAudioPath')
         .mockImplementation((path: string) => path);
       const multipleChoiceExercise =
@@ -87,10 +93,10 @@ describe('ExerciseProvider', () => {
 
   describe('.generateExplanationMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioPath = jest
+      const spyGetAudioPath = vi
         .spyOn(Content, 'getAudioPath')
         .mockImplementation((path: string) => path);
-      const spyPickRandomItem = jest
+      const spyPickRandomItem = vi
         .spyOn(ExerciseProvider, 'pickRandomItem')
         .mockImplementation((array) => {
           return array[0];
@@ -128,11 +134,11 @@ describe('ExerciseProvider', () => {
 
   describe('.generateMultiClozeExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioPath = jest
+      const spyGetAudioPath = vi
         .spyOn(Content, 'getAudioPath')
         .mockImplementation((path: string) => path);
       // force exercise based on lesson item 2 (index 1)
-      const spyPickRandomItem = jest
+      const spyPickRandomItem = vi
         .spyOn(ExerciseProvider, 'pickRandomItem')
         .mockImplementation((array) => {
           return array[1];

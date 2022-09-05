@@ -1,4 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-cd app && npm run lint
+cd app
+pwd
+npx  lint-staged

@@ -1,19 +1,17 @@
-// Libraries, plugins, components
+import { beforeEach, describe, expect, it } from 'vitest';
+import { mount, VueWrapper } from '@vue/test-utils';
+import { animate, pause, play } from '@/test-support/MockImplementations';
 import rootStore from '@/common/store/RootStore';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
-
-// Helpers
-import { mount, VueWrapper } from '@vue/test-utils';
 import getTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
-import { animate, pause, play } from '@/test-support/MockImplementations';
+import { MultipleChoiceItem } from '@/MultipleChoice/MultipleChoiceTypes';
+
+import MultipleChoiceExercise from '@/MultipleChoice/components/MultipleChoiceExercise.vue';
+
 window.Element.prototype.animate = animate;
 HTMLMediaElement.prototype.play = play;
 HTMLMediaElement.prototype.pause = pause;
-
-// Item under test
-import MultipleChoiceExercise from './MultipleChoiceExercise.vue';
-import { MultipleChoiceItem } from '../MultipleChoiceTypes';
 
 describe('MultipleChoiceExercise', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

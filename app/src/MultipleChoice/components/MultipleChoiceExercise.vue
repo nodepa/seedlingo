@@ -1,13 +1,13 @@
 <script setup lang="ts">
+import { computed, ComputedRef, onMounted, onUpdated, ref, watch } from 'vue';
+import { useStore } from 'vuex';
 import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
-import ExerciseButton from '@/common/components/ExerciseButton.vue';
+import ExerciseButton from '../../common/components/ExerciseButton.vue';
 import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
-} from '@/MultipleChoice/MultipleChoiceTypes';
-import Content from '@/Lessons/Content';
-import { computed, ComputedRef, onMounted, onUpdated, ref, watch } from 'vue';
-import { useStore } from 'vuex';
+} from '../MultipleChoiceTypes';
+import Content from '../../Lessons/Content';
 
 const store = useStore();
 
@@ -145,11 +145,10 @@ onUpdated(() => {
     <ion-row class="ion-justify-content-center" style="height: 30%">
       <ion-col size="10">
         <ExerciseButton
-          data-test="item-under-test-button"
           ref="itemUnderTestButton"
-          :playing="exerciseProp.itemUnderTestAudioPlaying"
-          @click="playItemUnderTestAudio"
           v-instructions="multipleChoiceInstructionsPath"
+          data-test="item-under-test-button"
+          :playing="exerciseProp.itemUnderTestAudioPlaying"
           color="card"
           style="
             width: 100%;
@@ -158,6 +157,7 @@ onUpdated(() => {
             padding-bottom: 15px;
             font-size: 3rem;
           "
+          @click="playItemUnderTestAudio"
         >
           <template
             v-if="
@@ -203,18 +203,18 @@ onUpdated(() => {
     </ion-row>
     <ion-row style="height: 70%" class="ion-justify-content-center">
       <ion-col
-        size="6"
         v-for="(option, index) in exerciseProp.options"
         :key="index"
+        size="6"
       >
         <ExerciseButton
+          v-model:buzzing="option.buzzing"
           :data-test="`option-button-${index + 1}`"
           :disabled="option.disabled && !option.buzzing"
           :playing="option.playing"
-          v-model:buzzing="option.buzzing"
-          @click="determineCorrectness(option)"
           :color="option.color || 'primary'"
           style="width: 100%; height: 100%; padding: 15px; margin: 0px"
+          @click="determineCorrectness(option)"
         >
           <span :style="`font-size: ${4 - option.word.length * 0.4}rem;`">
             {{ option.word }}

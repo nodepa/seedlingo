@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import HomeView from '@/views/HomeView.vue';
-import ExerciseSession from '@/views/ExerciseSession.vue';
-import ReviewSession from '@/views/ReviewSession.vue';
+import HomeView from '../../views/HomeView.vue';
+import ExerciseSession from '../../views/ExerciseSession.vue';
+import ReviewSession from '../../views/ReviewSession.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,12 +21,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/privacy',
     name: 'Privacy policy',
-    component: () => import('@/views/PrivacyPolicy.vue'),
+    component: () => import('../../views/PrivacyPolicy.vue'),
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/AboutView.vue'),
+    component: () => import('../../views/AboutView.vue'),
   },
 ];
 

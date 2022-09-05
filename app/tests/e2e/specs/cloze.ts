@@ -1,16 +1,16 @@
-const app = '[data-test="app"]';
-const loader = '[data-test="loader"]';
-const instructionsExplainerComponent =
-  '[data-test="instructions-explainer-component"]';
-const continueButton = '[data-test="continue-button"]';
-const sentenceCard = '[data-test="sentence-card"]';
-const sentenceBlank = '[data-test="sentence-word-3"]';
-const successColor = 'rgb(0, 150, 136)';
-
 describe('马丽 interacts with the "cloze" system', () => {
+  const app = '[data-test="app"]';
+  const loader = '[data-test="loader"]';
+  const instructionsExplainerComponent =
+    '[data-test="instructions-explainer-component"]';
+  const continueButton = '[data-test="continue-button"]';
+  const sentenceCard = '[data-test="sentence-card"]';
+  const sentenceBlank = '[data-test="sentence-word-3"]';
+  const successColor = 'rgb(0, 150, 136)';
+
   beforeEach(() => {
     // Avoid dealing with "instructions explainer" side effects.
-    localStorage.setItem('InstructionsExplainerShownCount', 5);
+    localStorage.setItem('InstructionsExplainerShownCount', '5');
   });
 
   it(
@@ -79,10 +79,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.get('@audio.play').should('have.callCount', 0);
       cy.get('@animation.play').should('have.callCount', 0);
       cy.get('@animation.animate').should('have.callCount', 0);
-      cy.get('@option1')
-        .click()
-        .wait(20)
-        .should('have.class', 'ion-color-danger');
+      cy.get('@option1').click().should('have.class', 'ion-color-danger');
       cy.get('@option1').should('have.class', 'button-disabled');
 
       // 1 item audio played
@@ -211,15 +208,18 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log('-- sees the word turn red and buzz');
       cy.log("-- hears the word's audio");
       cy.log('-- sees the word return to original state.');
+      cy.get('@option1')
+        .should('have.class', 'ion-color-primary')
+        .should('not.have.class', 'ion-color-danger');
+
       cy.get('@option1').then(($el) => {
-        cy.wrap($el[0].attributes['color'].value).should('equal', 'primary');
+        cy.wrap($el.attr('color')).should('equal', 'primary');
       });
       cy.get('@option1')
         .click()
-        .wait(20)
         .should('have.class', 'ion-color-danger')
         .then(($el) => {
-          cy.wrap($el[0].attributes['color'].value).should('equal', 'danger');
+          cy.wrap($el.attr('color')).should('equal', 'danger');
         });
 
       // item returns to normal
@@ -247,10 +247,7 @@ describe('马丽 interacts with the "cloze" system', () => {
         '-- sees the first blank in the sentence reveal the word in green',
       );
       cy.log("-- hears the word's audio");
-      cy.get('@option4')
-        .click()
-        .wait(20)
-        .should('have.class', 'button-disabled');
+      cy.get('@option4').click().should('have.class', 'button-disabled');
       cy.get('[data-test="sentence-word-2"]')
         .should('have.css', 'background-color', successColor)
         .contains('有');
@@ -347,10 +344,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.get('[data-test="sentence-word-3"]')
         .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
         .should('not.contain', '两');
-      cy.get('@option2')
-        .click()
-        .wait(20)
-        .should('have.class', 'button-disabled');
+      cy.get('@option2').click().should('have.class', 'button-disabled');
 
       cy.get('[data-test="sentence-word-3"]')
         .should('have.css', 'background-color', successColor)
@@ -378,10 +372,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.get('[data-test="sentence-word-8"]')
         .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
         .should('not.contain', '没有');
-      cy.get('@option3')
-        .click()
-        .wait(20)
-        .should('have.class', 'button-disabled');
+      cy.get('@option3').click().should('have.class', 'button-disabled');
       cy.get('[data-test="sentence-word-8"]')
         .should('have.css', 'background-color', successColor)
         .should('contain', '没有');
@@ -408,10 +399,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.get('[data-test="sentence-word-10"]')
         .should('have.css', 'background-color', 'rgba(0, 0, 0, 0)')
         .should('not.contain', '兄弟姐妹');
-      cy.get('@option1')
-        .click()
-        .wait(20)
-        .should('have.class', 'button-disabled');
+      cy.get('@option1').click().should('have.class', 'button-disabled');
       cy.get('[data-test="sentence-word-10"]')
         .should('have.css', 'background-color', successColor)
         .should('contain', '兄弟姐妹');
@@ -429,3 +417,5 @@ describe('马丽 interacts with the "cloze" system', () => {
     },
   );
 });
+
+export {};

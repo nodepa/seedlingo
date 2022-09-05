@@ -1,18 +1,18 @@
-const app = '[data-test="app"]';
-const loader = '[data-test="loader"]';
-const instructionsExplainerComponent =
-  '[data-test="instructions-explainer-component"]';
-const continueButton = '[data-test="continue-button"]';
-const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
-const firstHighlightColor = 'ion-color-purple'; // 'rgb(103, 58, 183)';
-const secondHighlightColor = 'ion-color-pink'; // 'rgb(233, 30, 99)';
-const thirdHighlightColor = 'ion-color-orange'; // 'rgb(255, 152, 0)';
-const fourthHighlightColor = 'ion-color-teal'; // 'rgb(0, 150, 136)';
-const errorColor = 'ion-color-danger'; // 'rgb(229, 115, 115)';
-const wordColor = 'ion-color-primary'; // 'rgb(25, 118, 210)';
-const nonWordColor = 'ion-color-card'; // 'rgb(255, 255, 255)'; // default
-
 describe('马丽 interacts with the "matching" system', () => {
+  const app = '[data-test="app"]';
+  const loader = '[data-test="loader"]';
+  const instructionsExplainerComponent =
+    '[data-test="instructions-explainer-component"]';
+  const continueButton = '[data-test="continue-button"]';
+  const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
+  const firstHighlightColor = 'ion-color-purple'; // 'rgb(103, 58, 183)';
+  const secondHighlightColor = 'ion-color-pink'; // 'rgb(233, 30, 99)';
+  const thirdHighlightColor = 'ion-color-orange'; // 'rgb(255, 152, 0)';
+  const fourthHighlightColor = 'ion-color-teal'; // 'rgb(0, 150, 136)';
+  const errorColor = 'ion-color-danger'; // 'rgb(229, 115, 115)';
+  const wordColor = 'ion-color-primary'; // 'rgb(25, 118, 210)';
+  const nonWordColor = 'ion-color-card'; // 'rgb(255, 255, 255)'; // default
+
   it(
     'Displays the matching screen with ' +
       '4 "word" cards and 4 "symbol" cards',
@@ -100,7 +100,6 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@option2')
         .should('have.class', wordColor)
         .click()
-        .wait(100)
         .should('have.class', firstHighlightColor);
       // 1 item audio played
       cy.get('@audio.play').should('have.callCount', 1);
@@ -125,8 +124,8 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.log('-- sees both buttons return to normal, i.e. not highlighted');
       // both go red
       cy.get('@option1') // numeric 2
+        .should('have.class', nonWordColor)
         .click()
-        .wait(20)
         .should('have.class', errorColor);
       cy.get('@option2').should('have.class', errorColor);
       // then both revert to original color
@@ -333,6 +332,10 @@ describe('马丽 interacts with the "matching" system', () => {
 });
 
 describe('马丽 interacts with the "explanation matching" system', () => {
+  const app = '[data-test="app"]';
+  const loader = '[data-test="loader"]';
+  const instructionsExplainerComponent =
+    '[data-test="instructions-explainer-component"]';
   it(
     'Displays the matching screen with ' +
       '3 "word" cards and 3 "explanation" cards',
@@ -419,3 +422,5 @@ describe('马丽 interacts with the "explanation matching" system', () => {
     },
   );
 });
+
+export {};

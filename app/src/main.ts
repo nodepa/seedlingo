@@ -1,11 +1,31 @@
+/* eslint-disable no-console */
 import { isPlatform } from '@ionic/vue';
+import { registerSW } from 'virtual:pwa-register';
 if (isPlatform('capacitor')) {
-  // eslint-disable-next-line no-console
   console.log('Capacitor - native wrapped webview');
 } else {
-  // eslint-disable-next-line no-console
   console.log('Webapp/PWA - standalone browser');
-  import('@/registerServiceWorker');
+  if (
+    'serviceWorker' in navigator &&
+    import.meta.env.PROD &&
+    !('Cypress' in window)
+  ) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(() => {
+        console.log('Service Worker registered');
+      });
+    });
+
+    registerSW({
+      onRegisterError(error) {
+        console.log('error');
+        console.dir(error);
+      },
+    })(true).then((res) => {
+      console.log('registerSW result');
+      console.dir(res);
+    });
+  }
 }
 
 import { createApp } from 'vue';
@@ -21,13 +41,13 @@ import '@ionic/vue/css/text-alignment.css';
 import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
-import '@/common/styles/theme.scss';
+import './common/styles/theme.scss';
 
 import Badge from './common/components/InstructionsBadge.vue';
 import InstructionsDirective from './common/directives/InstructionsDirective';
 import App from './App.vue';
-import router from '@/common/router';
-import store from '@/common/store/RootStore';
+import router from './common/router';
+import store from './common/store/RootStore';
 
 const app = createApp(App);
 app.use(IonicVue);
@@ -35,7 +55,7 @@ app.use(store);
 app.use(router);
 app.use(InstructionsDirective, { Badge });
 
-if (process.env.NODE_ENV === 'production') {
+if (import.meta.env.PROD) {
   const timeSinceNavStart =
     Date.now() - (performance?.timing?.navigationStart || Infinity);
   const minDelay = 2000;

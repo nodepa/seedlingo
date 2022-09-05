@@ -2,9 +2,9 @@
 import { computed, ComputedRef, ref, watch } from 'vue';
 import { IonCard, IonCardContent, IonCol, IonGrid, IonRow } from '@ionic/vue';
 import { useStore } from 'vuex';
-import RippleAnimation from '@/common/animations/RippleAnimation.vue';
-import ExerciseButton from '@/common/components/ExerciseButton.vue';
-import Content from '@/Lessons/Content';
+import RippleAnimation from '../../common/animations/RippleAnimation.vue';
+import ExerciseButton from '../../common/components/ExerciseButton.vue';
+import Content from '../../Lessons/Content';
 
 import { ClozeExercise, ClozeOption, ClozeWord } from '../ClozeTypes';
 
@@ -103,8 +103,8 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
     <ion-row class="top-row ion-justify-content-center ion-align-items-center">
       <ion-col size="11">
         <ion-card
-          data-test="sentence-card"
           v-instructions="clozeInstructionsPath"
+          data-test="sentence-card"
           color="card"
         >
           <ion-card-content class="ion-text-center">
@@ -165,12 +165,12 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
         size="6"
       >
         <ExerciseButton
+          v-model:buzzing="option.buzzing"
           :data-test="`option-button-${index + 1}`"
           :playing="option.audio?.playing"
-          v-model:buzzing="option.buzzing"
           :disabled="option.disabled"
-          @click="determineCorrectness(option)"
           :color="option.color || 'primary'"
+          @click="determineCorrectness(option)"
         >
           <span :style="`font-size: ${4 - option.word.length * 0.6}rem;`">
             {{ option.word }}

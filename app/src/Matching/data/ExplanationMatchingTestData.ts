@@ -1,7 +1,7 @@
-import placeholder from '@/test-support/audio/placeholder-audio.mp3.audio';
-import 二加二 from '@/test-support/audio/characters/二加二.mp3.audio';
-import 四 from '@/test-support/audio/characters/四.mp3.audio';
-import ExerciseProvider from '@/Lessons/ExerciseProvider';
+import placeholder from '../../test-support/audio/placeholder-audio.mp3.audio?raw';
+import 二加二 from '../../test-support/audio/characters/二加二.mp3.audio?raw';
+import 四 from '../../test-support/audio/characters/四.mp3.audio?raw';
+import ExerciseProvider from '../../Lessons/ExerciseProvider';
 import { MatchingItem } from '../MatchingTypes';
 
 export default function ExplanationMatchingTestData(): Array<MatchingItem> {

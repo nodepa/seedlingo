@@ -8,9 +8,9 @@ import {
 } from 'vue';
 import { useStore } from 'vuex';
 import { createAnimation, IonButton, IonIcon } from '@ionic/vue';
-import ToggleInstructionsOnIcon from '@/common/icons/ToggleInstructionsOnIcon.svg';
-import ToggleInstructionsOffIcon from '@/common/icons/ToggleInstructionsOffIcon.svg';
-import { Instructions } from '@/common/directives/InstructionsDirective';
+import ToggleInstructionsOnIcon from '../../common/icons/ToggleInstructionsOnIcon.svg';
+import ToggleInstructionsOffIcon from '../../common/icons/ToggleInstructionsOffIcon.svg';
+import { Instructions } from '../../common/directives/InstructionsDirective';
 
 interface Props {
   showInstructionsExplainer?: boolean;
@@ -65,8 +65,8 @@ const isInstructionsMode: ComputedRef<boolean> = computed(() => {
 
 <template>
   <ion-button
-    data-test="toggle-instructions-button"
     ref="toggleInstructionsButton"
+    data-test="toggle-instructions-button"
     @click="toggleInstructionsMode()"
   >
     <ion-icon

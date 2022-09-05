@@ -1,10 +1,10 @@
-const instructionsExplainerComponent =
-  '[data-test="instructions-explainer-component"]';
-const instructionsOverlay = '[data-test="instructions-overlay"]';
-const homeButton = '[data-test="home-button"]';
-const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
-
 describe('马丽 interacts with the "instructions" system', () => {
+  const instructionsExplainerComponent =
+    '[data-test="instructions-explainer-component"]';
+  const instructionsOverlay = '[data-test="instructions-overlay"]';
+  const homeButton = '[data-test="home-button"]';
+  const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
+
   it(
     'Displays the instructions mode with audio elements,' +
       'overlay and background shading',
@@ -89,3 +89,5 @@ describe('马丽 interacts with the "instructions" system', () => {
     },
   );
 });
+
+export {};

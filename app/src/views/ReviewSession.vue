@@ -14,9 +14,9 @@ import {
   IonRow,
   useIonRouter,
 } from '@ionic/vue';
-import ExerciseButton from '@/common/components/ExerciseButton.vue';
-import Content from '@/Lessons/Content';
-import ExerciseProvider from '@/Lessons/ExerciseProvider';
+import ExerciseButton from '../common/components/ExerciseButton.vue';
+import Content from '../Lessons/Content';
+import ExerciseProvider from '../Lessons/ExerciseProvider';
 
 const route = useRoute();
 const ionRouter = useIonRouter();
@@ -73,35 +73,38 @@ onMounted(() => {
       >
         <ion-col size="10">
           <ion-card color="card">
-            <ion-card-header :v-if="word.symbol?.length > 0">
+            <ion-card-header v-if="word.picture && word.picture.length > 0">
               <ion-card-title
                 data-test="review-icon"
                 class="center-content align-vertical"
               >
-                <template v-if="word.symbol?.length > 0">
-                  <ion-icon
-                    v-for="(icon, iconIndex) in word.symbol"
-                    :key="iconIndex"
-                    :icon="Content.getIcon(icon)"
-                  />
-                </template>
-                <template v-else-if="word.picture && word.picture.length > 0">
-                  <img
-                    :src="Content.getPicPath(word.picture)"
-                    width="200"
-                    height="128"
-                    style="object-fit: contain"
-                  />
-                </template>
+                <img
+                  :src="Content.getPicPath(word.picture)"
+                  width="200"
+                  height="128"
+                  style="object-fit: contain"
+                />
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-header v-else-if="word.symbol && word.symbol.length > 0">
+              <ion-card-title
+                data-test="review-icon"
+                class="center-content align-vertical"
+              >
+                <ion-icon
+                  v-for="(icon, iconIndex) in word.symbol"
+                  :key="iconIndex"
+                  :icon="Content.getIcon(icon)"
+                />
               </ion-card-title>
             </ion-card-header>
             <ion-card-content>
               <ExerciseButton
                 data-test="review-word"
                 :playing="audio.playing"
-                @click="audio.play()"
                 color="primary"
                 style="width: 100%; height: 10rem; font-size: 3rem"
+                @click="audio.play()"
               >
                 <span>
                   {{ word.word }}

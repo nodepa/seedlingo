@@ -1,44 +1,13 @@
 {
-  "editor.wordWrapColumn": 81,
-  //trying out wordwrap from https://stackoverflow.com/a/45763713
-  "editor.wordWrap": "wordWrapColumn",
-  "editor.wrappingIndent": "same",
-  "editor.minimap.enabled": true,
-  "breadcrumbs.enabled": true,
-  "editor.renderControlCharacters": false,
-  "markdown.extension.preview.autoShowPreviewToSide": true,
-  "markdown.extension.toc.githubCompatibility": true,
-  "markdown.extension.list.indentationSize": "inherit",
-  "markdownlint.config": {
-    "MD012": false, //no-multiple-blanks
-    "MD014": false, //commands-show-output
-    "MD033": false, //no-inline-html
-    "MD036": false, //no-emphasis-as-heading
-    "MD041": false //first-line-heading
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
   },
-  "markdown.extension.toc.levels": "1..2",
-  "editor.tabSize": 2,
-  "typescript.surveys.enabled": false,
-  "html.format.wrapLineLength": 80,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "window.zoomLevel": 0,
-  "eslint.format.enable": true,
-  "eslint.alwaysShowStatus": true,
-  "eslint.packageManager": "npm",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  "emmet.includeLanguages": {
-    "vue": "html",
-    "vue-html": "html"
-  },
-  "typescript.validate.enable": false,
-  "javascript.validate.enable": false,
   "cSpell.words": [
     "activeallservices",
     "Arial",
@@ -130,6 +99,32 @@
     "xlink",
     "zhongzi"
   ],
-  "editor.glyphMargin": false,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 80,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "eslint.packageManager": "npm",
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "vue"
+  ],
+  "javascript.validate.enable": false,
+  "markdown.extension.list.indentationSize": "inherit",
+  "markdown.extension.toc.levels": "1..2",
+  "markdownlint.config": {
+    "MD012": false, //no-multiple-blanks
+    "MD014": false, //commands-show-output
+    "MD033": false, //no-inline-html
+    "MD036": false, //no-emphasis-as-heading
+    "MD041": false //first-line-heading
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.validate.enable": false,
 }
