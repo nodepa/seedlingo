@@ -12,6 +12,7 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg,mp3,audio}'],
       },
       manifest: {
+        id: '/',
         name: '立爱种字',
         short_name: '种字',
         description: '现代的流动的识字',
