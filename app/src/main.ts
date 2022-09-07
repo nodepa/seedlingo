@@ -21,9 +21,8 @@ if (isPlatform('capacitor')) {
         console.log('error');
         console.dir(error);
       },
-    })(true).then((res) => {
-      console.log('registerSW result');
-      console.dir(res);
+    })(true).then(() => {
+      console.log('page reloaded');
     });
   }
 }
