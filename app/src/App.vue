@@ -80,9 +80,9 @@ Below are stacking fixes for v-instructions directive:
 https://developer.mozilla.org/en-US/docs/Web/CSS/contain
 https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
 The CSS property `contain` creates a new stacking context
-when `contain` has the value `layout` or `paint` (or `strict` or `content`).
-The composite value `strict` -> `size layout paint`.
+when `contain` has the value `layout` or `paint` (or `content` or `strict`).
 The composite value `content` -> `layout paint`
+The composite value `strict` -> `layout paint size`.
 A child element in a new stacking context can not stack in front of a parent
 element of the new stacking context regardless of how high the `z-index` value.
 Ionic uses 'contain' extensively.  We need to reset 'contain' to allow the
@@ -121,5 +121,10 @@ ion-item::part(native) {
 ion-card {
   /* Ionic> transform: translateZ(0px) */
   transform: inherit;
+}
+
+/* Global Styles */
+ion-grid {
+  --ion-grid-column-padding: 8px;
 }
 </style>

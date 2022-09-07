@@ -45,8 +45,7 @@
           { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
         ]
       },
-      "audio": "audio/妈妈的妈妈.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/妈妈的妈妈.mp3"
     },
     {
       "id": "4bc5c4ee-2a62-40ac-9c6b-c816dcde5330",
@@ -64,8 +63,7 @@
           { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
         ]
       },
-      "audio": "audio/妈妈的爸爸.mp3",
-      "symbol": ["mdiCellphoneWireless"]
+      "audio": "audio/妈妈的爸爸.mp3"
     },
     {
       "id": "657f96f7-689d-4454-b468-35a5353d267f",

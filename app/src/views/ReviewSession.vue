@@ -17,6 +17,7 @@ import {
 import ExerciseButton from '../common/components/ExerciseButton.vue';
 import Content from '../Lessons/Content';
 import ExerciseProvider from '../Lessons/ExerciseProvider';
+// import { earOutline } from 'ionicons/icons';
 
 const route = useRoute();
 const ionRouter = useIonRouter();
@@ -66,36 +67,30 @@ onMounted(() => {
 
 <template>
   <ion-page>
-    <ion-grid style="height: 100%; width: 100%">
+    <ion-grid fixed>
       <ion-row
         class="ion-justify-content-center ion-align-items-center"
         style="height: 100%"
       >
         <ion-col size="10">
           <ion-card color="card">
-            <ion-card-header v-if="word.picture && word.picture.length > 0">
+            <ion-card-header>
               <ion-card-title
                 data-test="review-icon"
                 class="center-content align-vertical"
               >
                 <img
+                  v-if="word.picture && word.picture.length > 0"
                   :src="Content.getPicPath(word.picture)"
-                  width="200"
-                  height="128"
-                  style="object-fit: contain"
                 />
-              </ion-card-title>
-            </ion-card-header>
-            <ion-card-header v-else-if="word.symbol && word.symbol.length > 0">
-              <ion-card-title
-                data-test="review-icon"
-                class="center-content align-vertical"
-              >
-                <ion-icon
-                  v-for="(icon, iconIndex) in word.symbol"
-                  :key="iconIndex"
-                  :icon="Content.getIcon(icon)"
-                />
+                <template v-else-if="word.symbol && word.symbol.length > 0">
+                  <ion-icon
+                    v-for="(icon, iconIndex) in word.symbol"
+                    :key="iconIndex"
+                    :icon="Content.getIcon(icon)"
+                  />
+                </template>
+                <!-- <ion-icon v-else :icon="earOutline" /> -->
               </ion-card-title>
             </ion-card-header>
             <ion-card-content>
@@ -128,5 +123,10 @@ onMounted(() => {
 }
 ion-icon {
   font-size: 4rem;
+}
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 </style>

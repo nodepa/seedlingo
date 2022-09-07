@@ -838,10 +838,6 @@ export default class ExerciseProvider {
       multipleChoiceExercise.pictureToMatch = Content.getPicPath(
         correctItem.picture,
       );
-    } else {
-      multipleChoiceExercise.iconToMatch = [
-        Content.getIcon('mdiCellphoneWireless'),
-      ];
     }
   }
 

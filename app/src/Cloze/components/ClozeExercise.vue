@@ -100,8 +100,8 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
 
 <template>
   <ion-grid>
-    <ion-row class="top-row ion-justify-content-center ion-align-items-center">
-      <ion-col size="11">
+    <div class="flex-row">
+      <div class="flex-col-top">
         <ion-card
           v-instructions="clozeInstructionsPath"
           data-test="sentence-card"
@@ -154,46 +154,64 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
             </template>
           </ion-card-content>
         </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row
-      class="bottom-row ion-justify-content-around ion-align-items-stretch"
-    >
-      <ion-col
-        v-for="(option, index) in exercise.clozeOptions"
-        :key="index"
-        size="6"
-      >
-        <ExerciseButton
-          v-model:buzzing="option.buzzing"
-          :data-test="`option-button-${index + 1}`"
-          :playing="option.audio?.playing"
-          :disabled="option.disabled"
-          :color="option.color || 'primary'"
-          @click="determineCorrectness(option)"
-        >
-          <span :style="`font-size: ${4 - option.word.length * 0.6}rem;`">
-            {{ option.word }}
-          </span>
-        </ExerciseButton>
-      </ion-col>
-    </ion-row>
+      </div>
+      <div class="flex-col-bottom">
+        <ion-row>
+          <ion-col
+            v-for="(option, index) in exercise.clozeOptions"
+            :key="index"
+            size-xs="6"
+          >
+            <ExerciseButton
+              v-model:buzzing="option.buzzing"
+              :data-test="`option-button-${index + 1}`"
+              :playing="option.audio?.playing"
+              :disabled="option.disabled"
+              :color="option.color || 'primary'"
+              @click="determineCorrectness(option)"
+            >
+              <span
+                :style="`font-size: ${
+                  4 - option.word.length * 0.6
+                }rem; margin: 0px; white-space: break-spaces;`"
+              >
+                {{ option.word }}
+              </span>
+            </ExerciseButton>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
   </ion-grid>
 </template>
 
 <style scoped>
-ion-grid {
-  --ion-grid-column-padding: 0px;
+.flex-row {
+  display: flex;
+  flex-direction: column;
   height: 100%;
+}
+.flex-col-top {
+  display: flex;
+  justify-content: center;
+  flex: 1 1 40%;
+  padding: var(--ion-grid-column-padding);
+}
+.flex-col-bottom {
+  display: flex;
+  justify-content: stretch;
+  flex: 1 1 60%;
+}
+ion-row {
   width: 100%;
 }
-.top-row {
-  height: 40%;
-}
-.bottom-row {
-  height: 60%;
-}
 ion-card {
+  display: flex;
+  height: 100%;
+  width: 90%;
+  margin: 0px;
+  justify-content: center;
+  align-items: center;
   overflow: visible;
 }
 ion-card-content {
@@ -231,7 +249,5 @@ span {
 ion-button {
   width: 100%;
   height: 100%;
-  padding: 15px;
-  margin: 0px;
 }
 </style>

@@ -5,6 +5,7 @@ import { useStore } from 'vuex';
 import ExerciseButton from '../../common/components/ExerciseButton.vue';
 import { MatchingItem } from '../MatchingTypes';
 import Content from '../../Lessons/Content';
+import { earOutline } from 'ionicons/icons';
 
 const startColors = ['purple', 'pink', 'orange', 'teal'];
 const colors: Array<string> = Array.from(startColors);
@@ -209,7 +210,7 @@ function getSpacing(itemCount: number, index: number): string {
 </script>
 
 <template>
-  <ion-grid style="height: 100%; width: 100%">
+  <ion-grid fixed>
     <ion-row class="ion-justify-content-center">
       <ion-col v-for="(option, index) in exerciseItems" :key="index" size="6">
         <ExerciseButton
@@ -218,28 +219,21 @@ function getSpacing(itemCount: number, index: number): string {
           :data-test="`option-button-${+index + 1}`"
           :playing="option.audio && option.audio.playing"
           :color="option.color || (option.isWord ? wordColor : nonWordColor)"
-          style="width: 100%; height: 100%; padding: 15px; margin: 0px"
           @click="selectAndPlay(option, +index)"
         >
           <template v-if="option.isIcon">
-            <!-- awaiting post-alpha vue3-jest:
-              v-for="(icon, iconIndex) in (option.wordOrIcons as Array<string>)"
-            -->
             <ion-icon
-              v-for="(icon, iconIndex) in option.wordOrIcons"
+              v-for="(icon, iconIndex) in option.wordOrIcons.length
+                ? option.wordOrIcons
+                : [earOutline]"
               :key="iconIndex"
-              :style="`font-size: ${4 - option.wordOrIcons.length * 0.6}rem;
+              :style="`font-size: 2.7rem;
               ${getSpacing(option.wordOrIcons.length, +iconIndex)}`"
               :icon="icon"
             />
           </template>
           <template v-else-if="option.picture && option.picture.length > 0">
-            <img
-              :src="option.picture"
-              width="120"
-              height="60"
-              style="object-fit: contain"
-            />
+            <img :src="option.picture" />
           </template>
           <template v-else>
             <p
@@ -257,10 +251,20 @@ function getSpacing(itemCount: number, index: number): string {
 </template>
 
 <style scoped>
-ion-grid {
-  --ion-grid-column-padding: 0px;
-}
 ion-row {
   height: 100%;
+}
+ion-button {
+  height: 100%;
+  width: 100%;
+}
+ion-button::part(native) {
+  contain: size;
+  padding: 0.8rem;
+}
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 </style>

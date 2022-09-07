@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
   iterations: Infinity,
   borderWidth: '4px',
   size: '40px',
-  scale: '4',
+  scale: '3',
   borderColor: 'rgba(0,0,0,0.3)',
 });
 

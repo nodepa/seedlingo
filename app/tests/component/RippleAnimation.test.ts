@@ -28,7 +28,7 @@ describe('RippleAnimation', () => {
       expect(wrapper.vm.$props.iterations).toBe(Infinity);
       expect(wrapper.vm.$props.borderWidth).toBe('4px');
       expect(wrapper.vm.$props.size).toBe('40px');
-      expect(wrapper.vm.$props.scale).toBe('4');
+      expect(wrapper.vm.$props.scale).toBe('3');
       expect(wrapper.vm.$props.borderColor).toBe('rgba(0,0,0,0.3)');
     });
   });

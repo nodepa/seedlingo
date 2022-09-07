@@ -65,7 +65,7 @@ function getExercise(): void {
   const restoreAfterMock = ExerciseProvider.pickRandomExerciseType;
   if ('matching-test' === route.params.lessonIndex) {
     exerciseComponent.value = MatchingExercise;
-    exerciseItems.value = getMatchingTestData();
+    exerciseItems.value = getMatchingTestData('mixed');
   } else if ('matching' === route.params.lessonIndex) {
     exerciseComponent.value = MatchingExercise;
     ExerciseProvider.pickRandomExerciseType = () => 'Matching';

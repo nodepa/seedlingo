@@ -62,7 +62,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
         .should('be.visible');
 
       cy.log('**3. 马丽 taps the loudspeaker to hear the audio again.**');
-      cy.get(itemUnderTestButton).wait(400).click();
+      cy.wait(400).get(itemUnderTestButton).click();
       // 1 item audio played
       cy.get('@audio.play').should('have.callCount', 1).invoke('resetHistory');
 
