@@ -15,15 +15,6 @@ if (isPlatform('capacitor')) {
         console.log('Service Worker registered');
       });
     });
-
-    registerSW({
-      onRegisterError(error) {
-        console.log('error');
-        console.dir(error);
-      },
-    })(true).then(() => {
-      console.log('page reloaded');
-    });
   }
 }
 
