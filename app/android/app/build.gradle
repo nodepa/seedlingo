@@ -15,6 +15,14 @@ android {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+		def ver = defaultConfig.versionName
+		def build = defaultConfig.versionCode
+		def debug = variant.buildType.name == 'debug' ? '.DEBUG' : ''
+		output.outputFileName = '种字.v' + ver + '_' + build + debug + '.apk'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -32,6 +40,8 @@ repositories {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
     implementation project(':capacitor-android')
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
