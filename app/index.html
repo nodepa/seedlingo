@@ -156,25 +156,8 @@
       }
     }
   </style>
-  <script type="module">
-    import {isPlatform} from '@ionic/vue';
-    if(isPlatform('capacitor')) {
-      console.log('Capacitor - native wrapped webview');
-    } else {
-      console.log('Webapp/PWA - standalone browser');
-      if(
-        'serviceWorker' in navigator&&
-        import.meta.env.PROD&&
-        !('Cypress' in window)
-      ) {
-        window.addEventListener('load',() => {
-          navigator.serviceWorker.register('/sw.js',{scope: '/'}).then(() => {
-            console.log('Service Worker registered');
-          });
-        });
-      }
-    }
-  </script>
+
+  <script type="module" src="@/assets/registerServiceWorker"></script>
 </head>
 
 <body>
