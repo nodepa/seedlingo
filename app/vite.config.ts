@@ -10,9 +10,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: null,
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,mp3,audio}'],
-      },
+      includeAssets: ['**/*.{ico,jpg,png,svg,xml,txt}'],
       manifest: {
         id: '/',
         name: '立爱种字',
@@ -36,6 +34,11 @@ export default defineConfig({
             type: 'image/png',
             purpose: 'maskable any',
           },
+        ],
+      },
+      workbox: {
+        globPatterns: [
+          '**/*.{js,css,html,ico,jpg,jpeg,png,gif,svg,mp3,audio,xml,txt}',
         ],
       },
     }),
