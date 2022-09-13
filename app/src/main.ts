@@ -1,22 +1,21 @@
 /* eslint-disable no-console */
-import { isPlatform } from '@ionic/vue';
-import { registerSW } from 'virtual:pwa-register';
-if (isPlatform('capacitor')) {
-  console.log('Capacitor - native wrapped webview');
-} else {
-  console.log('Webapp/PWA - standalone browser');
-  if (
-    'serviceWorker' in navigator &&
-    import.meta.env.PROD &&
-    !('Cypress' in window)
-  ) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(() => {
-        console.log('Service Worker registered');
-      });
-    });
-  }
-}
+// import { isPlatform } from '@ionic/vue';
+// if (isPlatform('capacitor')) {
+//   console.log('Capacitor - native wrapped webview');
+// } else {
+//   console.log('Webapp/PWA - standalone browser');
+//   if (
+//     'serviceWorker' in navigator &&
+//     import.meta.env.PROD &&
+//     !('Cypress' in window)
+//   ) {
+//     window.addEventListener('load', () => {
+//       navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(() => {
+//         console.log('Service Worker registered');
+//       });
+//     });
+//   }
+// }
 
 import { createApp } from 'vue';
 
