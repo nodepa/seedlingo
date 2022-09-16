@@ -3,7 +3,7 @@ node_modules
 dist
 dist-ssr
 *.local
-.tsconfig.lint.json
+tsconfig.lint.json
 
 # Tests
 /coverage

@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 pwd
-TMP=.tsconfig.lint.json
+TMP=tsconfig.lint.json
 cat >$TMP <<EOF
 {
   "extends": "./tsconfig.json",
