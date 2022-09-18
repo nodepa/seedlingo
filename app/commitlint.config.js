@@ -27,12 +27,41 @@
 
 // # ─── END OF COMMIT MESSAGE ───────────────────────────────────wrap<=72┘
 module.exports = {
+  helpUrl:
+    "Check the .gitmessage file in the project's base directory for a commit message template",
+  rules: {
+    'body-empty': [2, 'never'],
+    'body-footer-certification': [2, 'always'],
+    'body-impact': [1, 'always'],
+    'body-max-line-length': [2, 'always', 72],
+    'body-motivation': [1, 'always'],
+    'footer-leading-blank': [2, 'always'],
+    'footer-max-line-length': [2, 'always', 72],
+    'header-max-length': [2, 'always', 72],
+    'scope-enum': [2, 'never'],
+    'signed-off-by': [2, 'always'],
+    'subject-case': [2, 'always', ['lower-case', 'sentence-case']],
+    'subject-empty': [2, 'never'],
+    'subject-exclamation-mark': [2, 'never', '.'],
+    'subject-full-stop': [2, 'never', '.'],
+    'type-case': [2, 'always', 'lower-case'],
+    'type-empty': [2, 'never'],
+    'type-enum': [
+      2,
+      'always',
+      ['content', 'docs', 'feat', 'fix', 'infra', 'refactor', 'style', 'test'],
+    ],
+    'trailer-exists': [2, 'always'],
+  },
   plugins: [
     {
       rules: {
-        'body-certification': function ({ body }, when = 'always') {
+        'body-footer-certification': function (
+          { body, footer },
+          when = 'always',
+        ) {
           const negated = when == 'never';
-          const includesCertification = body
+          const includesCertification = `${body}${footer}`
             .toLowerCase()
             .includes(
               '**certification**\n' +
@@ -87,31 +116,4 @@ module.exports = {
       },
     },
   ],
-  rules: {
-    'body-certification': [2, 'always'],
-    'body-motivation': [1, 'always'],
-    'body-impact': [1, 'always'],
-    'body-empty': [2, 'never'],
-    'body-leading-blank': [2, 'always'],
-    'body-max-line-length': [2, 'always', 72],
-    'footer-leading-blank': [2, 'always'],
-    'footer-max-line-length': [2, 'always', 72],
-    'header-max-length': [2, 'always', 72],
-    'subject-case': [2, 'always', ['lower-case', 'sentence-case']],
-    'subject-empty': [2, 'never'],
-    'subject-exclamation-mark': [2, 'never', '.'],
-    'subject-full-stop': [2, 'never', '.'],
-    'scope-enum': [2, 'never'],
-    'signed-off-by': [2, 'always'],
-    'type-case': [2, 'always', 'lower-case'],
-    'type-empty': [2, 'never'],
-    'type-enum': [
-      2,
-      'always',
-      ['content', 'docs', 'feat', 'fix', 'infra', 'refactor', 'style', 'test'],
-    ],
-    'trailer-exists': [2, 'always'],
-  },
-  helpUrl:
-    "Check the .gitmessage file in the project's base directory for a commit message template",
 };
