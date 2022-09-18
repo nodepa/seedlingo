@@ -22,7 +22,7 @@
 
 <br/>
 <p align="center">
-  <a href="https://globalseedling.com/get-started">Documentation</a>
+  <a href="https://globalseedling.com/get-started/get-started.html">Documentation</a>
   ·
   <a href="/.github/CONTRIBUTING.md">Contributing</a>
 </p>
@@ -127,7 +127,7 @@ npm run verify
 Play around with your own content
 by replacing the `content/` folder (parallel to the `app/` folder)
 with your own.
-See the [Seedling documentation](https://globalseedling.com/get-started)
+See the [Seedling documentation](https://globalseedling.com/get-started/get-started.html)
 about formats.
 
 ## Community
