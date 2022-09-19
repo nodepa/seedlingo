@@ -28,14 +28,14 @@
 // # ─── END OF COMMIT MESSAGE ───────────────────────────────────wrap<=72┘
 module.exports = {
   helpUrl:
-    "Check the .gitmessage file in the project's base directory for a commit message template",
+    "Commit message guidelines are found in this project's root folder's .gitmessage file, and at https://github.com/nodepa/seedling/blob/main/.gitmessage",
   rules: {
     'body-empty': [2, 'never'],
     'body-footer-certification': [2, 'always'],
-    'body-impact': [1, 'always'],
+    'body-impact': [1, 'always'], // 1 means warning
     'body-leading-blank': [2, 'always'],
     'body-max-line-length': [2, 'always', 72],
-    'body-motivation': [1, 'always'],
+    'body-motivation': [1, 'always'], // 1 means warning
     'footer-leading-blank': [2, 'always'],
     'footer-max-line-length': [2, 'always', 72],
     'header-max-length': [2, 'always', 72],
@@ -98,16 +98,17 @@ module.exports = {
             );
           return [
             negated ? !includesCertification : includesCertification,
-            `Your commit message MUST ${
-              negated ? 'NOT ' : ''
-            }contain a certification with a box checked with an X, like this:\n\n` +
-              '**Certification**\n' +
-              '- [X] I certify that <!-- Check the box to certify: [X] -->\n' +
-              '- I have read the [contributing guidelines](\n' +
-              '  https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)\n' +
-              "- I license these contributions to the public under Seedling's\n" +
-              '  [LICENSE](https://github.com/nodepa/seedling/blob/main/LICENSE.md)\n' +
-              '  and have the rights to do so.\n\n',
+            'body ' + negated
+              ? 'may not  '
+              : 'must ' +
+                'contain a certification with a box checked with an X, like this:\n\n' +
+                '**Certification**\n' +
+                '- [X] I certify that <!-- Check the box to certify: [X] -->\n' +
+                '- I have read the [contributing guidelines](\n' +
+                '  https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)\n' +
+                "- I license these contributions to the public under Seedling's\n" +
+                '  [LICENSE](https://github.com/nodepa/seedling/blob/main/LICENSE.md)\n' +
+                '  and have the rights to do so.\n\n',
           ];
         },
         // # **Motivation - Why is this change necessary?**
@@ -117,9 +118,10 @@ module.exports = {
           const includesMotivation = body.includes('Because ');
           return [
             negated ? !includesMotivation : includesMotivation,
-            `Your commit message MUST ${
-              negated ? 'NOT ' : ''
-            }contain a line of motivation explaining the rationale for the commit by answering "Why is this change necessary?", starting with "Because "\n`,
+            'body ' + negated
+              ? 'may not  '
+              : 'must ' +
+                'contain a line of motivation explaining the rationale for the commit by answering "Why is this change necessary?", starting with "Because "\n',
           ];
         },
         // # **Impact - How will this commit address the need?**
@@ -132,9 +134,10 @@ module.exports = {
             .includes('this commit will');
           return [
             negated ? !includesImpact : includesImpact,
-            `Your commit message MUST ${
-              negated ? 'NOT ' : ''
-            }contain a line of impact explaining the result of the commit by answering "How will this commit address the need?", starting with "this commit will "\n`,
+            'body ' + negated
+              ? 'may not  '
+              : 'must ' +
+                'contain a line of impact explaining the result of the commit by answering "How will this commit address the need?", starting with "this commit will "\n',
           ];
         },
       },
