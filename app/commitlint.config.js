@@ -33,6 +33,7 @@ module.exports = {
     'body-empty': [2, 'never'],
     'body-footer-certification': [2, 'always'],
     'body-impact': [1, 'always'],
+    'body-leading-blank': [2, 'always'],
     'body-max-line-length': [2, 'always', 72],
     'body-motivation': [1, 'always'],
     'footer-leading-blank': [2, 'always'],
@@ -56,6 +57,29 @@ module.exports = {
   plugins: [
     {
       rules: {
+        'body-leading-blank': (parsed, when) => {
+          if (!parsed.body) {
+            return [true];
+          }
+          const negated = when === 'never';
+          const lines = parsed.raw.split(/(?:\r?\n)/).slice(1);
+          let firstNonCommentIsBlank = false;
+          for (const line of lines) {
+            if (line === '') {
+              firstNonCommentIsBlank = true;
+              break;
+            }
+            if (!line.match(/^#+/)) {
+              break;
+            }
+          }
+          return [
+            negated ? !firstNonCommentIsBlank : firstNonCommentIsBlank,
+            'body ' + negated
+              ? 'may not '
+              : 'must ' + 'have leading blank line',
+          ];
+        },
         'body-footer-certification': function (
           { body, footer },
           when = 'always',
