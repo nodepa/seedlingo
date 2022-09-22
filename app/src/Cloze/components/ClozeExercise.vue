@@ -17,7 +17,7 @@ const exercise = computed({
   get: (): ClozeExercise => {
     // eslint-disable-next-line vue/no-side-effects-in-computed-properties
     exercise.value = props.exerciseProp;
-    return localExercise.value;
+    return localExercise.value as ClozeExercise;
   },
   set: (exercise: ClozeExercise): void => {
     localExercise.value = exercise;
