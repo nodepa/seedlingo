@@ -25,7 +25,7 @@ const exerciseItems = computed({
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       exerciseItems.value = props.exerciseProp;
     }
-    return localExerciseItems.value;
+    return localExerciseItems.value as Array<MatchingItem>;
   },
   set: (items: Array<MatchingItem>): void => {
     localExerciseItems.value = items;

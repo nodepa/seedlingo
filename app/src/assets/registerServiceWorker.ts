@@ -24,16 +24,20 @@ if (isPlatform('capacitor')) {
         console.log('SW - Offline ready -> reload');
         window.location.reload();
       },
-      onRegistered(r) {
-        console.log('SW - registered -> no update');
-        // if (r) {
-        //   r.update();
-        // }
+      onRegisteredSW(swScriptUrl, registration) {
+        console.log('SW - registered');
+        registration
+          ?.update()
+          .then((val) => console.log('updated: ', val))
+          .catch((error) => console.log('update error: ', error));
       },
       onRegisterError(error) {
         console.log('Service Worker registration failed');
         console.log(error);
       },
     });
+    updateSW(true)
+      .then((val) => console.log('updateSW: ', val))
+      .catch((error) => console.log('updateSW error: ', error));
   }
 }

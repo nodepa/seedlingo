@@ -23,8 +23,8 @@ const props = withDefaults(defineProps<Props>(), {
   borderColor: 'rgba(0,0,0,0.3)',
 });
 
-const ripple = ref<HTMLElement | null>(null);
-const rippleDelayed = ref<HTMLElement | null>(null);
+const ripple = ref<HTMLElement>();
+const rippleDelayed = ref<HTMLElement>();
 let animation: Animation, animationDelayed: Animation;
 
 const zIndex = computed(() => (props.playing ? 140 : -10));
