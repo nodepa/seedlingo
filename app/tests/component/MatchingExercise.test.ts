@@ -286,10 +286,10 @@ describe('MatchingExercise', () => {
       // getSpacing(itemCount, index)
       expect((matching as any).getSpacing(0, 0)).toBe('');
       expect((matching as any).getSpacing(1, 0)).toBe('');
-      expect((matching as any).getSpacing(2, 0)).toBe('margin-right: -8px');
-      expect((matching as any).getSpacing(2, 1)).toBe('margin-left: -8px');
+      expect((matching as any).getSpacing(2, 0)).toBe('margin-right: -0.75rem');
+      expect((matching as any).getSpacing(2, 1)).toBe('margin-left: -0.75rem');
       expect((matching as any).getSpacing(3, 1)).toBe(
-        'margin-right: -8px;margin-left: -8px',
+        'margin-right: -0.75rem;margin-left: -0.75rem',
       );
     });
   });

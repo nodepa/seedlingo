@@ -70,10 +70,10 @@ describe('MultipleChoiceExercise', () => {
       // getSpacing(itemCount, index)
       expect(wrapper.vm.getSpacing(0, 0)).toBe('');
       expect(wrapper.vm.getSpacing(1, 0)).toBe('');
-      expect(wrapper.vm.getSpacing(2, 0)).toBe('margin-right: -16px');
-      expect(wrapper.vm.getSpacing(2, 1)).toBe('margin-left: -16px');
+      expect(wrapper.vm.getSpacing(2, 0)).toBe('margin-right: -1rem');
+      expect(wrapper.vm.getSpacing(2, 1)).toBe('margin-left: -1rem');
       expect(wrapper.vm.getSpacing(3, 1)).toBe(
-        'margin-right: -16px;margin-left: -16px',
+        'margin-right: -1rem;margin-left: -1rem',
       );
     });
   });

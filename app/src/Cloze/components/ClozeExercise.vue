@@ -99,7 +99,7 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
 </script>
 
 <template>
-  <ion-grid>
+  <ion-grid fixed>
     <div class="flex-row">
       <div class="flex-col-top">
         <ion-card

@@ -13,7 +13,7 @@ import logoUrl from '../assets/logo/logo-col.svg';
 <template>
   <ion-page>
     <ion-content>
-      <ion-grid>
+      <ion-grid fixed>
         <ion-row class="ion-justify-content-center">
           <ion-col size="auto">
             <ion-img alt="立爱种字 Logo" :src="logoUrl" />

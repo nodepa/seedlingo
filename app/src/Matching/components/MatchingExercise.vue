@@ -198,12 +198,12 @@ const matchingInstructionsPath: ComputedRef<string> = computed(() => {
 function getSpacing(itemCount: number, index: number): string {
   if (itemCount > 1) {
     if (index === 0) {
-      return 'margin-right: -8px';
+      return 'margin-right: -0.75rem';
     }
     if (index === itemCount - 1) {
-      return 'margin-left: -8px';
+      return 'margin-left: -0.75rem';
     }
-    return 'margin-right: -8px;margin-left: -8px';
+    return 'margin-right: -0.75rem;margin-left: -0.75rem';
   }
   return '';
 }
@@ -227,7 +227,7 @@ function getSpacing(itemCount: number, index: number): string {
                 ? option.wordOrIcons
                 : [earOutline]"
               :key="iconIndex"
-              :style="`font-size: 2.7rem;
+              :style="`font-size: 4.0rem;
               ${getSpacing(option.wordOrIcons.length, +iconIndex)}`"
               :icon="icon"
             />
@@ -260,7 +260,7 @@ ion-button {
 }
 ion-button::part(native) {
   contain: size;
-  padding: 0.8rem;
+  padding: 0.5rem;
 }
 img {
   width: 100%;

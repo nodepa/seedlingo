@@ -67,66 +67,70 @@ onMounted(() => {
 
 <template>
   <ion-page>
-    <ion-grid fixed>
-      <ion-row
-        class="ion-justify-content-center ion-align-items-center"
-        style="height: 100%"
+    <ion-grid
+      fixed
+      style="
+        height: 100%;
+        padding: 0rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <ion-card
+        style="
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          justify-content: center;
+          margin: 0rem 0.8rem;
+          max-height: calc(100% - 1.6rem);
+        "
       >
-        <ion-col size="10">
-          <ion-card color="card">
-            <ion-card-header>
-              <ion-card-title
-                data-test="review-icon"
-                class="center-content align-vertical"
-              >
-                <img
-                  v-if="word.picture && word.picture.length > 0"
-                  :src="Content.getPicPath(word.picture)"
-                />
-                <template v-else-if="word.symbol && word.symbol.length > 0">
-                  <ion-icon
-                    v-for="(icon, iconIndex) in word.symbol"
-                    :key="iconIndex"
-                    :icon="Content.getIcon(icon)"
-                  />
-                </template>
-                <!-- <ion-icon v-else :icon="earOutline" /> -->
-              </ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              <ExerciseButton
-                data-test="review-word"
-                :playing="audio.playing"
-                color="primary"
-                style="width: 100%; height: 10rem; font-size: 3rem"
-                @click="audio.play()"
-              >
-                <span>
-                  {{ word.word }}
-                </span>
-              </ExerciseButton>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
+        <ion-card-header
+          v-if="word.picture && word.picture.length > 0"
+          style="min-height: 0%; min-width: 0%; display: flex"
+        >
+          <img
+            :src="Content.getPicPath(word.picture)"
+            style="object-fit: contain; max-height: 100%"
+          />
+        </ion-card-header>
+        <ion-card-header
+          v-else-if="word.symbol && word.symbol.length > 0"
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <ion-icon
+            v-for="(icon, iconIndex) in word.symbol"
+            :key="iconIndex"
+            data-test="review-icon"
+            :icon="Content.getIcon(icon)"
+            style="font-size: 4rem"
+          />
+        </ion-card-header>
+        <ion-card-content style="display: flex; flex: 1">
+          <ExerciseButton
+            data-test="review-word"
+            :playing="audio.playing"
+            color="primary"
+            style="
+              width: 100%;
+              height: auto;
+              min-height: 6rem;
+              font-size: 3rem;
+              --padding-top: 0.5rem;
+              --padding-bottom: 0.5rem;
+              --padding-start: 0.5rem;
+              --padding-end: 0.5rem;
+            "
+            @click="audio.play()"
+          >
+            <span style="white-space: break-spaces">
+              {{ word.word }}
+            </span>
+          </ExerciseButton>
+        </ion-card-content>
+      </ion-card>
     </ion-grid>
   </ion-page>
 </template>
-
-<style scoped>
-.center-content {
-  display: flex;
-  justify-content: center;
-}
-.align-vertical {
-  align-items: center;
-}
-ion-icon {
-  font-size: 4rem;
-}
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-</style>
