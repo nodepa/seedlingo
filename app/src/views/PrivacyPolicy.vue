@@ -10,7 +10,7 @@ onMounted(() => {
 <template>
   <ion-page>
     <ion-content>
-      <ion-grid>
+      <ion-grid fixed>
         <ion-row class="ion-justify-content-center">
           <ion-col size="10">
             <h1>Privacy Policy</h1>

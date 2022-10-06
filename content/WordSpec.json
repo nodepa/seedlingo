@@ -5,7 +5,7 @@
     "a681b683-d909-4f5b-834e-8347633df4b1": {
       "word": "数字",
       "audio": "audio/数字.mp3",
-      "symbol": ["mdiNumeric"]
+      "picture": "pics/数字.jpg"
     },
     "8d2a8043-7eaa-4aee-927d-a42313036970": {
       "word": "零",
@@ -170,7 +170,7 @@
     "0d66532e-7d41-4ff8-a52a-042f676655da": {
       "word": "家庭",
       "audio": "audio/家庭.mp3",
-      "symbol": ["mdiFamilyTree"]
+      "picture": "pics/家庭.jpg"
     },
     "9f4c842a-e36a-48b1-aa4b-955aedef35d2": {
       "word": "我",
@@ -184,7 +184,7 @@
     "0ec9e1ed-e1a5-4fb4-a9b8-5822ea4399e2": {
       "word": "我的家庭",
       "audio": "audio/我的家庭.mp3",
-      "symbol": ["mdiAccount", "mdiFamilyTree"]
+      "picture": "pics/我的家庭.jpg"
     },
     "8da1e3a6-3268-40da-8707-be2a2c902c16": {
       "word": "妈妈",
@@ -218,19 +218,23 @@
     },
     "d63f08dd-f8e6-4b47-940b-8d9d939034a6": {
       "word": "姥姥",
-      "audio": "audio/姥姥.mp3"
+      "audio": "audio/姥姥.mp3",
+      "picture": "pics/姥姥.jpg"
     },
     "6c0f975c-4364-40c7-ae72-cfc2145da7e3": {
       "word": "姥爷",
-      "audio": "audio/姥爷.mp3"
+      "audio": "audio/姥爷.mp3",
+      "picture": "pics/姥爷.jpg"
     },
     "5cd464a3-a04a-4ad2-9565-091036425550": {
       "word": "奶奶",
-      "audio": "audio/奶奶.mp3"
+      "audio": "audio/奶奶.mp3",
+      "picture": "pics/奶奶.jpg"
     },
     "1ad7f2f9-521a-4a00-b549-bd4ee081149b": {
       "word": "爷爷",
-      "audio": "audio/爷爷.mp3"
+      "audio": "audio/爷爷.mp3",
+      "picture": "pics/爷爷.jpg"
     },
     "76004162-7f5b-4e28-bda5-bbcb39be8165": {
       "word": "丈夫",
@@ -290,15 +294,18 @@
     },
     "c8de49d6-d26a-4d62-b959-83cf57327387": {
       "word": "孩子",
-      "audio": "audio/孩子.mp3"
+      "audio": "audio/孩子.mp3",
+      "picture": "pics/孩子.jpg"
     },
     "34d92533-9c8c-4469-b050-2638f2b5f4d5": {
       "word": "女儿",
-      "audio": "audio/女儿.mp3"
+      "audio": "audio/女儿.mp3",
+      "picture": "pics/女儿.jpg"
     },
     "af7cc883-0091-4d24-800e-95ca67ee451c": {
       "word": "儿子",
-      "audio": "audio/儿子.mp3"
+      "audio": "audio/儿子.mp3",
+      "picture": "pics/儿子.jpg"
     },
     "83ded6b2-d80b-4a78-bd10-00d4822aefb9": {
       "word": "外孙女",

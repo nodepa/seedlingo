@@ -121,12 +121,12 @@ function playOptionAudio(option: MultipleChoiceItem): void {
 function getSpacing(itemCount: number, index: number): string {
   if (itemCount > 1) {
     if (index === 0) {
-      return 'margin-right: -16px';
+      return 'margin-right: -1rem';
     }
     if (index === itemCount - 1) {
-      return 'margin-left: -16px';
+      return 'margin-left: -1rem';
     }
-    return 'margin-right: -16px;margin-left: -16px';
+    return 'margin-right: -1rem;margin-left: -1rem';
   }
   return '';
 }
@@ -143,7 +143,7 @@ onUpdated(() => {
 
 <template>
   <ion-grid fixed>
-    <ion-row class="top-row ion-justify-content-center">
+    <ion-row class="top-row ion-justify-content-center" style="height: 30%">
       <ion-col size="10">
         <ExerciseButton
           ref="itemUnderTestButton"
@@ -151,6 +151,15 @@ onUpdated(() => {
           data-test="item-under-test-button"
           :playing="exerciseProp.itemUnderTestAudioPlaying"
           color="card"
+          style="
+            width: 100%;
+            height: 100%;
+            font-size: 4rem;
+            --padding-top: 0.5rem;
+            --padding-bottom: 0.5rem;
+            --padding-start: 0.5rem;
+            --padding-end: 0.5rem;
+          "
           @click="playItemUnderTestAudio"
         >
           <template
@@ -159,7 +168,10 @@ onUpdated(() => {
               exerciseProp.pictureToMatch.length > 0
             "
           >
-            <img :src="exerciseProp.pictureToMatch" />
+            <img
+              :src="exerciseProp.pictureToMatch"
+              style="width: 100%; height: 100%; object-fit: contain"
+            />
           </template>
           <template
             v-else-if="
@@ -193,7 +205,7 @@ onUpdated(() => {
         </ExerciseButton>
       </ion-col>
     </ion-row>
-    <ion-row class="bottom-row ion-justify-content-around">
+    <ion-row class="ion-justify-content-around" style="height: 70%">
       <ion-col
         v-for="(option, index) in exerciseProp.options"
         :key="index"
@@ -206,6 +218,14 @@ onUpdated(() => {
           :disabled="option.disabled && !option.buzzing"
           :playing="option.playing"
           :color="option.color || 'primary'"
+          style="
+            width: 100%;
+            height: 100%;
+            --padding-top: 0.5rem;
+            --padding-bottom: 0.5rem;
+            --padding-start: 0.5rem;
+            --padding-end: 0.5rem;
+          "
           @click="determineCorrectness(option)"
         >
           <span
@@ -222,31 +242,7 @@ onUpdated(() => {
 </template>
 
 <style scoped>
-.top-row {
-  height: 30%;
-  font-size: 3rem;
-}
-.bottom-row {
-  height: 70%;
-}
-.top-row ion-button {
-  font-size: 3rem;
-}
-.top-row ion-button::part(native) {
-  padding: 10px;
-}
-ion-button {
-  width: 100%;
-  height: 100%;
-}
 ion-button::part(native) {
   contain: size;
-  padding: 0.8rem;
-}
-
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }
 </style>
