@@ -30,7 +30,7 @@ const lastWordIndex = words.length - 1;
 let currentWordIndex = 0;
 const word = ref(words[currentWordIndex]);
 const audio = ref(
-  ExerciseProvider.createAudio(Content.getAudioPath(word.value.audio || '')),
+  ExerciseProvider.createAudio(Content.getAudioData(word.value.audio || '')),
 );
 
 watch(
@@ -43,7 +43,7 @@ watch(
 );
 watch(word, () => {
   audio.value = ExerciseProvider.createAudio(
-    Content.getAudioPath(word.value.audio || ''),
+    Content.getAudioData(word.value.audio || ''),
   );
   audio.value.play();
 });
@@ -89,7 +89,12 @@ onMounted(() => {
       >
         <ion-card-header
           v-if="word.picture && word.picture.length > 0"
-          style="min-height: 0%; min-width: 0%; display: flex"
+          style="
+            min-height: 0%;
+            min-width: 0%;
+            display: flex;
+            justify-content: center;
+          "
         >
           <img
             :src="Content.getPicPath(word.picture)"

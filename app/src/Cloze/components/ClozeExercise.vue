@@ -31,7 +31,7 @@ watch(
 );
 
 const blanks = computed((): Array<ClozeWord> => {
-  return exercise.value.clozeText.filter((val) => val.isBlank);
+  return exercise.value.clozeText.filter((entry) => entry.isBlank);
 });
 
 const store = useStore();

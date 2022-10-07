@@ -80,7 +80,7 @@ export default class Content {
         newWords: [],
       };
       lessons[oneBasedIndex].icon = this.getIcon(lesson.icon);
-      lessons[oneBasedIndex].audio = this.getAudioPath(
+      lessons[oneBasedIndex].audio = this.getAudioData(
         lesson.introductionAudio,
       );
 
@@ -109,21 +109,23 @@ export default class Content {
       }
       if (exercise.type === 'Explanation') {
         if (exercise.explanationTargets) {
-          const word = this.getWord(exercise.explanationTargets.validOption);
-          if (!words.has(word)) {
-            words.add(word);
-          }
+          words.add(this.getWord(exercise.explanationTargets.validOption));
         }
       }
       if (exercise.type === 'SingleCloze' && exercise.singleClozeText) {
         exercise.singleClozeText
           .filter((clozeItem): clozeItem is Blank => !!clozeItem.validOptions)
           .forEach((clozeItem) => {
-            clozeItem.validOptions.forEach((wordRef) => {
-              const word = this.getWord(wordRef);
-              if (!words.has(word)) {
-                words.add(word);
+            clozeItem.validOptions.forEach((wordRefOrRefs) => {
+              if (!Array.isArray(wordRefOrRefs)) {
+                words.add(this.getWord(wordRefOrRefs));
               }
+              // Don't add composite words
+              // else {
+              //   (wordRefOrRefs as Array<WordRef>).forEach((wordRef) => {
+              //     words.add(this.getWord(wordRef));
+              //   });
+              // }
             });
           });
       }
@@ -131,11 +133,16 @@ export default class Content {
         exercise.multiClozeText
           .filter((clozeItem): clozeItem is Blank => !!clozeItem.validOptions)
           .forEach((clozeItem) => {
-            clozeItem.validOptions.forEach((wordRef) => {
-              const word = this.getWord(wordRef);
-              if (!words.has(word)) {
-                words.add(word);
+            clozeItem.validOptions.forEach((wordRefOrRefs) => {
+              if (!Array.isArray(wordRefOrRefs)) {
+                words.add(this.getWord(wordRefOrRefs));
               }
+              // Don't add composite words
+              // else {
+              //   (wordRefOrRefs as Array<WordRef>).forEach((wordRef) => {
+              //     words.add(this.getWord(wordRef));
+              //   });
+              // }
             });
           });
       }
@@ -143,7 +150,7 @@ export default class Content {
     return [...words];
   }
 
-  public static getAudioPath(path: string): string {
+  public static getAudioData(path: string): string {
     return `data:audio/mpeg;base64,${
       mp3Base64Sources[`${prefix}${path}.audio`]
     }`;
@@ -156,7 +163,7 @@ export default class Content {
   public static getInstructionsAudio(
     scope: keyof ContentSpec['instructions'],
   ): string {
-    return this.getAudioPath(this.ContentSpec.instructions[scope]);
+    return this.getAudioData(this.ContentSpec.instructions[scope]);
   }
 
   public static getIcon(key: string): string {

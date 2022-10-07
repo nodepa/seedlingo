@@ -9,8 +9,8 @@ describe('Content.ts', () => {
     );
   });
 
-  it('.getAudioPath()', () => {
-    expect(Content.getAudioPath('audio/placeholder-audio.mp3')).toBe(
+  it('.getAudioData()', () => {
+    expect(Content.getAudioData('audio/placeholder-audio.mp3')).toBe(
       `data:audio/mpeg;base64,${mp3}`,
     );
   });

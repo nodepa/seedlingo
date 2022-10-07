@@ -77,6 +77,36 @@
       "icon": "mdiHumanMaleGirl",
       "introductionAudio": "audio/instructions/介绍第十课.mp3",
       "lessonSpecFile": "Lesson11.json"
+    },
+    {
+      "name": "Jobs 1",
+      "icon": "mdiAccountHardHat",
+      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
+      "lessonSpecFile": "Lesson13.json"
+    },
+    {
+      "name": "Jobs 2",
+      "icon": "mdiAccountHardHat",
+      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
+      "lessonSpecFile": "Lesson14.json"
+    },
+    {
+      "name": "Jobs 3",
+      "icon": "mdiAccountHardHat",
+      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
+      "lessonSpecFile": "Lesson15.json"
+    },
+    {
+      "name": "Jobs 4",
+      "icon": "mdiAccountHardHat",
+      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
+      "lessonSpecFile": "Lesson16.json"
+    },
+    {
+      "name": "Education 1",
+      "icon": "mdiHumanMaleBoard",
+      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
+      "lessonSpecFile": "Lesson18.json"
     }
   ]
 }
