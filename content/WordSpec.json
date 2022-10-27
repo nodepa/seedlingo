@@ -1,6 +1,6 @@
 {
   "formatVersion": "1.1.0",
-  "wordCount": 81,
+  "wordCount": 184,
   "words": {
     "a681b683-d909-4f5b-834e-8347633df4b1": {
       "word": "数字",
@@ -356,29 +356,471 @@
       "audio": "audio/个.mp3"
     },
     "bc1ec01c-0fde-4e63-82e6-c0f78d01529e": {
-      "unused": "introduced lesson 13",
       "word": "是",
-      "audio": "audio/placeholder-audio.mp3"
+      "audio": "audio/是.mp3"
     },
     "a1e806d9-f9bd-48fe-95eb-293d6753d421": {
-      "unused": "introduced lesson 13",
       "word": "岁",
-      "audio": "audio/placeholder-audio.mp3"
+      "audio": "audio/岁.mp3"
     },
+    "56c1f3ad-81ac-495e-b10b-803d5b15ecaf": {
+      "word": "今年",
+      "audio": "audio/今年.mp3"
+    },
+    "55fcf5ad-8eff-4a6b-a24b-087c43e7f92c": {
+      "word": "家里",
+      "audio": "audio/家里.mp3"
+    },
+    "bc3a6109-1951-496c-a3e3-e4ba2dc54b67": {
+      "word": "人",
+      "audio": "audio/人.mp3"
+    },
+    "e625038d-2717-4123-b20e-ed04480f89bf": {
+      "word": "和",
+      "audio": "audio/和.mp3"
+    },
+    "b31e6c81-c9f7-43d1-b64b-e82fdaab744f": {
+      "word": "住",
+      "audio": "audio/住.mp3"
+    },
+    "7d3a749e-f109-4233-a571-3a286edccf5c": {
+      "word": "在",
+      "audio": "audio/在.mp3"
+    },
+    "f4b3cb7d-f00f-4349-81a8-ebd8e3e82631": {
+      "word": "农村",
+      "audio": "audio/农村.mp3",
+      "picture": "pics/农村.jpg"
+    },
+    "4f036bb1-49c5-48ef-bece-6ede7abb051a": {
+      "word": "也",
+      "audio": "audio/也.mp3"
+    },
+    "522b87a1-9c21-45cd-8e6c-cacd2696801d": {
+      "word": "她们",
+      "audio": "audio/他们她们.mp3"
+    },
+    "cc30658e-e08d-4795-bed0-5b2bea71abcb": {
+      "word": "他们",
+      "audio": "audio/他们她们.mp3"
+    },
+    "718290ee-2121-4b0a-9589-cb9b4639f767": {
+      "word": "我们",
+      "audio": "audio/我们.mp3"
+    },
+    "2d827783-4be8-4d76-b5cc-00174254980e": {
+      "word": "都",
+      "audio": "audio/都.mp3"
+    },
+    "6a303be6-027d-49cb-9f9d-d3a3f5a87127": {
+      "word": "学生",
+      "audio": "audio/学生.mp3",
+      "picture": "pics/学生.jpg"
+    },
+    "5292c9df-bd42-4278-bd27-e81875c9ce49": {
+      "word": "工作",
+      "audio": "audio/工作.mp3"
+    },
+    "503a1032-d0b2-4c8a-b617-963243eb11a3": {
+      "word": "老师",
+      "audio": "audio/老师.mp3",
+      "picture": "pics/老师.jpg"
+    },
+    "940173f1-4490-4a60-903c-7fa403ef5524": {
+      "word": "司机",
+      "audio": "audio/司机.mp3",
+      "picture": "pics/司机.jpg"
+    },
+    "4a06e9c5-c0f8-4562-a352-e91d7fdf648a": {
+      "word": "农民",
+      "audio": "audio/农民.mp3",
+      "picture": "pics/农民.jpg"
+    },
+    "5cdcdfe4-985c-420d-a6ab-f82c214b4297": {
+      "word": "厨师",
+      "audio": "audio/厨师.mp3",
+      "picture": "pics/厨师.jpg"
+    },
+    "ff8e8493-f393-4c8f-9433-9b08be12fe06": {
+      "word": "售货员",
+      "audio": "audio/售货员.mp3",
+      "picture": "pics/售货员.jpg"
+    },
+    "7dee87b3-142e-45ca-9969-daf2b8a0d9fd": {
+      "word": "保姆",
+      "audio": "audio/保姆.mp3",
+      "picture": "pics/保姆.jpg"
+    },
+    "823ebdc3-2767-441a-b5fc-ba102189fdee": {
+      "word": "保安",
+      "audio": "audio/保安.mp3",
+      "picture": "pics/保安.jpg"
+    },
+    "8fa7e821-4189-422d-9fdf-46bf7f0e587b": {
+      "word": "公务员",
+      "audio": "audio/公务员.mp3",
+      "picture": "pics/公务员.jpg"
+    },
+    "6c3a1614-54b9-44e8-b730-1bf278342840": {
+      "word": "公司",
+      "audio": "audio/公司.mp3",
+      "picture": "pics/公司.jpg"
+    },
+    "0cb818f9-06cd-4665-aa9c-b82ee4dc95bc": {
+      "word": "工厂",
+      "audio": "audio/工厂.mp3",
+      "picture": "pics/工厂.jpg"
+    },
+    "1640dd35-800b-434d-b8c9-09fe84e446da": {
+      "word": "学校",
+      "audio": "audio/学校.mp3"
+    },
+    "61b2130d-6f86-411a-810a-cd8a6adcb4e9": {
+      "word": "社区",
+      "audio": "audio/社区.mp3"
+    },
+    "eb67da07-adbe-4108-a0c5-da877f4e41f6": {
+      "word": "饭馆",
+      "audio": "audio/饭馆.mp3"
+    },
+    "d0495248-f724-4232-99c6-72f89a56f360": {
+      "word": "超市",
+      "audio": "audio/超市.mp3"
+    },
+    "b443754b-e7c2-4082-a914-8661e4dedd14": {
+      "word": "商店",
+      "audio": "audio/商店.mp3"
+    },
+    "5116a876-f542-4ccf-88b6-fde06caabda1": {
+      "word": "政府",
+      "audio": "audio/政府.mp3"
+    },
+    "efeebf93-9617-4813-9a64-eac66771a4e0": {
+      "word": "上班",
+      "audio": "audio/上班.mp3"
+    },
+    "e9eaeaf5-b02d-4990-878a-c7ac04797ae2": {
+      "word": "下班",
+      "audio": "audio/下班.mp3"
+    },
+    "8d0b743e-25cc-40d2-b03d-a3164021f2ee": {
+      "word": "点",
+      "audio": "audio/点.mp3"
+    },
+    "1ee9e5af-9276-4dbb-8a22-195e5c8676cc": {
+      "word": "分",
+      "audio": "audio/分.mp3"
+    },
+    "16680a69-ab05-4c85-9b84-ae2bbfec0602": {
+      "word": "半",
+      "audio": "audio/半.mp3"
+    },
+    "091614bd-efb2-4661-af01-bf0cab5795ad": {
+      "word": "早上",
+      "audio": "audio/早上.mp3",
+      "picture": "pics/早上.jpg"
+    },
+    "844250e0-bdd1-4b96-9396-055cbf2a9523": {
+      "word": "下午",
+      "audio": "audio/下午.mp3"
+    },
+    "97621e34-3e57-4b34-98f7-44336cd8506e": {
+      "word": "晚上",
+      "audio": "audio/晚上.mp3",
+      "picture": "pics/晚上.jpg"
+    },
+    "5b01e49a-da6a-4c65-b1fd-80e9f0140835": {
+      "word": "白班",
+      "audio": "audio/白班.mp3"
+    },
+    "d10f6345-2449-4d83-83d7-ffba5179ee6b": {
+      "word": "夜班",
+      "audio": "audio/夜班.mp3",
+      "picture": "pics/夜班.jpg"
+    },
+    "7872e5b1-fdcb-49b0-a6bf-9922a0c7e27c": {
+      "word": "放假",
+      "audio": "audio/放假.mp3",
+      "picture": "pics/放假.jpg"
+    },
+    "fc62efd4-b9fb-4636-823c-1f45f712f1ec": {
+      "word": "请假",
+      "audio": "audio/请假.mp3"
+    },
+    "7c5ac01b-94c6-4ea6-8816-2ab6708a7df6": {
+      "word": "休息",
+      "audio": "audio/休息.mp3",
+      "picture": "pics/休息.jpg"
+    },
+    "576b5b64-8e9e-4b05-9a8a-a8de27205061": {
+      "word": "星期几",
+      "audio": "audio/星期几.mp3"
+    },
+    "bea3a663-79df-46f6-83b1-d2645554594a": {
+      "word": "几点",
+      "audio": "audio/几点.mp3"
+    },
+    "309a6494-4487-493f-833e-d629462ee17a": {
+      "word": "工资",
+      "audio": "audio/工资.mp3"
+    },
+    "419a89b5-abe5-4ee0-9992-e592c63133a5": {
+      "word": "多少",
+      "audio": "audio/多少.mp3"
+    },
+    "2c86e3af-646a-459d-bfcd-afdec92fba3b": {
+      "word": "千",
+      "audio": "audio/千.mp3"
+    },
+    "4e73e0c4-cee9-4d16-86f3-236b14222768": {
+      "word": "能",
+      "audio": "audio/能.mp3"
+    },
+    "c225be53-842b-4309-bf9e-112d80858189": {
+      "word": "见",
+      "audio": "audio/见.mp3"
+    },
+    "d8e24e01-512c-4b73-b2a2-830abdd223fc": {
+      "word": "到",
+      "audio": "audio/到.mp3"
+    },
+    "b4b2d533-bb99-4f85-9600-0c8da150f587": {
+      "word": "可是",
+      "audio": "audio/可是.mp3"
+    },
+    "70fe0cd1-02bd-48eb-9da2-2c65794d4b50": {
+      "word": "互相",
+      "audio": "audio/互相.mp3"
+    },
+    "df5be9ba-2001-4279-90b2-822362009dea": {
+      "word": "不",
+      "audio": "audio/不.mp3",
+      "picture": "pics/不.jpg"
+    },
+    "5df1049b-a5b9-499a-803c-3d905f418ed6": {
+      "word": "教",
+      "audio": "audio/教4.mp3"
+    },
+    "5238b3ef-6933-457b-8d66-643b94b57f2e": {
+      "word": "教",
+      "audio": "audio/教1.mp3"
+    },
+    "bdc5f8ba-117c-433e-9325-68e8c0a71bdf": {
+      "word": "小",
+      "audio": "audio/小.mp3",
+      "picture": "pics/小中大.jpg"
+    },
+    "253fd710-528f-4749-83c8-a3e1eda9fd64": {
+      "word": "中",
+      "audio": "audio/中.mp3",
+      "picture": "pics/小中大.jpg"
+    },
+    "f2c41150-06fb-4c45-be9d-6caa65d66ee2": {
+      "word": "大",
+      "audio": "audio/大.mp3",
+      "picture": "pics/小中大.jpg"
+    },
+    "37932876-7996-4dfc-9e4e-54f3a6bee6da": {
+      "word": "学",
+      "audio": "audio/学.mp3"
+    },
+    "886be738-2b02-47cd-85d4-27f929ae8886": {
+      "word": "初",
+      "audio": "audio/初.mp3"
+    },
+    "963ef3f3-0012-4427-a99c-4c4e2add0507": {
+      "word": "高",
+      "audio": "audio/高.mp3"
+    },
+    "ee1e84ae-c26b-4d83-8b3a-b69400656773": {
+      "word": "专",
+      "audio": "audio/专.mp3"
+    },
+    "4007f27d-8c1f-4081-ae14-8f6a4350c0b1": {
+      "word": "生",
+      "audio": "audio/生.mp3"
+    },
+    "320ae318-8e6f-4550-9f80-e5de77cc3a48": {
+      "word": "读",
+      "audio": "audio/读.mp3"
+    },
+    "050b375d-7f9a-4ea1-9de1-5efb64512beb": {
+      "word": "书",
+      "audio": "audio/书.mp3",
+      "picture": "pics/书.jpg"
+    },
+    "d8160e90-7873-4286-aad7-f35507eaa188": {
+      "word": "年",
+      "audio": "audio/年.mp3"
+    },
+    "0a331e89-b85f-48a6-97c5-4888e8b670bd": {
+      "word": "上",
+      "audio": "audio/上.mp3",
+      "picture": "pics/上.jpg"
+    },
+    "ba143513-6f88-4f18-8689-6158bf3665d2": {
+      "word": "教育",
+      "audio": "audio/教育.mp3",
+      "picture": "pics/教育.jpg"
+    },
+    "39685ee3-0bdf-4b2a-b89c-662d5daf42b4": {
+      "word": "幼儿园",
+      "audio": "audio/幼儿园.mp3",
+      "picture": "pics/幼儿园.jpg"
+    },
+    "7ce3b21f-3308-4a52-9e9d-f5b33540ec2e": {
+      "word": "小学",
+      "audio": "audio/小学.mp3"
+    },
+    "24b6b38c-f6a0-4985-a045-d648b9b36c90": {
+      "word": "初中",
+      "audio": "audio/初中.mp3"
+    },
+    "937fa061-f810-4361-897f-1ae45dfc5f24": {
+      "word": "高中",
+      "audio": "audio/高中.mp3"
+    },
+    "75b521f9-22e2-4a3f-b53c-68ad1a22764c": {
+      "word": "中专",
+      "audio": "audio/中专.mp3"
+    },
+    "b0aaa1ad-df4f-40e2-8e61-932db0dc541b": {
+      "word": "大专",
+      "audio": "audio/大专.mp3"
+    },
+    "d5648473-d3bf-4865-8253-2b21b7650020": {
+      "word": "大学",
+      "audio": "audio/大学.mp3"
+    },
+    "afc98260-d5eb-4fb2-b036-059ea0f43a15": {
+      "word": "本科",
+      "audio": "audio/本科.mp3"
+    },
+    "38d7c593-758e-4666-b632-eff9e040fa72": {
+      "word": "研究生",
+      "audio": "audio/研究生.mp3",
+      "picture": "pics/研究生.jpg"
+    },
+    "f47e7215-4d17-4861-837c-6edbfcc49518": {
+      "word": "学习",
+      "audio": "audio/学习.mp3",
+      "picture": "pics/学习.jpg"
+    },
+    "5ba6fa0b-983d-41d8-9bda-dd9347a1df7d": {
+      "word": "读书",
+      "audio": "audio/读书.mp3",
+      "picture": "pics/读书.jpg"
+    },
+    "df37cbd0-9a53-4879-bb95-c39a77a4e5c5": {
+      "word": "年级",
+      "audio": "audio/年级.mp3"
+    },
+    "368ddff5-5caf-4d17-a561-be30bafb7641": {
+      "word": "数",
+      "audio": "audio/数.mp3"
+    },
+    "a2023cdc-6a2e-4249-9316-e3555c06932f": {
+      "word": "语",
+      "audio": "audio/语.mp3"
+    },
+    "cd366f33-3908-492e-96c4-746dfec97359": {
+      "word": "文",
+      "audio": "audio/文.mp3"
+    },
+    "438b36fd-c028-4e16-b384-a8207329b27d": {
+      "word": "科",
+      "audio": "audio/科.mp3"
+    },
+    "9adead89-5f80-4ed9-87a7-48e2eabae743": {
+      "word": "想",
+      "audio": "audio/想.mp3"
+    },
+    "dadd20ab-16a4-4077-95ec-4e4bea81d9c1": {
+      "word": "体",
+      "audio": "audio/体.mp3"
+    },
+    "dc62e94f-bc25-4b67-95e5-560adb496461": {
+      "word": "育",
+      "audio": "audio/育.mp3"
+    },
+    "056dc01d-150d-4995-9914-036aa3f6b9bb": {
+      "word": "课",
+      "audio": "audio/课.mp3"
+    },
+    "edb2e92f-791b-44b1-b057-6880fcc2f6ed": {
+      "word": "外",
+      "audio": "audio/外.mp3"
+    },
+    "9e342ea7-fe3b-493d-8f5e-226cc8d75ea9": {
+      "word": "数学",
+      "audio": "audio/数学.mp3"
+    },
+    "09a61f5d-4c9d-4f01-b1a6-e4741db0c6e5": {
+      "word": "英语",
+      "audio": "audio/英语.mp3"
+    },
+    "1a960283-2d99-4fd0-87a4-b6782ab2a16a": {
+      "word": "语文",
+      "audio": "audio/语文.mp3"
+    },
+    "4d744d4d-c04a-49ab-9aef-61a434d4958c": {
+      "word": "科学",
+      "audio": "audio/科学.mp3"
+    },
+    "d4f32b32-07aa-480e-ba58-0b68bb2a3ae6": {
+      "word": "思想品德",
+      "audio": "audio/思想品德.mp3"
+    },
+    "0e24df03-f4a6-4f0d-ad43-6599df9706c8": {
+      "word": "体育",
+      "audio": "audio/体育.mp3"
+    },
+    "95867d85-1182-4fa4-ad61-685a5704a391": {
+      "word": "音乐",
+      "audio": "audio/音乐.mp3"
+    },
+    "ea6885a9-f972-481c-946f-896d69c9dc0b": {
+      "word": "课外书",
+      "audio": "audio/课外书.mp3"
+    },
+    "1be0ba01-e409-4670-8129-4de4ec524ddd": {
+      "word": "上课",
+      "audio": "audio/上课.mp3"
+    },
+    "745b2206-6f63-41f1-90c1-2c04b310574e": {
+      "word": "喜欢",
+      "audio": "audio/喜欢.mp3"
+    },
+
     "5d0f410c-83ff-43bd-a31e-922b42b054ef": {
-      "unused": "punctuation",
       "word": "。",
-      "isPunctuation": true
-    },
-    "526a8ee7-7525-4b0f-a3a2-92e29618bed3": {
-      "unused": "punctuation",
-      "word": "：",
-      "isPunctuation": true
+      "isPunctuation": true,
+      "notIndividuallyExercised": "punctuation"
     },
     "3fde2b11-aa78-4a96-9bd4-75c8462132b6": {
-      "unused": "punctuation",
       "word": "，",
-      "isPunctuation": true
+      "isPunctuation": true,
+      "notIndividuallyExercised": "punctuation"
+    },
+    "526a8ee7-7525-4b0f-a3a2-92e29618bed3": {
+      "word": "：",
+      "isPunctuation": true,
+      "notIndividuallyExercised": "punctuation"
+    },
+    "ca91baf3-5058-429e-95f5-8caa19fe8a0a": {
+      "word": "？",
+      "isPunctuation": true,
+      "notIndividuallyExercised": "punctuation",
+      "unused": "Starts showing up in lesson 12..."
+    },
+
+    "433dce44-65c2-494f-972b-f611971083ee": {
+      "word": "每天",
+      "notIndividuallyExercised": "only one occurrence in a multi-cloze in lesson 16 thus far"
+    },
+    "22ec1aea-445d-4bd8-b368-89640f2360d9": {
+      "word": "星期",
+      "notIndividuallyExercised": "only used in a pattern in lesson 16"
     }
   }
 }

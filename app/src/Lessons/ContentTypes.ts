@@ -81,6 +81,6 @@ export interface WordRef {
 
 export interface Blank {
   description?: string;
-  validOptions: Array<WordRef>;
+  validOptions: Array<WordRef | Array<WordRef>>;
   invalidOptions?: Array<WordRef>;
 }

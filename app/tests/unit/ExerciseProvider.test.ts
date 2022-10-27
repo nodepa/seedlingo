@@ -22,8 +22,8 @@ describe('ExerciseProvider', () => {
       const spySelectRandomSubsetMatching = vi
         .spyOn(ExerciseProvider, 'selectRandomSubset')
         .mockImplementation(() => lesson.exercises[1].words || []);
-      const spyGetAudioPath = vi
-        .spyOn(Content, 'getAudioPath')
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
 
       let exercise = ExerciseProvider.getExerciseFromLesson(1);
@@ -63,38 +63,38 @@ describe('ExerciseProvider', () => {
       spyPickRandomExerciseTypeMultipleChoice.mockRestore();
       spySelectRandomSubsetMultipleChoice.mockRestore();
       spyRandomIndexLessThan.mockRestore();
-      spyGetAudioPath.mockRestore();
+      spyGetAudioData.mockRestore();
     });
   });
 
   describe('.generateMatchingExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioPath = vi
-        .spyOn(Content, 'getAudioPath')
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
       const matchingExercise =
         ExerciseProvider.generateMatchingExercise(lesson);
       expect(matchingExercise.exerciseType).toBe('Matching');
-      spyGetAudioPath.mockRestore();
+      spyGetAudioData.mockRestore();
     });
   });
 
   describe('.generateMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioPath = vi
-        .spyOn(Content, 'getAudioPath')
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
       const multipleChoiceExercise =
         ExerciseProvider.generateMultipleChoiceExercise(lesson);
       expect(multipleChoiceExercise.exerciseType).toBe('MultipleChoice');
-      spyGetAudioPath.mockRestore();
+      spyGetAudioData.mockRestore();
     });
   });
 
   describe('.generateExplanationMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioPath = vi
-        .spyOn(Content, 'getAudioPath')
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
       const spyPickRandomItem = vi
         .spyOn(ExerciseProvider, 'pickRandomItem')
@@ -127,15 +127,15 @@ describe('ExerciseProvider', () => {
           lesson.exercises[2].explanationTargets?.validOption || [],
         )[0],
       );
-      spyGetAudioPath.mockRestore();
+      spyGetAudioData.mockRestore();
       spyPickRandomItem.mockRestore();
     });
   });
 
   describe('.generateMultiClozeExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioPath = vi
-        .spyOn(Content, 'getAudioPath')
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
       // force exercise based on lesson item 2 (index 1)
       const spyPickRandomItem = vi
@@ -177,7 +177,7 @@ describe('ExerciseProvider', () => {
         false,
       );
 
-      spyGetAudioPath.mockRestore();
+      spyGetAudioData.mockRestore();
       spyPickRandomItem.mockRestore();
     });
   });

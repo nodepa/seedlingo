@@ -20,7 +20,16 @@ describe('Integrity of JSON Lesson data', () => {
           ids.push(exercise.id);
         });
       });
-      expect(ids.length).toBe([...new Set(ids)].length);
+      const uniqueIds = new Set(ids);
+      if (ids.length != uniqueIds.size) {
+        console.log('Non-unique IDs:');
+        ids.forEach((id, index, allIds) => {
+          if (id === allIds[index - 1]) {
+            console.log(`"${id}"`);
+          }
+        });
+      }
+      expect(ids.length).toBe(uniqueIds.size);
     });
 
     it("each 'lessonIndex' is unique", () => {
@@ -162,39 +171,39 @@ describe('Integrity of JSON Lesson data', () => {
         });
 
         it(`lesson.${lesson.lessonIndex}.singleClozeCount=${lesson.singleClozeCount} is accurate`, () => {
-          let clozeCount = 0;
-          let clozeConsistency = true;
+          let singleClozeCount = 0;
+          let singleClozeConsistency = true;
           lesson.exercises.forEach((exercise) => {
             if (exercise.type === 'SingleCloze') {
-              clozeCount += 1;
+              singleClozeCount += 1;
               if (
                 !exercise.singleClozeText ||
                 exercise.singleClozeText.length < 1
               ) {
-                clozeConsistency = false;
+                singleClozeConsistency = false;
               }
             }
           });
-          expect(clozeCount).toBe(lesson.singleClozeCount);
-          expect(clozeConsistency).toBe(true);
+          expect(singleClozeCount).toBe(lesson.singleClozeCount);
+          expect(singleClozeConsistency).toBe(true);
         });
 
         it(`lesson.${lesson.lessonIndex}.multiClozeCount=${lesson.multiClozeCount} is accurate`, () => {
-          let clozeCount = 0;
-          let clozeConsistency = true;
+          let multiClozeCount = 0;
+          let multiClozeConsistency = true;
           lesson.exercises.forEach((exercise) => {
             if (exercise.type === 'MultiCloze') {
-              clozeCount += 1;
+              multiClozeCount += 1;
               if (
                 !exercise.multiClozeText ||
                 exercise.multiClozeText.length < 2
               ) {
-                clozeConsistency = false;
+                multiClozeConsistency = false;
               }
             }
           });
-          expect(clozeCount).toBe(lesson.multiClozeCount);
-          expect(clozeConsistency).toBe(true);
+          expect(multiClozeCount).toBe(lesson.multiClozeCount);
+          expect(multiClozeConsistency).toBe(true);
         });
 
         it(`lesson.${lesson.lessonIndex}.wordsExercisedCount=${lesson.wordsExercisedCount} is accurate`, () => {
@@ -336,14 +345,66 @@ describe('Integrity of JSON Lesson data', () => {
                     expect(
                       exercise.singleClozeText.length - blankCount,
                     ).toBeGreaterThan(0);
-
                     const validWordRefs = exercise.singleClozeText.filter(
-                      (wordOrBlank) =>
-                        ('validOptions' in wordOrBlank &&
+                      (wordOrBlank) => {
+                        if (
+                          'validOptions' in wordOrBlank &&
                           (wordOrBlank as Blank).validOptions.filter(
-                            (wordRef) => Content.getWord(wordRef).word.length,
-                          )) ||
-                        Content.getWord(wordOrBlank as WordRef).word.length,
+                            (wordRefOrRefs) => {
+                              if (Array.isArray(wordRefOrRefs)) {
+                                return (wordRefOrRefs as Array<WordRef>).filter(
+                                  (wordRef) => {
+                                    if (
+                                      Object.keys(wordRef)[0] ===
+                                      Content.getWord(wordRef).word
+                                    ) {
+                                      return true;
+                                    } else {
+                                      throw new Error(
+                                        `Failed when lookup of ${JSON.stringify(
+                                          wordRef,
+                                        )} resulted in ${JSON.stringify(
+                                          Content.getWord(wordRef),
+                                        )}`,
+                                      );
+                                    }
+                                  },
+                                ).length;
+                              } else {
+                                if (
+                                  Object.keys(wordRefOrRefs)[0] ===
+                                  Content.getWord(wordRefOrRefs).word
+                                ) {
+                                  return true;
+                                } else {
+                                  throw new Error(
+                                    `Failed when lookup of ${JSON.stringify(
+                                      wordRefOrRefs,
+                                    )} resulted in ${JSON.stringify(
+                                      Content.getWord(wordRefOrRefs),
+                                    )}`,
+                                  );
+                                }
+                              }
+                            },
+                          )
+                        ) {
+                          return true;
+                        } else if (
+                          Object.keys(wordOrBlank)[0] ===
+                          Content.getWord(wordOrBlank as WordRef).word
+                        ) {
+                          return true;
+                        } else {
+                          throw new Error(`
+                          Failed when lookup of ${JSON.stringify(
+                            wordOrBlank,
+                          )} resulted in ${JSON.stringify(
+                            Content.getWord(wordOrBlank as WordRef),
+                          )}
+                          `);
+                        }
+                      },
                     )?.length;
                     expect(validWordRefs).toBe(exercise.singleClozeText.length);
                   }
@@ -363,12 +424,65 @@ describe('Integrity of JSON Lesson data', () => {
                     ).toBeGreaterThan(0);
 
                     const validWordRefs = exercise.multiClozeText.filter(
-                      (wordOrBlank) =>
-                        ('validOptions' in wordOrBlank &&
+                      (wordOrBlank) => {
+                        if (
+                          'validOptions' in wordOrBlank &&
                           (wordOrBlank as Blank).validOptions.filter(
-                            (wordRef) => Content.getWord(wordRef).word.length,
-                          )) ||
-                        Content.getWord(wordOrBlank as WordRef).word.length,
+                            (wordRefOrRefs) => {
+                              if (Array.isArray(wordRefOrRefs)) {
+                                return (wordRefOrRefs as Array<WordRef>).filter(
+                                  (wordRef) => {
+                                    if (
+                                      Object.keys(wordRef)[0] ===
+                                      Content.getWord(wordRef).word
+                                    ) {
+                                      return true;
+                                    } else {
+                                      throw new Error(
+                                        `Failed when lookup of ${JSON.stringify(
+                                          wordRef,
+                                        )} resulted in ${JSON.stringify(
+                                          Content.getWord(wordRef),
+                                        )}`,
+                                      );
+                                    }
+                                  },
+                                ).length;
+                              } else {
+                                if (
+                                  Object.keys(wordRefOrRefs)[0] ===
+                                  Content.getWord(wordRefOrRefs).word
+                                ) {
+                                  return true;
+                                } else {
+                                  throw new Error(
+                                    `Failed when lookup of ${JSON.stringify(
+                                      wordRefOrRefs,
+                                    )} resulted in ${JSON.stringify(
+                                      Content.getWord(wordRefOrRefs),
+                                    )}`,
+                                  );
+                                }
+                              }
+                            },
+                          )
+                        ) {
+                          return true;
+                        } else if (
+                          Object.keys(wordOrBlank)[0] ===
+                          Content.getWord(wordOrBlank as WordRef).word
+                        ) {
+                          return true;
+                        } else {
+                          throw new Error(`
+                          Failed when lookup of ${JSON.stringify(
+                            wordOrBlank,
+                          )} resulted in ${JSON.stringify(
+                            Content.getWord(wordOrBlank as WordRef),
+                          )}
+                          `);
+                        }
+                      },
                     )?.length;
                     expect(validWordRefs).toBe(exercise.multiClozeText.length);
                   }
@@ -443,26 +557,44 @@ describe('Integrity of JSON Lesson data', () => {
             expect(entry.word.length).toBeGreaterThan(0);
           } else {
             throw new Error(
-              `The WordListSpec in ${Content.ContentSpec.wordSpecFile} has an entry missing the 'word' field (id: ${wordId}`,
+              `The WordListSpec in ${Content.ContentSpec.wordSpecFile} has an entry missing the 'word' field (id: ${wordId})`,
             );
           }
 
           if ('audio' in entry) {
             expect(typeof entry.audio).toBe('string');
             expect(entry.audio?.length).toBeGreaterThan(0);
-            expect(existsSync(`../content/${entry.audio}`)).toBe(true);
+            const fileExists = existsSync(`../content/${entry.audio}`);
+            if (!fileExists) {
+              throw new Error(
+                `The WordListSpec in ${Content.ContentSpec.wordSpecFile} has an entry with an 'audio' field referencing a file that does not exist (id: ${wordId}, filename: ${entry.audio})`,
+              );
+            }
+            expect(fileExists).toBe(true);
           }
 
           if ('picture' in entry) {
             expect(typeof entry.picture).toBe('string');
             expect(entry.picture?.length).toBeGreaterThan(0);
-            expect(existsSync(`../content/${entry.picture}`)).toBe(true);
+            const fileExists = existsSync(`../content/${entry.picture}`);
+            if (!fileExists) {
+              throw new Error(
+                `The WordListSpec in ${Content.ContentSpec.wordSpecFile} has an entry with a 'picture' field referencing a file that does not exist (id: ${wordId}, filename: ${entry.picture})`,
+              );
+            }
+            expect(fileExists).toBe(true);
           }
 
           if ('video' in entry) {
             expect(typeof entry.video).toBe('string');
             expect(entry.video?.length).toBeGreaterThan(0);
-            expect(existsSync(`../content/${entry.video}`)).toBe(true);
+            const fileExists = existsSync(`../content/${entry.video}`);
+            if (!fileExists) {
+              throw new Error(
+                `The WordListSpec in ${Content.ContentSpec.wordSpecFile} has an entry with a 'video' field referencing a file that does not exist (id: ${wordId}, filename: ${entry.video})`,
+              );
+            }
+            expect(fileExists).toBe(true);
           }
 
           if ('symbol' in entry) {
