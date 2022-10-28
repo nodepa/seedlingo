@@ -1,6 +1,6 @@
 {
   "name": "seedling",
-  "version": "0.94.0",
+  "version": "0.95.0",
   "description": "Modern mobile multi-language literacy - A first-language digital learning tool for adults",
   "homepage": "https://globalseedling.com/get-started",
   "bugs": "https://github.com/nodepa/seedling/issues",
@@ -22,14 +22,16 @@
     "*": "./.husky/vue-tsc-lint.sh"
   },
   "scripts": {
-    "build": "npm run lint:tsc && vite build",
+    "build": "npm install && npm run lint:tsc && vite build",
     "dev": "vite",
     "genass": "cd public && pwd && npx pwa-asset-generator --background 'linear-gradient(#19D2FE, #1E64F0)' --padding '0px' --favicon --single-quotes --type png ../src/assets/logo/logo.svg ./logo",
     "lint": "eslint --ext .vue,.ts,.tsx,.js,.jsx .",
     "lint:tsc": "vue-tsc --noEmit",
     "preview": "vite preview",
     "prepare": "cd ../ && husky install ./app/.husky",
+    "sa": "npm run sync:android",
     "start": "vite build && vite preview",
+    "sync:android": "npm run build && npx cap sync",
     "test": "npm install && npm run lint:tsc && npm run test:unit && npm run test:e2e",
     "te": "npm run test:e2e",
     "ted": "npm run test:e2e:dev",
