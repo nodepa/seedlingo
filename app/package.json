@@ -22,7 +22,9 @@
     "*": "./.husky/vue-tsc-lint.sh"
   },
   "scripts": {
+    "ba": "npm run build:android",
     "build": "npm install && npm run lint:tsc && vite build",
+    "build:android": "npm run build && npx cap telemetry off && npx cap sync && cd android && yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses && ./gradlew assembleRelease && cd app/build/outputs/apk/release && for filename in *.usig.apk ; do $ANDROID_HOME/build-tools/30.0.3/zipalign 4 $filename ${filename%usig*}usig.alig${filename##*usig} && $ANDROID_HOME/build-tools/30.0.3/apksigner sign -v --ks ~/.android/apksign.keystore --out ${filename%.usig*}${filename##*usig} ${filename%usig*}usig.alig${filename##*usig} ; done",
     "dev": "vite",
     "genass": "cd public && pwd && npx pwa-asset-generator --background 'linear-gradient(#19D2FE, #1E64F0)' --padding '0px' --favicon --single-quotes --type png ../src/assets/logo/logo.svg ./logo",
     "lint": "eslint --ext .vue,.ts,.tsx,.js,.jsx .",
@@ -31,7 +33,7 @@
     "prepare": "cd ../ && husky install ./app/.husky",
     "sa": "npm run sync:android",
     "start": "vite build && vite preview",
-    "sync:android": "npm run build && npx cap sync",
+    "sync:android": "npm run build && cap telemetry off && npx cap sync",
     "test": "npm install && npm run lint:tsc && npm run test:unit && npm run test:e2e",
     "te": "npm run test:e2e",
     "ted": "npm run test:e2e:dev",
