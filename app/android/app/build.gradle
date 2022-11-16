@@ -18,7 +18,7 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
 		def debug = variant.buildType.name == 'debug' ? '.DEBUG' : ''
-		output.outputFileName = 'seedling.v' + defaultConfig.versionName + '_' + defaultConfig.versionCode + debug + '.usig.apk'
+		output.outputFileName = 'seedling_v' + defaultConfig.versionName + '_' + defaultConfig.versionCode + debug + '.usig.apk'
         }
     }
     buildTypes {
