@@ -38,17 +38,24 @@ footer: '<a href="/privacy-policy/privacy-policy.html">Privacy policy</a><br/><b
 
 ## What is Seedling?
 
-Seedling is a digital learning tool for adults;
-a collection of exercise templates
-that bundled content can use
-to present curated lessons
-for first-language learners.
+Seedling is a digital language learning tool for adults.
+
+A teacher or content developer
+can prepare lessons of curated exercises
+using Seedling's included exercise templates
+to provide tailored exercises
+to someone who is learning to read their native first-language.
 
 [Li Ai Education](https://liaieducation.com) used Seedling
 to make [立爱种字](https://种字.com),
 to help [Standard Chinese (Putonghua)](
   https://en.wikipedia.org/wiki/Standard_Chinese) speaking adults
 learn to read simplified Chinese characters.
+
+You can try the Android app by downloading [version 0.95.0](https://github.com/nodepa/seedling/releases/download/v0.95.0/zz.v0.95.0_7.apk) or [check for a more recent release](https://github.com/nodepa/seedling/releases).
+
+You may have to enable "Installation from unknown sources"
+in the settings of your phone to be able to install.
 
 ## Get involved
 
