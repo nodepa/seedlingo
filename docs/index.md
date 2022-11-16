@@ -52,9 +52,9 @@ to help [Standard Chinese (Putonghua)](
   https://en.wikipedia.org/wiki/Standard_Chinese) speaking adults
 learn to read simplified Chinese characters.
 
-You can try the Android app by downloading [version 0.95.0](https://github.com/nodepa/seedling/releases/download/v0.95.0/zz.v0.95.0_7.apk) or [check for a more recent release](https://github.com/nodepa/seedling/releases).
+To try the Android app, download [version 0.95.0](https://github.com/nodepa/seedling/releases/download/v0.95.0/seedling_v0.95.0_7.apk) or [check for a more recent release](https://github.com/nodepa/seedling/releases).
 
-You may have to enable "Installation from unknown sources"
+You may have to enable "Install from unknown sources"
 in the settings of your phone to be able to install.
 
 ## Get involved
