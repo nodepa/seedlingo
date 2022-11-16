@@ -39,11 +39,13 @@
 
 ## What is Seedling
 
-Seedling is a first-language digital learning tool for adults;
-a collection of literacy exercises
-that bundled content can make use of
-to provide lessons to learners
-unfamiliar with reading the particular content language.
+Seedling is a digital language learning tool for adults.
+
+A teacher or content developer
+can prepare lessons of curated exercises
+using Seedling's included exercise templates
+to provide tailored exercises
+to someone who is learning to read their native first-language.
 
 Current exercise types are:
 
