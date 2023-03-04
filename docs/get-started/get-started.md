@@ -55,7 +55,7 @@ npm install
 ### Start the app in local demo
 
 ```sh
-npm start   # Then visit http://localhost:8080 in your web browser
+npm start   # Then visit http://localhost:4173 in your web browser
 ```
 
 ### Run full test suite
