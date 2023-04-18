@@ -16,7 +16,7 @@ under that name. `ContentSpec.json` describes the file structure of the content.
 Mandatory field of type `string`.
 
 ```json
-"formatVersion": "1.1.0"
+"formatVersion": "1.1.1"
 ```
 
 `formatVersion` is used by the Seedling app to determine how the file can be
@@ -41,14 +41,18 @@ file with a path relative to the `content` folder.
 
 Mandatory sub-fields of type `string`:
 
-- `welcome`
-- `homeButton`
-- `continueButton`
-- `toggleInstructionsButton`
-- `matchingExercise`
-- `multipleChoiceExercise`
-- `singleClozeExercise`
-- `multiClozeExercise`
+- `welcome` - the message played the first few times a user opens the app
+- `homeButton` - the instruction audio attached to the home button
+- `continueButton` - the instruction audio attached to the continue button
+- `toggleInstructionsButton` -
+  the instruction audio attached to the instruction overlay toggle
+- `matchingExercise` - an audio file describing how to solve a matching exercise
+- `multipleChoiceExercise` -
+  an audio file describing how to solve a multiple-choice exercise
+- `singleClozeExercise` -
+  an audio file describing how to solve a single-cloze exercise
+- `multiClozeExercise` -
+  an audio file describing how to solve a multi-cloze exercise
 
 ### wordSpecFile
 
@@ -102,7 +106,7 @@ corresponding media, i.e. audio, picture, video and/or symbol (i.e. icon).
 Mandatory field of type `string`.
 
 ```json
-"formatVersion": "1.1.0"
+"formatVersion": "1.1.1"
 ```
 
 `formatVersion` is used by the Seedling app to determine how the file can be
@@ -167,7 +171,7 @@ which words from the word-specification to include in an exercise.
 Mandatory field of type `string`.
 
 ```json
-"formatVersion": "1.1.0"
+"formatVersion": "1.1.1"
 ```
 
 `formatVersion` is used by the Seedling app to determine how the file can be

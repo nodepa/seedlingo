@@ -13,22 +13,34 @@ actions:
     link: 'index.html#what-is-seedling'
     type: secondary
 features:
-  - title: Audio-to-word multiple choice
+  - title: |
+      Multiple Choice
+      Audio-to-word
     details: Listen to the pronunciation and tap the matching word-tile
     imagePath: /images/mockup-audio-multiple-choice.png
-  - title: Audio-to-word matching
+  - title: |
+      Matching
+      Audio-to-word
     details: Match up blue audio-tiles with white word-tiles
     imagePath: /images/mockup-audio-matching.png
-  - title: Explanation-to-word multiple-choice
-    details: Read the explanation and choose the correct word
-    imagePath: /images/mockup-explanation-multiple-choice.png
-  - title: Explanation-to-word matching
-    details: Match up blue explanation-tiles with white word-tiles
-    imagePath: /images/mockup-explanation-matching.png
-  - title: Single-blank cloze
+  - title: |
+      Cloze
+      Single-blank
     details: Fill-the-blank with the appropriate word
     imagePath: /images/mockup-single-cloze.png
-  - title: Multi-blank cloze
+  - title: |
+      Multiple-choice
+      Explanation-to-word
+    details: Read the explanation and choose the correct word
+    imagePath: /images/mockup-explanation-multiple-choice.png
+  - title: |
+      Matching
+      Explanation-to-word
+    details: Match up blue explanation-tiles with white word-tiles
+    imagePath: /images/mockup-explanation-matching.png
+  - title: |
+      Cloze
+      Multi-blank
     details: Fill-the-blank exercise with multiple blanks and corresponding words
     imagePath: /images/mockup-multi-cloze.png
 
@@ -41,21 +53,24 @@ footer: '<a href="/privacy-policy/privacy-policy.html">Privacy policy</a><br/><b
 Seedling is a digital language learning tool for adults.
 
 A teacher or content developer
-can prepare lessons of curated exercises
-using Seedling's included exercise templates
-to provide tailored exercises
-to someone who is learning to read their native first-language.
+can define tailored sets of exercises
+from Seedling's templates
+to provide skill-adjusted assignments
+to a native speaker learning to read their native first-language.
 
 [Li Ai Education](https://liaieducation.com) used Seedling
 to make [立爱种字](https://种字.com),
-to help [Standard Chinese (Putonghua)](
-  https://en.wikipedia.org/wiki/Standard_Chinese) speaking adults
+to help
+[Putonghua](https://en.wikipedia.org/wiki/Standard_Chinese) speaking adults
 learn to read simplified Chinese characters.
 
-To try the Android app, download [version 0.95.0](https://github.com/nodepa/seedling/releases/download/v0.95.0/seedling_v0.95.0_7.apk) or [check for a more recent release](https://github.com/nodepa/seedling/releases).
-
-You may have to enable "Install from unknown sources"
-in the settings of your phone to be able to install.
+To try the Android app, download [version 0.95.0](
+  https://github.com/nodepa/seedling/releases/download/v0.95.0/seedling_v0.95.0_7.apk)
+or [check the release history](https://github.com/nodepa/seedling/releases)
+for a more recent version.
+Download to your phone, then install.
+You may have to enable the setting "Install from unknown sources"
+before your phone will allow the installation.
 
 ## Get involved
 
@@ -83,7 +98,7 @@ We would love to collaborate with you
 to make features and content available to the people you care about.
 Read through our [contributing guidelines](
   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
-and get working on it!
+and get to work!
 
 ## License
 

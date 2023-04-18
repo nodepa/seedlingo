@@ -11,7 +11,7 @@ import ParentLayout from '@vuepress/theme-default/lib/client/layouts/Layout.vue'
         <a href="/privacy-policy/privacy-policy.html">Privacy policy</a>
         <br/>
         <br/>
-        <a href="https://nodepa.org">Copyright &copy; 2019-2022 Norwegian Development Partners</a>
+        <a href="https://nodepa.org">Copyright &copy; 2019-2023 Norwegian Development Partners</a>
       </div>
     </template>
   </ParentLayout>

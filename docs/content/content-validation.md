@@ -15,5 +15,5 @@ Set up a development environment as described in [Get started](/get-started/get-
 ```sh
 # Inside the seedling-folder:
 cd app
-npm run test:unit validation
+npm run test:unit Validation # Note the capital V
 ```
