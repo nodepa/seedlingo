@@ -8,10 +8,15 @@ next: /content/replace-content.md
 The Seedling app fetches content from the `content/` folder.
 The content consist of
 
-- a root `ContentSpec.json` specification used by Seedling to identify the rest of the content
-- a word-list describing words and their corresponding media like icons, pictures and audio
+- a root config file named `ContentSpec.json`
+  that contains a specification that Seedling uses
+  to identify the rest of the content
+- a word-list describing words and their corresponding media,
+  like icons, pictures and audio
 - media files
-- lesson specifications describing units of exercises of which words to practice by what exercise type
+- lesson specifications that describe
+  which exercise templates to include in a lesson,
+  and which words to practice with which exercise types
 - audio files giving the users instructions about how to interact and progress
 
 If you want to deploy Seedling with your own content,

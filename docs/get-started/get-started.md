@@ -19,7 +19,7 @@ this should get you up and running.
 ## Development setup
 
 Follow these steps to set up a development or test environment
-on Ubuntu 20.04 LTS or equivalent.
+on Ubuntu 22.04 LTS or equivalent.
 
 ### Clone the Seedling repository
 
@@ -55,7 +55,7 @@ npm install
 ### Start the app in local demo
 
 ```sh
-npm start   # Then visit http://localhost:5173 in your web browser
+npm start   # Then visit http://localhost:4173 in your web browser
 ```
 
 ### Run full test suite
@@ -64,15 +64,15 @@ This command combines the scripts for:
 
 - install
 - lint
-- test:unit:coverage
+- test:unit
 - test:e2e (i.e. end-to-end)
 
 ```sh
-npm run verify
+npm run test
 ```
 
 ## Misc
 
 Play around with your own content
 by replacing the `content/` folder (parallel to the `app/` folder)
-with your own.
+with your own content.

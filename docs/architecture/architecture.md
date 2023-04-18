@@ -3,7 +3,7 @@
 
 # Seedling's architecture
 
-Seedling is built using [VueJS](https://vuejs.org) as web framework
+Seedling is built using the [VueJS](https://vuejs.org) web framework
 to build a client-side single page application (SPA)
 with progressive web app (PWA) functionality.
 The web app is then wrapped using [Ionic Framework](https://ionicframework.com)
