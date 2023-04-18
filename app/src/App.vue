@@ -121,6 +121,7 @@ ion-item::part(native) {
 }
 ion-card {
   /* Ionic> transform: translateZ(0px) */
+  contain: none;
   transform: inherit;
 }
 

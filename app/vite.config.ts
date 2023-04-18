@@ -50,10 +50,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@/': `${__dirname}/src/`,
-      // https://github.com/ionic-team/ionic-framework/issues/25104#issuecomment-1153124409
-      // '@ionic/vue-router': `${__dirname}/node_modules/@ionic/vue-router/dist/index.esm`,
-      '@ionic/vue/css': `${__dirname}/node_modules/@ionic/vue/css`,
-      '@ionic/vue': `${__dirname}/node_modules/@ionic/vue/dist/index.esm`,
     },
   },
   test: {
