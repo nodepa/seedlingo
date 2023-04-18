@@ -90,9 +90,7 @@ describe('LessonsMenu', () => {
         (wrapper.find('[data-test="lesson-button-01"]').element as HTMLElement)
           .className,
       ).not.toBe('pop-through');
-      await wrapper.vm.$store.dispatch(
-        'instructionsModeStore/toggleInstructionsMode',
-      );
+      await rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
       expect(
         (wrapper.find('[data-test="lesson-button-01"]').element as HTMLElement)
           .className,

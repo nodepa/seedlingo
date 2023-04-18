@@ -117,16 +117,16 @@ describe('BottomNavigationBar.vue', () => {
       );
     });
     it('links to home', () => {
-      expect(wrapper.findComponent(HomeButton).vm.$route.path).toBe('/');
+      expect(router.currentRoute.value.path).toBe('/');
     });
   });
 
   // // Elements have expected behaviour
   describe('toggle-instructions-button', () => {
     it('on first click: hides the "instructions explainer" graphic', async () => {
-      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(true);
+      expect(rootStore.state.showInstructionsExplainer).toBe(true);
       await wrapper.find(toggleInstructionsButton).trigger('click');
-      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(false);
+      expect(rootStore.state.showInstructionsExplainer).toBe(false);
     });
 
     it('on first click: enables the home button', async () => {
@@ -147,9 +147,9 @@ describe('BottomNavigationBar.vue', () => {
     });
 
     it('on first click: toggles on instructions mode', async () => {
-      expect(
-        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
-      ).toBe(false);
+      expect(rootStore.state.instructionsModeStore?.isInstructionsMode).toBe(
+        false,
+      );
       expect(
         wrapper
           .find(toggleInstructionsButton)
@@ -165,9 +165,9 @@ describe('BottomNavigationBar.vue', () => {
 
       await wrapper.find(toggleInstructionsButton).trigger('click');
 
-      expect(
-        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
-      ).toBe(true);
+      expect(rootStore.state.instructionsModeStore?.isInstructionsMode).toBe(
+        true,
+      );
       expect(
         wrapper
           .find(toggleInstructionsButton)
@@ -184,47 +184,47 @@ describe('BottomNavigationBar.vue', () => {
 
     it('toggles the instructions mode on multiple clicks', async () => {
       // initial state
-      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(true);
-      expect(
-        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
-      ).toBe(false);
+      expect(rootStore.state.showInstructionsExplainer).toBe(true);
+      expect(rootStore.state.instructionsModeStore?.isInstructionsMode).toBe(
+        false,
+      );
 
       // first click
       await wrapper.find(toggleInstructionsButton).trigger('click');
 
       // current state
-      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(false);
-      expect(
-        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
-      ).toBe(true);
+      expect(rootStore.state.showInstructionsExplainer).toBe(false);
+      expect(rootStore.state.instructionsModeStore?.isInstructionsMode).toBe(
+        true,
+      );
 
       // second click
       await wrapper.find(toggleInstructionsButton).trigger('click');
 
       // current state
-      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(false);
-      expect(
-        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
-      ).toBe(false);
+      expect(rootStore.state.showInstructionsExplainer).toBe(false);
+      expect(rootStore.state.instructionsModeStore?.isInstructionsMode).toBe(
+        false,
+      );
 
       // third click
       await wrapper.find(toggleInstructionsButton).trigger('click');
 
       // current state
-      expect(wrapper.vm.$store.state.showInstructionsExplainer).toBe(false);
-      expect(
-        wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode,
-      ).toBe(true);
+      expect(rootStore.state.showInstructionsExplainer).toBe(false);
+      expect(rootStore.state.instructionsModeStore?.isInstructionsMode).toBe(
+        true,
+      );
     });
   });
 
   describe('continue-button', () => {
     it('on click: hides itself and toggles state', async () => {
-      expect(wrapper.vm.$store.state.showContinueButton).toBe(false);
-      await wrapper.vm.$store.dispatch('setShowContinueButton', true);
-      expect(wrapper.vm.$store.state.showContinueButton).toBe(true);
+      expect(rootStore.state.showContinueButton).toBe(false);
+      await rootStore.dispatch('setShowContinueButton', true);
+      expect(rootStore.state.showContinueButton).toBe(true);
       await wrapper.find(continueButton).trigger('click');
-      expect(wrapper.vm.$store.state.showContinueButton).toBe(false);
+      expect(rootStore.state.showContinueButton).toBe(false);
     });
   });
 });

@@ -16,7 +16,7 @@ import App from '@/App.vue';
 import AppHeader from '@/AppHeader/components/AppHeader.vue';
 
 // Mock useRoute() used in App.vue
-vi.mock('vue-router/dist/vue-router', () => ({
+vi.mock('vue-router', () => ({
   useRoute: vi.fn(() => ({
     name: 'Home',
   })),
