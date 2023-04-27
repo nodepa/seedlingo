@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.1.0",
+  "formatVersion": "1.1.1",
   "id": "83cd60ab-224d-4723-b94e-21331bec4190",
   "lessonIndex": 1,
   "multipleChoiceCount": 4,
@@ -7,7 +7,7 @@
   "explanationCount": 2,
   "singleClozeCount": 2,
   "multiClozeCount": 2,
-  "wordCount": 6,
+  "wordsExercisedCount": 6,
   "exercises": [
     {
       "id": "cdb655cc-3c37-4fb4-9d4c-560f1d1c1a10",

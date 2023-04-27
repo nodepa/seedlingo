@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeAll } from 'vitest';
 import { existsSync } from 'fs';
 import {
   Blank,
@@ -6,9 +6,18 @@ import {
   LessonSpec,
   WordRef,
 } from '@/Lessons/ContentTypes';
-import.meta.env.MODE = 'production'; // force loading 'production' content
+
 import Content from '@/Lessons/Content';
-import.meta.env.MODE = 'test';
+
+// Ensure that *production* content is used for (only) lesson validation
+beforeAll(() => {
+  vi.mock('@/Lessons/Content', async (importOriginal) => {
+    vi.stubEnv('MODE', 'production');
+    const Content = await importOriginal();
+    vi.unstubAllEnvs();
+    return Content;
+  });
+});
 
 describe('Integrity of JSON Lesson data', () => {
   describe('Global integrity', () => {
