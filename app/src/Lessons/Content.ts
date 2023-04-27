@@ -13,10 +13,10 @@ import * as mdiIcons from '@mdi/js';
 let mp3Base64Sources: Record<string, unknown>,
   jsonSources: Record<string, unknown>,
   picSources: Record<string, unknown>;
-let prefix = '';
+let contentFolder = '';
 if (import.meta.env.MODE === 'test') {
   // applies to unit tests; e2e tests run in production mode
-  prefix = '/src/test-support/';
+  contentFolder = '/src/test-support/';
   mp3Base64Sources = import.meta.glob('/src/test-support/**/*.mp3.audio', {
     eager: true,
     as: 'raw',
@@ -30,7 +30,7 @@ if (import.meta.env.MODE === 'test') {
     import: 'default',
   });
 } else {
-  prefix = '../../../content/';
+  contentFolder = '../../../content/';
   mp3Base64Sources = import.meta.glob('../../../content/**/*.mp3.audio', {
     eager: true,
     as: 'raw',
@@ -47,11 +47,11 @@ if (import.meta.env.MODE === 'test') {
 
 export default class Content {
   public static ContentSpec = jsonSources[
-    `${prefix}ContentSpec.json`
+    `${contentFolder}ContentSpec.json`
   ] as ContentSpec;
 
   public static WordListSpec = jsonSources[
-    `${prefix}${this.ContentSpec.wordSpecFile}`
+    `${contentFolder}${this.ContentSpec.wordSpecFile}`
   ] as WordListSpec;
 
   public static LessonSpecs: Array<LessonSpec> = (() => {
@@ -59,7 +59,7 @@ export default class Content {
     for (let i = 0; i < this.ContentSpec.lessons.length; i += 1) {
       const lessonSpecFile = this.ContentSpec.lessons[i].lessonSpecFile;
       const lesson: LessonSpec = jsonSources[
-        `${prefix}${lessonSpecFile}`
+        `${contentFolder}${lessonSpecFile}`
       ] as LessonSpec;
       lessons.push(lesson);
     }
@@ -152,12 +152,12 @@ export default class Content {
 
   public static getAudioData(path: string): string {
     return `data:audio/mpeg;base64,${
-      mp3Base64Sources[`${prefix}${path}.audio`]
+      mp3Base64Sources[`${contentFolder}${path}.audio`]
     }`;
   }
 
   public static getPicPath(path: string): string {
-    return picSources[`${prefix}${path}`] as string;
+    return picSources[`${contentFolder}${path}`] as string;
   }
 
   public static getInstructionsAudio(

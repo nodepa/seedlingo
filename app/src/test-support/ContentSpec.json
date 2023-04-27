@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.0",
+  "formatVersion": "1.1.1",
   "instructions": {
     "welcome": "audio/placeholder-audio.mp3",
     "homeButton": "audio/placeholder-audio.mp3",
