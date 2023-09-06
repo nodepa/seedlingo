@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "@ionic/vue": "^7.3.0",
-    "@ionic/vue-router": "^7.3.1",
+    "@ionic/vue-router": "^7.3.3",
     "register-service-worker": "^1.7.2",
     "roboto-fontface": "^0.10.0",
     "vue": "^3.3.4",
@@ -79,12 +79,12 @@
     "@capacitor/status-bar": "^5.0.6",
     "@commitlint/cli": "^17.7.1",
     "@mdi/js": "^7.2.96",
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
-    "@typescript-eslint/parser": "^6.5.0",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
     "@vitejs/plugin-vue": "^4.3.4",
     "@vitest/coverage-v8": "^0.34.3",
     "@vue/test-utils": "^2.4.1",
-    "cypress": "^12.17.4",
+    "cypress": "^13.1.0",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
@@ -100,6 +100,6 @@
     "vite": "^4.4.9",
     "vite-plugin-pwa": "^0.16.4",
     "vitest": "^0.34.3",
-    "vue-tsc": "^1.8.8"
+    "vue-tsc": "^1.8.10"
   }
 }

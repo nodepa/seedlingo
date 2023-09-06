@@ -90,6 +90,8 @@ describe('马丽 interacts with the "matching" system', () => {
       // 0 audio ripples created
       cy.get('@animation.animate').should('have.callCount', 0);
 
+      cy.wait(500);
+
       // *****
       // * 2 *
       // *****
@@ -110,6 +112,8 @@ describe('马丽 interacts with the "matching" system', () => {
       // 2 audio ripples created + 0 button buzz
       cy.get('@animation.animate').should('have.callCount', 2);
       cy.get('@animation.animate').invoke('resetHistory');
+
+      cy.wait(500);
 
       // *****
       // * 3 *
@@ -142,6 +146,8 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@animation.animate').should('have.callCount', 4);
       cy.get('@animation.animate').invoke('resetHistory');
 
+      cy.wait(500);
+
       // *****
       // * 4 *
       // *****
@@ -161,6 +167,8 @@ describe('马丽 interacts with the "matching" system', () => {
       // 2 audio ripples created + 0 button buzz
       cy.get('@animation.animate').should('have.callCount', 2);
       cy.get('@animation.animate').invoke('resetHistory');
+
+      cy.wait(500);
 
       // *****
       // * 5 *
@@ -185,6 +193,8 @@ describe('马丽 interacts with the "matching" system', () => {
       // 2 audio ripples created + 0 button buzz
       cy.get('@animation.animate').should('have.callCount', 2);
       cy.get('@animation.animate').invoke('resetHistory');
+
+      cy.wait(500);
 
       // *****
       // * 6 *
@@ -227,6 +237,8 @@ describe('马丽 interacts with the "matching" system', () => {
       // 2 audio ripples created + 0 button buzz
       cy.get('@animation.animate').should('have.callCount', 2);
       cy.get('@animation.animate').invoke('resetHistory');
+
+      cy.wait(500);
 
       // *****
       // * 7 *
@@ -274,6 +286,8 @@ describe('马丽 interacts with the "matching" system', () => {
       // 4 audio ripples created + 0 button buzz
       cy.get('@animation.animate').should('have.callCount', 4);
       cy.get('@animation.animate').invoke('resetHistory');
+
+      cy.wait(500);
 
       // *****
       // * 8 *
