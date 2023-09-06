@@ -8,7 +8,7 @@ import ExerciseProvider from '../../Lessons/ExerciseProvider';
 import { MatchingItem } from '../MatchingTypes';
 
 export default function MatchingTestData(
-  dataSet = 'mixed',
+  dataSet: 'mixed' | 'allPics' = 'mixed',
 ): Array<MatchingItem> {
   if (dataSet === 'mixed') {
     return [

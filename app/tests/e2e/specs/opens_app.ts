@@ -96,7 +96,7 @@ describe("马丽 opens the app to the home screen's list of lessons", () => {
         })
         // Should auto-hide overlay after audio finishes
         // default timeout is 4000, need just a bit longer for audio to end
-        .get(instructionsOverlay, { timeout: 5000 })
+        .get(instructionsOverlay, { timeout: 6000 })
         .should('not.exist');
     },
   );

@@ -21,7 +21,7 @@ describe('ExerciseProvider', () => {
         .mockImplementation((): ExerciseType => 'Matching');
       const spySelectRandomSubsetMatching = vi
         .spyOn(ExerciseProvider, 'selectRandomSubset')
-        .mockImplementation(() => lesson.exercises[1].words || []);
+        .mockImplementation(() => lesson.exercises[1].matchingWords || []);
       const spyGetAudioData = vi
         .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
@@ -40,7 +40,9 @@ describe('ExerciseProvider', () => {
         .mockImplementation((): ExerciseType => 'MultipleChoice');
       const spySelectRandomSubsetMultipleChoice = vi
         .spyOn(ExerciseProvider, 'selectRandomSubset')
-        .mockImplementation(() => lesson.exercises[0].words || []);
+        .mockImplementation(
+          () => lesson.exercises[0].multipleChoiceWords || [],
+        );
       const spyRandomIndexLessThan = vi
         .spyOn(ExerciseProvider, 'randomIndexLessThan')
         .mockImplementation(() => 3);
@@ -55,7 +57,9 @@ describe('ExerciseProvider', () => {
         (exercise.exerciseItems as MultipleChoiceExercise).options[0].word,
       ).toBe(
         Object.keys(
-          lesson.exercises[0].words ? lesson.exercises[0].words[0] : [],
+          lesson.exercises[0].multipleChoiceWords
+            ? lesson.exercises[0].multipleChoiceWords[0]
+            : [],
         )[0],
       );
 
@@ -67,6 +71,27 @@ describe('ExerciseProvider', () => {
     });
   });
 
+  describe('.validateExerciseIndex()', () => {
+    it('correctly handles invalid params', () => {
+      const lessons = [lesson, lesson, lesson];
+      expect(() =>
+        ExerciseProvider.validateExerciseIndex(-1, lessons),
+      ).toThrow();
+      expect(() =>
+        ExerciseProvider.validateExerciseIndex(0, lessons),
+      ).toThrow();
+      expect(() =>
+        ExerciseProvider.validateExerciseIndex(1, lessons),
+      ).not.toThrow();
+      expect(() =>
+        ExerciseProvider.validateExerciseIndex(3, lessons),
+      ).not.toThrow();
+      expect(() =>
+        ExerciseProvider.validateExerciseIndex(4, lessons),
+      ).toThrow();
+    });
+  });
+
   describe('.generateMatchingExercise()', () => {
     it('correctly returns exercises', () => {
       const spyGetAudioData = vi
@@ -75,6 +100,19 @@ describe('ExerciseProvider', () => {
       const matchingExercise =
         ExerciseProvider.generateMatchingExercise(lesson);
       expect(matchingExercise.exerciseType).toBe('Matching');
+      spyGetAudioData.mockRestore();
+    });
+  });
+
+  describe('.generateExplanationMatchingExercise()', () => {
+    it('correctly returns exercises', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const matchingExercise =
+        ExerciseProvider.generateExplanationMatchingExercise(lesson);
+      expect(matchingExercise.exerciseType).toBe('Matching');
+      expect(matchingExercise.exerciseItems.length).toBe(4);
       spyGetAudioData.mockRestore();
     });
   });
@@ -124,9 +162,60 @@ describe('ExerciseProvider', () => {
         );
       expect(correctAlternative?.word).toBe(
         Object.keys(
-          lesson.exercises[2].explanationTargets?.validOption || [],
+          lesson.exercises[2].explanationSpec?.explanationTargets
+            ?.validOption || [],
         )[0],
       );
+      spyGetAudioData.mockRestore();
+      spyPickRandomItem.mockRestore();
+    });
+  });
+
+  describe('.generateSingleClozeExercise()', () => {
+    it('correctly returns exercises', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      // force first single cloze exercise and first valid option in test spec
+      const spyPickRandomItem = vi
+        .spyOn(ExerciseProvider, 'pickRandomItem')
+        .mockImplementation((array) => {
+          return array[0];
+        });
+
+      const singleClozeExercise =
+        ExerciseProvider.generateSingleClozeExercise(lesson);
+      expect(singleClozeExercise.exerciseType).toBe('SingleCloze');
+      expect(singleClozeExercise.exerciseItems.clozeText.length).toBe(
+        lesson.exercises[4].singleClozeSpec?.text?.length,
+      );
+      expect(singleClozeExercise.exerciseItems.clozeOptions.length).toBe(4);
+      expect(singleClozeExercise.exerciseItems.clozeText[0].isBlank).toBe(
+        false,
+      );
+      expect(singleClozeExercise.exerciseItems.clozeText[3].isBlank).toBe(
+        false,
+      );
+      expect(singleClozeExercise.exerciseItems.clozeText[4].isBlank).toBe(true);
+      expect(singleClozeExercise.exerciseItems.clozeText[4].revealed).toBe(
+        false,
+      );
+      expect(singleClozeExercise.exerciseItems.clozeText[4].buzzing).toBe(
+        false,
+      );
+      expect(
+        singleClozeExercise.exerciseItems.clozeOptions.filter((option) =>
+          ['妈妈', '姥姥', '奶奶', '爸爸'].includes(option.word),
+        ).length,
+      ).toBe(4);
+
+      expect(singleClozeExercise.exerciseItems.clozeOptions[1].disabled).toBe(
+        false,
+      );
+      expect(singleClozeExercise.exerciseItems.clozeOptions[1].buzzing).toBe(
+        false,
+      );
+
       spyGetAudioData.mockRestore();
       spyPickRandomItem.mockRestore();
     });
@@ -137,7 +226,7 @@ describe('ExerciseProvider', () => {
       const spyGetAudioData = vi
         .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
-      // force exercise based on lesson item 2 (index 1)
+      // force second multi-cloze exercise in test spec
       const spyPickRandomItem = vi
         .spyOn(ExerciseProvider, 'pickRandomItem')
         .mockImplementation((array) => {
@@ -148,7 +237,7 @@ describe('ExerciseProvider', () => {
         ExerciseProvider.generateMultiClozeExercise(lesson);
       expect(multiClozeExercise.exerciseType).toBe('MultiCloze');
       expect(multiClozeExercise.exerciseItems.clozeText.length).toBe(
-        lesson.exercises[7].multiClozeText?.length,
+        lesson.exercises[7].multiClozeSpec?.text?.length,
       );
       expect(multiClozeExercise.exerciseItems.clozeOptions.length).toBe(4);
       expect(multiClozeExercise.exerciseItems.clozeText[3].isBlank).toBe(false);
@@ -182,29 +271,98 @@ describe('ExerciseProvider', () => {
     });
   });
 
-  describe('.validateExerciseIndex()', () => {
+  describe('.selectClozeExerciseFromSpec()', () => {
+    it('correctly returns spec', () => {
+      // force second single/multi cloze exercise in test spec (index 1)
+      const spyPickRandomItem = vi
+        .spyOn(ExerciseProvider, 'pickRandomItem')
+        .mockImplementation((array) => {
+          return array[1];
+        });
+
+      const single = ExerciseProvider.selectClozeExerciseFromSpec(
+        lesson,
+        'SingleCloze',
+      );
+      const multi = ExerciseProvider.selectClozeExerciseFromSpec(
+        lesson,
+        'MultiCloze',
+      );
+
+      expect(single.singleClozeSpec?.text?.length).toBe(4);
+      expect(multi.multiClozeSpec?.text?.length).toBe(20);
+
+      spyPickRandomItem.mockRestore();
+    });
+  });
+
+  describe('.generateComprehensionExercise()', () => {
+    it('correctly returns exercises', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      // force random to always pick first option
+      const spyPickRandomItem = vi
+        .spyOn(ExerciseProvider, 'pickRandomItem')
+        .mockImplementation((array) => {
+          return array[0];
+        });
+
+      const comprehension =
+        ExerciseProvider.generateComprehensionExercise(lesson);
+
+      expect(comprehension.exerciseType).toBe('Comprehension');
+      expect(comprehension.exerciseItems.comprehensionText.length).toBe(20);
+      expect(comprehension.exerciseItems.newWordsExercises?.length).toBe(4);
+      expect(comprehension.exerciseItems.questions.length).toBe(3);
+      expect(comprehension.exerciseItems.stages[1].questionnaire).toBe(true);
+
+      spyGetAudioData.mockRestore();
+      spyPickRandomItem.mockRestore();
+    });
+  });
+
+  describe('.selectRandomSubset()', () => {
     it('correctly handles invalid params', () => {
-      const lessons = [lesson, lesson, lesson];
       expect(() =>
-        ExerciseProvider.validateExerciseIndex(-1, lessons),
-      ).toThrow();
-      expect(() =>
-        ExerciseProvider.validateExerciseIndex(0, lessons),
-      ).toThrow();
-      expect(() =>
-        ExerciseProvider.validateExerciseIndex(1, lessons),
-      ).not.toThrow();
-      expect(() =>
-        ExerciseProvider.validateExerciseIndex(3, lessons),
-      ).not.toThrow();
-      expect(() =>
-        ExerciseProvider.validateExerciseIndex(4, lessons),
-      ).toThrow();
+        ExerciseProvider.selectRandomSubset(
+          [1, 2, 3],
+          {
+            minItems: 4,
+            maxItems: 4,
+          },
+          1,
+        ),
+      ).toThrow(
+        'Lesson 1 only has 3 suitable item(s), which is too few to generate this exercise.',
+      );
+
+      const subset = ExerciseProvider.selectRandomSubset(
+        [1, 2, 3],
+        {
+          minItems: 3,
+          maxItems: 3,
+        },
+        1,
+      );
+      expect(subset).toContain(1);
+      expect(subset).toContain(2);
+      expect(subset).toContain(3);
+      expect(
+        ExerciseProvider.selectRandomSubset(
+          [1, 2, 3],
+          {
+            minItems: 3,
+            maxItems: 99,
+          },
+          1,
+        ).length,
+      ).toBe(3);
     });
   });
 
   describe('.hasAtLeast()', () => {
-    it('correctly handles invalid params', () => {
+    it('correctly handles params', () => {
       const array = [1, 2, 3, 4, 5, 6, 7, 8];
       const validLimits = [-1, 0, 1, 7, 8];
       const invalidLimits = [9, 11];
@@ -221,7 +379,58 @@ describe('ExerciseProvider', () => {
     });
   });
 
-  describe('.pickRandomIndexLessThan', () => {
+  describe('.createPairsFromWords()', () => {
+    it('correctly handles params', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const words = Content.getWordsInLesson(lesson).slice(4);
+      const pairs = ExerciseProvider.createPairsFromWords(words);
+
+      expect(pairs[0].wordOrIcons).toBe('姥姥');
+      expect(pairs[2].wordOrIcons).toBe('姥爷');
+
+      spyGetAudioData.mockRestore();
+    });
+  });
+
+  // describe('.shuffleMatchingItemsInPlace()', () => {
+  //   it('correctly handles params', () => {
+  //     // take two matched pairs
+  //     // shuffle
+  //     // verify pointing to correct answer
+  //   });
+  // });
+
+  describe('.shuffleItemsInPlace()', () => {
+    it('correctly handles params', () => {
+      const array = [1, 2, 3, 4];
+      let iteration = 0;
+      while (iteration < 5) {
+        ExerciseProvider.shuffleItemsInPlace(array);
+        if (array.toString() != [1, 2, 3, 4].toString()) {
+          iteration = 5;
+        } else {
+          iteration += 1;
+        }
+      }
+      expect(array.toString()).not.toBe([1, 2, 3, 4].toString());
+    });
+  });
+
+  // describe('.makeRandomItemCorrectOption()', () => {
+  //   it('correctly handles params', () => {
+  //   });
+  // });
+
+  describe('.pickRandomItem()', () => {
+    it('correctly handles params', () => {
+      expect(ExerciseProvider.pickRandomItem([1])).toBe(1);
+      expect(ExerciseProvider.pickRandomItem([])).toBe(undefined);
+    });
+  });
+
+  describe('.randomIndexLessThan', () => {
     it('is covered', () => {
       expect(ExerciseProvider.randomIndexLessThan(0)).toBe(0);
       expect(ExerciseProvider.randomIndexLessThan(1) === 0).toBe(true);
@@ -233,12 +442,13 @@ describe('ExerciseProvider', () => {
     it('is covered', () => {
       for (let i = 0; i < 100; i += 1) {
         expect([
+          'Comprehension',
           'Matching',
           'MultipleChoice',
           'ExplanationMatching',
           'ExplanationMultipleChoice',
-          'SingleCloze',
           'MultiCloze',
+          'SingleCloze',
         ]).toContain(ExerciseProvider.pickRandomExerciseType(lesson));
       }
     });

@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.1.1",
+  "formatVersion": "1.2.0",
   "instructions": {
     "welcome": "audio/placeholder-audio.mp3",
     "homeButton": "audio/placeholder-audio.mp3",
@@ -8,7 +8,8 @@
     "matchingExercise": "audio/placeholder-audio.mp3",
     "multipleChoiceExercise": "audio/placeholder-audio.mp3",
     "singleClozeExercise": "audio/placeholder-audio.mp3",
-    "multiClozeExercise": "audio/placeholder-audio.mp3"
+    "multiClozeExercise": "audio/placeholder-audio.mp3",
+    "comprehensionExercise": "audio/placeholder-audio.mp3"
   },
   "wordSpecFile": "WordSpecFile.json",
   "lessons": [

@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.1.0",
+  "formatVersion": "1.2.0",
   "id": "17df7241-eb9d-4bea-904e-d51823d8fc85",
   "lessonIndex": 4,
   "multipleChoiceCount": 4,
@@ -7,12 +7,13 @@
   "explanationCount": 4,
   "singleClozeCount": 0,
   "multiClozeCount": 0,
+  "comprehensionCount": 0,
   "wordsExercisedCount": 4,
   "exercises": [
     {
       "id": "529a6565-f51c-498d-a2e7-956fa9e391d8",
       "type": "MultipleChoice",
-      "words": [
+      "multipleChoiceWords": [
         { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
         { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
         { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
@@ -22,7 +23,7 @@
     {
       "id": "8b69fa0b-5a37-4f2a-89b7-f67603cabf72",
       "type": "Matching",
-      "words": [
+      "matchingWords": [
         { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
         { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
         { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
@@ -32,74 +33,82 @@
     {
       "id": "cb6f4821-c2d6-4ccc-b9a1-465e2ddc5e4e",
       "type": "Explanation",
-      "explanation": [
-        { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
-        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-        { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" }
-      ],
-      "explanationTargets": {
-        "validOption": { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-        "invalidOptions": [
-          { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-          { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
-          { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
-        ]
-      },
-      "audio": "audio/妈妈的妈妈.mp3"
+      "explanationSpec": {
+        "explanation": [
+          { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
+          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+          { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" }
+        ],
+        "explanationTargets": {
+          "validOption": { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
+          "invalidOptions": [
+            { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
+            { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
+            { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
+          ]
+        },
+        "audio": "audio/妈妈的妈妈.mp3"
+      }
     },
     {
       "id": "4bc5c4ee-2a62-40ac-9c6b-c816dcde5330",
       "type": "Explanation",
-      "explanation": [
-        { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
-        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-        { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" }
-      ],
-      "explanationTargets": {
-        "validOption": { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-        "invalidOptions": [
-          { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-          { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
-          { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
-        ]
-      },
-      "audio": "audio/妈妈的爸爸.mp3"
+      "explanationSpec": {
+        "explanation": [
+          { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
+          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+          { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" }
+        ],
+        "explanationTargets": {
+          "validOption": { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
+          "invalidOptions": [
+            { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
+            { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
+            { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
+          ]
+        },
+        "audio": "audio/妈妈的爸爸.mp3"
+      }
     },
     {
       "id": "3fc1de4b-ed1d-49d0-86c8-bfc9ba27a70d",
       "type": "Explanation",
-      "explanation": [
-        { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
-        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-        { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" }
-      ],
-      "explanationTargets": {
-        "validOption": { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
-        "invalidOptions": [
-          { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-          { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-          { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
-        ]
-      },
-      "audio": "audio/爸爸的妈妈.mp3"
+      "explanationSpec": {
+        "explanation": [
+          { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
+          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+          { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" }
+        ],
+        "explanationTargets": {
+          "validOption": { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
+          "invalidOptions": [
+            { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
+            { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
+            { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
+          ]
+        },
+        "audio": "audio/爸爸的妈妈.mp3"
+      }
     },
     {
       "id": "812bd1c7-b94d-417c-8725-d6e5fdcf5e89",
       "type": "Explanation",
-      "explanation": [
-        { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
-        { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-        { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" }
-      ],
-      "explanationTargets": {
-        "validOption": { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" },
-        "invalidOptions": [
-          { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-          { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-          { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" }
-        ]
-      },
-      "audio": "audio/爸爸的爸爸.mp3"
+      "explanationSpec": {
+        "explanation": [
+          { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
+          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
+          { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" }
+        ],
+        "explanationTargets": {
+          "validOption": { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" },
+          "invalidOptions": [
+            { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
+            { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
+            { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" }
+          ]
+        },
+        "audio": "audio/爸爸的爸爸.mp3"
+      }
     }
   ]
 }

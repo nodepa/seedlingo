@@ -107,7 +107,7 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
           data-test="sentence-card"
           color="card"
         >
-          <ion-card-content class="ion-text-center">
+          <ion-card-content class="ion-text-justify">
             <template
               v-for="(word, index) in exercise.clozeText"
               :key="`start-${index}`"
@@ -115,11 +115,13 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
               <span class="no-wrap">
                 <span
                   :data-test="`sentence-word-${index + 1}`"
+                  style="padding-top: 2px"
                   :class="[
-                    'no-wrap',
+                    'selectable',
                     'ripple-container',
                     { revealed: word.isBlank && word.revealed },
-                    { selectable: !word.isBlank || word.revealed },
+                    { interactive: !word.isBlank || word.revealed },
+                    { playing: word.audio?.playing },
                   ]"
                   @click="
                     if (
@@ -132,7 +134,8 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
                   <span
                     v-if="word.isBlank && !word.revealed"
                     class="cloze-blank"
-                  />
+                    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
+                  >
                   <template
                     v-else-if="
                       !word.isPunctuation && (!word.isBlank || word.revealed)
@@ -148,9 +151,11 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
                     exercise.clozeText[index + 1].isPunctuation
                   "
                   :data-test="`sentence-word-${index + 1}-punctuation`"
+                  class="selectable punctuation"
                   >{{ exercise.clozeText[index + 1].word }}
                 </span>
               </span>
+              <wbr />
             </template>
           </ion-card-content>
         </ion-card>
@@ -194,6 +199,7 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
 .flex-col-top {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex: 1 1 40%;
   padding: var(--ion-grid-column-padding);
 }
@@ -208,7 +214,7 @@ ion-row {
 ion-card {
   display: flex;
   height: 100%;
-  width: 90%;
+  width: 95%;
   margin: 0px;
   justify-content: center;
   align-items: center;
@@ -217,37 +223,94 @@ ion-card {
 ion-card-content {
   font-size: 1.8rem;
 }
-span {
-  display: inline-block;
-}
 .no-wrap {
-  word-break: keep-all;
+  white-space: nowrap;
 }
 .ripple-container {
   position: relative;
 }
 .cloze-blank {
-  display: inline-block;
+  display: inline;
   width: 1.6em;
-  height: 1.1em;
-  margin: 0px 2px;
-  vertical-align: text-bottom;
-  border-color: inherit;
-  border-style: dotted;
-  border-width: 3px;
+  margin-inline: 3px;
   cursor: default;
   color: var(--ion-color-primary);
 }
+.cloze-blank::after {
+  position: absolute;
+  top: -2px;
+  right: 1px;
+  bottom: -2px;
+  left: 1px;
+  content: '';
+  background-color: transparent;
+  border-radius: 0.2em;
+  border-color: inherit;
+  border-style: dashed;
+  border-width: 2px;
+}
 .revealed {
-  color: var(--ion-color-success-contrast);
-  background-color: var(--ion-color-success);
+  margin-inline: 2px;
+  padding: 0px 2px;
+}
+.revealed::after {
+  position: absolute;
+  top: -2px;
+  right: -1px;
+  bottom: -2px;
+  left: -1px;
+  content: '';
+  background-color: transparent;
+  border-radius: 0.2em;
+  border-color: var(--ion-color-primary);
+  border-style: dashed;
+  border-width: 2px;
 }
 .selectable {
   user-select: text;
   cursor: pointer;
 }
+.punctuation {
+  cursor: default;
+}
 ion-button {
   width: 100%;
   height: 100%;
+}
+@media (hover: hover) and (pointer: fine) {
+  span.interactive:hover {
+    background-color: var(--ion-color-secondary-tint);
+    border-radius: 0.2em;
+  }
+  span.interactive:hover::after {
+    position: absolute;
+    top: -2px;
+    right: -1px;
+    bottom: -2px;
+    left: -1px;
+    content: '';
+    background-color: transparent;
+    border-radius: 0.2em;
+    border-color: var(--ion-color-primary);
+    border-style: solid;
+    border-width: 2px;
+  }
+}
+.playing {
+  background-color: var(--ion-color-secondary-tint);
+  border-radius: 0.2em;
+}
+.playing::after {
+  position: absolute;
+  top: -2px;
+  right: -1px;
+  bottom: -2px;
+  left: -1px;
+  content: '';
+  background-color: transparent;
+  border-radius: 0.2em;
+  border-color: var(--ion-color-primary);
+  border-style: solid;
+  border-width: 2px;
 }
 </style>

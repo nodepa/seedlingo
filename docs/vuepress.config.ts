@@ -32,6 +32,10 @@ export default defineUserConfig<DefaultThemeOptions>({
           '/content/content-validation.md',
         ],
       },
+      {
+        text: 'Android',
+        link: '/android/android-build.html',
+      },
       '/architecture/architecture.md',
     ],
     repo: 'nodepa/seedling',

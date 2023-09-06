@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ToggleInstructionsOnIcon from '../icons/ToggleInstructionsOnIcon';
+import ToggleInstructionsOnIcon from '../icons/ToggleInstructionsOnIcon.svg?raw';
 import RippleAnimation from '../animations/RippleAnimation.vue';
 import { Ref, ref } from 'vue';
 
@@ -15,11 +15,8 @@ const playing = ref(props.playing);
 
 <template>
   <span class="badge-container">
-    <span class="badge">
-      <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-        <path :d="ToggleInstructionsOnIcon" />
-      </svg>
-    </span>
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <span class="badge" v-html="ToggleInstructionsOnIcon" />
     <RippleAnimation :playing="playing" />
   </span>
 </template>

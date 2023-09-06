@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.1.0",
+  "formatVersion": "1.2.0",
   "id": "09f412a7-9425-4fae-bb95-30c483d23232",
   "lessonIndex": 5,
   "multipleChoiceCount": 10,
@@ -7,12 +7,13 @@
   "explanationCount": 0,
   "singleClozeCount": 0,
   "multiClozeCount": 0,
+  "comprehensionCount": 0,
   "wordsExercisedCount": 10,
   "exercises": [
     {
       "id": "0410ab60-2868-4a95-a467-aa019504cfd9",
       "type": "MultipleChoice",
-      "words": [
+      "multipleChoiceWords": [
         { "丈夫": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
         { "妻子": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
         { "大姐": "891c12fc-23a3-4bb9-9744-dbaf2e785624" },
@@ -28,7 +29,7 @@
     {
       "id": "b1c5ed62-f7fc-4759-8c1d-5ac2a1284997",
       "type": "Matching",
-      "words": [
+      "matchingWords": [
         { "丈夫": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
         { "妻子": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
         { "大姐": "891c12fc-23a3-4bb9-9744-dbaf2e785624" },

@@ -12,22 +12,25 @@ import { IonPage, useIonRouter } from '@ionic/vue';
 import { onMounted, ref, shallowRef, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
-import ClozeExercise from '../Cloze/components/ClozeExercise.vue';
-import MatchingExercise from '../Matching/components/MatchingExercise.vue';
-import MultipleChoiceExercise from '../MultipleChoice/components/MultipleChoiceExercise.vue';
-import getMatchingTestData from '../Matching/data/MatchingTestData';
-import getExplanationMatchingTestData from '../Matching/data/ExplanationMatchingTestData';
-import getMultipleChoiceTestData from '../MultipleChoice/data/MultipleChoiceTestData';
-import getExplanationMultipleChoiceTestData from '../MultipleChoice/data/ExplanationMultipleChoiceTestData';
-import getSingleClozeTestData from '../Cloze/data/SingleClozeTestData';
-import getMultiClozeTestData from '../Cloze/data/MultiClozeTestData';
-import { MatchingItem } from '../Matching/MatchingTypes';
-import ExerciseProvider, { ExerciseItems } from '../Lessons/ExerciseProvider';
+import ClozeExercise from '@/Cloze/components/ClozeExercise.vue';
+import ComprehensionExercise from '@/Comprehension/components/ComprehensionExercise.vue';
+import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
+import MultipleChoiceExercise from '@/MultipleChoice/components/MultipleChoiceExercise.vue';
+import getMatchingTestData from '@/Matching/data/MatchingTestData';
+import getExplanationMatchingTestData from '@/Matching/data/ExplanationMatchingTestData';
+import getMultipleChoiceTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
+import getExplanationMultipleChoiceTestData from '@/MultipleChoice/data/ExplanationMultipleChoiceTestData';
+import getSingleClozeTestData from '@/Cloze/data/SingleClozeTestData';
+import getMultiClozeTestData from '@/Cloze/data/MultiClozeTestData';
+import getComprehensionTestData from '@/Comprehension/data/ComprehensionTestData';
+import { MatchingItem } from '@/Matching/MatchingTypes';
+import ExerciseProvider, { ExerciseItems } from '@/Lessons/ExerciseProvider';
 
 type ExerciseComponent =
   | typeof MatchingExercise
   | typeof MultipleChoiceExercise
-  | typeof ClozeExercise;
+  | typeof ClozeExercise
+  | typeof ComprehensionExercise;
 const ExerciseMapping: { [key: string]: ExerciseComponent } = {
   Matching: MatchingExercise,
   MultipleChoice: MultipleChoiceExercise,
@@ -35,6 +38,7 @@ const ExerciseMapping: { [key: string]: ExerciseComponent } = {
   ExplanationMultipleChoice: MultipleChoiceExercise,
   SingleCloze: ClozeExercise,
   MultiCloze: ClozeExercise,
+  Comprehension: ComprehensionExercise,
 };
 const exerciseComponent = shallowRef<ExerciseComponent | string>(
   MultipleChoiceExercise,
@@ -49,12 +53,13 @@ watch(
   () => store.state.showContinueButton,
   (show: boolean) => {
     if (!show) {
-      // the continue button has been clicked, time to refresh or return home
-      if (currentIteration.value >= 5) {
-        ionRouter.navigate({ name: 'Home' }, 'root', 'replace');
-      } else {
-        currentIteration.value += 1;
-        getExercise();
+      if (exerciseComponent.value !== ComprehensionExercise) {
+        if (currentIteration.value >= 5) {
+          ionRouter.navigate({ name: 'Home' }, 'root', 'replace');
+        } else {
+          currentIteration.value += 1;
+          getExercise();
+        }
       }
     }
   },
@@ -111,6 +116,14 @@ function getExercise(): void {
     ExerciseProvider.pickRandomExerciseType = () => 'MultiCloze';
     exerciseItems.value =
       ExerciseProvider.getExerciseFromLesson(11).exerciseItems;
+  } else if ('comprehension-test' === route.params.lessonIndex) {
+    exerciseComponent.value = ComprehensionExercise;
+    exerciseItems.value = getComprehensionTestData();
+  } else if ('comprehension' === route.params.lessonIndex) {
+    exerciseComponent.value = ComprehensionExercise;
+    ExerciseProvider.pickRandomExerciseType = () => 'Comprehension';
+    exerciseItems.value =
+      ExerciseProvider.getExerciseFromLesson(6).exerciseItems;
   } else if (
     route.params.lessonIndex != null &&
     route.params.lessonIndex !== '' &&

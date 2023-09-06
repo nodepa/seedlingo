@@ -154,6 +154,7 @@ onUpdated(() => {
           style="
             width: 100%;
             height: 100%;
+            min-height: 6rem;
             font-size: 4rem;
             --padding-top: 0.5rem;
             --padding-bottom: 0.5rem;
@@ -221,6 +222,7 @@ onUpdated(() => {
           style="
             width: 100%;
             height: 100%;
+            min-height: 4rem;
             --padding-top: 0.5rem;
             --padding-bottom: 0.5rem;
             --padding-start: 0.5rem;

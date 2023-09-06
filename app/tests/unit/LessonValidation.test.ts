@@ -58,6 +58,7 @@ describe('Integrity of JSON Lesson data', () => {
         expect(lesson.explanationCount).toBeGreaterThanOrEqual(0);
         expect(lesson.singleClozeCount).toBeGreaterThanOrEqual(0);
         expect(lesson.multiClozeCount).toBeGreaterThanOrEqual(0);
+        expect(lesson.comprehensionCount).toBeGreaterThanOrEqual(0);
         if (lesson.wordsExercisedCount) {
           expect(lesson.wordsExercisedCount).toBeGreaterThanOrEqual(0);
         }
@@ -65,72 +66,127 @@ describe('Integrity of JSON Lesson data', () => {
           try {
             expect(exercise.id.length).toBeGreaterThanOrEqual(1);
             expect(exercise.type.length).toBeGreaterThanOrEqual(0);
-            if (['MultipleChoice', 'Matching'].includes(exercise.type)) {
-              expect(exercise.words?.length).toBeGreaterThan(1);
+            if (exercise.type === 'MultipleChoice') {
+              expect(exercise.multipleChoiceWords?.length).toBeGreaterThan(1);
+            } else if (exercise.type === 'Matching') {
+              expect(exercise.matchingWords?.length).toBeGreaterThan(1);
             } else if (exercise.type === 'Explanation') {
-              expect(exercise.explanation?.length).toBeGreaterThan(0);
               expect(
-                exercise.explanation?.filter(
+                exercise.explanationSpec?.explanation?.length,
+              ).toBeGreaterThan(0);
+              expect(
+                exercise.explanationSpec?.explanation?.filter(
                   (wordRef) => wordRef[Object.keys(wordRef)[0]].length > 0,
-                ).length === exercise.explanation?.length,
+                ).length === exercise.explanationSpec?.explanation?.length,
               ).toBe(true);
-              expect(!!exercise.explanationTargets).toBe(true);
-              if (exercise.explanationTargets) {
+              expect(!!exercise.explanationSpec?.explanationTargets).toBe(true);
+              if (exercise.explanationSpec?.explanationTargets) {
                 expect(
-                  exercise.explanationTargets.validOption[
-                    Object.keys(exercise.explanationTargets.validOption)[0]
+                  exercise.explanationSpec?.explanationTargets.validOption[
+                    Object.keys(
+                      exercise.explanationSpec?.explanationTargets.validOption,
+                    )[0]
                   ].length,
                 ).toBeGreaterThan(0);
                 expect(
-                  exercise.explanationTargets.invalidOptions.length,
+                  exercise.explanationSpec?.explanationTargets.invalidOptions
+                    .length,
                 ).toBeGreaterThan(1);
               }
+              try {
+                expect(Object.hasOwn(exercise, 'explanation')).toBe(false);
+              } catch (e) {
+                throw new Error(
+                  `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'explanation' field; use 'explanationSpec' instead.\n${e}`,
+                );
+              }
             } else if (exercise.type === 'SingleCloze') {
-              expect(exercise.singleClozeText?.length).toBeGreaterThan(1);
-              // at least one blank
-              expect(
-                exercise.singleClozeText?.filter(
-                  (word) => 'validOptions' in word,
-                ).length,
-              ).toBeGreaterThan(0);
+              expect(exercise.singleClozeSpec).not.toBeUndefined();
+              if (exercise.singleClozeSpec) {
+                expect(exercise.singleClozeSpec.text?.length).toBeGreaterThan(
+                  1,
+                );
+                // at least one blank
+                expect(
+                  exercise.singleClozeSpec.text?.filter(
+                    (word) => 'validOptions' in word,
+                  ).length,
+                ).toBeGreaterThan(0);
+                if ('suppressClozeAudio' in exercise.singleClozeSpec) {
+                  expect(
+                    typeof exercise.singleClozeSpec.suppressClozeAudio,
+                  ).toBe('boolean');
+                }
+                if ('suppressOptionAudio' in exercise.singleClozeSpec) {
+                  expect(
+                    typeof exercise.singleClozeSpec.suppressOptionAudio,
+                  ).toBe('boolean');
+                }
+              }
             } else if (exercise.type === 'MultiCloze') {
-              expect(exercise.multiClozeText?.length).toBeGreaterThan(1);
-              // at least one blank
-              expect(
-                exercise.multiClozeText?.filter(
-                  (word) => 'validOptions' in word,
-                ).length,
-              ).toBeGreaterThan(0);
+              expect(exercise.multiClozeSpec).not.toBeUndefined();
+              if (exercise.multiClozeSpec) {
+                expect(exercise.multiClozeSpec.text?.length).toBeGreaterThan(1);
+                // at least one blank
+                expect(
+                  exercise.multiClozeSpec.text?.filter(
+                    (word) => 'validOptions' in word,
+                  ).length,
+                ).toBeGreaterThan(0);
+                if ('suppressClozeAudio' in exercise.multiClozeSpec) {
+                  expect(
+                    typeof exercise.multiClozeSpec.suppressClozeAudio,
+                  ).toBe('boolean');
+                }
+                if ('suppressOptionAudio' in exercise.multiClozeSpec) {
+                  expect(
+                    typeof exercise.multiClozeSpec.suppressOptionAudio,
+                  ).toBe('boolean');
+                }
+              }
+            } else if (exercise.type === 'Comprehension') {
+              expect(exercise.comprehensionSpec?.text.length).toBeGreaterThan(
+                1,
+              );
             } else {
               throw new Error(
-                `Lesson ${lesson.lessonIndex} has an invalid 'type' field at exercise: ${exercise.id}`,
+                `Lesson ${lesson.lessonIndex} has an invalid 'type' field at exercise "${exercise.id}"`,
               );
             }
 
             if ('audio' in exercise) {
-              expect(typeof exercise.audio).toBe('string');
-              expect(exercise.audio?.length).toBeGreaterThan(0);
+              throw new Error(
+                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'audio' field; as of formatVersion 1.2.0, 'audio' is no longer a top-level field in 'exercises'. 'audio' is now either a field under 'words' in 'WordSpec', or a field under 'explanationSpec'.`,
+              );
             }
             if ('picture' in exercise) {
-              expect(typeof exercise.picture).toBe('string');
-              expect(exercise.picture?.length).toBeGreaterThan(0);
+              throw new Error(
+                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'picture' field; as of formatVersion 1.2.0, 'picture' is no longer a top-level field in 'exercises'. 'picture' is now a field under 'words' in 'WordSpec'.`,
+              );
             }
             if ('video' in exercise) {
-              expect(typeof exercise.video).toBe('string');
-              expect(exercise.video?.length).toBeGreaterThan(0);
+              throw new Error(
+                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'video' field; as of formatVersion 1.2.0, 'video' is no longer a top-level field in 'exercises'. 'video' is now a field under 'words' in 'WordSpec'.`,
+              );
             }
             if ('symbol' in exercise) {
-              expect(exercise.symbol?.length).toBeGreaterThan(0);
+              throw new Error(
+                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'symbol' field; as of formatVersion 1.2.0, 'symbol' is no longer a top-level field in 'exercises'. 'symbol' is now a field under 'words' in 'WordSpec'.`,
+              );
             }
             if ('suppressClozeAudio' in exercise) {
-              expect(typeof exercise.suppressClozeAudio).toBe('boolean');
+              throw new Error(
+                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'suppressClozeAudio' field; as of formatVersion 1.2.0, 'suppressClozeAudio' is no longer a top-level field in 'exercises'. 'suppressClozeAudio' is now a field under 'singleClozeSpec' and 'multiClozeSpec'.`,
+              );
             }
             if ('suppressOptionAudio' in exercise) {
-              expect(typeof exercise.suppressOptionAudio).toBe('boolean');
+              throw new Error(
+                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'suppressOptionAudio' field; as of formatVersion 1.2.0, 'suppressOptionAudio' is no longer a top-level field in 'exercises'. 'suppressOptionAudio' is now a field under 'singleClozeSpec' and 'multiClozeSpec'.`,
+              );
             }
           } catch (e) {
             throw new Error(
-              `Lesson ${lesson.lessonIndex} has an error at exercise: ${exercise.id}\n${e}`,
+              `Lesson ${lesson.lessonIndex} has an error at exercise "${exercise.id}"\n${e}`,
             );
           }
         });
@@ -153,7 +209,7 @@ describe('Integrity of JSON Lesson data', () => {
           let multipleChoiceCount = 0;
           lesson.exercises.forEach((exercise) => {
             if (exercise.type === 'MultipleChoice') {
-              multipleChoiceCount = exercise.words?.length || 0;
+              multipleChoiceCount = exercise.multipleChoiceWords?.length || 0;
             }
           });
           expect(multipleChoiceCount).toBe(lesson.multipleChoiceCount);
@@ -163,7 +219,7 @@ describe('Integrity of JSON Lesson data', () => {
           let matchingCount = 0;
           lesson.exercises.forEach((exercise) => {
             if (exercise.type === 'Matching') {
-              matchingCount = exercise.words?.length || 0;
+              matchingCount = exercise.matchingWords?.length || 0;
             }
           });
           expect(matchingCount).toBe(lesson.matchingCount);
@@ -186,8 +242,8 @@ describe('Integrity of JSON Lesson data', () => {
             if (exercise.type === 'SingleCloze') {
               singleClozeCount += 1;
               if (
-                !exercise.singleClozeText ||
-                exercise.singleClozeText.length < 1
+                !exercise.singleClozeSpec?.text ||
+                exercise.singleClozeSpec?.text.length < 1
               ) {
                 singleClozeConsistency = false;
               }
@@ -204,8 +260,8 @@ describe('Integrity of JSON Lesson data', () => {
             if (exercise.type === 'MultiCloze') {
               multiClozeCount += 1;
               if (
-                !exercise.multiClozeText ||
-                exercise.multiClozeText.length < 2
+                !exercise.multiClozeSpec?.text ||
+                exercise.multiClozeSpec?.text.length < 2
               ) {
                 multiClozeConsistency = false;
               }
@@ -219,29 +275,36 @@ describe('Integrity of JSON Lesson data', () => {
           const wordsExercised: Set<string> = new Set();
           lesson.exercises.forEach((exercise) => {
             if (['MultipleChoice', 'Matching'].includes(exercise.type)) {
-              if (exercise.words) {
-                exercise.words.forEach((wordRef) => {
-                  if (!wordsExercised.has(Object.values(wordRef)[0])) {
-                    wordsExercised.add(Object.values(wordRef)[0]);
-                  }
-                });
-              }
+              const words =
+                exercise.multipleChoiceWords || exercise.matchingWords || [];
+              words.forEach((wordRef) => {
+                if (!wordsExercised.has(Object.values(wordRef)[0])) {
+                  wordsExercised.add(Object.values(wordRef)[0]);
+                }
+              });
             }
             if (exercise.type === 'Explanation') {
-              if (exercise.explanationTargets) {
+              if (exercise.explanationSpec?.explanationTargets) {
                 if (
                   !wordsExercised.has(
-                    Object.values(exercise.explanationTargets.validOption)[0],
+                    Object.values(
+                      exercise.explanationSpec?.explanationTargets.validOption,
+                    )[0],
                   )
                 ) {
                   wordsExercised.add(
-                    Object.values(exercise.explanationTargets.validOption)[0],
+                    Object.values(
+                      exercise.explanationSpec?.explanationTargets.validOption,
+                    )[0],
                   );
                 }
               }
             }
-            if (exercise.type === 'SingleCloze' && exercise.singleClozeText) {
-              exercise.singleClozeText
+            if (
+              exercise.type === 'SingleCloze' &&
+              exercise.singleClozeSpec?.text
+            ) {
+              exercise.singleClozeSpec.text
                 .filter(
                   (clozeItem): clozeItem is Blank => !!clozeItem.validOptions,
                 )
@@ -253,8 +316,11 @@ describe('Integrity of JSON Lesson data', () => {
                   });
                 });
             }
-            if (exercise.type === 'MultiCloze' && exercise.multiClozeText) {
-              exercise.multiClozeText
+            if (
+              exercise.type === 'MultiCloze' &&
+              exercise.multiClozeSpec?.text
+            ) {
+              exercise.multiClozeSpec.text
                 .filter(
                   (clozeItem): clozeItem is Blank => !!clozeItem.validOptions,
                 )
@@ -291,16 +357,19 @@ describe('Integrity of JSON Lesson data', () => {
                     'Explanation',
                     'SingleCloze',
                     'MultiCloze',
+                    'Comprehension',
                   ].includes(exercise.type),
                 ).toBe(true);
               });
 
-              it("'words' references exist in WordSpec", () => {
-                if (['MultipleChoice', 'Matching'].includes(exercise.type)) {
-                  expect(!!exercise.words).toBe(true);
-                  if (exercise.words) {
-                    expect(exercise.words.length).toBeGreaterThan(1);
-                    exercise.words.forEach((wordRef) => {
+              it("'multipleChoiceWords' references exist in WordSpec", () => {
+                if (exercise.type === 'MultipleChoice') {
+                  expect(!!exercise.multipleChoiceWords).toBe(true);
+                  if (exercise.multipleChoiceWords) {
+                    expect(exercise.multipleChoiceWords.length).toBeGreaterThan(
+                      1,
+                    );
+                    exercise.multipleChoiceWords.forEach((wordRef) => {
                       expect(
                         Content.getWord(wordRef).word.length,
                       ).toBeGreaterThan(0);
@@ -309,33 +378,57 @@ describe('Integrity of JSON Lesson data', () => {
                 }
               });
 
-              it("'explanation' & 'explanationTargets' is consistent", () => {
+              it("'matchingWords' references exist in WordSpec", () => {
+                if (exercise.type === 'Matching') {
+                  expect(!!exercise.matchingWords).toBe(true);
+                  if (exercise.matchingWords) {
+                    expect(exercise.matchingWords.length).toBeGreaterThan(1);
+                    exercise.matchingWords.forEach((wordRef) => {
+                      expect(
+                        Content.getWord(wordRef).word.length,
+                      ).toBeGreaterThan(0);
+                    });
+                  }
+                }
+              });
+
+              it("'explanationSpec''s 'explanation' & 'explanationTargets' is consistent", () => {
                 if (exercise.type === 'Explanation') {
                   expect(
-                    !!exercise.explanation && !!exercise.explanationTargets,
+                    !!exercise.explanationSpec?.explanation &&
+                      !!exercise.explanationSpec?.explanationTargets,
                   ).toBe(true);
-                  if (exercise.explanation && exercise.explanationTargets) {
-                    expect(exercise.explanation.length).toBeGreaterThan(0);
+                  if (
+                    exercise.explanationSpec?.explanation &&
+                    exercise.explanationSpec?.explanationTargets
+                  ) {
+                    expect(
+                      exercise.explanationSpec?.explanation.length,
+                    ).toBeGreaterThan(0);
                     // every wordRef in explanation is found in WordSpec
                     expect(
-                      exercise.explanation.filter(
+                      exercise.explanationSpec?.explanation.filter(
                         (wordRef) => Content.getWord(wordRef).word.length > 0,
                       ).length,
-                    ).toBe(exercise.explanation.length);
+                    ).toBe(exercise.explanationSpec?.explanation.length);
 
                     expect(
-                      Object.keys(exercise.explanationTargets.validOption)
-                        .length,
+                      Object.keys(
+                        exercise.explanationSpec?.explanationTargets
+                          .validOption,
+                      ).length,
                     ).toBe(1);
                     // explanationTargets.validOption is found in WordSpec
                     expect(
-                      Content.getWord(exercise.explanationTargets.validOption)
-                        .word.length,
+                      Content.getWord(
+                        exercise.explanationSpec?.explanationTargets
+                          .validOption,
+                      ).word.length,
                     ).toBeGreaterThan(0);
 
                     // explanationTargets.invalidOptions are found in WordSpec
                     expect(
-                      exercise.explanationTargets.invalidOptions.filter(
+                      exercise.explanationSpec?.explanationTargets.invalidOptions.filter(
                         (wordRef) => Content.getWord(wordRef).word.length > 0,
                       ).length,
                     ).toBeGreaterThan(0);
@@ -345,16 +438,18 @@ describe('Integrity of JSON Lesson data', () => {
 
               it("'singleClozeText' is consistent", () => {
                 if (exercise.type === 'SingleCloze') {
-                  expect(exercise.singleClozeText?.length).toBeGreaterThan(1);
-                  if (exercise.singleClozeText) {
-                    const blankCount = exercise.singleClozeText.filter(
+                  expect(
+                    exercise.singleClozeSpec?.text?.length,
+                  ).toBeGreaterThan(1);
+                  if (exercise.singleClozeSpec?.text) {
+                    const blankCount = exercise.singleClozeSpec.text.filter(
                       (wordOrBlank) => 'validOptions' in wordOrBlank,
                     )?.length;
                     expect(blankCount).toBeGreaterThan(0);
                     expect(
-                      exercise.singleClozeText.length - blankCount,
+                      exercise.singleClozeSpec.text.length - blankCount,
                     ).toBeGreaterThan(0);
-                    const validWordRefs = exercise.singleClozeText.filter(
+                    const validWordRefs = exercise.singleClozeSpec.text.filter(
                       (wordOrBlank) => {
                         if (
                           'validOptions' in wordOrBlank &&
@@ -415,24 +510,28 @@ describe('Integrity of JSON Lesson data', () => {
                         }
                       },
                     )?.length;
-                    expect(validWordRefs).toBe(exercise.singleClozeText.length);
+                    expect(validWordRefs).toBe(
+                      exercise.singleClozeSpec.text.length,
+                    );
                   }
                 }
               });
 
               it("'multiClozeText' is consistent", () => {
                 if (exercise.type === 'MultiCloze') {
-                  expect(exercise.multiClozeText?.length).toBeGreaterThan(1);
-                  if (exercise.multiClozeText) {
-                    const blankCount = exercise.multiClozeText.filter(
+                  expect(exercise.multiClozeSpec?.text?.length).toBeGreaterThan(
+                    1,
+                  );
+                  if (exercise.multiClozeSpec?.text) {
+                    const blankCount = exercise.multiClozeSpec.text.filter(
                       (wordOrBlank) => 'validOptions' in wordOrBlank,
                     )?.length;
                     expect(blankCount).toBeGreaterThan(0);
                     expect(
-                      exercise.multiClozeText.length - blankCount,
+                      exercise.multiClozeSpec.text.length - blankCount,
                     ).toBeGreaterThan(0);
 
-                    const validWordRefs = exercise.multiClozeText.filter(
+                    const validWordRefs = exercise.multiClozeSpec.text.filter(
                       (wordOrBlank) => {
                         if (
                           'validOptions' in wordOrBlank &&
@@ -493,56 +592,31 @@ describe('Integrity of JSON Lesson data', () => {
                         }
                       },
                     )?.length;
-                    expect(validWordRefs).toBe(exercise.multiClozeText.length);
+                    expect(validWordRefs).toBe(
+                      exercise.multiClozeSpec.text.length,
+                    );
                   }
                 }
               });
 
-              it("'suppressClozeAudio' & 'suppressOptionAudio' only in Cloze", () => {
-                if (
-                  'suppressClozeAudio' in exercise ||
-                  'suppressOptionAudio' in exercise
-                ) {
-                  expect(
-                    ['SingleCloze', 'MultiCloze'].includes(exercise.type),
-                  ).toBe(true);
+              it.skip("'comprehension' is consistent", () => {
+                if (exercise.type === 'Comprehension') {
+                  expect(true).toBe(false);
                 }
               });
 
               it("'audio' is consistent", () => {
-                if ('audio' in exercise) {
-                  expect(typeof exercise.audio).toBe('string');
-                  expect(exercise.audio?.length).toBeGreaterThan(0);
-                  expect(existsSync(`../content/${exercise.audio}`)).toBe(true);
-                }
-              });
-
-              it("'picture' is consistent", () => {
-                if ('picture' in exercise) {
-                  expect(typeof exercise.picture).toBe('string');
-                  expect(exercise.picture?.length).toBeGreaterThan(0);
-                  expect(existsSync(`../content/${exercise.picture}`)).toBe(
-                    true,
-                  );
-                }
-              });
-
-              it("'video' is consistent", () => {
-                if ('video' in exercise) {
-                  expect(typeof exercise.video).toBe('string');
-                  expect(exercise.video?.length).toBeGreaterThan(0);
-                  expect(existsSync(`../content/${exercise.video}`)).toBe(true);
-                }
-              });
-
-              it("'symbol' is consistent", () => {
-                // verify presence in mdiIcons?
-                if ('symbol' in exercise) {
-                  expect(typeof exercise.symbol).toBe('object');
-                  expect(exercise.symbol?.length).toBeGreaterThan(0);
-                  exercise.symbol?.forEach((symbol) => {
-                    expect(Content.getIcon(symbol).length).toBeGreaterThan(0);
-                  });
+                if (
+                  exercise.explanationSpec &&
+                  'audio' in exercise.explanationSpec
+                ) {
+                  expect(typeof exercise.explanationSpec.audio).toBe('string');
+                  expect(
+                    exercise.explanationSpec.audio?.length,
+                  ).toBeGreaterThan(0);
+                  expect(
+                    existsSync(`../content/${exercise.explanationSpec.audio}`),
+                  ).toBe(true);
                 }
               });
             });
@@ -566,7 +640,7 @@ describe('Integrity of JSON Lesson data', () => {
             expect(entry.word.length).toBeGreaterThan(0);
           } else {
             throw new Error(
-              `The WordListSpec in ${Content.ContentSpec.wordSpecFile} has an entry missing the 'word' field (id: ${wordId})`,
+              `The WordListSpec in "${Content.ContentSpec.wordSpecFile}" has an entry missing the 'word' field (id: "${wordId}")`,
             );
           }
 
@@ -576,7 +650,7 @@ describe('Integrity of JSON Lesson data', () => {
             const fileExists = existsSync(`../content/${entry.audio}`);
             if (!fileExists) {
               throw new Error(
-                `The WordListSpec in ${Content.ContentSpec.wordSpecFile} has an entry with an 'audio' field referencing a file that does not exist (id: ${wordId}, filename: ${entry.audio})`,
+                `The WordListSpec in "${Content.ContentSpec.wordSpecFile}" has an entry with an 'audio' field referencing a file that does not exist (id: "${wordId}", filename: "${entry.audio}")`,
               );
             }
             expect(fileExists).toBe(true);
@@ -588,7 +662,7 @@ describe('Integrity of JSON Lesson data', () => {
             const fileExists = existsSync(`../content/${entry.picture}`);
             if (!fileExists) {
               throw new Error(
-                `The WordListSpec in ${Content.ContentSpec.wordSpecFile} has an entry with a 'picture' field referencing a file that does not exist (id: ${wordId}, filename: ${entry.picture})`,
+                `The WordListSpec in "${Content.ContentSpec.wordSpecFile}" has an entry with a 'picture' field referencing a file that does not exist (id: "${wordId}", filename: "${entry.picture}")`,
               );
             }
             expect(fileExists).toBe(true);
@@ -600,7 +674,7 @@ describe('Integrity of JSON Lesson data', () => {
             const fileExists = existsSync(`../content/${entry.video}`);
             if (!fileExists) {
               throw new Error(
-                `The WordListSpec in ${Content.ContentSpec.wordSpecFile} has an entry with a 'video' field referencing a file that does not exist (id: ${wordId}, filename: ${entry.video})`,
+                `The WordListSpec in "${Content.ContentSpec.wordSpecFile}" has an entry with a 'video' field referencing a file that does not exist (id: "${wordId}", filename: "${entry.video}")`,
               );
             }
             expect(fileExists).toBe(true);

@@ -28,8 +28,14 @@ const weightLifter = Content.getIcon('mdiWeightLifter');
     >
       <ion-card class="margin-auto">
         <ion-card-header>
-          <ion-card-title class="center-content align-vertical">
+          <ion-card-title
+            class="center-content align-vertical"
+            style="display: flex; flex-direction: column"
+          >
             <ion-icon :icon="lessonContext.icon" />
+            <span style="color: var(--ion-color-step-400)">
+              {{ lessonContext.name }}
+            </span>
           </ion-card-title>
         </ion-card-header>
         <ion-card-content class="center-content">

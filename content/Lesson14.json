@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.1.0",
+  "formatVersion": "1.2.0",
   "id": "e0583021-de75-41a3-8732-4d7d58f73c37",
   "lessonIndex": 14,
   "multipleChoiceCount": 8,
@@ -7,12 +7,13 @@
   "explanationCount": 0,
   "singleClozeCount": 0,
   "multiClozeCount": 0,
+  "comprehensionCount": 0,
   "wordsExercisedCount": 8,
   "exercises": [
     {
       "id": "23bf520d-77e7-4fb7-9a14-09c025ac32f7",
       "type": "MultipleChoice",
-      "words": [
+      "multipleChoiceWords": [
         { "公司": "6c3a1614-54b9-44e8-b730-1bf278342840" },
         { "工厂": "0cb818f9-06cd-4665-aa9c-b82ee4dc95bc" },
         { "学校": "1640dd35-800b-434d-b8c9-09fe84e446da" },
@@ -26,7 +27,7 @@
     {
       "id": "fbfde32e-e3d2-4fcb-9d61-82adb6aacfe4",
       "type": "Matching",
-      "words": [
+      "matchingWords": [
         { "公司": "6c3a1614-54b9-44e8-b730-1bf278342840" },
         { "工厂": "0cb818f9-06cd-4665-aa9c-b82ee4dc95bc" },
         { "学校": "1640dd35-800b-434d-b8c9-09fe84e446da" },
