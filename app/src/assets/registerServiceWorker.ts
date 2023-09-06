@@ -9,7 +9,7 @@ if (isPlatform('capacitor')) {
     import.meta.env.PROD &&
     !('Cypress' in window)
   ) {
-    window.addEventListener('load', () => {
+    (window as Window).addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(() => {
         console.log('Service Worker registered');
       });
