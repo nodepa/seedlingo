@@ -461,6 +461,7 @@ function playOptionAudio(option: ComprehensionOption): void {
                     >{{ exercise.comprehensionText[index + 1].word }}
                   </span></span
                 >
+                <wbr />
               </template>
             </ion-card-content>
           </ion-card>
