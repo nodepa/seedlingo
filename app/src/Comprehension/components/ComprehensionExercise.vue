@@ -80,12 +80,11 @@ watch(
           (exercise.value.newWordsExercises?.length || 1) - 1
       ) {
         currentExercise.value += 1;
+      } else if (currentStage.value >= STAGE.Review) {
+        ionRouter.navigate({ name: 'Home' }, 'root', 'replace');
       } else {
         exercise.value.stages[currentStage.value].instructionAudio?.cancel();
         currentStage.value += 1;
-      }
-      if (currentStage.value > STAGE.Review) {
-        ionRouter.navigate({ name: 'Home' }, 'root', 'replace');
       }
     }
   },
@@ -94,30 +93,31 @@ watch(currentStage, (currentStage) => {
   switch (currentStage) {
     case STAGE.ReadText:
       store.dispatch('setShowContinueButton', true);
-      togglePlayInstructions();
       break;
     case STAGE.AnswerQuestions:
       currentQuestion.value += 1;
-      togglePlayInstructions();
       break;
     case STAGE.FocusNewWords:
       store.dispatch('setShowContinueButton', true);
-      togglePlayInstructions();
       break;
     case STAGE.PracticeNewWords:
       currentExercise.value += 1;
-      togglePlayInstructions();
       break;
     case STAGE.Review:
       // BUG If multiple choice -> exercise audio plays over instruction
       store.dispatch('setShowContinueButton', true);
-      togglePlayInstructions();
       break;
+  }
+  if (
+    !exercise.value.stages[currentStage].onlyInstructOnRequest &&
+    currentStage != STAGE.PracticeNewWords
+  ) {
+    togglePlayInstructions();
   }
 });
 
 function togglePlayInstructions() {
-  // need to _properly_ suspend other potentially playing audio,
+  // TODO: need to _properly_ suspend other potentially playing audio,
   // while also allow to stop audio by click
   if (currentStage.value === STAGE.AnswerQuestions) {
     if (
@@ -673,8 +673,7 @@ function playOptionAudio(option: ComprehensionOption): void {
           <template
             v-if="
               currentStage === STAGE.PracticeNewWords &&
-              exercise.newWordsExercises &&
-              !exercise.stages[currentStage].instructionAudio?.playing
+              exercise.newWordsExercises
             "
           >
             <MultipleChoiceExercise

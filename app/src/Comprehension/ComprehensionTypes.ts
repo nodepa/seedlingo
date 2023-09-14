@@ -21,6 +21,7 @@ export interface ComprehensionStage {
   instructionText?: string;
   instructionAudio?: ExerciseAudio;
   questionnaire?: boolean;
+  onlyInstructOnRequest?: boolean;
 }
 
 export interface ComprehensionQuestion {
