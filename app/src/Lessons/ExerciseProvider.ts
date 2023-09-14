@@ -924,6 +924,12 @@ export default class ExerciseProvider {
         ) {
           stage.questionnaire = true;
         }
+        if (
+          stageSpec.onlyInstructOnRequest &&
+          [true, 'true'].includes(stageSpec.onlyInstructOnRequest)
+        ) {
+          stage.onlyInstructOnRequest = true;
+        }
         return stage;
       },
     ) as Array<ComprehensionStage>;

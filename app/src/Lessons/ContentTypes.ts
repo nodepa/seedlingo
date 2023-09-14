@@ -119,4 +119,5 @@ export interface ComprehensionStageSpec {
   instructionText?: string;
   instructionAudio?: string;
   questionnaire?: boolean;
+  onlyInstructOnRequest?: boolean;
 }
