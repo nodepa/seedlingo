@@ -11,10 +11,17 @@ this should get you up and running.
 ## Prerequisites
 
 - Install [git](https://git-scm.com) if not present
-- Install [Node.js](https://nodejs.org), which includes the
+- Install [Node.js](https://nodejs.org), which includes
   [npm](https://www.npmjs.com/get-npm) (Node Package Manager).
-  A good way to manage Node.js versions is to use
-  [NVM](https://github.com/nvm-sh/nvm)
+
+  - If you *do not* use [Volta](https://volta.sh/),
+    **use the version specified in the `volta`-section of `package.json`**
+    when installing [Node.js](https://nodejs.org) according to your preference.
+
+  - If you *do* use [Volta](https://volta.sh/),
+    the `package.json`-specified Node version
+    will automatically be installed and used
+    when commands are executed.
 
 ## Development setup
 
@@ -33,19 +40,6 @@ git clone git@github.com:nodepa/seedling.git
 cd seedling/app
 ```
 
-### Install Node & NPM
-
-If you do not have [NVM](https://github.com/nvm-sh/nvm) installed,
-install [Node.js](https://nodejs.org) according to your preference,
-but *use the version specified in the project's `.nvmrc` file*.
-If you do have [NVM](https://github.com/nvm-sh/nvm) installed,
-these commands will automatically use the `.nvmrc` version:
-
-```sh
-nvm install
-nvm use
-```
-
 ### Install packages
 
 ```sh
@@ -62,10 +56,11 @@ npm start   # Then visit http://localhost:4173 in your web browser
 
 This command combines the scripts for:
 
-- install
-- lint
-- test:unit
-- test:e2e (i.e. end-to-end)
+- `install`
+- `lint`
+- `test:unit:coverage`
+- `test:e2e` (i.e. end-to-end)
+
 
 ```sh
 npm test

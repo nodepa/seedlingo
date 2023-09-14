@@ -68,12 +68,22 @@ available at [种字.com](https://种字.com)
 ### Prerequisites
 
 - Install [git](https://git-scm.com) if not present.
-- Install [Node.js](https://nodejs.org), which includes the
+- Install [Node.js](https://nodejs.org), which includes
   [npm](https://www.npmjs.com/get-npm) (Node Package Manager).
-  A good way to manage Node.js versions is to use
-  [NVM](https://github.com/nvm-sh/nvm).
+
+  - If you *do not* use [Volta](https://volta.sh/),
+    **use the version specified in the `volta`-section of `package.json`**
+    when installing [Node.js](https://nodejs.org) according to your preference.
+
+  - If you *do* use [Volta](https://volta.sh/),
+    the `package.json`-specified Node version
+    will automatically be installed and used
+    when commands are executed.
 
 ### Development setup
+
+Follow these steps to set up a development or test environment
+on Ubuntu 22.04 LTS or equivalent.
 
 #### Clone the Seedling repository
 
@@ -85,18 +95,6 @@ git clone git@github.com:nodepa/seedling.git
 
 ```sh
 cd seedling/app
-```
-
-#### Install Node & NPM
-
-If you do not have NVM installed,
-install Node.js according to your preference,
-but *use the version specified in the project's `.nvmrc` file*.
-If you *do* have NVM installed, these commands will use the `.nvmrc` version:
-
-```sh
-nvm install
-nvm use
 ```
 
 #### Install packages
@@ -115,10 +113,10 @@ npm start   # Then visit http://localhost:4173 in your web browser
 
 This is a command that combines the scripts for
 
-- install
-- lint
-- test:unit:coverage
-- test:e2e
+- `install`
+- `lint`
+- `test:unit:coverage`
+- `test:e2e` (i.e. end-to-end)
 
 ```sh
 npm test

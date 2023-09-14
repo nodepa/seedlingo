@@ -1,11 +1,25 @@
-# 立爱种字
+# Seedling - 立爱种字
 
 Seedling is currently available in Putonghua/Simplified Chinese:
 [种字.com](https://种字.com)
 
+## Prerequisites
+
+Install [Node.js](https://nodejs.org),
+which includes [npm](https://www.npmjs.com/get-npm) (Node Package Manager).
+
+- If you *do not* use [Volta](https://volta.sh/),
+  **use the version specified in the `volta`-section of `package.json`**
+  when installing [Node.js](https://nodejs.org) according to your preference.
+
+- If you *do* use [Volta](https://volta.sh/),
+  the `package.json`-specified Node version
+  will automatically be installed and used
+  when commands are executed.
+
 ## Project setup
 
-Using the Node.js version in the `.nvmrc` file:
+Using the Node.js version in the `volta` section of `package.json`:
 
 ```sh
 npm install
@@ -38,9 +52,9 @@ npm run test:e2e
 ### Lint and fix files
 
 ```sh
-npm run lint
+npm run lint # uses eslint
 # or
-npm run lint:tsc
+npm run lint:tsc # uses TypeScript Compiler
 ```
 
 ### Customize configuration
