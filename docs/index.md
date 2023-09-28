@@ -14,38 +14,42 @@ actions:
     type: secondary
 features:
   - title: |
-      Multiple Choice
-      Audio-to-word
-    details: Listen to the pronunciation and tap the matching word-tile
+      Find the word that matches the audio cue
+    details: Listen to the pronunciation and tap the one corresponding word-tile among multiple alternatives
     imagePath: /images/mockup-audio-multiple-choice.png
   - title: |
-      Matching
-      Audio-to-word
-    details: Match up blue audio-tiles with white word-tiles
+      Pair up words with their audio cues
+    details: Listen to the pronunciation of white picture/symbol-tiles and pair each with their corresponding blue word-tile
     imagePath: /images/mockup-audio-matching.png
   - title: |
-      Cloze
-      Single-blank
-    details: Fill-the-blank with the appropriate word
+      Fill the blank
+      (single-cloze)
+    details: Find the word that most appropriately completes the sentence among multiple alternatives
     imagePath: /images/mockup-single-cloze.png
   - title: |
-      Multiple-choice
-      Explanation-to-word
-    details: Read the explanation and choose the correct word
+      Find the word that matches the phrase
+    details: Read the explanation and tap the most closely related word-tile among multiple alternatives
     imagePath: /images/mockup-explanation-multiple-choice.png
   - title: |
-      Matching
-      Explanation-to-word
-    details: Match up blue explanation-tiles with white word-tiles
+      Pair up words with their corresponding phrases
+    details: Read the explanation of white phrase-tiles and pair each with their corresponding blue word-tile
     imagePath: /images/mockup-explanation-matching.png
   - title: |
-      Cloze
-      Multi-blank
-    details: Fill-the-blank exercise with multiple blanks and corresponding words
+      Fill multiple blanks
+      (multi-cloze)
+    details: Tap the words in the order they should be inserted to form the most comprehensible sentence
     imagePath: /images/mockup-multi-cloze.png
+  - title: |
+      Review all the words in a lesson
+    details: Listen to the pronunciation and see the characters/spelling of all the words in a lesson, one after the other
+    imagePath: /images/mockup-basic-review.png
+  - title: |
+      Show comprehension of a longer text
+    details: Read the text, answer questions about the content, practice words that are new to the lesson, then review the text.
+    imagePath: /images/mockup-comprehension.png
 
 footerHtml: true
-footer: '<a href="/privacy-policy/privacy-policy.html">Privacy policy</a><br/><br/><a href="https://nodepa.org">Copyright &copy; 2019-2022 Norwegian Development Partners</a>'
+footer: '<a href="/privacy-policy/privacy-policy.html">Privacy policy</a><br/><br/><a href="https://nodepa.org">Copyright &copy; 2019-2023 Norwegian Development Partners</a>'
 ---
 
 ## What is Seedling?
