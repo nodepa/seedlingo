@@ -4,9 +4,11 @@ applications:
       phases:
         preBuild:
           commands:
+            - node --version
             - npm install
         build:
           commands:
+            - node --version
             - npm run build
       artifacts:
         baseDirectory: dist
@@ -25,14 +27,17 @@ applications:
       phases:
         preTest:
           commands:
+            - node --version
             - npm install
             - npm install mocha mochawesome mochawesome-merge mochawesome-report-generator
         test:
           commands:
+            - node --version
             - npm run test:unit
             - npm run test:e2e:ci
         postTest:
           commands:
+            - node --version
             - npx mochawesome-merge tests/e2e/report/mochawesome-report/mochawesome*.json -o  tests/e2e/report/mochawesome.json
       cache:
         paths:
