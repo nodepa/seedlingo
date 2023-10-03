@@ -47,13 +47,16 @@ export class Instructions {
 
   private hostElement: InstructionsElement;
 
+  private badgeApp: App;
+
+  private badgeElement: HTMLElement;
+
   private audioElement: HTMLAudioElement;
 
   private vm: ComponentPublicInstance;
 
-  private badge: ComponentPublicInstance;
-
   private unsubscribeInstructionsModeWatch?: VoidFunction;
+
   private store: Store<InstructionsModeRootState>;
 
   private showAudioRipple = ref(false);
@@ -70,9 +73,8 @@ export class Instructions {
     this.vm = vm;
 
     const badgeDiv = document.createElement('div');
-    this.badge = createApp(Badge, { playing: this.showAudioRipple }).mount(
-      badgeDiv,
-    );
+    this.badgeApp = createApp(Badge, { playing: this.showAudioRipple });
+    this.badgeElement = this.badgeApp.mount(badgeDiv).$el;
 
     this.store = store;
 
@@ -112,18 +114,20 @@ export class Instructions {
     this.hostElement.classList.add('pop-through');
     if (this.hostElement.firstChild) {
       this.hostElement.insertBefore(
-        this.badge.$el,
+        this.badgeElement,
         this.hostElement.firstChild,
       );
     } else {
-      this.hostElement.appendChild(this.badge.$el);
+      this.hostElement.appendChild(this.badgeElement);
     }
   }
 
   public removeStyling(): void {
     this.hostElement.classList.remove('pop-through');
-    if (this.hostElement.getElementsByClassName(this.badge.$el.className)[0]) {
-      this.hostElement.removeChild(this.badge.$el);
+    if (
+      this.hostElement.getElementsByClassName(this.badgeElement.className)[0]
+    ) {
+      this.hostElement.removeChild(this.badgeElement);
     }
   }
 
@@ -147,6 +151,12 @@ export class Instructions {
       Instructions.AudioCollection.indexOf(this.audioElement),
       1,
     );
+  }
+
+  public unmount(): void {
+    if (this.hostElement.$instructions?.badgeApp) {
+      this.hostElement.$instructions.badgeApp.unmount();
+    }
   }
 
   public addAudioListeners(): void {
@@ -246,6 +256,7 @@ export default {
           hostElement.$instructions.unsubscribe();
           hostElement.$instructions.removeEventListener();
           hostElement.$instructions.delist();
+          hostElement.$instructions.unmount();
         }
       },
     });
