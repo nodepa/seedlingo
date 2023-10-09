@@ -20,9 +20,11 @@ import {
   App,
   Component,
   ComponentPublicInstance,
-  createApp,
   DirectiveBinding,
+  VNode,
+  h,
   ref,
+  render,
 } from 'vue';
 import { MutationPayload, Store } from 'vuex';
 
@@ -47,9 +49,7 @@ export class Instructions {
 
   private hostElement: InstructionsElement;
 
-  private badgeApp: App;
-
-  private badgeElement: HTMLElement;
+  private badgeVNode?: VNode;
 
   private audioElement: HTMLAudioElement;
 
@@ -71,10 +71,8 @@ export class Instructions {
     this.hostElement = hostElement;
     this.audioElement = document.createElement('audio');
     this.vm = vm;
-
-    const badgeDiv = document.createElement('div');
-    this.badgeApp = createApp(Badge, { playing: this.showAudioRipple });
-    this.badgeElement = this.badgeApp.mount(badgeDiv).$el;
+    this.badgeVNode = h(Badge, { playing: this.showAudioRipple });
+    render(this.badgeVNode, document.createElement('div'));
 
     this.store = store;
 
@@ -112,22 +110,22 @@ export class Instructions {
 
   public addStyling(): void {
     this.hostElement.classList.add('pop-through');
-    if (this.hostElement.firstChild) {
-      this.hostElement.insertBefore(
-        this.badgeElement,
-        this.hostElement.firstChild,
-      );
-    } else {
-      this.hostElement.appendChild(this.badgeElement);
+    if (this.badgeVNode?.el) {
+      if (this.hostElement.firstChild) {
+        this.hostElement.insertBefore(
+          this.badgeVNode.el as HTMLHtmlElement,
+          this.hostElement.firstChild,
+        );
+      } else {
+        this.hostElement.appendChild(this.badgeVNode.el as HTMLElement);
+      }
     }
   }
 
   public removeStyling(): void {
     this.hostElement.classList.remove('pop-through');
-    if (
-      this.hostElement.getElementsByClassName(this.badgeElement.className)[0]
-    ) {
-      this.hostElement.removeChild(this.badgeElement);
+    if (this.hostElement.firstElementChild === this.badgeVNode?.el) {
+      this.hostElement.removeChild(this.badgeVNode.el as HTMLElement);
     }
   }
 
@@ -154,8 +152,9 @@ export class Instructions {
   }
 
   public unmount(): void {
-    if (this.hostElement.$instructions?.badgeApp) {
-      this.hostElement.$instructions.badgeApp.unmount();
+    if (this.badgeVNode) {
+      render(null, this.badgeVNode.el as HTMLElement);
+      this.badgeVNode = undefined;
     }
   }
 
