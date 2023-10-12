@@ -258,11 +258,8 @@ ion-button {
   height: 100%;
   width: 100%;
   min-height: 4rem;
-}
-ion-button::part(native) {
-  contain: size;
-  /* TODO Use --ion-button-padding-top & --ion-button-padding-bottom instead */
-  padding: 0.5rem;
+  --padding-top: 0.5rem;
+  --padding-bottom: 0.5rem;
 }
 img {
   width: 100%;

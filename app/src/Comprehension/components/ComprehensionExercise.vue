@@ -61,8 +61,7 @@ watch(
   () => store.state.showContinueButton,
   (show: boolean) => {
     if (!show) {
-      // FIX Stop any audio playing
-      // Instructions keep playing when selecting answer option
+      // BUG: Instructions should stop playing when proposing answer option #431
       if (
         currentQuestion.value >= 0 &&
         currentQuestion.value < exercise.value.questions.length - 1
@@ -99,7 +98,6 @@ watch(currentStage, (currentStage) => {
       currentExercise.value += 1;
       break;
     case STAGE.Review:
-      // BUG If multiple choice -> exercise audio plays over instruction
       store.dispatch('setShowContinueButton', true);
       break;
   }
@@ -112,8 +110,7 @@ watch(currentStage, (currentStage) => {
 });
 
 function togglePlayInstructions() {
-  // TODO: need to _properly_ suspend other potentially playing audio,
-  // while also allow to stop audio by click
+  // BUG: Needs to _properly_ suspend other potentially playing audio #431
   if (currentStage.value === STAGE.AnswerQuestions) {
     if (
       exercise.value.questions[currentQuestion.value].questionAudio?.playing
