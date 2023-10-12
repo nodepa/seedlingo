@@ -1,22 +1,17 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue';
-import {
-  IonCard,
-  IonCardContent,
-  IonGrid,
-  IonIcon,
-  useIonRouter,
-} from '@ionic/vue';
+import { IonCard, IonCardContent, IonGrid, useIonRouter } from '@ionic/vue';
 import { useStore } from 'vuex';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
-import Instructor from '@/common/icons/HoneyBee.svg';
 
 import {
   ComprehensionExercise,
   ComprehensionOption,
   ComprehensionQuestion,
 } from '../ComprehensionTypes';
+import ProgressBar from './ProgressBar.vue';
+import HoneyBeeInstructor from '@/common/components/HoneyBeeInstructor.vue';
 import MultipleChoiceExercise from '@/MultipleChoice/components/MultipleChoiceExercise.vue';
 import { MultipleChoiceExercise as MultipleChoiceExerciseType } from '@/MultipleChoice/MultipleChoiceTypes';
 import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
@@ -181,113 +176,8 @@ function playOptionAudio(option: ComprehensionOption): void {
 </script>
 <template>
   <div style="display: grid; width: 100%; height: 100%; overflow: auto">
-    <!-- Progress bar -->
-    <div
-      style="
-        position: absolute;
-        z-index: 1;
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-
-        margin: 10px;
-        padding: 5px;
-        padding-inline: 6px;
-        border-radius: 25px;
-        background-color: var(--ion-color-step-250);
-      "
-    >
-      <span
-        style="
-          width: 15px;
-          height: 15px;
-
-          border-radius: 100%;
-          background-color: var(--ion-color-primary);
-        "
-      ></span>
-      <span
-        :style="`
-            flex-grow: 1;
-            height: 3px;
-            background-color: var(--ion-color-primary${
-              currentStage <= STAGE.ReadText ? '-contrast' : ''
-            });
-          `"
-      ></span>
-      <span
-        :style="`
-            width: 15px;
-            height: 15px;
-            border-radius: 100%;
-            background-color: var(--ion-color-primary${
-              currentStage <= STAGE.ReadText ? '-contrast' : ''
-            });
-          `"
-      ></span>
-      <span
-        :style="`
-            flex-grow: 1;
-            height: 3px;
-            background-color: var(--ion-color-primary${
-              currentStage <= STAGE.AnswerQuestions ? '-contrast' : ''
-            });
-          `"
-      ></span>
-      <span
-        :style="`
-            width: 15px;
-            height: 15px;
-            border-radius: 100%;
-            background-color: var(--ion-color-primary${
-              currentStage <= STAGE.AnswerQuestions ? '-contrast' : ''
-            });
-          `"
-      ></span>
-      <span
-        :style="`
-            flex-grow: 1;
-            height: 3px;
-            background-color: var(--ion-color-primary${
-              currentStage <= STAGE.FocusNewWords ? '-contrast' : ''
-            });
-          `"
-      ></span>
-      <span
-        :style="`
-            width: 15px;
-            height: 15px;
-            border-radius: 100%;
-            background-color: var(--ion-color-primary${
-              currentStage <= STAGE.FocusNewWords ? '-contrast' : ''
-            });
-          `"
-      ></span>
-      <span
-        :style="`
-            flex-grow: 1;
-            height: 3px;
-            background-color: var(--ion-color-primary${
-              currentStage <= STAGE.PracticeNewWords ? '-contrast' : ''
-            });
-          `"
-      ></span>
-      <span
-        :style="`
-            width: 15px;
-            height: 15px;
-            border-radius: 100%;
-            background-color: var(--ion-color-primary${
-              currentStage <= STAGE.PracticeNewWords ? '-contrast' : ''
-            });
-          `"
-      ></span>
-    </div>
-    <ion-grid fixed style="margin-top: 35px; padding: 0px">
+    <ProgressBar :current-stage="currentStage" :stages="STAGE" />
+    <ion-grid fixed style="margin-top: 45px; padding: 0px">
       <div class="flex-row">
         <!-- Top section: Lesson text -->
         <div
@@ -302,104 +192,44 @@ function playOptionAudio(option: ComprehensionOption): void {
           ]"
           style="position: relative"
         >
-          <!-- Stage 1 -->
-          <!-- Read the text silently. Then press the arrow and answer some questions about it. Don’t worry about any new words right now. You will learn those later. -->
-          <!--
-          Stage 3 aka 3a. Read the text again and try to guess the meaning of any new words you see (in pink). Then press the arrow and answer some questions about them.: a matching exercise, matching characters to audio (with full text still visible if possible)?
-          请再次阅读短文，猜猜短文中一些新词语（粉色字体）的意思。然后点击箭头回答问题。
-        -->
-          <!--
-          Stage 5. Read the full text again. This time you can listen to the audio by tapping on any word. Then, try to read the text aloud on your own.
-          最后，请跟随录音朗读短文，边读边用手指指着每一个字。然后自己再试着朗读短文。
-        -->
+          <!-- 1. STAGE.ReadText.
+            Read the text silently.
+            Then press the arrow and answer the questions.
+            If you encounter unfamiliar words, just skip them.
+            We will study related new words next.
+            请默读这段短文。
+            然后点击屏幕上的箭头，回答问题。
+            遇到不认识的词语可以跳过，
+            后面我们会学习相关的新词。-->
+          <!-- 3. STAGE.FocusNewWords.
+            Read the text again and try to guess the meaning of any new words.
+            Then press the arrow to practice the new words.
+            请再次阅读短文，猜猜短文中一些新词语的意思。然后点击箭头回答问题。-->
+          <!-- 5. STAGE.Review.
+            Finally, read the full text again.
+            This time you can listen to the audio by tapping on any word.
+            Then, try to read the text aloud on your own.
+            最后，请跟随录音朗读短文，边读边用手指指着每一个字。然后自己再试着朗读短文。-->
           <!-- Honeybee instructor -->
-          <div
+          <HoneyBeeInstructor
             v-if="
               [STAGE.ReadText, STAGE.FocusNewWords, STAGE.Review].includes(
                 currentStage,
               )
             "
-            :style="`
-            position: absolute;
-            z-index: 1;
-            width: ${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? '64'
-                : '36'
-            }px;
-            height: ${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? '64'
-                : '36'
-            }px;
-            transition: 1s ease-in-out;
-            color: var(--ion-card-background);
-            background-color: var(--ion-color-card);
-            border: 2px solid var(--ion-color-primary);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-          `"
+            :audio="exercise.stages[currentStage].instructionAudio"
+            :text="exercise.stages[currentStage].instructionText"
+            :centered="exercise.stages[currentStage].instructionAudio?.playing"
+            :style="{
+              transition: '1s ease-in-out',
+              marginInline: '10px',
+              marginBottom: exercise.stages[currentStage].instructionAudio
+                ?.playing
+                ? '10px'
+                : '-10px',
+            }"
             @click="togglePlayInstructions()"
-          >
-            <ion-icon
-              :icon="Instructor"
-              :style="`
-              font-size: ${
-                exercise.stages[currentStage].instructionAudio?.playing
-                  ? 56
-                  : 32
-              }px;
-              margin: 0 0 -0.1em -0.1em;
-              transition: 1s ease-in-out;`"
-              aria-hidden="false"
-            />
-            <RippleAnimation
-              :playing="exercise.stages[currentStage].instructionAudio?.playing"
-            />
-          </div>
-          <!-- Honeybee text -->
-          <div
-            v-if="
-              [STAGE.ReadText, STAGE.FocusNewWords, STAGE.Review].includes(
-                currentStage,
-              )
-            "
-            :style="`
-            width: 100%;
-            height: ${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? '140'
-                : '0'
-            }px;
-            margin-top: ${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? 1.8
-                : 0.0
-            }rem;
-            scale:${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? '1'
-                : '0'
-            };
-            translate:${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? '0% 0%'
-                : '-49% -45%'
-            };
-            transition: 1s ease-in-out;
-          `"
-          >
-            <ion-card style="min-height: 80%">
-              <ion-card-content style="font-size: 1rem; line-height: normal">
-                <span
-                  >{{ exercise.stages[currentStage].instructionText }}
-                </span>
-              </ion-card-content>
-            </ion-card>
-          </div>
+          />
           <!-- Lesson text -->
           <ion-card data-test="sentence-card" color="card" background="primary">
             <ion-card-content
@@ -474,80 +304,16 @@ function playOptionAudio(option: ComprehensionOption): void {
           ]"
           style="position: relative"
         >
-          <!-- Stage 2 -->
+          <!-- 2. STAGE.AnswerQuestions -->
           <!-- Honeybee instructor -->
-          <div
+          <HoneyBeeInstructor
             v-if="currentStage === STAGE.AnswerQuestions"
-            :style="`
-            position: absolute;
-            z-index: 1;
-            width: ${
-              exercise.questions[currentQuestion].questionAudio?.playing
-                ? '64'
-                : '36'
-            }px;
-            height: ${
-              exercise.questions[currentQuestion].questionAudio?.playing
-                ? '64'
-                : '36'
-            }px;
-            transition: 1s ease-in-out;
-            color: var(--ion-card-background);
-            background-color: var(--ion-color-card);
-            border: 2px solid var(--ion-color-primary);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-          `"
+            :audio="exercise.questions[currentQuestion].questionAudio"
+            :text="exercise.questions[currentQuestion].questionText"
+            :centered="true"
+            style="margin: 10px"
             @click="togglePlayInstructions()"
-          >
-            <ion-icon
-              :icon="Instructor"
-              :style="`
-              font-size: ${
-                exercise.questions[currentQuestion].questionAudio?.playing
-                  ? 56
-                  : 32
-              }px;
-              margin: 0 0 -0.1em -0.1em;
-              transition: 1s ease-in-out;`"
-              aria-hidden="false"
-            />
-            <RippleAnimation
-              :playing="
-                exercise.questions[currentQuestion].questionAudio?.playing
-              "
-            />
-          </div>
-          <!-- Honeybee text -->
-          <div
-            v-if="currentStage === STAGE.AnswerQuestions"
-            :style="`
-            width: 100%;
-            margin-top: ${
-              exercise.questions[currentQuestion].questionAudio?.playing
-                ? 2.4
-                : 0.8
-            }rem;
-            transition: 1s ease-in-out;
-          `"
-          >
-            <ion-card @click="togglePlayInstructions()">
-              <ion-card-content
-                style="
-                  font-size: 2rem;
-                  line-height: normal;
-                  color: var(--ion-text-color);
-                "
-              >
-                <span>{{
-                  exercise.questions[currentQuestion].questionText
-                }}</span>
-              </ion-card-content>
-            </ion-card>
-          </div>
+          />
           <!-- Questions -->
           <template v-if="currentStage === STAGE.AnswerQuestions">
             <ion-row style="flex-grow: 1">
@@ -587,88 +353,23 @@ function playOptionAudio(option: ComprehensionOption): void {
               </ion-col>
             </ion-row>
           </template>
-          <!--
-          Stage 4 aka 3b. [...] answer some questions about them.: a matching exercise, matching characters to audio (with full text still visible if possible)?
-          回答问题。
-        -->
+          <!-- 4. STAGE.PracticeNewWords
+            Answer the questions below.
+            If the answer isn't clear,
+            make a guess based on reading the text again.
+            请回答以下问题。
+            答案不清楚的请重新阅读短文，
+            根据短文猜出答案。
+          -->
           <!-- Honeybee instructor -->
-          <div
+          <HoneyBeeInstructor
             v-if="currentStage === STAGE.PracticeNewWords"
-            :style="`
-            position: absolute;
-            z-index: 10;
-            width: ${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? '64'
-                : '36'
-            }px;
-            height: ${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? '64'
-                : '36'
-            }px;
-            transition: 1s ease-in-out;
-            color: var(--ion-card-background);
-            background-color: var(--ion-color-card);
-            border: 2px solid var(--ion-color-primary);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-          `"
+            :audio="exercise.stages[currentStage].instructionAudio"
+            :text="exercise.stages[currentStage].instructionText"
+            :centered="true"
+            style="margin: 10px"
             @click="togglePlayInstructions()"
-          >
-            <ion-icon
-              :icon="Instructor"
-              :style="`
-              font-size: ${
-                exercise.stages[currentStage].instructionAudio?.playing
-                  ? 56
-                  : 32
-              }px;
-              margin: 0 0 -0.1em -0.1em;
-              transition: 1s ease-in-out;`"
-              aria-hidden="false"
-            />
-            <RippleAnimation
-              :playing="exercise.stages[currentStage].instructionAudio?.playing"
-            />
-          </div>
-          <!-- Honeybee text -->
-          <div
-            v-if="currentStage === STAGE.PracticeNewWords"
-            :style="`
-            width: 100%;
-            height: ${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? '140'
-                : '0'
-            }px;
-            margin-top: ${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? 2.6
-                : 0.0
-            }rem;
-            scale:${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? '1'
-                : '0'
-            };
-            translate:${
-              exercise.stages[currentStage].instructionAudio?.playing
-                ? '0% 0%'
-                : '-49% -45%'
-            };
-            transition: 1s ease-in-out;
-          `"
-          >
-            <ion-card style="min-height: 80%">
-              <ion-card-content style="font-size: 1rem; line-height: normal">
-                <span>{{ exercise.stages[currentStage].instructionText }}</span>
-              </ion-card-content>
-            </ion-card>
-          </div>
+          />
           <!-- New words exercises -->
           <template
             v-if="
@@ -709,7 +410,6 @@ function playOptionAudio(option: ComprehensionOption): void {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  padding: var(--ion-grid-column-padding);
   transition: flex-grow 1s;
 }
 .flex-col-top-maximized {
