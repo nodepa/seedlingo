@@ -8,7 +8,7 @@
   "singleClozeCount": 0,
   "multiClozeCount": 12,
   "comprehensionCount": 0,
-  "wordsExercisedCount": 32,
+  "wordsExercisedCount": 33,
   "exercises": [
     {
       "id": "6b941a32-89f3-4436-ac53-f2769cb0d3b3",
@@ -347,7 +347,7 @@
           { "个": "90f79865-ac90-4644-9a8b-88eaad30e979" },
           {
             "validOptions": [
-              { "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3" }
+              { "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2" }
             ]
           },
           { "。": "5d0f410c-83ff-43bd-a31e-922b42b054ef" }

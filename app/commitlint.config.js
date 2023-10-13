@@ -88,7 +88,7 @@ module.exports = {
           when = 'always',
         ) {
           const negated = when == 'never';
-          const includesMotivation = `${body}`.includes('Because ');
+          const includesMotivation = (`${body}`.match(/^[Bb]ecause[.\n]/) != null);
           return [
             negated ? !includesMotivation : includesMotivation,
             'body ' +
