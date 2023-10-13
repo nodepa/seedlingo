@@ -671,7 +671,7 @@ export default class ExerciseProvider {
 
         validOptionWordSpecs.forEach((wordSpec) => {
           clozeWord.word += wordSpec.word;
-          // TODO: Handle successive audio
+          // TODO: Handle successive audio #432
           if (wordSpec.audio) {
             clozeWord.audio = this.createAudio(
               Content.getAudioData(wordSpec.audio),
@@ -832,7 +832,7 @@ export default class ExerciseProvider {
           };
           wordSpecs.forEach((wordSpec) => {
             multiClozeWord.word += wordSpec.word;
-            // TODO: Handle successive audio
+            // TODO: Handle successive audio #432
             if (wordSpec.audio) {
               multiClozeWord.audio = this.createAudio(
                 Content.getAudioData(wordSpec.audio),
@@ -980,7 +980,7 @@ export default class ExerciseProvider {
 
           wordSpecs.forEach((wordSpec) => {
             option.word += wordSpec.word;
-            // TODO: Handle successive audio
+            // TODO: Handle successive audio #432
             if (wordSpec.audio) {
               option.audio = this.createAudio(
                 Content.getAudioData(wordSpec.audio),
@@ -1024,7 +1024,7 @@ export default class ExerciseProvider {
         // we generate 2 exercises with 2 pairs, and the rest with 3 pairs
         // If the remainder when number of words are divided by 3 is 2
         // we generate 1 exercises with 2 pairs, and the rest with 3 pairs
-        // This isolates each matching exercise with unique words,
+        // This isolates matching exercise into sets of non-overlapping words,
         // which may not be desirable,
         // since mixing some new and some familiar words may increase retention
         // TODO Add configuration for exercises to overlap 0, 1 or 2 words
