@@ -98,6 +98,7 @@ onMounted(() => {
         >
           <img
             :src="Content.getPicPath(word.picture)"
+            data-test="review-picture"
             style="object-fit: contain; max-height: 100%"
           />
         </ion-card-header>
