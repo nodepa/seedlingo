@@ -17,16 +17,12 @@
     "1d936b6b-e44c-466c-8d04-ab52643670c2": {
       "word": "一",
       "audio": "audio/一.mp3",
-      "symbol": [
-        "mdiNumeric1Circle"
-      ]
+      "picture": "pics/一.jpg"
     },
     "698cced9-2080-4226-87f0-07837add7938": {
       "word": "二",
       "audio": "audio/二.mp3",
-      "symbol": [
-        "mdiNumeric2Circle"
-      ]
+      "picture": "pics/二.jpg"
     },
     "5dbf7670-f66d-46e4-b971-8f8d6de95a5c": {
       "word": "两",
@@ -36,114 +32,77 @@
     "84dcd43f-3f86-4be8-a1b0-541ac92133d3": {
       "word": "三",
       "audio": "audio/三.mp3",
-      "symbol": [
-        "mdiNumeric3Circle"
-      ]
+      "picture": "pics/三.jpg"
     },
     "da473305-758c-40c0-a61b-d9de0aefb5a4": {
       "word": "四",
       "audio": "audio/四.mp3",
-      "symbol": [
-        "mdiNumeric4Circle"
-      ]
+      "picture": "pics/四.jpg"
     },
     "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7": {
       "word": "五",
       "audio": "audio/五.mp3",
-      "symbol": [
-        "mdiNumeric5Circle"
-      ]
+      "picture": "pics/五.jpg"
     },
     "8a4feb4e-2f7b-4956-bb93-b8393a772b53": {
       "word": "六",
       "audio": "audio/六.mp3",
-      "symbol": [
-        "mdiNumeric6Circle"
-      ]
+      "picture": "pics/六.jpg"
     },
     "d4780ac6-a2e5-4b37-b7bc-5277b17032ef": {
       "word": "七",
       "audio": "audio/七.mp3",
-      "symbol": [
-        "mdiNumeric7Circle"
-      ]
+      "picture": "pics/七.jpg"
     },
     "097f100c-c5be-4112-8af9-a977902632d9": {
       "word": "八",
       "audio": "audio/八.mp3",
-      "symbol": [
-        "mdiNumeric8Circle"
-      ]
+      "picture": "pics/八.jpg"
     },
     "6705773b-a57c-4df3-ac1c-9fc2b71453e2": {
       "word": "九",
       "audio": "audio/九.mp3",
-      "symbol": [
-        "mdiNumeric9Circle"
-      ]
+      "picture": "pics/九.jpg"
     },
     "3bb2302a-53be-427b-ba5e-8b56694cef59": {
       "word": "十",
       "audio": "audio/十.mp3",
-      "symbol": [
-        "mdiNumeric10Circle"
-      ]
+      "picture": "pics/十.jpg"
     },
     "14affadc-3ba3-45e2-b98a-1c3bf6b3d266": {
       "word": "十一",
       "audio": "audio/十一.mp3",
-      "symbol": [
-        "mdiNumeric1",
-        "mdiNumeric1"
-      ]
+      "picture": "pics/十一.jpg"
     },
     "71c67af5-d1d4-4878-ae7b-3779c3497705": {
       "word": "十五",
       "audio": "audio/十五.mp3",
-      "symbol": [
-        "mdiNumeric1",
-        "mdiNumeric5"
-      ]
+      "picture": "pics/十五.jpg"
     },
     "aceef0db-2ac9-4c9c-badb-acf5f26197db": {
       "word": "十九",
       "audio": "audio/十九.mp3",
-      "symbol": [
-        "mdiNumeric1",
-        "mdiNumeric9"
-      ]
+      "picture": "pics/十九.jpg"
     },
     "bf9fa97b-3b2b-4dc2-8ee6-d68ed69f7c5c": {
       "word": "二十",
       "audio": "audio/二十.mp3",
-      "symbol": [
-        "mdiNumeric2",
-        "mdiNumeric0"
-      ]
+      "picture": "pics/二十.jpg"
     },
     "67907b51-30e4-4bbd-b0d7-c4bde04060fd": {
       "word": "二十八",
       "audio": "audio/二十八.mp3",
-      "symbol": [
-        "mdiNumeric2",
-        "mdiNumeric8"
-      ]
+      "picture": "pics/二十八.jpg"
     },
     "32001502-3c66-402b-ba2b-9db8f1c520df": {
       "word": "三十",
       "audio": "audio/三十.mp3",
-      "symbol": [
-        "mdiNumeric3",
-        "mdiNumeric0"
-      ]
+      "picture": "pics/三十.jpg"
     },
     "4135dd73-7791-4a2f-ba69-89d07dfa5f66": {
       "word": "三十四",
       "audio": "audio/三十四.mp3",
-      "symbol": [
-        "mdiNumeric3",
-        "mdiNumeric4"
-      ]
+      "picture": "pics/三十四.jpg"
     },
     "c1a581c8-8866-4afd-a099-12f4e62c5c50": {
       "word": "四十",
@@ -914,7 +873,6 @@
       "word": "告诉",
       "audio": "audio/告诉.mp3"
     },
-
     "5d0f410c-83ff-43bd-a31e-922b42b054ef": {
       "word": "。",
       "isPunctuation": true,
@@ -936,7 +894,6 @@
       "notIndividuallyExercised": "punctuation",
       "unused": "Starts showing up in lesson 12..."
     },
-
     "deb2fd69-3af6-4a13-a8d5-f0ee070c5ffe": {
       "word": "很",
       "lacksAudio": "Introduced as part of text L20",

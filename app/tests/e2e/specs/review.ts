@@ -37,8 +37,8 @@ describe('马丽 interacts with the "review" system', () => {
     cy.get(loader).should('not.be.visible');
     cy.get(app).should('be.visible');
     cy.get(instructionsExplainerComponent).should('not.exist');
-    cy.get('[data-test="review-icon"]')
-      .as('reviewIcon')
+    cy.get('[data-test="review-picture"]')
+      .as('reviewPic')
       .should('exist')
       .should('be.visible');
     cy.get('[data-test="review-word"]')
