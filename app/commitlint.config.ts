@@ -26,7 +26,7 @@
 // # Signed-off-by: Name/username <email>
 
 // # ─── END OF COMMIT MESSAGE ───────────────────────────────────wrap<=72┘
-module.exports = {
+export default {
   helpUrl:
     'Commit message guidelines are found\n    ' +
     "in the root folder's .gitmessage file, and at\n    " +
@@ -58,12 +58,15 @@ module.exports = {
   plugins: [
     {
       rules: {
-        'body-leading-blank': (parsed, when) => {
-          if (!parsed.body) {
+        'body-leading-blank': (
+          { body, raw }: { body: string; raw: string },
+          when: string,
+        ) => {
+          if (!body) {
             return [true];
           }
           const negated = when === 'never';
-          const lines = parsed.raw.split(/(?:\r?\n)/).slice(1);
+          const lines = raw.split(/(?:\r?\n)/).slice(1);
           let firstNonCommentIsBlank = false;
           for (const line of lines) {
             if (line === '') {
@@ -84,11 +87,11 @@ module.exports = {
         // # **Motivation - Why is this change necessary?**
         // Because
         'body-motivation-section-explaining-why': function (
-          { body },
+          { body }: { body: string },
           when = 'always',
         ) {
           const negated = when == 'never';
-          const includesMotivation = (`${body}`.match(/^[Bb]ecause.*\n/) != null);
+          const includesMotivation = `${body}`.match(/^[Bb]ecause.*\n/) != null;
           return [
             negated ? !includesMotivation : includesMotivation,
             'body ' +
@@ -101,7 +104,7 @@ module.exports = {
         // this commit will:
         // - add
         'body-impact-section-explaining-how': function (
-          { body },
+          { body }: { body: string },
           when = 'always',
         ) {
           const negated = when == 'never';
@@ -117,7 +120,7 @@ module.exports = {
           ];
         },
         'body-certification-section': function (
-          { body, footer },
+          { body, footer }: { body: string; footer: string },
           when = 'always',
         ) {
           const negated = when == 'never';
