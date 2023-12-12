@@ -14,9 +14,9 @@ assignees: ''
   - read the bug report [contributing guidelines](
       https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
 
-Feel free to treat this template as guidance and deviate where necessary.
+<!--Feel free to treat this template as guidance and deviate where necessary.-->
 
-## Describe the bug
+## Bug description
 
 A clear and concise description of what the bug is.
 
