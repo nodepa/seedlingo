@@ -106,13 +106,15 @@ onMounted(() => {
           v-else-if="word.symbol && word.symbol.length > 0"
           style="display: flex; justify-content: center; align-items: center"
         >
-          <ion-icon
-            v-for="(icon, iconIndex) in word.symbol"
-            :key="iconIndex"
-            data-test="review-icon"
-            :icon="Content.getIcon(icon)"
-            style="font-size: 4rem"
-          />
+          <span>
+            <ion-icon
+              v-for="(icon, iconIndex) in word.symbol"
+              :key="iconIndex"
+              data-test="review-icon"
+              :icon="Content.getIcon(icon)"
+              style="font-size: 4rem"
+            />
+          </span>
         </ion-card-header>
         <ion-card-content style="display: flex; flex: 1">
           <ExerciseButton
