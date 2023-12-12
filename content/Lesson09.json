@@ -4,7 +4,7 @@
   "lessonIndex": 9,
   "multipleChoiceCount": 4,
   "matchingCount": 4,
-  "explanationCount": 8,
+  "explanationCount": 11,
   "singleClozeCount": 0,
   "multiClozeCount": 0,
   "comprehensionCount": 0,
@@ -14,20 +14,36 @@
       "id": "9cf3f9a5-3d93-49bb-9ea6-5ec2b12e81f9",
       "type": "MultipleChoice",
       "multipleChoiceWords": [
-        { "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3" },
-        { "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2" },
-        { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" },
-        { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
+        {
+          "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3"
+        },
+        {
+          "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2"
+        },
+        {
+          "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+        },
+        {
+          "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+        }
       ]
     },
     {
       "id": "4ad1dbdf-22c6-48a8-861e-e8ad5479f507",
       "type": "Matching",
       "matchingWords": [
-        { "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3" },
-        { "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2" },
-        { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" },
-        { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
+        {
+          "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3"
+        },
+        {
+          "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2"
+        },
+        {
+          "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+        },
+        {
+          "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+        }
       ]
     },
     {
@@ -35,59 +51,67 @@
       "type": "Explanation",
       "explanationSpec": {
         "explanation": [
-          { "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387" }
+          {
+            "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0"
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387"
+          }
         ],
         "explanationTargets": {
-          "validOption": { "外甥女" : "b6ebbe69-9834-41f3-a353-4a9142d599b3" },
+          "validOption": {
+            "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3"
+          },
           "invalidOptions": [
-            { "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2" },
-            { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" },
-            { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
+            {
+              "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3"
+            },
+            {
+              "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+            },
+            {
+              "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+            }
           ]
         },
         "audio": "audio/姐姐的孩子.mp3"
       }
     },
     {
-      "id": "64aeff99-8821-4659-9e24-2b9edbefecac",
+      "id": "f4507b9e-e9fd-4ef8-8cd5-28e0c3fb9df9",
       "type": "Explanation",
       "explanationSpec": {
         "explanation": [
-          { "妹妹": "8ee121b4-8522-4e16-91b7-8a2af070efd8" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "女儿": "34d92533-9c8c-4469-b050-2638f2b5f4d5" }
+          {
+            "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0"
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387"
+          }
         ],
         "explanationTargets": {
-          "validOption": { "外甥女" : "b6ebbe69-9834-41f3-a353-4a9142d599b3" },
+          "validOption": {
+            "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2"
+          },
           "invalidOptions": [
-            { "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2" },
-            { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" },
-            { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
+            {
+              "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3"
+            },
+            {
+              "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+            },
+            {
+              "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+            }
           ]
         },
-        "audio": "audio/妹妹的女儿.mp3"
-      }
-    },
-    {
-      "id": "2ec33882-f247-42d3-b84a-ee24f72fe130",
-      "type": "Explanation",
-      "explanationSpec": {
-        "explanation": [
-          { "妹妹": "8ee121b4-8522-4e16-91b7-8a2af070efd8" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387" }
-        ],
-        "explanationTargets": {
-          "validOption": { "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2" },
-          "invalidOptions": [
-            { "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3" },
-            { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" },
-            { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
-          ]
-        },
-        "audio": "audio/妹妹的孩子.mp3"
+        "audio": "audio/姐姐的孩子.mp3"
       }
     },
     {
@@ -95,19 +119,135 @@
       "type": "Explanation",
       "explanationSpec": {
         "explanation": [
-          { "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c" }
+          {
+            "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0"
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c"
+          }
         ],
         "explanationTargets": {
-          "validOption": { "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2" },
+          "validOption": {
+            "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2"
+          },
           "invalidOptions": [
-            { "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3" },
-            { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" },
-            { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
+            {
+              "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3"
+            },
+            {
+              "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+            },
+            {
+              "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+            }
           ]
         },
         "audio": "audio/姐姐的儿子.mp3"
+      }
+    },
+    {
+      "id": "2ec33882-f247-42d3-b84a-ee24f72fe130",
+      "type": "Explanation",
+      "explanationSpec": {
+        "explanation": [
+          {
+            "妹妹": "8ee121b4-8522-4e16-91b7-8a2af070efd8"
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387"
+          }
+        ],
+        "explanationTargets": {
+          "validOption": {
+            "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2"
+          },
+          "invalidOptions": [
+            {
+              "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3"
+            },
+            {
+              "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+            },
+            {
+              "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+            }
+          ]
+        },
+        "audio": "audio/妹妹的孩子.mp3"
+      }
+    },
+    {
+      "id": "858374db-f006-4a5a-bde4-099f33303cdc",
+      "type": "Explanation",
+      "explanationSpec": {
+        "explanation": [
+          {
+            "妹妹": "8ee121b4-8522-4e16-91b7-8a2af070efd8"
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387"
+          }
+        ],
+        "explanationTargets": {
+          "validOption": {
+            "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3"
+          },
+          "invalidOptions": [
+            {
+              "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3"
+            },
+            {
+              "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+            },
+            {
+              "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+            }
+          ]
+        },
+        "audio": "audio/妹妹的孩子.mp3"
+      }
+    },
+    {
+      "id": "64aeff99-8821-4659-9e24-2b9edbefecac",
+      "type": "Explanation",
+      "explanationSpec": {
+        "explanation": [
+          {
+            "妹妹": "8ee121b4-8522-4e16-91b7-8a2af070efd8"
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "女儿": "34d92533-9c8c-4469-b050-2638f2b5f4d5"
+          }
+        ],
+        "explanationTargets": {
+          "validOption": {
+            "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3"
+          },
+          "invalidOptions": [
+            {
+              "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2"
+            },
+            {
+              "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+            },
+            {
+              "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+            }
+          ]
+        },
+        "audio": "audio/妹妹的女儿.mp3"
       }
     },
     {
@@ -115,16 +255,64 @@
       "type": "Explanation",
       "explanationSpec": {
         "explanation": [
-          { "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387" }
+          {
+            "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754"
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387"
+          }
         ],
         "explanationTargets": {
-          "validOption": { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" },
+          "validOption": {
+            "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+          },
           "invalidOptions": [
-            { "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3" },
-            { "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2" },
-            { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
+            {
+              "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3"
+            },
+            {
+              "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3"
+            },
+            {
+              "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2"
+            }
+          ]
+        },
+        "audio": "audio/哥哥的孩子.mp3"
+      }
+    },
+    {
+      "id": "ae65d200-aa5a-42d2-889d-c4766c10dd92",
+      "type": "Explanation",
+      "explanationSpec": {
+        "explanation": [
+          {
+            "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754"
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387"
+          }
+        ],
+        "explanationTargets": {
+          "validOption": {
+            "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+          },
+          "invalidOptions": [
+            {
+              "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3"
+            },
+            {
+              "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3"
+            },
+            {
+              "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2"
+            }
           ]
         },
         "audio": "audio/哥哥的孩子.mp3"
@@ -135,16 +323,30 @@
       "type": "Explanation",
       "explanationSpec": {
         "explanation": [
-          { "弟弟": "802939da-7ac0-409c-bfb2-b0d6f81e2f56" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "女儿": "34d92533-9c8c-4469-b050-2638f2b5f4d5" }
+          {
+            "弟弟": "802939da-7ac0-409c-bfb2-b0d6f81e2f56"
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "女儿": "34d92533-9c8c-4469-b050-2638f2b5f4d5"
+          }
         ],
         "explanationTargets": {
-          "validOption": { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" },
+          "validOption": {
+            "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+          },
           "invalidOptions": [
-            { "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3" },
-            { "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2" },
-            { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" }
+            {
+              "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3"
+            },
+            {
+              "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2"
+            },
+            {
+              "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+            }
           ]
         },
         "audio": "audio/弟弟的女儿.mp3"
@@ -155,16 +357,30 @@
       "type": "Explanation",
       "explanationSpec": {
         "explanation": [
-          { "弟弟": "802939da-7ac0-409c-bfb2-b0d6f81e2f56" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387" }
+          {
+            "弟弟": "802939da-7ac0-409c-bfb2-b0d6f81e2f56"
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "孩子": "c8de49d6-d26a-4d62-b959-83cf57327387"
+          }
         ],
         "explanationTargets": {
-          "validOption": { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" },
+          "validOption": {
+            "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+          },
           "invalidOptions": [
-            { "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3" },
-            { "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2" },
-            { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" }
+            {
+              "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3"
+            },
+            {
+              "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2"
+            },
+            {
+              "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+            }
           ]
         },
         "audio": "audio/弟弟的孩子.mp3"
@@ -175,16 +391,30 @@
       "type": "Explanation",
       "explanationSpec": {
         "explanation": [
-          { "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c" }
+          {
+            "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754"
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c"
+          }
         ],
         "explanationTargets": {
-          "validOption": { "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c" },
+          "validOption": {
+            "侄子": "dda9c23b-503d-4ada-8293-3450c8bfae7c"
+          },
           "invalidOptions": [
-            { "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3" },
-            { "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2" },
-            { "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0" }
+            {
+              "外甥女": "b6ebbe69-9834-41f3-a353-4a9142d599b3"
+            },
+            {
+              "外甥": "54ff3fa1-141e-4620-861d-335376b3f8f2"
+            },
+            {
+              "侄女": "0087add3-b033-4cac-bb6b-cebf1c1acdd0"
+            }
           ]
         },
         "audio": "audio/哥哥的儿子.mp3"
