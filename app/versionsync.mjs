@@ -12,13 +12,13 @@ const buildGradleWVersionCodeBump = buildGradle.replace(
   (match, g1, g2) => `${g1}${+g2 + 1}`,
 );
 const buildGradleWVersionSync = buildGradleWVersionCodeBump.replace(
-  /^( +versionName ").*"/,
+  /(\s*versionName ").*"/,
   `$1${version}"`,
 );
-fs.writeFileSync('android/app/build.gradle', buildGradleWVersionSync);
+//fs.writeFileSync('android/app/build.gradle', buildGradleWVersionSync);
 
 console.log(
-  `Version ${version} and versioNCode ${
+  `\n\x1b[36m[info]\x1b[0m versionName \x1b[32;1m${version}\x1b[0m and versionCode \x1b[32;1m${
     +versionCode + 1
-  } written to build.gradle`,
+  }\x1b[0m written to build.gradle\n`,
 );
