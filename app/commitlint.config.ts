@@ -1,6 +1,6 @@
 // Commit template from .gitmessage:
 // feat: Add feature (use imperative mood)
-// # └── feat, fix, refactor, style, docs, test, content or infra─────────┤
+// # └── chore|content|docs|feat|fix|refactor|revert|style|test ──────────┤
 
 // # **Motivation - Why is this change necessary?**
 // Because
@@ -12,8 +12,7 @@
 // # **Context - Additional information** <!-- Optional section -->
 
 // # **Issues - What issues are involved?**
-// Resolves #12
-// Resolves #23
+// Resolves #123
 
 // **Certification**
 // - [ ] I certify that <!-- Check the box to certify: [X] -->
@@ -37,7 +36,17 @@ export default {
     'type-enum': [
       2,
       'always',
-      ['content', 'docs', 'feat', 'fix', 'infra', 'refactor', 'style', 'test'],
+      [
+        'chore',
+        'content',
+        'docs',
+        'feat',
+        'fix',
+        'refactor',
+        'revert',
+        'style',
+        'test',
+      ],
     ],
     'type-case': [2, 'always', 'lower-case'],
     'scope-enum': [2, 'never'],
