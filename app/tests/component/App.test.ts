@@ -39,7 +39,7 @@ describe('App', () => {
   });
 
   it('renders bottom nav bar', () => {
-    expect(wrapper.find('[data-test="bottom-navigation-bar"').exists()).toBe(
+    expect(wrapper.find('[data-test="bottom-navigation-bar"]').exists()).toBe(
       true,
     );
   });

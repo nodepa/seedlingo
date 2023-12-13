@@ -54,7 +54,6 @@ export default defineConfig({
   },
   test: {
     include: ['tests/{unit,component}/**/*.{test,spec}.{js,ts}'],
-    // environment: 'happy-dom', // verify renders <audio src=''/>
-    environment: 'jsdom',
+    environment: 'happy-dom',
   },
 });
