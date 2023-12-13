@@ -32,7 +32,7 @@ https://docs.github.com/en/github/site-policy/github-community-guidelines).
   in [Seedling discussions](https://github.com/nodepa/seedling/discussions).
   Please stop by and say hi.
 - Explore the project *documentation*
-  at [GlobalSeedling - Get started](https://globalseedling.com/get-started).
+  at [Global Seedling - Get started](https://globalseedling.com/get-started).
 - Inspect the *nuts and bolts* of Seedling
   by cloning the [repository](https://github.com/nodepa/seedling).
   See the README-section on [Development setup](../README.md#development-setup)
@@ -556,20 +556,30 @@ here are a few additional guidelines.
     and [SECURITY.md](SECURITY.md)).
 - **`/content/`**
   - content files consumed by the app,
-    containing it's own [LICENSE](../content/LICENSE.md) file
+    including the content's own [LICENSE](../content/LICENSE.md) file
     covering everything in the `content/` folder
+- **`/api/`**
+  - backend API
 - **`/app/`**
-  - home of the app's Vue.js project
+  - home of the frontend/Android app's Vue.js project
+- **`/app/android/`**
+  - Android related project files
+- **`/app/coverage/`**
+  - system generated unit test coverage files generated to gauge test coverage
+- **`/app/dist/`**
+  - system generated production build files
 - **`/app/public/`**
   - only for static files that are used directly by `index.html`
-- **`/app/tests/e2e/`**
-  - All end-to-end tests live in `app/tests/e2e/specs/`.
+- **`/app/tests/compontent/`**
+  - all unit tests for units that are components
+- **`/app/tests/e2e/specs`**
+  - all end-to-end tests utilizing Cypress
 - **`/app/tests/unit/`**
-  - is just for `jest.setup.js` and mocks. Do NOT put unit test files here.
+  - all unit tests for units that are not components
 - **`/app/src/`**
   - home of the app's core source code
 - **`/app/src/assets/`**
-  - Relatively static assets, like the app logo.
+  - relatively static assets, like the app logo
 - **`/app/src/ModuleName/`**
   - Each module of the app has its own folder
     with a PascalCased/UpperCamelCased name.
@@ -590,17 +600,25 @@ here are a few additional guidelines.
   - Functionality re-used by multiple modules should live in the `common/`-folder.
     Common functionality should preferably be passed into a module
     when the module is instantiated.
-- **`/app/src/router/`**
+- **`/app/src/common/animations/`**
+  - animations reused across components
+- **`/app/src/common/components/`**
+  - components reused across the app
+- **`/app/src/common/directives/`**
+  - custom plugin directives
+- **`/app/src/common/router/`**
   - Vue.js `Router` for client side Single-Page Application routing
-- **`/app/src/store/`**
+- **`/app/src/common/store/`**
   - Vue.js `Store` for client side Single-Page Application state management
+- **`/app/src/common/types/`**
+  - shared types
 - **`/app/src/test-support/`**
-  - common testing functionality that is stripped out of the production app.
-    Because `Jest` uses `JSDOM`,
+  - assets only used in tests
+  - overrides for content to allow consistency regardless of content changes
+  - Because the unit test framework simulates a DOM,
     some web API objects and functions don't exist in the unit test "browser",
     so we mock certain functions to prevent tests from failing
     for environment disparity reasons.
-  - assets only used in tests
 - **`/app/src/views/`**
   - Vue.js `Views` for top-level component containers/pages
     generally addressed in the router.

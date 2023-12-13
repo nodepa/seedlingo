@@ -22,15 +22,16 @@ onMounted(() => {
             <p><strong>In short</strong></p>
             <ul>
               <li>
-                The only data we collect from you is your IP address, browser,
-                device and time when you access this web app.
+                The only data we collect from you is your IP address, browser
+                version information, device type and time of access.
               </li>
               <li>
-                We will only collect your personal data if you email it to us.
+                We can and will only collect your personal data if you email it
+                to us.
               </li>
               <li>
-                We will not share your email address or any other personal data
-                with anyone without your direct consent.
+                We will not share any of your personal data with anyone without
+                your direct consent unless compelled by law.
               </li>
               <li>
                 We store on your device the number of times you have seen the
@@ -76,14 +77,14 @@ onMounted(() => {
               </em>
             </blockquote>
             <p>
-              Even the IP address from which you visit the website is classified
-              as personal data due to the potential of being linked with other
-              data to eventually identify your person.
+              The IP address from which you visit the website is classified as
+              personal data due to the potential of being linked with other data
+              to eventually identify your person.
             </p>
             <p>
               <a href="https://nodepa.org">Nodepa</a>
-              will only collect the information we need and are legally allowed
-              to possess.
+              will only collect the information we make active use of and are
+              legally allowed to possess.
             </p>
             <h3>Information you give us directly</h3>
             <p>
@@ -113,8 +114,7 @@ onMounted(() => {
               <a href="https://aws.amazon.com/privacy">AWS' privacy policy</a>).
             </p>
             <p>
-              <a href="https://aws.amazon.com">AWS</a>
-              makes available to us access logs containing information about
+              AWS makes available to us access logs containing information about
               each request your device makes for updated data to the web app,
               including your:
             </p>
@@ -155,8 +155,8 @@ onMounted(() => {
             <p>
               We store on your device the number of times you have seen the
               "instructions explainer"-animation, so we can stop showing it
-              after a few times. This information is never transferred anywhere
-              else.
+              after a few times. This information can not be used to uniquely
+              identify you and is never transferred off your device.
             </p>
             <h3>Information we do not collect</h3>
             <ul>
