@@ -67,8 +67,8 @@ const cardHeight = computed(() => {
         translate: centered
           ? undefined
           : audio?.playing
-          ? '0% 0%'
-          : 'calc(-50% - 10px) calc(-50% - 10px)',
+            ? '0% 0%'
+            : 'calc(-50% - 10px) calc(-50% - 10px)',
         transition: '1s ease-in-out',
       }"
     >

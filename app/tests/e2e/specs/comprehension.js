@@ -2,10 +2,6 @@ const app = '[data-test="app"]';
 const loader = '[data-test="loader"]';
 const instructionsExplainerComponent =
   '[data-test="instructions-explainer-component"]';
-const continueButton = '[data-test="continue-button"]';
-const sentenceCard = '[data-test="sentence-card"]';
-const sentenceBlank = '[data-test="sentence-word-3"]';
-const successColor = 'rgb(0, 150, 136)';
 
 /*
 Text (highlight new words?):

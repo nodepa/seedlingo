@@ -8,11 +8,18 @@ module.exports = {
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
-    ecmaVersion: 2020,
+    ecmaVersion: 2023,
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   },
-  ignorePatterns: ['.vscode/', 'node_modules/', 'dist/', '*.d.ts'],
+  ignorePatterns: [
+    'android/',
+    'coverage/',
+    'dist/',
+    'node_modules/',
+    '.vscode/',
+    '*.d.ts',
+  ],
 };

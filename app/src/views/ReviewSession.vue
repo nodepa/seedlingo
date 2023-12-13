@@ -6,12 +6,9 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader,
-  IonCardTitle,
-  IonCol,
   IonGrid,
   IonIcon,
   IonPage,
-  IonRow,
   useIonRouter,
 } from '@ionic/vue';
 import ExerciseButton from '../common/components/ExerciseButton.vue';
