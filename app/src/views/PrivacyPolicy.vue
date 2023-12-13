@@ -41,10 +41,8 @@ onMounted(() => {
             </ul>
             <h2>Who we are</h2>
             <p>
-              The web apps at
+              The web app at
               <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://种字.com">种字.com</a>
               belongs to Norwegian Development Partners (<a
                 href="https://nodepa.org"
                 >Nodepa</a
@@ -63,10 +61,8 @@ onMounted(() => {
               to take appropriate steps to protect your personal data and use it
               appropriately. This privacy policy explains what data we collect
               when you interact with
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://种字.com">种字.com</a>, how we use your data and
-              why.
+              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>, how we use
+              your data and why.
             </p>
             <h2>Information we collect, and how</h2>
             <blockquote>
@@ -94,8 +90,6 @@ onMounted(() => {
               There is currently no means for you to explicitly provide any
               information to us directly through
               <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://种字.com">种字.com</a>
               (we will update this privacy policy if that changes.)
             </p>
             <p>
@@ -110,20 +104,13 @@ onMounted(() => {
             <h4>Device/Usage information</h4>
             <p>
               <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://种字.com">种字.com</a>
-              are hosted by Amazon Web Services (<a
-                href="https://aws.amazon.com"
+              is hosted by Amazon Web Services (<a href="https://aws.amazon.com"
                 >AWS</a
               >). When you interact with
-              <a href="https://liaizhongzi.com"> LiAiZhongzi.com</a>
-              and
-              <a href="https://种字.com">种字.com</a>, some information about
-              your usage is automatically collected and stored by
-              <a href="https://aws.amazon.com">AWS</a>' infrastructure (<a
-                href="https://aws.amazon.com/privacy"
-                >AWS' privacy policy</a
-              >).
+              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>, some
+              information about your usage is automatically collected and stored
+              by AWS' infrastructure (see
+              <a href="https://aws.amazon.com/privacy">AWS' privacy policy</a>).
             </p>
             <p>
               <a href="https://aws.amazon.com">AWS</a>
@@ -148,9 +135,7 @@ onMounted(() => {
             </p>
             <p>
               <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://种字.com">种字.com</a>
-              do not use any cookies or store any unique identifiers in any of
+              does not use any cookies or store any unique identifiers in any of
               the other places this can be done in your browser or on your
               device.
             </p>
@@ -165,9 +150,7 @@ onMounted(() => {
             </p>
             <p>
               <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://种字.com">种字.com</a>
-              do not use any tracking technologies or web beacons.
+              does not use any tracking technologies or web beacons.
             </p>
             <p>
               We store on your device the number of times you have seen the
@@ -179,12 +162,9 @@ onMounted(() => {
             <ul>
               <li>
                 We do not intentionally or knowingly collect information from
-                anyone under the age of 18 (<a href="https://liaizhongzi.com"
-                  >LiAiZhongzi.com</a
-                >
-                and
-                <a href="https://种字.com">种字.com</a>
-                are intended for and directed to users over the age of 18).
+                anyone under the age of 18.
+                <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
+                is intended for and directed to users over the age of 18.
               </li>
               <li>We do not collect sensitive personal information</li>
               <li>We do not track you across websites</li>
@@ -254,16 +234,12 @@ onMounted(() => {
             <p>
               We will update this privacy policy whenever we make changes to
               <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://种字.com">种字.com</a>
               in such a way that it impacts the personal data we collect.
             </p>
             <p>
               If we make significant changes in the way we treat your personal
               data, we will make this clear on
               <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://种字.com">种字.com</a>
               or by contacting you directly.
             </p>
           </ion-col>

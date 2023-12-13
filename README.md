@@ -16,7 +16,7 @@
   </tr>
   <tr>
     <td align="center">Putonghua/<br/>Simplified Chinese</td>
-    <td align="center"><a href="https://种字.com">种字.com</a></td>
+    <td align="center"><a href="https://liaizhongzi.com">LiAiZhongzi.com</a></td>
   </tr>
 </table>
 

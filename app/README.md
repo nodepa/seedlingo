@@ -1,7 +1,7 @@
 # Seedling - 立爱种字
 
 Seedling is currently available in Putonghua/Simplified Chinese:
-[种字.com](https://种字.com)
+[liaizhongzi.com](https://liaizhongzi.com)
 
 ## Prerequisites
 
