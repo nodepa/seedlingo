@@ -27,7 +27,7 @@ https://docs.github.com/en/github/site-policy/github-community-guidelines).
 
 ## Get familiar
 
-- Try out a *live version* of Seedling at [种字.com](https://种字.com)
+- Try out a *live version* of Seedling at [liaizhongzi.com](https://liaizhongzi.com)
 - Engage the *community* and ask questions
   in [Seedling discussions](https://github.com/nodepa/seedling/discussions).
   Please stop by and say hi.
