@@ -1,5 +1,5 @@
 feat: Add feature (use imperative mood)
-# └── feat, fix, refactor, style, docs, test, content or infra─────────┤
+# └── chore|content|docs|feat|fix|refactor|revert|style|test ──────────┤
 
 # **Motivation - Why is this change necessary?**
 Because
@@ -11,8 +11,7 @@ this commit will:
 # **Context - Additional information** <!-- Optional section -->
 
 # **Issues - What issues are involved?**
-Resolves #12
-Resolves #23
+Resolves #123
 
 **Certification**
 - [ ] I certify that <!-- Check the box to certify: [X] -->
@@ -39,7 +38,7 @@ Resolves #23
 # - reduce effort needed to comprehend logic
 # - rename varB to audioElement in InstructionsDirective.ts
 #
-# Resolves #12
+# Resolves #123
 #
 # - [ ] I certify that <!-- Check the box to certify: [X] -->
 # - I have read the [contributing guidelines](
@@ -60,7 +59,7 @@ Resolves #23
 # - clarify differences between the web/PWA experience,
 #   and the native app experience.
 #
-# Closes #12
+# Closes #123
 # Refs #23 (will not auto-close issue)
 #
 # - [ ] I certify that <!-- Check the box to certify: [X] -->
@@ -84,7 +83,7 @@ Resolves #23
 #   - replace hardcoded path with named route for Home screen
 #   - add regression test
 #
-# Fixes #12
+# Fixes #123
 #
 # - [ ] I certify that <!-- Check the box to certify: [X] -->
 # - I have read the [contributing guidelines](
@@ -110,7 +109,7 @@ Resolves #23
 #   used prior to commit <some hash>
 # - remove unused dependency
 #
-# Fixes #12
+# Fixes #123
 #
 # - [ ] I certify that <!-- Check the box to certify: [X] -->
 # - I have read the [contributing guidelines](
@@ -137,7 +136,7 @@ Resolves #23
 #   used prior to commit <some hash>
 # - remove unused dependency
 #
-# Fixes #12
+# Fixes #123
 #
 # - [ ] I certify that <!-- Check the box to certify: [X] -->
 # - I have read the [contributing guidelines](
@@ -153,7 +152,7 @@ Resolves #23
 # Commit message guidelines
 # ─────────────────────────────────────────────────────────────────────┐
 # <type>: <summary>
-#    └── feat, fix, refactor, style, docs, test, content or infra──────┤
+#    └── chore|content|docs|feat|fix|refactor|revert|style|test ───────┤
 #
 # <motivation>
 #
@@ -169,13 +168,15 @@ Resolves #23
 # Subject line: <type>: <summary>
 # ─────────────────────────────────────────────────────────────────────┐
 # Start with a <type> from this list (use lowercase):
+#   chore      (maintenance/scripts/dependencies/config/infrastructure)
+#   content    (add/fix/amend files in the content folder)
+#   docs       (add/correct/improve docs/policies/templates/READMEs)
 #   feat       (add new feature/functionality for the user)
 #   fix        (fix bug for the user)
-#   docs       (improve/correct documentation)
-#   style      (amend code formatting/spelling/punctuation)
-#   refactor   (refactor code/improve readability/performance etc)
-#   test       (refactor/add missing test)
-#   infra      (update script/dependency/config/infrastructure)
+#   refactor   (code structure/readability/performance, no fix/feat)
+#   revert     (revert a specific commit)
+#   style      (amend code formatting/spelling/punctuation, no semantic)
+#   test       (add missing tests or correct/refactor existing tests)
 #
 # Proceed to add a <summary> starting with an uppercase letter.
 # Use the imperative mood ("Add feature", not "Added feature").
@@ -201,7 +202,7 @@ Resolves #23
 # environment configurations or additional notes, add it here.
 #
 # Remember to reference relevant GitHub <issues>.
-# Closes #11, fixes #11, resolves #11 and resolves #12
+# Closes #123, fixes #123 and resolves #123
 # are keywords that tell GitHub to automatically close those issues
 # when the pull request is merged into the main branch.
 #

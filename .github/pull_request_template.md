@@ -6,7 +6,7 @@ https://github.com/nodepa/seedling/blob/main/.gitmessage
 
 TITLE format:
 feat: Add feature (use imperative mood)
-  └── feat, fix, refactor, style, docs, test, content or infra
+  └── chore|content|docs|feat|fix|refactor|revert|style|test
 
 MESSAGE format:
 **Motivation - Why is this change necessary?**
@@ -19,8 +19,7 @@ this commit will:
 **Context - Additional information**
 
 **Issues - What issues are involved?**
-Resolves #12
-Resolves #23
+Resolves #123
 
 **Certification**
 - [ ] I certify that <-- Check the box to certify: [X]
@@ -31,3 +30,4 @@ Resolves #23
   and have the rights to do so.
 
 Signed-off-by: Name/username <email>
+
