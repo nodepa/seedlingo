@@ -54,7 +54,7 @@ watch(
   (show: boolean) => {
     if (!show) {
       if (exerciseComponent.value !== ComprehensionExercise) {
-        if (currentIteration.value >= 5) {
+        if (currentIteration.value >= 10) {
           ionRouter.navigate({ name: 'Home' }, 'root', 'replace');
         } else {
           currentIteration.value += 1;
