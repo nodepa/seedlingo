@@ -8,11 +8,11 @@ assignees: ''
 - [ ] I did all of the following:
   <!-- Check the box by putting an X between the brackets: [X] -->
   - consider getting feedback on the idea in the [discussions](
-      https://github.com/nodepa/seedling/discussions/categories/ideas)
+      https://github.com/nodepa/seedlingo/discussions/categories/ideas)
   - search for duplicate or closed [issues](
-      https://github.com/nodepa/seedling/issues?q=is%3Aissue)
+      https://github.com/nodepa/seedlingo/issues?q=is%3Aissue)
   - read the documentation request [contribution guidelines](
-      https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
+      https://github.com/nodepa/seedlingo/blob/main/.github/CONTRIBUTING.md)
 
 Feel free to treat this template as guidance and deviate where necessary.
 

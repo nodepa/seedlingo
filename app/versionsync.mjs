@@ -15,7 +15,7 @@ const buildGradleWVersionSync = buildGradleWVersionCodeBump.replace(
   /(\s*versionName ").*"/,
   `$1${version}"`,
 );
-//fs.writeFileSync('android/app/build.gradle', buildGradleWVersionSync);
+fs.writeFileSync('android/app/build.gradle', buildGradleWVersionSync);
 
 console.log(
   `\n\x1b[36m[info]\x1b[0m versionName \x1b[32;1m${version}\x1b[0m and versionCode \x1b[32;1m${

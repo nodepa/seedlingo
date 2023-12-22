@@ -1,1 +1,0 @@
-const t={key:"v-50905c40",path:"/android/android-compatibility.html",title:"Android compatibility",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1644453139e3,contributors:[{name:"toshify",email:"4579559+toshify@users.noreply.github.com",commits:1}]},filePathRelative:"android/android-compatibility.md"};export{t as data};

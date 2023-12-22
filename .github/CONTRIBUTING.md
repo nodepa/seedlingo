@@ -1,7 +1,7 @@
-# Contributing to Seedling <!-- omit in toc -->
+# Contributing to Seedlingo <!-- omit in toc -->
 
-Welcome to the Seedling community,
-and thank you for your efforts to make Seedling better!
+Welcome to the Seedlingo community,
+and thank you for your efforts to make Seedlingo better!
 We appreciate your contribution.
 
 ## Table of contents <!-- omit in toc -->
@@ -20,23 +20,23 @@ We appreciate your contribution.
 
 ## Code of conduct
 
-Please help us keep the Seedling community open and positive.
-Participate in the spirit of the [Seedling Code of Conduct](CODE_OF_CONDUCT.md)
+Please help us keep the Seedlingo community open and positive.
+Participate in the spirit of the [Seedlingo Code of Conduct](CODE_OF_CONDUCT.md)
 and the [GitHub Community Guidelines](
 https://docs.github.com/en/github/site-policy/github-community-guidelines).
 
 ## Get familiar
 
-- Try out a *live version* of Seedling at [liaizhongzi.com](https://liaizhongzi.com)
+- Try out a *live version* of Seedlingo at [liaizhongzi.com](https://liaizhongzi.com)
 - Engage the *community* and ask questions
-  in [Seedling discussions](https://github.com/nodepa/seedling/discussions).
+  in [Seedlingo discussions](https://github.com/nodepa/seedlingo/discussions).
   Please stop by and say hi.
 - Explore the project *documentation*
-  at [Global Seedling - Get started](https://globalseedling.com/get-started).
+  at [Seedlingo - Get started](https://seedlingo.com/get-started).
 - Inspect the *nuts and bolts* of Seedling
-  by cloning the [repository](https://github.com/nodepa/seedling).
+  by cloning the [repository](https://github.com/nodepa/seedlingo).
   See the README-section on [Development setup](../README.md#development-setup)
-  for details on how to run Seedling in your development environment.
+  for details on how to run Seedlingo in your development environment.
 
 ## How can I contribute?
 
@@ -56,10 +56,10 @@ We would love to have you:
 Do not submit an issue to ask for help,
 rather:
 
-- Use [Seedling discussions](https://github.com/nodepa/seedling/discussions)
+- Use [Seedlingo discussions](https://github.com/nodepa/seedlingo/discussions)
   to search for and/or ask for help.
 - Search [open and closed issues](
-  https://github.com/nodepa/seedling/issues?q=is%3Aissue)
+  https://github.com/nodepa/seedlingo/issues?q=is%3Aissue)
   to see if the problem has already been reported.
   Please add a comment to the existing issue instead of opening a new one.
 - If the bug is a security vulnerability,
@@ -72,7 +72,7 @@ rather:
 
 Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/).
 
-Create a [new issue](https://github.com/nodepa/seedling/issues/new/choose)
+Create a [new issue](https://github.com/nodepa/seedlingo/issues/new/choose)
 and select the [bug report template](/.github/ISSUE_TEMPLATE/bug_report.md).
 
 - Give the bug report a short title that describes clearly
@@ -109,11 +109,11 @@ and [documentation requests](#before-submitting-a-documentation-request).
 ### Before submitting a feature request
 
 - Check the [discussions about ideas](
-  https://github.com/nodepa/seedling/discussions/categories/ideas).
+  https://github.com/nodepa/seedlingo/discussions/categories/ideas).
   Feel free to suggest rough ideas in the discussions,
   allowing the community to participate in refining them from an early stage.
 - Search [open and closed issues](
-  https://github.com/nodepa/seedling/issues?q=is%3Aissue)
+  https://github.com/nodepa/seedlingo/issues?q=is%3Aissue)
   to see if the enhancement has already been suggested.
   Please add a comment to the existing issue instead of opening a new one.
 
@@ -122,7 +122,7 @@ and [documentation requests](#before-submitting-a-documentation-request).
 Enhancement suggestions are tracked
 as [GitHub issues](https://guides.github.com/features/issues/).
 
-Create a [new issue](https://github.com/nodepa/seedling/issues/new/choose)
+Create a [new issue](https://github.com/nodepa/seedlingo/issues/new/choose)
 and select the [feature request template](
 /.github/ISSUE_TEMPLATE/feature_request.md).
 
@@ -156,11 +156,11 @@ and select the [feature request template](
 ### Before submitting a documentation request
 
 - Check the [discussions about documentation](
-  https://github.com/nodepa/seedling/discussions/categories/documentation)
+  https://github.com/nodepa/seedlingo/discussions/categories/documentation)
   and add your thoughts on the current and desired state
-  of the Seedling documentation efforts.
+  of the Seedlingo documentation efforts.
 - Check [open and closed issues](
-  https://github.com/nodepa/seedling/issues?q=is%3Aissue)
+  https://github.com/nodepa/seedlingo/issues?q=is%3Aissue)
   for already suggested documentation fixes or improvements.
   Please add a comment to the existing issue instead of opening a new one.
 
@@ -169,7 +169,7 @@ and select the [feature request template](
 Enhancement suggestions are tracked
 as [GitHub issues](https://guides.github.com/features/issues/).
 
-Create a [new issue](https://github.com/nodepa/seedling/issues/new/choose)
+Create a [new issue](https://github.com/nodepa/seedlingo/issues/new/choose)
 and select the [documentation request template](
 /.github/ISSUE_TEMPLATE/documentation_request.md).
 
@@ -202,19 +202,19 @@ if no existing issues cover your intended contribution.
 
 ### Submit documentation improvements
 
-1. Familiarize yourself with Seedling's [LICENSE](../LICENSE.md).
-   By contributing to the Seedling project,
+1. Familiarize yourself with Seedlingo's [LICENSE](../LICENSE.md).
+   By contributing to the Seedlingo project,
    you agree to license your contribution under these terms,
    and affirm that you have the right to do so.
-2. Pick a [good first issue](https://github.com/nodepa/seedling/contribute)
+2. Pick a [good first issue](https://github.com/nodepa/seedlingo/contribute)
    or pick one from the prioritized queue
    on the [Documentation project board](
-     https://github.com/nodepa/seedling/projects/8),
+     https://github.com/nodepa/seedlingo/projects/8),
    then assign it to yourself
    or post a comment that you are working on it.
-3. If you are not yet a Seedling collaborator:
+3. If you are not yet a Seedlingo collaborator:
    - [Fork](https://help.github.com/articles/fork-a-repo/)
-     the [Seedling repository](https://github.com/nodepa/seedling),
+     the [Seedlingo repository](https://github.com/nodepa/seedlingo),
      then proceed to work on your own fork.
 4. Create a new branch off of `main`
    with a short descriptive name starting with `docs/`,
@@ -242,7 +242,7 @@ if no existing issues cover your intended contribution.
    git push origin docs/add-get-started
    ```
 
-9. Create a [pull request](https://github.com/nodepa/seedling/pulls)
+9. Create a [pull request](https://github.com/nodepa/seedlingo/pulls)
    describing the aim and scope of the added and/or amended documentation
    according to the [pull request template](/.github/pull_request_template.md).
 10. Answer comments on the pull request and await review and approval.
@@ -252,8 +252,8 @@ if no existing issues cover your intended contribution.
     which will update your pull request:
 
     ```bash
-    git remote -v            # Ensure `upstream` points to `nodepa/seedling.git`
-    git remote add upstream git@github.com:nodepa/seedling.git
+    git remote -v            # Ensure `upstream` points to `nodepa/seedlingo.git`
+    git remote add upstream git@github.com:nodepa/seedlingo.git
     git pull --ff upstream main # update main branch to latest upstream version
     git rebase main -i       # rebase onto updated main
     git push -f              # push rebased branch to overwrite remote
@@ -276,19 +276,19 @@ if no existing issues cover your intended contribution.
 
 ### Submit a fix or feature
 
-1. Familiarize yourself with Seedling's [LICENSE](../LICENSE.md).
-   By contributing to the Seedling project,
+1. Familiarize yourself with Seedlingo's [LICENSE](../LICENSE.md).
+   By contributing to the Seedlingo project,
    you agree to license your contribution under these terms,
    and affirm that you have the right to do so.
-2. Pick a [good first issue](https://github.com/nodepa/seedling/contribute)
+2. Pick a [good first issue](https://github.com/nodepa/seedlingo/contribute)
    or pick one from the prioritized queue
    on the [Development and operations project board](
-     https://github.com/nodepa/seedling/projects/3),
+     https://github.com/nodepa/seedlingo/projects/3),
    then assign it to yourself
    or post a comment that you are working on it.
-3. If you are not yet a Seedling collaborator:
+3. If you are not yet a Seedlingo collaborator:
    - [Fork](https://help.github.com/articles/fork-a-repo/)
-     the [Seedling repository](https://github.com/nodepa/seedling),
+     the [Seedlingo repository](https://github.com/nodepa/seedlingo),
      then proceed to work on your own fork.
 4. Set up your local development environment
    as described in the [README](../README.md#development-setup).
@@ -349,7 +349,7 @@ if no existing issues cover your intended contribution.
     git push origin fix/restore-audio
     ```
 
-11. Create a [pull request](https://github.com/nodepa/seedling/pulls)
+11. Create a [pull request](https://github.com/nodepa/seedlingo/pulls)
     describing the aim and scope of the added and/or amended code
     according to the [pull request template](/.github/pull_request_template.md).
 12. Answer comments on the pull request and await review and approval.
@@ -359,8 +359,8 @@ if no existing issues cover your intended contribution.
     which will update your pull request:
 
     ```bash
-    git remote -v            # Ensure `upstream` points to `nodepa/seedling.git`
-    git remote add upstream git@github.com:nodepa/seedling.git
+    git remote -v            # Ensure `upstream` points to `nodepa/seedlingo.git`
+    git remote add upstream git@github.com:nodepa/seedlingo.git
     git pull --ff upstream main # update main branch to latest upstream version
     git rebase main -i       # rebase onto updated main
     git push -f              # push rebased branch to overwrite remote
@@ -387,36 +387,36 @@ Note: This section is incomplete.
 - [ ] TODO: How to pick a license for new content?
 - [ ] TODO: Add reference to content pack specification in documentation.
 - [ ] TODO: Possibly remove this section
-            if the suggested idea to [publish Seedling to NPM without content](
-            https://github.com/nodepa/seedling/discussions/74) moves forward,
+            if the suggested idea to [publish Seedlingo to NPM without content](
+            https://github.com/nodepa/seedlingo/discussions/74) moves forward,
             since that will change the model to have separate content projects
-            that use Seedling core as a package.
+            that use Seedlingo core as a package.
 
 ### Before submitting content
 
 - Check the [discussions about content](
-  https://github.com/nodepa/seedling/discussions/categories/content)
+  https://github.com/nodepa/seedlingo/discussions/categories/content)
   and add your thoughts on the current and desired content generation efforts.
 - Check [open and closed issues](
-  https://github.com/nodepa/seedling/issues?q=is%3Aissue)
+  https://github.com/nodepa/seedlingo/issues?q=is%3Aissue)
   for already suggested content fixes or improvements.
   Please add a comment to the existing issue instead of opening a new one.
 
 ### Submit content improvements
 
-1. Familiarize yourself with Seedling's [LICENSE](../LICENSE.md).
-   By contributing content to the Seedling project,
+1. Familiarize yourself with Seedlingo's [LICENSE](../LICENSE.md).
+   By contributing content to the Seedlingo project,
    you agree to license your contribution under these terms,
    and affirm that you have the right to do so.
-2. Pick a [good first issue](https://github.com/nodepa/seedling/contribute)
+2. Pick a [good first issue](https://github.com/nodepa/seedlingo/contribute)
    or pick one from the prioritized queue
    on the [Development and operations project board](
-     https://github.com/nodepa/seedling/projects/3),
+     https://github.com/nodepa/seedlingo/projects/3),
    then assign it to yourself
    or post a comment that you are working on it.
-3. If you are not yet a Seedling collaborator:
+3. If you are not yet a Seedlingo collaborator:
    - [Fork](https://help.github.com/articles/fork-a-repo/)
-     the [Seedling repository](https://github.com/nodepa/seedling),
+     the [Seedlingo repository](https://github.com/nodepa/seedlingo),
      then proceed to work on your own fork.
 4. Create a new branch off of `main`
    with a short descriptive name starting with `content/`,
@@ -450,7 +450,7 @@ Note: This section is incomplete.
    git push origin content/cn-relationships
    ```
 
-9. Create a [pull request](https://github.com/nodepa/seedling/pulls)
+9. Create a [pull request](https://github.com/nodepa/seedlingo/pulls)
    describing the aim and scope of the added and/or amended content
    according to the [pull request template](/.github/pull_request_template.md).
 10. Answer comments on the pull request and await review and approval.
@@ -460,8 +460,8 @@ Note: This section is incomplete.
     which will update your pull request:
 
     ```bash
-    git remote -v            # Ensure `upstream` points to `nodepa/seedling.git`
-    git remote add upstream git@github.com:nodepa/seedling.git
+    git remote -v            # Ensure `upstream` points to `nodepa/seedlingo.git`
+    git remote add upstream git@github.com:nodepa/seedlingo.git
     git pull --ff upstream main # update main branch to latest upstream version
     git rebase main -i         # rebase onto updated main
     git push -f                # push rebased branch to overwrite remote
@@ -507,7 +507,7 @@ Note: This section is incomplete.
   and [markdownlint](
     https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
   plugins,
-  with the settings in the Seedling project's `.vscode/settings.json` file,
+  with the settings in the Seedlingo project's `.vscode/settings.json` file,
   to keep documentation files similarly formatted.
 
 ### Git commit messages
@@ -667,14 +667,14 @@ Trigger lint with `npm run lint`.
 
 ## License
 
-The Seedling project,
+The Seedlingo project,
 EXCEPT all material in the [content/](../content/) folder,
 is licensed to the public under the [MIT License](../LICENSE.md).
 
-The Seedling project's [content/](../content/) is licensed to the public under a
+The Seedlingo project's [content/](../content/) is licensed to the public under a
 [Creative Commons Attribution-ShareAlike 4.0 International Public License](
 ../content/LICENSE.md).
 
-By contributing to the Seedling project,
+By contributing to the Seedlingo project,
 you agree to license your contribution to the public under these terms,
 and affirm that you have the right to do so.

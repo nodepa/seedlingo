@@ -17,4 +17,4 @@ currently being supported with security updates.
 ## Reporting a Vulnerability
 
 Please responsibly report vulnerabilities to
-[seedling@nodepa.org](mailto:seedling@nodepa.org).
+[seedlingo@nodepa.org](mailto:seedlingo@nodepa.org).

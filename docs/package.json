@@ -1,25 +1,29 @@
 {
   "name": "docs",
-  "version": "0.9.0",
-  "description": "Documentation for Seedling.",
+  "version": "1.0.4",
+  "description": "Documentation for Seedlingo.",
   "main": "index.js",
   "author": "toshify <4579559+toshify@users.noreply.github.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nodepa/seedling.git"
+    "url": "git+https://github.com/nodepa/seedlingo.git"
   },
   "keywords": [
     "documentation",
-    "seedling"
+    "seedlingo"
   ],
   "bugs": {
-    "url": "https://github.com/nodepa/seedling/issues"
+    "url": "https://github.com/nodepa/seedlingo/issues"
   },
-  "homepage": "https://github.com/nodepa/seedling#readme",
+  "homepage": "https://github.com/nodepa/seedlingo#readme",
+  "volta": {
+    "node": "18.19.0",
+    "npm": "10.2.5"
+  },
   "devDependencies": {
-    "@vuepress/plugin-docsearch": "^2.0.0-beta.67",
-    "vuepress": "^2.0.0-beta.67"
+    "@vuepress/plugin-docsearch": "^2.0.0-rc.0",
+    "vuepress": "^2.0.0-rc.0"
   },
   "scripts": {
     "build": "vuepress build .",

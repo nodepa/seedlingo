@@ -2,7 +2,7 @@
 there should already be a pull request TITLE and MESSAGE above ^^^.
 If they differ significantly from the template below,
 please (re-)write the pull request according to:
-https://github.com/nodepa/seedling/blob/main/.gitmessage
+https://github.com/nodepa/seedlingo/blob/main/.gitmessage
 
 TITLE format:
 feat: Add feature (use imperative mood)
@@ -24,9 +24,9 @@ Resolves #123
 **Certification**
 - [ ] I certify that <-- Check the box to certify: [X]
 - I have read the [contributing guidelines](
-  https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
-- I license these contributions to the public under Seedling's
-  [LICENSE](https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+  https://github.com/nodepa/seedlingo/blob/main/.github/CONTRIBUTING.md)
+- I license these contributions to the public under Seedlingo's
+  [LICENSE](https://github.com/nodepa/seedlingo/blob/main/LICENSE.md)
   and have the rights to do so.
 
 Signed-off-by: Name/username <email>

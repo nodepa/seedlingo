@@ -5,11 +5,11 @@ next: /content/replace-content.md
 
 # Content
 
-The Seedling app fetches content from the `content/` folder.
+The Seedlingo app fetches content from the `content/` folder.
 The content consist of
 
 - a root config file named `ContentSpec.json`
-  that contains a specification that Seedling uses
+  that contains a specification that Seedlingo uses
   to identify the rest of the content
 - a word-list describing words and their corresponding media,
   like icons, pictures and audio
@@ -19,6 +19,6 @@ The content consist of
   and which words to practice with which exercise types
 - audio files giving the users instructions about how to interact and progress
 
-If you want to deploy Seedling with your own content,
+If you want to deploy Seedlingo with your own content,
 follow the [Replace default content](replace-content.md)-guide.
 The content must be formatted according to the [Content specification](content-spec.md).

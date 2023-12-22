@@ -11,7 +11,7 @@
 3. Add the `cmdline-tools`'s parent folder to the environment variable
    `ANDROID_HOME`
 4. Clone the repo as described in [Get started](/get-started/get-started)
-5. Navigate to `seedling/app`
+5. Navigate to `seedlingo/app`
 6. Run the build command
    ```sh
    npm run build:android

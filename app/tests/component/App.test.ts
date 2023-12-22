@@ -66,7 +66,7 @@ describe('App', () => {
   );
 
   it('shows jobId and branch when available', async () => {
-    const branch = 'seedling-main-branch-value';
+    const branch = 'seedlingo-main-branch-value';
     const paddedId = '0000009999900';
     const trimmedId = paddedId.replace(/^0+/, '');
 

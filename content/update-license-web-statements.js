@@ -46,7 +46,7 @@ const newOrChanged = hashes.filter(
 const webStatements = newOrChanged.reduce((list, entry) => {
   console.log(entry.hash, entry.relPath)
   return `${list}${list ? "\n" : ''}<p>` +
-    '<a href="https://github.com/nodepa/seedling/blob/main/content/' +
+    '<a href="https://github.com/nodepa/seedlingo/blob/main/content/' +
     `${entry.relPath}">${path.basename(entry.relPath)}</a> ` +
     `is licensed to the public under <a about="urn:sha1:${entry.hash}" ` +
     'rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">' +

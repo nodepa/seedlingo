@@ -1,7 +1,7 @@
-# Seedling - 立爱种字
+# Seedlingo - 立爱种字
 
-Seedling is currently available in Putonghua/Simplified Chinese:
-[liaizhongzi.com](https://liaizhongzi.com)
+Seedlingo is currently available in Putonghua/Simplified Chinese at
+[seedlingo.app](https://seedlingo.app)
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ npm install
 ### Compile and hot-reload for development
 
 ```sh
-npm dev
+npm run dev   # Then visit http://localhost:5173 in your web browser
 ```
 
 ### Compile and minify for production

@@ -14,7 +14,7 @@
 
 ## Who we are
 
-The website [GlobalSeedling.com](https://globalseedling.com)
+The website [Seedlingo.com](https://seedlingo.com)
 belongs to Norwegian Development Partners ([Nodepa](https://nodepa.org)),
 a Norway-based non-profit registered with the Norwegian Government
 under the organization number 916724799.
@@ -30,7 +30,7 @@ we take the responsibility seriously.
 We promise to take appropriate steps to protect your personal data
 and use it appropriately.
 This privacy policy explains what data we collect
-when you interact with [GlobalSeedling.com](https://globalseedling.com),
+when you interact with [Seedlingo.com](https://seedlingo.com),
 how we use your data and why.
 
 ## Information we collect, and how
@@ -51,7 +51,7 @@ and are legally allowed to possess.
 ### Information you give us directly
 
 There is currently no means for you to explicitly provide any information to us
-directly through [GlobalSeedling.com](https://globalseedling.com)
+directly through [Seedlingo.com](https://seedlingo.com)
 (we will update this privacy policy if that changes.)
 
 However, you may use the contact information found on the website
@@ -66,16 +66,16 @@ until we have properly responded to your inquiry.
 
 #### Device/Usage information
 
-[GlobalSeedling.com](https://globalseedling.com) is hosted by
+[Seedlingo.com](https://seedlingo.com) is hosted by
 [GitHub](https://github.com) through [GitHub Pages](https://pages.github.com).
-When you interact with [GlobalSeedling.com](https://globalseedling.com),
+When you interact with [Seedlingo.com](https://seedlingo.com),
 some information about your usage is automatically collected
 and stored by [GitHub](https://github.com)'s infrastructure.
 
 
 > [GitHub](https://github.com) may collect User Personal Information
   from visitors to your GitHub Pages website
-  [i.e. [GlobalSeedling.com](https://globalseedling.com)],
+  [i.e. [Seedlingo.com](https://seedlingo.com)],
   including logs of visitor IP addresses,
   to comply with legal obligations,
   and to maintain the security and integrity
@@ -94,7 +94,7 @@ Cookies are data files that are placed on your device or computer,
 and often include an anonymous unique identifier
 that can potentially be tied to a person's identity.
 
-[GlobalSeedling.com](https://globalseedling.com)
+[Seedlingo.com](https://seedlingo.com)
 does not use any cookies
 or store any unique identifiers in any of the other places this can be done
 in your browser or on your device.
@@ -107,14 +107,14 @@ A unique identifier, potentially tied to a person's identity,
 can be attached to a web beacon
 and shared with the third-party server during the request.
 
-[GlobalSeedling.com](https://globalseedling.com)
+[Seedlingo.com](https://seedlingo.com)
 does not use any tracking technologies or web beacons.
 
 ### Information we do not collect
 
 - We do not intentionally or knowingly
   collect data from anyone under the age of 18
-  ([GlobalSeedling.com](https://globalseedling.com)
+  ([Seedlingo.com](https://seedlingo.com)
   is intended for and directed to users over the age of 18).
 - We do not collect sensitive personal information
 - We do not track you across websites
@@ -156,7 +156,7 @@ You have the right to:
 ## Contact
 
 You may contact us through our [contact form](https://nodepa.org/contact)
-or by email to seedling@nodepa.org
+or by email to seedlingo@nodepa.org
 
 Please reach out to us if you:
 
@@ -166,9 +166,9 @@ Please reach out to us if you:
 ## Changes to the privacy policy
 
 We will update this privacy policy
-whenever we make changes to [GlobalSeedling.com](https://globalseedling.com)
+whenever we make changes to [Seedlingo.com](https://seedlingo.com)
 in such a way that it impacts the personal data we collect.
 
 If we make significant changes in the way we treat your personal data,
-we will make this clear on [GlobalSeedling.com](https://globalseedling.com)
+we will make this clear on [Seedlingo.com](https://seedlingo.com)
 or by contacting you directly.
