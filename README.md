@@ -1,8 +1,8 @@
-<h1 align="center">Seedling</h1>
+<h1 align="center">Seedlingo</h1>
 
 <p align="center">
-  <img src="docs/.vuepress/public/images/seedling-logo-blue.svg"
-    alt="seedling-logo" height="160px" width="160px"/>
+  <img src="docs/.vuepress/public/images/seedlingo-logo-blue.svg"
+    alt="seedlingo-logo" height="160px" width="160px"/>
   <br/>
   <b>Modern mobile multi-language literacy</b>
   <br/>
@@ -22,7 +22,7 @@
 
 <br/>
 <p align="center">
-  <a href="https://globalseedling.com/get-started/get-started.html">Documentation</a>
+  <a href="https://seedlingo.com/get-started/get-started.html">Documentation</a>
   ·
   <a href="/.github/CONTRIBUTING.md">Contributing</a>
 </p>
@@ -30,7 +30,7 @@
 
 ## Table of contents <!-- omit in toc -->
 
-- [What is Seedling](#what-is-seedling)
+- [What is Seedlingo](#what-is-seedlingo)
 - [Get started](#get-started)
 - [Community](#community)
 - [Code of conduct](#code-of-conduct)
@@ -39,29 +39,41 @@
 
 ## What is Seedling
 
-Seedling is a digital language learning tool for adults.
+Seedlingo is a digital language learning tool targeting adults.
 
 A teacher or content developer
-can prepare lessons of curated exercises
-using Seedling's included exercise templates
-to provide tailored exercises
-to someone who is learning to read their native first-language.
+can prepare tailored units of exercises
+from Seedlingo's templates
+to provide skill-adjusted assignments
+to a fluent listener
+learning to read the language.
 
 Current exercise types are:
 
-- multiple-choice audio-to-text
-- 4-by-4 audio-to-text matching
-- multiple-choice explanation-to-text
-- 3-by-3 explanation-to-text matching
-- cloze multiple-choice
-- text comprehension
+- multiple-choice
+  - select text by audio cue
+  - select text by short phrase/synonym/explanation
+- matching
+  - match text to audio cue 4-by-4
+  - match text to phrase/synonym/explanation 3-by-3
+- cloze
+  - select text that matches the missing bit in a sentence
+  - select multiple text fragments
+    that match multiple missing bits in a sentence
+- comprehension
+  - read a short paragraph or two,
+    then answer questions about the the text,
+    before practicing newly introduced words or fragments
+    using multiple-choice or matching,
+    then finally review the original text
 
 Developing a content editor is high on the list of priorities.
 
-Seedling was originally developed by idea of - and for the benefit of -
-[Li Ai Education](https://liaieducation.com),
-with Putonghua and Simplified Chinese content
-available at [种字.com](https://种字.com)
+Seedlingo was originally developed as
+[立爱种字 LiAiZhongzi.com](https://liaizhongzi.com)
+from ideas by [立爱教育 Li Ai Education](https://liaieducation.com),
+to help Putonghua speaking adults
+learn to read simplified Chinese characters.
 
 ## Get started
 
@@ -85,16 +97,16 @@ available at [种字.com](https://种字.com)
 Follow these steps to set up a development or test environment
 on Ubuntu 22.04 LTS or equivalent.
 
-#### Clone the Seedling repository
+#### Clone the Seedlingo repository
 
 ```sh
-git clone git@github.com:nodepa/seedling.git
+git clone git@github.com:nodepa/seedlingo.git
 ```
 
 #### Navigate to repo
 
 ```sh
-cd seedling/app
+cd seedlingo/app
 ```
 
 #### Install packages
@@ -103,15 +115,23 @@ cd seedling/app
 npm install
 ```
 
-#### Start the app in local demo
+#### Start the app in local preview mode
 
 ```sh
 npm start   # Then visit http://localhost:4173 in your web browser
 ```
 
+#### Development mode
+
+You can also run Seedlingo in development mode.
+
+```sh
+npm run dev   # Then visit http://localhost:5173 in your web browser
+```
+
 #### Run full test suite
 
-This is a command that combines the scripts for
+Executing the script `test` will trigger the scripts for
 
 - `install`
 - `lint`
@@ -127,39 +147,39 @@ npm test
 Play around with your own content
 by replacing the `content/` folder (parallel to the `app/` folder)
 with your own content.
-See the [Seedling documentation](https://globalseedling.com/content/content.html)
+See the [Seedlingo documentation](https://seedlingo.com/content/content.html)
 about formats.
 
 ## Community
 
 Engage the community and ask questions
-in [Seedling discussions](https://github.com/nodepa/seedling/discussions).
+in [Seedlingo discussions](https://github.com/nodepa/seedlingo/discussions).
 Please stop by and say hi.
 
 ## Code of conduct
 
-Please help us keep the Seedling community open and positive.
+Please help us keep the Seedlingo community open and positive.
 Participate in the spirit of the
-[Seedling Code of Conduct](.github/CODE_OF_CONDUCT.md)
+[Seedlingo Code of Conduct](.github/CODE_OF_CONDUCT.md)
 and the [GitHub Community Guidelines](
 https://docs.github.com/en/github/site-policy/github-community-guidelines).
 
 ## Contributing
 
-We would love to receive your contributions to Seedling.
+We would love to receive your contributions to Seedlingo.
 Read through our [contributing guidelines](.github/CONTRIBUTING.md)
 and get working on it!
 
 ## License
 
-The Seedling project,
+The Seedlingo project,
 EXCEPT all material in the [content/](content/) folder,
 is licensed to the public under the [MIT License](LICENSE.md).
 
-The Seedling project's [content/](content/) is licensed to the public under a
+The Seedlingo project's [content/](content/) is licensed to the public under a
 [Creative Commons Attribution-ShareAlike 4.0 International Public License](
 content/LICENSE.md).
 
-By contributing to the Seedling project,
+By contributing to the Seedlingo project,
 you agree to license your contribution to the public under these terms,
 and affirm that you have the right to do so.

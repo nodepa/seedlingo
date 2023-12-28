@@ -13,7 +13,7 @@ Set up a development environment as described in [Get started](/get-started/get-
 ## Validating the content specification
 
 ```sh
-# Inside the seedling-folder:
+# Inside the `seedlingo/` folder:
 cd app
 npm run test:unit Validation # Note the capital V
 ```

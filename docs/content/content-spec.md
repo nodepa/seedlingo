@@ -3,8 +3,13 @@
 
 # Content specification
 
-Seedling version `0.9.0` requires format version `1.1.0`.
-Seedling version `0.91.0` and above requires format version `1.1.1`.
+::: tip Format versions
+Seedlingo `v0.9.0` requires format version `1.1.0`.
+
+Seedlingo `v0.91.0` and above requires format version `1.1.1`.
+
+Seedlingo `v1.0.0` and above requires format version `1.2.1`.
+:::
 
 ## ContentSpec.json
 
@@ -16,10 +21,10 @@ under that name. `ContentSpec.json` describes the file structure of the content.
 Mandatory field of type `string`.
 
 ```json
-"formatVersion": "1.1.1"
+"formatVersion": "1.2.1"
 ```
 
-`formatVersion` is used by the Seedling app to determine how the file can be
+`formatVersion` is used by the Seedlingo app to determine how the file can be
 expected to be formatted.
 
 ### instructions
@@ -106,10 +111,10 @@ corresponding media, i.e. audio, picture, video and/or symbol (i.e. icon).
 Mandatory field of type `string`.
 
 ```json
-"formatVersion": "1.1.1"
+"formatVersion": "1.2.1"
 ```
 
-`formatVersion` is used by the Seedling app to determine how the file can be
+`formatVersion` is used by the Seedlingo app to determine how the file can be
 expected to be formatted.
 
 ### wordCount
@@ -171,10 +176,10 @@ which words from the word-specification to include in an exercise.
 Mandatory field of type `string`.
 
 ```json
-"formatVersion": "1.1.1"
+"formatVersion": "1.2.1"
 ```
 
-`formatVersion` is used by the Seedling app to determine how the file can be
+`formatVersion` is used by the Seedlingo app to determine how the file can be
 expected to be formatted.
 
 ### id
@@ -232,7 +237,7 @@ Mandatory field of type `number`.
 `Explanation`.
 
 It is currently not possible to specify either ExplanationMatching or
-ExplanationMultipleChoice; Seedling will randomly choose to present an
+ExplanationMultipleChoice; Seedlingo will randomly choose to present an
 Explanation-exercise as either an ExplanationMatching-exercise or an
 ExplanationMultipleChoice-exercise.
 

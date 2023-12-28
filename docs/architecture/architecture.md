@@ -3,13 +3,13 @@
 
 # Architecture
 
-Seedling is built using the [VueJS](https://vuejs.org) web framework
+Seedlingo is built using the [VueJS](https://vuejs.org) web framework
 to build a client-side single page application (SPA)
 with progressive web app (PWA) functionality.
 The web app is then wrapped using [Ionic Framework](https://ionicframework.com)
-to create a native Android app presenting Seedling fully offline in a WebView.
+to create a native Android app presenting Seedlingo fully offline in a WebView.
 
-The main code entrypoint for Seedling is src/main.ts.
+The main code entrypoint for Seedlingo is src/main.ts.
 
 ## src/main.ts
 

@@ -14,7 +14,7 @@ describe("马丽 opens the app to the home screen's list of lessons", () => {
       'then lessons list',
     () => {
       cy.log(
-        '马丽 picks up her phone, opens her messaging app and taps on a link to Seedling in a message. Seedling opens and displays a screen with an animation that encourages 马丽 to wait for Seedling to get ready.',
+        '马丽 picks up her phone, opens her messaging app and taps on a link to Seedlingo in a message. Seedlingo opens and displays a screen with an animation that encourages 马丽 to wait for Seedlingo to get ready.',
       );
       cy.visit('/', {
         onBeforeLoad(window) {
@@ -35,7 +35,7 @@ describe("马丽 opens the app to the home screen's list of lessons", () => {
       });
 
       cy.log(
-        'Once Seedling is ready, a screen with an animation indicating the expectation that 马丽 should tap an interactive icon is displayed. The icon is re-used on every screen in the app and has a symbol that indicates “listen”, “help”, “instructions” or “support”.',
+        'Once Seedlingo is ready, a screen with an animation indicating the expectation that 马丽 should tap an interactive icon is displayed. The icon is re-used on every screen in the app and has a symbol that indicates “listen”, “help”, “instructions” or “support”.',
       );
       cy.get(loader).should('not.be.visible');
       cy.get(app)
@@ -77,7 +77,7 @@ describe("马丽 opens the app to the home screen's list of lessons", () => {
       cy.get(lessonsList).should('exist');
 
       cy.log(
-        'An audio clip plays explaining how tapping the icon is the way to get help or instructions throughout Seedling, encouraging 马丽 to tap one of the buttons to try out the “instructions” mode.',
+        'An audio clip plays explaining how tapping the icon is the way to get help or instructions throughout Seedlingo, encouraging 马丽 to tap one of the buttons to try out the “instructions” mode.',
       );
       cy.get(toggleInstructionsButton)
         .find('audio')
@@ -86,7 +86,7 @@ describe("马丽 opens the app to the home screen's list of lessons", () => {
         });
 
       cy.log(
-        '马丽 taps one of the buttons with instructions, the instructional audio is played and Seedling’s home page is displayed when done.',
+        '马丽 taps one of the buttons with instructions, the instructional audio is played and Seedlingo’s home page is displayed when done.',
       );
       cy.get(homeButton)
         .click()

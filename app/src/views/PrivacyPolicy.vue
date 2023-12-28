@@ -223,7 +223,7 @@ onMounted(() => {
             <p>
               You may contact us through our
               <a href="https://nodepa.org/contact">contact form</a>
-              or by email to seedling@nodepa.org
+              or by email to seedlingo@nodepa.org
             </p>
             <p>Please reach out to us if you:</p>
             <ul>

@@ -6,7 +6,7 @@ import docsearch from '@vuepress/plugin-docsearch';
 
 export default defineUserConfig<DefaultThemeOptions>({
   lang: 'en-US',
-  title: 'Seedling',
+  title: 'Seedlingo',
   description: 'Modern mobile multi-language literacy',
   head: [
     ['link', { rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180', href: 'favicon/apple-icon-180.png' }],
@@ -16,33 +16,40 @@ export default defineUserConfig<DefaultThemeOptions>({
   ],
 
   theme: localTheme({
-    logo: 'images/seedling-logo-blue.svg',
+    logo: 'images/seedlingo-logo-blue.svg',
     navbar: [
-      '/get-started/get-started.md',
-      '/content/content.md',
+      { text: 'Home', link: '/'},
+      { text: 'Try Seedlingo', link: 'https://seedlingo.app' },
+      { text: 'For teachers', link: '/content/content.md' },
+      { text: 'For developers', link: '/get-started/get-started.md' },
     ],
     sidebar: [
-      '/get-started/get-started.md',
       {
-        text: 'Content',
-        link: '/content/content.html',
+        text: 'For teachers',
         children: [
+          '/content/content.md',
           '/content/replace-content.md',
           '/content/content-spec.md',
           '/content/content-validation.md',
         ],
       },
       {
+        text: 'For developers',
+        children: [
+          '/get-started/get-started.md',
+      {
         text: 'Android',
         link: '/android/android-build.html',
       },
       '/architecture/architecture.md',
+        ],
+      },
     ],
-    repo: 'nodepa/seedling',
-    docsRepo: 'nodepa/seedling',
+    repo: 'nodepa/seedlingo',
+    docsRepo: 'nodepa/seedlingo',
     docsBranch: 'main',
     docsDir: 'docs',
-    toggleDarkMode: 'Toggle dark mode',
+    toggleColorMode: 'Toggle dark mode',
     lastUpdated: true,
   }),
   markdown: {
@@ -53,7 +60,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       docsearch({
         apiKey: 'f697003c57e07694a70993bfb1b6a532',
         appId: 'DBU4PMHNAN',
-        indexName: 'globalseedling',
+        indexName: 'seedlingo',
         locales: {
           '/': {
             placeholder: 'Search',

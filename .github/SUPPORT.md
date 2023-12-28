@@ -1,4 +1,4 @@
-# Seedling Support
+# Seedlingo Support
 
-- [Developer documentation](https://globalseedling.com/get-started/get-started)
-- [Seedling discussions](https://github.com/nodepa/seedling/discussions)
+- [Developer documentation](https://seedlingo.com/get-started/get-started)
+- [Seedlingo discussions](https://github.com/nodepa/seedlingo/discussions)

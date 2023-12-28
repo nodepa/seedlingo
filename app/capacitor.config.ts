@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'org.nodepa.seedling',
+  appId: 'org.nodepa.seedlingo',
   appName: '种字',
   webDir: 'dist',
   bundledWebRuntime: false,

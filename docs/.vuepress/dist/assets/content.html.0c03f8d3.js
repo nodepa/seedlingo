@@ -1,1 +1,0 @@
-const t={key:"v-0961764f",path:"/content/content.html",title:"Content",lang:"en-US",frontmatter:{prev:"/get-started/get-started.md",next:"/content/replace-content.md"},excerpt:"",headers:[],git:{updatedTime:1644453139e3,contributors:[{name:"toshify",email:"4579559+toshify@users.noreply.github.com",commits:1}]},filePathRelative:"content/content.md"};export{t as data};

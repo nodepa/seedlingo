@@ -17,9 +17,9 @@
 // **Certification**
 // - [ ] I certify that <!-- Check the box to certify: [X] -->
 // - I have read the [contributing guidelines](
-//   https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)
-// - I license these contributions to the public under Seedling's [LICENSE](
-//   https://github.com/nodepa/seedling/blob/main/LICENSE.md)
+//   https://github.com/nodepa/seedlingo/blob/main/.github/CONTRIBUTING.md)
+// - I license these contributions to the public under Seedlingo's [LICENSE](
+//   https://github.com/nodepa/seedlingo/blob/main/LICENSE.md)
 //   and have the rights to do so.
 
 // # Signed-off-by: Name/username <email>
@@ -29,7 +29,7 @@ export default {
   helpUrl:
     'Commit message guidelines are found\n    ' +
     "in the root folder's .gitmessage file, and at\n    " +
-    'https://github.com/nodepa/seedling/blob/main/.gitmessage',
+    'https://github.com/nodepa/seedlingo/blob/main/.gitmessage',
   rules: {
     'header-max-length': [2, 'always', 72],
     'type-empty': [2, 'never'],
@@ -139,9 +139,9 @@ export default {
               '**certification**\n' +
                 '- [x] i certify that <!-- check the box to certify: [x] -->\n' +
                 '- i have read the [contributing guidelines](\n' +
-                '  https://github.com/nodepa/seedling/blob/main/.github/contributing.md)\n' +
-                "- i license these contributions to the public under seedling's\n" +
-                '  [license](https://github.com/nodepa/seedling/blob/main/license.md)\n' +
+                '  https://github.com/nodepa/seedlingo/blob/main/.github/contributing.md)\n' +
+                "- i license these contributions to the public under seedlingo's\n" +
+                '  [license](https://github.com/nodepa/seedlingo/blob/main/license.md)\n' +
                 '  and have the rights to do so.\n',
             );
           return [
@@ -152,9 +152,9 @@ export default {
               '**Certification**\n' +
               '- [X] I certify that <!-- Check the box to certify: [X] -->\n' +
               '- I have read the [contributing guidelines](\n' +
-              '  https://github.com/nodepa/seedling/blob/main/.github/CONTRIBUTING.md)\n' +
-              "- I license these contributions to the public under Seedling's\n" +
-              '  [LICENSE](https://github.com/nodepa/seedling/blob/main/LICENSE.md)\n' +
+              '  https://github.com/nodepa/seedlingo/blob/main/.github/CONTRIBUTING.md)\n' +
+              "- I license these contributions to the public under Seedlingo's\n" +
+              '  [LICENSE](https://github.com/nodepa/seedlingo/blob/main/LICENSE.md)\n' +
               '  and have the rights to do so.  ',
           ];
         },

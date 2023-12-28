@@ -3,9 +3,9 @@
 
 # Get started
 
-If you want to try out Seedling on your local system,
+If you want to try out Seedlingo on your local system,
 want to develop your own content,
-or want to contribute to Seedling,
+or want to contribute to Seedlingo,
 this should get you up and running.
 
 ## Prerequisites
@@ -28,16 +28,16 @@ this should get you up and running.
 Follow these steps to set up a development or test environment
 on Ubuntu 22.04 LTS or equivalent.
 
-### Clone the Seedling repository
+### Clone the Seedlingo repository
 
 ```sh
-git clone git@github.com:nodepa/seedling.git
+git clone git@github.com:nodepa/seedlingo.git
 ```
 
 ### Navigate to repo
 
 ```sh
-cd seedling/app
+cd seedlingo/app
 ```
 
 ### Install packages

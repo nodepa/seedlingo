@@ -1,1 +1,0 @@
-const t={key:"v-6c082dc8",path:"/content/replace-content.html",title:"Replace content",lang:"en-US",frontmatter:{prev:"/content/content.md"},excerpt:"",headers:[],git:{updatedTime:1644453139e3,contributors:[{name:"toshify",email:"4579559+toshify@users.noreply.github.com",commits:1}]},filePathRelative:"content/replace-content.md"};export{t as data};

@@ -1,7 +1,7 @@
-# Seedling Code of Conduct
+# Seedlingo Code of Conduct
 
 We hope that this code of conduct, and the enforcement of it, will contribute
-to a safe and positive atmosphere for you and the Seedling community. Please
+to a safe and positive atmosphere for you and the Seedlingo community. Please
 act in [empathy](https://en.wikipedia.org/wiki/Empathy) to add to the
 positivity of the community.
 
@@ -69,7 +69,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
-[seedling@nodepa.org](mailto:seedling@nodepa.org). If the report involves the
+[seedlingo@nodepa.org](mailto:seedlingo@nodepa.org). If the report involves the
 community leaders, contact [post@nodepa.org](mailto:post@nodepa.org) instead.
 All complaints will be reviewed and investigated promptly and fairly.
 
