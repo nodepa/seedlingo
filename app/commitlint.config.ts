@@ -25,7 +25,13 @@
 // # Signed-off-by: Name/username <email>
 
 // # ─── END OF COMMIT MESSAGE ───────────────────────────────────wrap<=72┘
-export default {
+import type {
+  Commit,
+  RuleConfigCondition,
+  UserConfig,
+} from '@commitlint/types';
+
+const Configuration: UserConfig = {
   helpUrl:
     'Commit message guidelines are found\n    ' +
     "in the root folder's .gitmessage file, and at\n    " +
@@ -49,7 +55,7 @@ export default {
       ],
     ],
     'type-case': [2, 'always', 'lower-case'],
-    'scope-enum': [2, 'never'],
+    'scope-empty': [2, 'always'],
     'subject-empty': [2, 'never'],
     'subject-case': [2, 'always', ['lower-case', 'sentence-case']],
     'subject-exclamation-mark': [2, 'never', '.'],
@@ -61,15 +67,15 @@ export default {
     'body-certification-section': [2, 'always'],
     'footer-max-line-length': [2, 'always', 72],
     'footer-leading-blank': [2, 'always'],
-    'signed-off-by': [2, 'always'],
-    'trailer-exists': [2, 'always'],
+    'signed-off-by': [2, 'always', 'Signed-off-by:'],
+    'trailer-exists': [2, 'always', 'Signed-off-by:'],
   },
   plugins: [
     {
       rules: {
         'body-leading-blank': (
-          { body, raw }: { body: string; raw: string },
-          when: string,
+          { body, raw }: Commit,
+          when?: RuleConfigCondition,
         ) => {
           if (!body) {
             return [true];
@@ -95,10 +101,10 @@ export default {
         },
         // # **Motivation - Why is this change necessary?**
         // Because
-        'body-motivation-section-explaining-why': function (
-          { body }: { body: string },
+        'body-motivation-section-explaining-why': (
+          { body }: Commit,
           when = 'always',
-        ) {
+        ) => {
           const negated = when == 'never';
           const includesMotivation = `${body}`.match(/^[Bb]ecause.*\n/) != null;
           return [
@@ -112,10 +118,10 @@ export default {
         // # **Impact - How will this commit address the need?**
         // this commit will:
         // - add
-        'body-impact-section-explaining-how': function (
-          { body }: { body: string },
+        'body-impact-section-explaining-how': (
+          { body }: Commit,
           when = 'always',
-        ) {
+        ) => {
           const negated = when == 'never';
           const includesImpact = `${body}`
             .toLowerCase()
@@ -128,10 +134,10 @@ export default {
               'Answer "How will this commit address the need?". Start with "this commit will "  ',
           ];
         },
-        'body-certification-section': function (
-          { body, footer }: { body: string; footer: string },
+        'body-certification-section': (
+          { body, footer }: Commit,
           when = 'always',
-        ) {
+        ) => {
           const negated = when == 'never';
           const includesCertification = `${body}${footer}`
             .toLowerCase()
@@ -162,3 +168,5 @@ export default {
     },
   ],
 };
+
+export default Configuration;
