@@ -359,11 +359,11 @@
             "questionnaire": true
           },
           {
-            "instructionText": "请再次阅读短文，猜猜短文中一些新词语的意思。然后点击箭头回答问题。",
+            "instructionText": "请再次阅读短文，猜猜短文中一些新词语的意思。然后点击箭头完成问题。",
             "instructionAudio": "audio/短文介绍2.mp3"
           },
           {
-            "instructionText": "请回答以下问题。答案不清楚的请重新阅读短文，根据短文猜出答案。",
+            "instructionText": "请完成以下问题。答案不清楚的请重新阅读短文，根据短文猜出答案。",
             "instructionAudio": "audio/短文介绍3.mp3"
           },
           {
