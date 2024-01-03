@@ -60,7 +60,8 @@ footer: '<a href="/privacy-policy/privacy-policy.html">Privacy policy</a><br/><b
 
 ## What is Seedlingo?
 
-Seedlingo is a digital language learning tool targeting adults.
+Seedlingo is a digital language learning tool
+targeting adults learning to read their native language.
 
 ::: tip _
 A teacher or content developer
