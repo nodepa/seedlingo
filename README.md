@@ -37,9 +37,10 @@
 - [Contributing](#contributing)
 - [License](#license)
 
-## What is Seedling
+## What is Seedlingo
 
-Seedlingo is a digital language learning tool targeting adults.
+Seedlingo is a digital language learning tool
+targeting adults learning to read their native language.
 
 A teacher or content developer
 can prepare tailored units of exercises
@@ -74,6 +75,14 @@ Seedlingo was originally developed as
 from ideas by [立爱教育 Li Ai Education](https://liaieducation.com),
 to help Putonghua speaking adults
 learn to read simplified Chinese characters.
+
+To try the Android app, [download version 1.1.0](
+  https://github.com/nodepa/seedlingo/releases/download/v1.1.0/seedlingo_v1.1.0_33.apk
+) or check the [release history](https://github.com/nodepa/seedlingo/releases)
+for a more recent version.
+Download to your phone, then install.
+You may have to enable the setting "Install from unknown sources"
+before your phone will allow the installation.
 
 ## Get started
 
