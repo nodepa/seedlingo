@@ -11,8 +11,8 @@ export default defineUserConfig({
   title: 'Seedlingo',
   description: 'Modern mobile multi-language literacy',
   head: [
+    [ 'link', { rel: 'icon', type: 'image/svg+xml', href: 'favicon/favicon.svg' } ],
     [ 'link', { rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180', href: 'favicon/apple-icon-180.png' } ],
-    [ 'link', { rel: 'icon', type: 'image/png', sizes: '196x196', href: '/favicon/favicon-196.png' } ],
     [ 'link', { rel: 'shortcut icon', href: '/favicon.ico' } ],
     [ 'link', { rel: 'preconnect', href: 'https://DBU4PMHNAN-dsn.algolia.net', crossorigin: '' } ],
   ],
