@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { usePageFrontmatter } from '@vuepress/client'
-import { isArray } from '@vuepress/shared'
 import { computed } from 'vue'
-import type { DefaultThemeHomePageFrontmatter } from '../../shared'
+import type { DefaultThemeHomePageFrontmatter } from '@vuepress/theme-default'
 const frontmatter = usePageFrontmatter<DefaultThemeHomePageFrontmatter>()
 const features = computed(() => {
-  if (isArray(frontmatter.value.features)) {
+  if (Array.isArray(frontmatter.value.features)) {
     return frontmatter.value.features
   }
   return []
@@ -15,7 +14,7 @@ const features = computed(() => {
 <template>
   <div v-if="features.length" class="features">
     <div v-for="feature in features" :key="feature.title" class="feature">
-      <img class="feature-image" :src="feature.imagePath"/>
+      <img class="feature-image" :src="feature.imagePath" />
       <h2>{{ feature.title }}</h2>
       <p>{{ feature.details }}</p>
     </div>
@@ -26,6 +25,7 @@ const features = computed(() => {
 .home .feature {
   text-align: center;
 }
+
 .feature-image {
   max-height: 16rem;
 }
