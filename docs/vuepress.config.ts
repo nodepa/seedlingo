@@ -3,6 +3,8 @@ import { viteBundler } from '@vuepress/bundler-vite';
 import { defaultTheme } from '@vuepress/theme-default';
 import { path } from '@vuepress/utils';
 import docsearch from '@vuepress/plugin-docsearch';
+import { seoPlugin } from '@vuepress/plugin-seo';
+import { sitemapPlugin } from '@vuepress/plugin-sitemap';
 
 export default defineUserConfig({
   bundler: viteBundler(),
@@ -72,5 +74,11 @@ export default defineUserConfig({
         },
       }),
     ],
+    seoPlugin({
+      hostname: 'seedlingo.com',
+    }),
+    sitemapPlugin({
+      hostname: 'seedlingo.com',
+    }),
   ],
 });
