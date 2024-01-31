@@ -1,24 +1,30 @@
-import { path } from '@vuepress/utils';
 import { defineUserConfig } from 'vuepress';
-import type { DefaultThemeOptions } from 'vuepress';
-import localTheme from './.vuepress/theme/index.ts';
+import { viteBundler } from '@vuepress/bundler-vite';
+import { defaultTheme } from '@vuepress/theme-default';
+import { path } from '@vuepress/utils';
 import docsearch from '@vuepress/plugin-docsearch';
 
-export default defineUserConfig<DefaultThemeOptions>({
+export default defineUserConfig({
+  bundler: viteBundler(),
+
   lang: 'en-US',
   title: 'Seedlingo',
   description: 'Modern mobile multi-language literacy',
   head: [
-    ['link', { rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180', href: 'favicon/apple-icon-180.png' }],
-    ['link', { rel: 'icon', type: 'image/png', sizes: '196x196', href: '/favicon/favicon-196.png' }],
-    ['link', { rel: 'shortcut icon', href: '/favicon.ico' }],
-    ['link', { rel: 'preconnect', href: 'https://DBU4PMHNAN-dsn.algolia.net', crossorigin: '' }],
+    [ 'link', { rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180', href: 'favicon/apple-icon-180.png' } ],
+    [ 'link', { rel: 'icon', type: 'image/png', sizes: '196x196', href: '/favicon/favicon-196.png' } ],
+    [ 'link', { rel: 'shortcut icon', href: '/favicon.ico' } ],
+    [ 'link', { rel: 'preconnect', href: 'https://DBU4PMHNAN-dsn.algolia.net', crossorigin: '' } ],
   ],
 
-  theme: localTheme({
+  alias: {
+    '@theme/HomeFeatures.vue': path.resolve('./.vuepress/theme/HomeFeatures.vue'),
+  },
+
+  theme: defaultTheme({
     logo: 'images/seedlingo-logo-blue.svg',
     navbar: [
-      { text: 'Home', link: '/'},
+      { text: 'Home', link: '/' },
       { text: 'Try Seedlingo', link: 'https://seedlingo.app' },
       { text: 'For teachers', link: '/content/content.md' },
       { text: 'For developers', link: '/get-started/get-started.md' },
@@ -37,11 +43,11 @@ export default defineUserConfig<DefaultThemeOptions>({
         text: 'For developers',
         children: [
           '/get-started/get-started.md',
-      {
-        text: 'Android',
-        link: '/android/android-build.html',
-      },
-      '/architecture/architecture.md',
+          {
+            text: 'Android',
+            link: '/android/android-build.html',
+          },
+          '/architecture/architecture.md',
         ],
       },
     ],
@@ -52,15 +58,13 @@ export default defineUserConfig<DefaultThemeOptions>({
     toggleColorMode: 'Toggle dark mode',
     lastUpdated: true,
   }),
-  markdown: {
-    pageSuffix: '',
-  },
+
   plugins: [
     [
       docsearch({
         apiKey: 'f697003c57e07694a70993bfb1b6a532',
         appId: 'DBU4PMHNAN',
-        indexName: 'seedlingo',
+        indexName: 'globalseedling',
         locales: {
           '/': {
             placeholder: 'Search',
