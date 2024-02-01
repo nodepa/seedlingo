@@ -18,7 +18,7 @@ onMounted(() => {
         </ion-row>
         <ion-row class="ion-justify-content-center">
           <ion-col size="10">
-            <sup>Effective date: 2021-09-01</sup>
+            <sup>Effective date: 2024-02-01</sup>
             <p><strong>In short</strong></p>
             <ul>
               <li>
@@ -42,10 +42,10 @@ onMounted(() => {
             </ul>
             <h2>Who we are</h2>
             <p>
-              The web app at
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              belongs to Norwegian Development Partners (<a
-                href="https://nodepa.org"
+              The web apps at
+              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a> and
+              <a href="https://seedlingo.app">Seedlingo.app</a> belong to
+              Norwegian Development Partners (<a href="https://nodepa.org"
                 >Nodepa</a
               >), a Norway-based non-profit registered with the Norwegian
               Government under the organization number 916724799.
@@ -62,8 +62,10 @@ onMounted(() => {
               to take appropriate steps to protect your personal data and use it
               appropriately. This privacy policy explains what data we collect
               when you interact with
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>, how we use
-              your data and why.
+              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
+              and
+              <a href="https://seedlingo.app">Seedlingo.app</a>
+              , how we use your data and why.
             </p>
             <h2>Information we collect, and how</h2>
             <blockquote>
@@ -89,8 +91,10 @@ onMounted(() => {
             <h3>Information you give us directly</h3>
             <p>
               There is currently no means for you to explicitly provide any
-              information to us directly through
+              arbitrary information to us directly through
               <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
+              and
+              <a href="https://seedlingo.app">Seedlingo.app</a>
               (we will update this privacy policy if that changes.)
             </p>
             <p>
@@ -105,13 +109,19 @@ onMounted(() => {
             <h4>Device/Usage information</h4>
             <p>
               <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              is hosted by Amazon Web Services (<a href="https://aws.amazon.com"
+              and
+              <a href="https://seedlingo.app">Seedlingo.app</a>
+              are hosted by Amazon Web Services (<a
+                href="https://aws.amazon.com"
                 >AWS</a
               >). When you interact with
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>, some
+              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
+              and
+              <a href="https://seedlingo.app">Seedlingo.app</a>, some
               information about your usage is automatically collected and stored
               by AWS' infrastructure (see
-              <a href="https://aws.amazon.com/privacy">AWS' privacy policy</a>).
+              <a href="https://aws.amazon.com/privacy">AWS' privacy policy</a>
+              ).
             </p>
             <p>
               AWS makes available to us access logs containing information about
@@ -120,8 +130,22 @@ onMounted(() => {
             </p>
             <ul>
               <li>IP address</li>
+              <li>description of your browser and device (User Agent)</li>
               <li>date and time of request</li>
-              <li>description of your browser and device</li>
+            </ul>
+            <p>
+              We use
+              <a href="https://plausible.io">Plausible</a>, a privacy minded
+              analytics tool, to collect aggregated usage statistics, including
+              your:
+            </p>
+            <ul>
+              <li>IP address</li>
+              <li>description of your browser and device (User Agent)</li>
+              <li>
+                date and time of event (like a page visit or button click)
+              </li>
+              <li>the URL of the current page</li>
             </ul>
             <p>
               We do not collect any other device or usage information that can
@@ -135,7 +159,9 @@ onMounted(() => {
             </p>
             <p>
               <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              does not use any cookies or store any unique identifiers in any of
+              and
+              <a href="https://seedlingo.app">Seedlingo.app</a>
+              do not use any cookies or store any unique identifiers in any of
               the other places this can be done in your browser or on your
               device.
             </p>
@@ -150,7 +176,9 @@ onMounted(() => {
             </p>
             <p>
               <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              does not use any tracking technologies or web beacons.
+              and
+              <a href="https://seedlingo.app">Seedlingo.app</a>
+              do not use any tracking technologies or web beacons.
             </p>
             <p>
               We store on your device the number of times you have seen the
@@ -164,12 +192,13 @@ onMounted(() => {
                 We do not intentionally or knowingly collect information from
                 anyone under the age of 18.
                 <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-                is intended for and directed to users over the age of 18.
+                and
+                <a href="https://seedlingo.app">Seedlingo.app</a>
+                are intended for and directed to users over the age of 18.
               </li>
               <li>We do not collect sensitive personal information</li>
-              <li>We do not track you across websites</li>
-              <li>We do not use analytics tools like Google Analytics</li>
               <li>We do not use marketing tools or advertisements</li>
+              <li>We do not track you across websites</li>
             </ul>
             <h2>How we use your information</h2>
             <p>
@@ -179,6 +208,14 @@ onMounted(() => {
               whether usage is increasing or declining. We can also use this
               data to manage some types of errors that may occur in the web app.
               We do not in any way use the access log data to identify you.
+            </p>
+            <p>
+              The analytics data collect through
+              <a href="https://plausible.io">Plausible</a>
+              allow us to see which pages are visited, how frequently they are
+              visited and approximately how much time users on average spend on
+              a page. This guides us in deciding which areas of the app require
+              more polish and attention.
             </p>
             <p>
               When you send us an email, we will use your email address to reply
@@ -198,10 +235,13 @@ onMounted(() => {
               us stays in the email system until deleted. Any access log data
               stays within
               <a href="https://aws.amazon.com">AWS</a>' systems until deleted.
+              Any analytics data collected stays within
+              <a href="https://plausible.io">Plausible's</a>
+              systems until deleted.
             </p>
             <p>
               We retain the data we collect for as long as necessary to be
-              useful as described in this privacy policy or for as long as we
+              useful as described in this privacy policy and for as long as we
               are legally required or permitted to.
             </p>
             <h2>Your rights to your data</h2>
@@ -253,9 +293,11 @@ onMounted(() => {
 ion-content::part(background) {
   background-color: var(--ion-color-card);
 }
+
 blockquote {
   margin-left: 2rem;
 }
+
 ul {
   margin-bottom: 1rem;
   padding-left: 1rem;

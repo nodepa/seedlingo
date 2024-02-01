@@ -37,12 +37,22 @@ import InstructionsDirective from './common/directives/InstructionsDirective';
 import App from './App.vue';
 import router from './common/router';
 import store from './common/store/RootStore';
+import { createPlausible } from './common/plugins/PlausibleAnalytics';
 
 const app = createApp(App);
 app.use(IonicVue);
 app.use(store);
 app.use(router);
 app.use(InstructionsDirective, { Badge });
+app.use(
+  createPlausible({
+    init: {
+      domain: 'seedlingo.app',
+      trackLocalhost: true,
+    },
+    settings: {},
+  }),
+);
 
 if (import.meta.env.PROD) {
   const timeSinceNavStart =
