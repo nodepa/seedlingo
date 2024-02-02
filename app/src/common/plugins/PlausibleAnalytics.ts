@@ -37,14 +37,14 @@ const enableAutoPageviews = async (
     const appInfo = await CapacitorApp.getInfo();
     if (appInfo) {
       props.AppVersion = `v${appInfo.version}_${appInfo.build}`;
-    } else if (__APP_VERSION__) {
-      props.AppVersion = `v${__APP_VERSION__}`;
-      if (__AWS_JOB_ID__) {
-        props.AppVersion += `_${__AWS_JOB_ID__}`;
-      }
-      if (__AWS_BRANCH__) {
-        props.AppVersion += ` (${__AWS_BRANCH__})`;
-      }
+    }
+  } else if (__APP_VERSION__) {
+    props.AppVersion = `v${__APP_VERSION__}`;
+    if (__AWS_JOB_ID__) {
+      props.AppVersion += `_${__AWS_JOB_ID__}`;
+    }
+    if (__AWS_BRANCH__) {
+      props.AppVersion += ` (${__AWS_BRANCH__})`;
     }
   }
   const pageview = () =>
