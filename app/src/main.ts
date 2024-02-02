@@ -50,7 +50,10 @@ app.use(
       domain: 'seedlingo.app',
       trackLocalhost: true,
     },
-    settings: {},
+    settings: {
+      enableAutoPageviews: true,
+      enableAutoOutboundTracking: true,
+    },
   }),
 );
 

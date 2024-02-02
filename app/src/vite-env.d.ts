@@ -8,5 +8,6 @@ declare module '*.vue' {
   export default component
 }
 
+declare const __APP_VERSION__: string
 declare const __AWS_JOB_ID__: string
 declare const __AWS_BRANCH__: string

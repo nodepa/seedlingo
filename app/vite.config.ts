@@ -44,8 +44,11 @@ export default defineConfig({
     }),
   ],
   define: {
-    __AWS_JOB_ID__: `\"${process.env.AWS_JOB_ID || ''}\"`,
-    __AWS_BRANCH__: `\"${process.env.AWS_BRANCH || ''}\"`,
+    __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
+    __AWS_JOB_ID__: JSON.stringify(
+      process.env.AWS_JOB_ID ? process.env.AWS_JOB_ID.replace(/^0+/, '') : '',
+    ),
+    __AWS_BRANCH__: JSON.stringify(process.env.AWS_BRANCH),
   },
   resolve: {
     alias: {
