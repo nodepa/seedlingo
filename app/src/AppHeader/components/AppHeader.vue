@@ -15,7 +15,7 @@ const appVersion = computed(() => {
   } else if (__APP_VERSION__) {
     let v = `v${__APP_VERSION__}`;
     if (__AWS_JOB_ID__) {
-      v += `${__AWS_JOB_ID__}`;
+      v += `_${__AWS_JOB_ID__}`;
     }
     if (__AWS_BRANCH__) {
       v += ` (${__AWS_BRANCH__})`;
