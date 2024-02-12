@@ -19,7 +19,8 @@ if (import.meta.env.MODE === 'test') {
   contentFolder = '/src/test-support/';
   mp3Base64Sources = import.meta.glob('/src/test-support/**/*.mp3.audio', {
     eager: true,
-    as: 'raw',
+    query: '?raw',
+    import: 'default',
   });
   jsonSources = import.meta.glob('/src/test-support/**/*.json', {
     eager: true,
@@ -33,7 +34,8 @@ if (import.meta.env.MODE === 'test') {
   contentFolder = '../../../content/';
   mp3Base64Sources = import.meta.glob('../../../content/**/*.mp3.audio', {
     eager: true,
-    as: 'raw',
+    query: '?raw',
+    import: 'default',
   });
   jsonSources = import.meta.glob('../../../content/**/*.json', {
     eager: true,
@@ -170,7 +172,7 @@ export default class Content {
 
   public static getAudioData(path: string): string {
     return `data:audio/mpeg;base64,${
-      mp3Base64Sources[`${contentFolder}${path}.audio`]
+      mp3Base64Sources[`${contentFolder}${path}.audio`] as string
     }`;
   }
 
