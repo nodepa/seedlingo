@@ -20,6 +20,7 @@
 import { createApp } from 'vue';
 
 import { IonicVue } from '@ionic/vue';
+import { isPlatform } from '@ionic/vue';
 import '@ionic/vue/css/core.css';
 import '@ionic/vue/css/normalize.css';
 import '@ionic/vue/css/structure.css';
@@ -47,7 +48,10 @@ app.use(InstructionsDirective, { Badge });
 app.use(
   createPlausible({
     init: {
-      domain: 'seedlingo.app',
+      domain:
+        __AWS_BRANCH__ === 'main' || isPlatform('capacitor')
+          ? 'seedlingo.app'
+          : 'test.seedlingo.app',
       trackLocalhost: true,
     },
     settings: {
