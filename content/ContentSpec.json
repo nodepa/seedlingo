@@ -103,7 +103,7 @@
       "lessonSpecFile": "Lesson15.json"
     },
     {
-      "name": "工作，工资,时间",
+      "name": "工作，工资，时间",
       "icon": "mdiAccountHardHat",
       "introductionAudio": "audio/instructions/placeholder-audio.mp3",
       "lessonSpecFile": "Lesson16.json"

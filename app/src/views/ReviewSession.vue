@@ -64,78 +64,76 @@ onMounted(() => {
 
 <template>
   <ion-page>
-    <ion-grid
-      fixed
-      style="
-        height: 100%;
-        padding: 0rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-    >
-      <ion-card
-        style="
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          justify-content: center;
-          margin: 0rem 0.8rem;
-          max-height: calc(100% - 1.6rem);
-        "
+    <ion-grid fixed style="padding: 0rem">
+      <ion-row
+        class="ion-justify-content-center ion-align-items-center"
+        style="height: 100%"
       >
-        <ion-card-header
-          v-if="word.picture && word.picture.length > 0"
-          style="
-            min-height: 0%;
-            min-width: 0%;
-            display: flex;
-            justify-content: center;
-          "
-        >
-          <img
-            :src="Content.getPicPath(word.picture)"
-            data-test="review-picture"
-            style="object-fit: contain; max-height: 100%"
-          />
-        </ion-card-header>
-        <ion-card-header
-          v-else-if="word.symbol && word.symbol.length > 0"
-          style="display: flex; justify-content: center; align-items: center"
-        >
-          <span>
-            <ion-icon
-              v-for="(icon, iconIndex) in word.symbol"
-              :key="iconIndex"
-              data-test="review-icon"
-              :icon="Content.getIcon(icon)"
-              style="font-size: 4rem"
-            />
-          </span>
-        </ion-card-header>
-        <ion-card-content style="display: flex; flex: 1">
-          <ExerciseButton
-            data-test="review-word"
-            :playing="audio.playing"
-            color="primary"
+        <ion-col size="10">
+          <ion-card
             style="
-              width: 100%;
-              height: auto;
-              min-height: 6rem;
-              font-size: 3rem;
-              --padding-top: 0.5rem;
-              --padding-bottom: 0.5rem;
-              --padding-start: 0.5rem;
-              --padding-end: 0.5rem;
+              display: flex;
+              flex: 1;
+              flex-direction: column;
+              justify-content: center;
+              margin: 0rem;
             "
-            @click="audio.play()"
           >
-            <span style="white-space: break-spaces">
-              {{ word.word }}
-            </span>
-          </ExerciseButton>
-        </ion-card-content>
-      </ion-card>
+            <ion-card-header v-if="word.picture && word.picture.length > 0" >
+              <img
+                data-test="review-picture"
+                :src="Content.getPicPath(word.picture)"
+                style="
+                  max-height: calc(
+                    100vh - 6.625rem - 6rem - 1.25rem - 2.25rem - 1rem
+                  );
+                  object-fit: contain;
+                "
+              />
+            </ion-card-header>
+            <ion-card-header
+              v-else-if="word.symbol && word.symbol.length > 0"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <span>
+                <ion-icon
+                  v-for="(icon, iconIndex) in word.symbol"
+                  :key="iconIndex"
+                  data-test="review-icon"
+                  :icon="Content.getIcon(icon)"
+                  style="font-size: 4rem"
+                />
+              </span>
+            </ion-card-header>
+            <ion-card-content style="display: flex; flex: 1">
+              <ExerciseButton
+                data-test="review-word"
+                :playing="audio.playing"
+                color="primary"
+                style="
+                  width: 100%;
+                  height: auto;
+                  min-height: 6rem;
+                  font-size: 3rem;
+                  --padding-top: 0.5rem;
+                  --padding-bottom: 0.5rem;
+                  --padding-start: 0.5rem;
+                  --padding-end: 0.5rem;
+                "
+                @click="audio.play()"
+              >
+                <span style="white-space: break-spaces">
+                  {{ word.word }}
+                </span>
+              </ExerciseButton>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </ion-page>
 </template>

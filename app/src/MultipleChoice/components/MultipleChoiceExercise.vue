@@ -143,7 +143,7 @@ onUpdated(() => {
 
 <template>
   <ion-grid fixed>
-    <ion-row class="top-row ion-justify-content-center" style="height: 30%">
+    <ion-row class="top-row ion-justify-content-center" style="height: 40%">
       <ion-col size="10">
         <ExerciseButton
           ref="itemUnderTestButton"
@@ -206,7 +206,7 @@ onUpdated(() => {
         </ExerciseButton>
       </ion-col>
     </ion-row>
-    <ion-row class="ion-justify-content-around" style="height: 70%">
+    <ion-row class="ion-justify-content-around" style="height: 60%">
       <ion-col
         v-for="(option, index) in exerciseProp.options"
         :key="index"
