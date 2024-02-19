@@ -14,8 +14,8 @@ The content consist of
 - a word-list describing words and their corresponding media,
   like icons, pictures and audio
 - media files
-- lesson specifications that describe
-  which exercise templates to include in a lesson,
+- unit specifications that describe
+  which exercise templates to include in a unit,
   and which words to practice with which exercise types
 - audio files giving the users instructions about how to interact and progress
 

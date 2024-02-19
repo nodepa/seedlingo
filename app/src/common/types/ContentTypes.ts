@@ -1,5 +1,5 @@
 export interface ContentSpec {
-  formatVersion: '1.2.0';
+  formatVersion: '1.3.0';
 
   instructions: {
     // Paths to instructions audio must be relative to <project root>/content/:
@@ -19,16 +19,16 @@ export interface ContentSpec {
 
   wordSpecFile: string;
 
-  lessons: Array<{
+  units: Array<{
     name: string;
     icon: string;
     introductionAudio: string;
-    lessonSpecFile: string;
+    unitSpecFile: string;
   }>;
 }
 
 export interface WordListSpec {
-  formatVersion: '1.2.0';
+  formatVersion: '1.3.0';
   wordCount: number;
   words: { [key: string]: WordSpec };
 }
@@ -42,10 +42,10 @@ export interface WordSpec {
   isPunctuation?: string | boolean;
 }
 
-export interface LessonSpec {
-  formatVersion: '1.2.0';
+export interface UnitSpec {
+  formatVersion: '1.3.0';
   id: string;
-  lessonIndex: number;
+  unitIndex: number;
   matchingCount: number;
   multipleChoiceCount: number;
   explanationCount: number;
@@ -105,7 +105,6 @@ export interface ComprehensionSpec {
   suppressOptionAudio?: boolean;
   comprehensionQuestions?: Array<ComprehensionQuestionSpec>;
   comprehensionStages?: Array<ComprehensionStageSpec>;
-  // comprehensionStages?: { [key: number]: ComprehensionStageSpec };
 }
 export interface ComprehensionQuestionSpec {
   questionText: string;

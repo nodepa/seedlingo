@@ -7,7 +7,7 @@ import {
   IonPage,
   IonRow,
 } from '@ionic/vue';
-import logoUrl from '../assets/logo/logo-col.svg';
+import logoUrl from '@/assets/logo/logo-col.svg';
 </script>
 
 <template>

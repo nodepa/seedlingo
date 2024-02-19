@@ -9,6 +9,8 @@ Seedlingo `v0.9.0` requires format version `1.1.0`.
 Seedlingo `v0.91.0` and above requires format version `1.1.1`.
 
 Seedlingo `v1.0.0` and above requires format version `1.2.1`.
+
+Seedlingo `v1.3.0` and above requires format version `1.3.0`.
 :::
 
 ## ContentSpec.json
@@ -67,37 +69,37 @@ Mandatory field of type `string`.
 "wordSpecFile": "WordSpec.json"
 ```
 
-`wordSpecFile` is a path to the file specifying every word used in any lesson
+`wordSpecFile` is a path to the file specifying every word used in any unit
 (see [Word-specification](#word-specification)).
 
-### lessons
+### units
 
-Mandatory field of type `Array`; must contain at least one lesson.
+Mandatory field of type `Array`; must contain at least one unit.
 
 ```json
-"lessons": [
+"units": [
   {
-    "name": "My first lesson",
+    "name": "My first unit",
     "icon": "mdiNumeric",
-    "introductionAudio": "audio/introduction/DescriptionOfLesson1.mp3",
-    "lessonSpecFile": "Lesson1Spec.json"
+    "introductionAudio": "audio/introduction/DescriptionOfUnit1.mp3",
+    "unitSpecFile": "Unit1Spec.json"
   },
   {...}
 ]
 ```
 
-`lessons` is a collection of lesson descriptions, referencing the lesson specification through `lessonSpecFile`.
+`units` is a collection of unit descriptions, referencing the unit specification through `unitSpecFile`.
 
-Each lesson must have the following mandatory fields of type `string`:
+Each unit must have the following mandatory fields of type `string`:
 
-- `name`, the name of the lesson, currently not displayed anywhere
+- `name`, the name of the unit, currently not displayed anywhere
 - `icon`, the name of a [Material Design icon](https://materialdesignicons.com),
   prefixed with `mdi`
   and [Camel-Cased](https://en.wikipedia.org/wiki/Camel_case),
   so that `numeric-1` becomes `mdiNumeric1`
-- `introductionAudio`, the relative path to the audio introducing the lesson
-- `lessonSpecFile`, the relative path to the file containing the specification
-  for the lesson (see [Lesson-specification](#lesson-specification)).
+- `introductionAudio`, the relative path to the audio introducing the unit
+- `unitSpecFile`, the relative path to the file containing the specification
+  for the unit (see [Unit-specification](#unit-specification)).
 
 ## Word-specification
 
@@ -164,9 +166,9 @@ Each word can have any or none of the following optional fields:
   and [Camel-Cased](https://en.wikipedia.org/wiki/Camel_case),
   so that `numeric-1` becomes `mdiNumeric1`
 
-## Lesson-specification
+## Unit-specification
 
-The lesson-specification defines which exercises to include in a lesson, and
+The unit-specification defines which exercises to include in a unit, and
 which words from the word-specification to include in an exercise.
 
 <!-- markdownlint-disable MD024 -->
@@ -190,17 +192,17 @@ Mandatory field of type `string`.
 "id": "bb0c1d6f-7d00-4700-8b6c-053d2ad0bb7c"
 ```
 
-`id` is a unique identifier for a lesson specification, preferably a GUID.
+`id` is a unique identifier for a unit specification, preferably a GUID.
 
-### lessonIndex
+### unitIndex
 
 Mandatory field of type `number`.
 
 ```json
-"lessonIndex": "1"
+"unitIndex": "1"
 ```
 
-`lessonIndex` is the order in which this lesson should appear in the lesson
+`unitIndex` is the order in which this unit should appear in the unit
 overview.
 
 ### multipleChoiceCount
@@ -211,7 +213,7 @@ Mandatory field of type `number`.
 "multipleChoiceCount": "8"
 ```
 
-`multipleChoiceCount` is the number of exercises in the lesson of the type
+`multipleChoiceCount` is the number of exercises in the unit of the type
 `MultipleChoice`.
 
 ### matchingCount
@@ -222,7 +224,7 @@ Mandatory field of type `number`.
 "matchingCount": "8"
 ```
 
-`matchingCount` is the number of exercises in the lesson of the type
+`matchingCount` is the number of exercises in the unit of the type
 `Matching`.
 
 ### explanationCount
@@ -233,7 +235,7 @@ Mandatory field of type `number`.
 "explanationCount": "8"
 ```
 
-`explanationCount` is the number of exercises in the lesson of the type
+`explanationCount` is the number of exercises in the unit of the type
 `Explanation`.
 
 It is currently not possible to specify either ExplanationMatching or
@@ -249,7 +251,7 @@ Mandatory field of type `number`.
 "singleClozeCount": "8"
 ```
 
-`singleClozeCount` is the number of exercises in the lesson of the type
+`singleClozeCount` is the number of exercises in the unit of the type
 `SingleCloze`.
 
 ### multiClozeCount
@@ -260,7 +262,7 @@ Mandatory field of type `number`.
 "multiClozeCount": "8"
 ```
 
-`multiClozeCount` is the number of exercises in the lesson of the type
+`multiClozeCount` is the number of exercises in the unit of the type
 `MultiCloze`.
 
 ### wordsExercisedCount
@@ -271,9 +273,9 @@ Optional field of type `number`.
 "wordsExercisedCount": "8"
 ```
 
-`wordsExercisedCount` is the number of unique words referenced in the lesson as
+`wordsExercisedCount` is the number of unique words referenced in the unit as
 valid correct options through exercises, i.e. words that are being exercised in
-this lesson. Words that are provided as incorrect alternatives should be
+this unit. Words that are provided as incorrect alternatives should be
 excluded from this count.
 
 ### exercises

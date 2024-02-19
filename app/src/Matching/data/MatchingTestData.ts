@@ -1,10 +1,10 @@
-import Content from '../../Lessons/Content';
-import 术 from '../../test-support/audio/characters/术.mp3.audio?raw';
-import 二 from '../../test-support/audio/characters/二.mp3.audio?raw';
-import 三 from '../../test-support/audio/characters/三.mp3.audio?raw';
-import 四 from '../../test-support/audio/characters/四.mp3.audio?raw';
-import pic from '../../test-support/pics/两.jpg';
-import ExerciseProvider from '../../Lessons/ExerciseProvider';
+import Content from '@/Content/Content';
+import 术 from '@/test-support/audio/characters/术.mp3.audio?raw';
+import 二 from '@/test-support/audio/characters/二.mp3.audio?raw';
+import 三 from '@/test-support/audio/characters/三.mp3.audio?raw';
+import 四 from '@/test-support/audio/characters/四.mp3.audio?raw';
+import pic from '@/test-support/pics/两.jpg';
+import ExerciseProvider from '@/Content/ExerciseProvider';
 import { MatchingItem } from '../MatchingTypes';
 
 export default function MatchingTestData(

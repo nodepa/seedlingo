@@ -1,5 +1,5 @@
 import { WordSpec } from './ContentTypes';
-export interface LessonsMeta {
+export interface UnitsMeta {
   [index: number]: {
     name: string;
     icon: string;

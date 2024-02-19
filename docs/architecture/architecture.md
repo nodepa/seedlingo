@@ -30,47 +30,47 @@ and defines src/views/HomeView.vue as the base route.
 
 ## src/views/HomeView.vue
 
-Displays src/Lessons/components/LessonsMenu.vue and src/FooterLinks/components/FooterLinks.vue
+Displays src/UnitsMenu/components/UnitsMenu.vue and src/FooterLinks/components/FooterLinks.vue
 
-## src/Lessons/components/LessonsMenu.vue
+## src/UnitsMenu/components/UnitsMenu.vue
 
-Lists all the lessons as specified in the content folder
-using `Content.LessonsMeta`,
-which returns an array of objects with name, icon and audio for each lesson.
-Each lesson is wired with a `router-link` of the pattern `/lesson/:id`,
-e.g. /lesson/4 directs links of that pattern to src/views/ExerciseSession.vue
+Lists all the units as specified in the content folder
+using `Content.UnitsMeta`,
+which returns an array of objects with name, icon and audio for each unit.
+Each unit is wired with a `router-link` of the pattern `/unit/:id`,
+e.g. /unit/4 directs links of that pattern to src/views/ExerciseSession.vue
 
 ## src/views/ExerciseSession.vue
 
 `ExerciseSession` presents one of the exercise components
 MatchingExercise.vue, MultipleChoiceExercise.vue or ClozeExercise.vue
 based on the `exercise`/`exerciseItems` generated
-by src/Lessons/ExerciseProvider.ts.
+by src/Units/ExerciseProvider.ts.
 When `ExerciseSession` is made available in the page/mounted,
-`getExercise()` is used to identify the correct lesson
-specified by the `/lesson/:id` route param in the browser's address bar.
-The number from the path is taken to represent the current lesson number,
-and `ExerciseProvider.getExerciseFromLesson(index)` is asked
-to generate an exercise from that lesson.
+`getExercise()` is used to identify the correct unit
+specified by the `/unit/:id` route param in the browser's address bar.
+The number from the path is taken to represent the current unit number,
+and `ExerciseProvider.getExerciseFromUnit(index)` is asked
+to generate an exercise from that unit.
 
-## src/Lessons/ExerciseProvider.ts
+## src/Content/ExerciseProvider.ts
 
-`getExerciseFromLesson(index)` uses `Content.LessonSpec` to get all lessons
-and verify that the requested lesson exists,
-then generates an exercise of random type from the lesson
-using `GenerateExerciseOfType[ExerciseType].bind(this)(lesson)`
-(where ExerciseType is randomly picked from types available in the lesson),
+`getExerciseFromUnit(index)` uses `Content.UnitSpec` to get all units
+and verify that the requested unit exists,
+then generates an exercise of random type from the unit
+using `GenerateExerciseOfType[ExerciseType].bind(this)(unit)`
+(where ExerciseType is randomly picked from types available in the unit),
 which executes the relevant
-`generate[Matching|MultipleChoice|ExplanationMatching|ExplanationMultipleChoice|SingleCloze|MultiCloze]Exercise(lesson)`.
+`generate[Matching|MultipleChoice|ExplanationMatching|ExplanationMultipleChoice|SingleCloze|MultiCloze]Exercise(unit)`.
 I.e. for `generateMultipleChoiceExercise`,
-a random exercise specification from the lesson is selected,
+a random exercise specification from the unit is selected,
 then 4 random word references from that exercise are selected,
 then the actual word specifications referenced are fetched,
 before `createMultipleChoiceExerciseFromWords(selectedWords)` is called,
 generating four presentable word-objects from the four words.
 Then one of the four words are selected randomly to be the correct option
 and the exercise object is expanded to account for that.
-The correct option's symbol(i.e. icon) is fetched from the passed in lesson data
+The correct option's symbol(i.e. icon) is fetched from the passed in unit data
 and stored for display as `iconToMatch`.
 The `exercise` object is returned to `ExerciseSession`,
 and `ExerciseSession` sets its dynamic component
@@ -88,7 +88,7 @@ that displays the correct option's icon using an `<ion-icon>` element.
 The second `<ion-row>` displays (by text) the 4 words
 that may match the icon and pronunciation of the audio.
 
-## src/Lessons/Content.ts
+## src/Content/Content.ts
 
 Content starts off by importing some content related data types,
 icons wrapped in javascript,
@@ -102,12 +102,12 @@ extracted from the collection of imported .json-files.
 
 `Content.getWord()` fetches one specified word object from the `wordListSpec`.
 
-`Content.LessonsMeta` holds a generated collection of objects
-necessary to populate the home page menu of lessons,
-and also used for basic review of all new words in a lesson.
+`Content.UnitsMeta` holds a generated collection of objects
+necessary to populate the home page menu of units,
+and also used for basic review of all new words in a unit.
 
-`Content.LessonSpecs` extracts all the .json-files specified
-as `lessonSpecFile` in ContentSpec.json.
+`Content.UnitSpecs` extracts all the .json-files specified
+as `unitSpecFile` in ContentSpec.json.
 
 `Content.getAudioPath()` returns an audio object
 that can be inlined in the html as an audio element's src.
@@ -119,9 +119,9 @@ The content is configured through the content-folder's ContentSpec.json.
 A full specification is found in the [content specification](/content/content-spec.md).
 Basically, ContentSpec.json specifies where to find
 the top-level instructions audio files,
-all the lesson specification files,
+all the unit specification files,
 and the word specification file.
-The content/Lesson??.json files contain specifications of lessons
+The content/Unit??.json files contain specifications of units
 as collections of exercises.
 Data file sources (audio, pictures) are generally specified in the `wordSpecFile`,
 but explanation exercises also specify

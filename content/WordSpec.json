@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.2.0",
+  "formatVersion": "1.3.0",
   "wordCount": 194,
   "words": {
     "a681b683-d909-4f5b-834e-8347633df4b1": {
@@ -875,24 +875,19 @@
     },
     "5d0f410c-83ff-43bd-a31e-922b42b054ef": {
       "word": "。",
-      "isPunctuation": true,
-      "notIndividuallyExercised": "punctuation"
+      "isPunctuation": true
     },
     "3fde2b11-aa78-4a96-9bd4-75c8462132b6": {
       "word": "，",
-      "isPunctuation": true,
-      "notIndividuallyExercised": "punctuation"
+      "isPunctuation": true
     },
     "526a8ee7-7525-4b0f-a3a2-92e29618bed3": {
       "word": "：",
-      "isPunctuation": true,
-      "notIndividuallyExercised": "punctuation"
+      "isPunctuation": true
     },
     "ca91baf3-5058-429e-95f5-8caa19fe8a0a": {
       "word": "？",
-      "isPunctuation": true,
-      "notIndividuallyExercised": "punctuation",
-      "unused": "Starts showing up in lesson 12..."
+      "isPunctuation": true
     },
     "deb2fd69-3af6-4a13-a8d5-f0ee070c5ffe": {
       "word": "很",

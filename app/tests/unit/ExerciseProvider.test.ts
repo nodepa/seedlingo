@@ -1,19 +1,19 @@
 import { describe, it, expect, vi } from 'vitest';
 
-import { LessonSpec } from '@/Lessons/ContentTypes';
+import { UnitSpec } from '@/common/types/ContentTypes';
 import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
-import { ExerciseType } from '@/Lessons/ExerciseProvider';
+import { ExerciseType } from '@/Content/ExerciseProvider';
 
-import Content from '@/Lessons/Content';
+import Content from '@/Content/Content';
 
-import lessonTestData from '@/test-support/LessonSpecFile.json';
-const lesson = lessonTestData as LessonSpec;
+import unitTestData from '@/test-support/UnitSpecFile.json';
+const unit = unitTestData as UnitSpec;
 
 // Item under test
-import ExerciseProvider from '@/Lessons/ExerciseProvider';
+import ExerciseProvider from '@/Content/ExerciseProvider';
 
 describe('ExerciseProvider', () => {
-  describe('.getExerciseFromLesson()', () => {
+  describe('.getExerciseFromUnit()', () => {
     it('correctly returns exercises', () => {
       // mock: Matching on 2nd exercise
       const spyPickRandomExerciseTypeMatching = vi
@@ -21,12 +21,12 @@ describe('ExerciseProvider', () => {
         .mockImplementation((): ExerciseType => 'Matching');
       const spySelectRandomSubsetMatching = vi
         .spyOn(ExerciseProvider, 'selectRandomSubset')
-        .mockImplementation(() => lesson.exercises[1].matchingWords || []);
+        .mockImplementation(() => unit.exercises[1].matchingWords || []);
       const spyGetAudioData = vi
         .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
 
-      let exercise = ExerciseProvider.getExerciseFromLesson(1);
+      let exercise = ExerciseProvider.getExerciseFromUnit(1);
       expect(spyPickRandomExerciseTypeMatching).toHaveBeenCalled();
       expect(exercise.exerciseType).toBe('Matching');
 
@@ -40,14 +40,12 @@ describe('ExerciseProvider', () => {
         .mockImplementation((): ExerciseType => 'MultipleChoice');
       const spySelectRandomSubsetMultipleChoice = vi
         .spyOn(ExerciseProvider, 'selectRandomSubset')
-        .mockImplementation(
-          () => lesson.exercises[0].multipleChoiceWords || [],
-        );
+        .mockImplementation(() => unit.exercises[0].multipleChoiceWords || []);
       const spyRandomIndexLessThan = vi
         .spyOn(ExerciseProvider, 'randomIndexLessThan')
         .mockImplementation(() => 3);
 
-      exercise = ExerciseProvider.getExerciseFromLesson(1);
+      exercise = ExerciseProvider.getExerciseFromUnit(1);
       expect(spyPickRandomExerciseTypeMultipleChoice).toHaveBeenCalled();
       expect(spySelectRandomSubsetMultipleChoice).toHaveBeenCalled();
       expect(spyRandomIndexLessThan).toHaveBeenCalled();
@@ -57,8 +55,8 @@ describe('ExerciseProvider', () => {
         (exercise.exerciseItems as MultipleChoiceExercise).options[0].word,
       ).toBe(
         Object.keys(
-          lesson.exercises[0].multipleChoiceWords
-            ? lesson.exercises[0].multipleChoiceWords[0]
+          unit.exercises[0].multipleChoiceWords
+            ? unit.exercises[0].multipleChoiceWords[0]
             : [],
         )[0],
       );
@@ -73,22 +71,16 @@ describe('ExerciseProvider', () => {
 
   describe('.validateExerciseIndex()', () => {
     it('correctly handles invalid params', () => {
-      const lessons = [lesson, lesson, lesson];
+      const units = [unit, unit, unit];
+      expect(() => ExerciseProvider.validateExerciseIndex(-1, units)).toThrow();
+      expect(() => ExerciseProvider.validateExerciseIndex(0, units)).toThrow();
       expect(() =>
-        ExerciseProvider.validateExerciseIndex(-1, lessons),
-      ).toThrow();
-      expect(() =>
-        ExerciseProvider.validateExerciseIndex(0, lessons),
-      ).toThrow();
-      expect(() =>
-        ExerciseProvider.validateExerciseIndex(1, lessons),
+        ExerciseProvider.validateExerciseIndex(1, units),
       ).not.toThrow();
       expect(() =>
-        ExerciseProvider.validateExerciseIndex(3, lessons),
+        ExerciseProvider.validateExerciseIndex(3, units),
       ).not.toThrow();
-      expect(() =>
-        ExerciseProvider.validateExerciseIndex(4, lessons),
-      ).toThrow();
+      expect(() => ExerciseProvider.validateExerciseIndex(4, units)).toThrow();
     });
   });
 
@@ -97,8 +89,7 @@ describe('ExerciseProvider', () => {
       const spyGetAudioData = vi
         .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
-      const matchingExercise =
-        ExerciseProvider.generateMatchingExercise(lesson);
+      const matchingExercise = ExerciseProvider.generateMatchingExercise(unit);
       expect(matchingExercise.exerciseType).toBe('Matching');
       spyGetAudioData.mockRestore();
     });
@@ -110,7 +101,7 @@ describe('ExerciseProvider', () => {
         .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
       const matchingExercise =
-        ExerciseProvider.generateExplanationMatchingExercise(lesson);
+        ExerciseProvider.generateExplanationMatchingExercise(unit);
       expect(matchingExercise.exerciseType).toBe('Matching');
       expect(matchingExercise.exerciseItems.length).toBe(4);
       spyGetAudioData.mockRestore();
@@ -123,7 +114,7 @@ describe('ExerciseProvider', () => {
         .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
       const multipleChoiceExercise =
-        ExerciseProvider.generateMultipleChoiceExercise(lesson);
+        ExerciseProvider.generateMultipleChoiceExercise(unit);
       expect(multipleChoiceExercise.exerciseType).toBe('MultipleChoice');
       spyGetAudioData.mockRestore();
     });
@@ -140,7 +131,7 @@ describe('ExerciseProvider', () => {
           return array[0];
         });
       const multipleChoiceExercise =
-        ExerciseProvider.generateExplanationMultipleChoiceExercise(lesson) as {
+        ExerciseProvider.generateExplanationMultipleChoiceExercise(unit) as {
           exerciseType: string;
           exerciseItems: MultipleChoiceExercise;
         };
@@ -162,8 +153,8 @@ describe('ExerciseProvider', () => {
         );
       expect(correctAlternative?.word).toBe(
         Object.keys(
-          lesson.exercises[2].explanationSpec?.explanationTargets
-            ?.validOption || [],
+          unit.exercises[2].explanationSpec?.explanationTargets?.validOption ||
+            [],
         )[0],
       );
       spyGetAudioData.mockRestore();
@@ -184,10 +175,10 @@ describe('ExerciseProvider', () => {
         });
 
       const singleClozeExercise =
-        ExerciseProvider.generateSingleClozeExercise(lesson);
+        ExerciseProvider.generateSingleClozeExercise(unit);
       expect(singleClozeExercise.exerciseType).toBe('SingleCloze');
       expect(singleClozeExercise.exerciseItems.clozeText.length).toBe(
-        lesson.exercises[4].singleClozeSpec?.text?.length,
+        unit.exercises[4].singleClozeSpec?.text?.length,
       );
       expect(singleClozeExercise.exerciseItems.clozeOptions.length).toBe(4);
       expect(singleClozeExercise.exerciseItems.clozeText[0].isBlank).toBe(
@@ -234,10 +225,10 @@ describe('ExerciseProvider', () => {
         });
 
       const multiClozeExercise =
-        ExerciseProvider.generateMultiClozeExercise(lesson);
+        ExerciseProvider.generateMultiClozeExercise(unit);
       expect(multiClozeExercise.exerciseType).toBe('MultiCloze');
       expect(multiClozeExercise.exerciseItems.clozeText.length).toBe(
-        lesson.exercises[7].multiClozeSpec?.text?.length,
+        unit.exercises[7].multiClozeSpec?.text?.length,
       );
       expect(multiClozeExercise.exerciseItems.clozeOptions.length).toBe(4);
       expect(multiClozeExercise.exerciseItems.clozeText[3].isBlank).toBe(false);
@@ -281,11 +272,11 @@ describe('ExerciseProvider', () => {
         });
 
       const single = ExerciseProvider.selectClozeExerciseFromSpec(
-        lesson,
+        unit,
         'SingleCloze',
       );
       const multi = ExerciseProvider.selectClozeExerciseFromSpec(
-        lesson,
+        unit,
         'MultiCloze',
       );
 
@@ -309,7 +300,7 @@ describe('ExerciseProvider', () => {
         });
 
       const comprehension =
-        ExerciseProvider.generateComprehensionExercise(lesson);
+        ExerciseProvider.generateComprehensionExercise(unit);
 
       expect(comprehension.exerciseType).toBe('Comprehension');
       expect(comprehension.exerciseItems.comprehensionText.length).toBe(20);
@@ -334,7 +325,7 @@ describe('ExerciseProvider', () => {
           1,
         ),
       ).toThrow(
-        'Lesson 1 only has 3 suitable item(s), which is too few to generate this exercise.',
+        'Unit 1 only has 3 suitable item(s), which is too few to generate this exercise.',
       );
 
       const subset = ExerciseProvider.selectRandomSubset(
@@ -384,7 +375,7 @@ describe('ExerciseProvider', () => {
       const spyGetAudioData = vi
         .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
-      const words = Content.getWordsInLesson(lesson).slice(4);
+      const words = Content.getWordsInUnit(unit).slice(4);
       const pairs = ExerciseProvider.createPairsFromWords(words);
 
       expect(pairs[0].wordOrIcons).toBe('姥姥');
@@ -449,7 +440,7 @@ describe('ExerciseProvider', () => {
           'ExplanationMultipleChoice',
           'MultiCloze',
           'SingleCloze',
-        ]).toContain(ExerciseProvider.pickRandomExerciseType(lesson));
+        ]).toContain(ExerciseProvider.pickRandomExerciseType(unit));
       }
     });
   });

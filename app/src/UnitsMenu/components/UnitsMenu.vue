@@ -11,20 +11,20 @@ import {
   IonList,
   IonItem,
 } from '@ionic/vue';
-import Content from '../Content';
+import Content from '@/Content/Content';
 
-const lessonsMeta = ref(Content.LessonsMeta);
+const unitsMeta = ref(Content.UnitsMeta);
 
 const eye = Content.getIcon('mdiEye');
 const weightLifter = Content.getIcon('mdiWeightLifter');
 </script>
 
 <template>
-  <ion-list data-test="lesson-list" lines="none">
+  <ion-list data-test="unit-list" lines="none">
     <ion-item
-      v-for="(lessonContext, index) in lessonsMeta"
+      v-for="(unitContext, index) in unitsMeta"
       :key="index"
-      :data-test="`lesson-${String(index).padStart(2, '0')}`"
+      :data-test="`unit-${String(index).padStart(2, '0')}`"
     >
       <ion-card class="margin-auto">
         <ion-card-header>
@@ -32,31 +32,28 @@ const weightLifter = Content.getIcon('mdiWeightLifter');
             class="center-content align-vertical"
             style="display: flex; flex-direction: column"
           >
-            <ion-icon :icon="lessonContext.icon" />
+            <ion-icon :icon="unitContext.icon" />
             <span style="color: var(--ion-color-step-400)">
-              {{ lessonContext.name }}
+              {{ unitContext.name }}
             </span>
           </ion-card-title>
         </ion-card-header>
         <ion-card-content class="center-content">
           <ion-button
-            v-if="lessonContext.newWords.length > 0"
-            v-instructions="lessonContext.audio"
+            v-if="unitContext.newWords.length > 0"
+            v-instructions="unitContext.audio"
             size="large"
-            :data-test="`lesson-review-button-${String(index).padStart(
-              2,
-              '0',
-            )}`"
-            :router-link="{ path: `/lesson/${index}/review` }"
+            :data-test="`unit-review-button-${String(index).padStart(2, '0')}`"
+            :router-link="{ path: `/unit/${index}/review` }"
             router-direction="forward"
           >
             <ion-icon slot="icon-only" :icon="eye" />
           </ion-button>
           <ion-button
-            v-instructions="lessonContext.audio"
+            v-instructions="unitContext.audio"
             size="large"
-            :data-test="`lesson-button-${String(index).padStart(2, '0')}`"
-            :router-link="{ path: `/lesson/${index}` }"
+            :data-test="`unit-button-${String(index).padStart(2, '0')}`"
+            :router-link="{ path: `/unit/${index}` }"
             router-direction="forward"
           >
             <ion-icon slot="icon-only" :icon="weightLifter" />

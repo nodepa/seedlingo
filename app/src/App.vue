@@ -4,11 +4,11 @@ import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import { IonApp, IonContent, IonRouterOutlet } from '@ionic/vue';
 
-import AppHeader from './AppHeader/components/AppHeader.vue';
-import BottomNavigationBar from './BottomNavigationBar/components/BottomNavigationBar.vue';
-import InstructionsExplainer from './Instructions/components/InstructionsExplainer.vue';
-import InstructionsOverlay from './Instructions/components/InstructionsOverlay.vue';
-import Content from './Lessons/Content';
+import AppHeader from '@/AppHeader/components/AppHeader.vue';
+import BottomNavigationBar from '@/BottomNavigationBar/components/BottomNavigationBar.vue';
+import InstructionsExplainer from '@/Instructions/components/InstructionsExplainer.vue';
+import InstructionsOverlay from '@/Instructions/components/InstructionsOverlay.vue';
+import Content from '@/Content/Content';
 
 const route = useRoute();
 const store = useStore();

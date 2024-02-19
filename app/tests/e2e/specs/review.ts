@@ -18,7 +18,7 @@ describe('马丽 interacts with the "review" system', () => {
     cy.log('-- sees a symbol representing the word');
     cy.log('-- sees the word itself');
     cy.log('-- hears the pronunciation of the word');
-    cy.visit('/lesson/1/review', {
+    cy.visit('/unit/1/review', {
       onBeforeLoad(window) {
         cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
         cy.spy(window.Animation.prototype, 'play').as('animation.play');

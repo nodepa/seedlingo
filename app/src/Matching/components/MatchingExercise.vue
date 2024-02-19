@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, ComputedRef, Ref, ref, watch } from 'vue';
 import { useStore } from 'vuex';
-import ExerciseButton from '../../common/components/ExerciseButton.vue';
-import { MatchingItem } from '../MatchingTypes';
-import Content from '../../Lessons/Content';
 import { earOutline } from 'ionicons/icons';
+import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
+import ExerciseButton from '@/common/components/ExerciseButton.vue';
+import Content from '@/Content/Content';
+import { MatchingItem } from '../MatchingTypes';
 
 const startColors = ['purple', 'pink', 'orange', 'teal'];
 const colors: Array<string> = Array.from(startColors);

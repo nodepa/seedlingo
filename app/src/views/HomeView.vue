@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { IonContent, IonPage } from '@ionic/vue';
-import LessonsMenu from '../Lessons/components/LessonsMenu.vue';
-import FooterLinks from '../FooterLinks/components/FooterLinks.vue';
+import { IonPage, IonContent } from '@ionic/vue';
+import UnitsMenu from '@/UnitsMenu/components/UnitsMenu.vue';
+import FooterLinks from '@/FooterLinks/components/FooterLinks.vue';
 </script>
 
 <template>
   <ion-page>
     <ion-content>
-      <LessonsMenu />
+      <UnitsMenu />
       <FooterLinks />
     </ion-content>
   </ion-page>

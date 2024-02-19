@@ -11,11 +11,11 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
-    path: '/lesson/:lessonIndex',
+    path: '/unit/:unitIndex',
     component: ExerciseSession,
   },
   {
-    path: '/lesson/:lessonIndex(\\d+)/review',
+    path: '/unit/:unitIndex(\\d+)/review',
     component: ReviewSession,
   },
   {

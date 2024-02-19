@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.2.0",
+  "formatVersion": "1.3.0",
   "instructions": {
     "welcome": "audio/instructions/欢迎.mp3",
     "homeButton": "audio/instructions/说明回家.mp3",
@@ -11,132 +11,132 @@
     "multiClozeExercise": "audio/instructions/说明多填充题.mp3"
   },
   "wordSpecFile": "WordSpec.json",
-  "lessons": [
+  "units": [
     {
       "name": "数字，一到十",
       "icon": "mdiNumeric",
       "introductionAudio": "audio/instructions/介绍第一课.mp3",
-      "lessonSpecFile": "Lesson01.json"
+      "unitSpecFile": "Unit01.json"
     },
     {
       "name": "数字，十一到一百",
       "icon": "mdiNumeric",
       "introductionAudio": "audio/instructions/介绍第二课.mp3",
-      "lessonSpecFile": "Lesson02.json"
+      "unitSpecFile": "Unit02.json"
     },
     {
       "name": "家庭，妈妈，爸爸",
       "icon": "mdiHumanFemaleGirl",
       "introductionAudio": "audio/instructions/介绍第三课.mp3",
-      "lessonSpecFile": "Lesson03.json"
+      "unitSpecFile": "Unit03.json"
     },
     {
       "name": "家庭，祖父母",
       "icon": "mdiHumanFemaleBoy",
       "introductionAudio": "audio/instructions/介绍第四课.mp3",
-      "lessonSpecFile": "Lesson04.json"
+      "unitSpecFile": "Unit04.json"
     },
     {
       "name": "家庭，兄弟姐妹",
       "icon": "mdiHumanFemaleBoy",
       "introductionAudio": "audio/instructions/介绍第五课.mp3",
-      "lessonSpecFile": "Lesson05.json"
+      "unitSpecFile": "Unit05.json"
     },
     {
       "name": "家庭，我有",
       "icon": "mdiHumanFemaleGirl",
       "introductionAudio": "audio/instructions/介绍第六课.mp3",
-      "lessonSpecFile": "Lesson06.json"
+      "unitSpecFile": "Unit06.json"
     },
     {
       "name": "家庭",
       "icon": "mdiHumanMaleBoy",
       "introductionAudio": "audio/instructions/介绍第七课.mp3",
-      "lessonSpecFile": "Lesson07.json"
+      "unitSpecFile": "Unit07.json"
     },
     {
       "name": "家庭，孩子们",
       "icon": "mdiHumanMaleGirl",
       "introductionAudio": "audio/instructions/介绍第八课.mp3",
-      "lessonSpecFile": "Lesson08.json"
+      "unitSpecFile": "Unit08.json"
     },
     {
       "name": "家庭，孩子们",
       "icon": "mdiHumanMaleChild",
       "introductionAudio": "audio/instructions/介绍第九课.mp3",
-      "lessonSpecFile": "Lesson09.json"
+      "unitSpecFile": "Unit09.json"
     },
     {
       "name": "家庭，我的",
       "icon": "mdiHumanMaleBoy",
       "introductionAudio": "audio/instructions/介绍第十课.mp3",
-      "lessonSpecFile": "Lesson10.json"
+      "unitSpecFile": "Unit10.json"
     },
     {
       "name": "家庭，人",
       "icon": "mdiHumanMaleGirl",
       "introductionAudio": "audio/instructions/介绍第十一课.mp3",
-      "lessonSpecFile": "Lesson11.json"
+      "unitSpecFile": "Unit11.json"
     },
     {
       "name": "家庭，家里有",
       "icon": "mdiCrowd",
       "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "lessonSpecFile": "Lesson12.json"
+      "unitSpecFile": "Unit12.json"
     },
     {
       "name": "工作",
       "icon": "mdiAccountHardHat",
       "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "lessonSpecFile": "Lesson13.json"
+      "unitSpecFile": "Unit13.json"
     },
     {
       "name": "工作地",
       "icon": "mdiAccountHardHat",
       "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "lessonSpecFile": "Lesson14.json"
+      "unitSpecFile": "Unit14.json"
     },
     {
       "name": "工作时间",
       "icon": "mdiAccountHardHat",
       "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "lessonSpecFile": "Lesson15.json"
+      "unitSpecFile": "Unit15.json"
     },
     {
       "name": "工作，工资，时间",
       "icon": "mdiAccountHardHat",
       "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "lessonSpecFile": "Lesson16.json"
+      "unitSpecFile": "Unit16.json"
     },
     {
       "name": "工作，短文",
       "icon": "mdiAccountHardHat",
       "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "lessonSpecFile": "Lesson17.json"
+      "unitSpecFile": "Unit17.json"
     },
     {
       "name": "教育",
       "icon": "mdiHumanMaleBoard",
       "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "lessonSpecFile": "Lesson18.json"
+      "unitSpecFile": "Unit18.json"
     },
     {
       "name": "教育",
       "icon": "mdiHumanMaleBoard",
       "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "lessonSpecFile": "Lesson19.json"
+      "unitSpecFile": "Unit19.json"
     },
     {
       "name": "教育",
       "icon": "mdiHumanMaleBoard",
       "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "lessonSpecFile": "Lesson20.json"
+      "unitSpecFile": "Unit20.json"
     },
     {
       "name": "教育",
       "icon": "mdiHumanMaleBoard",
       "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "lessonSpecFile": "Lesson21.json"
+      "unitSpecFile": "Unit21.json"
     }
   ]
 }

@@ -2,13 +2,13 @@
 import { computed, ComputedRef, onMounted, onUpdated, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
-import ExerciseButton from '../../common/components/ExerciseButton.vue';
+import { earOutline } from 'ionicons/icons';
+import ExerciseButton from '@/common/components/ExerciseButton.vue';
+import Content from '@/Content/Content';
 import {
   MultipleChoiceExercise,
   MultipleChoiceItem,
 } from '../MultipleChoiceTypes';
-import Content from '../../Lessons/Content';
-import { earOutline } from 'ionicons/icons';
 
 const store = useStore();
 

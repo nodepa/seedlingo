@@ -3,15 +3,15 @@ import { existsSync } from 'fs';
 import {
   Blank,
   ExerciseSpec,
-  LessonSpec,
+  UnitSpec,
   WordRef,
-} from '@/Lessons/ContentTypes';
+} from '@/common/types/ContentTypes';
 
-import Content from '@/Lessons/Content';
+import Content from '@/Content/Content';
 
-// Ensure that *production* content is used for (only) lesson validation
+// Ensure that *production* content is used (only) for unit validation
 beforeAll(() => {
-  vi.mock('@/Lessons/Content', async (importOriginal) => {
+  vi.mock('@/Content/Content', async (importOriginal) => {
     vi.stubEnv('MODE', 'production');
     const Content = await importOriginal();
     vi.unstubAllEnvs();
@@ -19,13 +19,13 @@ beforeAll(() => {
   });
 });
 
-describe('Integrity of JSON Lesson data', () => {
+describe('Integrity of JSON Unit data', () => {
   describe('Global integrity', () => {
-    it("each 'lesson.id' & 'exercise.id' is unique", () => {
+    it("each 'unit.id' & 'exercise.id' is unique", () => {
       const ids: string[] = [];
-      Content.LessonSpecs.forEach((lesson: LessonSpec) => {
-        ids.push(lesson.id);
-        lesson.exercises.forEach((exercise: ExerciseSpec) => {
+      Content.UnitSpecs.forEach((unit: UnitSpec) => {
+        ids.push(unit.id);
+        unit.exercises.forEach((exercise: ExerciseSpec) => {
           ids.push(exercise.id);
         });
       });
@@ -41,28 +41,28 @@ describe('Integrity of JSON Lesson data', () => {
       expect(ids.length).toBe(uniqueIds.size);
     });
 
-    it("each 'lessonIndex' is unique", () => {
-      const lessonIndices: number[] = [];
-      Content.LessonSpecs.forEach((lesson: LessonSpec) => {
-        lessonIndices.push(lesson.lessonIndex);
+    it("each 'unitIndex' is unique", () => {
+      const unitIndices: number[] = [];
+      Content.UnitSpecs.forEach((unit: UnitSpec) => {
+        unitIndices.push(unit.unitIndex);
       });
-      expect(lessonIndices.length).toBe([...new Set(lessonIndices)].length);
+      expect(unitIndices.length).toBe([...new Set(unitIndices)].length);
     });
 
     it('has no empty fields', () => {
-      Content.LessonSpecs.forEach((lesson) => {
-        expect(lesson.id.length).toBeGreaterThanOrEqual(1);
-        expect(lesson.lessonIndex).toBeGreaterThanOrEqual(1);
-        expect(lesson.multipleChoiceCount).toBeGreaterThanOrEqual(0);
-        expect(lesson.matchingCount).toBeGreaterThanOrEqual(0);
-        expect(lesson.explanationCount).toBeGreaterThanOrEqual(0);
-        expect(lesson.singleClozeCount).toBeGreaterThanOrEqual(0);
-        expect(lesson.multiClozeCount).toBeGreaterThanOrEqual(0);
-        expect(lesson.comprehensionCount).toBeGreaterThanOrEqual(0);
-        if (lesson.wordsExercisedCount) {
-          expect(lesson.wordsExercisedCount).toBeGreaterThanOrEqual(0);
+      Content.UnitSpecs.forEach((unit) => {
+        expect(unit.id.length).toBeGreaterThanOrEqual(1);
+        expect(unit.unitIndex).toBeGreaterThanOrEqual(1);
+        expect(unit.multipleChoiceCount).toBeGreaterThanOrEqual(0);
+        expect(unit.matchingCount).toBeGreaterThanOrEqual(0);
+        expect(unit.explanationCount).toBeGreaterThanOrEqual(0);
+        expect(unit.singleClozeCount).toBeGreaterThanOrEqual(0);
+        expect(unit.multiClozeCount).toBeGreaterThanOrEqual(0);
+        expect(unit.comprehensionCount).toBeGreaterThanOrEqual(0);
+        if (unit.wordsExercisedCount) {
+          expect(unit.wordsExercisedCount).toBeGreaterThanOrEqual(0);
         }
-        lesson.exercises.forEach((exercise) => {
+        unit.exercises.forEach((exercise) => {
           try {
             expect(exercise.id.length).toBeGreaterThanOrEqual(1);
             expect(exercise.type.length).toBeGreaterThanOrEqual(0);
@@ -97,7 +97,7 @@ describe('Integrity of JSON Lesson data', () => {
                 expect(Object.hasOwn(exercise, 'explanation')).toBe(false);
               } catch (e) {
                 throw new Error(
-                  `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'explanation' field; use 'explanationSpec' instead.\n${e}`,
+                  `Unit ${unit.unitIndex} exercise "${exercise.id}" uses a deprecated 'explanation' field; use 'explanationSpec' instead.\n${e}`,
                 );
               }
             } else if (exercise.type === 'SingleCloze') {
@@ -150,95 +150,95 @@ describe('Integrity of JSON Lesson data', () => {
               );
             } else {
               throw new Error(
-                `Lesson ${lesson.lessonIndex} has an invalid 'type' field at exercise "${exercise.id}"`,
+                `Unit ${unit.unitIndex} has an invalid 'type' field at exercise "${exercise.id}"`,
               );
             }
 
             if ('audio' in exercise) {
               throw new Error(
-                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'audio' field; as of formatVersion 1.2.0, 'audio' is no longer a top-level field in 'exercises'. 'audio' is now either a field under 'words' in 'WordSpec', or a field under 'explanationSpec'.`,
+                `Unit ${unit.unitIndex} exercise "${exercise.id}" uses a deprecated 'audio' field; as of formatVersion 1.2.0, 'audio' is no longer a top-level field in 'exercises'. 'audio' is now either a field under 'words' in 'WordSpec', or a field under 'explanationSpec'.`,
               );
             }
             if ('picture' in exercise) {
               throw new Error(
-                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'picture' field; as of formatVersion 1.2.0, 'picture' is no longer a top-level field in 'exercises'. 'picture' is now a field under 'words' in 'WordSpec'.`,
+                `Unit ${unit.unitIndex} exercise "${exercise.id}" uses a deprecated 'picture' field; as of formatVersion 1.2.0, 'picture' is no longer a top-level field in 'exercises'. 'picture' is now a field under 'words' in 'WordSpec'.`,
               );
             }
             if ('video' in exercise) {
               throw new Error(
-                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'video' field; as of formatVersion 1.2.0, 'video' is no longer a top-level field in 'exercises'. 'video' is now a field under 'words' in 'WordSpec'.`,
+                `Unit ${unit.unitIndex} exercise "${exercise.id}" uses a deprecated 'video' field; as of formatVersion 1.2.0, 'video' is no longer a top-level field in 'exercises'. 'video' is now a field under 'words' in 'WordSpec'.`,
               );
             }
             if ('symbol' in exercise) {
               throw new Error(
-                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'symbol' field; as of formatVersion 1.2.0, 'symbol' is no longer a top-level field in 'exercises'. 'symbol' is now a field under 'words' in 'WordSpec'.`,
+                `Unit ${unit.unitIndex} exercise "${exercise.id}" uses a deprecated 'symbol' field; as of formatVersion 1.2.0, 'symbol' is no longer a top-level field in 'exercises'. 'symbol' is now a field under 'words' in 'WordSpec'.`,
               );
             }
             if ('suppressClozeAudio' in exercise) {
               throw new Error(
-                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'suppressClozeAudio' field; as of formatVersion 1.2.0, 'suppressClozeAudio' is no longer a top-level field in 'exercises'. 'suppressClozeAudio' is now a field under 'singleClozeSpec' and 'multiClozeSpec'.`,
+                `Unit ${unit.unitIndex} exercise "${exercise.id}" uses a deprecated 'suppressClozeAudio' field; as of formatVersion 1.2.0, 'suppressClozeAudio' is no longer a top-level field in 'exercises'. 'suppressClozeAudio' is now a field under 'singleClozeSpec' and 'multiClozeSpec'.`,
               );
             }
             if ('suppressOptionAudio' in exercise) {
               throw new Error(
-                `Lesson ${lesson.lessonIndex} exercise "${exercise.id}" uses a deprecated 'suppressOptionAudio' field; as of formatVersion 1.2.0, 'suppressOptionAudio' is no longer a top-level field in 'exercises'. 'suppressOptionAudio' is now a field under 'singleClozeSpec' and 'multiClozeSpec'.`,
+                `Unit ${unit.unitIndex} exercise "${exercise.id}" uses a deprecated 'suppressOptionAudio' field; as of formatVersion 1.2.0, 'suppressOptionAudio' is no longer a top-level field in 'exercises'. 'suppressOptionAudio' is now a field under 'singleClozeSpec' and 'multiClozeSpec'.`,
               );
             }
           } catch (e) {
             throw new Error(
-              `Lesson ${lesson.lessonIndex} has an error at exercise "${exercise.id}"\n${e}`,
+              `Unit ${unit.unitIndex} has an error at exercise "${exercise.id}"\n${e}`,
             );
           }
         });
       });
     });
 
-    describe('Lesson-level integrity', () => {
-      Content.LessonSpecs.forEach((lesson) => {
-        it(`lesson.${lesson.lessonIndex}.id is 36 char string`, () => {
-          expect(typeof lesson.id).toBe('string');
-          expect(lesson.id.length).toBe(36);
+    describe('Unit-level integrity', () => {
+      Content.UnitSpecs.forEach((unit) => {
+        it(`unit.${unit.unitIndex}.id is 36 char string`, () => {
+          expect(typeof unit.id).toBe('string');
+          expect(unit.id.length).toBe(36);
         });
 
-        it(`lesson.${lesson.lessonIndex}.index is a positive number`, () => {
-          expect(typeof lesson.lessonIndex).toBe('number');
-          expect(lesson.lessonIndex).toBeGreaterThan(0);
+        it(`unit.${unit.unitIndex}.index is a positive number`, () => {
+          expect(typeof unit.unitIndex).toBe('number');
+          expect(unit.unitIndex).toBeGreaterThan(0);
         });
 
-        it(`lesson.${lesson.lessonIndex}.multipleChoiceCount=${lesson.multipleChoiceCount} is accurate`, () => {
+        it(`unit.${unit.unitIndex}.multipleChoiceCount=${unit.multipleChoiceCount} is accurate`, () => {
           let multipleChoiceCount = 0;
-          lesson.exercises.forEach((exercise) => {
+          unit.exercises.forEach((exercise) => {
             if (exercise.type === 'MultipleChoice') {
               multipleChoiceCount = exercise.multipleChoiceWords?.length || 0;
             }
           });
-          expect(multipleChoiceCount).toBe(lesson.multipleChoiceCount);
+          expect(multipleChoiceCount).toBe(unit.multipleChoiceCount);
         });
 
-        it(`lesson.${lesson.lessonIndex}.matchingCount=${lesson.matchingCount} is accurate`, () => {
+        it(`unit.${unit.unitIndex}.matchingCount=${unit.matchingCount} is accurate`, () => {
           let matchingCount = 0;
-          lesson.exercises.forEach((exercise) => {
+          unit.exercises.forEach((exercise) => {
             if (exercise.type === 'Matching') {
               matchingCount = exercise.matchingWords?.length || 0;
             }
           });
-          expect(matchingCount).toBe(lesson.matchingCount);
+          expect(matchingCount).toBe(unit.matchingCount);
         });
 
-        it(`lesson.${lesson.lessonIndex}.explanationCount=${lesson.explanationCount} is accurate`, () => {
+        it(`unit.${unit.unitIndex}.explanationCount=${unit.explanationCount} is accurate`, () => {
           let explanationCount = 0;
-          lesson.exercises.forEach((exercise) => {
+          unit.exercises.forEach((exercise) => {
             if (exercise.type === 'Explanation') {
               explanationCount += 1;
             }
           });
-          expect(explanationCount).toBe(lesson.explanationCount);
+          expect(explanationCount).toBe(unit.explanationCount);
         });
 
-        it(`lesson.${lesson.lessonIndex}.singleClozeCount=${lesson.singleClozeCount} is accurate`, () => {
+        it(`unit.${unit.unitIndex}.singleClozeCount=${unit.singleClozeCount} is accurate`, () => {
           let singleClozeCount = 0;
           let singleClozeConsistency = true;
-          lesson.exercises.forEach((exercise) => {
+          unit.exercises.forEach((exercise) => {
             if (exercise.type === 'SingleCloze') {
               singleClozeCount += 1;
               if (
@@ -249,14 +249,14 @@ describe('Integrity of JSON Lesson data', () => {
               }
             }
           });
-          expect(singleClozeCount).toBe(lesson.singleClozeCount);
+          expect(singleClozeCount).toBe(unit.singleClozeCount);
           expect(singleClozeConsistency).toBe(true);
         });
 
-        it(`lesson.${lesson.lessonIndex}.multiClozeCount=${lesson.multiClozeCount} is accurate`, () => {
+        it(`unit.${unit.unitIndex}.multiClozeCount=${unit.multiClozeCount} is accurate`, () => {
           let multiClozeCount = 0;
           let multiClozeConsistency = true;
-          lesson.exercises.forEach((exercise) => {
+          unit.exercises.forEach((exercise) => {
             if (exercise.type === 'MultiCloze') {
               multiClozeCount += 1;
               if (
@@ -267,13 +267,13 @@ describe('Integrity of JSON Lesson data', () => {
               }
             }
           });
-          expect(multiClozeCount).toBe(lesson.multiClozeCount);
+          expect(multiClozeCount).toBe(unit.multiClozeCount);
           expect(multiClozeConsistency).toBe(true);
         });
 
-        it(`lesson.${lesson.lessonIndex}.wordsExercisedCount=${lesson.wordsExercisedCount} is accurate`, () => {
+        it(`unit.${unit.unitIndex}.wordsExercisedCount=${unit.wordsExercisedCount} is accurate`, () => {
           const wordsExercised: Set<string> = new Set();
-          lesson.exercises.forEach((exercise) => {
+          unit.exercises.forEach((exercise) => {
             if (['MultipleChoice', 'Matching'].includes(exercise.type)) {
               const words =
                 exercise.multipleChoiceWords || exercise.matchingWords || [];
@@ -333,15 +333,15 @@ describe('Integrity of JSON Lesson data', () => {
                 });
             }
           });
-          expect(wordsExercised.size).toBe(lesson.wordsExercisedCount);
+          expect(wordsExercised.size).toBe(unit.wordsExercisedCount);
         });
       });
     });
 
     describe('Exercise-level integrity', () => {
-      Content.LessonSpecs.forEach((lesson: LessonSpec) => {
-        describe(`lessonIndex.${lesson.lessonIndex}`, () => {
-          lesson.exercises.forEach((exercise: ExerciseSpec) => {
+      Content.UnitSpecs.forEach((unit: UnitSpec) => {
+        describe(`unitIndex.${unit.unitIndex}`, () => {
+          unit.exercises.forEach((exercise: ExerciseSpec) => {
             describe(`exercise.id.${exercise.id}`, () => {
               it("'id' is 36 char string", () => {
                 expect(typeof exercise.id).toBe('string');

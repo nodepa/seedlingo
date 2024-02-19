@@ -1,4 +1,4 @@
-describe("马丽 opens the app to the home screen's list of lessons", () => {
+describe("马丽 opens the app to the home screen's list of units", () => {
   const app = '[data-test="app"]';
   const loader = '[data-test="loader"]';
   const instructionsExplainerComponent =
@@ -6,12 +6,12 @@ describe("马丽 opens the app to the home screen's list of lessons", () => {
   const instructionsOverlay = '[data-test="instructions-overlay"]';
   const homeButton = '[data-test="home-button"]';
   const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
-  const lessonsList = '[data-test="lesson-list"]';
+  const unitsList = '[data-test="unit-list"]';
 
   it(
     'Displays start-up splash animation, ' +
       'then "introductions explainer" graphic, ' +
-      'then lessons list',
+      'then units list',
     () => {
       cy.log(
         '马丽 picks up her phone, opens her messaging app and taps on a link to Seedlingo in a message. Seedlingo opens and displays a screen with an animation that encourages 马丽 to wait for Seedlingo to get ready.',
@@ -74,7 +74,7 @@ describe("马丽 opens the app to the home screen's list of lessons", () => {
       cy.get(instructionsExplainerComponent).should('not.exist');
       cy.get(homeButton).should('not.have.class', 'button-disabled');
       cy.get(instructionsOverlay).should('exist');
-      cy.get(lessonsList).should('exist');
+      cy.get(unitsList).should('exist');
 
       cy.log(
         'An audio clip plays explaining how tapping the icon is the way to get help or instructions throughout Seedlingo, encouraging 马丽 to tap one of the buttons to try out the “instructions” mode.',

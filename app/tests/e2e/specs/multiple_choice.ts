@@ -13,7 +13,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
     () => {
       cy.log('**1. 马丽 sees a vibrating loudspeaker/mouth talking**');
       cy.log('-- hears the audio of a corresponding word');
-      cy.visit('/lesson/multiple-choice-test', {
+      cy.visit('/unit/multiple-choice-test', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');
@@ -141,7 +141,7 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
       'and 2-4 selectable options',
     () => {
       cy.log('**1. 马丽 sees an explanation**');
-      cy.visit('/lesson/explanation-multiple-choice-test', {
+      cy.visit('/unit/explanation-multiple-choice-test', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');
