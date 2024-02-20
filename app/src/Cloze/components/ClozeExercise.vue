@@ -2,8 +2,8 @@
 import { computed, ComputedRef, ref, watch } from 'vue';
 import { IonCard, IonCardContent, IonCol, IonGrid, IonRow } from '@ionic/vue';
 import { useStore } from 'vuex';
-import RippleAnimation from '../../common/animations/RippleAnimation.vue';
-import ExerciseButton from '../../common/components/ExerciseButton.vue';
+import RippleAnimation from '@/common/animations/RippleAnimation.vue';
+import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
 
 import { ClozeExercise, ClozeOption, ClozeWord } from '../ClozeTypes';

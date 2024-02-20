@@ -11,7 +11,7 @@ import {
   IonPage,
   useIonRouter,
 } from '@ionic/vue';
-import ExerciseButton from '../common/components/ExerciseButton.vue';
+import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
 import ExerciseProvider from '@/Content/ExerciseProvider';
 // import { earOutline } from 'ionicons/icons';
