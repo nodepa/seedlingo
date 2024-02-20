@@ -23,7 +23,7 @@ under that name. `ContentSpec.json` describes the file structure of the content.
 Mandatory field of type `string`.
 
 ```json
-"formatVersion": "1.2.1"
+"formatVersion": "1.3.0"
 ```
 
 `formatVersion` is used by the Seedlingo app to determine how the file can be
@@ -113,7 +113,7 @@ corresponding media, i.e. audio, picture, video and/or symbol (i.e. icon).
 Mandatory field of type `string`.
 
 ```json
-"formatVersion": "1.2.1"
+"formatVersion": "1.3.0"
 ```
 
 `formatVersion` is used by the Seedlingo app to determine how the file can be
@@ -178,7 +178,7 @@ which words from the word-specification to include in an exercise.
 Mandatory field of type `string`.
 
 ```json
-"formatVersion": "1.2.1"
+"formatVersion": "1.3.0"
 ```
 
 `formatVersion` is used by the Seedlingo app to determine how the file can be
