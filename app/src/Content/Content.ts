@@ -2,12 +2,12 @@
 import type {
   Blank,
   ContentSpec,
-  LessonSpec,
+  UnitSpec,
   WordListSpec,
   WordRef,
   WordSpec,
-} from './ContentTypes';
-import { LessonsMeta } from './LessonsMetaType';
+} from '@/common/types/ContentTypes';
+import { UnitsMeta } from '@/common/types/UnitsMetaType';
 import * as mdiIcons from '@mdi/js';
 
 let mp3Base64Sources: Record<string, unknown>,
@@ -56,52 +56,50 @@ export default class Content {
     `${contentFolder}${this.ContentSpec.wordSpecFile}`
   ] as WordListSpec;
 
-  public static LessonSpecs: Array<LessonSpec> = (() => {
-    const lessons = [] as Array<LessonSpec>;
-    for (let i = 0; i < this.ContentSpec.lessons.length; i += 1) {
-      const lessonSpecFile = this.ContentSpec.lessons[i].lessonSpecFile;
-      const lesson: LessonSpec = jsonSources[
-        `${contentFolder}${lessonSpecFile}`
-      ] as LessonSpec;
-      lessons.push(lesson);
+  public static UnitSpecs: Array<UnitSpec> = (() => {
+    const units = [] as Array<UnitSpec>;
+    for (let i = 0; i < this.ContentSpec.units.length; i += 1) {
+      const unitSpecFile = this.ContentSpec.units[i].unitSpecFile;
+      const unit: UnitSpec = jsonSources[
+        `${contentFolder}${unitSpecFile}`
+      ] as UnitSpec;
+      units.push(unit);
     }
-    return lessons;
+    return units;
   })();
 
-  public static LessonsMeta: LessonsMeta = (() => {
-    const lessons = {} as LessonsMeta;
+  public static UnitsMeta: UnitsMeta = (() => {
+    const units = {} as UnitsMeta;
     const wordsSeenBefore = new Set();
-    for (let i = 0; i < this.ContentSpec.lessons.length; i += 1) {
-      const lesson = this.ContentSpec.lessons[i];
+    for (let i = 0; i < this.ContentSpec.units.length; i += 1) {
+      const unit = this.ContentSpec.units[i];
       const oneBasedIndex = i + 1;
-      lessons[oneBasedIndex] = {
-        name: lesson.name,
+      units[oneBasedIndex] = {
+        name: unit.name,
         icon: '',
         audio: '',
         words: [],
         newWords: [],
       };
-      lessons[oneBasedIndex].icon = this.getIcon(lesson.icon);
-      lessons[oneBasedIndex].audio = this.getAudioData(
-        lesson.introductionAudio,
-      );
+      units[oneBasedIndex].icon = this.getIcon(unit.icon);
+      units[oneBasedIndex].audio = this.getAudioData(unit.introductionAudio);
 
-      const lessonSpec = this.LessonSpecs[i];
-      const lessonWords = this.getWordsInLesson(lessonSpec);
-      lessons[oneBasedIndex].words = lessonWords;
-      lessons[oneBasedIndex].newWords = lessonWords.filter((word) => {
+      const unitSpec = this.UnitSpecs[i];
+      const unitWords = this.getWordsInUnit(unitSpec);
+      units[oneBasedIndex].words = unitWords;
+      units[oneBasedIndex].newWords = unitWords.filter((word) => {
         if (!wordsSeenBefore.has(word)) {
           wordsSeenBefore.add(word);
           return word;
         }
       });
     }
-    return lessons;
+    return units;
   })();
 
-  public static getWordsInLesson(lessonSpec: LessonSpec) {
+  public static getWordsInUnit(unitSpec: UnitSpec) {
     const words: Set<WordSpec> = new Set();
-    lessonSpec.exercises.forEach((exercise) => {
+    unitSpec.exercises.forEach((exercise) => {
       if (['MultipleChoice', 'Matching'].includes(exercise.type)) {
         if (exercise.multipleChoiceWords) {
           exercise.multipleChoiceWords.forEach((wordRef) => {

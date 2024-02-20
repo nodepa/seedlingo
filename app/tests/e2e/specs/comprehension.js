@@ -40,10 +40,10 @@ describe('马丽 interacts with the "text comprehension" system', () => {
       // * 1 *
       // *****
       cy.log('**1. 马丽 sees a sentence with a blank for a missing word**,');
-      cy.log('-- sees a list of words from the same lesson,');
+      cy.log('-- sees a list of words from the same unit,');
       cy.log('&nbsp;&nbsp; of which 1 word is the missing word, and');
       cy.log('-- sees 3 words that are unsuitable substitutes.');
-      cy.visit('/lesson/single-cloze-test', {
+      cy.visit('/unit/single-cloze-test', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');

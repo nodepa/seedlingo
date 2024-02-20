@@ -46,12 +46,12 @@ features:
   - title: |
       Show comprehension
       of a longer text
-    details: Read the text, answer questions about the content, practice words that are new to the lesson, then review the text.
+    details: Read the text, answer questions about the content, practice words that are new to the unit, then review the text.
     imagePath: /images/mockup-comprehension.png
   - title: |
       Review all the words
-      in a lesson
-    details: Listen to the pronunciation and see the characters/spelling of all the words in a lesson, one after the other
+      in a unit
+    details: Listen to the pronunciation and see the characters/spelling of all the words in a unit, one after the other
     imagePath: /images/mockup-basic-review.png
 
 footerHtml: true

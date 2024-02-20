@@ -12,17 +12,17 @@ import {
   useIonRouter,
 } from '@ionic/vue';
 import ExerciseButton from '../common/components/ExerciseButton.vue';
-import Content from '../Lessons/Content';
-import ExerciseProvider from '../Lessons/ExerciseProvider';
+import Content from '@/Content/Content';
+import ExerciseProvider from '@/Content/ExerciseProvider';
 // import { earOutline } from 'ionicons/icons';
 
 const route = useRoute();
 const ionRouter = useIonRouter();
 const store = useStore();
 
-const lessonIndex = +route.params.lessonIndex;
+const unitIndex = +route.params.unitIndex;
 
-const words = Content.LessonsMeta[lessonIndex].newWords;
+const words = Content.UnitsMeta[unitIndex].newWords;
 const lastWordIndex = words.length - 1;
 let currentWordIndex = 0;
 const word = ref(words[currentWordIndex]);

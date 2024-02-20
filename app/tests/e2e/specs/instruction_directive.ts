@@ -63,9 +63,9 @@ describe('马丽 interacts with the "instructions" system', () => {
       // - ensure audio stopped
       // ensure only one set of concurrent instructions
       // - click instructions toggle
-      // - click lesson 1 button
-      // - ensure lesson 1 audio playing
-      // - ensure lesson 1 animation playing
+      // - click unit 1 button
+      // - ensure unit 1 audio playing
+      // - ensure unit 1 animation playing
       // - click home button
       // - ensure only home button audio playing
       // - ensure only home button animation playing

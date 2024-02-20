@@ -1,8 +1,8 @@
-import placeholderAudio from '@/test-support/audio/placeholder-audio.mp3.audio?raw';
 import { ComprehensionExercise } from '@/Comprehension/ComprehensionTypes';
-import ExerciseProvider from '@/Lessons/ExerciseProvider';
-import pic from '../../test-support/pics/两.jpg';
-import Content from '@/Lessons/Content';
+import Content from '@/Content/Content';
+import ExerciseProvider from '@/Content/ExerciseProvider';
+import placeholderAudio from '@/test-support/audio/placeholder-audio.mp3.audio?raw';
+import pic from '@/test-support/pics/两.jpg';
 
 export default function ComprehensionTestData(): ComprehensionExercise {
   return {

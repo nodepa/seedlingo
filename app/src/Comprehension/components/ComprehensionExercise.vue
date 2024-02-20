@@ -176,7 +176,7 @@ function playOptionAudio(option: ComprehensionOption): void {
     <ProgressBar :current-stage="currentStage" :stages="STAGE" />
     <ion-grid fixed style="margin-top: 45px; padding: 0px">
       <div class="flex-row">
-        <!-- Top section: Lesson text -->
+        <!-- Top section: Unit text -->
         <div
           :class="[
             'flex-col-top',
@@ -227,7 +227,7 @@ function playOptionAudio(option: ComprehensionOption): void {
             }"
             @click="togglePlayInstructions()"
           />
-          <!-- Lesson text -->
+          <!-- Unit text -->
           <ion-card data-test="sentence-card" color="card" background="primary">
             <ion-card-content
               class="ion-text-justify"

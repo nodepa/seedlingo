@@ -23,7 +23,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.log('**1. 马丽 sees**');
       cy.log('-- 4 *symbol* buttons');
       cy.log('-- 4 corresponding *word* buttons');
-      cy.visit('/lesson/matching-test', {
+      cy.visit('/unit/matching-test', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');
@@ -360,7 +360,7 @@ describe('马丽 interacts with the "explanation matching" system', () => {
       cy.log('**1. 马丽 sees**');
       cy.log('-- 3 *explanation* buttons');
       cy.log('-- 3 corresponding *word* buttons');
-      cy.visit('/lesson/explanation-matching-test', {
+      cy.visit('/unit/explanation-matching-test', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');

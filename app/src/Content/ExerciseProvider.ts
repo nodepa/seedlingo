@@ -16,11 +16,11 @@ import {
 import {
   Blank,
   ExerciseSpec,
-  LessonSpec,
+  UnitSpec,
   WordSpec,
   WordRef,
   ComprehensionSpec,
-} from './ContentTypes';
+} from '@/common/types/ContentTypes';
 import Content from './Content';
 
 export type ExerciseType =
@@ -46,7 +46,7 @@ export interface Exercise {
 
 export default class ExerciseProvider {
   private static GenerateExerciseOfType: {
-    [key in ExerciseType]: (lesson: LessonSpec) => Exercise;
+    [key in ExerciseType]: (unit: UnitSpec) => Exercise;
   } = {
     Matching: this.generateMatchingExercise,
     MultipleChoice: this.generateMultipleChoiceExercise,
@@ -57,61 +57,61 @@ export default class ExerciseProvider {
     Comprehension: this.generateComprehensionExercise,
   };
 
-  public static getExerciseFromLesson(indexFromOne: number): Exercise {
-    this.validateExerciseIndex(indexFromOne, Content.LessonSpecs);
+  public static getExerciseFromUnit(indexFromOne: number): Exercise {
+    this.validateExerciseIndex(indexFromOne, Content.UnitSpecs);
     const indexFromZero = indexFromOne - 1;
-    const lesson = Content.LessonSpecs[indexFromZero];
+    const unit = Content.UnitSpecs[indexFromZero];
     return this.GenerateExerciseOfType[
-      this.pickRandomExerciseType(lesson)
-    ].bind(this)(lesson);
+      this.pickRandomExerciseType(unit)
+    ].bind(this)(unit);
   }
 
   public static validateExerciseIndex(
     indexFromOne: number,
-    lessons: Array<LessonSpec>,
+    units: Array<UnitSpec>,
   ): void {
-    if (indexFromOne < 1 || indexFromOne > lessons.length) {
-      throw new Error(`Please choose a lesson between 1 and ${lessons.length}`);
+    if (indexFromOne < 1 || indexFromOne > units.length) {
+      throw new Error(`Please choose a unit between 1 and ${units.length}`);
     }
   }
 
-  public static pickRandomExerciseType(lesson: LessonSpec): ExerciseType {
+  public static pickRandomExerciseType(unit: UnitSpec): ExerciseType {
     const validTypes = [] as Array<ExerciseType>;
-    if (lesson.matchingCount >= 2) {
+    if (unit.matchingCount >= 2) {
       validTypes.push('Matching');
     }
-    if (lesson.multipleChoiceCount >= 4) {
+    if (unit.multipleChoiceCount >= 4) {
       validTypes.push('MultipleChoice');
     }
-    if (lesson.explanationCount >= 2) {
+    if (unit.explanationCount >= 2) {
       validTypes.push('ExplanationMatching');
     }
-    if (lesson.explanationCount >= 1) {
+    if (unit.explanationCount >= 1) {
       validTypes.push('ExplanationMultipleChoice');
     }
-    if (lesson.singleClozeCount >= 1) {
+    if (unit.singleClozeCount >= 1) {
       validTypes.push('SingleCloze');
     }
-    if (lesson.multiClozeCount >= 1) {
+    if (unit.multiClozeCount >= 1) {
       validTypes.push('MultiCloze');
     }
-    if (lesson.comprehensionCount >= 1) {
+    if (unit.comprehensionCount >= 1) {
       validTypes.push('Comprehension');
     }
     return this.pickRandomItem(validTypes);
   }
 
-  public static generateMatchingExercise(lesson: LessonSpec): {
+  public static generateMatchingExercise(unit: UnitSpec): {
     exerciseType: ExerciseType;
     exerciseItems: MatchingExercise;
   } {
     const exerciseFromSpec = this.pickRandomItem(
-      lesson.exercises.filter((exercise) => exercise.type === 'Matching'),
+      unit.exercises.filter((exercise) => exercise.type === 'Matching'),
     );
     const selectedWordRefs = this.selectRandomSubset(
       exerciseFromSpec.matchingWords || [],
       { minItems: 2, maxItems: 4 },
-      lesson.lessonIndex,
+      unit.unitIndex,
     );
 
     const selectedWords = selectedWordRefs.map((wordRef) =>
@@ -124,18 +124,18 @@ export default class ExerciseProvider {
     return { exerciseType: 'Matching', exerciseItems: matchingExercises };
   }
 
-  public static generateExplanationMatchingExercise(lesson: LessonSpec): {
+  public static generateExplanationMatchingExercise(unit: UnitSpec): {
     exerciseType: ExerciseType;
     exerciseItems: MatchingExercise;
   } {
-    const explanationSpecs = lesson.exercises.filter(
+    const explanationSpecs = unit.exercises.filter(
       (exercise) => exercise.type === 'Explanation',
     );
 
     const selectedExplanations = this.selectRandomSubset(
       explanationSpecs,
       { minItems: 2, maxItems: 2 },
-      lesson.lessonIndex,
+      unit.unitIndex,
     );
 
     const matchingExercises =
@@ -145,17 +145,17 @@ export default class ExerciseProvider {
     return { exerciseType: 'Matching', exerciseItems: matchingExercises };
   }
 
-  public static generateMultipleChoiceExercise(lesson: LessonSpec): {
+  public static generateMultipleChoiceExercise(unit: UnitSpec): {
     exerciseType: ExerciseType;
     exerciseItems: MultipleChoiceExercise;
   } {
     const exerciseFromSpec = this.pickRandomItem(
-      lesson.exercises.filter((exercise) => exercise.type === 'MultipleChoice'),
+      unit.exercises.filter((exercise) => exercise.type === 'MultipleChoice'),
     );
     const selectedWordRefs = this.selectRandomSubset(
       exerciseFromSpec.multipleChoiceWords || [],
       { minItems: 4, maxItems: 4 },
-      lesson.lessonIndex,
+      unit.unitIndex,
     );
 
     const selectedWords = selectedWordRefs.map((wordRef) =>
@@ -173,17 +173,17 @@ export default class ExerciseProvider {
     };
   }
 
-  public static generateExplanationMultipleChoiceExercise(lesson: LessonSpec): {
+  public static generateExplanationMultipleChoiceExercise(unit: UnitSpec): {
     exerciseType: ExerciseType;
     exerciseItems: MultipleChoiceExercise;
   } {
-    const explanationExercises = lesson.exercises.filter(
+    const explanationExercises = unit.exercises.filter(
       (exercise) => exercise.type === 'Explanation',
     );
     const explanationExercise = this.pickRandomItem(explanationExercises);
     const explanationSpec = explanationExercise.explanationSpec;
 
-    // ensure lesson has 1 or more explanations
+    // ensure unit has 1 or more explanations
     if (
       !explanationSpec ||
       !explanationSpec.explanation ||
@@ -194,7 +194,7 @@ export default class ExerciseProvider {
       !(explanationSpec.explanationTargets.invalidOptions.length > 0)
     ) {
       throw new Error(
-        `Lesson ${lesson.lessonIndex} has zero valid explanation items, which is too few to generate an exercise.`,
+        `Unit ${unit.unitIndex} has zero valid explanation items, which is too few to generate an exercise.`,
       );
     }
 
@@ -212,7 +212,7 @@ export default class ExerciseProvider {
 
     if (!validWord) {
       throw new Error(
-        `Lesson ${lesson.lessonIndex} has an explanation (${explanationExercise.id}) without a valid matching target (${explanationSpec.explanationTargets?.validOption}).`,
+        `Unit ${unit.unitIndex} has an explanation (${explanationExercise.id}) without a valid matching target (${explanationSpec.explanationTargets?.validOption}).`,
       );
     }
     const correctOption = {
@@ -237,7 +237,7 @@ export default class ExerciseProvider {
     const selectedOptions = this.selectRandomSubset(
       invalidOptions,
       { minItems: 1, maxItems: 3 },
-      lesson.lessonIndex,
+      unit.unitIndex,
     );
 
     selectedOptions.forEach((wordSpec: WordSpec) => {
@@ -263,18 +263,18 @@ export default class ExerciseProvider {
     };
   }
 
-  public static generateSingleClozeExercise(lesson: LessonSpec): {
+  public static generateSingleClozeExercise(unit: UnitSpec): {
     exerciseType: ExerciseType;
     exerciseItems: ClozeExercise;
   } {
     const selectedExerciseSpec = this.selectClozeExerciseFromSpec(
-      lesson,
+      unit,
       'SingleCloze',
     );
 
     const singleClozeExercise = this.createExerciseFromSingleClozeSpec(
       selectedExerciseSpec,
-      lesson.lessonIndex,
+      unit.unitIndex,
     );
 
     return {
@@ -283,18 +283,18 @@ export default class ExerciseProvider {
     };
   }
 
-  public static generateMultiClozeExercise(lesson: LessonSpec): {
+  public static generateMultiClozeExercise(unit: UnitSpec): {
     exerciseType: ExerciseType;
     exerciseItems: ClozeExercise;
   } {
     const selectedExerciseSpec = this.selectClozeExerciseFromSpec(
-      lesson,
+      unit,
       'MultiCloze',
     );
 
     const multiClozeExercise = this.createExerciseFromMultiClozeSpec(
       selectedExerciseSpec,
-      lesson.lessonIndex,
+      unit.unitIndex,
     );
 
     return {
@@ -304,19 +304,19 @@ export default class ExerciseProvider {
   }
 
   public static selectClozeExerciseFromSpec(
-    lesson: LessonSpec,
+    unit: UnitSpec,
     clozeType: 'SingleCloze' | 'MultiCloze',
   ): ExerciseSpec {
     let exerciseSpecs = [] as Array<ExerciseSpec>;
     if (clozeType === 'SingleCloze') {
-      exerciseSpecs = lesson.exercises.filter(
+      exerciseSpecs = unit.exercises.filter(
         (exercise) =>
           exercise.type === 'SingleCloze' &&
           exercise.singleClozeSpec?.text &&
           exercise.singleClozeSpec?.text.length > 0,
       );
     } else if (clozeType === 'MultiCloze') {
-      exerciseSpecs = lesson.exercises.filter(
+      exerciseSpecs = unit.exercises.filter(
         (exercise) =>
           exercise.type === 'MultiCloze' &&
           exercise.multiClozeSpec?.text &&
@@ -326,23 +326,23 @@ export default class ExerciseProvider {
 
     if (exerciseSpecs.length === 0) {
       throw new Error(
-        `Lesson ${lesson.lessonIndex} has zero multi-blank cloze items, which is too few to generate an exercise.`,
+        `Unit ${unit.unitIndex} has zero multi-blank cloze items, which is too few to generate an exercise.`,
       );
     }
     return this.pickRandomItem(exerciseSpecs);
   }
 
-  public static generateComprehensionExercise(lesson: LessonSpec): {
+  public static generateComprehensionExercise(unit: UnitSpec): {
     exerciseType: ExerciseType;
     exerciseItems: ComprehensionExercise;
   } {
-    const exerciseSpecs = lesson.exercises.filter(
+    const exerciseSpecs = unit.exercises.filter(
       (exercise) => exercise.type === 'Comprehension',
     );
 
     if (exerciseSpecs.length === 0) {
       throw new Error(
-        `Lesson ${lesson.lessonIndex} has zero comprehension exercises, which is too few to generate an exercise.`,
+        `Unit ${unit.unitIndex} has zero comprehension exercises, which is too few to generate an exercise.`,
       );
     }
 
@@ -350,14 +350,14 @@ export default class ExerciseProvider {
 
     if (selectedExercise.comprehensionSpec === undefined) {
       throw new Error(
-        `Lesson ${lesson.lessonIndex} has a comprehension exercise (${selectedExercise.id}) without a "comprehensionSpec", therefore lacking necessary data to generate an exercise.`,
+        `Unit ${unit.unitIndex} has a comprehension exercise (${selectedExercise.id}) without a "comprehensionSpec", therefore lacking necessary data to generate an exercise.`,
       );
     }
 
     const comprehensionExercise = this.createExerciseFromComprehensionSpec(
       selectedExercise.comprehensionSpec,
       selectedExercise.id,
-      lesson.lessonIndex,
+      unit.unitIndex,
     );
 
     return {
@@ -369,9 +369,9 @@ export default class ExerciseProvider {
   public static selectRandomSubset<T>(
     items: Array<T>,
     { minItems, maxItems }: { minItems: number; maxItems: number },
-    lessonIndex: number,
+    unitIndex: number,
   ): Array<T> {
-    this.hasAtLeast(items, minItems, lessonIndex);
+    this.hasAtLeast(items, minItems, unitIndex);
     const selected = [];
     const itemIndices = [...Array(items.length).keys()];
     const maxItemsAccepted = Math.min(maxItems, items.length);
@@ -388,11 +388,11 @@ export default class ExerciseProvider {
   public static hasAtLeast<T>(
     items: Array<T>,
     lowerLimit: number,
-    lessonIndex: number,
+    unitIndex: number,
   ): void {
     if (items.length < lowerLimit) {
       throw new Error(
-        `Lesson ${lessonIndex} only has ${items.length} suitable item(s), which is too few to generate this exercise.`,
+        `Unit ${unitIndex} only has ${items.length} suitable item(s), which is too few to generate this exercise.`,
       );
     }
   }
@@ -605,14 +605,14 @@ export default class ExerciseProvider {
 
   public static createExerciseFromSingleClozeSpec(
     singleClozeExercise: ExerciseSpec,
-    lessonIndex: number,
+    unitIndex: number,
   ): ClozeExercise {
     if (
       !singleClozeExercise.singleClozeSpec?.text ||
       singleClozeExercise.singleClozeSpec.text.length < 2
     ) {
       throw new Error(
-        `Lesson ${lessonIndex}'s item ${singleClozeExercise.id} does not have a clozeText with enough words and blanks to generate an exercise.`,
+        `Unit ${unitIndex}'s item ${singleClozeExercise.id} does not have a clozeText with enough words and blanks to generate an exercise.`,
       );
     }
 
@@ -710,7 +710,7 @@ export default class ExerciseProvider {
             const wordRefs = this.selectRandomSubset(
               (wordRefOrBlank as Blank).invalidOptions || [],
               { minItems: 3, maxItems: 3 },
-              lessonIndex,
+              unitIndex,
             );
             clozeOptions.push(
               ...wordRefs.map((wordRef) => {
@@ -765,14 +765,14 @@ export default class ExerciseProvider {
 
   public static createExerciseFromMultiClozeSpec(
     clozeSpec: ExerciseSpec,
-    lessonIndex: number,
+    unitIndex: number,
   ): ClozeExercise {
     if (
       !clozeSpec.multiClozeSpec?.text ||
       clozeSpec.multiClozeSpec?.text.length < 3
     ) {
       throw new Error(
-        `Lesson ${lessonIndex}'s item "${clozeSpec.id}" does not have enough elements in multiClozeSpec.text to generate an exercise.`,
+        `Unit ${unitIndex}'s item "${clozeSpec.id}" does not have enough elements in multiClozeSpec.text to generate an exercise.`,
       );
     }
 
@@ -783,7 +783,7 @@ export default class ExerciseProvider {
 
     if (!blanks || blanks.length <= 1) {
       throw new Error(
-        `Lesson ${lessonIndex}'s item ${clozeSpec.id} does not have enough blanks in multiClozeSpec.text to generate an exercise.`,
+        `Unit ${unitIndex}'s item ${clozeSpec.id} does not have enough blanks in multiClozeSpec.text to generate an exercise.`,
       );
     }
 
@@ -897,11 +897,11 @@ export default class ExerciseProvider {
   public static createExerciseFromComprehensionSpec(
     comprehensionSpec: ComprehensionSpec,
     exerciseId: string,
-    lessonIndex: number,
+    unitIndex: number,
   ): ComprehensionExercise {
     if (!comprehensionSpec.text || comprehensionSpec.text.length < 2) {
       throw new Error(
-        `Lesson ${lessonIndex} has a "comprehensionSpec" (${exerciseId}) with a too short "text" to generate an exercise.`,
+        `Unit ${unitIndex} has a "comprehensionSpec" (${exerciseId}) with a too short "text" to generate an exercise.`,
       );
     }
 
@@ -1013,7 +1013,7 @@ export default class ExerciseProvider {
     if (matchingWords) {
       if (matchingWords?.length <= 1) {
         throw new Error(
-          `Lesson ${lessonIndex} has a "comprehensionSpec" (${exerciseId}) with a "matchingWords" field that contains too few elements to generate an exercise.`,
+          `Unit ${unitIndex} has a "comprehensionSpec" (${exerciseId}) with a "matchingWords" field that contains too few elements to generate an exercise.`,
         );
       } else {
         this.shuffleItemsInPlace(matchingWords);
@@ -1050,7 +1050,7 @@ export default class ExerciseProvider {
       const selectedWords = this.selectRandomSubset(
         multipleChoiceWords,
         { minItems: 2, maxItems: 4 },
-        lessonIndex,
+        unitIndex,
       );
       // Get word's index or replace item at random index with word
       let index: number;
