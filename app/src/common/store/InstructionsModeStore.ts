@@ -1,6 +1,6 @@
 import { ActionTree, Module, MutationTree } from 'vuex';
 import { RootState } from './StoreTypes';
-import { InstructionsModeState } from '../directives/InstructionsDirective';
+import { InstructionsModeState } from '@/common/directives/InstructionsDirective';
 
 const getDefaultState = (): InstructionsModeState => {
   return {

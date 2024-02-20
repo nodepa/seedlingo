@@ -1,4 +1,4 @@
-import { ExerciseAudio } from '../common/types/ExerciseAudioType';
+import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
 
 export interface ClozeExercise {
   clozeOptions: Array<ClozeOption>;

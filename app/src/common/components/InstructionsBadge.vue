@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ToggleInstructionsOnIcon from '../icons/ToggleInstructionsOnIcon.svg?raw';
-import RippleAnimation from '../animations/RippleAnimation.vue';
+import ToggleInstructionsOnIcon from '@/common/icons/ToggleInstructionsOnIcon.svg?raw';
+import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import { Ref, ref } from 'vue';
 
 interface Props {

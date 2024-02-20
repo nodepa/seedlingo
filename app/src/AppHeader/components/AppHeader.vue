@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, Ref, ref } from 'vue';
 import { IonHeader, IonImg, IonTitle, IonToolbar } from '@ionic/vue';
-import logoUrl from '../../assets/logo/logo.svg';
+import logoUrl from '@/assets/logo/logo.svg';
 import { App as CapacitorApp } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 

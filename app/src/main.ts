@@ -30,14 +30,14 @@ import '@ionic/vue/css/text-alignment.css';
 import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
-import './common/styles/theme.scss';
+import '@/common/styles/theme.scss';
 
-import Badge from './common/components/InstructionsBadge.vue';
-import InstructionsDirective from './common/directives/InstructionsDirective';
-import App from './App.vue';
-import router from './common/router';
-import store from './common/store/RootStore';
-import { createPlausible } from './common/plugins/PlausibleAnalytics';
+import Badge from '@/common/components/InstructionsBadge.vue';
+import InstructionsDirective from '@/common/directives/InstructionsDirective';
+import App from '@/App.vue';
+import router from '@/common/router';
+import store from '@/common/store/RootStore';
+import { createPlausible } from '@/common/plugins/PlausibleAnalytics';
 
 const app = createApp(App);
 app.use(IonicVue);
