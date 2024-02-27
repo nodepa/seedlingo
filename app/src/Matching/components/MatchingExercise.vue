@@ -208,13 +208,13 @@ function getSpacing(itemCount: number, index: number): string {
 </script>
 
 <template>
-  <ion-grid fixed>
-    <ion-row class="ion-justify-content-center">
+  <ion-grid fixed style="max-height: 100%">
+    <ion-row class="ion-justify-content-center" style="height: 100%">
       <ion-col
         v-for="(option, index) in exerciseItems"
         :key="index"
         size="6"
-        :style="`width: 100%; height: calc((100vh - 6.625rem - 0.75rem) / ${exerciseItems.length / 2}); padding: 0.5rem;`"
+        :style="`width: 100%; height: calc(100% / ${exerciseItems.length / 2});  padding: 0.5rem;`"
       >
         <ExerciseButton
           v-model:buzzing="option.buzzing"

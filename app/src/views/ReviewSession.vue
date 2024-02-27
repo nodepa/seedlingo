@@ -79,7 +79,7 @@ onMounted(() => {
               margin: 0rem;
             "
           >
-            <ion-card-header v-if="word.picture && word.picture.length > 0" >
+            <ion-card-header v-if="word.picture && word.picture.length > 0">
               <img
                 data-test="review-picture"
                 :src="Content.getPicPath(word.picture)"
