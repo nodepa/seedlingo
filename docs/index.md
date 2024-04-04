@@ -7,7 +7,7 @@ heroText: Seedlingo
 tagline: Modern mobile multi-language literacy
 actions:
   - text: What is Seedlingo?
-    link: 'index.html#what-is-seedlingo'
+    link: '#what-is-seedlingo'
     type: primary
   - text: Try Seedlingo
     link: 'https://seedlingo.app'
