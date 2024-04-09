@@ -1,6 +1,7 @@
 <template>
   <ion-page>
-    <component :is="exerciseComponent" :exercise-prop="exerciseItems"></component>
+    <component :is="exerciseComponent" :exercise-prop="exerciseItems">
+    </component>
   </ion-page>
 </template>
 
@@ -20,15 +21,16 @@ import getExplanationMultipleChoiceTestData from '@/MultipleChoice/data/Explanat
 import getSingleClozeTestData from '@/Cloze/data/SingleClozeTestData';
 import getMultiClozeTestData from '@/Cloze/data/MultiClozeTestData';
 import getComprehensionTestData from '@/Comprehension/data/ComprehensionTestData';
-import { MatchingItem } from '@/Matching/MatchingTypes';
-import ExerciseProvider, { ExerciseItems } from '@/Content/ExerciseProvider';
+import ExerciseProvider from '@/Content/ExerciseProvider';
+import type { ExerciseItems } from '@/Content/ExerciseProvider';
+import type { MultipleChoiceExercise as MultipleChoiceExerciseType } from '@/MultipleChoice/MultipleChoiceTypes';
 
 type ExerciseComponent =
   | typeof MatchingExercise
   | typeof MultipleChoiceExercise
   | typeof ClozeExercise
   | typeof ComprehensionExercise;
-const ExerciseMapping: { [ key: string ]: ExerciseComponent } = {
+const ExerciseMapping: { [key: string]: ExerciseComponent } = {
   Matching: MatchingExercise,
   MultipleChoice: MultipleChoiceExercise,
   ExplanationMatching: MatchingExercise,
@@ -41,7 +43,7 @@ const exerciseComponent = shallowRef<ExerciseComponent | string>(
   MultipleChoiceExercise,
 );
 
-const exerciseItems = ref<ExerciseItems>([] as Array<MatchingItem>);
+const exerciseItems = ref<ExerciseItems>({} as MultipleChoiceExerciseType);
 
 const ionRouter = useIonRouter();
 const store = useStore();
@@ -123,7 +125,7 @@ function getExercise(): void {
     const unitIndex = +route.params.unitIndex;
     const { exerciseType, exerciseItems: items } =
       ExerciseProvider.getExerciseFromUnit(unitIndex);
-    exerciseComponent.value = ExerciseMapping[ exerciseType ];
+    exerciseComponent.value = ExerciseMapping[exerciseType];
     exerciseItems.value = items;
   }
   ExerciseProvider.pickRandomExerciseType = restoreAfterMock;

@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 
-import { UnitSpec } from '@/common/types/ContentTypes';
-import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
-import { ExerciseType } from '@/Content/ExerciseProvider';
+import type { UnitSpec } from '@/common/types/ContentTypes';
+import type { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
+import type { ExerciseType } from '@/Content/ExerciseProvider';
 
 import Content from '@/Content/Content';
 
@@ -21,7 +21,9 @@ describe('ExerciseProvider', () => {
         .mockImplementation((): ExerciseType => 'Matching');
       const spySelectRandomSubsetMatching = vi
         .spyOn(ExerciseProvider, 'selectRandomSubset')
-        .mockImplementation(() => unit.exercises[1].matchingWords || []);
+        .mockImplementation(
+          () => unit.exercises[1].matchingSpec?.matchingWords || [],
+        );
       const spyGetAudioData = vi
         .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
@@ -40,7 +42,9 @@ describe('ExerciseProvider', () => {
         .mockImplementation((): ExerciseType => 'MultipleChoice');
       const spySelectRandomSubsetMultipleChoice = vi
         .spyOn(ExerciseProvider, 'selectRandomSubset')
-        .mockImplementation(() => unit.exercises[0].multipleChoiceWords || []);
+        .mockImplementation(
+          () => unit.exercises[0].multipleChoiceSpec?.multipleChoiceWords || [],
+        );
       const spyRandomIndexLessThan = vi
         .spyOn(ExerciseProvider, 'randomIndexLessThan')
         .mockImplementation(() => 3);
@@ -55,8 +59,8 @@ describe('ExerciseProvider', () => {
         (exercise.exerciseItems as MultipleChoiceExercise).options[0].word,
       ).toBe(
         Object.keys(
-          unit.exercises[0].multipleChoiceWords
-            ? unit.exercises[0].multipleChoiceWords[0]
+          unit.exercises[0].multipleChoiceSpec?.multipleChoiceWords
+            ? unit.exercises[0].multipleChoiceSpec?.multipleChoiceWords[0]
             : [],
         )[0],
       );
@@ -103,7 +107,7 @@ describe('ExerciseProvider', () => {
       const matchingExercise =
         ExerciseProvider.generateExplanationMatchingExercise(unit);
       expect(matchingExercise.exerciseType).toBe('Matching');
-      expect(matchingExercise.exerciseItems.length).toBe(4);
+      expect(matchingExercise.exerciseItems.items.length).toBe(4);
       spyGetAudioData.mockRestore();
     });
   });

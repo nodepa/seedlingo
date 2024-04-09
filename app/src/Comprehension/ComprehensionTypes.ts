@@ -1,6 +1,6 @@
-import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
-import { MatchingExercise } from '@/Matching/MatchingTypes';
-import { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
+import type { ExerciseAudio } from '@/common/types/ExerciseAudioType';
+import type { MatchingExercise } from '@/Matching/MatchingTypes';
+import type { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceTypes';
 
 export interface ComprehensionExercise {
   comprehensionText: Array<ComprehensionWord>;

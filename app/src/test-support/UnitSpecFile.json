@@ -13,38 +13,43 @@
     {
       "id": "cdb655cc-3c37-4fb4-9d4c-560f1d1c1a10",
       "type": "MultipleChoice",
-      "multipleChoiceWords": [
-        {
-          "数字": "a681b683-d909-4f5b-834e-8347633df4b1"
-        },
-        {
-          "零": "8d2a8043-7eaa-4aee-927d-a42313036970"
-        },
-        {
-          "一": "1d936b6b-e44c-466c-8d04-ab52643670c2"
-        },
-        {
-          "二": "698cced9-2080-4226-87f0-07837add7938"
-        }
-      ]
+      "multipleChoiceSpec": {
+        "multipleChoiceWords": [
+          {
+            "数字": "a681b683-d909-4f5b-834e-8347633df4b1"
+          },
+          {
+            "零": "8d2a8043-7eaa-4aee-927d-a42313036970"
+          },
+          {
+            "一": "1d936b6b-e44c-466c-8d04-ab52643670c2"
+          },
+          {
+            "二": "698cced9-2080-4226-87f0-07837add7938"
+          }
+        ]
+      }
     },
     {
       "id": "8008c1e2-e16d-4e84-8ebc-cec556cb9afc",
       "type": "Matching",
-      "matchingWords": [
-        {
-          "数字": "a681b683-d909-4f5b-834e-8347633df4b1"
-        },
-        {
-          "零": "8d2a8043-7eaa-4aee-927d-a42313036970"
-        },
-        {
-          "一": "1d936b6b-e44c-466c-8d04-ab52643670c2"
-        },
-        {
-          "二": "698cced9-2080-4226-87f0-07837add7938"
-        }
-      ]
+      "matchingSpec": {
+        "matchingWords": [
+          {
+            "数字": "a681b683-d909-4f5b-834e-8347633df4b1"
+          },
+          {
+            "零": "8d2a8043-7eaa-4aee-927d-a42313036970"
+          },
+          {
+            "一": "1d936b6b-e44c-466c-8d04-ab52643670c2"
+          },
+          {
+            "二": "698cced9-2080-4226-87f0-07837add7938"
+          }
+        ],
+        "unsuppressWordAudio": false
+      }
     },
     {
       "id": "cb6f4821-c2d6-4ccc-b9a1-465e2ddc5e4e",
@@ -464,28 +469,32 @@
             "。": "5d0f410c-83ff-43bd-a31e-922b42b054ef"
           }
         ],
-        "multipleChoiceWords": [
-          {
-            "两": "5dbf7670-f66d-46e4-b971-8f8d6de95a5c"
-          },
-          {
-            "个": "90f79865-ac90-4644-9a8b-88eaad30e979"
-          },
-          {
-            "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c"
-          }
-        ],
-        "matchingWords": [
-          {
-            "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2"
-          },
-          {
-            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
-          },
-          {
-            "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0"
-          }
-        ],
+        "multipleChoiceSpec": {
+          "multipleChoiceWords": [
+            {
+              "两": "5dbf7670-f66d-46e4-b971-8f8d6de95a5c"
+            },
+            {
+              "个": "90f79865-ac90-4644-9a8b-88eaad30e979"
+            },
+            {
+              "儿子": "af7cc883-0091-4d24-800e-95ca67ee451c"
+            }
+          ]
+        },
+        "matchingSpec": {
+          "matchingWords": [
+            {
+              "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2"
+            },
+            {
+              "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+            },
+            {
+              "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0"
+            }
+          ]
+        },
         "comprehensionQuestions": [
           {
             "questionText": "姐姐有几个孩子？",

@@ -5,7 +5,7 @@ import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import { earOutline } from 'ionicons/icons';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
-import {
+import type {
   MultipleChoiceExercise,
   MultipleChoiceItem,
 } from '../MultipleChoiceTypes';

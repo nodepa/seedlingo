@@ -1,6 +1,9 @@
-import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
+import type { ExerciseAudio } from '@/common/types/ExerciseAudioType';
 
-export type MatchingExercise = Array<MatchingItem>;
+export interface MatchingExercise {
+  items: Array<MatchingItem>;
+  unsuppressWordAudio?: boolean;
+}
 
 export interface MatchingItem {
   wordOrIcons: string | Array<string>;

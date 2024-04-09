@@ -96,21 +96,21 @@ describe('马丽 interacts with the "matching" system', () => {
       // * 2 *
       // *****
       cy.log('**2. 马丽 taps a *word* button**');
-      cy.log('-- hears corresponding audio');
-      cy.log('-- sees a ripple animation on the button until audio ends');
+      cy.log('-- does not hear corresponding audio');
+      cy.log('-- does not see a ripple animation on the button');
       cy.log('-- sees the button is highlighted/colored');
       cy.get('@option2')
         .should('have.class', wordColor)
         .click()
         .should('have.class', firstHighlightColor);
-      // 1 item audio played
-      cy.get('@audio.play').should('have.callCount', 1);
+      // 0 item audio played
+      cy.get('@audio.play').should('have.callCount', 0);
       cy.get('@audio.play').invoke('resetHistory');
-      // 2 audio ripples played
-      cy.get('@animation.play').should('have.callCount', 2);
+      // 0 audio ripples played
+      cy.get('@animation.play').should('have.callCount', 0);
       cy.get('@animation.play').invoke('resetHistory');
-      // 2 audio ripples created + 0 button buzz
-      cy.get('@animation.animate').should('have.callCount', 2);
+      // 0 audio ripples created + 0 button buzz
+      cy.get('@animation.animate').should('have.callCount', 0);
       cy.get('@animation.animate').invoke('resetHistory');
 
       cy.wait(500);
@@ -121,9 +121,6 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.log('**3. 马丽 taps a *non-corresponding* *symbol* button**');
       cy.log('-- hears corresponding audio');
       cy.log('-- sees a ripple animation on the button until audio ends');
-      cy.log(
-        '-- ~~sees the *symbol* button colored in a different color to the *word* button~~',
-      );
       cy.log('-- sees both highlighted buttons buzz and turn red');
       cy.log('-- sees both buttons return to normal, i.e. not highlighted');
       // both go red
@@ -243,21 +240,25 @@ describe('马丽 interacts with the "matching" system', () => {
       // *****
       // * 7 *
       // *****
-      cy.log('**7. 马丽 taps either matched *symbol* and *word* button**');
-      cy.log('-- hears (one) corresponding audio');
-      cy.log('-- sees a ripple animation on the button until audio ends');
+      cy.log('**7. 马丽 taps both matched *symbol* and *word* button**');
+      cy.log('-- hears corresponding audio for both');
+      cy.log('-- sees a ripple animation on the buttons until audio ends');
+      cy.get('@option1') // symbol for 四
+        .should('have.class', secondHighlightColor)
+        .click()
+        .should('have.class', secondHighlightColor);
       cy.get('@option2') // 四
         .should('have.class', secondHighlightColor)
         .click()
         .should('have.class', secondHighlightColor);
-      // 1 item audio played
-      cy.get('@audio.play').should('have.callCount', 1);
+      // 2 item audio played
+      cy.get('@audio.play').should('have.callCount', 2);
       cy.get('@audio.play').invoke('resetHistory');
-      // 2 audio ripples played + 0 buzz
-      cy.get('@animation.play').should('have.callCount', 2);
+      // 4 audio ripples played + 0 buzz
+      cy.get('@animation.play').should('have.callCount', 4);
       cy.get('@animation.play').invoke('resetHistory');
-      // 2 audio ripples created + 0 button buzz
-      cy.get('@animation.animate').should('have.callCount', 2);
+      // 4 audio ripples created + 0 button buzz
+      cy.get('@animation.animate').should('have.callCount', 4);
       cy.get('@animation.animate').invoke('resetHistory');
 
       cy.log('**7.b) 马丽 taps an unmatched *symbol* button**');
@@ -296,8 +297,9 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.log('-- correct words with symbols');
       cy.log('-- symbols with words');
       cy.log('-- until all are correctly matched');
-      cy.log('-- **then** sees **fireworks** or a big **smiley** cover screen');
-      cy.log('-- sees the screen transition to the next exercise');
+      cy.log('-- **then** sees the continue button available');
+      // cy.log('-- **then** sees **fireworks** or a big **smiley** cover screen');
+      // cy.log('-- sees the screen transition to the next exercise');
       cy.get('@option3') // 2
         .click()
         .should('have.class', thirdHighlightColor);
@@ -315,13 +317,13 @@ describe('马丽 interacts with the "matching" system', () => {
         .click()
         .should('have.class', firstHighlightColor);
       // 5 item audio played
-      cy.get('@audio.play').should('have.callCount', 5);
+      cy.get('@audio.play').should('have.callCount', 4);
       cy.get('@audio.play').invoke('resetHistory');
       // 10 audio ripples played + 0 buzz
-      cy.get('@animation.play').should('have.callCount', 10);
+      cy.get('@animation.play').should('have.callCount', 8);
       cy.get('@animation.play').invoke('resetHistory');
       // 10 audio ripples created + 0 button buzz
-      cy.get('@animation.animate').should('have.callCount', 10);
+      cy.get('@animation.animate').should('have.callCount', 8);
       cy.get('@animation.animate').invoke('resetHistory');
 
       cy.get(continueButton).should('not.exist');

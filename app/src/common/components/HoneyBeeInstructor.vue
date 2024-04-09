@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
+import type { ExerciseAudio } from '@/common/types/ExerciseAudioType';
 import Instructor from '@/common/icons/HoneyBee.svg';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import { computed, ref } from 'vue';

@@ -5,7 +5,7 @@ import { earOutline } from 'ionicons/icons';
 import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
-import { MatchingItem } from '../MatchingTypes';
+import type { MatchingExercise, MatchingItem } from '../MatchingTypes';
 
 const startColors = ['purple', 'pink', 'orange', 'teal'];
 const colors: Array<string> = Array.from(startColors);
@@ -15,27 +15,25 @@ function reset() {
   selected.value = -1;
 }
 
-const props = defineProps<{
-  exerciseProp: Array<MatchingItem>;
-}>();
-const localExerciseItems = ref<Array<MatchingItem>>([]);
-const exerciseItems = computed({
-  get: (): Array<MatchingItem> => {
-    if (localExerciseItems.value.length === 0) {
+const props = defineProps<{ exerciseProp: MatchingExercise }>();
+const localExercise = ref<MatchingExercise>({ items: [] });
+const exercise = computed({
+  get: () => {
+    if (localExercise.value.items.length === 0) {
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      exerciseItems.value = props.exerciseProp;
+      localExercise.value = props.exerciseProp;
     }
-    return localExerciseItems.value as Array<MatchingItem>;
+    return localExercise.value as MatchingExercise;
   },
-  set: (items: Array<MatchingItem>): void => {
-    localExerciseItems.value = items;
+  set: (exercise: MatchingExercise): void => {
+    localExercise.value = exercise;
   },
 });
 watch(
   () => props.exerciseProp,
-  (exerciseProp: Array<MatchingItem>) => {
+  (exerciseProp: MatchingExercise) => {
     reset();
-    exerciseItems.value = exerciseProp;
+    exercise.value = exerciseProp;
   },
 );
 
@@ -43,12 +41,22 @@ const nonWordColor = 'card';
 const wordColor = 'primary';
 function selectAndPlay(option: MatchingItem, index: number): void {
   selected.value = index;
-  exerciseItems.value.forEach((item) => {
+  exercise.value.items.forEach((item) => {
     if (item.audio?.playing) {
       item.audio.cancel();
     }
   });
-  option.audio?.play();
+  // handle new selection (see watch(selected, ...)) before playing audio
+  setTimeout(() => {
+    // suppress audio unless unsuppressed, is a word, or has been solved/matched
+    if (
+      exercise.value.unsuppressWordAudio ||
+      !option.isWord ||
+      option.matched
+    ) {
+      option.audio?.play();
+    }
+  }, 0);
 }
 
 watch(selected, (indexOfSelected: number, indexOfPrevious: number) => {
@@ -60,8 +68,8 @@ function checkForMatchAndReOrder(
   indexOfSelected: number,
   indexOfPrevious: number,
 ): void {
-  const selectedOption = exerciseItems.value[indexOfSelected];
-  const previousOption = exerciseItems.value[indexOfPrevious];
+  const selectedOption = exercise.value.items[indexOfSelected];
+  const previousOption = exercise.value.items[indexOfPrevious];
 
   if (indexOfSelected > -1 && selectedOption.matched) {
     // 1 item selected, but already matched
@@ -96,7 +104,7 @@ function checkForMatchAndReOrder(
     //     - re-order
     // can probably eliminate temp allOptions here
     const allOptions = Object.values(
-      exerciseItems.value as Array<MatchingItem>,
+      exercise.value.items as Array<MatchingItem>,
     );
 
     const originalIndexOfSelected = allOptions.indexOf(selectedOption);
@@ -152,7 +160,7 @@ function checkForMatchAndReOrder(
       }
     });
 
-    exerciseItems.value = allOptions;
+    exercise.value.items = allOptions;
 
     // if all options are matched up, continue!
     if (
@@ -211,10 +219,10 @@ function getSpacing(itemCount: number, index: number): string {
   <ion-grid fixed style="max-height: 100%">
     <ion-row class="ion-justify-content-center" style="height: 100%">
       <ion-col
-        v-for="(option, index) in exerciseItems"
+        v-for="(option, index) in exercise.items"
         :key="index"
         size="6"
-        :style="`width: 100%; height: calc(100% / ${exerciseItems.length / 2});  padding: 0.5rem;`"
+        :style="`width: 100%; height: calc(100% / ${exercise.items.length / 2});  padding: 0.5rem;`"
       >
         <ExerciseButton
           v-model:buzzing="option.buzzing"

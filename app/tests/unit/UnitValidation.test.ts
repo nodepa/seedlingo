@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeAll } from 'vitest';
 import { existsSync } from 'fs';
-import {
+import type {
   Blank,
   ExerciseSpec,
   UnitSpec,
@@ -67,9 +67,13 @@ describe('Integrity of JSON Unit data', () => {
             expect(exercise.id.length).toBeGreaterThanOrEqual(1);
             expect(exercise.type.length).toBeGreaterThanOrEqual(0);
             if (exercise.type === 'MultipleChoice') {
-              expect(exercise.multipleChoiceWords?.length).toBeGreaterThan(1);
+              expect(
+                exercise.multipleChoiceSpec?.multipleChoiceWords?.length,
+              ).toBeGreaterThan(1);
             } else if (exercise.type === 'Matching') {
-              expect(exercise.matchingWords?.length).toBeGreaterThan(1);
+              expect(
+                exercise.matchingSpec?.matchingWords?.length,
+              ).toBeGreaterThan(1);
             } else if (exercise.type === 'Explanation') {
               expect(
                 exercise.explanationSpec?.explanation?.length,
@@ -209,7 +213,8 @@ describe('Integrity of JSON Unit data', () => {
           let multipleChoiceCount = 0;
           unit.exercises.forEach((exercise) => {
             if (exercise.type === 'MultipleChoice') {
-              multipleChoiceCount = exercise.multipleChoiceWords?.length || 0;
+              multipleChoiceCount =
+                exercise.multipleChoiceSpec?.multipleChoiceWords?.length || 0;
             }
           });
           expect(multipleChoiceCount).toBe(unit.multipleChoiceCount);
@@ -219,7 +224,7 @@ describe('Integrity of JSON Unit data', () => {
           let matchingCount = 0;
           unit.exercises.forEach((exercise) => {
             if (exercise.type === 'Matching') {
-              matchingCount = exercise.matchingWords?.length || 0;
+              matchingCount = exercise.matchingSpec?.matchingWords?.length || 0;
             }
           });
           expect(matchingCount).toBe(unit.matchingCount);
@@ -276,7 +281,9 @@ describe('Integrity of JSON Unit data', () => {
           unit.exercises.forEach((exercise) => {
             if (['MultipleChoice', 'Matching'].includes(exercise.type)) {
               const words =
-                exercise.multipleChoiceWords || exercise.matchingWords || [];
+                exercise.multipleChoiceSpec?.multipleChoiceWords ||
+                exercise.matchingSpec?.matchingWords ||
+                [];
               words.forEach((wordRef) => {
                 if (!wordsExercised.has(Object.values(wordRef)[0])) {
                   wordsExercised.add(Object.values(wordRef)[0]);
@@ -364,26 +371,32 @@ describe('Integrity of JSON Unit data', () => {
 
               it("'multipleChoiceWords' references exist in WordSpec", () => {
                 if (exercise.type === 'MultipleChoice') {
-                  expect(!!exercise.multipleChoiceWords).toBe(true);
-                  if (exercise.multipleChoiceWords) {
-                    expect(exercise.multipleChoiceWords.length).toBeGreaterThan(
-                      1,
+                  expect(
+                    !!exercise.multipleChoiceSpec?.multipleChoiceWords,
+                  ).toBe(true);
+                  if (exercise.multipleChoiceSpec?.multipleChoiceWords) {
+                    expect(
+                      exercise.multipleChoiceSpec?.multipleChoiceWords.length,
+                    ).toBeGreaterThan(1);
+                    exercise.multipleChoiceSpec?.multipleChoiceWords.forEach(
+                      (wordRef) => {
+                        expect(
+                          Content.getWord(wordRef).word.length,
+                        ).toBeGreaterThan(0);
+                      },
                     );
-                    exercise.multipleChoiceWords.forEach((wordRef) => {
-                      expect(
-                        Content.getWord(wordRef).word.length,
-                      ).toBeGreaterThan(0);
-                    });
                   }
                 }
               });
 
               it("'matchingWords' references exist in WordSpec", () => {
                 if (exercise.type === 'Matching') {
-                  expect(!!exercise.matchingWords).toBe(true);
-                  if (exercise.matchingWords) {
-                    expect(exercise.matchingWords.length).toBeGreaterThan(1);
-                    exercise.matchingWords.forEach((wordRef) => {
+                  expect(!!exercise.matchingSpec?.matchingWords).toBe(true);
+                  if (exercise.matchingSpec?.matchingWords) {
+                    expect(
+                      exercise.matchingSpec?.matchingWords.length,
+                    ).toBeGreaterThan(1);
+                    exercise.matchingSpec?.matchingWords.forEach((wordRef) => {
                       expect(
                         Content.getWord(wordRef).word.length,
                       ).toBeGreaterThan(0);

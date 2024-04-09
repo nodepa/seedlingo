@@ -7,7 +7,7 @@ import type {
   WordRef,
   WordSpec,
 } from '@/common/types/ContentTypes';
-import { UnitsMeta } from '@/common/types/UnitsMetaType';
+import type { UnitsMeta } from '@/common/types/UnitsMetaType';
 import * as mdiIcons from '@mdi/js';
 
 let mp3Base64Sources: Record<string, unknown>,
@@ -101,13 +101,13 @@ export default class Content {
     const words: Set<WordSpec> = new Set();
     unitSpec.exercises.forEach((exercise) => {
       if (['MultipleChoice', 'Matching'].includes(exercise.type)) {
-        if (exercise.multipleChoiceWords) {
-          exercise.multipleChoiceWords.forEach((wordRef) => {
+        if (exercise.multipleChoiceSpec?.multipleChoiceWords) {
+          exercise.multipleChoiceSpec.multipleChoiceWords.forEach((wordRef) => {
             words.add(this.getWord(wordRef));
           });
         }
-        if (exercise.matchingWords) {
-          exercise.matchingWords.forEach((wordRef) => {
+        if (exercise.matchingSpec?.matchingWords) {
+          exercise.matchingSpec.matchingWords.forEach((wordRef) => {
             words.add(this.getWord(wordRef));
           });
         }

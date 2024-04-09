@@ -5,7 +5,7 @@ import rootStore from '@/common/store/RootStore';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import getTestData from '@/Matching/data/MatchingTestData';
-import { MatchingItem } from '@/Matching/MatchingTypes';
+import type { MatchingItem } from '@/Matching/MatchingTypes';
 
 import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
 
@@ -33,7 +33,7 @@ describe('MatchingExercise', () => {
 
   describe('initial state', () => {
     it('has correct defaults', () => {
-      expect(wrapper.vm.exerciseItems.length).toBe(8);
+      expect(wrapper.vm.exercise.items.length).toBe(8);
       expect(wrapper.vm.selected).toBe(-1);
     });
   });
@@ -52,7 +52,7 @@ describe('MatchingExercise', () => {
       // ##############
       let countSelected = 0;
       let countMatched = 0;
-      wrapper.vm.exerciseItems.forEach((option: MatchingItem) => {
+      wrapper.vm.exercise.items.forEach((option: MatchingItem) => {
         if (option.selected) {
           countSelected += 1;
         }
@@ -63,8 +63,8 @@ describe('MatchingExercise', () => {
 
       expect(countSelected).toEqual(1);
       expect(countMatched).toEqual(0);
-      const selectedOption = wrapper.vm.exerciseItems[1] as MatchingItem;
-      const preSelectionOption = getTestData()[1] as MatchingItem;
+      const selectedOption = wrapper.vm.exercise.items[1] as MatchingItem;
+      const preSelectionOption = getTestData().items[1] as MatchingItem;
       expect(selectedOption.wordOrIcons).toBe(preSelectionOption.wordOrIcons);
       expect(selectedOption.match).toBe(preSelectionOption.match);
       expect(selectedOption.color).not.toBe(preSelectionOption.color);
@@ -85,7 +85,7 @@ describe('MatchingExercise', () => {
       const secondIndex = 0;
       const firstIsWord = true;
       const expectedWord = '二';
-      let { exerciseItems } = wrapper.vm;
+      let exerciseItems = wrapper.vm.exercise.items;
       const firstSelection = exerciseItems[firstIndex] as MatchingItem;
       const secondSelection = exerciseItems[secondIndex] as MatchingItem;
       expect(firstSelection.match).toBe(secondIndex);
@@ -108,12 +108,8 @@ describe('MatchingExercise', () => {
       // ### assert ###
       // ##############
 
-      const firstSelectionOriginal = originalOptions[
-        firstIndex
-      ] as MatchingItem;
-      const secondSelectionOriginal = originalOptions[
-        secondIndex
-      ] as MatchingItem;
+      const firstSelectionOriginal = originalOptions.items[firstIndex];
+      const secondSelectionOriginal = originalOptions.items[secondIndex];
 
       // deselects after processing match
       expect(wrapper.vm.selected).toBe(-1);
@@ -132,7 +128,7 @@ describe('MatchingExercise', () => {
       expect(firstSelection.color).toBe(secondSelection.color);
 
       // re-orders matched items
-      exerciseItems = wrapper.vm.exerciseItems;
+      exerciseItems = wrapper.vm.exercise.items;
       const newFirstIndex =
         Object.values(exerciseItems).indexOf(firstSelection);
       const newSecondIndex =
@@ -161,38 +157,38 @@ describe('MatchingExercise', () => {
       // 7: 三 -> 6    => 三 -> 6
       // 8: 四 -> 4    => 四 -> 4
       // verify expected test data
-      expect(originalOptions[0].match).toBe(2);
-      expect(originalOptions[1].match).toBe(4);
-      expect(originalOptions[2].match).toBe(0);
-      expect(originalOptions[3].match).toBe(7);
-      expect(originalOptions[4].match).toBe(1);
-      expect(originalOptions[5].match).toBe(6);
-      expect(originalOptions[6].match).toBe(5);
-      expect(originalOptions[7].match).toBe(3);
+      expect(originalOptions.items[0].match).toBe(2);
+      expect(originalOptions.items[1].match).toBe(4);
+      expect(originalOptions.items[2].match).toBe(0);
+      expect(originalOptions.items[3].match).toBe(7);
+      expect(originalOptions.items[4].match).toBe(1);
+      expect(originalOptions.items[5].match).toBe(6);
+      expect(originalOptions.items[6].match).toBe(5);
+      expect(originalOptions.items[7].match).toBe(3);
       // verify new sort order
       expect(exerciseItems[0].wordOrIcons).toEqual(
-        originalOptions[0].wordOrIcons,
+        originalOptions.items[0].wordOrIcons,
       );
       expect(exerciseItems[1].wordOrIcons).toEqual(
-        originalOptions[2].wordOrIcons,
+        originalOptions.items[2].wordOrIcons,
       );
       expect(exerciseItems[2].wordOrIcons).toEqual(
-        originalOptions[1].wordOrIcons,
+        originalOptions.items[1].wordOrIcons,
       );
       expect(exerciseItems[3].wordOrIcons).toEqual(
-        originalOptions[3].wordOrIcons,
+        originalOptions.items[3].wordOrIcons,
       );
       expect(exerciseItems[4].wordOrIcons).toEqual(
-        originalOptions[4].wordOrIcons,
+        originalOptions.items[4].wordOrIcons,
       );
       expect(exerciseItems[5].wordOrIcons).toEqual(
-        originalOptions[5].wordOrIcons,
+        originalOptions.items[5].wordOrIcons,
       );
       expect(exerciseItems[6].wordOrIcons).toEqual(
-        originalOptions[6].wordOrIcons,
+        originalOptions.items[6].wordOrIcons,
       );
       expect(exerciseItems[7].wordOrIcons).toEqual(
-        originalOptions[7].wordOrIcons,
+        originalOptions.items[7].wordOrIcons,
       );
       // verify new matches
       expect(exerciseItems[0].match).toBe(1);
@@ -241,31 +237,31 @@ describe('MatchingExercise', () => {
       // ### assert ###
       // ##############
       // expected new order
-      const { exerciseItems } = wrapper.vm;
+      const exerciseItems = wrapper.vm.exercise.items;
       // verify new sort order
       expect(exerciseItems[0].wordOrIcons).toEqual(
-        originalOptions[5].wordOrIcons,
+        originalOptions.items[5].wordOrIcons,
       );
       expect(exerciseItems[1].wordOrIcons).toEqual(
-        originalOptions[6].wordOrIcons,
+        originalOptions.items[6].wordOrIcons,
       );
       expect(exerciseItems[2].wordOrIcons).toEqual(
-        originalOptions[0].wordOrIcons,
+        originalOptions.items[0].wordOrIcons,
       );
       expect(exerciseItems[3].wordOrIcons).toEqual(
-        originalOptions[2].wordOrIcons,
+        originalOptions.items[2].wordOrIcons,
       );
       expect(exerciseItems[4].wordOrIcons).toEqual(
-        originalOptions[3].wordOrIcons,
+        originalOptions.items[3].wordOrIcons,
       );
       expect(exerciseItems[5].wordOrIcons).toEqual(
-        originalOptions[7].wordOrIcons,
+        originalOptions.items[7].wordOrIcons,
       );
       expect(exerciseItems[6].wordOrIcons).toEqual(
-        originalOptions[1].wordOrIcons,
+        originalOptions.items[1].wordOrIcons,
       );
       expect(exerciseItems[7].wordOrIcons).toEqual(
-        originalOptions[4].wordOrIcons,
+        originalOptions.items[4].wordOrIcons,
       );
       // verify new matches
       expect(exerciseItems[0].match).toBe(1);

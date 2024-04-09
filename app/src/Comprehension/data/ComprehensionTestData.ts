@@ -1,4 +1,4 @@
-import { ComprehensionExercise } from '@/Comprehension/ComprehensionTypes';
+import type { ComprehensionExercise } from '@/Comprehension/ComprehensionTypes';
 import Content from '@/Content/Content';
 import ExerciseProvider from '@/Content/ExerciseProvider';
 import placeholderAudio from '@/test-support/audio/placeholder-audio.mp3.audio?raw';
@@ -679,108 +679,111 @@ export default function ComprehensionTestData(): ComprehensionExercise {
           },
         ],
       },
-      [
-        {
-          wordOrIcons: 'item-2-二',
-          audio: ExerciseProvider.createAudio(
-            Content.getAudioData(placeholderAudio),
-          ),
-          picture: pic,
-          match: 2,
-          isWord: false,
-          isIcon: false,
-          matched: false,
-          selected: false,
-          buzzing: false,
-        },
-        {
-          wordOrIcons: '术',
-          audio: ExerciseProvider.createAudio(
-            Content.getAudioData(placeholderAudio),
-          ),
-          match: 4,
-          isWord: true,
-          isIcon: false,
-          matched: false,
-          selected: false,
-          buzzing: false,
-        },
-        {
-          wordOrIcons: '二',
-          audio: ExerciseProvider.createAudio(
-            Content.getAudioData(placeholderAudio),
-          ),
-          match: 0,
-          isWord: true,
-          isIcon: false,
-          matched: false,
-          selected: false,
-          buzzing: false,
-        },
-        {
-          wordOrIcons: 'item-7-四',
-          audio: ExerciseProvider.createAudio(
-            Content.getAudioData(placeholderAudio),
-          ),
-          picture: pic,
-          match: 7,
-          isWord: false,
-          isIcon: false,
-          matched: false,
-          selected: false,
-          buzzing: false,
-        },
-        {
-          wordOrIcons: 'item-1-术',
-          audio: ExerciseProvider.createAudio(
-            Content.getAudioData(placeholderAudio),
-          ),
-          picture: pic,
-          match: 1,
-          isWord: false,
-          isIcon: false,
-          matched: false,
-          selected: false,
-          buzzing: false,
-        },
-        {
-          wordOrIcons: '三',
-          audio: ExerciseProvider.createAudio(
-            Content.getAudioData(placeholderAudio),
-          ),
-          match: 6,
-          isWord: true,
-          isIcon: false,
-          matched: false,
-          selected: false,
-          buzzing: false,
-        },
-        {
-          wordOrIcons: 'item-5-三',
-          audio: ExerciseProvider.createAudio(
-            Content.getAudioData(placeholderAudio),
-          ),
-          picture: pic,
-          match: 5,
-          isWord: false,
-          isIcon: false,
-          matched: false,
-          selected: false,
-          buzzing: false,
-        },
-        {
-          wordOrIcons: '四',
-          audio: ExerciseProvider.createAudio(
-            Content.getAudioData(placeholderAudio),
-          ),
-          match: 3,
-          isWord: true,
-          isIcon: false,
-          matched: false,
-          selected: false,
-          buzzing: false,
-        },
-      ],
+      {
+        items: [
+          {
+            wordOrIcons: 'item-2-二',
+            audio: ExerciseProvider.createAudio(
+              Content.getAudioData(placeholderAudio),
+            ),
+            picture: pic,
+            match: 2,
+            isWord: false,
+            isIcon: false,
+            matched: false,
+            selected: false,
+            buzzing: false,
+          },
+          {
+            wordOrIcons: '术',
+            audio: ExerciseProvider.createAudio(
+              Content.getAudioData(placeholderAudio),
+            ),
+            match: 4,
+            isWord: true,
+            isIcon: false,
+            matched: false,
+            selected: false,
+            buzzing: false,
+          },
+          {
+            wordOrIcons: '二',
+            audio: ExerciseProvider.createAudio(
+              Content.getAudioData(placeholderAudio),
+            ),
+            match: 0,
+            isWord: true,
+            isIcon: false,
+            matched: false,
+            selected: false,
+            buzzing: false,
+          },
+          {
+            wordOrIcons: 'item-7-四',
+            audio: ExerciseProvider.createAudio(
+              Content.getAudioData(placeholderAudio),
+            ),
+            picture: pic,
+            match: 7,
+            isWord: false,
+            isIcon: false,
+            matched: false,
+            selected: false,
+            buzzing: false,
+          },
+          {
+            wordOrIcons: 'item-1-术',
+            audio: ExerciseProvider.createAudio(
+              Content.getAudioData(placeholderAudio),
+            ),
+            picture: pic,
+            match: 1,
+            isWord: false,
+            isIcon: false,
+            matched: false,
+            selected: false,
+            buzzing: false,
+          },
+          {
+            wordOrIcons: '三',
+            audio: ExerciseProvider.createAudio(
+              Content.getAudioData(placeholderAudio),
+            ),
+            match: 6,
+            isWord: true,
+            isIcon: false,
+            matched: false,
+            selected: false,
+            buzzing: false,
+          },
+          {
+            wordOrIcons: 'item-5-三',
+            audio: ExerciseProvider.createAudio(
+              Content.getAudioData(placeholderAudio),
+            ),
+            picture: pic,
+            match: 5,
+            isWord: false,
+            isIcon: false,
+            matched: false,
+            selected: false,
+            buzzing: false,
+          },
+          {
+            wordOrIcons: '四',
+            audio: ExerciseProvider.createAudio(
+              Content.getAudioData(placeholderAudio),
+            ),
+            match: 3,
+            isWord: true,
+            isIcon: false,
+            matched: false,
+            selected: false,
+            buzzing: false,
+          },
+        ],
+        unsuppressWordAudio: false,
+      },
     ],
 
     stages: [
