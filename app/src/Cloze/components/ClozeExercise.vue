@@ -6,7 +6,7 @@ import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
 
-import { ClozeExercise, ClozeOption, ClozeWord } from '../ClozeTypes';
+import type { ClozeExercise, ClozeOption, ClozeWord } from '../ClozeTypes';
 
 const props = defineProps<{
   exerciseProp: ClozeExercise;

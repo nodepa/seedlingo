@@ -1,7 +1,7 @@
 import ExerciseProvider from '@/Content/ExerciseProvider';
 import placeholderAudio from '@/test-support/audio/placeholder-audio.mp3.audio?raw';
 import 两 from '@/test-support/audio/characters/两.mp3.audio?raw';
-import { ClozeExercise } from '../ClozeTypes';
+import type { ClozeExercise } from '../ClozeTypes';
 
 export default function MultiClozeTestData(): ClozeExercise {
   return {

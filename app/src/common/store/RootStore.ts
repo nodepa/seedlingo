@@ -1,5 +1,5 @@
 import { ActionTree, MutationTree, createStore, Store } from 'vuex';
-import { RootState } from './StoreTypes';
+import type { RootState } from './StoreTypes';
 import InstructionsModeStore from './InstructionsModeStore';
 
 const getDefaultState = (): RootState => {

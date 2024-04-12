@@ -2,20 +2,20 @@
 import { computed, onMounted, ref, watch } from 'vue';
 import { IonCard, IonCardContent, IonGrid, useIonRouter } from '@ionic/vue';
 import { useStore } from 'vuex';
-import RippleAnimation from '@/common/animations/RippleAnimation.vue';
-import ExerciseButton from '@/common/components/ExerciseButton.vue';
 
-import {
+import type {
   ComprehensionExercise,
   ComprehensionOption,
   ComprehensionQuestion,
 } from '../ComprehensionTypes';
+import type { MultipleChoiceExercise as MultipleChoiceExerciseType } from '@/MultipleChoice/MultipleChoiceTypes';
+import type { MatchingExercise as MatchingExerciseType } from '@/Matching/MatchingTypes';
+import RippleAnimation from '@/common/animations/RippleAnimation.vue';
+import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import ProgressBar from './ProgressBar.vue';
 import HoneyBeeInstructor from '@/common/components/HoneyBeeInstructor.vue';
 import MultipleChoiceExercise from '@/MultipleChoice/components/MultipleChoiceExercise.vue';
-import { MultipleChoiceExercise as MultipleChoiceExerciseType } from '@/MultipleChoice/MultipleChoiceTypes';
 import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
-import { MatchingExercise as MatchingExerciseType } from '@/Matching/MatchingTypes';
 
 const store = useStore();
 const ionRouter = useIonRouter();

@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.3.0",
+  "formatVersion": "1.4.0",
   "id": "b27360d3-ce5f-4c4e-9b7d-d150adba3148",
   "unitIndex": 17,
   "multipleChoiceCount": 0,
@@ -97,22 +97,26 @@
           { "到": "d8e24e01-512c-4b73-b2a2-830abdd223fc" },
           { "。": "5d0f410c-83ff-43bd-a31e-922b42b054ef" }
         ],
-        "multipleChoiceWords": [
-          { "能": "4e73e0c4-cee9-4d16-86f3-236b14222768" },
-          { "见": "c225be53-842b-4309-bf9e-112d80858189" },
-          { "到": "d8e24e01-512c-4b73-b2a2-830abdd223fc" },
-          { "可是": "b4b2d533-bb99-4f85-9600-0c8da150f587" },
-          { "互相": "70fe0cd1-02bd-48eb-9da2-2c65794d4b50" },
-          { "不": "df5be9ba-2001-4279-90b2-822362009dea" }
-        ],
-        "matchingWords": [
-          { "能": "4e73e0c4-cee9-4d16-86f3-236b14222768" },
-          { "见": "c225be53-842b-4309-bf9e-112d80858189" },
-          { "到": "d8e24e01-512c-4b73-b2a2-830abdd223fc" },
-          { "可是": "b4b2d533-bb99-4f85-9600-0c8da150f587" },
-          { "互相": "70fe0cd1-02bd-48eb-9da2-2c65794d4b50" },
-          { "不": "df5be9ba-2001-4279-90b2-822362009dea" }
-        ],
+        "multipleChoiceSpec": {
+          "multipleChoiceWords": [
+            { "能": "4e73e0c4-cee9-4d16-86f3-236b14222768" },
+            { "见": "c225be53-842b-4309-bf9e-112d80858189" },
+            { "到": "d8e24e01-512c-4b73-b2a2-830abdd223fc" },
+            { "可是": "b4b2d533-bb99-4f85-9600-0c8da150f587" },
+            { "互相": "70fe0cd1-02bd-48eb-9da2-2c65794d4b50" },
+            { "不": "df5be9ba-2001-4279-90b2-822362009dea" }
+          ]
+        },
+        "matchingSpec": {
+          "matchingWords": [
+            { "能": "4e73e0c4-cee9-4d16-86f3-236b14222768" },
+            { "见": "c225be53-842b-4309-bf9e-112d80858189" },
+            { "到": "d8e24e01-512c-4b73-b2a2-830abdd223fc" },
+            { "可是": "b4b2d533-bb99-4f85-9600-0c8da150f587" },
+            { "互相": "70fe0cd1-02bd-48eb-9da2-2c65794d4b50" },
+            { "不": "df5be9ba-2001-4279-90b2-822362009dea" }
+          ]
+        },
         "comprehensionQuestions": [
           {
             "questionText": "爸爸的工作是什么？",

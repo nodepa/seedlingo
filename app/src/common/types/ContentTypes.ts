@@ -1,5 +1,5 @@
 export interface ContentSpec {
-  formatVersion: '1.3.0';
+  formatVersion: '1.4.0';
 
   instructions: {
     // Paths to instructions audio must be relative to <project root>/content/:
@@ -28,7 +28,7 @@ export interface ContentSpec {
 }
 
 export interface WordListSpec {
-  formatVersion: '1.3.0';
+  formatVersion: '1.4.0';
   wordCount: number;
   words: { [key: string]: WordSpec };
 }
@@ -43,7 +43,7 @@ export interface WordSpec {
 }
 
 export interface UnitSpec {
-  formatVersion: '1.3.0';
+  formatVersion: '1.4.0';
   id: string;
   unitIndex: number;
   matchingCount: number;
@@ -65,8 +65,8 @@ export interface ExerciseSpec {
     | 'SingleCloze'
     | 'MultiCloze'
     | 'Comprehension';
-  matchingWords?: Array<WordRef>;
-  multipleChoiceWords?: Array<WordRef>;
+  multipleChoiceSpec?: MultipleChoiceSpec;
+  matchingSpec?: MatchingSpec;
   explanationSpec?: ExplanationSpec;
   singleClozeSpec?: ClozeSpec;
   multiClozeSpec?: ClozeSpec;
@@ -81,6 +81,15 @@ export interface Blank {
   description?: string;
   validOptions: Array<WordRef | Array<WordRef>>;
   invalidOptions?: Array<WordRef>;
+}
+
+export interface MultipleChoiceSpec {
+  multipleChoiceWords: Array<WordRef>;
+}
+
+export interface MatchingSpec {
+  matchingWords: Array<WordRef>;
+  unsuppressWordAudio?: boolean;
 }
 
 export interface ExplanationSpec {
@@ -100,8 +109,8 @@ export interface ClozeSpec {
 
 export interface ComprehensionSpec {
   text: Array<WordRef>;
-  multipleChoiceWords?: Array<WordRef>;
-  matchingWords?: Array<WordRef>;
+  multipleChoiceSpec?: MultipleChoiceSpec;
+  matchingSpec?: MatchingSpec;
   suppressOptionAudio?: boolean;
   comprehensionQuestions?: Array<ComprehensionQuestionSpec>;
   comprehensionStages?: Array<ComprehensionStageSpec>;

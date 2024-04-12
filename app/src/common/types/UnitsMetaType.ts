@@ -1,4 +1,4 @@
-import { WordSpec } from './ContentTypes';
+import type { WordSpec } from './ContentTypes';
 export interface UnitsMeta {
   [index: number]: {
     name: string;

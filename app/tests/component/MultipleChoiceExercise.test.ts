@@ -5,7 +5,7 @@ import rootStore from '@/common/store/RootStore';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import getTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
-import { MultipleChoiceItem } from '@/MultipleChoice/MultipleChoiceTypes';
+import type { MultipleChoiceItem } from '@/MultipleChoice/MultipleChoiceTypes';
 
 import MultipleChoiceExercise from '@/MultipleChoice/components/MultipleChoiceExercise.vue';
 

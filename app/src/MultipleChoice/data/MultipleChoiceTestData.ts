@@ -3,7 +3,7 @@ import 二 from '@/test-support/audio/characters/二.mp3.audio?raw';
 import 三 from '@/test-support/audio/characters/三.mp3.audio?raw';
 import 四 from '@/test-support/audio/characters/四.mp3.audio?raw';
 import pic from '@/test-support/pics/两.jpg';
-import { MultipleChoiceExercise } from '../MultipleChoiceTypes';
+import type { MultipleChoiceExercise } from '../MultipleChoiceTypes';
 
 export default function MultipleChoiceTestData(): MultipleChoiceExercise {
   return {

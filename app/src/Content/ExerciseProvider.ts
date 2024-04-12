@@ -1,19 +1,19 @@
 import { reactive } from 'vue';
-import { ClozeExercise, ClozeOption, ClozeWord } from '@/Cloze/ClozeTypes';
-import {
+import type { ClozeExercise, ClozeOption, ClozeWord } from '@/Cloze/ClozeTypes';
+import type {
   ComprehensionExercise,
   ComprehensionOption,
   ComprehensionQuestion,
   ComprehensionStage,
   ComprehensionWord,
 } from '@/Comprehension/ComprehensionTypes';
-import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
-import { MatchingExercise, MatchingItem } from '@/Matching/MatchingTypes';
-import {
+import type { ExerciseAudio } from '@/common/types/ExerciseAudioType';
+import type { MatchingExercise, MatchingItem } from '@/Matching/MatchingTypes';
+import type {
   MultipleChoiceExercise,
   MultipleChoiceItem,
 } from '@/MultipleChoice/MultipleChoiceTypes';
-import {
+import type {
   Blank,
   ExerciseSpec,
   UnitSpec,
@@ -33,7 +33,6 @@ export type ExerciseType =
   | 'Comprehension';
 
 export type ExerciseItems =
-  | Array<string>
   | MatchingExercise
   | MultipleChoiceExercise
   | ClozeExercise
@@ -61,9 +60,9 @@ export default class ExerciseProvider {
     this.validateExerciseIndex(indexFromOne, Content.UnitSpecs);
     const indexFromZero = indexFromOne - 1;
     const unit = Content.UnitSpecs[indexFromZero];
-    return this.GenerateExerciseOfType[
-      this.pickRandomExerciseType(unit)
-    ].bind(this)(unit);
+    return this.GenerateExerciseOfType[this.pickRandomExerciseType(unit)].bind(
+      this,
+    )(unit);
   }
 
   public static validateExerciseIndex(
@@ -109,7 +108,7 @@ export default class ExerciseProvider {
       unit.exercises.filter((exercise) => exercise.type === 'Matching'),
     );
     const selectedWordRefs = this.selectRandomSubset(
-      exerciseFromSpec.matchingWords || [],
+      exerciseFromSpec.matchingSpec?.matchingWords || [],
       { minItems: 2, maxItems: 4 },
       unit.unitIndex,
     );
@@ -118,10 +117,13 @@ export default class ExerciseProvider {
       Content.getWord(wordRef),
     );
 
-    const matchingExercises = this.createPairsFromWords(selectedWords);
+    const matchingExercise = {
+      items: this.createPairsFromWords(selectedWords),
+      unsuppressWordAudio: !!exerciseFromSpec.matchingSpec?.unsuppressWordAudio,
+    };
 
-    this.shuffleMatchingItemsInPlace(matchingExercises);
-    return { exerciseType: 'Matching', exerciseItems: matchingExercises };
+    this.shuffleMatchingItemsInPlace(matchingExercise.items);
+    return { exerciseType: 'Matching', exerciseItems: matchingExercise };
   }
 
   public static generateExplanationMatchingExercise(unit: UnitSpec): {
@@ -138,11 +140,11 @@ export default class ExerciseProvider {
       unit.unitIndex,
     );
 
-    const matchingExercises =
+    const matchingExercise =
       this.createExplanationInterpretationPairs(selectedExplanations);
 
-    this.shuffleMatchingItemsInPlace(matchingExercises);
-    return { exerciseType: 'Matching', exerciseItems: matchingExercises };
+    this.shuffleMatchingItemsInPlace(matchingExercise.items);
+    return { exerciseType: 'Matching', exerciseItems: matchingExercise };
   }
 
   public static generateMultipleChoiceExercise(unit: UnitSpec): {
@@ -153,7 +155,7 @@ export default class ExerciseProvider {
       unit.exercises.filter((exercise) => exercise.type === 'MultipleChoice'),
     );
     const selectedWordRefs = this.selectRandomSubset(
-      exerciseFromSpec.multipleChoiceWords || [],
+      exerciseFromSpec.multipleChoiceSpec?.multipleChoiceWords || [],
       { minItems: 4, maxItems: 4 },
       unit.unitIndex,
     );
@@ -397,7 +399,9 @@ export default class ExerciseProvider {
     }
   }
 
-  public static createPairsFromWords(words: Array<WordSpec>): MatchingExercise {
+  public static createPairsFromWords(
+    words: Array<WordSpec>,
+  ): Array<MatchingItem> {
     const matchingItems = [] as Array<MatchingItem>;
     words.forEach((wordSpec: WordSpec, index: number) => {
       const wordPart = {
@@ -448,7 +452,7 @@ export default class ExerciseProvider {
   public static createExplanationInterpretationPairs(
     explanationItems: Array<ExerciseSpec>,
   ): MatchingExercise {
-    const matchingExercises = [] as Array<MatchingItem>;
+    const matchingExercise = { items: [] } as MatchingExercise;
 
     explanationItems.forEach((explanationItem: ExerciseSpec, index: number) => {
       const explanationSpec = explanationItem.explanationSpec;
@@ -509,11 +513,11 @@ export default class ExerciseProvider {
         Content.getAudioData(`${interpretationItem.audio}`),
       );
 
-      matchingExercises.push(explanationPart);
-      matchingExercises.push(wordPart);
+      matchingExercise.items.push(explanationPart);
+      matchingExercise.items.push(wordPart);
     }); // end explanationItems.forEach
 
-    return matchingExercises;
+    return matchingExercise;
   }
 
   public static createAudio(src: string): ExerciseAudio {
@@ -945,11 +949,12 @@ export default class ExerciseProvider {
         }
         comprehensionWord.suppressComprehensionAudio = false;
         comprehensionWord.word = wordSpec.word;
+
         comprehensionWord.isNew =
-          !!comprehensionSpec.multipleChoiceWords?.find(
+          !!comprehensionSpec.multipleChoiceSpec?.multipleChoiceWords?.find(
             (ref) => Object.values(ref)[0] === Object.values(wordRef)[0],
           ) ||
-          !!comprehensionSpec.matchingWords?.find(
+          !!comprehensionSpec.matchingSpec?.matchingWords?.find(
             (ref) => Object.values(ref)[0] === Object.values(wordRef)[0],
           );
         if (
@@ -1006,8 +1011,8 @@ export default class ExerciseProvider {
       MultipleChoiceExercise | MatchingExercise
     >;
 
-    const matchingWords = comprehensionSpec.matchingWords?.map((wordRef) =>
-      Content.getWord(wordRef),
+    const matchingWords = comprehensionSpec.matchingSpec?.matchingWords?.map(
+      (wordRef) => Content.getWord(wordRef),
     );
 
     if (matchingWords) {
@@ -1032,20 +1037,24 @@ export default class ExerciseProvider {
         let groupsWith2Count = groupsWith2Map[matchingWords.length % 3];
         const numberOfExercises = Math.floor((matchingWords.length + 2) / 3);
         for (let i = 0; i < numberOfExercises; i += 1) {
-          const matchingExercise =
-            groupsWith2Count > 0
-              ? this.createPairsFromWords(matchingWords.splice(0, 2))
-              : this.createPairsFromWords(matchingWords.splice(0, 3));
+          const matchingExercise = {
+            items:
+              groupsWith2Count > 0
+                ? this.createPairsFromWords(matchingWords.splice(0, 2))
+                : this.createPairsFromWords(matchingWords.splice(0, 3)),
+            unsuppressWordAudio: false,
+          };
           groupsWith2Count -= 1;
-          this.shuffleMatchingItemsInPlace(matchingExercise);
+          this.shuffleMatchingItemsInPlace(matchingExercise.items);
           comprehensionExercise.newWordsExercises.push(matchingExercise);
         }
       }
     }
 
-    const multipleChoiceWords = comprehensionSpec.multipleChoiceWords?.map(
-      (wordRef) => Content.getWord(wordRef),
-    );
+    const multipleChoiceWords =
+      comprehensionSpec.multipleChoiceSpec?.multipleChoiceWords?.map(
+        (wordRef) => Content.getWord(wordRef),
+      );
     multipleChoiceWords?.forEach((word) => {
       const selectedWords = this.selectRandomSubset(
         multipleChoiceWords,

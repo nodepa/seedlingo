@@ -1,5 +1,5 @@
 {
-  "formatVersion": "1.3.0",
+  "formatVersion": "1.4.0",
   "id": "9995ec1f-e06b-4562-bff0-4145c1cb4139",
   "unitIndex": 8,
   "multipleChoiceCount": 4,
@@ -13,22 +13,26 @@
     {
       "id": "15b2baf1-2576-44c9-96f3-f0f01eb1e6bb",
       "type": "MultipleChoice",
-      "multipleChoiceWords": [
-        { "外孙女": "83ded6b2-d80b-4a78-bd10-00d4822aefb9" },
-        { "外孙": "bb91deac-cbe1-4314-b7d3-9662cc82d446" },
-        { "孙女": "7f3cd2dd-da20-4c3c-8fb1-d6beefb43d0e" },
-        { "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3" }
-      ]
+      "multipleChoiceSpec": {
+        "multipleChoiceWords": [
+          { "外孙女": "83ded6b2-d80b-4a78-bd10-00d4822aefb9" },
+          { "外孙": "bb91deac-cbe1-4314-b7d3-9662cc82d446" },
+          { "孙女": "7f3cd2dd-da20-4c3c-8fb1-d6beefb43d0e" },
+          { "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3" }
+        ]
+      }
     },
     {
       "id": "49658ef5-0f50-4693-88b3-5de245de78fb",
       "type": "Matching",
-      "matchingWords": [
-        { "外孙女": "83ded6b2-d80b-4a78-bd10-00d4822aefb9" },
-        { "外孙": "bb91deac-cbe1-4314-b7d3-9662cc82d446" },
-        { "孙女": "7f3cd2dd-da20-4c3c-8fb1-d6beefb43d0e" },
-        { "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3" }
-      ]
+      "matchingSpec": {
+        "matchingWords": [
+          { "外孙女": "83ded6b2-d80b-4a78-bd10-00d4822aefb9" },
+          { "外孙": "bb91deac-cbe1-4314-b7d3-9662cc82d446" },
+          { "孙女": "7f3cd2dd-da20-4c3c-8fb1-d6beefb43d0e" },
+          { "孙子": "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3" }
+        ]
+      }
     },
     {
       "id": "86f060d5-7d02-4f0e-8cf7-6d9e1208169f",
