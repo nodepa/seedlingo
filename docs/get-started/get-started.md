@@ -52,6 +52,12 @@ npm install
 npm start   # Then visit http://localhost:4173 in your web browser
 ```
 
+### Start the app in dev mode with hot reloading
+
+```sh
+npm dev   # Then visit http://localhost:5173 in your web browser
+```
+
 ### Run full test suite
 
 This command combines the scripts for:
