@@ -15,5 +15,5 @@ Set up a development environment as described in [Get started](/get-started/get-
 ```sh
 # Inside the `seedlingo/` folder:
 cd app
-npm run test:unit Validation # Note the capital V
+npm run verify:content
 ```
