@@ -5,6 +5,7 @@ import { earOutline } from 'ionicons/icons';
 import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
+import getSpacing from '../utils/GetSpacing';
 import type { MatchingExercise, MatchingItem } from '../MatchingTypes';
 
 const startColors = ['purple', 'pink', 'orange', 'teal'];
@@ -200,19 +201,6 @@ function checkForMatchAndReOrder(
 const matchingInstructionsPath: ComputedRef<string> = computed(() => {
   return Content.getInstructionsAudio('matchingExercise');
 });
-
-function getSpacing(itemCount: number, index: number): string {
-  if (itemCount > 1) {
-    if (index === 0) {
-      return 'margin-right: -0.75rem';
-    }
-    if (index === itemCount - 1) {
-      return 'margin-left: -0.75rem';
-    }
-    return 'margin-right: -0.75rem;margin-left: -0.75rem';
-  }
-  return '';
-}
 </script>
 
 <template>
