@@ -111,7 +111,10 @@ export class Instructions {
   public addStyling(): void {
     this.hostElement.classList.add('pop-through');
     if (this.badgeVNode?.el) {
-      if (this.hostElement.firstChild) {
+      if (
+        this.hostElement.firstChild &&
+        this.hostElement.firstChild !== this.badgeVNode.el
+      ) {
         this.hostElement.insertBefore(
           this.badgeVNode.el as HTMLHtmlElement,
           this.hostElement.firstChild,

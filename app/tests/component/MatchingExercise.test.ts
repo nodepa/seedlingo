@@ -5,6 +5,7 @@ import rootStore from '@/common/store/RootStore';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import getTestData from '@/Matching/data/MatchingTestData';
+import getSpacing from '@/Matching/utils/GetSpacing';
 import type { MatchingItem } from '@/Matching/MatchingTypes';
 
 import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
@@ -277,14 +278,12 @@ describe('MatchingExercise', () => {
 
   describe('.getSpacing()', () => {
     it('returns correct spacing class names', () => {
-      const matching = wrapper.findComponent(MatchingExercise).vm;
-
       // getSpacing(itemCount, index)
-      expect((matching as any).getSpacing(0, 0)).toBe('');
-      expect((matching as any).getSpacing(1, 0)).toBe('');
-      expect((matching as any).getSpacing(2, 0)).toBe('margin-right: -0.75rem');
-      expect((matching as any).getSpacing(2, 1)).toBe('margin-left: -0.75rem');
-      expect((matching as any).getSpacing(3, 1)).toBe(
+      expect(getSpacing(0, 0)).toBe('');
+      expect(getSpacing(1, 0)).toBe('');
+      expect(getSpacing(2, 0)).toBe('margin-right: -0.75rem');
+      expect(getSpacing(2, 1)).toBe('margin-left: -0.75rem');
+      expect(getSpacing(3, 1)).toBe(
         'margin-right: -0.75rem;margin-left: -0.75rem',
       );
     });
