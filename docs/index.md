@@ -63,7 +63,7 @@ footer: '<a href="/privacy-policy/privacy-policy.html">Privacy policy</a><br/><b
 Seedlingo is a digital language learning tool
 targeting adults learning to read their native language.
 
-::: tip ――――
+::: tip &nbsp;
 A teacher or content developer
 can prepare tailored units of exercises
 from Seedlingo's templates

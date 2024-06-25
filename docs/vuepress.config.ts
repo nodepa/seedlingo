@@ -20,7 +20,7 @@ export default defineUserConfig({
   ],
 
   alias: {
-    '@theme/HomeFeatures.vue': path.resolve('./.vuepress/theme/HomeFeatures.vue'),
+    '@theme/VPHomeFeatures.vue': path.resolve('./.vuepress/theme/HomeFeatures.vue'),
   },
 
   theme: defaultTheme({
