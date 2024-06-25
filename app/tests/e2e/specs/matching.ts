@@ -90,7 +90,7 @@ describe('马丽 interacts with the "matching" system', () => {
       // 0 audio ripples created
       cy.get('@animation.animate').should('have.callCount', 0);
 
-      cy.wait(500);
+      cy.wait(200);
 
       // *****
       // * 2 *
@@ -113,7 +113,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@animation.animate').should('have.callCount', 0);
       cy.get('@animation.animate').invoke('resetHistory');
 
-      cy.wait(500);
+      cy.wait(600);
 
       // *****
       // * 3 *
@@ -143,7 +143,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@animation.animate').should('have.callCount', 4);
       cy.get('@animation.animate').invoke('resetHistory');
 
-      cy.wait(500);
+      cy.wait(200);
 
       // *****
       // * 4 *
@@ -165,7 +165,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@animation.animate').should('have.callCount', 2);
       cy.get('@animation.animate').invoke('resetHistory');
 
-      cy.wait(500);
+      cy.wait(200);
 
       // *****
       // * 5 *
@@ -191,7 +191,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@animation.animate').should('have.callCount', 2);
       cy.get('@animation.animate').invoke('resetHistory');
 
-      cy.wait(500);
+      cy.wait(600);
 
       // *****
       // * 6 *
@@ -235,7 +235,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@animation.animate').should('have.callCount', 2);
       cy.get('@animation.animate').invoke('resetHistory');
 
-      cy.wait(500);
+      cy.wait(200);
 
       // *****
       // * 7 *
@@ -288,7 +288,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@animation.animate').should('have.callCount', 4);
       cy.get('@animation.animate').invoke('resetHistory');
 
-      cy.wait(500);
+      cy.wait(200);
 
       // *****
       // * 8 *

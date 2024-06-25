@@ -16,17 +16,15 @@
  * <v-btn v-instructions="./path/to/instructions.mp3" />
  */
 
-import {
+import type { MutationPayload, Store } from 'vuex';
+import type {
   App,
   Component,
   ComponentPublicInstance,
   DirectiveBinding,
   VNode,
-  h,
-  ref,
-  render,
 } from 'vue';
-import { MutationPayload, Store } from 'vuex';
+import { h, ref, render } from 'vue';
 
 export interface InstructionsElement extends HTMLElement {
   $instructions?: Instructions;
@@ -232,7 +230,7 @@ export default {
           hostElement.$instructions = new Instructions(
             hostElement,
             audioUrl,
-            vm,
+            vm as ComponentPublicInstance,
             Badge,
             app.config.globalProperties.$store,
           );
