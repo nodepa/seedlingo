@@ -74,6 +74,7 @@ function playAnimation(): void {
 <style scoped>
 ion-button {
   margin: 0px;
+  text-transform: none;
 }
 .button-disabled::part(native) {
   color: var(--ion-color-tint);
