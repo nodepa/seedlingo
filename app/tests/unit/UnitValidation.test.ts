@@ -35,6 +35,7 @@ describe('Integrity of JSON Unit data', () => {
         ids.forEach((id, index, allIds) => {
           if (id === allIds[index - 1]) {
             console.log(`"${id}"`);
+            expect(id).toBe('unique');
           }
         });
       }
