@@ -114,16 +114,19 @@ onMounted(() => {
                 data-test="review-word"
                 :playing="audio.playing"
                 color="primary"
-                style="
-                  width: 100%;
-                  height: auto;
-                  min-height: 6rem;
-                  font-size: 3rem;
-                  --padding-top: 0.5rem;
-                  --padding-bottom: 0.5rem;
-                  --padding-start: 0.5rem;
-                  --padding-end: 0.5rem;
-                "
+                :style="{
+                  width: '100%',
+                  height: 'auto',
+                  minHeight: '6rem',
+                  'font-size':
+                    'clamp(1rem,' +
+                    (4.15 - word.word.length * 0.15) +
+                    'rem, 4rem)',
+                  '--padding-top': '0.5rem',
+                  '--padding-bottom': '0.5rem',
+                  '--padding-start': '0.5rem',
+                  '--padding-end': '0.5rem',
+                }"
                 @click="audio.play()"
               >
                 <span style="white-space: break-spaces">

@@ -6,6 +6,7 @@ import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
 import getSpacing from '../utils/GetSpacing';
+import calcFontSize from '@/common/utils/CalcFontSize';
 import type { MatchingExercise, MatchingItem } from '../MatchingTypes';
 
 const startColors = ['purple', 'pink', 'orange', 'teal'];
@@ -218,7 +219,7 @@ const matchingInstructionsPath: ComputedRef<string> = computed(() => {
           :data-test="`option-button-${+index + 1}`"
           :playing="option.audio && option.audio.playing"
           :color="option.color || (option.isWord ? wordColor : nonWordColor)"
-          :style="`width: 100%; height: 100%;`"
+          style="width: 100%; height: 100%"
           @click="selectAndPlay(option, +index)"
         >
           <template v-if="option.isIcon">
@@ -238,13 +239,15 @@ const matchingInstructionsPath: ComputedRef<string> = computed(() => {
             />
           </template>
           <template v-else>
-            <p
-              :style="`font-size: ${
-                3 - option.wordOrIcons.length * 0.3
-              }rem; margin: 0px; white-space: break-spaces;`"
+            <span
+              :style="`
+                font-size: ${calcFontSize(2.5, 1, 10, 'rem', option.wordOrIcons as string, 5)};
+                margin: 0px;
+                white-space: break-spaces;
+              `"
             >
               {{ option.wordOrIcons }}
-            </p>
+            </span>
           </template>
         </ExerciseButton>
       </ion-col>
