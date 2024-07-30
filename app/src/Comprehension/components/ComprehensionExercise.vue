@@ -247,49 +247,52 @@ function playOptionAudio(option: ComprehensionOption): void {
                 v-for="(word, index) in exercise.comprehensionText"
                 :key="`start-${index}`"
               >
-                <span class="no-wrap">
-                  <span
-                    :data-test="`sentence-word-${index + 1}`"
-                    :class="[
-                      'selectable',
-                      'ripple-container',
-                      {
-                        interactive:
+                <template v-if="!word.isPunctuation">
+                  <span class="no-wrap">
+                    <span
+                      :data-test="`sentence-word-${index + 1}`"
+                      :class="[
+                        'selectable',
+                        'ripple-container',
+                        {
+                          interactive:
+                            allowWordInteraction &&
+                            !word.suppressComprehensionAudio,
+                        },
+                        { playing: word.audio?.playing },
+                      ]"
+                      style="padding-top: 2px"
+                      :style="`${
+                        currentStage >= STAGE.FocusNewWords && word.isNew
+                          ? 'color: var(--ion-color-tertiary);'
+                          : ''
+                      }`"
+                      @click="
+                        if (
                           allowWordInteraction &&
-                          !word.suppressComprehensionAudio,
-                      },
-                      { playing: word.audio?.playing },
-                    ]"
-                    style="padding-top: 2px"
-                    :style="`${
-                      currentStage >= STAGE.FocusNewWords && word.isNew
-                        ? 'color: var(--ion-color-tertiary);'
-                        : ''
-                    }`"
-                    @click="
-                      if (
-                        allowWordInteraction &&
-                        !word.suppressComprehensionAudio
-                      )
-                        word.audio?.play();
-                    "
-                  >
-                    <template v-if="!word.isPunctuation">
-                      {{ word.word }}
-                    </template>
-                    <RippleAnimation :playing="word.audio?.playing" />
+                          !word.suppressComprehensionAudio
+                        )
+                          word.audio?.play();
+                      "
+                    >
+                      <span>
+                        {{ word.word }}
+                      </span>
+                      <RippleAnimation :playing="word.audio?.playing" />
+                    </span>
+                    <span
+                      v-if="
+                        exercise.comprehensionText[index + 1] &&
+                        exercise.comprehensionText[index + 1].isPunctuation
+                      "
+                      :data-test="`sentence-word-${index + 1}-punctuation`"
+                      class="selectable punctuation"
+                      >{{ exercise.comprehensionText[index + 1].word }}
+                    </span>
                   </span>
-                  <span
-                    v-if="
-                      exercise.comprehensionText[index + 1] &&
-                      exercise.comprehensionText[index + 1].isPunctuation
-                    "
-                    :data-test="`sentence-word-${index + 1}-punctuation`"
-                    class="selectable punctuation"
-                    >{{ exercise.comprehensionText[index + 1].word }}
-                  </span></span
-                >
-                <wbr />
+                  {{ exercise.injectSpaces ? ' ' : '' }}
+                  <wbr />
+                </template>
               </template>
             </ion-card-content>
           </ion-card>

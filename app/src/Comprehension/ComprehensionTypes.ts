@@ -7,6 +7,7 @@ export interface ComprehensionExercise {
   questions: Array<ComprehensionQuestion>;
   stages: Array<ComprehensionStage>;
   newWordsExercises?: Array<MultipleChoiceExercise | MatchingExercise>;
+  injectSpaces?: boolean;
 }
 
 export interface ComprehensionWord {

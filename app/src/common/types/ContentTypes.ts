@@ -99,6 +99,7 @@ export interface ExplanationSpec {
     invalidOptions: Array<WordRef>;
   };
   audio?: string;
+  injectSpaces?: boolean;
 }
 
 export interface ClozeSpec {

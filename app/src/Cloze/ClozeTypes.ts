@@ -4,6 +4,7 @@ export interface ClozeExercise {
   clozeOptions: Array<ClozeOption>;
   clozeText: Array<ClozeWord>;
   clozeType: 'SingleCloze' | 'MultiCloze';
+  injectSpaces?: boolean;
 }
 
 export interface ClozeWord {
