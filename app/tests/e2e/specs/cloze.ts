@@ -68,7 +68,7 @@ describe('马丽 interacts with the "cloze" system', () => {
         .contains('五减二');
       cy.get(sentenceCard)
         .should('be.visible')
-        .contains('我 有 个 弟弟， 不过 没有 别的 兄弟姐妹。');
+        .contains('我有 个弟弟，不过没有别的兄弟姐妹。');
       cy.get(continueButton).should('not.exist');
 
       // *****
@@ -105,7 +105,7 @@ describe('马丽 interacts with the "cloze" system', () => {
         .should('have.class', 'ion-color-success')
         .should('not.have.class', 'button-disabled');
       cy.get(sentenceCard).contains(
-        '我 有 两 个 弟弟， 不过 没有 别的 兄弟姐妹。',
+        '我有两个弟弟，不过没有别的兄弟姐妹。',
       );
       cy.get(sentenceBlank).should(
         'have.css',
@@ -186,7 +186,7 @@ describe('马丽 interacts with the "cloze" system', () => {
         .contains('有');
       cy.get(sentenceCard)
         .should('be.visible')
-        .contains('我 个 弟弟， 不过 别的 。');
+        .contains('我 个弟弟，不过 别的 。');
       cy.get(continueButton).should('not.exist');
 
       // *****

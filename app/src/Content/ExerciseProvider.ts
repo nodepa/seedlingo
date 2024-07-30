@@ -610,19 +610,19 @@ export default class ExerciseProvider {
   }
 
   public static createExerciseFromSingleClozeSpec(
-    singleClozeExercise: ExerciseSpec,
+    clozeSpec: ExerciseSpec,
     unitIndex: number,
   ): ClozeExercise {
     if (
-      !singleClozeExercise.singleClozeSpec?.text ||
-      singleClozeExercise.singleClozeSpec.text.length < 2
+      !clozeSpec.singleClozeSpec?.text ||
+      clozeSpec.singleClozeSpec.text.length < 2
     ) {
       throw new Error(
-        `Unit ${unitIndex}'s item ${singleClozeExercise.id} does not have a clozeText with enough words and blanks to generate an exercise.`,
+        `Unit ${unitIndex}'s item ${clozeSpec.id} does not have a clozeText with enough words and blanks to generate an exercise.`,
       );
     }
 
-    const blanksCount = singleClozeExercise.singleClozeSpec.text.filter(
+    const blanksCount = clozeSpec.singleClozeSpec.text.filter(
       (wordRefOrBlank) =>
         'validOptions' in wordRefOrBlank &&
         wordRefOrBlank.validOptions &&
@@ -634,10 +634,10 @@ export default class ExerciseProvider {
     const pickedBlankIndex = this.randomIndexLessThan(blanksCount);
     let currentBlankIndex = 0;
 
-    const clozeText: Array<ClozeWord> = [];
-    const clozeOptions: Array<ClozeOption> = [];
-    singleClozeExercise.singleClozeSpec.text.forEach((wordRefOrBlank) => {
-      const clozeWord: ClozeWord = {
+    const singleClozeText: Array<ClozeWord> = [];
+    const singleClozeOptions: Array<ClozeOption> = [];
+    clozeSpec.singleClozeSpec.text.forEach((wordRefOrBlank) => {
+      const singleClozeWord: ClozeWord = {
         word: '',
         buzzing: false,
         revealed: false,
@@ -645,12 +645,12 @@ export default class ExerciseProvider {
 
       if (!('validOptions' in wordRefOrBlank)) {
         // current wordRefOrBlank is a WordRef
-        clozeWord.isBlank = false;
+        singleClozeWord.isBlank = false;
 
         const wordSpec = Content.getWord(wordRefOrBlank as WordRef);
-        clozeWord.word = wordSpec.word;
+        singleClozeWord.word = wordSpec.word;
         if (wordSpec.audio) {
-          clozeWord.audio = this.createAudio(
+          singleClozeWord.audio = this.createAudio(
             Content.getAudioData(wordSpec.audio),
           );
         }
@@ -658,7 +658,7 @@ export default class ExerciseProvider {
           wordSpec.isPunctuation &&
           [true, 'true'].includes(wordSpec.isPunctuation)
         ) {
-          clozeWord.isPunctuation = true;
+          singleClozeWord.isPunctuation = true;
         }
       } else {
         // current wordRefOrBlank is a Blank
@@ -676,10 +676,10 @@ export default class ExerciseProvider {
             [Content.getWord(validOption)];
 
         validOptionWordSpecs.forEach((wordSpec) => {
-          clozeWord.word += wordSpec.word;
+          singleClozeWord.word += wordSpec.word;
           // TODO: Handle successive audio #432
           if (wordSpec.audio) {
-            clozeWord.audio = this.createAudio(
+            singleClozeWord.audio = this.createAudio(
               Content.getAudioData(wordSpec.audio),
             );
           }
@@ -687,7 +687,7 @@ export default class ExerciseProvider {
             wordSpec.isPunctuation &&
             [true, 'true'].includes(wordSpec.isPunctuation)
           ) {
-            clozeWord.isPunctuation = true;
+            singleClozeWord.isPunctuation = true;
           }
         });
 
@@ -697,50 +697,50 @@ export default class ExerciseProvider {
           wordRefOrBlank.invalidOptions.length > 0
         ) {
           if (currentBlankIndex === pickedBlankIndex) {
-            clozeWord.isBlank = true;
-            const clozeOption: ClozeOption = {
-              word: clozeWord.word,
+            singleClozeWord.isBlank = true;
+            const singleClozeOption: ClozeOption = {
+              word: singleClozeWord.word,
               correct: true,
               buzzing: false,
               disabled: false,
             };
-            if (clozeWord.audio?.el.src) {
-              clozeOption.audio = this.createAudio(clozeWord.audio.el.src);
+            if (singleClozeWord.audio?.el.src) {
+              singleClozeOption.audio = this.createAudio(singleClozeWord.audio.el.src);
             }
-            if (singleClozeExercise.singleClozeSpec?.suppressOptionAudio) {
-              clozeOption.suppressOptionAudio =
-                singleClozeExercise.singleClozeSpec.suppressOptionAudio;
+            if (clozeSpec.singleClozeSpec?.suppressOptionAudio) {
+              singleClozeOption.suppressOptionAudio =
+                clozeSpec.singleClozeSpec.suppressOptionAudio;
             }
-            clozeOptions.push(clozeOption);
+            singleClozeOptions.push(singleClozeOption);
 
             const wordRefs = this.selectRandomSubset(
               (wordRefOrBlank as Blank).invalidOptions || [],
               { minItems: 3, maxItems: 3 },
               unitIndex,
             );
-            clozeOptions.push(
+            singleClozeOptions.push(
               ...wordRefs.map((wordRef) => {
                 const wordSpec = Content.getWord(wordRef);
-                const clozeOption: ClozeOption = {
+                const singleClozeOption: ClozeOption = {
                   word: wordSpec.word,
                   correct: false,
                   buzzing: false,
                   disabled: false,
                 };
                 if (wordSpec.audio) {
-                  clozeOption.audio = this.createAudio(
+                  singleClozeOption.audio = this.createAudio(
                     Content.getAudioData(wordSpec.audio),
                   );
                 }
                 if (
-                  singleClozeExercise.singleClozeSpec?.suppressOptionAudio &&
+                  clozeSpec.singleClozeSpec?.suppressOptionAudio &&
                   [true, 'true'].includes(
-                    singleClozeExercise.singleClozeSpec.suppressOptionAudio,
+                    clozeSpec.singleClozeSpec.suppressOptionAudio,
                   )
                 ) {
-                  clozeOption.suppressOptionAudio = true;
+                  singleClozeOption.suppressOptionAudio = true;
                 }
-                return clozeOption;
+                return singleClozeOption;
               }),
             );
           }
@@ -749,25 +749,30 @@ export default class ExerciseProvider {
       }
 
       if (
-        singleClozeExercise.singleClozeSpec?.suppressClozeAudio &&
+        clozeSpec.singleClozeSpec?.suppressClozeAudio &&
         [true, 'true'].includes(
-          singleClozeExercise.singleClozeSpec.suppressClozeAudio,
+          clozeSpec.singleClozeSpec.suppressClozeAudio,
         )
       ) {
-        clozeWord.suppressClozeAudio = true;
+        singleClozeWord.suppressClozeAudio = true;
       }
 
-      clozeText.push(clozeWord);
+      singleClozeText.push(singleClozeWord);
     });
 
-    this.shuffleItemsInPlace(clozeOptions);
+    this.shuffleItemsInPlace(singleClozeOptions);
 
-    return {
+    const singleClozeExercise = {
       clozeType: 'SingleCloze',
-      clozeText,
-      clozeOptions,
-      injectSpaces: true,
+      clozeText: singleClozeText,
+      clozeOptions: singleClozeOptions,
     } as ClozeExercise;
+
+    if (clozeSpec.singleClozeSpec.injectSpaces) {
+      singleClozeExercise.injectSpaces = true;
+    }
+
+    return singleClozeExercise;
   }
 
   public static createExerciseFromMultiClozeSpec(
@@ -832,7 +837,7 @@ export default class ExerciseProvider {
             : // validOption is a single WordRef
               [Content.getWord(validOption)];
 
-          const option: ClozeOption = {
+          const multiClozeOption: ClozeOption = {
             word: '',
             buzzing: false,
             disabled: false,
@@ -844,7 +849,7 @@ export default class ExerciseProvider {
               multiClozeWord.audio = this.createAudio(
                 Content.getAudioData(wordSpec.audio),
               );
-              option.audio = this.createAudio(
+              multiClozeOption.audio = this.createAudio(
                 Content.getAudioData(wordSpec.audio),
               );
             }
@@ -855,7 +860,7 @@ export default class ExerciseProvider {
               multiClozeWord.isPunctuation = true;
             }
           });
-          option.word = multiClozeWord.word;
+          multiClozeOption.word = multiClozeWord.word;
 
           // const wordSpec = Content.getWord(wordRefOrBlank.validOptions[0]);
           // if (wordSpec && wordSpec.audio) {
@@ -878,9 +883,9 @@ export default class ExerciseProvider {
               clozeSpec.multiClozeSpec.suppressOptionAudio,
             )
           ) {
-            option.suppressOptionAudio = true;
+            multiClozeOption.suppressOptionAudio = true;
           }
-          multiClozeOptions.push(option);
+          multiClozeOptions.push(multiClozeOption);
         }
         if (
           clozeSpec.multiClozeSpec?.suppressClozeAudio &&
@@ -894,11 +899,17 @@ export default class ExerciseProvider {
 
     this.shuffleItemsInPlace(multiClozeOptions);
 
-    return {
+    const multiClozeExercise = {
       clozeType: 'MultiCloze',
       clozeText,
       clozeOptions: multiClozeOptions,
     } as ClozeExercise;
+
+    if (clozeSpec.multiClozeSpec.injectSpaces) {
+      multiClozeExercise.injectSpaces = true;
+    }
+
+    return multiClozeExercise;
   }
 
   public static createExerciseFromComprehensionSpec(
@@ -913,7 +924,9 @@ export default class ExerciseProvider {
     }
 
     const comprehensionExercise = {} as ComprehensionExercise;
-    comprehensionExercise.injectSpaces = true;
+    if (comprehensionSpec.injectSpaces) {
+      comprehensionExercise.injectSpaces = true;
+    }
 
     comprehensionExercise.stages = comprehensionSpec.comprehensionStages?.map(
       (stageSpec) => {

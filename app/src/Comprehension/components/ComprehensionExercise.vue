@@ -290,7 +290,7 @@ function playOptionAudio(option: ComprehensionOption): void {
                       >{{ exercise.comprehensionText[index + 1].word }}
                     </span>
                   </span>
-                  {{ exercise.injectSpaces ? ' ' : '' }}
+                  <span v-if="exercise.injectSpaces">{{ ' ' }}</span>
                   <wbr />
                 </template>
               </template>
