@@ -48,17 +48,19 @@ function selectAndPlay(option: MatchingItem, index: number): void {
       item.audio.cancel();
     }
   });
-  // handle new selection (see watch(selected, ...)) before playing audio
-  setTimeout(() => {
-    // suppress audio unless unsuppressed, is a word, or has been solved/matched
-    if (
-      exercise.value.unsuppressWordAudio ||
-      !option.isWord ||
-      option.matched
-    ) {
-      option.audio?.play();
-    }
-  }, 0);
+  if (option.audio && option.audio.play) {
+    // handle new selection (see watch(selected, ...)) before playing audio
+    setTimeout(() => {
+      // suppress audio unless unsuppressed, is a word, or has been solved/matched
+      if (
+        exercise.value.unsuppressWordAudio ||
+        !option.isWord ||
+        option.matched
+      ) {
+        option.audio?.play();
+      }
+    }, 0);
+  }
 }
 
 watch(selected, (indexOfSelected: number, indexOfPrevious: number) => {
