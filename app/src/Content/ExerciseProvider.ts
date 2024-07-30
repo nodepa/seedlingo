@@ -505,9 +505,11 @@ export default class ExerciseProvider {
       } as MatchingItem;
       // wordPart.match = symPart;
 
-      explanationPart.audio = this.createAudio(
-        Content.getAudioData(`${explanationSpec.audio}`),
-      );
+      if (explanationSpec.audio) {
+        explanationPart.audio = this.createAudio(
+          Content.getAudioData(`${explanationSpec.audio}`),
+        );
+      }
 
       wordPart.audio = this.createAudio(
         Content.getAudioData(`${interpretationItem.audio}`),
