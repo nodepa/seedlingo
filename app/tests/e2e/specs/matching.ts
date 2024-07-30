@@ -191,7 +191,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.get('@animation.animate').should('have.callCount', 2);
       cy.get('@animation.animate').invoke('resetHistory');
 
-      cy.wait(600);
+      cy.wait(800);
 
       // *****
       // * 6 *

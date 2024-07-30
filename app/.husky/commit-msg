@@ -1,6 +1,3 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 cd app
 pwd
 npx --no -- commitlint --edit ${1}
