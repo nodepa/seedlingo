@@ -106,6 +106,7 @@ export interface ClozeSpec {
   text?: Array<WordRef | Blank>;
   suppressClozeAudio?: boolean;
   suppressOptionAudio?: boolean;
+  injectSpaces?: boolean;
 }
 
 export interface ComprehensionSpec {
@@ -115,6 +116,7 @@ export interface ComprehensionSpec {
   suppressOptionAudio?: boolean;
   comprehensionQuestions?: Array<ComprehensionQuestionSpec>;
   comprehensionStages?: Array<ComprehensionStageSpec>;
+  injectSpaces?: boolean;
 }
 export interface ComprehensionQuestionSpec {
   questionText: string;
