@@ -26,7 +26,7 @@ const weightLifter = Content.getIcon('mdiWeightLifter');
       :key="index"
       :data-test="`unit-${String(index).padStart(2, '0')}`"
     >
-      <ion-card class="margin-auto">
+      <ion-card class="margin-auto" style="width: 18rem">
         <ion-card-header>
           <ion-card-title
             class="center-content align-vertical"
@@ -77,6 +77,7 @@ const weightLifter = Content.getIcon('mdiWeightLifter');
 .center-content {
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 .align-vertical {
   align-items: center;

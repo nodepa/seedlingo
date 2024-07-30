@@ -231,7 +231,7 @@ function playOptionAudio(option: ComprehensionOption): void {
           <!-- Unit text -->
           <ion-card data-test="sentence-card" color="card" background="primary">
             <ion-card-content
-              class="ion-text-justify"
+              class="ion-text-start"
               :style="`
               font-size: ${
                 [STAGE.ReadText, STAGE.FocusNewWords, STAGE.Review].includes(
