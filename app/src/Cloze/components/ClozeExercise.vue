@@ -108,7 +108,7 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
           data-test="sentence-card"
           color="card"
         >
-          <ion-card-content class="ion-text-justify">
+          <ion-card-content class="ion-text-start">
             <template
               v-for="(word, index) in exercise.clozeText"
               :key="`start-${index}`"
