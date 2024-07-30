@@ -222,7 +222,7 @@ describe('马丽 interacts with the "matching" system', () => {
         cy.get('@option1').should('match', elements[0]);
         cy.get('@option2')
           .should('match', elements[1])
-          .find('p')
+          .find('span')
           .should('have.text', '四');
       });
       // 1 item audio played

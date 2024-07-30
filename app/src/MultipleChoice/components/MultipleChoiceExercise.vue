@@ -5,6 +5,7 @@ import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import { earOutline } from 'ionicons/icons';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
+import calcFontSize from '@/common/utils/CalcFontSize';
 import type {
   MultipleChoiceExercise,
   MultipleChoiceItem,
@@ -193,9 +194,17 @@ onUpdated(() => {
             "
           >
             <span
-              :style="`font-size: ${
-                2.5 - exerciseProp.explanationToMatch.length * 0.15
-              }rem; white-space: break-spaces;`"
+              :style="{
+                'font-size': calcFontSize(
+                  4,
+                  1,
+                  10,
+                  'rem',
+                  exerciseProp.explanationToMatch,
+                  5,
+                ),
+                'white-space': 'break-spaces',
+              }"
             >
               {{ exerciseProp.explanationToMatch }}
             </span>
@@ -231,9 +240,11 @@ onUpdated(() => {
           @click="determineCorrectness(option)"
         >
           <span
-            :style="`font-size: ${
-              2.5 - option.word.length * 0.15
-            }rem; margin: 0px; white-space: break-spaces;`"
+            :style="{
+              'font-size': calcFontSize(2.5, 1, 10, 'rem', option.word, 5),
+              margin: '0px',
+              'white-space': 'break-spaces',
+            }"
           >
             {{ option.word }}
           </span>

@@ -16,6 +16,7 @@ import ProgressBar from './ProgressBar.vue';
 import HoneyBeeInstructor from '@/common/components/HoneyBeeInstructor.vue';
 import MultipleChoiceExercise from '@/MultipleChoice/components/MultipleChoiceExercise.vue';
 import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
+import calcFontSize from '@/common/utils/CalcFontSize';
 
 const store = useStore();
 const ionRouter = useIonRouter();
@@ -340,9 +341,11 @@ function playOptionAudio(option: ComprehensionOption): void {
                   "
                 >
                   <span
-                    :style="`font-size: ${
-                      4 - option.word.length * 0.6
-                    }rem; margin: 0px; white-space: break-spaces;`"
+                    :style="`
+                      font-size: ${calcFontSize(2.5, 1, 10, 'rem', option.word as string, 5)};
+                      margin: 0px;
+                      white-space: break-spaces;
+                    `"
                   >
                     {{ option.word }}
                   </span>

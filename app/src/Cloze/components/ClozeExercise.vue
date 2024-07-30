@@ -5,6 +5,7 @@ import { useStore } from 'vuex';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
+import calcFontSize from '@/common/utils/CalcFontSize';
 
 import type { ClozeExercise, ClozeOption, ClozeWord } from '../ClozeTypes';
 
@@ -176,9 +177,11 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
               @click="determineCorrectness(option)"
             >
               <span
-                :style="`font-size: ${
-                  4 - option.word.length * 0.6
-                }rem; margin: 0px; white-space: break-spaces;`"
+                :style="`
+                  font-size: ${calcFontSize(2.5, 1, 10, 'rem', option.word as string, 5)};
+                  margin: 0px;
+                  white-space: break-spaces;
+                `"
               >
                 {{ option.word }}
               </span>
