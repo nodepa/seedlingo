@@ -113,50 +113,49 @@ const clozeInstructionsPath: ComputedRef<string> = computed(() => {
               v-for="(word, index) in exercise.clozeText"
               :key="`start-${index}`"
             >
-              <span class="no-wrap">
-                <span
-                  :data-test="`sentence-word-${index + 1}`"
-                  style="padding-top: 2px"
-                  :class="[
-                    'selectable',
-                    'ripple-container',
-                    { revealed: word.isBlank && word.revealed },
-                    { interactive: !word.isBlank || word.revealed },
-                    { playing: word.audio?.playing },
-                  ]"
-                  @click="
-                    if (
-                      !word.suppressClozeAudio &&
-                      (!word.isBlank || word.revealed)
-                    )
-                      word.audio?.play();
-                  "
-                >
+              <template v-if="!word.isPunctuation">
+                <span class="no-wrap">
                   <span
-                    v-if="word.isBlank && !word.revealed"
-                    class="cloze-blank"
-                    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
-                  >
-                  <template
-                    v-else-if="
-                      !word.isPunctuation && (!word.isBlank || word.revealed)
+                    :data-test="`sentence-word-${index + 1}`"
+                    style="padding-top: 2px"
+                    :class="[
+                      'selectable',
+                      'ripple-container',
+                      { revealed: word.isBlank && word.revealed },
+                      { interactive: !word.isBlank || word.revealed },
+                      { playing: word.audio?.playing },
+                    ]"
+                    @click="
+                      if (
+                        !word.suppressClozeAudio &&
+                        (!word.isBlank || word.revealed)
+                      )
+                        word.audio?.play();
                     "
                   >
-                    {{ word.word }}
-                  </template>
-                  <RippleAnimation :playing="word.audio?.playing" />
+                    <span
+                      v-if="word.isBlank && !word.revealed"
+                      class="cloze-blank"
+                      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
+                    >
+                    <span v-else-if="!word.isBlank || word.revealed">
+                      {{ word.word }}
+                    </span>
+                    <RippleAnimation :playing="word.audio?.playing" />
+                  </span>
+                  <span
+                    v-if="
+                      exercise.clozeText[index + 1] &&
+                      exercise.clozeText[index + 1].isPunctuation
+                    "
+                    :data-test="`sentence-word-${index + 1}-punctuation`"
+                    class="selectable punctuation"
+                    >{{ exercise.clozeText[index + 1].word }}
+                  </span>
                 </span>
-                <span
-                  v-if="
-                    exercise.clozeText[index + 1] &&
-                    exercise.clozeText[index + 1].isPunctuation
-                  "
-                  :data-test="`sentence-word-${index + 1}-punctuation`"
-                  class="selectable punctuation"
-                  >{{ exercise.clozeText[index + 1].word }}
-                </span>
-              </span>
-              <wbr />
+                {{ exercise.injectSpaces ? ' ' : '' }}
+                <wbr />
+              </template>
             </template>
           </ion-card-content>
         </ion-card>

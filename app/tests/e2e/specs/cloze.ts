@@ -68,7 +68,7 @@ describe('马丽 interacts with the "cloze" system', () => {
         .contains('五减二');
       cy.get(sentenceCard)
         .should('be.visible')
-        .contains('我有 个弟弟，不过没有别的兄弟姐妹。');
+        .contains('我 有 个 弟弟， 不过 没有 别的 兄弟姐妹。');
       cy.get(continueButton).should('not.exist');
 
       // *****
@@ -104,7 +104,9 @@ describe('马丽 interacts with the "cloze" system', () => {
         .click()
         .should('have.class', 'ion-color-success')
         .should('not.have.class', 'button-disabled');
-      cy.get(sentenceCard).contains('我有两个弟弟，不过没有别的兄弟姐妹。');
+      cy.get(sentenceCard).contains(
+        '我 有 两 个 弟弟， 不过 没有 别的 兄弟姐妹。',
+      );
       cy.get(sentenceBlank).should(
         'have.css',
         'background-color',
@@ -184,7 +186,7 @@ describe('马丽 interacts with the "cloze" system', () => {
         .contains('有');
       cy.get(sentenceCard)
         .should('be.visible')
-        .contains('我 个弟弟，不过 别的 。');
+        .contains('我 个 弟弟， 不过 别的 。');
       cy.get(continueButton).should('not.exist');
 
       // *****
@@ -249,6 +251,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log("-- hears the word's audio");
       cy.get('@option4').click().should('have.class', 'button-disabled');
       cy.get('[data-test="sentence-word-2"]')
+        .as('word2')
         .should('have.css', 'background-color', transparentBackground)
         .contains('有');
 
@@ -274,9 +277,10 @@ describe('马丽 interacts with the "cloze" system', () => {
 
       // non-blank word
       cy.get('[data-test="sentence-word-1"]')
+        .as('word1')
         .should('have.css', 'background-color', transparentBackground)
         .contains('我');
-      cy.get('[data-test="sentence-word-1"]').click();
+      cy.get('@word1').click();
       // 1 audio played
       cy.get('@audio.play').should('have.callCount', 1);
       cy.get('@audio.play').invoke('resetHistory');
@@ -288,10 +292,10 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.get('@animation.animate').invoke('resetHistory');
 
       // revealed blank-word
-      cy.get('[data-test="sentence-word-2"]')
+      cy.get('@word2')
         .should('have.css', 'background-color', transparentBackground)
-        .contains('有')
-        .click();
+        .contains('有');
+      cy.get('@word2').click();
       // 1 audio played
       cy.get('@audio.play').should('have.callCount', 1);
       cy.get('@audio.play').invoke('resetHistory');

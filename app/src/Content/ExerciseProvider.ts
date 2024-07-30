@@ -204,7 +204,7 @@ export default class ExerciseProvider {
     const multipleChoiceExercise = {
       explanationToMatch: explanationSpec.explanation
         .map((wordRef) => Content.getWord(wordRef).word)
-        .join(''),
+        .join(explanationSpec.injectSpaces ? ' ' : ''),
       options: [] as Array<MultipleChoiceItem>,
     } as MultipleChoiceExercise;
 
@@ -469,7 +469,7 @@ export default class ExerciseProvider {
       const explanationPart = {
         wordOrIcons: explanationSpec.explanation
           ?.map((wordRef) => Content.getWord(wordRef).word)
-          .join(''),
+          .join(explanationSpec.injectSpaces ? ' ' : ''),
         audio: {} as ExerciseAudio,
         // match: {} as MatchingItem
         match: index * 2 + 1,
@@ -766,6 +766,7 @@ export default class ExerciseProvider {
       clozeType: 'SingleCloze',
       clozeText,
       clozeOptions,
+      injectSpaces: true,
     } as ClozeExercise;
   }
 
@@ -912,6 +913,7 @@ export default class ExerciseProvider {
     }
 
     const comprehensionExercise = {} as ComprehensionExercise;
+    comprehensionExercise.injectSpaces = true;
 
     comprehensionExercise.stages = comprehensionSpec.comprehensionStages?.map(
       (stageSpec) => {
