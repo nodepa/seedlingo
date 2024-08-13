@@ -104,9 +104,7 @@ describe('马丽 interacts with the "cloze" system', () => {
         .click()
         .should('have.class', 'ion-color-success')
         .should('not.have.class', 'button-disabled');
-      cy.get(sentenceCard).contains(
-        '我有两个弟弟，不过没有别的兄弟姐妹。',
-      );
+      cy.get(sentenceCard).contains('我有两个弟弟，不过没有别的兄弟姐妹。');
       cy.get(sentenceBlank).should(
         'have.css',
         'background-color',

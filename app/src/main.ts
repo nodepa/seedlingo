@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint no-console: ["off"] */
 // import { isPlatform } from '@ionic/vue';
 // if (isPlatform('capacitor')) {
 //   console.log('Capacitor - native wrapped webview');

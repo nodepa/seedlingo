@@ -31,10 +31,11 @@ describe('Integrity of JSON Unit data', () => {
       });
       const uniqueIds = new Set(ids);
       if (ids.length != uniqueIds.size) {
-        console.log('Non-unique IDs:');
+        /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
+        console.error('Non-unique IDs:');
         ids.forEach((id, index, allIds) => {
           if (id === allIds[index - 1]) {
-            console.log(`"${id}"`);
+            console.error(`"${id}"`);
             expect(id).toBe('unique');
           }
         });

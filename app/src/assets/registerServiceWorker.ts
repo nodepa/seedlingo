@@ -1,5 +1,6 @@
 import { isPlatform } from '@ionic/vue';
 import { registerSW } from 'virtual:pwa-register';
+/* eslint no-console: ["off"] */
 if (isPlatform('capacitor')) {
   console.log('Capacitor - native wrapped webview');
 } else {

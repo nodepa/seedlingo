@@ -705,7 +705,9 @@ export default class ExerciseProvider {
               disabled: false,
             };
             if (singleClozeWord.audio?.el.src) {
-              singleClozeOption.audio = this.createAudio(singleClozeWord.audio.el.src);
+              singleClozeOption.audio = this.createAudio(
+                singleClozeWord.audio.el.src,
+              );
             }
             if (clozeSpec.singleClozeSpec?.suppressOptionAudio) {
               singleClozeOption.suppressOptionAudio =
@@ -750,9 +752,7 @@ export default class ExerciseProvider {
 
       if (
         clozeSpec.singleClozeSpec?.suppressClozeAudio &&
-        [true, 'true'].includes(
-          clozeSpec.singleClozeSpec.suppressClozeAudio,
-        )
+        [true, 'true'].includes(clozeSpec.singleClozeSpec.suppressClozeAudio)
       ) {
         singleClozeWord.suppressClozeAudio = true;
       }

@@ -1,5 +1,3 @@
-/* eslint-disable class-methods-use-this */
-
 export function play(): Promise<void> {
   return new Promise(() => {
     /* do nothing */
@@ -11,13 +9,11 @@ export function pause(): void {
 }
 
 export class Animation {
-  // eslint-disable-next-line no-useless-constructor
   constructor(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     effect?: AnimationEffect | null | undefined,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     timeline?: AnimationTimeline | null | undefined,
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
   ) {}
 
   addEventListener(): void {
@@ -98,13 +94,11 @@ export class Animation {
 }
 
 export class AnimationEffect {
-  // eslint-disable-next-line no-useless-constructor
   constructor(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     effect?: AnimationEffect | null | undefined,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     timeline?: AnimationTimeline | null | undefined,
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
   ) {}
 
   getTiming(): ComputedEffectTiming {
@@ -142,13 +136,11 @@ export function matchMedia(query: string) {
       this: MediaQueryList,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ev: MediaQueryListEvent,
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
     ) {},
     dispatchEvent: function (
       this: MediaQueryList,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ev: MediaQueryListEvent,
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
     ) {
       return false;
     },
