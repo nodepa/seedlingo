@@ -49,7 +49,7 @@ app.use(
     init: {
       domain:
         __AWS_BRANCH__ === 'main' || isPlatform('capacitor')
-          ? 'seedlingo.app'
+          ? 'en.seedlingo.app'
           : 'test.seedlingo.app',
       trackLocalhost: true,
     },

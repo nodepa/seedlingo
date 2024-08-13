@@ -1,295 +1,161 @@
 {
   "formatVersion": "1.4.0",
-  "id": "26c4e124-0ff1-4a20-8dc0-1473e17ca4cd",
-  "unitIndex": 6,
-  "multipleChoiceCount": 0,
-  "matchingCount": 0,
-  "explanationCount": 0,
-  "singleClozeCount": 3,
+  "id": "783fe6ed-cfde-4d31-9eb6-b7bbc04e2713",
+  "unitIndex": 7,
+  "multipleChoiceCount": 9,
+  "matchingCount": 9,
+  "explanationCount": 6,
+  "singleClozeCount": 0,
   "multiClozeCount": 0,
   "comprehensionCount": 0,
-  "wordsExercisedCount": 24,
+  "wordsExercisedCount": 9,
   "exercises": [
     {
-      "id": "ab3b59eb-b559-4bfb-a984-a5fdc6ec6086",
-      "type": "SingleCloze",
-      "singleClozeSpec": {
-        "text": [
-          { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          {
-            "description": "relations",
-            "validOptions": [
-              { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
-              { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
-              { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-              { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-              { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
-              { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" },
-              { "丈夫": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
-              { "妻子": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" }
-            ],
-            "invalidOptions": [
-              { "数字": "a681b683-d909-4f5b-834e-8347633df4b1" },
-              { "零": "8d2a8043-7eaa-4aee-927d-a42313036970" },
-              { "一": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
-              { "二": "698cced9-2080-4226-87f0-07837add7938" },
-              { "两": "5dbf7670-f66d-46e4-b971-8f8d6de95a5c" },
-              { "三": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
-              { "四": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
-              { "五": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
-              { "六": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
-              { "七": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
-              { "八": "097f100c-c5be-4112-8af9-a977902632d9" },
-              { "九": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
-              { "十": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
-              { "十一": "14affadc-3ba3-45e2-b98a-1c3bf6b3d266" },
-              { "十五": "71c67af5-d1d4-4878-ae7b-3779c3497705" },
-              { "十九": "aceef0db-2ac9-4c9c-badb-acf5f26197db" },
-              { "二十": "bf9fa97b-3b2b-4dc2-8ee6-d68ed69f7c5c" },
-              { "二十八": "67907b51-30e4-4bbd-b0d7-c4bde04060fd" },
-              { "三十": "32001502-3c66-402b-ba2b-9db8f1c520df" },
-              { "三十四": "4135dd73-7791-4a2f-ba69-89d07dfa5f66" },
-              { "四十": "c1a581c8-8866-4afd-a099-12f4e62c5c50" },
-              { "四十六": "74500825-6c34-482d-bf6c-d83889a76954" },
-              { "五十": "35ae35f7-20df-48ca-80f1-7011b0e1f728" },
-              { "五十七": "efc38b0d-18bb-43b4-8b50-68ace02cf422" },
-              { "六十": "e4ec746d-1f04-4a2c-836f-e1211a4e292d" },
-              { "六十二": "a1300e2b-ca90-4837-88a5-2b5aab654a3f" },
-              { "七十": "70829177-cf80-40e8-add9-d49059ad0a4c" },
-              { "七十八": "b2f16499-e041-4736-b9ab-d02065bb9e7c" },
-              { "八十": "ea078954-aedf-4a8c-b8de-2b711fe482f7" },
-              { "八十三": "7db01bc6-aa01-4a9d-b44f-c1c90e321eff" },
-              { "九十": "cd0523cb-9439-4c56-8699-1c1f8c3b7aa4" },
-              { "九十一": "abaf47a8-51d7-4c99-8666-fa47e1aef46c" },
-              { "一百": "debe9823-ed3c-494c-b8d3-9d4a534be404" }
-            ]
-          },
-          { "有": "35389a5a-4493-44e5-a8ae-dc0a30c98dbf" },
-          {
-            "description": "numbers",
-            "validOptions": [
-              { "一": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
-              { "两": "5dbf7670-f66d-46e4-b971-8f8d6de95a5c" },
-              { "三": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
-              { "四": "da473305-758c-40c0-a61b-d9de0aefb5a4" }
-            ],
-            "invalidOptions": [
-              { "家庭": "0d66532e-7d41-4ff8-a52a-042f676655da" },
-              { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
-              { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-              { "我的家庭": "0ec9e1ed-e1a5-4fb4-a9b8-5822ea4399e2" },
-              { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
-              { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
-              { "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
-              { "妹妹": "8ee121b4-8522-4e16-91b7-8a2af070efd8" },
-              { "弟弟": "802939da-7ac0-409c-bfb2-b0d6f81e2f56" },
-              { "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754" },
-              { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-              { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-              { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
-              { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" },
-              { "丈夫": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
-              { "妻子": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
-              { "大姐": "891c12fc-23a3-4bb9-9744-dbaf2e785624" },
-              { "二姐": "1d9b329c-a2fa-4eaa-aa2c-39d026a898a7" },
-              { "大哥": "3eac3c44-25ef-434e-9e94-1fc71e510557" },
-              { "二哥": "abb4c7a4-0c11-4f29-8506-a852f04a0ef5" },
-              { "大妹妹": "8531fafd-fd6c-47a2-861b-c401362f17c2" },
-              { "小妹妹": "683a0834-e76f-44b4-9858-467b63380147" },
-              { "大弟弟": "0fcce854-d190-4e88-a3fe-da2e4763f48c" },
-              { "小弟弟": "1846e964-c362-417a-815d-3319b2b6aca5" }
-            ]
-          },
-          { "个": "90f79865-ac90-4644-9a8b-88eaad30e979" },
-          {
-            "description": "relations",
-            "validOptions": [
-              { "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
-              { "妹妹": "8ee121b4-8522-4e16-91b7-8a2af070efd8" },
-              { "弟弟": "802939da-7ac0-409c-bfb2-b0d6f81e2f56" },
-              { "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754" }
-            ],
-            "invalidOptions": [
-              { "数字": "a681b683-d909-4f5b-834e-8347633df4b1" },
-              { "零": "8d2a8043-7eaa-4aee-927d-a42313036970" },
-              { "一": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
-              { "二": "698cced9-2080-4226-87f0-07837add7938" },
-              { "两": "5dbf7670-f66d-46e4-b971-8f8d6de95a5c" },
-              { "三": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
-              { "四": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
-              { "五": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
-              { "六": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
-              { "七": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
-              { "八": "097f100c-c5be-4112-8af9-a977902632d9" },
-              { "九": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
-              { "十": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
-              { "十一": "14affadc-3ba3-45e2-b98a-1c3bf6b3d266" },
-              { "十五": "71c67af5-d1d4-4878-ae7b-3779c3497705" },
-              { "十九": "aceef0db-2ac9-4c9c-badb-acf5f26197db" },
-              { "二十": "bf9fa97b-3b2b-4dc2-8ee6-d68ed69f7c5c" },
-              { "二十八": "67907b51-30e4-4bbd-b0d7-c4bde04060fd" },
-              { "三十": "32001502-3c66-402b-ba2b-9db8f1c520df" },
-              { "三十四": "4135dd73-7791-4a2f-ba69-89d07dfa5f66" },
-              { "四十": "c1a581c8-8866-4afd-a099-12f4e62c5c50" },
-              { "四十六": "74500825-6c34-482d-bf6c-d83889a76954" },
-              { "五十": "35ae35f7-20df-48ca-80f1-7011b0e1f728" },
-              { "五十七": "efc38b0d-18bb-43b4-8b50-68ace02cf422" },
-              { "六十": "e4ec746d-1f04-4a2c-836f-e1211a4e292d" },
-              { "六十二": "a1300e2b-ca90-4837-88a5-2b5aab654a3f" },
-              { "七十": "70829177-cf80-40e8-add9-d49059ad0a4c" },
-              { "七十八": "b2f16499-e041-4736-b9ab-d02065bb9e7c" },
-              { "八十": "ea078954-aedf-4a8c-b8de-2b711fe482f7" },
-              { "八十三": "7db01bc6-aa01-4a9d-b44f-c1c90e321eff" },
-              { "九十": "cd0523cb-9439-4c56-8699-1c1f8c3b7aa4" },
-              { "九十一": "abaf47a8-51d7-4c99-8666-fa47e1aef46c" },
-              { "一百": "debe9823-ed3c-494c-b8d3-9d4a534be404" }
-            ]
-          },
-          { "。": "5d0f410c-83ff-43bd-a31e-922b42b054ef" }
-        ],
-        "suppressClozeAudio": false,
-        "suppressOptionAudio": false
+      "id": "e25f9230-0227-4e1a-baf9-e2156d875936",
+      "type": "MultipleChoice",
+      "multipleChoiceSpec": {
+        "multipleChoiceWords": [
+          { "aunt": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+          { "uncle": "ee1f9846-2a66-4500-a3d7-924c1ff6a81a" },
+          { "sister-in-law": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
+          { "brother-in-law": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+          { "child": "c8de49d6-d26a-4d62-b959-83cf57327387" },
+          { "daughter": "34d92533-9c8c-4469-b050-2638f2b5f4d5" },
+          { "son": "af7cc883-0091-4d24-800e-95ca67ee451c" },
+          { "has": "66ea10a7-e7f0-4156-a79e-21a28e21a133" },
+          { "have": "35389a5a-4493-44e5-a8ae-dc0a30c98dbf" }
+        ]
       }
     },
     {
-      "id": "840b7bfe-b076-4296-95c4-15ec608dd384",
-      "type": "SingleCloze",
-      "singleClozeSpec": {
-        "text": [
-          { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
-          { "有": "35389a5a-4493-44e5-a8ae-dc0a30c98dbf" },
-          {
-            "validOptions": [
-              { "两": "5dbf7670-f66d-46e4-b971-8f8d6de95a5c" },
-              { "三": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
-              { "四": "da473305-758c-40c0-a61b-d9de0aefb5a4" }
-            ]
-          },
-          { "个": "90f79865-ac90-4644-9a8b-88eaad30e979" },
-          {
-            "description": "relations",
-            "validOptions": [
-              { "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
-              { "妹妹": "8ee121b4-8522-4e16-91b7-8a2af070efd8" },
-              { "弟弟": "802939da-7ac0-409c-bfb2-b0d6f81e2f56" },
-              { "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754" }
-            ],
-            "invalidOptions": [
-              { "数字": "a681b683-d909-4f5b-834e-8347633df4b1" },
-              { "零": "8d2a8043-7eaa-4aee-927d-a42313036970" },
-              { "一": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
-              { "二": "698cced9-2080-4226-87f0-07837add7938" },
-              { "两": "5dbf7670-f66d-46e4-b971-8f8d6de95a5c" },
-              { "三": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
-              { "四": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
-              { "五": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
-              { "六": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
-              { "七": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
-              { "八": "097f100c-c5be-4112-8af9-a977902632d9" },
-              { "九": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
-              { "十": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
-              { "十一": "14affadc-3ba3-45e2-b98a-1c3bf6b3d266" },
-              { "十五": "71c67af5-d1d4-4878-ae7b-3779c3497705" },
-              { "十九": "aceef0db-2ac9-4c9c-badb-acf5f26197db" },
-              { "二十": "bf9fa97b-3b2b-4dc2-8ee6-d68ed69f7c5c" },
-              { "二十八": "67907b51-30e4-4bbd-b0d7-c4bde04060fd" },
-              { "三十": "32001502-3c66-402b-ba2b-9db8f1c520df" },
-              { "三十四": "4135dd73-7791-4a2f-ba69-89d07dfa5f66" },
-              { "四十": "c1a581c8-8866-4afd-a099-12f4e62c5c50" },
-              { "四十六": "74500825-6c34-482d-bf6c-d83889a76954" },
-              { "五十": "35ae35f7-20df-48ca-80f1-7011b0e1f728" },
-              { "五十七": "efc38b0d-18bb-43b4-8b50-68ace02cf422" },
-              { "六十": "e4ec746d-1f04-4a2c-836f-e1211a4e292d" },
-              { "六十二": "a1300e2b-ca90-4837-88a5-2b5aab654a3f" },
-              { "七十": "70829177-cf80-40e8-add9-d49059ad0a4c" },
-              { "七十八": "b2f16499-e041-4736-b9ab-d02065bb9e7c" },
-              { "八十": "ea078954-aedf-4a8c-b8de-2b711fe482f7" },
-              { "八十三": "7db01bc6-aa01-4a9d-b44f-c1c90e321eff" },
-              { "九十": "cd0523cb-9439-4c56-8699-1c1f8c3b7aa4" },
-              { "九十一": "abaf47a8-51d7-4c99-8666-fa47e1aef46c" },
-              { "一百": "debe9823-ed3c-494c-b8d3-9d4a534be404" }
-            ]
-          },
-          { "。": "5d0f410c-83ff-43bd-a31e-922b42b054ef" }
-        ],
-        "suppressClozeAudio": false,
-        "suppressOptionAudio": false
+      "id": "cd232c1e-48df-408c-b975-eaf83d036079",
+      "type": "Matching",
+      "matchingSpec": {
+        "matchingWords": [
+          { "aunt": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+          { "uncle": "ee1f9846-2a66-4500-a3d7-924c1ff6a81a" },
+          { "sister-in-law": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
+          { "brother-in-law": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+          { "child": "c8de49d6-d26a-4d62-b959-83cf57327387" },
+          { "daughter": "34d92533-9c8c-4469-b050-2638f2b5f4d5" },
+          { "son": "af7cc883-0091-4d24-800e-95ca67ee451c" },
+          { "has": "66ea10a7-e7f0-4156-a79e-21a28e21a133" },
+          { "have": "35389a5a-4493-44e5-a8ae-dc0a30c98dbf" }
+        ]
       }
     },
     {
-      "id": "ad4a0c1a-8141-4935-914a-fa6dae29f863",
-      "type": "SingleCloze",
-      "singleClozeSpec": {
-        "text": [
-          { "我": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
-          { "有": "35389a5a-4493-44e5-a8ae-dc0a30c98dbf" },
-          { "一": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
-          { "个": "90f79865-ac90-4644-9a8b-88eaad30e979" },
-          {
-            "description": "relations",
-            "validOptions": [
-              { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
-              { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
-              { "姐姐": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
-              { "妹妹": "8ee121b4-8522-4e16-91b7-8a2af070efd8" },
-              { "弟弟": "802939da-7ac0-409c-bfb2-b0d6f81e2f56" },
-              { "哥哥": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754" },
-              { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-              { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-              { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
-              { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" },
-              { "丈夫": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
-              { "妻子": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
-              { "大姐": "891c12fc-23a3-4bb9-9744-dbaf2e785624" },
-              { "二姐": "1d9b329c-a2fa-4eaa-aa2c-39d026a898a7" },
-              { "大哥": "3eac3c44-25ef-434e-9e94-1fc71e510557" },
-              { "二哥": "abb4c7a4-0c11-4f29-8506-a852f04a0ef5" },
-              { "大妹妹": "8531fafd-fd6c-47a2-861b-c401362f17c2" },
-              { "小妹妹": "683a0834-e76f-44b4-9858-467b63380147" },
-              { "大弟弟": "0fcce854-d190-4e88-a3fe-da2e4763f48c" },
-              { "小弟弟": "1846e964-c362-417a-815d-3319b2b6aca5" }
-            ],
-            "invalidOptions": [
-              { "数字": "a681b683-d909-4f5b-834e-8347633df4b1" },
-              { "零": "8d2a8043-7eaa-4aee-927d-a42313036970" },
-              { "一": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
-              { "二": "698cced9-2080-4226-87f0-07837add7938" },
-              { "两": "5dbf7670-f66d-46e4-b971-8f8d6de95a5c" },
-              { "三": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
-              { "四": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
-              { "五": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
-              { "六": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
-              { "七": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
-              { "八": "097f100c-c5be-4112-8af9-a977902632d9" },
-              { "九": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
-              { "十": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
-              { "十一": "14affadc-3ba3-45e2-b98a-1c3bf6b3d266" },
-              { "十五": "71c67af5-d1d4-4878-ae7b-3779c3497705" },
-              { "十九": "aceef0db-2ac9-4c9c-badb-acf5f26197db" },
-              { "二十": "bf9fa97b-3b2b-4dc2-8ee6-d68ed69f7c5c" },
-              { "二十八": "67907b51-30e4-4bbd-b0d7-c4bde04060fd" },
-              { "三十": "32001502-3c66-402b-ba2b-9db8f1c520df" },
-              { "三十四": "4135dd73-7791-4a2f-ba69-89d07dfa5f66" },
-              { "四十": "c1a581c8-8866-4afd-a099-12f4e62c5c50" },
-              { "四十六": "74500825-6c34-482d-bf6c-d83889a76954" },
-              { "五十": "35ae35f7-20df-48ca-80f1-7011b0e1f728" },
-              { "五十七": "efc38b0d-18bb-43b4-8b50-68ace02cf422" },
-              { "六十": "e4ec746d-1f04-4a2c-836f-e1211a4e292d" },
-              { "六十二": "a1300e2b-ca90-4837-88a5-2b5aab654a3f" },
-              { "七十": "70829177-cf80-40e8-add9-d49059ad0a4c" },
-              { "七十八": "b2f16499-e041-4736-b9ab-d02065bb9e7c" },
-              { "八十": "ea078954-aedf-4a8c-b8de-2b711fe482f7" },
-              { "八十三": "7db01bc6-aa01-4a9d-b44f-c1c90e321eff" },
-              { "九十": "cd0523cb-9439-4c56-8699-1c1f8c3b7aa4" },
-              { "九十一": "abaf47a8-51d7-4c99-8666-fa47e1aef46c" },
-              { "一百": "debe9823-ed3c-494c-b8d3-9d4a534be404" }
-            ]
-          },
-          { "。": "5d0f410c-83ff-43bd-a31e-922b42b054ef" }
+      "id": "89d2e517-5e19-4ee5-9261-8ebc59887d55",
+      "type": "Explanation",
+      "explanationSpec": {
+        "explanation": [
+          { "older sister's": "70c268ad-cd52-45cf-a272-f81fc55e1f64" },
+          { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" }
         ],
-        "suppressClozeAudio": false,
-        "suppressOptionAudio": false
+        "explanationTargets": {
+          "validOption": { "brother-in-law": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+          "invalidOptions": [
+            { "aunt": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+            { "sister-in-law": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
+            { "uncle": "ee1f9846-2a66-4500-a3d7-924c1ff6a81a" }
+          ]
+        },
+        "injectSpaces": true
+      }
+    },
+    {
+      "id": "c68eba35-041a-44a6-b2c4-043aeb906722",
+      "type": "Explanation",
+      "explanationSpec": {
+        "explanation": [
+          { "younger sister's": "63a9db8f-1673-478f-8aa3-b6c61c5b1669" },
+          { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" }
+        ],
+        "explanationTargets": {
+          "validOption": { "brother-in-law": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+          "invalidOptions": [
+            { "aunt": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+            { "sister-in-law": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
+            { "uncle": "ee1f9846-2a66-4500-a3d7-924c1ff6a81a" }
+          ]
+        },
+        "injectSpaces": true
+      }
+    },
+    {
+      "id": "461ef45d-8d2e-452d-8629-65f488432aa8",
+      "type": "Explanation",
+      "explanationSpec": {
+        "explanation": [
+          { "sister's": "ce7b626d-f9b0-4335-8d06-9089e732daf0" },
+          { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" }
+        ],
+        "explanationTargets": {
+          "validOption": { "brother-in-law": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+          "invalidOptions": [
+            { "aunt": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+            { "sister-in-law": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
+            { "uncle": "ee1f9846-2a66-4500-a3d7-924c1ff6a81a" }
+          ]
+        },
+        "injectSpaces": true
+      }
+    },
+    {
+      "id": "52adc65e-26d3-4072-a182-362e447a3cbb",
+      "type": "Explanation",
+      "explanationSpec": {
+        "explanation": [
+          { "older brother's": "7c5d6357-b1c9-453f-bed4-5332d7ace796" },
+          { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" }
+        ],
+        "explanationTargets": {
+          "validOption": { "sister-in-law": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
+          "invalidOptions": [
+            { "aunt": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+            { "brother-in-law": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+            { "uncle": "ee1f9846-2a66-4500-a3d7-924c1ff6a81a" }
+          ]
+        },
+        "injectSpaces": true
+      }
+    },
+    {
+      "id": "dd8a8457-3739-4ae7-869d-2e829c3242b4",
+      "type": "Explanation",
+      "explanationSpec": {
+        "explanation": [
+          { "younger brother's": "0c03aa4b-589e-47aa-828d-24f95f8d1979" },
+          { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" }
+        ],
+        "explanationTargets": {
+          "validOption": { "sister-in-law": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
+          "invalidOptions": [
+            { "aunt": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+            { "brother-in-law": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+            { "uncle": "ee1f9846-2a66-4500-a3d7-924c1ff6a81a" }
+          ]
+        },
+        "injectSpaces": true
+      }
+    },
+    {
+      "id": "f3a07812-eed4-45b8-a196-d321644a32fd",
+      "type": "Explanation",
+      "explanationSpec": {
+        "explanation": [
+          { "brother's": "8c0862b5-8445-43c5-8908-83d83d652896" },
+          { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" }
+        ],
+        "explanationTargets": {
+          "validOption": { "sister-in-law": "afaf98c8-5f3d-4be9-8338-3f2942e6be17" },
+          "invalidOptions": [
+            { "aunt": "c48bf08b-df1b-4fa8-a41b-15405ecebf49" },
+            { "brother-in-law": "98d18086-a60a-4f81-80b3-e05bd2aaa400" },
+            { "uncle": "ee1f9846-2a66-4500-a3d7-924c1ff6a81a" }
+          ]
+        },
+        "injectSpaces": true
       }
     }
   ]

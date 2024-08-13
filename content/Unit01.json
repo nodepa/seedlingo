@@ -2,32 +2,31 @@
   "formatVersion": "1.4.0",
   "id": "9b56ad90-9bee-48b7-baf5-e8372e2001b6",
   "unitIndex": 1,
-  "multipleChoiceCount": 13,
-  "matchingCount": 13,
+  "multipleChoiceCount": 12,
+  "matchingCount": 12,
   "explanationCount": 0,
   "singleClozeCount": 0,
   "multiClozeCount": 0,
   "comprehensionCount": 0,
-  "wordsExercisedCount": 13,
+  "wordsExercisedCount": 12,
   "exercises": [
     {
       "id": "cdb655cc-3c37-4fb4-9d4c-560f1d1c1a10",
       "type": "MultipleChoice",
       "multipleChoiceSpec": {
         "multipleChoiceWords": [
-          { "一": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
-          { "二": "698cced9-2080-4226-87f0-07837add7938" },
-          { "三": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
-          { "四": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
-          { "五": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
-          { "六": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
-          { "七": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
-          { "八": "097f100c-c5be-4112-8af9-a977902632d9" },
-          { "九": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
-          { "十": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
-          { "零": "8d2a8043-7eaa-4aee-927d-a42313036970" },
-          { "两": "5dbf7670-f66d-46e4-b971-8f8d6de95a5c" },
-          { "数字": "a681b683-d909-4f5b-834e-8347633df4b1" }
+          { "one": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
+          { "two": "698cced9-2080-4226-87f0-07837add7938" },
+          { "three": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
+          { "four": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
+          { "five": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
+          { "six": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
+          { "seven": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
+          { "eight": "097f100c-c5be-4112-8af9-a977902632d9" },
+          { "nine": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
+          { "ten": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
+          { "zero": "8d2a8043-7eaa-4aee-927d-a42313036970" },
+          { "numbers": "a681b683-d909-4f5b-834e-8347633df4b1" }
         ]
       }
     },
@@ -36,19 +35,18 @@
       "type": "Matching",
       "matchingSpec": {
         "matchingWords": [
-          { "一": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
-          { "二": "698cced9-2080-4226-87f0-07837add7938" },
-          { "三": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
-          { "四": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
-          { "五": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
-          { "六": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
-          { "七": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
-          { "八": "097f100c-c5be-4112-8af9-a977902632d9" },
-          { "九": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
-          { "十": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
-          { "零": "8d2a8043-7eaa-4aee-927d-a42313036970" },
-          { "两": "5dbf7670-f66d-46e4-b971-8f8d6de95a5c" },
-          { "数字": "a681b683-d909-4f5b-834e-8347633df4b1" }
+          { "one": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
+          { "two": "698cced9-2080-4226-87f0-07837add7938" },
+          { "three": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
+          { "four": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
+          { "five": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
+          { "six": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
+          { "seven": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
+          { "eight": "097f100c-c5be-4112-8af9-a977902632d9" },
+          { "nine": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
+          { "ten": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
+          { "zero": "8d2a8043-7eaa-4aee-927d-a42313036970" },
+          { "numbers": "a681b683-d909-4f5b-834e-8347633df4b1" }
         ],
         "unsuppressWordAudio": false
       }

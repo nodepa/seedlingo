@@ -1,49 +1,268 @@
 {
   "formatVersion": "1.4.0",
-  "id": "09f412a7-9425-4fae-bb95-30c483d23232",
-  "unitIndex": 5,
-  "multipleChoiceCount": 10,
-  "matchingCount": 10,
+  "id": "26c4e124-0ff1-4a20-8dc0-1473e17ca4cd",
+  "unitIndex": 6,
+  "multipleChoiceCount": 0,
+  "matchingCount": 0,
   "explanationCount": 0,
-  "singleClozeCount": 0,
+  "singleClozeCount": 3,
   "multiClozeCount": 0,
   "comprehensionCount": 0,
-  "wordsExercisedCount": 10,
+  "wordsExercisedCount": 17,
   "exercises": [
     {
-      "id": "0410ab60-2868-4a95-a467-aa019504cfd9",
-      "type": "MultipleChoice",
-      "multipleChoiceSpec": {
-        "multipleChoiceWords": [
-          { "丈夫": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
-          { "妻子": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
-          { "大姐": "891c12fc-23a3-4bb9-9744-dbaf2e785624" },
-          { "二姐": "1d9b329c-a2fa-4eaa-aa2c-39d026a898a7" },
-          { "大哥": "3eac3c44-25ef-434e-9e94-1fc71e510557" },
-          { "二哥": "abb4c7a4-0c11-4f29-8506-a852f04a0ef5" },
-          { "大妹妹": "8531fafd-fd6c-47a2-861b-c401362f17c2" },
-          { "小妹妹": "683a0834-e76f-44b4-9858-467b63380147" },
-          { "大弟弟": "0fcce854-d190-4e88-a3fe-da2e4763f48c" },
-          { "小弟弟": "1846e964-c362-417a-815d-3319b2b6aca5" }
-        ]
+      "id": "ab3b59eb-b559-4bfb-a984-a5fdc6ec6086",
+      "type": "SingleCloze",
+      "singleClozeSpec": {
+        "text": [
+          { "my": "1ae88fb9-b611-40e0-864a-295af8089cc6" },
+          {
+            "description": "relations",
+            "validOptions": [
+              { "mother": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
+              { "father": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
+              { "grandma": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
+              { "grandpa": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
+              { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
+              { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" }
+            ],
+            "invalidOptions": [
+              { "numbers": "a681b683-d909-4f5b-834e-8347633df4b1" },
+              { "zero": "8d2a8043-7eaa-4aee-927d-a42313036970" },
+              { "one": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
+              { "two": "698cced9-2080-4226-87f0-07837add7938" },
+              { "three": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
+              { "four": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
+              { "five": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
+              { "six": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
+              { "seven": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
+              { "eight": "097f100c-c5be-4112-8af9-a977902632d9" },
+              { "nine": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
+              { "ten": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
+              { "eleven": "14affadc-3ba3-45e2-b98a-1c3bf6b3d266" },
+              { "fifteen": "71c67af5-d1d4-4878-ae7b-3779c3497705" },
+              { "nineteen": "aceef0db-2ac9-4c9c-badb-acf5f26197db" },
+              { "twenty": "bf9fa97b-3b2b-4dc2-8ee6-d68ed69f7c5c" },
+              { "twenty-nine": "67907b51-30e4-4bbd-b0d7-c4bde04060fd" },
+              { "thirty": "32001502-3c66-402b-ba2b-9db8f1c520df" },
+              { "thirty-four": "4135dd73-7791-4a2f-ba69-89d07dfa5f66" },
+              { "forty": "c1a581c8-8866-4afd-a099-12f4e62c5c50" },
+              { "forty-six": "74500825-6c34-482d-bf6c-d83889a76954" },
+              { "fifty": "35ae35f7-20df-48ca-80f1-7011b0e1f728" },
+              { "fifty-seven": "efc38b0d-18bb-43b4-8b50-68ace02cf422" },
+              { "sixty": "e4ec746d-1f04-4a2c-836f-e1211a4e292d" },
+              { "sixty-two": "a1300e2b-ca90-4837-88a5-2b5aab654a3f" },
+              { "seventy": "70829177-cf80-40e8-add9-d49059ad0a4c" },
+              { "seventy-eight": "b2f16499-e041-4736-b9ab-d02065bb9e7c" },
+              { "eighty": "ea078954-aedf-4a8c-b8de-2b711fe482f7" },
+              { "eighty-three": "7db01bc6-aa01-4a9d-b44f-c1c90e321eff" },
+              { "ninety": "cd0523cb-9439-4c56-8699-1c1f8c3b7aa4" },
+              { "ninety-one": "abaf47a8-51d7-4c99-8666-fa47e1aef46c" },
+              { "one hundred": "debe9823-ed3c-494c-b8d3-9d4a534be404" }
+            ]
+          },
+          { "has": "66ea10a7-e7f0-4156-a79e-21a28e21a133" },
+          {
+            "description": "numbers",
+            "validOptions": [
+              { "two": "698cced9-2080-4226-87f0-07837add7938" },
+              { "three": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
+              { "four": "da473305-758c-40c0-a61b-d9de0aefb5a4" }
+            ],
+            "invalidOptions": [
+              { "family": "0d66532e-7d41-4ff8-a52a-042f676655da" },
+              { "mother": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
+              { "father": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
+              { "older sister": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
+              { "younger sister": "8ee121b4-8522-4e16-91b7-8a2af070efd8" },
+              { "younger brother": "802939da-7ac0-409c-bfb2-b0d6f81e2f56" },
+              { "older brother": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754" },
+              { "grandma": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
+              { "grandpa": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
+              { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
+              { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" }
+            ]
+          },
+          {
+            "description": "relations",
+            "validOptions": [
+              { "older sisters": "dc91e605-3a35-4b87-9628-eca9f85aa852" },
+              { "younger sisters": "269ac443-b337-4ef9-a6ab-ac69d613da7b" },
+              { "younger brothers": "ab3a9a47-5a2f-4891-9541-591c6cf13f3b" },
+              { "older brothers": "592afe0b-f103-45c8-a7fc-4ff045cfd19a" }
+            ],
+            "invalidOptions": [
+              { "numbers": "a681b683-d909-4f5b-834e-8347633df4b1" },
+              { "zero": "8d2a8043-7eaa-4aee-927d-a42313036970" },
+              { "one": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
+              { "two": "698cced9-2080-4226-87f0-07837add7938" },
+              { "three": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
+              { "four": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
+              { "five": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
+              { "six": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
+              { "seven": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
+              { "eight": "097f100c-c5be-4112-8af9-a977902632d9" },
+              { "nine": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
+              { "ten": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
+              { "eleven": "14affadc-3ba3-45e2-b98a-1c3bf6b3d266" },
+              { "fifteen": "71c67af5-d1d4-4878-ae7b-3779c3497705" },
+              { "nineteen": "aceef0db-2ac9-4c9c-badb-acf5f26197db" },
+              { "twenty": "bf9fa97b-3b2b-4dc2-8ee6-d68ed69f7c5c" },
+              { "twenty-nine": "67907b51-30e4-4bbd-b0d7-c4bde04060fd" },
+              { "thirty": "32001502-3c66-402b-ba2b-9db8f1c520df" },
+              { "thirty-four": "4135dd73-7791-4a2f-ba69-89d07dfa5f66" },
+              { "forty": "c1a581c8-8866-4afd-a099-12f4e62c5c50" },
+              { "forty-six": "74500825-6c34-482d-bf6c-d83889a76954" },
+              { "fifty": "35ae35f7-20df-48ca-80f1-7011b0e1f728" },
+              { "fifty-seven": "efc38b0d-18bb-43b4-8b50-68ace02cf422" },
+              { "sixty": "e4ec746d-1f04-4a2c-836f-e1211a4e292d" },
+              { "sixty-two": "a1300e2b-ca90-4837-88a5-2b5aab654a3f" },
+              { "seventy": "70829177-cf80-40e8-add9-d49059ad0a4c" },
+              { "seventy-eight": "b2f16499-e041-4736-b9ab-d02065bb9e7c" },
+              { "eighty": "ea078954-aedf-4a8c-b8de-2b711fe482f7" },
+              { "eighty-three": "7db01bc6-aa01-4a9d-b44f-c1c90e321eff" },
+              { "ninety": "cd0523cb-9439-4c56-8699-1c1f8c3b7aa4" },
+              { "ninety-one": "abaf47a8-51d7-4c99-8666-fa47e1aef46c" },
+              { "one hundred": "debe9823-ed3c-494c-b8d3-9d4a534be404" }
+            ]
+          },
+          { ".": "5d0f410c-83ff-43bd-a31e-922b42b054ef" }
+        ],
+        "suppressClozeAudio": false,
+        "suppressOptionAudio": false,
+        "injectSpaces": true
       }
     },
     {
-      "id": "b1c5ed62-f7fc-4759-8c1d-5ac2a1284997",
-      "type": "Matching",
-      "matchingSpec": {
-        "matchingWords": [
-          { "丈夫": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
-          { "妻子": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
-          { "大姐": "891c12fc-23a3-4bb9-9744-dbaf2e785624" },
-          { "二姐": "1d9b329c-a2fa-4eaa-aa2c-39d026a898a7" },
-          { "大哥": "3eac3c44-25ef-434e-9e94-1fc71e510557" },
-          { "二哥": "abb4c7a4-0c11-4f29-8506-a852f04a0ef5" },
-          { "大妹妹": "8531fafd-fd6c-47a2-861b-c401362f17c2" },
-          { "小妹妹": "683a0834-e76f-44b4-9858-467b63380147" },
-          { "大弟弟": "0fcce854-d190-4e88-a3fe-da2e4763f48c" },
-          { "小弟弟": "1846e964-c362-417a-815d-3319b2b6aca5" }
-        ]
+      "id": "840b7bfe-b076-4296-95c4-15ec608dd384",
+      "type": "SingleCloze",
+      "singleClozeSpec": {
+        "text": [
+          { "I": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
+          { "have": "35389a5a-4493-44e5-a8ae-dc0a30c98dbf" },
+          {
+            "validOptions": [
+              { "two": "698cced9-2080-4226-87f0-07837add7938" },
+              { "three": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
+              { "four": "da473305-758c-40c0-a61b-d9de0aefb5a4" }
+            ]
+          },
+          {
+            "description": "relations",
+            "validOptions": [
+              { "older sisters": "dc91e605-3a35-4b87-9628-eca9f85aa852" },
+              { "younger sisters": "269ac443-b337-4ef9-a6ab-ac69d613da7b" },
+              { "younger brothers": "ab3a9a47-5a2f-4891-9541-591c6cf13f3b" },
+              { "older brothers": "592afe0b-f103-45c8-a7fc-4ff045cfd19a" }
+            ],
+            "invalidOptions": [
+              { "numbers": "a681b683-d909-4f5b-834e-8347633df4b1" },
+              { "zero": "8d2a8043-7eaa-4aee-927d-a42313036970" },
+              { "one": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
+              { "two": "698cced9-2080-4226-87f0-07837add7938" },
+              { "three": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
+              { "four": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
+              { "five": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
+              { "six": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
+              { "seven": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
+              { "eight": "097f100c-c5be-4112-8af9-a977902632d9" },
+              { "nine": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
+              { "ten": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
+              { "eleven": "14affadc-3ba3-45e2-b98a-1c3bf6b3d266" },
+              { "fifteen": "71c67af5-d1d4-4878-ae7b-3779c3497705" },
+              { "nineteen": "aceef0db-2ac9-4c9c-badb-acf5f26197db" },
+              { "twenty": "bf9fa97b-3b2b-4dc2-8ee6-d68ed69f7c5c" },
+              { "twenty-nine": "67907b51-30e4-4bbd-b0d7-c4bde04060fd" },
+              { "thirty": "32001502-3c66-402b-ba2b-9db8f1c520df" },
+              { "thirty-four": "4135dd73-7791-4a2f-ba69-89d07dfa5f66" },
+              { "forty": "c1a581c8-8866-4afd-a099-12f4e62c5c50" },
+              { "forty-six": "74500825-6c34-482d-bf6c-d83889a76954" },
+              { "fifty": "35ae35f7-20df-48ca-80f1-7011b0e1f728" },
+              { "fifty-seven": "efc38b0d-18bb-43b4-8b50-68ace02cf422" },
+              { "sixty": "e4ec746d-1f04-4a2c-836f-e1211a4e292d" },
+              { "sixty-two": "a1300e2b-ca90-4837-88a5-2b5aab654a3f" },
+              { "seventy": "70829177-cf80-40e8-add9-d49059ad0a4c" },
+              { "seventy-eight": "b2f16499-e041-4736-b9ab-d02065bb9e7c" },
+              { "eighty": "ea078954-aedf-4a8c-b8de-2b711fe482f7" },
+              { "eighty-three": "7db01bc6-aa01-4a9d-b44f-c1c90e321eff" },
+              { "ninety": "cd0523cb-9439-4c56-8699-1c1f8c3b7aa4" },
+              { "ninety-one": "abaf47a8-51d7-4c99-8666-fa47e1aef46c" },
+              { "one hundred": "debe9823-ed3c-494c-b8d3-9d4a534be404" }
+            ]
+          },
+          {
+            ".": "5d0f410c-83ff-43bd-a31e-922b42b054ef"
+          }
+        ],
+        "suppressClozeAudio": false,
+        "suppressOptionAudio": false,
+        "injectSpaces": true
+      }
+    },
+    {
+      "id": "ad4a0c1a-8141-4935-914a-fa6dae29f863",
+      "type": "SingleCloze",
+      "singleClozeSpec": {
+        "text": [
+          { "I": "9f4c842a-e36a-48b1-aa4b-955aedef35d2" },
+          { "have": "35389a5a-4493-44e5-a8ae-dc0a30c98dbf" },
+          { "one": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
+          {
+            "description": "relations",
+            "validOptions": [
+              { "mother": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
+              { "father": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
+              { "older sister": "b521f4d2-1084-4f17-af18-1bd6738d23a0" },
+              { "younger sister": "8ee121b4-8522-4e16-91b7-8a2af070efd8" },
+              { "younger brother": "802939da-7ac0-409c-bfb2-b0d6f81e2f56" },
+              { "older brother": "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754" },
+              { "grandma": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
+              { "grandpa": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
+              { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
+              { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" }
+            ],
+            "invalidOptions": [
+              { "numbers": "a681b683-d909-4f5b-834e-8347633df4b1" },
+              { "zero": "8d2a8043-7eaa-4aee-927d-a42313036970" },
+              { "one": "1d936b6b-e44c-466c-8d04-ab52643670c2" },
+              { "two": "698cced9-2080-4226-87f0-07837add7938" },
+              { "three": "84dcd43f-3f86-4be8-a1b0-541ac92133d3" },
+              { "four": "da473305-758c-40c0-a61b-d9de0aefb5a4" },
+              { "five": "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7" },
+              { "six": "8a4feb4e-2f7b-4956-bb93-b8393a772b53" },
+              { "seven": "d4780ac6-a2e5-4b37-b7bc-5277b17032ef" },
+              { "eight": "097f100c-c5be-4112-8af9-a977902632d9" },
+              { "nine": "6705773b-a57c-4df3-ac1c-9fc2b71453e2" },
+              { "ten": "3bb2302a-53be-427b-ba5e-8b56694cef59" },
+              { "eleven": "14affadc-3ba3-45e2-b98a-1c3bf6b3d266" },
+              { "fifteen": "71c67af5-d1d4-4878-ae7b-3779c3497705" },
+              { "nineteen": "aceef0db-2ac9-4c9c-badb-acf5f26197db" },
+              { "twenty": "bf9fa97b-3b2b-4dc2-8ee6-d68ed69f7c5c" },
+              { "twenty-nine": "67907b51-30e4-4bbd-b0d7-c4bde04060fd" },
+              { "thirty": "32001502-3c66-402b-ba2b-9db8f1c520df" },
+              { "thirty-four": "4135dd73-7791-4a2f-ba69-89d07dfa5f66" },
+              { "forty": "c1a581c8-8866-4afd-a099-12f4e62c5c50" },
+              { "forty-six": "74500825-6c34-482d-bf6c-d83889a76954" },
+              { "fifty": "35ae35f7-20df-48ca-80f1-7011b0e1f728" },
+              { "fifty-seven": "efc38b0d-18bb-43b4-8b50-68ace02cf422" },
+              { "sixty": "e4ec746d-1f04-4a2c-836f-e1211a4e292d" },
+              { "sixty-two": "a1300e2b-ca90-4837-88a5-2b5aab654a3f" },
+              { "seventy": "70829177-cf80-40e8-add9-d49059ad0a4c" },
+              { "seventy-eight": "b2f16499-e041-4736-b9ab-d02065bb9e7c" },
+              { "eighty": "ea078954-aedf-4a8c-b8de-2b711fe482f7" },
+              { "eighty-three": "7db01bc6-aa01-4a9d-b44f-c1c90e321eff" },
+              { "ninety": "cd0523cb-9439-4c56-8699-1c1f8c3b7aa4" },
+              { "ninety-one": "abaf47a8-51d7-4c99-8666-fa47e1aef46c" },
+              { "one hundred": "debe9823-ed3c-494c-b8d3-9d4a534be404" }
+            ]
+          },
+          {
+            ".": "5d0f410c-83ff-43bd-a31e-922b42b054ef"
+          }
+        ],
+        "suppressClozeAudio": false,
+        "suppressOptionAudio": false,
+        "injectSpaces": true
       }
     }
   ]
