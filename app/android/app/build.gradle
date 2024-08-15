@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "org.nodepa.seedlingo"
+    namespace "org.nodepa.seedlingo.en"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "org.nodepa.seedlingo"
+        applicationId "org.nodepa.seedlingo.en"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 63
+        versionCode 65
         versionName "1.5.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
@@ -19,7 +19,7 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
 		def debug = variant.buildType.name == 'debug' ? '.DEBUG' : ''
-		output.outputFileName = 'seedlingo_v' + defaultConfig.versionName + '_' + defaultConfig.versionCode + debug + '.unsigned.apk'
+		output.outputFileName = 'seedlingo_en_v' + defaultConfig.versionName + '_' + defaultConfig.versionCode + debug + '.unsigned.apk'
         }
     }
     buildTypes {

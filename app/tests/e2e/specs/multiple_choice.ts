@@ -13,7 +13,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
     () => {
       cy.log('**1. 马丽 sees a vibrating loudspeaker/mouth talking**');
       cy.log('-- hears the audio of a corresponding word');
-      cy.visit('/about').get('h1').contains('立爱种字').click();
+      cy.visit('/about').get('h1').contains('Seedlingo').click();
       cy.visit('/unit/multiple-choice-test', {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');

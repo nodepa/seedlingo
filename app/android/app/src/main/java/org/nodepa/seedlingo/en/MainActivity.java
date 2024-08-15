@@ -1,4 +1,4 @@
-package org.nodepa.seedlingo;
+package org.nodepa.seedlingo.en;
 
 import com.getcapacitor.BridgeActivity;
 

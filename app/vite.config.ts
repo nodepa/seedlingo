@@ -13,9 +13,9 @@ export default defineConfig({
       includeAssets: ['**/*.{ico,jpg,png,svg,xml,txt}'],
       manifest: {
         id: '/',
-        name: '立爱种字',
-        short_name: '种字',
-        description: '现代的流动的识字',
+        name: 'Seedlingo',
+        short_name: 'seedlingo',
+        description: 'Modern mobile multi-language literacy',
         theme_color: '#1976d2',
         icons: [
           {
