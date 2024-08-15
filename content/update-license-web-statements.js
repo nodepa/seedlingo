@@ -58,7 +58,7 @@ if (newOrChanged && webStatements) {
   try {
     fs.writeFileSync(
       metaFile,
-      webStatements,
+      `\n${webStatements}`,
       { flag: 'a' }
     );
   } catch (error) {
