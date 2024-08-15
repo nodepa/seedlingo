@@ -27,7 +27,7 @@ export default defineUserConfig({
     logo: 'images/seedlingo-logo-blue.svg',
     navbar: [
       { text: 'Home', link: '/' },
-      { text: 'Try Seedlingo', link: 'https://seedlingo.app' },
+      { text: 'Try Seedlingo', link: 'https://en.seedlingo.app' },
       { text: 'For teachers', link: '/content/content.md' },
       { text: 'For developers', link: '/get-started/get-started.md' },
     ],

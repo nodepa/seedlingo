@@ -10,7 +10,7 @@ actions:
     link: '#what-is-seedlingo'
     type: primary
   - text: Try Seedlingo
-    link: 'https://seedlingo.app'
+    link: 'https://en.seedlingo.app'
     type: secondary
 features:
   - title: |
@@ -78,10 +78,19 @@ from ideas by [立爱教育 Li Ai Education](https://liaieducation.com),
 to help Putonghua speaking adults
 learn to read simplified Chinese characters.
 
-To try the Android app, download [version 1.4.0](
-  https://github.com/nodepa/seedlingo/releases/download/v1.4.0/seedlingo_v1.4.0_54.apk)
+Seedlingo is also available with [English demo content](https://en.seedlingo.app),
+i.e. the original Simplified Chinese content
+has been replaced with English content
+for demonstration purposes.
+
+To try the Android app with Traditional Chinese content, download [version 1.5.2](
+  https://github.com/nodepa/seedlingo/releases/download/v1.5.2/seedlingo_v1.5.2_64.apk)
 or [check the release history](https://github.com/nodepa/seedlingo/releases)
-for a more recent version.
+to see if a more recent version has been made available.
+To try the Android app with English demo content, download [version 1.5.2_en](
+  https://github.com/nodepa/seedlingo-en/releases/download/v1.5.2_en/seedlingo_en_v1.5.2_65.apk)
+or [check the release history](https://github.com/nodepa/seedlingo-en/releases).
+
 Download to your phone, then install.
 You may have to enable the setting "Install from unknown sources"
 before your phone will allow the installation.
