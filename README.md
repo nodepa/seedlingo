@@ -18,6 +18,10 @@
     <td align="center">Putonghua/<br/>Simplified Chinese</td>
     <td align="center"><a href="https://liaizhongzi.com">LiAiZhongzi.com</a></td>
   </tr>
+  <tr>
+    <td align="center">English demo</td>
+    <td align="center"><a href="https://en.seedlingo.app">en.seedlingo.app</a></td>
+  </tr>
 </table>
 
 <br/>
@@ -76,13 +80,17 @@ from ideas by [立爱教育 Li Ai Education](https://liaieducation.com),
 to help Putonghua speaking adults
 learn to read simplified Chinese characters.
 
-To try the Android app, [download version 1.1.0](
-  https://github.com/nodepa/seedlingo/releases/download/v1.1.0/seedlingo_v1.1.0_33.apk
+To try the Android app, [download version 1.5.2](
+  https://github.com/nodepa/seedlingo/releases/download/v1.5.2/seedlingo_v1.5.2_64.apk
 ) or check the [release history](https://github.com/nodepa/seedlingo/releases)
 for a more recent version.
 Download to your phone, then install.
 You may have to enable the setting "Install from unknown sources"
 before your phone will allow the installation.
+
+There is also an English language version available for demonstration purposes
+[online at en.seedlingo.app](https://en.seedlingo.app)
+or [downloadable for Android](https://github.com/nodepa/seedlingo-en/releases).
 
 ## Get started
 

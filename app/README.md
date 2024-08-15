@@ -3,6 +3,9 @@
 Seedlingo is currently available in Putonghua/Simplified Chinese at
 [seedlingo.app](https://seedlingo.app)
 
+An English language demo version is available at
+[en.seedlingo.app](https://en.seedlingo.app)
+
 ## Prerequisites
 
 Install [Node.js](https://nodejs.org),
