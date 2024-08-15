@@ -18,7 +18,7 @@ onMounted(() => {
         </ion-row>
         <ion-row class="ion-justify-content-center">
           <ion-col size="10">
-            <sup>Effective date: 2024-02-01</sup>
+            <sup>Effective date: 2024-08-15</sup>
             <p><strong>In short</strong></p>
             <ul>
               <li>
@@ -43,12 +43,21 @@ onMounted(() => {
             <h2>Who we are</h2>
             <p>
               The web apps at
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a> and
-              <a href="https://seedlingo.app">Seedlingo.app</a> belong to
-              Norwegian Development Partners (<a href="https://nodepa.org"
-                >Nodepa</a
-              >), a Norway-based non-profit registered with the Norwegian
-              Government under the organization number 916724799.
+              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>,
+              <a href="https://seedlingo.app">Seedlingo.app</a> and
+              <a href="https://en.seedlingo.app">en.seedlingo.app</a>
+              , as well as the Android apps with applicationIds
+              <a href="https://github.com/nodepa/seedlingo/releases"
+                >org.nodepa.seedlingo</a
+              >
+              and
+              <a href="https://github.com/nodepa/seedlingo-en/releases"
+                >org.nodepa.seedlingo.en</a
+              >
+              (hereafter "the Seedlingo Apps") belong to Norwegian Development
+              Partners (<a href="https://nodepa.org">Nodepa</a>), a Norway-based
+              non-profit registered with the Norwegian Government under the
+              organization number 916724799.
             </p>
             <p>
               We aim to promote sustainable development of society globally
@@ -61,11 +70,8 @@ onMounted(() => {
               with your data, we take the responsibility seriously. We promise
               to take appropriate steps to protect your personal data and use it
               appropriately. This privacy policy explains what data we collect
-              when you interact with
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://seedlingo.app">Seedlingo.app</a>
-              , how we use your data and why.
+              when you interact with the Seedlingo Apps, how we use your data
+              and why.
             </p>
             <h2>Information we collect, and how</h2>
             <blockquote>
@@ -91,10 +97,7 @@ onMounted(() => {
             <h3>Information you give us directly</h3>
             <p>
               There is currently no means for you to explicitly provide any
-              arbitrary information to us directly through
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://seedlingo.app">Seedlingo.app</a>
+              arbitrary information to us directly through the Seedlingo Apps
               (we will update this privacy policy if that changes.)
             </p>
             <p>
@@ -108,18 +111,12 @@ onMounted(() => {
             <h3>Information that is automatically collected</h3>
             <h4>Device/Usage information</h4>
             <p>
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://seedlingo.app">Seedlingo.app</a>
-              are hosted by Amazon Web Services (<a
+              The Seedlingo Apps are hosted by Amazon Web Services (<a
                 href="https://aws.amazon.com"
                 >AWS</a
-              >). When you interact with
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://seedlingo.app">Seedlingo.app</a>, some
-              information about your usage is automatically collected and stored
-              by AWS' infrastructure (see
+              >). When you interact with the Seedlingo Apps, some information
+              about your usage is automatically collected and stored by AWS'
+              infrastructure (see
               <a href="https://aws.amazon.com/privacy">AWS' privacy policy</a>
               ).
             </p>
@@ -158,12 +155,9 @@ onMounted(() => {
               potentially be tied to a person's identity.
             </p>
             <p>
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://seedlingo.app">Seedlingo.app</a>
-              do not use any cookies or store any unique identifiers in any of
-              the other places this can be done in your browser or on your
-              device.
+              The Seedlingo Apps do not use any cookies or store any unique
+              identifiers in any of the other places this can be done in your
+              browser or on your device.
             </p>
             <p>
               A web beacon is typically a 1-pixel transparent image placed on a
@@ -175,10 +169,8 @@ onMounted(() => {
               during the request.
             </p>
             <p>
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              and
-              <a href="https://seedlingo.app">Seedlingo.app</a>
-              do not use any tracking technologies or web beacons.
+              The Seedlingo Apps do not use any tracking technologies or web
+              beacons.
             </p>
             <p>
               We store on your device the number of times you have seen the
@@ -190,11 +182,8 @@ onMounted(() => {
             <ul>
               <li>
                 We do not intentionally or knowingly collect information from
-                anyone under the age of 18.
-                <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-                and
-                <a href="https://seedlingo.app">Seedlingo.app</a>
-                are intended for and directed to users over the age of 18.
+                anyone under the age of 18. The Seedlingo Apps are intended for
+                and directed to users over the age of 18.
               </li>
               <li>We do not collect sensitive personal information</li>
               <li>We do not use marketing tools or advertisements</li>
@@ -272,15 +261,14 @@ onMounted(() => {
             </ul>
             <h2>Changes to the privacy policy</h2>
             <p>
-              We will update this privacy policy whenever we make changes to
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              in such a way that it impacts the personal data we collect.
+              We will update this privacy policy whenever we make changes to the
+              Seedlingo Apps in such a way that it impacts the personal data we
+              collect.
             </p>
             <p>
               If we make significant changes in the way we treat your personal
-              data, we will make this clear on
-              <a href="https://liaizhongzi.com">LiAiZhongzi.com</a>
-              or by contacting you directly.
+              data, we will make this clear in the Seedlingo Apps or by
+              contacting you directly.
             </p>
           </ion-col>
         </ion-row>
@@ -290,8 +278,8 @@ onMounted(() => {
 </template>
 
 <style scoped>
-ion-content::part(background) {
-  background-color: var(--ion-color-card);
+ion-content {
+  user-select: text;
 }
 
 blockquote {
