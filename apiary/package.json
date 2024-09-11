@@ -1,0 +1,39 @@
+{
+  "name": "seedlingo apiary",
+  "version": "1.0.0",
+  "description": "Content editor for Seedlingo",
+  "homepage": "https://seedlingo.com",
+  "bugs": "https://github.com/nodepa/seedlingo/issues",
+  "repository": "https://github.com/nodepa/seedlingo",
+  "private": true,
+  "license": "MIT",
+  "keywords": [
+    "seedlingo",
+    "literacy",
+    "digital-learning",
+    "education",
+    "edtech",
+    "reading",
+    "vuejs",
+    "typescript",
+    "editor"
+  ],
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^2.18.4",
+    "nuxt": "^3.13.0",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.2.0"
+  }
+}
