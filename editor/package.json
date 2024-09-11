@@ -1,0 +1,52 @@
+{
+  "name": "apiary",
+  "version": "1.0.0",
+  "description": "Content editor for Seedlingo",
+  "homepage": "https://seedlingo.com",
+  "bugs": "https://github.com/nodepa/seedlingo/issues",
+  "repository": "https://github.com/nodepa/seedlingo",
+  "private": true,
+  "license": "MIT",
+  "keywords": [
+    "seedlingo",
+    "literacy",
+    "digital-learning",
+    "education",
+    "edtech",
+    "reading",
+    "vuejs",
+    "typescript",
+    "editor"
+  ],
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^2.18.6",
+    "aws-amplify": "^6.6.4",
+    "nuxt": "^3.13.2",
+    "vue": "^3.5.11",
+    "vue-router": "^4.4.5"
+  },
+  "devDependencies": {
+    "@aws-amplify/backend": "^1.3.2",
+    "@aws-amplify/backend-cli": "^1.2.9",
+    "@iconify-json/mdi": "^1.2.1",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "constructs": "^10.3.0",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.12.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vue": "^9.28.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
+  }
+}
