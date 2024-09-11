@@ -8,6 +8,7 @@ import getTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
 import type { MultipleChoiceItem } from '@/MultipleChoice/MultipleChoiceTypes';
 
 import MultipleChoiceExercise from '@/MultipleChoice/components/MultipleChoiceExercise.vue';
+import AudioProvider from '@/Content/AudioProvider';
 
 window.Element.prototype.animate = animate;
 HTMLMediaElement.prototype.play = play;
@@ -45,23 +46,28 @@ describe('MultipleChoiceExercise', () => {
 
   describe('.determineCorrectness()', () => {
     it('handles correct and incorrect options', async () => {
-      const option: MultipleChoiceItem = {
+      const option1: MultipleChoiceItem = {
         word: 'someWord',
-        audio: new Audio(),
+        audio: AudioProvider.createAudioFromData(''),
         correct: false,
         disabled: false,
         playing: false,
-        buzzing: false,
       };
-      wrapper.vm.determineCorrectness(option);
-      expect(option.color).toBeUndefined();
-      expect(option.buzzing).toBe(true);
-      option.correct = true;
-      option.buzzing = false;
+      wrapper.vm.determineCorrectness(option1);
+      expect(option1.color).toBeUndefined();
+      expect(option1.disabled).toBe(true);
 
-      wrapper.vm.determineCorrectness(option);
-      expect(option.color).toBe('success');
-      expect(option.buzzing).toBe(false);
+      const option2: MultipleChoiceItem = {
+        word: 'someWord',
+        audio: AudioProvider.createAudioFromData(''),
+        correct: true,
+        disabled: false,
+        playing: false,
+      };
+
+      wrapper.vm.determineCorrectness(option2);
+      expect(option2.color).toBe('success');
+      expect(option2.disabled).toBe(false);
     });
   });
 

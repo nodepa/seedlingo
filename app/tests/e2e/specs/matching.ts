@@ -25,6 +25,7 @@ describe('马丽 interacts with the "matching" system', () => {
       cy.log('-- 4 corresponding *word* buttons');
       cy.visit('/unit/matching-test', {
         onBeforeLoad(window) {
+          delete Object.getPrototypeOf(window.navigator).serviceWorker;
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');
           cy.spy(window.HTMLElement.prototype, 'animate').as(
@@ -364,6 +365,7 @@ describe('马丽 interacts with the "explanation matching" system', () => {
       cy.log('-- 3 corresponding *word* buttons');
       cy.visit('/unit/explanation-matching-test', {
         onBeforeLoad(window) {
+          delete Object.getPrototypeOf(window.navigator).serviceWorker;
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');
           cy.spy(window.HTMLElement.prototype, 'animate').as(

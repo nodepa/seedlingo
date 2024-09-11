@@ -20,22 +20,14 @@ const props = defineProps<{
 watch(
   () => props.exerciseProp.itemUnderTestAudio,
   (itemUnderTestAudio) => {
-    if (itemUnderTestAudio && itemUnderTestAudio instanceof HTMLAudioElement) {
-      playItemUnderTestAudio();
-    }
+    itemUnderTestAudio?.play();
   },
   { flush: 'post' },
 );
-onMounted(() => {
-  if (
-    props.exerciseProp.itemUnderTestAudio &&
-    props.exerciseProp.itemUnderTestAudio instanceof HTMLAudioElement
-  ) {
-    playItemUnderTestAudio();
-  }
-});
+onMounted(() => props.exerciseProp.itemUnderTestAudio?.play());
 
 function determineCorrectness(option: MultipleChoiceItem): void {
+  cancelAllAudio();
   if (option.correct) {
     correctHandler(option);
   } else {
@@ -50,72 +42,48 @@ function correctHandler(option: MultipleChoiceItem): void {
     }
   });
   option.color = 'success';
-  playOptionAudio(option);
+  if (option.audio) {
+    option.audio.play();
+  }
   store.dispatch('setShowContinueButton', true);
 }
 
 function incorrectHandler(option: MultipleChoiceItem): void {
-  playOptionAudio(option);
-  option.buzzing = true;
-  watch(
-    () => option.buzzing,
-    (buzzing: boolean) => {
-      if (!buzzing) {
-        option.disabled = true;
-        setTimeout(playItemUnderTestAudio, 200);
-      }
-    },
-  );
-}
-
-function playItemUnderTestAudio(): void {
-  const testAudio = props.exerciseProp.itemUnderTestAudio;
-  if (testAudio) {
-    testAudio.onplaying = () => {
-      if (props.exerciseProp)
-        // eslint-disable-next-line vue/no-mutating-props
-        props.exerciseProp.itemUnderTestAudioPlaying = true;
-    };
-    testAudio.onpause = () => {
-      if (props.exerciseProp)
-        // eslint-disable-next-line vue/no-mutating-props
-        props.exerciseProp.itemUnderTestAudioPlaying = false;
-    };
-    testAudio.onended = () => {
-      if (props.exerciseProp)
-        // eslint-disable-next-line vue/no-mutating-props
-        props.exerciseProp.itemUnderTestAudioPlaying = false;
-    };
-    testAudio.currentTime = 0;
-    testAudio.play();
+  if (option.audio.el.src) {
+    if (option.audio) {
+      option.audio.play();
+    }
+    watch(
+      () => option.audio.playing,
+      (playing: boolean) => {
+        if (!playing) {
+          option.disabled = true;
+          setTimeout(() => {
+            if (
+              !props.exerciseProp.options.reduce(
+                (anyPlaying, item) => anyPlaying || item.audio.playing,
+                false,
+              )
+            ) {
+              props.exerciseProp.itemUnderTestAudio?.play();
+            }
+          }, 200);
+        }
+      },
+    );
+  } else {
+    option.disabled = true;
   }
 }
 
-function playOptionAudio(option: MultipleChoiceItem): void {
-  // pause other (potentially playing) audio
+function cancelAllAudio() {
   props.exerciseProp.options.forEach((item) => {
-    if (item.audio && !item.audio.paused) {
-      item.audio.pause();
+    if (item.audio && item.audio.playing) {
+      item.audio.cancel();
     }
   });
-  if (props.exerciseProp.itemUnderTestAudio) {
-    props.exerciseProp.itemUnderTestAudio.pause();
-  }
-
-  // prepare to handle playtime events
-  if (option.audio) {
-    option.audio.onplaying = () => {
-      option.playing = true;
-    };
-    option.audio.onpause = () => {
-      option.playing = false;
-    };
-    option.audio.onended = () => {
-      option.playing = false;
-    };
-
-    option.audio.currentTime = 0;
-    option.audio.play();
+  if (props.exerciseProp.itemUnderTestAudio?.playing) {
+    props.exerciseProp.itemUnderTestAudio.cancel();
   }
 }
 
@@ -150,7 +118,7 @@ onUpdated(() => {
           ref="itemUnderTestButton"
           v-instructions="multipleChoiceInstructionsPath"
           data-test="item-under-test-button"
-          :playing="exerciseProp.itemUnderTestAudioPlaying"
+          :playing="exerciseProp.itemUnderTestAudio?.playing"
           color="card"
           style="
             width: 100%;
@@ -162,7 +130,7 @@ onUpdated(() => {
             --padding-start: 0.5rem;
             --padding-end: 0.5rem;
           "
-          @click="playItemUnderTestAudio"
+          @click="props.exerciseProp.itemUnderTestAudio?.play()"
         >
           <template
             v-if="
@@ -223,10 +191,10 @@ onUpdated(() => {
         size="6"
       >
         <ExerciseButton
-          v-model:buzzing="option.buzzing"
+          :buzzing="option.audio.playing && !option.correct"
           :data-test="`option-button-${index + 1}`"
-          :disabled="option.disabled && !option.buzzing"
-          :playing="option.playing"
+          :disabled="option.disabled && !option.audio.playing"
+          :playing="option.audio.playing"
           :color="option.color || 'primary'"
           style="
             width: 100%;

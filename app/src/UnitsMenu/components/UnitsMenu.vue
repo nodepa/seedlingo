@@ -11,12 +11,11 @@ import {
   IonList,
   IonItem,
 } from '@ionic/vue';
+import { eye } from 'ionicons/icons';
+import WeightLifter from '@/common/icons/WeightLifter.svg';
 import Content from '@/Content/Content';
 
 const unitsMeta = ref(Content.UnitsMeta);
-
-const eye = Content.getIcon('mdiEye');
-const weightLifter = Content.getIcon('mdiWeightLifter');
 </script>
 
 <template>
@@ -33,7 +32,7 @@ const weightLifter = Content.getIcon('mdiWeightLifter');
             style="display: flex; flex-direction: column"
           >
             <ion-icon :icon="unitContext.icon" />
-            <span style="color: var(--ion-color-step-400)">
+            <span style="color: var(--ion-color-step-600)">
               {{ unitContext.name }}
             </span>
           </ion-card-title>
@@ -44,7 +43,8 @@ const weightLifter = Content.getIcon('mdiWeightLifter');
             v-instructions="unitContext.audio"
             size="large"
             :data-test="`unit-review-button-${String(index).padStart(2, '0')}`"
-            :router-link="{ path: `/unit/${index}/review` }"
+            aria-label="Review the content of this unit"
+            :router-link="`/unit/${index}/review`"
             router-direction="forward"
           >
             <ion-icon slot="icon-only" :icon="eye" />
@@ -53,10 +53,11 @@ const weightLifter = Content.getIcon('mdiWeightLifter');
             v-instructions="unitContext.audio"
             size="large"
             :data-test="`unit-button-${String(index).padStart(2, '0')}`"
-            :router-link="{ path: `/unit/${index}` }"
+            aria-label="Practice the content of this unit"
+            :router-link="`/unit/${index}`"
             router-direction="forward"
           >
-            <ion-icon slot="icon-only" :icon="weightLifter" />
+            <ion-icon slot="icon-only" :icon="WeightLifter" />
           </ion-button>
         </ion-card-content>
       </ion-card>

@@ -1,6 +1,6 @@
 {
   "name": "seedlingo",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Modern mobile multi-language literacy - A first-language digital learning tool for adults",
   "homepage": "https://seedlingo.com/get-started",
   "bugs": "https://github.com/nodepa/seedlingo/issues",
@@ -26,6 +26,7 @@
     "ba": "npm run build:android",
     "build": "npm install && npm run lint:tsc && vite build",
     "build:android": "npm run build && cap telemetry off && cap sync && node versionsync.mjs && cd android && yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses && ./gradlew assembleRelease && cd app/build/outputs/apk/release && for filename in *.unsigned.apk ; do $ANDROID_HOME/build-tools/34.0.0/zipalign 4 $filename ${filename%unsigned*}unsigned.aligned${filename##*unsigned} && $ANDROID_HOME/build-tools/34.0.0/apksigner sign -v --ks ~/.android/apksign.keystore --out ${filename%.unsigned*}${filename##*unsigned} ${filename%unsigned*}unsigned.aligned${filename##*unsigned} ; done",
+    "build:android:debug": "npm run build && cap telemetry off && cap sync && node versionsync.mjs && cd android && yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses && ./gradlew assembleDebug && cd app/build/outputs/apk/debug && for filename in *.unsigned.apk ; do $ANDROID_HOME/build-tools/34.0.0/zipalign 4 $filename ${filename%unsigned*}unsigned.aligned${filename##*unsigned} && $ANDROID_HOME/build-tools/34.0.0/apksigner sign -v --ks ~/.android/apksign.keystore --out ${filename%.unsigned*}${filename##*unsigned} ${filename%unsigned*}unsigned.aligned${filename##*unsigned} ; done",
     "dev": "vite",
     "genass": "cd public && pwd && npx pwa-asset-generator --background 'linear-gradient(#19D2FE, #1E64F0)' --padding '0px' --favicon --single-quotes --type png ../src/assets/logo/logo.svg ./logo",
     "lint": "eslint",
@@ -112,7 +113,7 @@
     }
   },
   "volta": {
-    "node": "18.20.3",
-    "npm": "10.8.1"
+    "node": "18.20.4",
+    "npm": "10.8.3"
   }
 }

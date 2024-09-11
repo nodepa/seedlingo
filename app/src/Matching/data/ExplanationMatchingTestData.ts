@@ -1,17 +1,16 @@
 import placeholder from '@/test-support/audio/placeholder-audio.mp3.audio?raw';
 import 二加二 from '@/test-support/audio/characters/二加二.mp3.audio?raw';
 import 四 from '@/test-support/audio/characters/四.mp3.audio?raw';
-import ExerciseProvider from '@/Content/ExerciseProvider';
 import type { MatchingExercise } from '../MatchingTypes';
+import AudioProvider from '@/Content/AudioProvider';
+const audio2b64 = (rawMp3: string) => `data:audio/mpeg;base64,${rawMp3}`;
 
 export default function ExplanationMatchingTestData(): MatchingExercise {
   return {
     items: [
       {
         wordOrIcons: "My parent's brother",
-        audio: ExerciseProvider.createAudio(
-          `data:audio/mpeg;base64,${placeholder}`,
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholder)),
         match: 2,
         isWord: false,
         isIcon: false,
@@ -21,7 +20,7 @@ export default function ExplanationMatchingTestData(): MatchingExercise {
       },
       {
         wordOrIcons: '四',
-        audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${四}`),
+        audio: AudioProvider.createAudioFromData(audio2b64(四)),
         match: 3,
         isWord: true,
         isIcon: false,
@@ -31,9 +30,7 @@ export default function ExplanationMatchingTestData(): MatchingExercise {
       },
       {
         wordOrIcons: 'Uncle',
-        audio: ExerciseProvider.createAudio(
-          `data:audio/mpeg;base64,${placeholder}`,
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholder)),
         match: 0,
         isWord: true,
         isIcon: false,
@@ -43,7 +40,7 @@ export default function ExplanationMatchingTestData(): MatchingExercise {
       },
       {
         wordOrIcons: '二加二',
-        audio: ExerciseProvider.createAudio(`data:audio/mpeg;base64,${二加二}`),
+        audio: AudioProvider.createAudioFromData(audio2b64(二加二)),
         match: 1,
         isWord: false,
         isIcon: false,
@@ -53,9 +50,7 @@ export default function ExplanationMatchingTestData(): MatchingExercise {
       },
       {
         wordOrIcons: '8*3',
-        audio: ExerciseProvider.createAudio(
-          `data:audio/mpeg;base64,${placeholder}`,
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholder)),
         match: 5,
         isWord: true,
         isIcon: false,
@@ -65,9 +60,7 @@ export default function ExplanationMatchingTestData(): MatchingExercise {
       },
       {
         wordOrIcons: '24',
-        audio: ExerciseProvider.createAudio(
-          `data:audio/mpeg;base64,${placeholder}`,
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholder)),
         match: 4,
         isWord: false,
         isIcon: false,
