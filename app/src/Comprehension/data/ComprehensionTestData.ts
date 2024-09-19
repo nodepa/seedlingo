@@ -1,418 +1,306 @@
 import type { ComprehensionExercise } from '@/Comprehension/ComprehensionTypes';
-import Content from '@/Content/Content';
-import ExerciseProvider from '@/Content/ExerciseProvider';
+import AudioProvider from '@/Content/AudioProvider';
 import placeholderAudio from '@/test-support/audio/placeholder-audio.mp3.audio?raw';
 import pic from '@/test-support/pics/两.jpg';
+const audio2b64 = (rawMp3: string) => `data:audio/mpeg;base64,${rawMp3}`;
 
 export default function ComprehensionTestData(): ComprehensionExercise {
   return {
     comprehensionText: [
       // 我家里有六个人，爸爸，妈妈，姐姐，两个哥哥，和我。我的爸爸今年四十四岁，我的妈妈四十八岁，我的姐姐二十六岁，我的大哥二十岁，我的小哥十七岁。我今年十岁。
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '我',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '家里',
         isNew: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '有',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '六',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '个',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '人',
         isNew: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '，',
         isPunctuation: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '爸爸',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '，',
         isPunctuation: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '妈妈',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '，',
         isPunctuation: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '姐姐',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '，',
         isPunctuation: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '两',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '个',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '哥哥',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '，',
         isPunctuation: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '和',
         isNew: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '我',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '。',
         isPunctuation: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '我',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '的',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '爸爸',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '今年',
         isNew: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '四十四',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '岁',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '，',
         isPunctuation: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '我',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '的',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '妈妈',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '四十八',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '岁',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '，',
         isPunctuation: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '我',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '的',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '姐姐',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '二十六',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '岁',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '，',
         isPunctuation: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '我',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '的',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '大哥',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '二十',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '岁',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '，',
         isPunctuation: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '我',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '的',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '小哥',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '十七',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '岁',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '。',
         isPunctuation: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '我',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '今年',
         isNew: true,
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '十',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '岁',
       },
       {
-        audio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
-        ),
+        audio: AudioProvider.createAudioFromData(audio2b64(placeholderAudio)),
         suppressComprehensionAudio: false,
         word: '。',
         isPunctuation: true,
@@ -425,8 +313,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
         questionText: '谁是最小的？',
         options: [
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: true,
@@ -435,8 +323,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '我',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -445,8 +333,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '姐姐',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -455,8 +343,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '大哥',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -471,8 +359,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
         questionText: '谁是最大的？',
         options: [
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -481,8 +369,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '我',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: true,
@@ -491,8 +379,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '姐姐',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -501,8 +389,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '大哥',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -517,8 +405,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
         questionText: '“我”有几个姐妹？',
         options: [
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: true,
@@ -527,8 +415,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '一',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -537,8 +425,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '二',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -547,8 +435,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '三',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -563,8 +451,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
         questionText: '“我”有几个兄弟？',
         options: [
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -573,8 +461,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '一',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: true,
@@ -583,8 +471,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '二',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -593,8 +481,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '三',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -609,8 +497,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
         questionText: '爸爸和妈妈谁的年龄大？',
         options: [
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: true,
@@ -619,8 +507,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
             word: '妈妈',
           },
           {
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             buzzing: false,
             correct: false,
@@ -634,48 +522,47 @@ export default function ComprehensionTestData(): ComprehensionExercise {
 
     newWordsExercises: [
       {
-        itemUnderTestAudio: new Audio(Content.getAudioData(placeholderAudio)),
+        itemUnderTestAudio: AudioProvider.createAudioFromData(
+          audio2b64(placeholderAudio),
+        ),
         itemUnderTestAudioPlaying: false,
-        // iconToMatch: [
-        //   Content.getIcon('mdiNumeric1'),
-        //   Content.getIcon('mdiPlus'),
-        //   Content.getIcon('mdiNumeric5'),
-        //   Content.getIcon('mdiMinus'),
-        //   Content.getIcon('mdiNumeric4'),
-        // ],
         pictureToMatch: pic,
         options: [
           {
             word: '今年',
-            audio: new Audio(Content.getAudioData(placeholderAudio)),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
+            ),
             correct: false,
             disabled: false,
             playing: false,
-            buzzing: false,
           },
           {
             word: '和',
-            audio: new Audio(Content.getAudioData(placeholderAudio)),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
+            ),
             correct: true,
             disabled: false,
             playing: false,
-            buzzing: false,
           },
           {
             word: '家里',
-            audio: new Audio(Content.getAudioData(placeholderAudio)),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
+            ),
             correct: false,
             disabled: false,
             playing: false,
-            buzzing: false,
           },
           {
             word: '人',
-            audio: new Audio(Content.getAudioData(placeholderAudio)),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
+            ),
             correct: false,
             disabled: false,
             playing: false,
-            buzzing: false,
           },
         ],
       },
@@ -683,8 +570,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
         items: [
           {
             wordOrIcons: 'item-2-二',
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             picture: pic,
             match: 2,
@@ -696,8 +583,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
           },
           {
             wordOrIcons: '术',
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             match: 4,
             isWord: true,
@@ -708,8 +595,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
           },
           {
             wordOrIcons: '二',
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             match: 0,
             isWord: true,
@@ -720,8 +607,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
           },
           {
             wordOrIcons: 'item-7-四',
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             picture: pic,
             match: 7,
@@ -733,8 +620,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
           },
           {
             wordOrIcons: 'item-1-术',
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             picture: pic,
             match: 1,
@@ -746,8 +633,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
           },
           {
             wordOrIcons: '三',
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             match: 6,
             isWord: true,
@@ -758,8 +645,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
           },
           {
             wordOrIcons: 'item-5-三',
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             picture: pic,
             match: 5,
@@ -771,8 +658,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
           },
           {
             wordOrIcons: '四',
-            audio: ExerciseProvider.createAudio(
-              Content.getAudioData(placeholderAudio),
+            audio: AudioProvider.createAudioFromData(
+              audio2b64(placeholderAudio),
             ),
             match: 3,
             isWord: true,
@@ -791,8 +678,8 @@ export default function ComprehensionTestData(): ComprehensionExercise {
       {
         instructionText:
           '请默读这段短文。然后点击屏幕上的箭头，回答问题。遇到不认识的词语可以跳过，后面我们会学习相关的新词。',
-        instructionAudio: ExerciseProvider.createAudio(
-          Content.getAudioData(placeholderAudio),
+        instructionAudio: AudioProvider.createAudioFromData(
+          audio2b64(placeholderAudio),
         ),
       },
       // 2. [AnswerQuestions] Audio multiple choice comprehension questions with full text still visible. (Audio instruction)

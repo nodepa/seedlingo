@@ -2,7 +2,8 @@
 import type { ExerciseAudio } from '@/common/types/ExerciseAudioType';
 import Instructor from '@/common/icons/HoneyBee.svg';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
-import { computed, ref } from 'vue';
+import { computed, useTemplateRef } from 'vue';
+import { IonCard, IonCardContent, IonIcon } from '@ionic/vue';
 
 interface Props {
   audio?: ExerciseAudio;
@@ -19,9 +20,14 @@ withDefaults(defineProps<Props>(), {
   sizeWhenSpeaking: 164,
 });
 defineEmits(['click']);
-const card = ref();
+type IonCardType = InstanceType<typeof IonCard>;
+const card = useTemplateRef<IonCardType>('honeybee-card');
 const cardHeight = computed(() => {
-  return +getComputedStyle(card.value).height.replace('px', '');
+  if (card.value?.$el) {
+    return +getComputedStyle(card.value.$el).height.replace('px', '');
+  } else {
+    return 0;
+  }
 });
 </script>
 <template>
@@ -72,7 +78,7 @@ const cardHeight = computed(() => {
         transition: '1s ease-in-out',
       }"
     >
-      <ion-card ref="card" @click="$emit('click')">
+      <ion-card ref="honeybee-card" @click="$emit('click')">
         <ion-card-content style="font-size: 1rem; line-height: normal">
           <span>{{ text }} </span>
         </ion-card-content>

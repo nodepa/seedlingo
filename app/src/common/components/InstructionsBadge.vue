@@ -16,7 +16,11 @@ const playing = ref(props.playing);
 <template>
   <span class="badge-container">
     <!-- eslint-disable-next-line vue/no-v-html -->
-    <span class="badge" v-html="ToggleInstructionsOnIcon" />
+    <button
+      class="badge"
+      aria-label="Play instruction"
+      v-html="ToggleInstructionsOnIcon"
+    />
     <RippleAnimation :playing="playing" />
   </span>
 </template>

@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue';
-import { IonCard, IonCardContent, IonGrid, useIonRouter } from '@ionic/vue';
+import {
+  IonCard,
+  IonCardContent,
+  IonCol,
+  IonGrid,
+  IonRow,
+  useIonRouter,
+} from '@ionic/vue';
 import { useStore } from 'vuex';
 
 import type {

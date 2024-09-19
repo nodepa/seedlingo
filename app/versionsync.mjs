@@ -17,7 +17,7 @@ const buildGradleWVersionSync = buildGradleWVersionCodeBump.replace(
 );
 fs.writeFileSync('android/app/build.gradle', buildGradleWVersionSync);
 
-/* eslint no-console: ["off"] */
+// eslint-disable-next-line no-console
 console.log(
   `\n\x1b[36m[info]\x1b[0m versionName \x1b[32;1m${version}\x1b[0m and versionCode \x1b[32;1m${
     +versionCode + 1

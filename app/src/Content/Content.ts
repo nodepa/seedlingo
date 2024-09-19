@@ -7,11 +7,64 @@ import type {
   WordSpec,
 } from '@/common/types/ContentTypes';
 import type { UnitsMeta } from '@/common/types/UnitsMetaType';
-import * as mdiIcons from '@mdi/js';
+import {
+  mdiAccount,
+  mdiAccountHardHat,
+  mdiCash100,
+  mdiCrowd,
+  mdiHumanFemaleBoy,
+  mdiHumanFemaleGirl,
+  mdiHumanMaleBoard,
+  mdiHumanMaleBoy,
+  mdiHumanMaleChild,
+  mdiHumanMaleGirl,
+  mdiNumeric,
+  mdiNumeric0,
+  mdiNumeric0Circle,
+  mdiNumeric1,
+  mdiNumeric1Circle,
+  mdiNumeric2,
+  mdiNumeric2Circle,
+  mdiNumeric2CircleOutline,
+  mdiNumeric3,
+  mdiNumeric4,
+  mdiNumeric5,
+  mdiNumeric6,
+  mdiNumeric7,
+  mdiNumeric8,
+  mdiNumeric9,
+} from '@mdi/js';
+const mdiIcons = new Map([
+  ['mdiAccount', mdiAccount],
+  ['mdiAccountHardHat', mdiAccountHardHat],
+  ['mdiCash100', mdiCash100],
+  ['mdiCrowd', mdiCrowd],
+  ['mdiHumanFemaleBoy', mdiHumanFemaleBoy],
+  ['mdiHumanFemaleGirl', mdiHumanFemaleGirl],
+  ['mdiHumanMaleBoard', mdiHumanMaleBoard],
+  ['mdiHumanMaleBoy', mdiHumanMaleBoy],
+  ['mdiHumanMaleChild', mdiHumanMaleChild],
+  ['mdiHumanMaleGirl', mdiHumanMaleGirl],
+  ['mdiNumeric', mdiNumeric],
+  ['mdiNumeric0', mdiNumeric0],
+  ['mdiNumeric0Circle', mdiNumeric0Circle],
+  ['mdiNumeric1', mdiNumeric1],
+  ['mdiNumeric1Circle', mdiNumeric1Circle],
+  ['mdiNumeric2', mdiNumeric2],
+  ['mdiNumeric2Circle', mdiNumeric2Circle],
+  ['mdiNumeric2CircleOutline', mdiNumeric2CircleOutline],
+  ['mdiNumeric3', mdiNumeric3],
+  ['mdiNumeric4', mdiNumeric4],
+  ['mdiNumeric5', mdiNumeric5],
+  ['mdiNumeric6', mdiNumeric6],
+  ['mdiNumeric7', mdiNumeric7],
+  ['mdiNumeric8', mdiNumeric8],
+  ['mdiNumeric9', mdiNumeric9],
+]);
 
-let mp3Base64Sources: Record<string, unknown>,
-  jsonSources: Record<string, unknown>,
-  picSources: Record<string, unknown>;
+let jsonSources: Record<string, unknown>,
+  picSources: Record<string, unknown>,
+  mp3Base64Sources: Record<string, unknown>;
 let contentFolder = '';
 if (import.meta.env.MODE === 'test') {
   // applies to unit tests; e2e tests run in production mode
@@ -184,10 +237,13 @@ export default class Content {
   }
 
   public static getIcon(key: string): string {
-    const drawPath = (mdiIcons as { [key: string]: string })[key];
-    return drawPath
-      ? `data:image/svg+xml,<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="${drawPath}"/></svg>`
-      : '';
+    const drawPath = mdiIcons.get(key);
+    if (!drawPath) {
+      console.error('Missing icon:', key);
+      return '';
+    } else {
+      return `data:image/svg+xml,<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="${drawPath}"/></svg>`;
+    }
   }
 
   public static getWord(wordRef: string | WordRef): WordSpec {

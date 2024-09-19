@@ -62,6 +62,7 @@ function playAnimation(): void {
 <template>
   <ion-button
     ref="button"
+    aria-label="An exercise button with a clue to solve the current problem"
     :disabled="disabled"
     :color="buzzing ? 'danger' : color"
     @click="$emit('click')"

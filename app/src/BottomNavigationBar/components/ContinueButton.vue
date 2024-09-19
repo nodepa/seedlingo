@@ -50,6 +50,7 @@ const showContinueButton: ComputedRef<boolean> = computed(() => {
     ref="continueButton"
     v-instructions="continueButtonInstructions"
     data-test="continue-button"
+    aria-label="Show the next exercise"
     @click="store.dispatch('setShowContinueButton', false)"
   >
     <ion-icon :icon="arrowForward" color="success" aria-hidden="false" />

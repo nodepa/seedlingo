@@ -1,18 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import Content from '@/Content/Content';
 import mp3 from '@/test-support/audio/placeholder-audio.mp3.audio?raw';
+const base64mp3 = `data:audio/mpeg;base64,${mp3}`;
 
 describe('Content.ts', () => {
   it('.getInstructionsPathFor()', () => {
-    expect(Content.getInstructionsAudio('continueButton')).toBe(
-      `data:audio/mpeg;base64,${mp3}`,
-    );
+    expect(Content.getInstructionsAudio('continueButton')).toBe(base64mp3);
   });
 
   it('.getAudioData()', () => {
-    expect(Content.getAudioData('audio/placeholder-audio.mp3')).toBe(
-      `data:audio/mpeg;base64,${mp3}`,
-    );
+    expect(Content.getAudioData('audio/placeholder-audio.mp3')).toBe(base64mp3);
   });
 
   it('.getIcon()', () => {
@@ -26,7 +23,7 @@ describe('Content.ts', () => {
     expect(unitsMeta[2]).toBe(undefined);
     expect(unitsMeta[1]).toMatchObject({
       name: 'first',
-      audio: `data:audio/mpeg;base64,${mp3}`,
+      audio: base64mp3,
     });
     expect(unitsMeta[1].icon.length).toBeGreaterThan(0);
   });

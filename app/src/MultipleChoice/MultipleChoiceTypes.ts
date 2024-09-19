@@ -1,5 +1,7 @@
+import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
+
 export interface MultipleChoiceExercise {
-  itemUnderTestAudio?: HTMLMediaElement;
+  itemUnderTestAudio?: ExerciseAudio;
   itemUnderTestAudioPlaying?: boolean;
   iconToMatch?: Array<string>;
   pictureToMatch?: string;
@@ -9,10 +11,9 @@ export interface MultipleChoiceExercise {
 
 export interface MultipleChoiceItem {
   word: string;
-  audio: HTMLAudioElement;
+  audio: ExerciseAudio;
   correct: boolean;
   disabled: boolean;
   playing: boolean;
-  buzzing: boolean;
   color?: string;
 }
