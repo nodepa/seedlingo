@@ -24,14 +24,14 @@ type IonCardType = InstanceType<typeof IonCard>;
 const card = useTemplateRef<IonCardType>('honeybee-card');
 const cardHeight = computed(() => {
   if (card.value?.$el) {
-    return +getComputedStyle(card.value.$el).height.replace('px', '');
+    return getComputedStyle(card.value.$el).height;
   } else {
-    return 0;
+    return '0px';
   }
 });
 </script>
 <template>
-  <div>
+  <div style="position: relative; transition: 1s ease-in-out">
     <!-- Honeybee icon -->
     <button
       :style="{
@@ -67,14 +67,9 @@ const cardHeight = computed(() => {
     <div
       :style="{
         width: '100%',
-        height: audio?.playing ? `${cardHeight}px` : '0px',
-        marginTop: '-20px',
-        scale: audio?.playing ? 1 : 0,
-        translate: centered
-          ? undefined
-          : audio?.playing
-            ? '0% 0%'
-            : 'calc(-50% - 10px) calc(-50% - 10px)',
+        height: audio?.playing ? cardHeight : '0px',
+        transformOrigin: centered ? 'center' : 'left top 0px',
+        transform: `scale(${audio?.playing ? 1 : 0})`,
         transition: '1s ease-in-out',
       }"
     >
