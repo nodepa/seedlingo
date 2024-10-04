@@ -226,7 +226,7 @@ function playOptionAudio(option: ComprehensionOption): void {
             :text="exercise.stages[currentStage].instructionText"
             :centered="exercise.stages[currentStage].instructionAudio?.playing"
             :style="{
-              transition: '1s ease-in-out',
+              margin: '0px',
               marginInline: '10px',
               marginBottom: exercise.stages[currentStage].instructionAudio
                 ?.playing
@@ -247,7 +247,6 @@ function playOptionAudio(option: ComprehensionOption): void {
                   ? '1.8rem'
                   : '1.2rem'
               };
-              transition: 1s ease-in-out;
             `"
             >
               <template
