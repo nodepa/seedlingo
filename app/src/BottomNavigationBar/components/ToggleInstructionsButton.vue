@@ -67,6 +67,7 @@ const isInstructionsMode: ComputedRef<boolean> = computed(() => {
   <ion-button
     ref="toggleInstructionsButton"
     data-test="toggle-instructions-button"
+    aria-label="Toggle instructions mode"
     @click="toggleInstructionsMode()"
   >
     <ion-icon

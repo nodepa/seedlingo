@@ -26,6 +26,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       cy.log('-- sees 3 words that are unsuitable substitutes.');
       cy.visit('/unit/single-cloze-test', {
         onBeforeLoad(window) {
+          delete Object.getPrototypeOf(window.navigator).serviceWorker;
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');
           cy.spy(window.HTMLElement.prototype, 'animate').as(
@@ -142,6 +143,7 @@ describe('马丽 interacts with the "cloze" system', () => {
       );
       cy.visit('/unit/multi-cloze-test', {
         onBeforeLoad(window) {
+          delete Object.getPrototypeOf(window.navigator).serviceWorker;
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');
           cy.spy(window.HTMLElement.prototype, 'animate').as(

@@ -1,6 +1,6 @@
 {
   "name": "seedlingo-en",
-  "version": "1.5.2",
+  "version": "1.5.7",
   "description": "Modern mobile multi-language literacy - A first-language digital learning tool for adults",
   "homepage": "https://seedlingo.com/get-started",
   "bugs": "https://github.com/nodepa/seedlingo-en/issues",
@@ -24,8 +24,11 @@
   },
   "scripts": {
     "ba": "npm run build:android",
+    "bas": "npm run build:android:sign-only",
     "build": "npm install && npm run lint:tsc && vite build",
     "build:android": "npm run build && cap telemetry off && cap sync && node versionsync.mjs && cd android && yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses && ./gradlew assembleRelease && cd app/build/outputs/apk/release && for filename in *.unsigned.apk ; do $ANDROID_HOME/build-tools/34.0.0/zipalign 4 $filename ${filename%unsigned*}unsigned.aligned${filename##*unsigned} && $ANDROID_HOME/build-tools/34.0.0/apksigner sign -v --ks ~/.android/apksign.keystore --out ${filename%.unsigned*}${filename##*unsigned} ${filename%unsigned*}unsigned.aligned${filename##*unsigned} ; done",
+    "build:android:sign-only": "cd android/app/build/outputs/apk/release && for filename in *.unsigned.aligned.apk ; do $ANDROID_HOME/build-tools/34.0.0/apksigner sign -v --ks ~/.android/apksign.keystore --out ${filename%.unsigned*}${filename##*unsigned.aligned} ${filename%unsigned*}unsigned${filename##*unsigned} ; done",
+    "build:android:debug": "npm run build && cap telemetry off && cap sync && node versionsync.mjs && cd android && yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses && ./gradlew assembleDebug && cd app/build/outputs/apk/debug && for filename in *.unsigned.apk ; do $ANDROID_HOME/build-tools/34.0.0/zipalign 4 $filename ${filename%unsigned*}unsigned.aligned${filename##*unsigned} && $ANDROID_HOME/build-tools/34.0.0/apksigner sign -v --ks ~/.android/apksign.keystore --out ${filename%.unsigned*}${filename##*unsigned} ${filename%unsigned*}unsigned.aligned${filename##*unsigned} ; done",
     "dev": "vite",
     "genass": "cd public && pwd && npx pwa-asset-generator --background 'linear-gradient(#19D2FE, #1E64F0)' --padding '0px' --favicon --single-quotes --type png ../src/assets/logo/logo.svg ./logo",
     "lint": "eslint",
@@ -61,12 +64,12 @@
     "verify:content": "vitest run --reporter verbose UnitValidation"
   },
   "dependencies": {
-    "@ionic/vue": "^8.2.7",
-    "@ionic/vue-router": "^8.2.7",
+    "@ionic/vue": "^8.3.2",
+    "@ionic/vue-router": "^8.3.2",
     "register-service-worker": "^1.7.2",
     "roboto-fontface": "^0.10.0",
-    "vue": "^3.4.37",
-    "vue-router": "^4.4.3",
+    "vue": "^3.5.11",
+    "vue-router": "^4.4.5",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
@@ -78,30 +81,30 @@
     "@capacitor/ios": "^6.1.2",
     "@capacitor/keyboard": "^6.0.2",
     "@capacitor/status-bar": "^6.0.1",
-    "@commitlint/cli": "^19.4.0",
+    "@commitlint/cli": "^19.5.0",
     "@mdi/js": "^7.4.47",
-    "@typescript-eslint/eslint-plugin": "^8.1.0",
-    "@typescript-eslint/parser": "^8.1.0",
-    "@vitejs/plugin-vue": "^5.1.2",
-    "@vitest/coverage-v8": "^2.0.5",
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
+    "@typescript-eslint/parser": "^8.8.0",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vitest/coverage-v8": "^2.1.2",
     "@vue/test-utils": "^2.4.6",
-    "cypress": "^13.13.2",
-    "eslint": "^9.9.0",
+    "cypress": "^13.15.0",
+    "eslint": "^9.11.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-vue": "^9.27.0",
-    "happy-dom": "^14.12.3",
-    "husky": "^9.1.4",
-    "lint-staged": "^15.2.9",
+    "eslint-plugin-vue": "^9.28.0",
+    "happy-dom": "^15.7.4",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "plausible-tracker": "^0.3.9",
     "prettier": "^3.3.3",
-    "sass": "^1.77.8",
-    "start-server-and-test": "^2.0.5",
-    "typescript": "^5.5.4",
-    "vite": "^5.4.0",
-    "vite-plugin-pwa": "^0.20.1",
-    "vitest": "^2.0.5",
-    "vue-tsc": "^2.0.29"
+    "sass": "^1.79.4",
+    "start-server-and-test": "^2.0.8",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8",
+    "vite-plugin-pwa": "^0.20.5",
+    "vitest": "^2.1.2",
+    "vue-tsc": "^2.1.6"
   },
   "overrides": {
     "@typescript-eslint/eslint-plugin": {
@@ -112,7 +115,7 @@
     }
   },
   "volta": {
-    "node": "18.20.3",
-    "npm": "10.8.1"
+    "node": "18.20.4",
+    "npm": "10.8.3"
   }
 }

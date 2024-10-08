@@ -1,16 +1,14 @@
-import { defineConfig, splitVendorChunkPlugin } from 'vite';
+import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   appType: 'spa',
   plugins: [
-    splitVendorChunkPlugin(),
     vue(),
     VitePWA({
-      registerType: 'autoUpdate',
       injectRegister: null,
-      includeAssets: ['**/*.{ico,jpg,png,svg,xml,txt}'],
+      registerType: 'autoUpdate',
       manifest: {
         id: '/',
         name: 'Seedlingo',
@@ -40,6 +38,7 @@ export default defineConfig({
         globPatterns: [
           '**/*.{js,css,html,ico,jpg,jpeg,png,gif,svg,mp3,audio,xml,txt}',
         ],
+        maximumFileSizeToCacheInBytes: 8000000,
       },
     }),
   ],
@@ -58,5 +57,29 @@ export default defineConfig({
   test: {
     include: ['tests/{unit,component}/**/*.{test,spec}.{js,ts}'],
     environment: 'happy-dom',
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (id.includes('Content/Content.ts')) {
+            return 'Content';
+          }
+          if (id.includes('node_modules/@mdi')) {
+            return 'mdi';
+          }
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+      },
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
   },
 });

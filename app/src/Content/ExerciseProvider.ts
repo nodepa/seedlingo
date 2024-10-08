@@ -1,4 +1,3 @@
-import { reactive } from 'vue';
 import type { ClozeExercise, ClozeOption, ClozeWord } from '@/Cloze/ClozeTypes';
 import type {
   ComprehensionExercise,
@@ -22,6 +21,7 @@ import type {
   ComprehensionSpec,
 } from '@/common/types/ContentTypes';
 import Content from './Content';
+import AudioProvider from './AudioProvider';
 
 export type ExerciseType =
   | 'Matching'
@@ -219,15 +219,16 @@ export default class ExerciseProvider {
     }
     const correctOption = {
       word: validWord.word,
-      audio: {} as HTMLAudioElement,
+      audio: {} as ExerciseAudio,
       correct: true,
       disabled: false,
       playing: false,
       buzzing: false,
     } as MultipleChoiceItem;
 
-    const path = Content.getAudioData(`${validWord.audio}`);
-    correctOption.audio = new Audio(path);
+    correctOption.audio = AudioProvider.createAudioFromPath(
+      validWord.audio as string,
+    );
 
     multipleChoiceExercise.options.push(correctOption);
 
@@ -245,15 +246,16 @@ export default class ExerciseProvider {
     selectedOptions.forEach((wordSpec: WordSpec) => {
       const incorrectInterpretation = {
         word: wordSpec.word,
-        audio: {} as HTMLAudioElement,
+        audio: {} as ExerciseAudio,
         correct: false,
         disabled: false,
         playing: false,
         buzzing: false,
       } as MultipleChoiceItem;
 
-      const path = Content.getAudioData(`${wordSpec.audio}`);
-      incorrectInterpretation.audio = new Audio(path);
+      incorrectInterpretation.audio = AudioProvider.createAudioFromPath(
+        wordSpec.audio as string,
+      );
       multipleChoiceExercise.options.push(incorrectInterpretation);
     });
 
@@ -438,9 +440,8 @@ export default class ExerciseProvider {
       }
 
       if (wordSpec.audio) {
-        const path = Content.getAudioData(`${wordSpec.audio}`);
-        wordPart.audio = this.createAudio(path);
-        symPart.audio = this.createAudio(path);
+        wordPart.audio = AudioProvider.createAudioFromPath(wordSpec.audio);
+        symPart.audio = AudioProvider.createAudioFromPath(wordSpec.audio);
       }
 
       matchingItems.push(wordPart);
@@ -506,13 +507,13 @@ export default class ExerciseProvider {
       // wordPart.match = symPart;
 
       if (explanationSpec.audio) {
-        explanationPart.audio = this.createAudio(
-          Content.getAudioData(`${explanationSpec.audio}`),
+        explanationPart.audio = AudioProvider.createAudioFromPath(
+          explanationSpec.audio,
         );
       }
 
-      wordPart.audio = this.createAudio(
-        Content.getAudioData(`${interpretationItem.audio}`),
+      wordPart.audio = AudioProvider.createAudioFromPath(
+        interpretationItem.audio as string,
       );
 
       matchingExercise.items.push(explanationPart);
@@ -520,33 +521,6 @@ export default class ExerciseProvider {
     }); // end explanationItems.forEach
 
     return matchingExercise;
-  }
-
-  public static createAudio(src: string): ExerciseAudio {
-    const el = new Audio(src);
-    const audio = reactive({
-      el,
-      playing: false,
-      play() {
-        el.currentTime = 0;
-        el.play();
-      },
-      cancel() {
-        el.pause();
-      },
-    }) as ExerciseAudio;
-
-    el.onplaying = () => {
-      audio.playing = true;
-    };
-    el.onpause = () => {
-      audio.playing = false;
-    };
-    el.onended = () => {
-      audio.playing = false;
-    };
-
-    return audio;
   }
 
   public static shuffleMatchingItemsInPlace(
@@ -596,14 +570,16 @@ export default class ExerciseProvider {
     selectedItems.forEach((wordSpec: WordSpec) => {
       const exerciseItem = {
         word: wordSpec.word,
-        audio: {} as HTMLAudioElement,
+        audio: {} as ExerciseAudio,
         correct: false,
         disabled: false,
         playing: false,
         buzzing: false,
       } as MultipleChoiceItem;
-      const path = Content.getAudioData(`${wordSpec.audio}`);
-      exerciseItem.audio = new Audio(path);
+
+      exerciseItem.audio = AudioProvider.createAudioFromPath(
+        wordSpec.audio as string,
+      );
       multipleChoiceExercise.options.push(exerciseItem);
     });
     return multipleChoiceExercise;
@@ -650,8 +626,8 @@ export default class ExerciseProvider {
         const wordSpec = Content.getWord(wordRefOrBlank as WordRef);
         singleClozeWord.word = wordSpec.word;
         if (wordSpec.audio) {
-          singleClozeWord.audio = this.createAudio(
-            Content.getAudioData(wordSpec.audio),
+          singleClozeWord.audio = AudioProvider.createAudioFromPath(
+            wordSpec.audio,
           );
         }
         if (
@@ -675,12 +651,14 @@ export default class ExerciseProvider {
           : // validOption is a single WordRef
             [Content.getWord(validOption)];
 
+        let optAudioId;
         validOptionWordSpecs.forEach((wordSpec) => {
           singleClozeWord.word += wordSpec.word;
           // TODO: Handle successive audio #432
           if (wordSpec.audio) {
-            singleClozeWord.audio = this.createAudio(
-              Content.getAudioData(wordSpec.audio),
+            optAudioId = wordSpec.audio;
+            singleClozeWord.audio = AudioProvider.createAudioFromPath(
+              wordSpec.audio,
             );
           }
           if (
@@ -704,10 +682,9 @@ export default class ExerciseProvider {
               buzzing: false,
               disabled: false,
             };
-            if (singleClozeWord.audio?.el.src) {
-              singleClozeOption.audio = this.createAudio(
-                singleClozeWord.audio.el.src,
-              );
+            if (optAudioId) {
+              singleClozeOption.audio =
+                AudioProvider.createAudioFromPath(optAudioId);
             }
             if (clozeSpec.singleClozeSpec?.suppressOptionAudio) {
               singleClozeOption.suppressOptionAudio =
@@ -730,8 +707,8 @@ export default class ExerciseProvider {
                   disabled: false,
                 };
                 if (wordSpec.audio) {
-                  singleClozeOption.audio = this.createAudio(
-                    Content.getAudioData(wordSpec.audio),
+                  singleClozeOption.audio = AudioProvider.createAudioFromPath(
+                    wordSpec.audio,
                   );
                 }
                 if (
@@ -815,8 +792,8 @@ export default class ExerciseProvider {
           const wordSpec = Content.getWord(wordRefOrBlank);
           multiClozeWord.word = wordSpec.word;
           if (wordSpec.audio) {
-            multiClozeWord.audio = this.createAudio(
-              Content.getAudioData(wordSpec.audio),
+            multiClozeWord.audio = AudioProvider.createAudioFromPath(
+              wordSpec.audio,
             );
           }
           if (
@@ -846,11 +823,11 @@ export default class ExerciseProvider {
             multiClozeWord.word += wordSpec.word;
             // TODO: Handle successive audio #432
             if (wordSpec.audio) {
-              multiClozeWord.audio = this.createAudio(
-                Content.getAudioData(wordSpec.audio),
+              multiClozeWord.audio = AudioProvider.createAudioFromPath(
+                wordSpec.audio,
               );
-              multiClozeOption.audio = this.createAudio(
-                Content.getAudioData(wordSpec.audio),
+              multiClozeOption.audio = AudioProvider.createAudioFromPath(
+                wordSpec.audio,
               );
             }
             if (
@@ -935,8 +912,8 @@ export default class ExerciseProvider {
           stage.instructionText = stageSpec.instructionText;
         }
         if (stageSpec.instructionAudio) {
-          stage.instructionAudio = this.createAudio(
-            Content.getAudioData(`${stageSpec.instructionAudio}`),
+          stage.instructionAudio = AudioProvider.createAudioFromPath(
+            stageSpec.instructionAudio,
           );
         }
         if (
@@ -960,8 +937,8 @@ export default class ExerciseProvider {
         const comprehensionWord = {} as ComprehensionWord;
         const wordSpec = Content.getWord(wordRef);
         if (wordSpec.audio) {
-          comprehensionWord.audio = this.createAudio(
-            Content.getAudioData(`${wordSpec.audio}`),
+          comprehensionWord.audio = AudioProvider.createAudioFromPath(
+            wordSpec.audio,
           );
         }
         comprehensionWord.suppressComprehensionAudio = false;
@@ -988,8 +965,8 @@ export default class ExerciseProvider {
       comprehensionSpec.comprehensionQuestions?.map((questionSpec) => {
         const question = {} as ComprehensionQuestion;
         question.questionText = questionSpec.questionText;
-        question.questionAudio = this.createAudio(
-          Content.getAudioData(`${questionSpec.questionAudio}`),
+        question.questionAudio = AudioProvider.createAudioFromPath(
+          questionSpec.questionAudio,
         );
         question.options = [];
         questionSpec.options.forEach((optionSpec) => {
@@ -1004,9 +981,7 @@ export default class ExerciseProvider {
             option.word += wordSpec.word;
             // TODO: Handle successive audio #432
             if (wordSpec.audio) {
-              option.audio = this.createAudio(
-                Content.getAudioData(wordSpec.audio),
-              );
+              option.audio = AudioProvider.createAudioFromPath(wordSpec.audio);
             }
           });
 
@@ -1087,9 +1062,9 @@ export default class ExerciseProvider {
       const multipleChoiceExercise =
         this.createMultipleChoiceExerciseFromWords(selectedWords);
       multipleChoiceExercise.options[index].correct = true;
-      multipleChoiceExercise.itemUnderTestAudio = new Audio(
-        Content.getAudioData(`${word.audio}`),
-      );
+
+      multipleChoiceExercise.itemUnderTestAudio =
+        AudioProvider.createAudioFromPath(word.audio as string);
 
       if (word.symbol && word.symbol.length > 0) {
         word.symbol.forEach((symbol) => {
@@ -1121,8 +1096,8 @@ export default class ExerciseProvider {
     const correctItem = selectedItems[correctIndex];
     multipleChoiceExercise.options[correctIndex].correct = true;
 
-    const path = Content.getAudioData(`${correctItem.audio}`);
-    multipleChoiceExercise.itemUnderTestAudio = new Audio(path);
+    multipleChoiceExercise.itemUnderTestAudio =
+      AudioProvider.createAudioFromPath(correctItem.audio as string);
 
     if (correctItem.symbol && correctItem.symbol.length > 0) {
       correctItem.symbol.forEach((symbol) => {

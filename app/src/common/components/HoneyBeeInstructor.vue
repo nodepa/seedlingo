@@ -2,7 +2,8 @@
 import type { ExerciseAudio } from '@/common/types/ExerciseAudioType';
 import Instructor from '@/common/icons/HoneyBee.svg';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
-import { computed, ref } from 'vue';
+import { computed, useTemplateRef } from 'vue';
+import { IonCard, IonCardContent, IonIcon } from '@ionic/vue';
 
 interface Props {
   audio?: ExerciseAudio;
@@ -19,13 +20,18 @@ withDefaults(defineProps<Props>(), {
   sizeWhenSpeaking: 164,
 });
 defineEmits(['click']);
-const card = ref();
+type IonCardType = InstanceType<typeof IonCard>;
+const card = useTemplateRef<IonCardType>('honeybee-card');
 const cardHeight = computed(() => {
-  return +getComputedStyle(card.value).height.replace('px', '');
+  if (card.value?.$el) {
+    return getComputedStyle(card.value.$el).height;
+  } else {
+    return '0px';
+  }
 });
 </script>
 <template>
-  <div>
+  <div style="position: relative; transition: 1s ease-in-out">
     <!-- Honeybee icon -->
     <button
       :style="{
@@ -61,18 +67,13 @@ const cardHeight = computed(() => {
     <div
       :style="{
         width: '100%',
-        height: audio?.playing ? `${cardHeight}px` : '0px',
-        marginTop: '-20px',
-        scale: audio?.playing ? 1 : 0,
-        translate: centered
-          ? undefined
-          : audio?.playing
-            ? '0% 0%'
-            : 'calc(-50% - 10px) calc(-50% - 10px)',
+        height: audio?.playing ? cardHeight : '0px',
+        transformOrigin: centered ? 'center' : 'left top 0px',
+        transform: `scale(${audio?.playing ? 1 : 0})`,
         transition: '1s ease-in-out',
       }"
     >
-      <ion-card ref="card" @click="$emit('click')">
+      <ion-card ref="honeybee-card" @click="$emit('click')">
         <ion-card-content style="font-size: 1rem; line-height: normal">
           <span>{{ text }} </span>
         </ion-card-content>
