@@ -72,26 +72,33 @@ to a fluent listener
 learning to read the language.
 :::
 
-Seedlingo was originally developed as
+Seedlingo was originally developed and made available on the web as
 [立爱种字 LiAiZhongzi.com](https://liaizhongzi.com)
 from ideas by [立爱教育 Li Ai Education](https://liaieducation.com),
 to help Putonghua speaking adults
-learn to read simplified Chinese characters.
+learn to read Simplified Chinese characters.
 
 Seedlingo is also available with [English demo content](https://en.seedlingo.app),
 i.e. the original Simplified Chinese content
 has been replaced with English content
 for demonstration purposes.
 
-To try the Android app with Traditional Chinese content, download [version 1.5.2](
-  https://github.com/nodepa/seedlingo/releases/download/v1.5.2/seedlingo_v1.5.2_64.apk)
+###  🇨🇳 Simplified Chinese app
+To try the Android app📱 with Simplified Chinese 🇨🇳 content, download [version 1.5.7](
+  https://seedlingo.s3.ap-southeast-1.amazonaws.com/seedlingo_v1.5.7_79.apk)
 or [check the release history](https://github.com/nodepa/seedlingo/releases)
 to see if a more recent version has been made available.
-To try the Android app with English demo content, download [version 1.5.2_en](
-  https://github.com/nodepa/seedlingo-en/releases/download/v1.5.2_en/seedlingo_en_v1.5.2_65.apk)
+
+Download to your phone and install.
+You may have to enable the setting "Install from unknown sources"
+before your phone will allow the installation.
+
+### 🇺🇸 English demo app
+To try the Android app📱 with English 🇺🇸 demo content, download [version 1.5.7_en](
+  https://seedlingo.s3.ap-southeast-1.amazonaws.com/seedlingo_en_v1.5.7_80.apk)
 or [check the release history](https://github.com/nodepa/seedlingo-en/releases).
 
-Download to your phone, then install.
+Download to your phone and install.
 You may have to enable the setting "Install from unknown sources"
 before your phone will allow the installation.
 
@@ -128,11 +135,11 @@ and get to work!
 The Seedlingo project
 (EXCEPT all material [in the content folder](
   https://github.com/nodepa/seedlingo/tree/main/content/))
-is licensed to the public under a [MIT License](
+is licensed to the public under the [MIT License](
   https://github.com/nodepa/seedlingo/blob/main/LICENSE.md).
 
 The Seedlingo project's [content](
   https://github.com/nodepa/seedlingo/tree/main/content/)
-is licensed to the public under a
+is licensed to the public under the
 [Creative Commons Attribution-ShareAlike 4.0 International Public License](
 https://github.com/nodepa/seedlingo/blob/main/content/LICENSE.md).

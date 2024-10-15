@@ -671,7 +671,7 @@ The Seedlingo project,
 EXCEPT all material in the [content/](../content/) folder,
 is licensed to the public under the [MIT License](../LICENSE.md).
 
-The Seedlingo project's [content/](../content/) is licensed to the public under a
+The Seedlingo project's [content/](../content/) is licensed to the public under the
 [Creative Commons Attribution-ShareAlike 4.0 International Public License](
 ../content/LICENSE.md).
 
