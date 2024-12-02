@@ -44,7 +44,7 @@ const toggleInstructionsButtonInstructions: ComputedRef<string> = computed(
 <template>
   <ion-app data-test="app">
     <AppHeader />
-    <ion-content>
+    <ion-content :force-overscroll="false">
       <InstructionsExplainer
         v-if="showInstructionsExplainer"
         :welcome-instructions-path="welcomeInstructions"
