@@ -1,6 +1,6 @@
 {
   "name": "seedlingo",
-  "version": "1.5.8",
+  "version": "1.5.9",
   "description": "Modern mobile multi-language literacy - A first-language digital learning tool for adults",
   "homepage": "https://seedlingo.com/get-started",
   "bugs": "https://github.com/nodepa/seedlingo/issues",
@@ -73,49 +73,41 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@capacitor/android": "^6.2.0",
-    "@capacitor/app": "^6.0.2",
-    "@capacitor/cli": "^6.2.0",
-    "@capacitor/core": "^6.2.0",
-    "@capacitor/haptics": "^6.0.2",
-    "@capacitor/ios": "^6.2.0",
-    "@capacitor/keyboard": "^6.0.3",
-    "@capacitor/status-bar": "^6.0.2",
-    "@commitlint/cli": "^19.6.0",
+    "@capacitor/android": "^7.1.0",
+    "@capacitor/app": "^7.0.0",
+    "@capacitor/cli": "^7.0.0",
+    "@capacitor/core": "^7.1.0",
+    "@capacitor/haptics": "^7.0.0",
+    "@capacitor/ios": "^7.1.0",
+    "@capacitor/keyboard": "^7.0.0",
+    "@capacitor/status-bar": "^7.0.0",
+    "@commitlint/cli": "^19.8.0",
     "@mdi/js": "^7.4.47",
-    "@typescript-eslint/eslint-plugin": "^8.16.0",
-    "@typescript-eslint/parser": "^8.16.0",
-    "@vitejs/plugin-vue": "^5.2.1",
-    "@vitest/coverage-v8": "^2.1.7",
+    "@typescript-eslint/eslint-plugin": "^8.27.0",
+    "@typescript-eslint/parser": "^8.27.0",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vitest/coverage-v8": "^3.0.9",
     "@vue/test-utils": "^2.4.6",
-    "cypress": "^13.16.0",
-    "eslint": "^9.16.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-vue": "^9.32.0",
-    "happy-dom": "^15.11.7",
+    "cypress": "^14.2.0",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-vue": "^9.33.0",
+    "happy-dom": "^17.4.4",
     "husky": "^9.1.7",
-    "lint-staged": "^15.2.10",
+    "lint-staged": "^15.5.0",
     "plausible-tracker": "^0.3.9",
-    "prettier": "^3.4.1",
-    "sass": "^1.81.0",
-    "start-server-and-test": "^2.0.8",
-    "typescript": "^5.6.3",
+    "prettier": "^3.5.3",
+    "sass": "^1.86.0",
+    "start-server-and-test": "^2.0.11",
+    "typescript": "^5.8.2",
     "vite": "^6.0.2",
     "vite-plugin-pwa": "^0.21.1",
-    "vitest": "^2.1.7",
-    "vue-tsc": "^2.1.6"
-  },
-  "overrides": {
-    "@typescript-eslint/eslint-plugin": {
-      "eslint": "$eslint"
-    },
-    "@typescript-eslint/parser": {
-      "eslint": "$eslint"
-    }
+    "vitest": "^3.0.9",
+    "vue-tsc": "^2.2.8"
   },
   "volta": {
-    "node": "18.20.5",
-    "npm": "10.9.1"
+    "node": "20.19.0",
+    "npm": "11.2.0"
   }
 }
