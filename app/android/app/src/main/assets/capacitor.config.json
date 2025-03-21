@@ -1,6 +1,5 @@
 {
 	"appId": "org.nodepa.seedlingo",
 	"appName": "种字",
-	"webDir": "dist",
-	"bundledWebRuntime": false
+	"webDir": "dist"
 }
