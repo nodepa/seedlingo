@@ -1,10 +1,10 @@
 {
-  "name": "seedlingo-en",
+  "name": "seedlingo",
   "version": "1.5.9",
   "description": "Modern mobile multi-language literacy - A first-language digital learning tool for adults",
   "homepage": "https://seedlingo.com/get-started",
-  "bugs": "https://github.com/nodepa/seedlingo-en/issues",
-  "repository": "https://github.com/nodepa/seedlingo-en",
+  "bugs": "https://github.com/nodepa/seedlingo/issues",
+  "repository": "https://github.com/nodepa/seedlingo",
   "private": true,
   "license": "MIT",
   "keywords": [

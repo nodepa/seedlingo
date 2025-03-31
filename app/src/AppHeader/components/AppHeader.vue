@@ -50,12 +50,12 @@ const toggleDarkTheme = () => {
       <ion-img
         class="ion-float-start"
         data-test="toggle"
-        alt="Seedlingo Logo"
+        alt="立爱种字 Logo"
         :src="logoUrl"
         @click="toggleDarkTheme"
       />
       <ion-title>
-        Seedlingo
+        立爱种字
         <span
           v-if="appVersion && darkTheme"
           class="text-white"

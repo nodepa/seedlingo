@@ -12,9 +12,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       manifest: {
         id: '/',
-        name: 'Seedlingo',
-        short_name: 'seedlingo',
-        description: 'Modern mobile multi-language literacy',
+        name: '立爱种字',
+        short_name: '种字',
+        description: '现代的流动的识字',
         theme_color: '#1976d2',
         icons: [
           {

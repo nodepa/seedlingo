@@ -1,4 +1,4 @@
-<h1 align="center">Seedlingo English Demo</h1>
+<h1 align="center">Seedlingo</h1>
 
 <p align="center">
   <img src="docs/.vuepress/public/images/seedlingo-logo-blue.svg"
@@ -34,19 +34,14 @@
 
 ## Table of contents <!-- omit in toc -->
 
-- [What is Seedlingo English Demo](#what-is-seedlingo-english-demo)
+- [What is Seedlingo](#what-is-seedlingo)
 - [Get started](#get-started)
 - [Community](#community)
 - [Code of conduct](#code-of-conduct)
 - [Contributing](#contributing)
 - [License](#license)
 
-## What is Seedlingo English Demo
-
-The Seedlingo English Demo is the Seedlingo app with English demo content,
-i.e. the original Simplified Chinese content
-has been replaced with English content
-for demonstration purposes.
+## What is Seedlingo
 
 Seedlingo is a digital language learning tool
 targeting adults learning to read their native language.
