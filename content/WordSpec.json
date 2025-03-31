@@ -1,903 +1,524 @@
 {
   "formatVersion": "1.4.0",
-  "wordCount": 194,
+  "wordCount": 103,
   "words": {
     "a681b683-d909-4f5b-834e-8347633df4b1": {
-      "word": "数字",
-      "audio": "audio/数字.mp3",
-      "picture": "pics/数字.jpg"
+      "word": "numbers",
+      "audio": "audio/numbers.mp3",
+      "picture": "pics/numbers.jpg"
     },
     "8d2a8043-7eaa-4aee-927d-a42313036970": {
-      "word": "零",
-      "audio": "audio/零.mp3",
+      "word": "zero",
+      "audio": "audio/zero.mp3",
       "symbol": [
         "mdiNumeric0Circle"
       ]
     },
     "1d936b6b-e44c-466c-8d04-ab52643670c2": {
-      "word": "一",
-      "audio": "audio/一.mp3",
-      "picture": "pics/一.jpg"
+      "word": "one",
+      "audio": "audio/one.mp3",
+      "picture": "pics/one.jpg"
     },
     "698cced9-2080-4226-87f0-07837add7938": {
-      "word": "二",
-      "audio": "audio/二.mp3",
-      "picture": "pics/二.jpg"
-    },
-    "5dbf7670-f66d-46e4-b971-8f8d6de95a5c": {
-      "word": "两",
-      "audio": "audio/两.mp3",
-      "picture": "pics/两.jpg"
+      "word": "two",
+      "audio": "audio/two.mp3",
+      "picture": "pics/two.jpg"
     },
     "84dcd43f-3f86-4be8-a1b0-541ac92133d3": {
-      "word": "三",
-      "audio": "audio/三.mp3",
-      "picture": "pics/三.jpg"
+      "word": "three",
+      "audio": "audio/three.mp3",
+      "picture": "pics/three.jpg"
     },
     "da473305-758c-40c0-a61b-d9de0aefb5a4": {
-      "word": "四",
-      "audio": "audio/四.mp3",
-      "picture": "pics/四.jpg"
+      "word": "four",
+      "audio": "audio/four.mp3",
+      "picture": "pics/four.jpg"
     },
     "d3b1fa9c-5b7c-4ef5-b067-174b7017c4e7": {
-      "word": "五",
-      "audio": "audio/五.mp3",
-      "picture": "pics/五.jpg"
+      "word": "five",
+      "audio": "audio/five.mp3",
+      "picture": "pics/five.jpg"
     },
     "8a4feb4e-2f7b-4956-bb93-b8393a772b53": {
-      "word": "六",
-      "audio": "audio/六.mp3",
-      "picture": "pics/六.jpg"
+      "word": "six",
+      "audio": "audio/six.mp3",
+      "picture": "pics/six.jpg"
     },
     "d4780ac6-a2e5-4b37-b7bc-5277b17032ef": {
-      "word": "七",
-      "audio": "audio/七.mp3",
-      "picture": "pics/七.jpg"
+      "word": "seven",
+      "audio": "audio/seven.mp3",
+      "picture": "pics/seven.jpg"
     },
     "097f100c-c5be-4112-8af9-a977902632d9": {
-      "word": "八",
-      "audio": "audio/八.mp3",
-      "picture": "pics/八.jpg"
+      "word": "eight",
+      "audio": "audio/eight.mp3",
+      "picture": "pics/eight.jpg"
     },
     "6705773b-a57c-4df3-ac1c-9fc2b71453e2": {
-      "word": "九",
-      "audio": "audio/九.mp3",
-      "picture": "pics/九.jpg"
+      "word": "nine",
+      "audio": "audio/nine.mp3",
+      "picture": "pics/nine.jpg"
     },
     "3bb2302a-53be-427b-ba5e-8b56694cef59": {
-      "word": "十",
-      "audio": "audio/十.mp3",
-      "picture": "pics/十.jpg"
+      "word": "ten",
+      "audio": "audio/ten.mp3",
+      "picture": "pics/ten.jpg"
     },
     "14affadc-3ba3-45e2-b98a-1c3bf6b3d266": {
-      "word": "十一",
-      "audio": "audio/十一.mp3",
-      "picture": "pics/十一.jpg"
+      "word": "eleven",
+      "audio": "audio/eleven.mp3",
+      "picture": "pics/eleven.jpg"
     },
     "71c67af5-d1d4-4878-ae7b-3779c3497705": {
-      "word": "十五",
-      "audio": "audio/十五.mp3",
-      "picture": "pics/十五.jpg"
+      "word": "fifteen",
+      "audio": "audio/fifteen.mp3",
+      "picture": "pics/fifteen.jpg"
     },
     "aceef0db-2ac9-4c9c-badb-acf5f26197db": {
-      "word": "十九",
-      "audio": "audio/十九.mp3",
-      "picture": "pics/十九.jpg"
+      "word": "nineteen",
+      "audio": "audio/nineteen.mp3",
+      "picture": "pics/nineteen.jpg"
     },
     "bf9fa97b-3b2b-4dc2-8ee6-d68ed69f7c5c": {
-      "word": "二十",
-      "audio": "audio/二十.mp3",
-      "picture": "pics/二十.jpg"
+      "word": "twenty",
+      "audio": "audio/twenty.mp3",
+      "picture": "pics/twenty.jpg"
     },
     "67907b51-30e4-4bbd-b0d7-c4bde04060fd": {
-      "word": "二十八",
-      "audio": "audio/二十八.mp3",
-      "picture": "pics/二十八.jpg"
+      "word": "twenty-nine",
+      "audio": "audio/twenty-nine.mp3",
+      "picture": "pics/twenty-nine.jpg"
     },
     "32001502-3c66-402b-ba2b-9db8f1c520df": {
-      "word": "三十",
-      "audio": "audio/三十.mp3",
-      "picture": "pics/三十.jpg"
+      "word": "thirty",
+      "audio": "audio/thirty.mp3",
+      "picture": "pics/thirty.jpg"
     },
     "4135dd73-7791-4a2f-ba69-89d07dfa5f66": {
-      "word": "三十四",
-      "audio": "audio/三十四.mp3",
-      "picture": "pics/三十四.jpg"
+      "word": "thirty-four",
+      "audio": "audio/thirty-four.mp3",
+      "picture": "pics/thirty-four.jpg"
     },
     "c1a581c8-8866-4afd-a099-12f4e62c5c50": {
-      "word": "四十",
-      "audio": "audio/四十.mp3",
+      "word": "forty",
+      "audio": "audio/forty.mp3",
       "symbol": [
         "mdiNumeric4",
         "mdiNumeric0"
       ]
     },
     "74500825-6c34-482d-bf6c-d83889a76954": {
-      "word": "四十六",
-      "audio": "audio/四十六.mp3",
+      "word": "forty-six",
+      "audio": "audio/forty-six.mp3",
       "symbol": [
         "mdiNumeric4",
         "mdiNumeric6"
       ]
     },
     "35ae35f7-20df-48ca-80f1-7011b0e1f728": {
-      "word": "五十",
-      "audio": "audio/五十.mp3",
+      "word": "fifty",
+      "audio": "audio/fifty.mp3",
       "symbol": [
         "mdiNumeric5",
         "mdiNumeric0"
       ]
     },
     "efc38b0d-18bb-43b4-8b50-68ace02cf422": {
-      "word": "五十七",
-      "audio": "audio/五十七.mp3",
+      "word": "fifty-seven",
+      "audio": "audio/fifty-seven.mp3",
       "symbol": [
         "mdiNumeric5",
         "mdiNumeric7"
       ]
     },
     "e4ec746d-1f04-4a2c-836f-e1211a4e292d": {
-      "word": "六十",
-      "audio": "audio/六十.mp3",
+      "word": "sixty",
+      "audio": "audio/sixty.mp3",
       "symbol": [
         "mdiNumeric6",
         "mdiNumeric0"
       ]
     },
     "a1300e2b-ca90-4837-88a5-2b5aab654a3f": {
-      "word": "六十二",
-      "audio": "audio/六十二.mp3",
+      "word": "sixty-two",
+      "audio": "audio/sixty-two.mp3",
       "symbol": [
         "mdiNumeric6",
         "mdiNumeric2"
       ]
     },
     "70829177-cf80-40e8-add9-d49059ad0a4c": {
-      "word": "七十",
-      "audio": "audio/七十.mp3",
+      "word": "seventy",
+      "audio": "audio/seventy.mp3",
       "symbol": [
         "mdiNumeric7",
         "mdiNumeric0"
       ]
     },
     "b2f16499-e041-4736-b9ab-d02065bb9e7c": {
-      "word": "七十八",
-      "audio": "audio/七十八.mp3",
+      "word": "seventy-eight",
+      "audio": "audio/seventy-eight.mp3",
       "symbol": [
         "mdiNumeric7",
         "mdiNumeric8"
       ]
     },
     "ea078954-aedf-4a8c-b8de-2b711fe482f7": {
-      "word": "八十",
-      "audio": "audio/八十.mp3",
+      "word": "eighty",
+      "audio": "audio/eighty.mp3",
       "symbol": [
         "mdiNumeric8",
         "mdiNumeric0"
       ]
     },
     "7db01bc6-aa01-4a9d-b44f-c1c90e321eff": {
-      "word": "八十三",
-      "audio": "audio/八十三.mp3",
+      "word": "eighty-three",
+      "audio": "audio/eighty-three.mp3",
       "symbol": [
         "mdiNumeric8",
         "mdiNumeric3"
       ]
     },
     "cd0523cb-9439-4c56-8699-1c1f8c3b7aa4": {
-      "word": "九十",
-      "audio": "audio/九十.mp3",
+      "word": "ninety",
+      "audio": "audio/ninety.mp3",
       "symbol": [
         "mdiNumeric9",
         "mdiNumeric0"
       ]
     },
     "abaf47a8-51d7-4c99-8666-fa47e1aef46c": {
-      "word": "九十一",
-      "audio": "audio/九十一.mp3",
+      "word": "ninety-one",
+      "audio": "audio/ninety-one.mp3",
       "symbol": [
         "mdiNumeric9",
         "mdiNumeric1"
       ]
     },
     "debe9823-ed3c-494c-b8d3-9d4a534be404": {
-      "word": "一百",
-      "audio": "audio/一百.mp3",
+      "word": "one hundred",
+      "audio": "audio/one-hundred.mp3",
       "symbol": [
         "mdiCash100"
       ]
     },
     "0d66532e-7d41-4ff8-a52a-042f676655da": {
-      "word": "家庭",
-      "audio": "audio/家庭.mp3",
-      "picture": "pics/家庭.jpg"
+      "word": "family",
+      "audio": "audio/family.mp3",
+      "picture": "pics/family.jpg"
     },
     "9f4c842a-e36a-48b1-aa4b-955aedef35d2": {
-      "word": "我",
-      "audio": "audio/我.mp3",
+      "word": "I",
+      "audio": "audio/I.mp3",
       "symbol": [
         "mdiAccount"
       ]
     },
-    "843f4af4-5dcb-44a4-b690-759db29999c4": {
-      "word": "的",
-      "audio": "audio/的.mp3"
+    "1ae88fb9-b611-40e0-864a-295af8089cc6": {
+      "word": "my",
+      "audio": "audio/my.mp3"
+    },
+    "7be0b84d-a66e-41bd-a0ac-0bda3f69af57": {
+      "word": "My",
+      "audio": "audio/my.mp3"
     },
     "0ec9e1ed-e1a5-4fb4-a9b8-5822ea4399e2": {
-      "word": "我的家庭",
-      "audio": "audio/我的家庭.mp3",
-      "picture": "pics/我的家庭.jpg"
+      "word": "my family",
+      "audio": "audio/my-family.mp3",
+      "picture": "pics/my-family.jpg"
     },
     "8da1e3a6-3268-40da-8707-be2a2c902c16": {
-      "word": "妈妈",
-      "audio": "audio/妈妈.mp3",
-      "picture": "pics/妈妈.jpg"
+      "word": "mother",
+      "audio": "audio/mother.mp3",
+      "picture": "pics/mother.jpg"
+    },
+    "aa234f4e-eaff-4248-afde-e9718da6787f": {
+      "word": "mother's",
+      "audio": "audio/mother-s.mp3",
+      "picture": "pics/mother.jpg"
     },
     "3773c800-4f9b-4951-b7a7-9e0c9861d089": {
-      "word": "爸爸",
-      "audio": "audio/爸爸.mp3",
-      "picture": "pics/爸爸.jpg"
+      "word": "father",
+      "audio": "audio/father.mp3",
+      "picture": "pics/father.jpg"
+    },
+    "5d3c5120-d459-40b5-8242-37f4bdf4b61f": {
+      "word": "father's",
+      "audio": "audio/father-s.mp3",
+      "picture": "pics/father.jpg"
+    },
+    "ff153924-45dc-4e67-b98a-664d22357c93": {
+      "word": "sister",
+      "audio": "audio/sister.mp3",
+      "picture": "pics/sister.jpg"
+    },
+    "ce7b626d-f9b0-4335-8d06-9089e732daf0": {
+      "word": "sister's",
+      "audio": "audio/sister-s.mp3",
+      "picture": "pics/sister.jpg"
     },
     "b521f4d2-1084-4f17-af18-1bd6738d23a0": {
-      "word": "姐姐",
-      "audio": "audio/姐姐.mp3",
-      "picture": "pics/姐姐.jpg"
+      "word": "older sister",
+      "audio": "audio/older-sister.mp3",
+      "picture": "pics/older-sister.jpg"
+    },
+    "dc91e605-3a35-4b87-9628-eca9f85aa852": {
+      "word": "older sisters",
+      "audio": "audio/older-sisters.mp3",
+      "picture": "pics/older-sister.jpg"
+    },
+    "70c268ad-cd52-45cf-a272-f81fc55e1f64": {
+      "word": "older sister's",
+      "audio": "audio/older-sisters.mp3",
+      "picture": "pics/older-sister.jpg"
     },
     "8ee121b4-8522-4e16-91b7-8a2af070efd8": {
-      "word": "妹妹",
-      "audio": "audio/妹妹.mp3",
-      "picture": "pics/妹妹.jpg"
+      "word": "younger sister",
+      "audio": "audio/younger-sister.mp3",
+      "picture": "pics/younger-sister.jpg"
+    },
+    "269ac443-b337-4ef9-a6ab-ac69d613da7b": {
+      "word": "younger sisters",
+      "audio": "audio/younger-sisters.mp3",
+      "picture": "pics/younger-sister.jpg"
+    },
+    "63a9db8f-1673-478f-8aa3-b6c61c5b1669": {
+      "word": "younger sister's",
+      "audio": "audio/younger-sisters.mp3",
+      "picture": "pics/younger-sister.jpg"
+    },
+    "76210929-cd5e-4a97-9ec0-f82aadeed280": {
+      "word": "brother",
+      "audio": "audio/brother.mp3",
+      "picture": "pics/brother.jpg"
+    },
+    "8c0862b5-8445-43c5-8908-83d83d652896": {
+      "word": "brother's",
+      "audio": "audio/brother-s.mp3",
+      "picture": "pics/brother.jpg"
     },
     "802939da-7ac0-409c-bfb2-b0d6f81e2f56": {
-      "word": "弟弟",
-      "audio": "audio/弟弟.mp3",
-      "picture": "pics/弟弟.jpg"
+      "word": "younger brother",
+      "audio": "audio/younger-brother.mp3",
+      "picture": "pics/younger-brother.jpg"
+    },
+    "ab3a9a47-5a2f-4891-9541-591c6cf13f3b": {
+      "word": "younger brothers",
+      "audio": "audio/younger-brothers.mp3",
+      "picture": "pics/younger-brother.jpg"
+    },
+    "0c03aa4b-589e-47aa-828d-24f95f8d1979": {
+      "word": "younger brother's",
+      "audio": "audio/younger-brothers.mp3",
+      "picture": "pics/younger-brother.jpg"
     },
     "4e43f1dd-bdd8-4cfb-ad27-8446e44cc754": {
-      "word": "哥哥",
-      "audio": "audio/哥哥.mp3",
-      "picture": "pics/哥哥.jpg"
+      "word": "older brother",
+      "audio": "audio/older-brother.mp3",
+      "picture": "pics/older-brother.jpg"
+    },
+    "592afe0b-f103-45c8-a7fc-4ff045cfd19a": {
+      "word": "older brothers",
+      "audio": "audio/older-brothers.mp3",
+      "picture": "pics/older-brother.jpg"
+    },
+    "7c5d6357-b1c9-453f-bed4-5332d7ace796": {
+      "word": "older brother's",
+      "audio": "audio/older-brothers.mp3",
+      "picture": "pics/older-brother.jpg"
+    },
+    "1f96c1d3-758c-4f68-8c3c-a49c1c33b6bb": {
+      "word": "second oldest brother",
+      "audio": "audio/second-oldest-brother.mp3"
     },
     "d63f08dd-f8e6-4b47-940b-8d9d939034a6": {
-      "word": "姥姥",
-      "audio": "audio/姥姥.mp3",
-      "picture": "pics/姥姥.jpg"
+      "word": "grandma",
+      "audio": "audio/grandma.mp3",
+      "picture": "pics/grandma.jpg"
     },
     "6c0f975c-4364-40c7-ae72-cfc2145da7e3": {
-      "word": "姥爷",
-      "audio": "audio/姥爷.mp3",
-      "picture": "pics/姥爷.jpg"
-    },
-    "5cd464a3-a04a-4ad2-9565-091036425550": {
-      "word": "奶奶",
-      "audio": "audio/奶奶.mp3",
-      "picture": "pics/奶奶.jpg"
-    },
-    "1ad7f2f9-521a-4a00-b549-bd4ee081149b": {
-      "word": "爷爷",
-      "audio": "audio/爷爷.mp3",
-      "picture": "pics/爷爷.jpg"
-    },
-    "76004162-7f5b-4e28-bda5-bbcb39be8165": {
-      "word": "丈夫",
-      "audio": "audio/丈夫.mp3"
+      "word": "grandpa",
+      "audio": "audio/grandpa.mp3",
+      "picture": "pics/grandpa.jpg"
     },
     "9ca14628-fd31-4f36-8f99-70dd7c9c8b28": {
-      "word": "妻子",
-      "audio": "audio/妻子.mp3"
+      "word": "wife",
+      "audio": "audio/wife.mp3"
     },
-    "891c12fc-23a3-4bb9-9744-dbaf2e785624": {
-      "word": "大姐",
-      "audio": "audio/大姐.mp3"
-    },
-    "1d9b329c-a2fa-4eaa-aa2c-39d026a898a7": {
-      "word": "二姐",
-      "audio": "audio/二姐.mp3"
-    },
-    "3eac3c44-25ef-434e-9e94-1fc71e510557": {
-      "word": "大哥",
-      "audio": "audio/大哥.mp3"
-    },
-    "abb4c7a4-0c11-4f29-8506-a852f04a0ef5": {
-      "word": "二哥",
-      "audio": "audio/二哥.mp3"
-    },
-    "8531fafd-fd6c-47a2-861b-c401362f17c2": {
-      "word": "大妹妹",
-      "audio": "audio/大妹妹.mp3"
-    },
-    "683a0834-e76f-44b4-9858-467b63380147": {
-      "word": "小妹妹",
-      "audio": "audio/小妹妹.mp3"
-    },
-    "0fcce854-d190-4e88-a3fe-da2e4763f48c": {
-      "word": "大弟弟",
-      "audio": "audio/大弟弟.mp3"
-    },
-    "1846e964-c362-417a-815d-3319b2b6aca5": {
-      "word": "小弟弟",
-      "audio": "audio/小弟弟.mp3"
+    "76004162-7f5b-4e28-bda5-bbcb39be8165": {
+      "word": "husband",
+      "audio": "audio/husband.mp3"
     },
     "c48bf08b-df1b-4fa8-a41b-15405ecebf49": {
-      "word": "姐夫",
-      "audio": "audio/姐夫.mp3"
+      "word": "aunt",
+      "audio": "audio/aunt.mp3"
     },
-    "98d18086-a60a-4f81-80b3-e05bd2aaa400": {
-      "word": "妹夫",
-      "audio": "audio/妹夫.mp3"
+    "ee1f9846-2a66-4500-a3d7-924c1ff6a81a": {
+      "word": "uncle",
+      "audio": "audio/uncle.mp3"
     },
     "afaf98c8-5f3d-4be9-8338-3f2942e6be17": {
-      "word": "嫂子",
-      "audio": "audio/嫂子.mp3"
+      "word": "sister-in-law",
+      "audio": "audio/sister-in-law.mp3"
     },
-    "75a122a7-4a08-4333-acf1-072483f6a570": {
-      "word": "弟妹",
-      "audio": "audio/弟妹.mp3"
+    "98d18086-a60a-4f81-80b3-e05bd2aaa400": {
+      "word": "brother-in-law",
+      "audio": "audio/brother-in-law.mp3"
     },
     "c8de49d6-d26a-4d62-b959-83cf57327387": {
-      "word": "孩子",
-      "audio": "audio/孩子.mp3",
-      "picture": "pics/孩子.jpg"
+      "word": "child",
+      "audio": "audio/child.mp3",
+      "picture": "pics/child.jpg"
+    },
+    "4362eba7-a598-425b-8157-25c322414728": {
+      "word": "children",
+      "audio": "audio/children.mp3",
+      "picture": "pics/children.jpg"
+    },
+    "cee21d5f-b119-4d91-9da4-e4c207370795": {
+      "word": "of",
+      "audio": "audio/of.mp3"
     },
     "34d92533-9c8c-4469-b050-2638f2b5f4d5": {
-      "word": "女儿",
-      "audio": "audio/女儿.mp3",
-      "picture": "pics/女儿.jpg"
+      "word": "daughter",
+      "audio": "audio/daughter.mp3",
+      "picture": "pics/daughter.jpg"
+    },
+    "d38b0bfe-5494-4eb3-8972-b0a2583e1f63": {
+      "word": "daughters",
+      "audio": "audio/daughters.mp3",
+      "picture": "pics/daughter.jpg"
     },
     "af7cc883-0091-4d24-800e-95ca67ee451c": {
-      "word": "儿子",
-      "audio": "audio/儿子.mp3",
-      "picture": "pics/儿子.jpg"
+      "word": "son",
+      "audio": "audio/son.mp3",
+      "picture": "pics/son.jpg"
+    },
+    "611a83a6-2f38-45d8-97aa-a4a4f1810765": {
+      "word": "sons",
+      "audio": "audio/sons.mp3",
+      "picture": "pics/son.jpg"
     },
     "83ded6b2-d80b-4a78-bd10-00d4822aefb9": {
-      "word": "外孙女",
-      "audio": "audio/外孙女.mp3"
+      "word": "granddaughter",
+      "audio": "audio/granddaughter.mp3"
     },
     "bb91deac-cbe1-4314-b7d3-9662cc82d446": {
-      "word": "外孙",
-      "audio": "audio/外孙.mp3"
+      "word": "grandson",
+      "audio": "audio/grandson.mp3"
+    },
+    "856651ea-a92b-44dd-9085-d692c98446dc": {
+      "word": "grandsons",
+      "audio": "audio/grandsons.mp3"
     },
     "7f3cd2dd-da20-4c3c-8fb1-d6beefb43d0e": {
-      "word": "孙女",
-      "audio": "audio/孙女.mp3"
+      "word": "niece",
+      "audio": "audio/niece.mp3"
+    },
+    "193fd960-442c-4a97-b76f-1b36138fcc83": {
+      "word": "nieces",
+      "audio": "audio/nieces.mp3"
     },
     "4e594d79-ec54-4cc7-8ef0-2a950ebb2de3": {
-      "word": "孙子",
-      "audio": "audio/孙子.mp3"
+      "word": "nephew",
+      "audio": "audio/nephew.mp3"
     },
-    "b6ebbe69-9834-41f3-a353-4a9142d599b3": {
-      "word": "外甥女",
-      "audio": "audio/外甥女.mp3"
-    },
-    "54ff3fa1-141e-4620-861d-335376b3f8f2": {
-      "word": "外甥",
-      "audio": "audio/外甥.mp3"
-    },
-    "0087add3-b033-4cac-bb6b-cebf1c1acdd0": {
-      "word": "侄女",
-      "audio": "audio/侄女.mp3"
-    },
-    "dda9c23b-503d-4ada-8293-3450c8bfae7c": {
-      "word": "侄子",
-      "audio": "audio/侄子.mp3"
+    "7ecdc501-105f-4465-aa96-c8da5058663b": {
+      "word": "nephews",
+      "audio": "audio/nephews.mp3"
     },
     "de11e0d7-2ac0-4f35-966d-abb0d820a3cb": {
-      "word": "她",
-      "audio": "audio/他她它.mp3"
+      "word": "She",
+      "audio": "audio/she.mp3"
     },
     "c53add23-aba4-42f5-9fbb-d6a6d1d8882c": {
-      "word": "他",
-      "audio": "audio/他她它.mp3"
+      "word": "He",
+      "audio": "audio/he.mp3"
+    },
+    "abcfc45e-db16-44b1-8230-30b24ff7ee2c": {
+      "word": "he",
+      "audio": "audio/he.mp3"
     },
     "35389a5a-4493-44e5-a8ae-dc0a30c98dbf": {
-      "word": "有",
-      "audio": "audio/有.mp3"
+      "word": "have",
+      "audio": "audio/have.mp3"
     },
-    "90f79865-ac90-4644-9a8b-88eaad30e979": {
-      "word": "个",
-      "audio": "audio/个.mp3"
-    },
-    "bc1ec01c-0fde-4e63-82e6-c0f78d01529e": {
-      "word": "是",
-      "audio": "audio/是.mp3"
+    "66ea10a7-e7f0-4156-a79e-21a28e21a133": {
+      "word": "has",
+      "audio": "audio/has.mp3"
     },
     "a1e806d9-f9bd-48fe-95eb-293d6753d421": {
-      "word": "岁",
-      "audio": "audio/岁.mp3"
+      "word": "years old",
+      "audio": "audio/years-old.mp3"
     },
     "56c1f3ad-81ac-495e-b10b-803d5b15ecaf": {
-      "word": "今年",
-      "audio": "audio/今年.mp3"
-    },
-    "55fcf5ad-8eff-4a6b-a24b-087c43e7f92c": {
-      "word": "家里",
-      "audio": "audio/家里.mp3"
+      "word": "this year",
+      "audio": "audio/this-year.mp3"
     },
     "bc3a6109-1951-496c-a3e3-e4ba2dc54b67": {
-      "word": "人",
-      "audio": "audio/人.mp3"
+      "word": "people",
+      "audio": "audio/people.mp3"
     },
     "e625038d-2717-4123-b20e-ed04480f89bf": {
-      "word": "和",
-      "audio": "audio/和.mp3"
+      "word": "and",
+      "audio": "audio/and.mp3"
+    },
+    "ae9189d9-8ea1-44eb-afd0-d5f70cc0b611": {
+      "word": "am",
+      "audio": "audio/am.mp3"
+    },
+    "6b921075-382d-495a-b5e2-c4523da9ac0b": {
+      "word": "is",
+      "audio": "audio/is.mp3"
+    },
+    "f282754c-8c10-4719-8be7-4e812b05dfc3": {
+      "word": "are",
+      "audio": "audio/are.mp3"
+    },
+    "80024cac-f471-4c41-bd94-5e8364e1a4e4": {
+      "word": "There",
+      "audio": "audio/there.mp3"
+    },
+    "060adecb-7c7f-40d6-9443-7531d92a6e45": {
+      "word": "in",
+      "audio": "audio/in.mp3"
     },
     "b31e6c81-c9f7-43d1-b64b-e82fdaab744f": {
-      "word": "住",
-      "audio": "audio/住.mp3"
+      "word": "lives",
+      "audio": "audio/lives.mp3"
     },
     "7d3a749e-f109-4233-a571-3a286edccf5c": {
-      "word": "在",
-      "audio": "audio/在.mp3"
+      "word": "the",
+      "audio": "audio/the.mp3"
     },
     "f4b3cb7d-f00f-4349-81a8-ebd8e3e82631": {
-      "word": "农村",
-      "audio": "audio/农村.mp3",
-      "picture": "pics/农村.jpg"
+      "word": "countryside",
+      "audio": "audio/countryside.mp3",
+      "picture": "pics/countryside.jpg"
     },
     "4f036bb1-49c5-48ef-bece-6ede7abb051a": {
-      "word": "也",
-      "audio": "audio/也.mp3"
-    },
-    "522b87a1-9c21-45cd-8e6c-cacd2696801d": {
-      "word": "她们",
-      "audio": "audio/他们她们.mp3"
-    },
-    "cc30658e-e08d-4795-bed0-5b2bea71abcb": {
-      "word": "他们",
-      "audio": "audio/他们她们.mp3"
-    },
-    "718290ee-2121-4b0a-9589-cb9b4639f767": {
-      "word": "我们",
-      "audio": "audio/我们.mp3"
-    },
-    "2d827783-4be8-4d76-b5cc-00174254980e": {
-      "word": "都",
-      "audio": "audio/都.mp3"
-    },
-    "6a303be6-027d-49cb-9f9d-d3a3f5a87127": {
-      "word": "学生",
-      "audio": "audio/学生.mp3",
-      "picture": "pics/学生.jpg"
-    },
-    "5292c9df-bd42-4278-bd27-e81875c9ce49": {
-      "word": "工作",
-      "audio": "audio/工作.mp3"
-    },
-    "503a1032-d0b2-4c8a-b617-963243eb11a3": {
-      "word": "老师",
-      "audio": "audio/老师.mp3",
-      "picture": "pics/老师.jpg"
-    },
-    "940173f1-4490-4a60-903c-7fa403ef5524": {
-      "word": "司机",
-      "audio": "audio/司机.mp3",
-      "picture": "pics/司机.jpg"
-    },
-    "4a06e9c5-c0f8-4562-a352-e91d7fdf648a": {
-      "word": "农民",
-      "audio": "audio/农民.mp3",
-      "picture": "pics/农民.jpg"
-    },
-    "5cdcdfe4-985c-420d-a6ab-f82c214b4297": {
-      "word": "厨师",
-      "audio": "audio/厨师.mp3",
-      "picture": "pics/厨师.jpg"
-    },
-    "ff8e8493-f393-4c8f-9433-9b08be12fe06": {
-      "word": "售货员",
-      "audio": "audio/售货员.mp3",
-      "picture": "pics/售货员.jpg"
-    },
-    "7dee87b3-142e-45ca-9969-daf2b8a0d9fd": {
-      "word": "保姆",
-      "audio": "audio/保姆.mp3",
-      "picture": "pics/保姆.jpg"
-    },
-    "823ebdc3-2767-441a-b5fc-ba102189fdee": {
-      "word": "保安",
-      "audio": "audio/保安.mp3",
-      "picture": "pics/保安.jpg"
-    },
-    "8fa7e821-4189-422d-9fdf-46bf7f0e587b": {
-      "word": "公务员",
-      "audio": "audio/公务员.mp3",
-      "picture": "pics/公务员.jpg"
-    },
-    "6c3a1614-54b9-44e8-b730-1bf278342840": {
-      "word": "公司",
-      "audio": "audio/公司.mp3",
-      "picture": "pics/公司.jpg"
-    },
-    "0cb818f9-06cd-4665-aa9c-b82ee4dc95bc": {
-      "word": "工厂",
-      "audio": "audio/工厂.mp3",
-      "picture": "pics/工厂.jpg"
-    },
-    "1640dd35-800b-434d-b8c9-09fe84e446da": {
-      "word": "学校",
-      "audio": "audio/学校.mp3"
-    },
-    "61b2130d-6f86-411a-810a-cd8a6adcb4e9": {
-      "word": "社区",
-      "audio": "audio/社区.mp3"
-    },
-    "eb67da07-adbe-4108-a0c5-da877f4e41f6": {
-      "word": "饭馆",
-      "audio": "audio/饭馆.mp3"
-    },
-    "d0495248-f724-4232-99c6-72f89a56f360": {
-      "word": "超市",
-      "audio": "audio/超市.mp3"
-    },
-    "b443754b-e7c2-4082-a914-8661e4dedd14": {
-      "word": "商店",
-      "audio": "audio/商店.mp3"
-    },
-    "5116a876-f542-4ccf-88b6-fde06caabda1": {
-      "word": "政府",
-      "audio": "audio/政府.mp3"
-    },
-    "efeebf93-9617-4813-9a64-eac66771a4e0": {
-      "word": "上班",
-      "audio": "audio/上班.mp3"
-    },
-    "e9eaeaf5-b02d-4990-878a-c7ac04797ae2": {
-      "word": "下班",
-      "audio": "audio/下班.mp3"
-    },
-    "8d0b743e-25cc-40d2-b03d-a3164021f2ee": {
-      "word": "点",
-      "audio": "audio/点.mp3"
-    },
-    "1ee9e5af-9276-4dbb-8a22-195e5c8676cc": {
-      "word": "分",
-      "audio": "audio/分.mp3"
-    },
-    "16680a69-ab05-4c85-9b84-ae2bbfec0602": {
-      "word": "半",
-      "audio": "audio/半.mp3"
-    },
-    "091614bd-efb2-4661-af01-bf0cab5795ad": {
-      "word": "早上",
-      "audio": "audio/早上.mp3",
-      "picture": "pics/早上.jpg"
-    },
-    "844250e0-bdd1-4b96-9396-055cbf2a9523": {
-      "word": "下午",
-      "audio": "audio/下午.mp3"
-    },
-    "97621e34-3e57-4b34-98f7-44336cd8506e": {
-      "word": "晚上",
-      "audio": "audio/晚上.mp3",
-      "picture": "pics/晚上.jpg"
-    },
-    "5b01e49a-da6a-4c65-b1fd-80e9f0140835": {
-      "word": "白班",
-      "audio": "audio/白班.mp3"
-    },
-    "d10f6345-2449-4d83-83d7-ffba5179ee6b": {
-      "word": "夜班",
-      "audio": "audio/夜班.mp3",
-      "picture": "pics/夜班.jpg"
-    },
-    "7872e5b1-fdcb-49b0-a6bf-9922a0c7e27c": {
-      "word": "放假",
-      "audio": "audio/放假.mp3",
-      "picture": "pics/放假.jpg"
-    },
-    "fc62efd4-b9fb-4636-823c-1f45f712f1ec": {
-      "word": "请假",
-      "audio": "audio/请假.mp3"
-    },
-    "7c5ac01b-94c6-4ea6-8816-2ab6708a7df6": {
-      "word": "休息",
-      "audio": "audio/休息.mp3",
-      "picture": "pics/休息.jpg"
-    },
-    "576b5b64-8e9e-4b05-9a8a-a8de27205061": {
-      "word": "星期几",
-      "audio": "audio/星期几.mp3"
-    },
-    "bea3a663-79df-46f6-83b1-d2645554594a": {
-      "word": "几点",
-      "audio": "audio/几点.mp3"
-    },
-    "309a6494-4487-493f-833e-d629462ee17a": {
-      "word": "工资",
-      "audio": "audio/工资.mp3"
-    },
-    "419a89b5-abe5-4ee0-9992-e592c63133a5": {
-      "word": "多少",
-      "audio": "audio/多少.mp3"
-    },
-    "2c86e3af-646a-459d-bfcd-afdec92fba3b": {
-      "word": "千",
-      "audio": "audio/千.mp3"
-    },
-    "4e73e0c4-cee9-4d16-86f3-236b14222768": {
-      "word": "能",
-      "audio": "audio/能.mp3"
-    },
-    "c225be53-842b-4309-bf9e-112d80858189": {
-      "word": "见",
-      "audio": "audio/见.mp3"
-    },
-    "d8e24e01-512c-4b73-b2a2-830abdd223fc": {
-      "word": "到",
-      "audio": "audio/到.mp3"
-    },
-    "b4b2d533-bb99-4f85-9600-0c8da150f587": {
-      "word": "可是",
-      "audio": "audio/可是.mp3"
-    },
-    "70fe0cd1-02bd-48eb-9da2-2c65794d4b50": {
-      "word": "互相",
-      "audio": "audio/互相.mp3"
-    },
-    "df5be9ba-2001-4279-90b2-822362009dea": {
-      "word": "不",
-      "audio": "audio/不.mp3",
-      "picture": "pics/不.jpg"
-    },
-    "5df1049b-a5b9-499a-803c-3d905f418ed6": {
-      "word": "教",
-      "audio": "audio/教4.mp3"
-    },
-    "5238b3ef-6933-457b-8d66-643b94b57f2e": {
-      "word": "教",
-      "audio": "audio/教1.mp3"
-    },
-    "bdc5f8ba-117c-433e-9325-68e8c0a71bdf": {
-      "word": "小",
-      "audio": "audio/小.mp3",
-      "picture": "pics/小.jpg"
-    },
-    "253fd710-528f-4749-83c8-a3e1eda9fd64": {
-      "word": "中",
-      "audio": "audio/中.mp3",
-      "picture": "pics/中.jpg"
-    },
-    "f2c41150-06fb-4c45-be9d-6caa65d66ee2": {
-      "word": "大",
-      "audio": "audio/大.mp3",
-      "picture": "pics/大.jpg"
-    },
-    "37932876-7996-4dfc-9e4e-54f3a6bee6da": {
-      "word": "学",
-      "audio": "audio/学.mp3"
-    },
-    "886be738-2b02-47cd-85d4-27f929ae8886": {
-      "word": "初",
-      "audio": "audio/初.mp3"
-    },
-    "963ef3f3-0012-4427-a99c-4c4e2add0507": {
-      "word": "高",
-      "audio": "audio/高.mp3"
-    },
-    "ee1e84ae-c26b-4d83-8b3a-b69400656773": {
-      "word": "专",
-      "audio": "audio/专.mp3"
-    },
-    "4007f27d-8c1f-4081-ae14-8f6a4350c0b1": {
-      "word": "生",
-      "audio": "audio/生.mp3"
-    },
-    "320ae318-8e6f-4550-9f80-e5de77cc3a48": {
-      "word": "读",
-      "audio": "audio/读.mp3"
-    },
-    "050b375d-7f9a-4ea1-9de1-5efb64512beb": {
-      "word": "书",
-      "audio": "audio/书.mp3",
-      "picture": "pics/书.jpg"
-    },
-    "d8160e90-7873-4286-aad7-f35507eaa188": {
-      "word": "年",
-      "audio": "audio/年.mp3"
-    },
-    "0a331e89-b85f-48a6-97c5-4888e8b670bd": {
-      "word": "上",
-      "audio": "audio/上.mp3",
-      "picture": "pics/上.jpg"
-    },
-    "ba143513-6f88-4f18-8689-6158bf3665d2": {
-      "word": "教育",
-      "audio": "audio/教育.mp3",
-      "picture": "pics/教育.jpg"
-    },
-    "39685ee3-0bdf-4b2a-b89c-662d5daf42b4": {
-      "word": "幼儿园",
-      "audio": "audio/幼儿园.mp3",
-      "picture": "pics/幼儿园.jpg"
-    },
-    "7ce3b21f-3308-4a52-9e9d-f5b33540ec2e": {
-      "word": "小学",
-      "audio": "audio/小学.mp3"
-    },
-    "24b6b38c-f6a0-4985-a045-d648b9b36c90": {
-      "word": "初中",
-      "audio": "audio/初中.mp3"
-    },
-    "937fa061-f810-4361-897f-1ae45dfc5f24": {
-      "word": "高中",
-      "audio": "audio/高中.mp3"
-    },
-    "75b521f9-22e2-4a3f-b53c-68ad1a22764c": {
-      "word": "中专",
-      "audio": "audio/中专.mp3"
-    },
-    "b0aaa1ad-df4f-40e2-8e61-932db0dc541b": {
-      "word": "大专",
-      "audio": "audio/大专.mp3"
-    },
-    "d5648473-d3bf-4865-8253-2b21b7650020": {
-      "word": "大学",
-      "audio": "audio/大学.mp3"
-    },
-    "afc98260-d5eb-4fb2-b036-059ea0f43a15": {
-      "word": "本科",
-      "audio": "audio/本科.mp3"
-    },
-    "38d7c593-758e-4666-b632-eff9e040fa72": {
-      "word": "研究生",
-      "audio": "audio/研究生.mp3",
-      "picture": "pics/研究生.jpg"
-    },
-    "f47e7215-4d17-4861-837c-6edbfcc49518": {
-      "word": "学习",
-      "audio": "audio/学习.mp3",
-      "picture": "pics/学习.jpg"
-    },
-    "5ba6fa0b-983d-41d8-9bda-dd9347a1df7d": {
-      "word": "读书",
-      "audio": "audio/读书.mp3",
-      "picture": "pics/读书.jpg"
-    },
-    "df37cbd0-9a53-4879-bb95-c39a77a4e5c5": {
-      "word": "年级",
-      "audio": "audio/年级.mp3"
-    },
-    "368ddff5-5caf-4d17-a561-be30bafb7641": {
-      "word": "数",
-      "audio": "audio/数.mp3"
-    },
-    "a2023cdc-6a2e-4249-9316-e3555c06932f": {
-      "word": "语",
-      "audio": "audio/语.mp3"
-    },
-    "cd366f33-3908-492e-96c4-746dfec97359": {
-      "word": "文",
-      "audio": "audio/文.mp3"
-    },
-    "438b36fd-c028-4e16-b384-a8207329b27d": {
-      "word": "科",
-      "audio": "audio/科.mp3"
-    },
-    "9adead89-5f80-4ed9-87a7-48e2eabae743": {
-      "word": "想",
-      "audio": "audio/想.mp3"
-    },
-    "dadd20ab-16a4-4077-95ec-4e4bea81d9c1": {
-      "word": "体",
-      "audio": "audio/体.mp3"
-    },
-    "dc62e94f-bc25-4b67-95e5-560adb496461": {
-      "word": "育",
-      "audio": "audio/育.mp3"
-    },
-    "056dc01d-150d-4995-9914-036aa3f6b9bb": {
-      "word": "课",
-      "audio": "audio/课.mp3"
-    },
-    "edb2e92f-791b-44b1-b057-6880fcc2f6ed": {
-      "word": "外",
-      "audio": "audio/外.mp3"
-    },
-    "9e342ea7-fe3b-493d-8f5e-226cc8d75ea9": {
-      "word": "数学",
-      "audio": "audio/数学.mp3"
-    },
-    "09a61f5d-4c9d-4f01-b1a6-e4741db0c6e5": {
-      "word": "英语",
-      "audio": "audio/英语.mp3"
-    },
-    "1a960283-2d99-4fd0-87a4-b6782ab2a16a": {
-      "word": "语文",
-      "audio": "audio/语文.mp3"
-    },
-    "4d744d4d-c04a-49ab-9aef-61a434d4958c": {
-      "word": "科学",
-      "audio": "audio/科学.mp3"
-    },
-    "d4f32b32-07aa-480e-ba58-0b68bb2a3ae6": {
-      "word": "思想品德",
-      "audio": "audio/思想品德.mp3"
-    },
-    "0e24df03-f4a6-4f0d-ad43-6599df9706c8": {
-      "word": "体育",
-      "audio": "audio/体育.mp3"
-    },
-    "95867d85-1182-4fa4-ad61-685a5704a391": {
-      "word": "音乐",
-      "audio": "audio/音乐.mp3"
-    },
-    "ea6885a9-f972-481c-946f-896d69c9dc0b": {
-      "word": "课外书",
-      "audio": "audio/课外书.mp3"
-    },
-    "1be0ba01-e409-4670-8129-4de4ec524ddd": {
-      "word": "上课",
-      "audio": "audio/上课.mp3"
-    },
-    "745b2206-6f63-41f1-90c1-2c04b310574e": {
-      "word": "喜欢",
-      "audio": "audio/喜欢.mp3"
-    },
-    "328197ea-99ed-416b-9e24-8d8e040be467": {
-      "word": "家",
-      "audio": "audio/家.mp3"
-    },
-    "22ec1aea-445d-4bd8-b368-89640f2360d9": {
-      "word": "星期",
-      "audio": "audio/星期.mp3"
-    },
-    "34236707-98c1-4f62-b91b-6699e22fbf0a": {
-      "word": "早饭",
-      "audio": "audio/早饭.mp3"
-    },
-    "89665ed7-eb93-4028-a0c4-70cf7a441dda": {
-      "word": "晚饭",
-      "audio": "audio/晚饭.mp3"
-    },
-    "ae491172-be37-4772-a174-9d30cfd07325": {
-      "word": "带",
-      "audio": "audio/带.mp3"
-    },
-    "fcde236d-2826-4313-93a6-a9776bca2c51": {
-      "word": "刚",
-      "audio": "audio/刚.mp3"
-    },
-    "f3ec5107-9d74-4f66-aaeb-46b4b551df08": {
-      "word": "请",
-      "audio": "audio/请.mp3"
-    },
-    "e83eaec8-4320-4fe1-b99f-8395fece560b": {
-      "word": "你",
-      "audio": "audio/你.mp3"
-    },
-    "acc2bd29-a5ef-4371-83f0-da19cc10070e": {
-      "word": "要",
-      "audio": "audio/要.mp3"
-    },
-    "72ebbfae-d7df-4a4b-aebc-8cf274698b03": {
-      "word": "告诉",
-      "audio": "audio/告诉.mp3"
+      "word": "also",
+      "audio": "audio/also.mp3"
     },
     "5d0f410c-83ff-43bd-a31e-922b42b054ef": {
-      "word": "。",
+      "word": ".",
       "isPunctuation": true
     },
     "3fde2b11-aa78-4a96-9bd4-75c8462132b6": {
-      "word": "，",
+      "word": ",",
       "isPunctuation": true
     },
     "526a8ee7-7525-4b0f-a3a2-92e29618bed3": {
-      "word": "：",
+      "word": ":",
+      "isPunctuation": true
+    },
+    "f7e5f512-2fe4-4074-9702-ec84f41db036": {
+      "word": ";",
       "isPunctuation": true
     },
     "ca91baf3-5058-429e-95f5-8caa19fe8a0a": {
-      "word": "？",
+      "word": "?",
       "isPunctuation": true
-    },
-    "deb2fd69-3af6-4a13-a8d5-f0ee070c5ffe": {
-      "word": "很",
-      "lacksAudio": "Introduced as part of text L20",
-      "notIndividuallyExercised": "Part of cloze exercise L20"
-    },
-    "694fdd6e-baba-4017-ad3a-ad0fd8407074": {
-      "word": "好",
-      "lacksAudio": "Introduced as part of text L20",
-      "notIndividuallyExercised": "Part of cloze exercise L20"
     }
   }
 }

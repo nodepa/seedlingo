@@ -16,18 +16,18 @@ import logoUrl from '@/assets/logo/logo-col.svg';
       <ion-grid fixed>
         <ion-row class="ion-justify-content-center">
           <ion-col size="auto">
-            <ion-img alt="立爱种字 Logo" :src="logoUrl" />
+            <ion-img alt="Seedlingo Logo" :src="logoUrl" />
           </ion-col>
         </ion-row>
         <ion-row class="ion-justify-content-around">
           <ion-col size="auto">
-            <h1>立爱种字</h1>
+            <h1>Seedlingo</h1>
           </ion-col>
         </ion-row>
         <ion-row class="ion-justify-content-center">
           <ion-col size="8">
             <p class="ion-text-justify">
-              立爱种字 is a literacy education tool that was originally
+              Seedlingo is a literacy education tool that was originally
               developed by idea of - and for the benefit of -
               <a href="https://liaieducation.com">Li Ai Education</a>
               as part of a research project aiming to empower rural citizens.

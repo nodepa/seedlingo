@@ -1,142 +1,76 @@
 {
   "formatVersion": "1.4.0",
   "instructions": {
-    "welcome": "audio/instructions/欢迎.mp3",
-    "homeButton": "audio/instructions/说明回家.mp3",
-    "continueButton": "audio/instructions/说明继续.mp3",
-    "toggleInstructionsButton": "audio/instructions/说明耳朵.mp3",
-    "matchingExercise": "audio/instructions/说明连起来题.mp3",
-    "multipleChoiceExercise": "audio/instructions/说明多项选择题.mp3",
-    "singleClozeExercise": "audio/instructions/说明单填充题.mp3",
-    "multiClozeExercise": "audio/instructions/说明多填充题.mp3"
+    "welcome": "audio/instructions/welcome.mp3",
+    "homeButton": "audio/instructions/home-button.mp3",
+    "continueButton": "audio/instructions/continue-button.mp3",
+    "toggleInstructionsButton": "audio/instructions/toggle-instructions-button.mp3",
+    "matchingExercise": "audio/instructions/matching-exercise.mp3",
+    "multipleChoiceExercise": "audio/instructions/multiple-choice-exercise.mp3",
+    "singleClozeExercise": "audio/instructions/single-cloze-exercise.mp3",
+    "multiClozeExercise": "audio/instructions/multi-cloze-exercise.mp3"
   },
   "wordSpecFile": "WordSpec.json",
   "units": [
     {
-      "name": "数字，一到十",
+      "name": "Numbers: One to ten",
       "icon": "mdiNumeric",
-      "introductionAudio": "audio/instructions/介绍第一课.mp3",
+      "introductionAudio": "audio/instructions/intro-unit-01.mp3",
       "unitSpecFile": "Unit01.json"
     },
     {
-      "name": "数字，十一到一百",
+      "name": "Numbers: Eleven to one hundred",
       "icon": "mdiNumeric",
-      "introductionAudio": "audio/instructions/介绍第二课.mp3",
+      "introductionAudio": "audio/instructions/intro-unit-02.mp3",
       "unitSpecFile": "Unit02.json"
     },
     {
-      "name": "家庭，妈妈，爸爸",
+      "name": "Family: Parents and siblings",
       "icon": "mdiHumanFemaleGirl",
-      "introductionAudio": "audio/instructions/介绍第三课.mp3",
+      "introductionAudio": "audio/instructions/intro-unit-03.mp3",
       "unitSpecFile": "Unit03.json"
     },
     {
-      "name": "家庭，祖父母",
+      "name": "Family: Grandparents",
       "icon": "mdiHumanFemaleBoy",
-      "introductionAudio": "audio/instructions/介绍第四课.mp3",
+      "introductionAudio": "audio/instructions/intro-unit-04.mp3",
       "unitSpecFile": "Unit04.json"
     },
     {
-      "name": "家庭，兄弟姐妹",
-      "icon": "mdiHumanFemaleBoy",
-      "introductionAudio": "audio/instructions/介绍第五课.mp3",
+      "name": "Family: Parents and grandparents",
+      "icon": "mdiHumanFemaleGirl",
+      "introductionAudio": "audio/instructions/intro-unit-05.mp3",
       "unitSpecFile": "Unit05.json"
     },
     {
-      "name": "家庭，我有",
-      "icon": "mdiHumanFemaleGirl",
-      "introductionAudio": "audio/instructions/介绍第六课.mp3",
+      "name": "Family: Parents' siblings, children",
+      "icon": "mdiHumanMaleBoy",
+      "introductionAudio": "audio/instructions/intro-unit-06.mp3",
       "unitSpecFile": "Unit06.json"
     },
     {
-      "name": "家庭",
-      "icon": "mdiHumanMaleBoy",
-      "introductionAudio": "audio/instructions/介绍第七课.mp3",
+      "name": "Family: Grandchild, niece, nephew",
+      "icon": "mdiHumanMaleGirl",
+      "introductionAudio": "audio/instructions/intro-unit-07.mp3",
       "unitSpecFile": "Unit07.json"
     },
     {
-      "name": "家庭，孩子们",
-      "icon": "mdiHumanMaleGirl",
-      "introductionAudio": "audio/instructions/介绍第八课.mp3",
+      "name": "My family",
+      "icon": "mdiHumanMaleBoy",
+      "introductionAudio": "audio/instructions/intro-unit-08.mp3",
       "unitSpecFile": "Unit08.json"
     },
     {
-      "name": "家庭，孩子们",
-      "icon": "mdiHumanMaleChild",
-      "introductionAudio": "audio/instructions/介绍第九课.mp3",
+      "name": "My family 2",
+      "icon": "mdiHumanMaleGirl",
+      "introductionAudio": "audio/instructions/intro-unit-09.mp3",
       "unitSpecFile": "Unit09.json"
     },
     {
-      "name": "家庭，我的",
-      "icon": "mdiHumanMaleBoy",
-      "introductionAudio": "audio/instructions/介绍第十课.mp3",
-      "unitSpecFile": "Unit10.json"
-    },
-    {
-      "name": "家庭，人",
-      "icon": "mdiHumanMaleGirl",
-      "introductionAudio": "audio/instructions/介绍第十一课.mp3",
-      "unitSpecFile": "Unit11.json"
-    },
-    {
-      "name": "家庭，家里有",
+      "name": "My family 3",
       "icon": "mdiCrowd",
-      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "unitSpecFile": "Unit12.json"
-    },
-    {
-      "name": "工作",
-      "icon": "mdiAccountHardHat",
-      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "unitSpecFile": "Unit13.json"
-    },
-    {
-      "name": "工作地",
-      "icon": "mdiAccountHardHat",
-      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "unitSpecFile": "Unit14.json"
-    },
-    {
-      "name": "工作时间",
-      "icon": "mdiAccountHardHat",
-      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "unitSpecFile": "Unit15.json"
-    },
-    {
-      "name": "工作，工资，时间",
-      "icon": "mdiAccountHardHat",
-      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "unitSpecFile": "Unit16.json"
-    },
-    {
-      "name": "工作，短文",
-      "icon": "mdiAccountHardHat",
-      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "unitSpecFile": "Unit17.json"
-    },
-    {
-      "name": "教育",
-      "icon": "mdiHumanMaleBoard",
-      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "unitSpecFile": "Unit18.json"
-    },
-    {
-      "name": "教育",
-      "icon": "mdiHumanMaleBoard",
-      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "unitSpecFile": "Unit19.json"
-    },
-    {
-      "name": "教育",
-      "icon": "mdiHumanMaleBoard",
-      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "unitSpecFile": "Unit20.json"
-    },
-    {
-      "name": "教育",
-      "icon": "mdiHumanMaleBoard",
-      "introductionAudio": "audio/instructions/placeholder-audio.mp3",
-      "unitSpecFile": "Unit21.json"
+      "introductionAudio": "audio/instructions/intro-unit-10.mp3",
+      "unitSpecFile": "Unit10.json"
     }
   ]
 }

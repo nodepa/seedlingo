@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">种字</string>
-    <string name="title_activity_main">种字</string>
-    <string name="package_name">org.nodepa.seedlingo</string>
-    <string name="custom_url_scheme">org.nodepa.seedlingo</string>
+    <string name="app_name">Seedlingo English</string>
+    <string name="title_activity_main">Seedlingo English</string>
+    <string name="package_name">org.nodepa.seedlingo.en</string>
+    <string name="custom_url_scheme">org.nodepa.seedlingo.en</string>
 </resources>

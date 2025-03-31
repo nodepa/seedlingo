@@ -1,4 +1,4 @@
-# Seedlingo - 立爱种字
+# Seedlingo
 
 Seedlingo is currently available in Putonghua/Simplified Chinese at
 [seedlingo.app](https://seedlingo.app)

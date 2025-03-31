@@ -19,7 +19,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
         },
       })
         .get('h1')
-        .contains('立爱种字')
+        .contains('Seedlingo')
         .click();
       cy.visit('/unit/multiple-choice-test', {
         onBeforeLoad(window) {

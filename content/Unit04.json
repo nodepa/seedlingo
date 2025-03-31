@@ -15,10 +15,10 @@
       "type": "MultipleChoice",
       "multipleChoiceSpec": {
         "multipleChoiceWords": [
-          { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-          { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-          { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
-          { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
+          { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
+          { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
+          { "grandma": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
+          { "grandpa": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" }
         ]
       }
     },
@@ -27,10 +27,10 @@
       "type": "Matching",
       "matchingSpec": {
         "matchingWords": [
-          { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-          { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-          { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
-          { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
+          { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
+          { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
+          { "grandma": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
+          { "grandpa": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" }
         ]
       }
     },
@@ -39,19 +39,41 @@
       "type": "Explanation",
       "explanationSpec": {
         "explanation": [
-          { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" }
+          { "mother's": "aa234f4e-eaff-4248-afde-e9718da6787f" },
+          { "mother": "8da1e3a6-3268-40da-8707-be2a2c902c16" }
         ],
         "explanationTargets": {
-          "validOption": { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
+          "validOption": {
+            "grandma": "d63f08dd-f8e6-4b47-940b-8d9d939034a6"
+          },
           "invalidOptions": [
-            { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-            { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
-            { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
+            { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
+            { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
+            { "grandpa": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" }
           ]
         },
-        "audio": "audio/妈妈的妈妈.mp3"
+        "injectSpaces": true
+      }
+    },
+    {
+      "id": "26e5e0d6-3904-40f6-9ee0-cfa030adbc06",
+      "type": "Explanation",
+      "explanationSpec": {
+        "explanation": [
+          { "father's": "5d3c5120-d459-40b5-8242-37f4bdf4b61f" },
+          { "mother": "8da1e3a6-3268-40da-8707-be2a2c902c16" }
+        ],
+        "explanationTargets": {
+          "validOption": {
+            "grandma": "d63f08dd-f8e6-4b47-940b-8d9d939034a6"
+          },
+          "invalidOptions": [
+            { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
+            { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
+            { "grandpa": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" }
+          ]
+        },
+        "injectSpaces": true
       }
     },
     {
@@ -59,59 +81,41 @@
       "type": "Explanation",
       "explanationSpec": {
         "explanation": [
-          { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" }
+          { "mother's": "aa234f4e-eaff-4248-afde-e9718da6787f" },
+          { "father": "3773c800-4f9b-4951-b7a7-9e0c9861d089" }
         ],
         "explanationTargets": {
-          "validOption": { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
+          "validOption": {
+            "grandpa": "6c0f975c-4364-40c7-ae72-cfc2145da7e3"
+          },
           "invalidOptions": [
-            { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-            { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
-            { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
+            { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
+            { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
+            { "grandma": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" }
           ]
         },
-        "audio": "audio/妈妈的爸爸.mp3"
+        "injectSpaces": true
       }
     },
     {
-      "id": "3fc1de4b-ed1d-49d0-86c8-bfc9ba27a70d",
+      "id": "25a55f45-855b-44ff-bfbe-c58633032a33",
       "type": "Explanation",
       "explanationSpec": {
         "explanation": [
-          { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16" }
+          { "father's": "5d3c5120-d459-40b5-8242-37f4bdf4b61f" },
+          { "father": "3773c800-4f9b-4951-b7a7-9e0c9861d089" }
         ],
         "explanationTargets": {
-          "validOption": { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" },
+          "validOption": {
+            "grandpa": "6c0f975c-4364-40c7-ae72-cfc2145da7e3"
+          },
           "invalidOptions": [
-            { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-            { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-            { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" }
+            { "husband": "76004162-7f5b-4e28-bda5-bbcb39be8165" },
+            { "wife": "9ca14628-fd31-4f36-8f99-70dd7c9c8b28" },
+            { "grandma": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" }
           ]
         },
-        "audio": "audio/爸爸的妈妈.mp3"
-      }
-    },
-    {
-      "id": "812bd1c7-b94d-417c-8725-d6e5fdcf5e89",
-      "type": "Explanation",
-      "explanationSpec": {
-        "explanation": [
-          { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" },
-          { "的": "843f4af4-5dcb-44a4-b690-759db29999c4" },
-          { "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089" }
-        ],
-        "explanationTargets": {
-          "validOption": { "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b" },
-          "invalidOptions": [
-            { "姥姥": "d63f08dd-f8e6-4b47-940b-8d9d939034a6" },
-            { "姥爷": "6c0f975c-4364-40c7-ae72-cfc2145da7e3" },
-            { "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550" }
-          ]
-        },
-        "audio": "audio/爸爸的爸爸.mp3"
+        "injectSpaces": true
       }
     }
   ]
