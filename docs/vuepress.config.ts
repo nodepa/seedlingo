@@ -2,7 +2,7 @@ import { defineUserConfig } from 'vuepress';
 import { viteBundler } from '@vuepress/bundler-vite';
 import { defaultTheme } from '@vuepress/theme-default';
 import { path } from '@vuepress/utils';
-import docsearch from '@vuepress/plugin-docsearch';
+import { docsearchPlugin } from '@vuepress/plugin-docsearch';
 import { seoPlugin } from '@vuepress/plugin-seo';
 import { sitemapPlugin } from '@vuepress/plugin-sitemap';
 
@@ -63,7 +63,7 @@ export default defineUserConfig({
 
   plugins: [
     [
-      docsearch({
+      docsearchPlugin({
         apiKey: 'f697003c57e07694a70993bfb1b6a532',
         appId: 'DBU4PMHNAN',
         indexName: 'globalseedling',

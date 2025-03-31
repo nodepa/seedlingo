@@ -1,16 +1,16 @@
 :root {
-  // brand colors
-  --c-brand: #1976d2;
-  --c-brand-light: #90caf9;
-}
-
-html.dark {
-  // brand colors
-  --c-brand: #1976d2;
-  --c-brand-light: #f06292;
-
+  // accent colors
+  --vp-c-accent: #1976d2;
+  --vp-c-accent-bg: #3387DC;
+  --vp-c-accent-hover: #4C96E1;
+  --vp-c-accent-text: var(--vp-c-white);
+  --vp-c-accent-soft: rgb(16 185 129 / 14%);
 }
 
 .home .feature h2 {
   white-space: pre-wrap;
+}
+
+.vp-hero-action-button.secondary:hover {
+  color: var(--vp-c-accent-hover);
 }

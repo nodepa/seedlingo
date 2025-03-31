@@ -6,15 +6,16 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader,
+  IonCol,
   IonGrid,
   IonIcon,
   IonPage,
+  IonRow,
   useIonRouter,
 } from '@ionic/vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
-import ExerciseProvider from '@/Content/ExerciseProvider';
-// import { earOutline } from 'ionicons/icons';
+import AudioProvider from '@/Content/AudioProvider';
 
 const route = useRoute();
 const ionRouter = useIonRouter();
@@ -27,7 +28,7 @@ const lastWordIndex = words.length - 1;
 let currentWordIndex = 0;
 const word = ref(words[currentWordIndex]);
 const audio = ref(
-  ExerciseProvider.createAudio(Content.getAudioData(word.value.audio || '')),
+  AudioProvider.createAudioFromPath(word.value.audio as string),
 );
 
 watch(
@@ -39,9 +40,7 @@ watch(
   },
 );
 watch(word, () => {
-  audio.value = ExerciseProvider.createAudio(
-    Content.getAudioData(word.value.audio || ''),
-  );
+  audio.value = AudioProvider.createAudioFromPath(word.value.audio as string);
   audio.value.play();
 });
 watch(

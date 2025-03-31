@@ -19,8 +19,9 @@ withDefaults(defineProps<Props>(), {
   <ion-button
     v-instructions="homeButtonInstructions"
     data-test="home-button"
+    aria-label="Show list of units"
     :disabled="homeButtonDisabled"
-    :router-link="{ name: 'Home' }"
+    router-link="/"
     router-direction="root"
     @click="store.dispatch('setShowContinueButton', false)"
   >

@@ -13,9 +13,17 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
     () => {
       cy.log('**1. 马丽 sees a vibrating loudspeaker/mouth talking**');
       cy.log('-- hears the audio of a corresponding word');
-      cy.visit('/about').get('h1').contains('Seedlingo').click();
+      cy.visit('/about', {
+        onBeforeLoad(window) {
+          delete Object.getPrototypeOf(window.navigator).serviceWorker;
+        },
+      })
+        .get('h1')
+        .contains('Seedlingo')
+        .click();
       cy.visit('/unit/multiple-choice-test', {
         onBeforeLoad(window) {
+          delete Object.getPrototypeOf(window.navigator).serviceWorker;
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');
           cy.spy(window.HTMLElement.prototype, 'animate').as(
@@ -144,6 +152,7 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
       cy.log('**1. 马丽 sees an explanation**');
       cy.visit('/unit/explanation-multiple-choice-test', {
         onBeforeLoad(window) {
+          delete Object.getPrototypeOf(window.navigator).serviceWorker;
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           cy.spy(window.Animation.prototype, 'play').as('animation.play');
           cy.spy(window.HTMLElement.prototype, 'animate').as(

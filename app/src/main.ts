@@ -1,25 +1,5 @@
-/* eslint no-console: ["off"] */
-// import { isPlatform } from '@ionic/vue';
-// if (isPlatform('capacitor')) {
-//   console.log('Capacitor - native wrapped webview');
-// } else {
-//   console.log('Webapp/PWA - standalone browser');
-//   if (
-//     'serviceWorker' in navigator &&
-//     import.meta.env.PROD &&
-//     !('Cypress' in window)
-//   ) {
-//     window.addEventListener('load', () => {
-//       navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(() => {
-//         console.log('Service Worker registered');
-//       });
-//     });
-//   }
-// }
-
 import { createApp } from 'vue';
-import { IonicVue } from '@ionic/vue';
-import { isPlatform } from '@ionic/vue';
+import { IonicVue, isPlatform } from '@ionic/vue';
 import '@ionic/vue/css/core.css';
 import '@ionic/vue/css/normalize.css';
 import '@ionic/vue/css/structure.css';
