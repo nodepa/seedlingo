@@ -1,11 +1,6 @@
 <template>
-  <UContainer>
-    <UCard :ui="{ body: 'sm:p-0' }">
-      <template #header>
-        <h1 class="text-2xl text-(--ui-primary)">Words</h1>
-      </template>
-
-      <UTable :data="wordsState" :columns="columns"
+  <div>Its here</div>
+  <!-- <UTable :data="wordsState" :columns="columns"
         :column-visibility="columnVisibility" :sorting="sorting"
         :loading="!wordsState || wordsState.length === 0"
         loading-color="primary" loading-animation="carousel" sticky
@@ -27,7 +22,7 @@
               v-model="row.original.description" />
           </div>
         </template>
-        <template #picture-cell="{ row }">
+<template #picture-cell="{ row }">
           <MediaModal
             :title="row.original.picture ? 'Update picture' : 'Add picture'"
             description="Upload, organize and link media to words."
@@ -48,7 +43,7 @@
             </UButton>
           </MediaModal>
         </template>
-        <template #audio-cell="{ row }">
+<template #audio-cell="{ row }">
           <MediaModal :title="row.original.audio ? 'Update audio' : 'Add audio'"
             description="Upload, organize and link media to words."
             mediaType="audio" v-model:selected="row.original.audio"
@@ -73,7 +68,7 @@
             </UButton>
           </MediaModal>
         </template>
-        <template #isPunctuation-cell="{ row }">
+<template #isPunctuation-cell="{ row }">
           <USwitch v-model="row.original.isPunctuation" color="primary"
             @change="() => commitCell(row, 'isPunctuation')"
             :loading="row.original.waitsOn?.isPunctuation" />
@@ -81,8 +76,10 @@
             :class="{ 'bg-amber-100': !row.original.waitsOn?.isPunctuation }">
             {{ row.original.waitsOn?.isPunctuation }}
           </div>
-        </template>
-        <!-- <template #actions-cell="{ row }">
+        </template> -->
+
+
+  <!-- <template #actions-cell="{ row }">
           <div class="flex w-full flex-row gap-2">
             <UTooltip text="View details">
               <UButton icon="lucide:eye" color="primary"
@@ -101,30 +98,17 @@
             </UTooltip>
           </div>
         </template> -->
-        <template #empty>
+
+
+  <!-- <template #empty>
           {{ !wordsState ? 'Loading...' : 'No data available' }}
         </template>
-      </UTable>
-
-      <template #footer>
-        <div class="my-4 flex justify-center">
-          <WordForm isAddMode @updateWord="createWord" />
-        </div>
-        <p class="text-center">Currently showing {{ wordsState.length }}
-          words</p>
-      </template>
-    </UCard>
-  </UContainer>
+      </UTable> -->
 </template>
 
 <script setup lang="ts">
+import type { TableColumn, TableRow } from '@nuxt/ui';
 import type { Schema } from '~/amplify/data/resource';
-import { generateClient } from 'aws-amplify/data';
-import * as v from 'valibot';
-import type { TableRow, TableColumn } from '@nuxt/ui';
-import type { MediaFile } from '~/types/MediaFile';
-
-const toast = useToast();
 
 type WordSchema = Schema['Word']['type'];
 type DynamicWord = WordSchema & {
@@ -133,30 +117,7 @@ type DynamicWord = WordSchema & {
   isWaiting?: boolean;
 };
 type DynamicWordField = Exclude<keyof DynamicWord, 'id' | 'createdAt' | 'updatedAt'>;
-
-const WordValidationSchema = v.object({
-  id: v.optional(v.string()),
-  word: v.pipe(
-    v.string(),
-    v.nonEmpty('Please enter a word'),
-  ),
-  description: v.optional(v.string()),
-  audio: v.optional(v.string()),
-  picture: v.optional(v.string()),
-  // symbol: v.array(v.string()).optional().transform((val) => val === null ? undefined : val),
-  isPunctuation: v.optional(v.boolean()),
-});
-type WordType = v.InferOutput<typeof WordValidationSchema>;
-
-const wordsState = useState<Array<DynamicWord>>('words', () => []);
-const library = useState<{
-  pictures: Record<string, MediaFile>,
-  audio: Record<string, MediaFile>
-}>('library', () => ({
-  pictures: {},
-  audio: {}
-}));
-
+const wordsState = useState<Array<DynamicWord>>('words');
 const columns: TableColumn<DynamicWord>[] = [
   { accessorKey: 'id', header: 'ID' },
   { accessorKey: 'word', header: 'Word' },
@@ -175,95 +136,8 @@ const sorting = ref([{
 
 const commitCell = (row: TableRow<DynamicWord>, col: DynamicWordField) => {
   wordsState.value[row.index].waitsOn = { ...wordsState.value[row.index].waitsOn, [col]: true };
-  updateData(row.index, col, row.original[col] as string);
+  // updateData(row.index, col, row.original[col] as string);
 }
 
-const updateData = (tableRowIndex: number, fieldName: DynamicWordField, newValue: string) => {
-  const word = wordsState.value[tableRowIndex];
-  word[fieldName as DynamicWordField] = newValue as never;
-  save(word)
-};
 
-const client = generateClient<Schema>({ authMode: 'userPool' });
-watchEffect(() => {
-  client.models.Word.observeQuery().subscribe({
-    next: ({ items }) => {
-      wordsState.value = items as DynamicWord[];
-    },
-    error: (error) => {
-      console.error('Error observing words:', error);
-    },
-  });
-});
-
-const save = async (word: DynamicWord) => {
-  word.isWaiting = true;
-  if (word.id) {
-    const { data: existingWord, errors } = await client.models.Word.get({ id: word.id });
-    if (errors || !existingWord) {
-      console.error(errors);
-      toast.add({ title: 'Error', description: 'Failed to get word', color: 'error' });
-      word.isWaiting = false;
-      word.waitsOn = {};
-      return;
-    } else {
-      // TODO Improve save to S3 to keep local state as 'saving' until commit is confirmed, retry or revert to original otherwise?
-      const { data: updatedWord, errors } = await client.models.Word.update({ id: word.id, word: word.word, description: word.description, audio: word.audio, picture: word.picture, isPunctuation: word.isPunctuation });
-      word.isWaiting = false;
-      word.waitsOn = {};
-      if (errors) {
-        console.error(errors);
-        toast.add({ title: 'Error', description: 'Failed to update word', color: 'error' });
-        return;
-      } else {
-        toast.add({ title: 'Success', description: 'Word updated successfully', color: 'success' });
-        word.isWaiting = false;
-        word.waitsOn = {};
-      }
-    }
-  } else {
-    const newWord = {
-      word: word.word,
-      description: word.description,
-    } as WordSchema;
-    if (word.audio) {
-      newWord.audio = word.audio;
-    }
-    if (word.picture) {
-      newWord.picture = word.picture;
-    }
-    if ('isPunctuation' in word) {
-      newWord.isPunctuation = word.isPunctuation;
-    }
-    const { data: updatedWord, errors } = await client.models.Word.create(newWord);
-    if (errors) {
-      console.error(errors);
-      toast.add({ title: 'Error', description: 'Failed to add word', color: 'error' });
-      return;
-    } else {
-      toast.add({ title: 'Success', description: 'Word added successfully', color: 'success' });
-      word.isWaiting = false;
-      word.waitsOn = {};
-    }
-  }
-};
-
-const createWord = async (wordData: DynamicWord) => {
-  if (wordData.id) {
-    wordsState.value.push(wordData);
-  } else {
-    const newWord = {
-      word: wordData.word,
-      description: wordData.description
-    };
-    const { data: updatedWord, errors } = await client.models.Word.create(newWord);
-    if (errors) {
-      console.error(errors);
-      toast.add({ title: 'Error', description: 'Failed to add word', color: 'error' });
-      return;
-    } else {
-      toast.add({ title: 'Success', description: 'Word added successfully', color: 'success' });
-    }
-  }
-};
 </script>
