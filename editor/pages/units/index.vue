@@ -41,8 +41,8 @@
               </div>
             </div>
             <div v-else class="h-full">
-              <UForm :schema="UnitSchema" :state="unit" @submit="save(unit)"
-                class="h-full flex flex-col">
+              <UForm :schema="UnitValidationSchema" :state="unit"
+                @submit="save(unit)" class="h-full flex flex-col">
                 <UFormField label="Name" name="name" hint="required">
                   <UInput v-model="unit.name as string"
                     :disabled="unit.isWaiting"
@@ -106,24 +106,20 @@
 </template>
 
 <script setup lang="ts">
-import type { Schema } from '~/amplify/data/resource';
 import { generateClient } from 'aws-amplify/data';
 import * as v from 'valibot';
+import type { Schema } from '~/amplify/data/resource';
+import type { DynamicUnit } from '~/types/UnitTypes';
 
 const toast = useToast();
 
-type Unit = Schema['Unit']['type'];
-type DynamicUnit = Unit & {
-  inEditMode?: boolean;
-  isWaiting?: boolean;
-};
-const UnitSchema = v.object({
+const UnitValidationSchema = v.object({
   id: v.optional(v.string()),
   name: v.pipe(v.string(), v.nonEmpty('Please enter a name for the unit')),
   description: v.optional(v.string()),
   icon: v.optional(v.string()),
 });
-type UnitType = v.InferOutput<typeof UnitSchema>;
+type UnitValidType = v.InferOutput<typeof UnitValidationSchema>;
 
 const isSynced = ref(false);
 
@@ -163,7 +159,7 @@ const save = async (unit: DynamicUnit) => {
     const newUnit = {
       name: unit.name,
       description: unit.description
-    } as Unit;
+    } as DynamicUnit;
     if (unit.icon) {
       newUnit.icon = unit.icon;
     }
@@ -175,6 +171,7 @@ const save = async (unit: DynamicUnit) => {
     } else {
       toast.add({ title: 'Success', description: 'Unit added successfully', color: 'success' });
       unit.isWaiting = false;
+      // unit = updatedUnit as DynamicUnit;
     }
   }
 };
@@ -207,13 +204,32 @@ const deleteUnit = async (unit: DynamicUnit) => {
 };
 
 const createUnit = async (unitData: DynamicUnit) => {
+  let existingUnitIndex = -1;
   if (unitData.id) {
-    units.value.push(unitData);
+    console.log('unitData.id exists:', unitData.id);
+    existingUnitIndex = units.value.findIndex((unit) => unit.id === unitData.id);
+  }
+  if (unitData.id && existingUnitIndex !== -1) {
+    console.log('existingUnitIndex exists:', existingUnitIndex);
+    units.value[existingUnitIndex] = unitData;
+    // units.value.push(unitData);
   } else {
+    console.log('unitData.id and existingUnitIndex does not exist, creating temp unit');
     const newUnit = {
       name: unitData.name,
       description: unitData.description
     };
+    let tempUnit = ref({
+      ...newUnit,
+      id: crypto.randomUUID(),
+      isWaiting: true,
+      waitsOn: {
+        name: true,
+        description: true
+      }
+    } as DynamicUnit);
+    units.value.push(tempUnit.value);
+    console.log('units before create:', JSON.stringify(units.value));
     const { data: updatedUnit, errors } = await client.models.Unit.create(newUnit);
     if (errors) {
       console.error(errors);
@@ -221,6 +237,8 @@ const createUnit = async (unitData: DynamicUnit) => {
       return;
     } else {
       toast.add({ title: 'Success', description: 'Unit added successfully', color: 'success' });
+      tempUnit.value = updatedUnit as DynamicUnit;
+      console.log('units after create:', JSON.stringify(units.value));
     }
   }
 };
