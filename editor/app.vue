@@ -102,6 +102,9 @@ watch(userPreferredTheme, (userPreferredTheme) => {
 });
 </script>
 <style>
+@import '@aws-amplify/ui-vue/styles.css';
+@import '~/assets/css/main.css';
+
 [data-amplify-authenticator] {
   [data-amplify-router] {
     border-radius: var(--amplify-radii-medium);
