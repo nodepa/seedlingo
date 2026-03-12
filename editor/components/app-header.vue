@@ -5,7 +5,7 @@
     <UNavigationMenu class="w-auto" :items="links" />
     <div class="flex grow"></div>
     <p>{{ user.signInDetails?.loginId }}</p>
-    <UButton class="text-nowrap m-4" @click="signOut()">Sign Out</UButton>
+    <UButton class="text-nowrap m-4" @click="handleSignOut">Sign Out</UButton>
   </section>
 </template>
 
@@ -47,5 +47,10 @@ const userPreferredTheme: CookieRef<'light' | 'dark' | 'unset'> = useCookie(
 const toggleDarkTheme = () => {
   userPreferredTheme.value =
     userPreferredTheme.value === 'dark' ? 'light' : 'dark';
+};
+
+const handleSignOut = async () => {
+  await signOut();
+  await navigateTo('/login');
 };
 </script>

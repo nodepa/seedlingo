@@ -3,6 +3,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-03-31',
+  ssr: false,
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@nuxt/image'],
   app: {

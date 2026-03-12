@@ -1,35 +1,12 @@
 <template>
   <UApp>
-    <Authenticator>
-      <template #header>
-        <div class="text-center">
-          <img src="/logo-col.svg" alt="Seedlingo Apiary" />
-          <!-- <NuxtImg src="logo-col.svg"></NuxtImg> -->
-          <h1 class="-mt-10 text-3xl font-bold">Seedlingo Apiary</h1>
-          <h2 class="mb-10 text-lg">
-            Content editor for
-            <NuxtLink to="https://seedlingo.com" external
-              class="text-lochmara-700 hover:text-lochmara-900">Seedlingo
-            </NuxtLink>
-          </h2>
-        </div>
-      </template>
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
-      <template #footer>
-        <UButton icon="lucide:sun-moon" color="neutral" variant="outline"
-          size="xs" class="float-right mt-2"
-          @click="userPreferredTheme != 'dark' ? userPreferredTheme = 'dark' : userPreferredTheme = 'light'">
-          Toggle Dark Mode
-        </UButton>
-      </template>
-    </Authenticator>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </UApp>
 </template>
 
 <script setup lang="ts">
-import { Authenticator } from '@aws-amplify/ui-vue';
 const appConfig = useAppConfig();
 useHeadSafe({
   title: appConfig.title,
