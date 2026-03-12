@@ -5,6 +5,3 @@
     <AppFooter />
   </section>
 </template>
-<script setup lang="ts">
-defineProps<{ signOut?: () => void }>();
-</script>
