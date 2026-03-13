@@ -1,20 +1,16 @@
-import parser from 'vue-eslint-parser';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
+import vuePlugin from 'eslint-plugin-vue';
+import vueParser from 'vue-eslint-parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import prettierConfig from 'eslint-config-prettier';
+import prettierPlugin from 'eslint-plugin-prettier';
 
 export default [
   {
     ignores: [
+      '**/.amplify/',
+      '**/.nuxt/',
+      '**/.output/',
       '**/coverage/',
       '**/dist/',
       '**/node_modules/',
@@ -22,11 +18,40 @@ export default [
       '**/*.d.ts',
     ],
   },
-  ...compat.extends(
-    'plugin:vue/vue3-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ),
+
+  // TypeScript recommended (sets TS parser globally + TS rules)
+  ...tsPlugin.configs['flat/recommended'],
+
+  // Vue recommended (overrides parser for .vue files + Vue rules)
+  ...vuePlugin.configs['flat/recommended'],
+
+  // Configure vue-eslint-parser to use TS parser for <script> blocks
+  {
+    files: ['**/*.vue'],
+    languageOptions: {
+      parser: vueParser,
+      parserOptions: {
+        parser: tsParser,
+        ecmaVersion: 2022,
+        sourceType: 'module',
+      },
+    },
+  },
+
+  // Disable style rules that conflict with Prettier
+  prettierConfig,
+
+  // Run Prettier as a lint rule
+  {
+    plugins: { prettier: prettierPlugin },
+    rules: {
+      'prettier/prettier': 'error',
+      'arrow-body-style': 'off',
+      'prefer-arrow-callback': 'off',
+    },
+  },
+
+  // Project rules
   {
     files: [
       '**/*.vue',
@@ -37,27 +62,17 @@ export default [
       '**/*.tsx',
       '**/*.jsx',
     ],
-    languageOptions: {
-      parser: parser,
-      ecmaVersion: 2023,
-      sourceType: 'script',
-
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-      },
-    },
-
     rules: {
       'no-console': ['error', { allow: ['warn', 'error'] }],
       'no-debugger': 'error',
     },
-    overrides: [
-      {
-        files: ['pages/**/*.vue'],
-        rules: {
-          'vue/multi-word-component-names': 'off',
-        },
-      },
-    ],
+  },
+
+  // Pages and layouts don't need multi-word component names (they are routes)
+  {
+    files: ['pages/**/*.vue', 'layouts/**/*.vue'],
+    rules: {
+      'vue/multi-word-component-names': 'off',
+    },
   },
 ];

@@ -24,6 +24,8 @@
     "build": "nuxi build",
     "dev": "nuxi dev",
     "generate": "nuxi generate",
+    "lint": "eslint .",
+    "lint:tsc": "nuxi typecheck",
     "login": "aws sso login",
     "postinstall": "nuxi prepare",
     "preview": "nuxi preview",
