@@ -29,6 +29,18 @@
           <USwitch v-model="state.isPunctuation" color="primary" size="md"
             class="h-14" />
         </UFormField>
+        <UFormField v-if="availableTags.length > 0" label="Tags" name="tags" hint="optional">
+          <div class="flex flex-wrap gap-2 mt-1">
+            <UBadge
+              v-for="tag in availableTags" :key="tag.id"
+              :color="selectedTagIds.includes(tag.id) ? 'primary' : 'neutral'"
+              :variant="selectedTagIds.includes(tag.id) ? 'solid' : 'subtle'"
+              class="cursor-pointer select-none"
+              @click="toggleTag(tag.id)">
+              {{ tag.name }}
+            </UBadge>
+          </div>
+        </UFormField>
         <div class="flex justify-end space-x-2">
           <UButton type="submit"
             :icon="isAddMode ? 'lucide:plus' : 'lucide:save'">
@@ -46,19 +58,32 @@
 <script setup lang="ts">
 import * as v from 'valibot';
 import type { FormSubmitEvent } from '@nuxt/ui';
+import type { TagSchema } from '~/types/WordTypes';
 
 const props = withDefaults(defineProps<{
   isAddMode?: boolean;
   wordData?: { id: string, word?: string, description?: string, audio?: string, picture?: string, symbol?: Array<string>, isPunctuation?: boolean };
+  availableTags?: TagSchema[];
 }>(), {
   isAddMode: false,
-  wordData: () => ({ id: '', word: '', description: '', audio: '', picture: '', symbol: [''], isPunctuation: false })
+  wordData: () => ({ id: '', word: '', description: '', audio: '', picture: '', symbol: [''], isPunctuation: false }),
+  availableTags: () => [],
 });
 
 // const showWordForm = defineModel('showWordForm', { default: false });
 const showWordForm = ref(false);
 const emit = defineEmits(['updateWord']);
 
+const selectedTagIds = ref<string[]>([]);
+
+const toggleTag = (tagId: string) => {
+  const idx = selectedTagIds.value.indexOf(tagId);
+  if (idx === -1) {
+    selectedTagIds.value = [...selectedTagIds.value, tagId];
+  } else {
+    selectedTagIds.value = selectedTagIds.value.filter((id) => id !== tagId);
+  }
+};
 
 const vWordSchema = v.object({
   id: v.string(),
@@ -74,7 +99,8 @@ type VWordSchema = v.InferOutput<typeof vWordSchema>;
 const state = reactive<Partial<VWordSchema>>(props.wordData);
 
 const emitUpdateWord = async (event: FormSubmitEvent<VWordSchema>) => {
-  emit('updateWord', event.data);
+  emit('updateWord', { ...event.data, tagIds: selectedTagIds.value });
+  selectedTagIds.value = [];
   showWordForm.value = false;
 };
 
