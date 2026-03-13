@@ -28,6 +28,9 @@
               <UIcon :name="unit.icon || 'noto-unknown-flag'"
                 class="w-[10rem] h-[10rem] block" />
               <p class="mb-4">{{ unit.description }}</p>
+              <p class="text-sm text-gray-500 mb-2">
+                {{ wordCountsByUnitId[unit.id] ?? 0 }} word(s)
+              </p>
               <div class="flex-1"></div>
               <div class="flex justify-center gap-2">
                 <UButton v-if="!unit.inEditMode" color="primary"
@@ -108,6 +111,7 @@
 <script setup lang="ts">
 import { generateClient } from 'aws-amplify/data';
 import * as v from 'valibot';
+import type { Subscription } from 'rxjs';
 import type { Schema } from '~/amplify/data/resource';
 import type { DynamicUnit } from '~/types/UnitTypes';
 
@@ -124,9 +128,14 @@ type UnitValidType = v.InferOutput<typeof UnitValidationSchema>;
 const isSynced = ref(false);
 
 const units = useState<Array<DynamicUnit>>('units', () => []);
+const wordCountsByUnitId = ref<Record<string, number>>({});
 const client = generateClient<Schema>({ authMode: 'userPool' });
-watchEffect(() => {
-  client.models.Unit.observeQuery().subscribe({
+
+let unitsSub: Subscription;
+let wordsSub: Subscription;
+
+onMounted(() => {
+  unitsSub = client.models.Unit.observeQuery().subscribe({
     next: ({ items, isSynced }) => {
       units.value = items;
     },
@@ -134,6 +143,25 @@ watchEffect(() => {
       console.error('Error observing units:', error);
     },
   });
+  wordsSub = client.models.Word.observeQuery().subscribe({
+    next: ({ items }) => {
+      const counts: Record<string, number> = {};
+      items.forEach((word) => {
+        if (word.unitId) {
+          counts[word.unitId] = (counts[word.unitId] ?? 0) + 1;
+        }
+      });
+      wordCountsByUnitId.value = counts;
+    },
+    error: (error) => {
+      console.error('Error observing words for unit count:', error);
+    },
+  });
+});
+
+onBeforeUnmount(() => {
+  unitsSub?.unsubscribe();
+  wordsSub?.unsubscribe();
 });
 
 const save = async (unit: DynamicUnit) => {
