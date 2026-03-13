@@ -36,6 +36,17 @@ const schema = a
       wordList: a.belongsTo('WordList', 'wordListId'),
       unitId: a.id(),
       unit: a.belongsTo('Unit', 'unitId'),
+      wordTags: a.hasMany('WordTag', 'wordId'),
+    }),
+    Tag: a.model({
+      name: a.string().required(),
+      wordTags: a.hasMany('WordTag', 'tagId'),
+    }),
+    WordTag: a.model({
+      wordId: a.id().required(),
+      word: a.belongsTo('Word', 'wordId'),
+      tagId: a.id().required(),
+      tag: a.belongsTo('Tag', 'tagId'),
     }),
     WordList: a.model({
       contentSpecId: a.id(),
