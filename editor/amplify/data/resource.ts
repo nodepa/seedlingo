@@ -22,6 +22,7 @@ const schema = a
       contentSpecId: a.id(),
       contentSpec: a.belongsTo('ContentSpec', 'contentSpecId'),
       unitSpecFile: a.string(), // ref UnitSpec model
+      words: a.hasMany('Word', 'unitId'),
     }),
 
     Word: a.model({
@@ -33,6 +34,8 @@ const schema = a
       isPunctuation: a.boolean(),
       wordListId: a.id(),
       wordList: a.belongsTo('WordList', 'wordListId'),
+      unitId: a.id(),
+      unit: a.belongsTo('Unit', 'unitId'),
       wordTags: a.hasMany('WordTag', 'wordId'),
     }),
     Tag: a.model({
