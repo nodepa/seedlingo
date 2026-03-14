@@ -78,7 +78,6 @@
           </div>
         </template> -->
 
-
   <!-- <template #actions-cell="{ row }">
           <div class="flex w-full flex-row gap-2">
             <UTooltip text="View details">
@@ -99,7 +98,6 @@
           </div>
         </template> -->
 
-
   <!-- <template #empty>
           {{ !wordsState ? 'Loading...' : 'No data available' }}
         </template>
@@ -107,37 +105,47 @@
 </template>
 
 <script setup lang="ts">
-import type { TableColumn, TableRow } from '@nuxt/ui';
-import type { Schema } from '~/amplify/data/resource';
+// import type { TableColumn, TableRow } from '@nuxt/ui';
+// import type { Schema } from '~/amplify/data/resource';
 
-type WordSchema = Schema['Word']['type'];
-type DynamicWord = WordSchema & {
-  inEditMode?: boolean;
-  waitsOn: { [key: string]: boolean };
-  isWaiting?: boolean;
-};
-type DynamicWordField = Exclude<keyof DynamicWord, 'id' | 'createdAt' | 'updatedAt'>;
-const wordsState = useState<Array<DynamicWord>>('words');
-const columns: TableColumn<DynamicWord>[] = [
-  { accessorKey: 'id', header: 'ID' },
-  { accessorKey: 'word', header: 'Word' },
-  { accessorKey: 'description', header: 'Description' },
-  { accessorKey: 'picture', header: 'Picture' },
-  { accessorKey: 'audio', header: 'Audio' },
-  { accessorKey: 'isPunctuation', header: 'Punctuation' },
-  { accessorKey: 'inEditMode', header: 'Edit mode' },
-  // { id: 'actions', header: 'Actions' },
-];
-const columnVisibility = ref({ id: false, description: false, inEditMode: false });
-const sorting = ref([{
-  id: 'word',
-  desc: false,
-}])
-
-const commitCell = (row: TableRow<DynamicWord>, col: DynamicWordField) => {
-  wordsState.value[row.index].waitsOn = { ...wordsState.value[row.index].waitsOn, [col]: true };
-  // updateData(row.index, col, row.original[col] as string);
-}
-
-
+// type WordSchema = Schema['Word']['type'];
+// type DynamicWord = WordSchema & {
+//   inEditMode?: boolean;
+//   waitsOn: { [key: string]: boolean };
+//   isWaiting?: boolean;
+// };
+// type DynamicWordField = Exclude<
+//   keyof DynamicWord,
+//   'id' | 'createdAt' | 'updatedAt'
+// >;
+// const wordsState = useState<Array<DynamicWord>>('words');
+// const columns: TableColumn<DynamicWord>[] = [
+//   { accessorKey: 'id', header: 'ID' },
+//   { accessorKey: 'word', header: 'Word' },
+//   { accessorKey: 'description', header: 'Description' },
+//   { accessorKey: 'picture', header: 'Picture' },
+//   { accessorKey: 'audio', header: 'Audio' },
+//   { accessorKey: 'isPunctuation', header: 'Punctuation' },
+//   { accessorKey: 'inEditMode', header: 'Edit mode' },
+//   // { id: 'actions', header: 'Actions' },
+// ];
+// const columnVisibility = ref({
+//   id: false,
+//   description: false,
+//   inEditMode: false,
+// });
+// const sorting = ref([
+//   {
+//     id: 'word',
+//     desc: false,
+//   },
+// ]);
+//
+// const commitCell = (row: TableRow<DynamicWord>, col: DynamicWordField) => {
+//   wordsState.value[row.index].waitsOn = {
+//     ...wordsState.value[row.index].waitsOn,
+//     [col]: true,
+//   };
+//   // updateData(row.index, col, row.original[col] as string);
+// };
 </script>

@@ -21,9 +21,8 @@ useSeoMeta({
   ogDescription: 'Content editor for Seedlingo.',
 });
 
-
 // initial saved user preference
-const userPreferredTheme: CookieRef<'light' | 'dark' | 'unset'> = useCookie(
+const userPreferredTheme = useCookie<'light' | 'dark' | 'unset'>(
   'userPreferredTheme',
   {
     default: () => 'unset',

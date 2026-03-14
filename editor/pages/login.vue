@@ -10,7 +10,8 @@
             to="https://seedlingo.com"
             external
             class="text-lochmara-700 hover:text-lochmara-900"
-          >Seedlingo</NuxtLink>
+            >Seedlingo</NuxtLink
+          >
         </h2>
       </div>
     </template>
@@ -35,7 +36,7 @@ import { Hub } from 'aws-amplify/utils';
 
 definePageMeta({ layout: 'login' });
 
-const userPreferredTheme: CookieRef<'light' | 'dark' | 'unset'> = useCookie(
+const userPreferredTheme = useCookie<'light' | 'dark' | 'unset'>(
   'userPreferredTheme',
   { default: () => 'unset', maxAge: 60 * 60 * 24 * 365, sameSite: 'strict' },
 );

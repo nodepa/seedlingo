@@ -6,12 +6,28 @@
     <p>
       {{ word?.description }}
     </p>
-    <UIcon :name="word?.icon || 'noto-unknown-flag'"
-      class="p-0 m-0 w-[10rem] h-[10rem] block" />
+    <UIcon
+      :name="word?.icon || 'noto-unknown-flag'"
+      class="p-0 m-0 w-[10rem] h-[10rem] block"
+    />
     <template #footer>
       <p>Word id: {{ id }}</p>
-      <p>Created at: {{ word?.createdAt ? new Date(word.createdAt).toLocaleString() : 'missing' }}</p>
-      <p>Updated at: {{ word?.updatedAt ? new Date(word.updatedAt).toLocaleString() : 'missing' }}</p>
+      <p>
+        Created at:
+        {{
+          word?.createdAt
+            ? new Date(word.createdAt).toLocaleString()
+            : 'missing'
+        }}
+      </p>
+      <p>
+        Updated at:
+        {{
+          word?.updatedAt
+            ? new Date(word.updatedAt).toLocaleString()
+            : 'missing'
+        }}
+      </p>
     </template>
   </UCard>
 </template>

@@ -1,3 +1,9 @@
+declare module 'nuxt/schema' {
+  interface AppConfigInput {
+    title?: string;
+  }
+}
+
 export default defineAppConfig({
   title: 'Seedlingo Apiary',
   ui: {
@@ -6,14 +12,14 @@ export default defineAppConfig({
       secondary: 'lochmara-200',
     },
     button: {
-      base: [
-        'hover:cursor-pointer',
-      ],
+      slots: {
+        base: ['hover:cursor-pointer'],
+      },
     },
     switch: {
-      base: [
-        'hover:cursor-pointer',
-      ],
+      slots: {
+        base: ['hover:cursor-pointer'],
+      },
     },
   },
 });
