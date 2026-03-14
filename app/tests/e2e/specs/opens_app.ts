@@ -93,10 +93,14 @@ describe("马丽 opens the app to the home screen's list of units", () => {
         .find('audio')
         .then(($el) => {
           cy.wrap($el[0].paused).should('be.false'); // = playing
+          // Dispatch the ended event immediately rather than waiting for the
+          // ~4.4 s audio file to finish naturally. This keeps the test
+          // deterministic while still verifying that the ended-event handler
+          // correctly dismisses the overlay.
+          $el[0].dispatchEvent(new Event('ended'));
         })
-        // Should auto-hide overlay after audio finishes
-        // default timeout is 4000, need just a bit longer for audio to end
-        .get(instructionsOverlay, { timeout: 6000 })
+        // Overlay should auto-hide when the ended event fires
+        .get(instructionsOverlay)
         .should('not.exist');
     },
   );

@@ -197,15 +197,28 @@ describe('马丽 interacts with the "text comprehension" system', () => {
       cy.log('-- sees the option buzz and become disabled,');
       cy.log('-- does not see the continue button.');
 
+      // Wait for the stage transition to AnswerQuestions to complete and the
+      // option buttons to be fully rendered, then reset the spy so that only
+      // animations from the incorrect-option click are measured.
+      cy.get('[data-test="option-button-1"]').should('be.visible');
+      cy.get('@animation.animate').invoke('resetHistory');
+
       // Test data Q1: 谁是最小的？ incorrect answer: 姐姐 (option 2)
       cy.get('[data-test="option-button-2"]')
         .as('incorrectOption')
         .click()
         .should('have.class', 'button-disabled');
 
-      // Incorrect option should buzz (and become disabled)
-      // 1 buzz animation created (button buzz)
-      cy.get('@animation.animate').should('have.callCount', 1);
+      // Incorrect option should buzz (and become disabled).
+      // The buzz is a 6-keyframe shake animation; other animations (e.g. audio
+      // ripples) may also fire on click, so we check for the buzz specifically
+      // rather than enforcing an exact total call count.
+      cy.get('@animation.animate').should((spy) => {
+        const hasBuzz = (spy as unknown as sinon.SinonSpy).args.some(
+          (args) => Array.isArray(args[0]) && args[0].length === 6,
+        );
+        expect(hasBuzz, 'buzz animation was created').to.be.true;
+      });
       cy.get('@animation.animate').invoke('resetHistory');
 
       // Continue button should not appear after incorrect answer
