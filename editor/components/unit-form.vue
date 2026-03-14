@@ -1,8 +1,14 @@
 <template>
-  <UModal title='Add new unit' description="Describe the unit"
-    v-model:open="showUnitForm">
-    <UButton :icon="isAddMode ? 'lucide:plus' : 'lucide:edit'"
-      :color="isAddMode ? 'primary' : 'neutral'" class="self-center">
+  <UModal
+    v-model:open="showUnitForm"
+    title="Add new unit"
+    description="Describe the unit"
+  >
+    <UButton
+      :icon="isAddMode ? 'lucide:plus' : 'lucide:edit'"
+      :color="isAddMode ? 'primary' : 'neutral'"
+      class="self-center"
+    >
       {{ isAddMode ? 'Add new unit' : 'Edit' }}
     </UButton>
     <template #body>
@@ -11,17 +17,27 @@
           <UInput v-model="state.name" />
         </UFormField>
         <UFormField label="Description" name="description" hint="optional">
-          <UTextarea v-model="state.description" :autoresize="true" :maxrows="8"
-            class="mb-4 w-full" />
+          <UTextarea
+            v-model="state.description"
+            :autoresize="true"
+            :maxrows="8"
+            class="mb-4 w-full"
+          />
         </UFormField>
 
         <div class="flex justify-end space-x-2">
-          <UButton type="submit"
-            :icon="isAddMode ? 'lucide:plus' : 'lucide:save'" color="primary">
+          <UButton
+            type="submit"
+            :icon="isAddMode ? 'lucide:plus' : 'lucide:save'"
+            color="primary"
+          >
             {{ isAddMode ? 'Add unit' : 'Update' }}
           </UButton>
-          <UButton icon="lucide:rotate-ccw" color="neutral"
-            @click="showUnitForm = false">
+          <UButton
+            icon="lucide:rotate-ccw"
+            color="neutral"
+            @click="showUnitForm = false"
+          >
             Cancel
           </UButton>
         </div>
@@ -33,13 +49,21 @@
 import * as v from 'valibot';
 import type { FormSubmitEvent } from '@nuxt/ui';
 
-const props = withDefaults(defineProps<{
-  isAddMode?: boolean;
-  unitData?: { id: string, name: string, description?: string, icon?: string };
-}>(), {
-  isAddMode: false,
-  unitData: () => ({ id: '', name: '' })
-});
+const props = withDefaults(
+  defineProps<{
+    isAddMode?: boolean;
+    unitData?: {
+      id: string;
+      name: string;
+      description?: string;
+      icon?: string;
+    };
+  }>(),
+  {
+    isAddMode: false,
+    unitData: () => ({ id: '', name: '' }),
+  },
+);
 
 // const showUnitForm = defineModel('showUnitForm', { default: false });
 const showUnitForm = ref(false);
@@ -59,5 +83,4 @@ const emitUpdateUnit = async (event: FormSubmitEvent<UnitType>) => {
   emit('updateUnit', event.data);
   showUnitForm.value = false;
 };
-
 </script>

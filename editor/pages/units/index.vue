@@ -25,55 +25,96 @@
           <UCard class="w-full grid">
             <div v-if="!unit.inEditMode" class="h-full flex flex-col">
               <p class="text-xl">{{ unit.name }}</p>
-              <UIcon :name="unit.icon || 'noto-unknown-flag'"
-                class="w-[10rem] h-[10rem] block" />
+              <UIcon
+                :name="unit.icon || 'noto-unknown-flag'"
+                class="w-[10rem] h-[10rem] block"
+              />
               <p class="mb-4">{{ unit.description }}</p>
               <p class="text-sm text-gray-500 mb-2">
                 {{ wordCountsByUnitId[unit.id] ?? 0 }} word(s)
               </p>
               <div class="flex-1"></div>
               <div class="flex justify-center gap-2">
-                <UButton v-if="!unit.inEditMode" color="primary"
-                  icon="lucide:eye" :to="'units/' + unit.id">
+                <UButton
+                  v-if="!unit.inEditMode"
+                  color="primary"
+                  icon="lucide:eye"
+                  :to="'units/' + unit.id"
+                >
                   View
                 </UButton>
-                <UButton v-if="!unit.inEditMode" color="neutral"
-                  icon="lucide:edit" @click="unit.inEditMode = true">
+                <UButton
+                  v-if="!unit.inEditMode"
+                  color="neutral"
+                  icon="lucide:edit"
+                  @click="unit.inEditMode = true"
+                >
                   Edit
                 </UButton>
               </div>
             </div>
             <div v-else class="h-full">
-              <UForm :schema="UnitValidationSchema" :state="unit"
-                @submit="save(unit)" class="h-full flex flex-col">
+              <UForm
+                :schema="UnitValidationSchema"
+                :state="unit"
+                class="h-full flex flex-col"
+                @submit="save(unit)"
+              >
                 <UFormField label="Name" name="name" hint="required">
-                  <UInput v-model="unit.name as string"
+                  <UInput
+                    v-model="unit.name as string"
                     :disabled="unit.isWaiting"
-                    class="text-xl :invalid:border-blue" />
+                    class="text-xl :invalid:border-blue"
+                  />
                 </UFormField>
-                <UFormField label="Icon" name="icon" hint='optional'
-                  class="my-4">
-                  <UInput v-model="unit.icon as string"
-                    :disabled="unit.isWaiting" />
+                <UFormField
+                  label="Icon"
+                  name="icon"
+                  hint="optional"
+                  class="my-4"
+                >
+                  <UInput
+                    v-model="unit.icon as string"
+                    :disabled="unit.isWaiting"
+                  />
                 </UFormField>
-                <UFormField label="Description" name="description"
-                  hint='optional'>
-                  <UTextarea v-model="unit.description as string"
-                    :autoresize="true" :maxrows="8" :disabled="unit.isWaiting"
-                    class="mb-4 w-full resize-none" />
+                <UFormField
+                  label="Description"
+                  name="description"
+                  hint="optional"
+                >
+                  <UTextarea
+                    v-model="unit.description as string"
+                    :autoresize="true"
+                    :maxrows="8"
+                    :disabled="unit.isWaiting"
+                    class="mb-4 w-full resize-none"
+                  />
                 </UFormField>
                 <div class="flex-1"></div>
                 <div class="flex justify-center gap-2">
-                  <UButton type='submit' color="primary" icon="lucide:save"
-                    :disabled="unit.isWaiting">
+                  <UButton
+                    type="submit"
+                    color="primary"
+                    icon="lucide:save"
+                    :disabled="unit.isWaiting"
+                  >
                     Save
                   </UButton>
-                  <UButton color="neutral" @click="cancelEditing(unit)"
-                    icon="lucide:rotate-ccw" :disabled="unit.isWaiting">
+                  <UButton
+                    color="neutral"
+                    icon="lucide:rotate-ccw"
+                    :disabled="unit.isWaiting"
+                    @click="cancelEditing(unit)"
+                  >
                     Cancel
                   </UButton>
-                  <UButton color="warning" @click="deleteUnit(unit)"
-                    icon="lucide:trash-2" :disabled="unit.isWaiting">
+                  <UButton
+                    color="warning"
+                    icon="lucide:trash-2"
+                    :disabled="unit.isWaiting"
+                    @click="deleteUnit(unit)"
+                  >
                     Delete
                   </UButton>
                 </div>
@@ -94,15 +135,14 @@
                 <USkeleton class="mb-2 w-[17rem] h-5" />
                 <USkeleton class="mb-4 w-[13rem] h-5" />
               </div> -->
-              <UnitForm isAddMode @updateUnit="createUnit" />
+              <UnitForm is-add-mode @update-unit="createUnit" />
             </div>
           </UCard>
         </li>
       </ul>
 
       <template #footer>
-        <p class="text-center">Currently showing {{ units.length }}
-          units</p>
+        <p class="text-center">Currently showing {{ units.length }} units</p>
       </template>
     </UCard>
   </UContainer>
@@ -123,10 +163,6 @@ const UnitValidationSchema = v.object({
   description: v.optional(v.string()),
   icon: v.optional(v.string()),
 });
-type UnitValidType = v.InferOutput<typeof UnitValidationSchema>;
-
-const isSynced = ref(false);
-
 const units = useState<Array<DynamicUnit>>('units', () => []);
 const wordCountsByUnitId = ref<Record<string, number>>({});
 const client = generateClient<Schema>({ authMode: 'userPool' });
@@ -136,8 +172,13 @@ let wordsSub: Subscription;
 
 onMounted(() => {
   unitsSub = client.models.Unit.observeQuery().subscribe({
-    next: ({ items, isSynced }) => {
-      units.value = items;
+    next: ({ items }) => {
+      units.value = items.map((item) => ({
+        ...item,
+        name: item.name ?? undefined,
+        description: item.description ?? undefined,
+        icon: item.icon ?? undefined,
+      })) as DynamicUnit[];
     },
     error: (error) => {
       console.error('Error observing units:', error);
@@ -167,39 +208,65 @@ onBeforeUnmount(() => {
 const save = async (unit: DynamicUnit) => {
   unit.isWaiting = true;
   if (unit.id) {
-    const { data: existingUnit, errors } = await client.models.Unit.get({ id: unit.id });
+    const { data: existingUnit, errors } = await client.models.Unit.get({
+      id: unit.id,
+    });
     if (errors || !existingUnit) {
       console.error(errors);
-      toast.add({ title: 'Error', description: 'Failed to get unit', color: 'error' });
+      toast.add({
+        title: 'Error',
+        description: 'Failed to get unit',
+        color: 'error',
+      });
       return;
     } else {
-      const { data: updatedUnit, errors } = await client.models.Unit.update({ id: unit.id, name: unit.name, icon: unit.icon, description: unit.description });
+      const { errors } = await client.models.Unit.update({
+        id: unit.id,
+        name: unit.name,
+        icon: unit.icon,
+        description: unit.description,
+      });
       if (errors) {
         console.error(errors);
-        toast.add({ title: 'Error', description: 'Failed to update unit', color: 'error' });
+        toast.add({
+          title: 'Error',
+          description: 'Failed to update unit',
+          color: 'error',
+        });
         return;
       } else {
-        toast.add({ title: 'Success', description: 'Unit updated successfully', color: 'success' });
+        toast.add({
+          title: 'Success',
+          description: 'Unit updated successfully',
+          color: 'success',
+        });
         unit.isWaiting = false;
       }
     }
   } else {
     const newUnit = {
       name: unit.name,
-      description: unit.description
+      description: unit.description,
     } as DynamicUnit;
     if (unit.icon) {
       newUnit.icon = unit.icon;
     }
-    const { data: updatedUnit, errors } = await client.models.Unit.create(newUnit);
+    const { errors } = await client.models.Unit.create(newUnit);
     if (errors) {
       console.error(errors);
-      toast.add({ title: 'Error', description: 'Failed to add unit', color: 'error' });
+      toast.add({
+        title: 'Error',
+        description: 'Failed to add unit',
+        color: 'error',
+      });
       return;
     } else {
-      toast.add({ title: 'Success', description: 'Unit added successfully', color: 'success' });
+      toast.add({
+        title: 'Success',
+        description: 'Unit added successfully',
+        color: 'success',
+      });
       unit.isWaiting = false;
-      // unit = updatedUnit as DynamicUnit;
     }
   }
 };
@@ -207,7 +274,9 @@ const save = async (unit: DynamicUnit) => {
 const cancelEditing = async (unit: DynamicUnit) => {
   unit.isWaiting = true;
   if (unit.id) {
-    const { data: existingUnit, errors } = await client.models.Unit.get({ id: unit.id });
+    const { data: existingUnit } = await client.models.Unit.get({
+      id: unit.id,
+    });
     if (existingUnit) {
       unit.name = existingUnit.name as string;
       unit.icon = existingUnit.icon as string;
@@ -224,9 +293,17 @@ const deleteUnit = async (unit: DynamicUnit) => {
     const { errors } = await client.models.Unit.delete({ id: unit.id });
     if (errors) {
       console.error(errors);
-      toast.add({ title: 'Error', description: 'Failed to delete unit', color: 'error' });
+      toast.add({
+        title: 'Error',
+        description: 'Failed to delete unit',
+        color: 'error',
+      });
     } else {
-      toast.add({ title: 'Success', description: 'Unit deleted successfully', color: 'success' });
+      toast.add({
+        title: 'Success',
+        description: 'Unit deleted successfully',
+        color: 'success',
+      });
     }
   }
 };
@@ -234,18 +311,22 @@ const deleteUnit = async (unit: DynamicUnit) => {
 const createUnit = async (unitData: DynamicUnit) => {
   let existingUnitIndex = -1;
   if (unitData.id) {
-    console.log('unitData.id exists:', unitData.id);
-    existingUnitIndex = units.value.findIndex((unit) => unit.id === unitData.id);
+    console.warn('unitData.id exists:', unitData.id);
+    existingUnitIndex = units.value.findIndex(
+      (unit) => unit.id === unitData.id,
+    );
   }
   if (unitData.id && existingUnitIndex !== -1) {
-    console.log('existingUnitIndex exists:', existingUnitIndex);
+    console.warn('existingUnitIndex exists:', existingUnitIndex);
     units.value[existingUnitIndex] = unitData;
     // units.value.push(unitData);
   } else {
-    console.log('unitData.id and existingUnitIndex does not exist, creating temp unit');
+    console.warn(
+      'unitData.id and existingUnitIndex does not exist, creating temp unit',
+    );
     const newUnit = {
       name: unitData.name,
-      description: unitData.description
+      description: unitData.description,
     };
     let tempUnit = ref({
       ...newUnit,
@@ -253,20 +334,29 @@ const createUnit = async (unitData: DynamicUnit) => {
       isWaiting: true,
       waitsOn: {
         name: true,
-        description: true
-      }
+        description: true,
+      },
     } as DynamicUnit);
     units.value.push(tempUnit.value);
-    console.log('units before create:', JSON.stringify(units.value));
-    const { data: updatedUnit, errors } = await client.models.Unit.create(newUnit);
+    console.warn('units before create:', JSON.stringify(units.value));
+    const { data: updatedUnit, errors } =
+      await client.models.Unit.create(newUnit);
     if (errors) {
       console.error(errors);
-      toast.add({ title: 'Error', description: 'Failed to add unit', color: 'error' });
+      toast.add({
+        title: 'Error',
+        description: 'Failed to add unit',
+        color: 'error',
+      });
       return;
     } else {
-      toast.add({ title: 'Success', description: 'Unit added successfully', color: 'success' });
+      toast.add({
+        title: 'Success',
+        description: 'Unit added successfully',
+        color: 'success',
+      });
       tempUnit.value = updatedUnit as DynamicUnit;
-      console.log('units after create:', JSON.stringify(units.value));
+      console.warn('units after create:', JSON.stringify(units.value));
     }
   }
 };

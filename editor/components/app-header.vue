@@ -1,7 +1,10 @@
 <template>
   <section class="flex items-center">
-    <UIcon class="block w-[2.5rem] h-[2.5rem] mx-3 text-(--ui-primary)"
-      name="game-icons-tree-beehive" @click="toggleDarkTheme" />
+    <UIcon
+      class="block w-[2.5rem] h-[2.5rem] mx-3 text-(--ui-primary)"
+      name="game-icons-tree-beehive"
+      @click="toggleDarkTheme"
+    />
     <UNavigationMenu class="w-auto" :items="links" />
     <div class="flex grow"></div>
     <p>{{ user.signInDetails?.loginId }}</p>
@@ -37,7 +40,7 @@ const links = [
 
 const user = await getCurrentUser();
 
-const userPreferredTheme: CookieRef<'light' | 'dark' | 'unset'> = useCookie(
+const userPreferredTheme = useCookie<'light' | 'dark' | 'unset'>(
   'userPreferredTheme',
   {
     default: () => 'unset',

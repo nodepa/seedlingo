@@ -3,28 +3,55 @@
     <UCard>
       <template #header>
         <div class="flex items-center gap-4">
-          <UButton icon="lucide:arrow-left" color="neutral" variant="ghost"
-            to="/units" />
-          <UInput v-if="unit != undefined" type="text" variant="ghost"
+          <UButton
+            icon="lucide:arrow-left"
+            color="neutral"
+            variant="ghost"
+            to="/units"
+          />
+          <UInput
+            v-if="unit != undefined"
+            v-model="unit.name"
+            type="text"
+            variant="ghost"
             class="-mx-2 rounded-md *:focus:outline-solid *:focus:outline-(--ui-primary)"
+            :loading="unit.waitsOn?.name"
+            trailing
             @blur="() => commit('name')"
-            @keydown="($event: KeyboardEvent) => $event.key === 'Enter' && commit('name')"
-            :loading="unit.waitsOn?.name" trailing v-model="unit.name" />
+            @keydown="
+              ($event: KeyboardEvent) =>
+                $event.key === 'Enter' && commit('name')
+            "
+          />
         </div>
       </template>
 
       <div v-if="unit" class="flex flex-col gap-6">
         <div class="flex gap-6 flex-wrap">
-          <UIcon :name="unit.icon || 'noto-unknown-flag'"
-            class="p-0 m-0 w-[8rem] h-[8rem] block" />
+          <UIcon
+            :name="unit.icon || 'noto-unknown-flag'"
+            class="p-0 m-0 w-[8rem] h-[8rem] block"
+          />
           <div class="flex-1 min-w-xs">
-            <UTextarea type="text" variant="ghost"
-              class="w-full text-start rounded-md -mx-2 *:focus:outline-solid *:focus:outline-(--ui-primary)"
-              autoresize :rows="1" :maxrows="8" @blur="() => commit('description')"
-              @keydown="($event: KeyboardEvent) => $event.ctrlKey && $event.key === 'Enter' && commit('description')"
-              :loading="unit.waitsOn?.description" trailing
+            <UTextarea
               v-model="unit.description"
-              placeholder="Unit description (optional)" />
+              type="text"
+              variant="ghost"
+              class="w-full text-start rounded-md -mx-2 *:focus:outline-solid *:focus:outline-(--ui-primary)"
+              autoresize
+              :rows="1"
+              :maxrows="8"
+              :loading="unit.waitsOn?.description"
+              trailing
+              placeholder="Unit description (optional)"
+              @blur="() => commit('description')"
+              @keydown="
+                ($event: KeyboardEvent) =>
+                  $event.ctrlKey &&
+                  $event.key === 'Enter' &&
+                  commit('description')
+              "
+            />
           </div>
         </div>
 
@@ -32,21 +59,35 @@
 
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl font-semibold text-(--ui-primary)">Words in this unit</h2>
+            <h2 class="text-xl font-semibold text-(--ui-primary)">
+              Words in this unit
+            </h2>
             <div class="flex gap-2">
-              <UButton icon="lucide:link" color="neutral" size="sm"
-                @click="showAssignModal = true">
+              <UButton
+                icon="lucide:link"
+                color="neutral"
+                size="sm"
+                @click="showAssignModal = true"
+              >
                 Assign existing word
               </UButton>
-              <UButton icon="lucide:plus" color="primary" size="sm"
-                @click="showAddWordModal = true">
+              <UButton
+                icon="lucide:plus"
+                color="primary"
+                size="sm"
+                @click="showAddWordModal = true"
+              >
                 Add new word
               </UButton>
             </div>
           </div>
 
-          <UTable v-if="unitWords.length > 0" :data="unitWords" :columns="wordColumns"
-            :sorting="wordSorting">
+          <UTable
+            v-if="unitWords.length > 0"
+            :data="unitWords"
+            :columns="wordColumns"
+            :sorting="wordSorting"
+          >
             <template #word-cell="{ row }">
               <span class="font-bold text-lg">{{ row.original.word }}</span>
               <p v-if="row.original.description" class="text-sm text-gray-500">
@@ -54,9 +95,14 @@
               </p>
             </template>
             <template #actions-cell="{ row }">
-              <UButton icon="lucide:unlink" color="warning" variant="ghost" size="sm"
+              <UButton
+                icon="lucide:unlink"
+                color="warning"
+                variant="ghost"
+                size="sm"
                 :loading="row.original.isWaiting"
-                @click="removeWordFromUnit(row.original)">
+                @click="removeWordFromUnit(row.original)"
+              >
                 Remove
               </UButton>
             </template>
@@ -69,36 +115,74 @@
 
       <template #footer>
         <p class="text-sm text-gray-500">Unit id: {{ id }}</p>
-        <p class="text-sm text-gray-500">Created at: {{ unit?.createdAt ? new
-          Date(unit.createdAt).toLocaleString() : 'missing' }}</p>
-        <p class="text-sm text-gray-500">Updated at: {{ unit?.updatedAt ? new
-          Date(unit.updatedAt).toLocaleString() : 'missing' }}</p>
+        <p class="text-sm text-gray-500">
+          Created at:
+          {{
+            unit?.createdAt
+              ? new Date(unit.createdAt).toLocaleString()
+              : 'missing'
+          }}
+        </p>
+        <p class="text-sm text-gray-500">
+          Updated at:
+          {{
+            unit?.updatedAt
+              ? new Date(unit.updatedAt).toLocaleString()
+              : 'missing'
+          }}
+        </p>
       </template>
     </UCard>
 
     <!-- Add new word modal -->
-    <UModal v-model:open="showAddWordModal" title="Add new word to unit"
-      description="Create a new word and assign it to this unit">
+    <UModal
+      v-model:open="showAddWordModal"
+      title="Add new word to unit"
+      description="Create a new word and assign it to this unit"
+    >
       <template #body>
-        <UForm :schema="WordValidationSchema" :state="newWordState" @submit="addNewWord">
+        <UForm
+          :schema="WordValidationSchema"
+          :state="newWordState"
+          @submit="addNewWord"
+        >
           <UFormField label="Word" required name="word" hint="required">
             <UInput v-model="newWordState.word" />
           </UFormField>
           <UFormField label="Description" name="description" hint="optional">
-            <UTextarea v-model="newWordState.description" :autoresize="true" :maxrows="8"
-              class="mb-4 w-full" />
+            <UTextarea
+              v-model="newWordState.description"
+              :autoresize="true"
+              :maxrows="8"
+              class="mb-4 w-full"
+            />
           </UFormField>
-          <UFormField label="Is punctuation?" name="isPunctuation" hint="optional">
-            <USwitch v-model="newWordState.isPunctuation" color="primary" size="md"
-              class="h-14" />
+          <UFormField
+            label="Is punctuation?"
+            name="isPunctuation"
+            hint="optional"
+          >
+            <USwitch
+              v-model="newWordState.isPunctuation"
+              color="primary"
+              size="md"
+              class="h-14"
+            />
           </UFormField>
           <div class="flex justify-end space-x-2">
-            <UButton type="submit" icon="lucide:plus" color="primary"
-              :loading="isAddingWord">
+            <UButton
+              type="submit"
+              icon="lucide:plus"
+              color="primary"
+              :loading="isAddingWord"
+            >
               Add word
             </UButton>
-            <UButton icon="lucide:rotate-ccw" color="neutral"
-              @click="showAddWordModal = false">
+            <UButton
+              icon="lucide:rotate-ccw"
+              color="neutral"
+              @click="showAddWordModal = false"
+            >
               Cancel
             </UButton>
           </div>
@@ -107,28 +191,45 @@
     </UModal>
 
     <!-- Assign existing word modal -->
-    <UModal v-model:open="showAssignModal" title="Assign word to unit"
-      description="Select an existing word to assign to this unit">
+    <UModal
+      v-model:open="showAssignModal"
+      title="Assign word to unit"
+      description="Select an existing word to assign to this unit"
+    >
       <template #body>
         <div class="flex flex-col gap-4">
-          <UInput v-model="wordSearch" placeholder="Search words..." icon="lucide:search" />
+          <UInput
+            v-model="wordSearch"
+            placeholder="Search words..."
+            icon="lucide:search"
+          />
           <div class="max-h-96 overflow-y-auto">
             <ul class="flex flex-col gap-2">
-              <li v-for="word in filteredUnassignedWords" :key="word.id"
-                class="flex items-center justify-between p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
+              <li
+                v-for="word in filteredUnassignedWords"
+                :key="word.id"
+                class="flex items-center justify-between p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
                 <div>
                   <span class="font-bold">{{ word.word }}</span>
                   <p v-if="word.description" class="text-sm text-gray-500">
                     {{ word.description }}
                   </p>
                 </div>
-                <UButton icon="lucide:link" color="primary" size="sm"
+                <UButton
+                  icon="lucide:link"
+                  color="primary"
+                  size="sm"
                   :loading="word.isWaiting"
-                  @click="assignWordToUnit(word)">
+                  @click="assignWordToUnit(word)"
+                >
                   Assign
                 </UButton>
               </li>
-              <li v-if="filteredUnassignedWords.length === 0" class="text-gray-500 text-sm">
+              <li
+                v-if="filteredUnassignedWords.length === 0"
+                class="text-gray-500 text-sm"
+              >
                 No unassigned words found.
               </li>
             </ul>
@@ -179,10 +280,11 @@ const filteredUnassignedWords = computed(() => {
   const query = wordSearch.value.toLowerCase();
   return allWords.value
     .filter((w) => !w.unitId)
-    .filter((w) =>
-      !query ||
-      (w.word && w.word.toLowerCase().includes(query)) ||
-      (w.description && w.description.toLowerCase().includes(query)),
+    .filter(
+      (w) =>
+        !query ||
+        (w.word && w.word.toLowerCase().includes(query)) ||
+        (w.description && w.description.toLowerCase().includes(query)),
     );
 });
 
@@ -248,9 +350,17 @@ const addNewWord = async (event: FormSubmitEvent<WordValidType>) => {
   isAddingWord.value = false;
   if (errors) {
     console.error(errors);
-    toast.add({ title: 'Error', description: 'Failed to add word', color: 'error' });
+    toast.add({
+      title: 'Error',
+      description: 'Failed to add word',
+      color: 'error',
+    });
   } else {
-    toast.add({ title: 'Success', description: 'Word added to unit', color: 'success' });
+    toast.add({
+      title: 'Success',
+      description: 'Word added to unit',
+      color: 'success',
+    });
     newWordState.word = '';
     newWordState.description = '';
     newWordState.isPunctuation = false;
@@ -260,13 +370,24 @@ const addNewWord = async (event: FormSubmitEvent<WordValidType>) => {
 
 const assignWordToUnit = async (word: DynamicWord) => {
   word.isWaiting = true;
-  const { errors } = await client.models.Word.update({ id: word.id, unitId: id });
+  const { errors } = await client.models.Word.update({
+    id: word.id,
+    unitId: id,
+  });
   word.isWaiting = false;
   if (errors) {
     console.error(errors);
-    toast.add({ title: 'Error', description: 'Failed to assign word to unit', color: 'error' });
+    toast.add({
+      title: 'Error',
+      description: 'Failed to assign word to unit',
+      color: 'error',
+    });
   } else {
-    toast.add({ title: 'Success', description: 'Word assigned to unit', color: 'success' });
+    toast.add({
+      title: 'Success',
+      description: 'Word assigned to unit',
+      color: 'success',
+    });
     showAssignModal.value = false;
     wordSearch.value = '';
   }
@@ -274,13 +395,24 @@ const assignWordToUnit = async (word: DynamicWord) => {
 
 const removeWordFromUnit = async (word: DynamicWord) => {
   word.isWaiting = true;
-  const { errors } = await client.models.Word.update({ id: word.id, unitId: null });
+  const { errors } = await client.models.Word.update({
+    id: word.id,
+    unitId: null,
+  });
   word.isWaiting = false;
   if (errors) {
     console.error(errors);
-    toast.add({ title: 'Error', description: 'Failed to remove word from unit', color: 'error' });
+    toast.add({
+      title: 'Error',
+      description: 'Failed to remove word from unit',
+      color: 'error',
+    });
   } else {
-    toast.add({ title: 'Success', description: 'Word removed from unit', color: 'success' });
+    toast.add({
+      title: 'Success',
+      description: 'Word removed from unit',
+      color: 'success',
+    });
   }
 };
 </script>

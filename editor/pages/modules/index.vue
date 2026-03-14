@@ -21,57 +21,101 @@
             </div>
           </UCard>
         </li>
-        <li v-for="module in modules" :key="'module-id-' + module.id"
-          class="flex w-xs">
+        <li
+          v-for="module in modules"
+          :key="'module-id-' + module.id"
+          class="flex w-xs"
+        >
           <UCard class="w-full grid">
             <div v-if="!module.inEditMode" class="h-full flex flex-col">
               <p class="text-xl">{{ module.name }}</p>
-              <UIcon :name="module.icon || 'noto-unknown-flag'"
-                class="w-[10rem] h-[10rem] block" />
+              <UIcon
+                :name="module.icon || 'noto-unknown-flag'"
+                class="w-[10rem] h-[10rem] block"
+              />
               <p class="mb-4">{{ module.description }}</p>
               <div class="flex-1"></div>
               <div class="flex justify-center gap-2">
-                <UButton v-if="!module.inEditMode" color="primary"
-                  icon="lucide:eye" :to="'modules/' + module.id">
+                <UButton
+                  v-if="!module.inEditMode"
+                  color="primary"
+                  icon="lucide:eye"
+                  :to="'modules/' + module.id"
+                >
                   View
                 </UButton>
-                <UButton v-if="!module.inEditMode" color="neutral"
-                  icon="lucide:edit" @click="module.inEditMode = true">
+                <UButton
+                  v-if="!module.inEditMode"
+                  color="neutral"
+                  icon="lucide:edit"
+                  @click="module.inEditMode = true"
+                >
                   Edit
                 </UButton>
               </div>
             </div>
             <div v-else class="h-full">
-              <UForm :schema="ModuleSchema" :state="module"
-                @submit="save(module)" class="h-full flex flex-col">
+              <UForm
+                :schema="ModuleSchema"
+                :state="module"
+                class="h-full flex flex-col"
+                @submit="save(module)"
+              >
                 <UFormField label="Name" name="name" hint="required">
-                  <UInput v-model="module.name as string"
+                  <UInput
+                    v-model="module.name as string"
                     :disabled="module.isWaiting"
-                    class="text-xl :invalid:border-blue" />
+                    class="text-xl :invalid:border-blue"
+                  />
                 </UFormField>
-                <UFormField label="Icon" name="icon" hint='optional'
-                  class="my-4">
-                  <UInput v-model="module.icon as string"
-                    :disabled="module.isWaiting" />
+                <UFormField
+                  label="Icon"
+                  name="icon"
+                  hint="optional"
+                  class="my-4"
+                >
+                  <UInput
+                    v-model="module.icon as string"
+                    :disabled="module.isWaiting"
+                  />
                 </UFormField>
-                <UFormField label="Description" name="description"
-                  hint='optional'>
-                  <UTextarea v-model="module.description as string"
-                    :autoresize="true" :maxrows="8" :disabled="module.isWaiting"
-                    class="mb-4 w-full resize-none" />
+                <UFormField
+                  label="Description"
+                  name="description"
+                  hint="optional"
+                >
+                  <UTextarea
+                    v-model="module.description as string"
+                    :autoresize="true"
+                    :maxrows="8"
+                    :disabled="module.isWaiting"
+                    class="mb-4 w-full resize-none"
+                  />
                 </UFormField>
                 <div class="flex-1"></div>
                 <div class="flex justify-center gap-2">
-                  <UButton type='submit' color="primary" icon="lucide:save"
-                    :disabled="module.isWaiting">
+                  <UButton
+                    type="submit"
+                    color="primary"
+                    icon="lucide:save"
+                    :disabled="module.isWaiting"
+                  >
                     Save
                   </UButton>
-                  <UButton color="neutral" @click="cancelEditing(module)"
-                    icon="lucide:rotate-ccw" :disabled="module.isWaiting">
+                  <UButton
+                    color="neutral"
+                    icon="lucide:rotate-ccw"
+                    :disabled="module.isWaiting"
+                    @click="cancelEditing(module)"
+                  >
                     Cancel
                   </UButton>
-                  <UButton color="warning" @click="deleteModule(module)"
-                    icon="lucide:trash-2" :disabled="module.isWaiting">
+                  <UButton
+                    color="warning"
+                    icon="lucide:trash-2"
+                    :disabled="module.isWaiting"
+                    @click="deleteModule(module)"
+                  >
                     Delete
                   </UButton>
                 </div>
@@ -92,15 +136,16 @@
                 <USkeleton class="mb-2 w-[17rem] h-5" />
                 <USkeleton class="mb-4 w-[13rem] h-5" />
               </div> -->
-              <ModuleForm isAddMode @updateModule="createModule" />
+              <ModuleForm is-add-mode @update-module="createModule" />
             </div>
           </UCard>
         </li>
       </ul>
 
       <template #footer>
-        <p class="text-center">Currently showing {{ modules.length }}
-          modules</p>
+        <p class="text-center">
+          Currently showing {{ modules.length }} modules
+        </p>
       </template>
     </UCard>
   </UContainer>
@@ -111,12 +156,14 @@ import type { Schema } from '~/amplify/data/resource';
 import { generateClient } from 'aws-amplify/data';
 import * as v from 'valibot';
 // import type { Subscription } from 'aws-cdk-lib/aws-sns';
-import type { Subscription } from 'rxjs'
+import type { Subscription } from 'rxjs';
 
 const toast = useToast();
 
 type Module = Schema['ContentSpec']['type'];
-type DynamicModule = Module & {
+type DynamicModule = Omit<Module, 'description' | 'icon'> & {
+  description?: string;
+  icon?: string;
   inEditMode?: boolean;
   isWaiting?: boolean;
 };
@@ -131,56 +178,89 @@ const modules = useState<Array<DynamicModule>>('modules', () => []);
 const client = generateClient<Schema>({ authMode: 'userPool' });
 watchEffect(() => {
   client.models.ContentSpec.observeQuery().subscribe({
-    next: ({ items, isSynced }) => {
-      modules.value = items;
+    next: ({ items }) => {
+      modules.value = items.map((item) => ({
+        ...item,
+        description: item.description ?? undefined,
+        icon: item.icon ?? undefined,
+      })) as DynamicModule[];
     },
     error: (error) => {
       console.error('Error observing modules:', error);
     },
   });
 });
-watch(() => modules.value, (mods) => {
-  console.log('modules:', mods);
-});
+watch(
+  () => modules.value,
+  (mods) => {
+    console.warn('modules:', mods);
+  },
+);
 
 const save = async (module: DynamicModule) => {
   module.isWaiting = true;
-  console.log('save > module:', module);
+  console.warn('save > module:', module);
   if (module.id) {
-    console.log('updating');
-    const { data: existingModule, errors } = await client.models.ContentSpec.get({ id: module.id });
+    console.warn('updating');
+    const { data: existingModule, errors } =
+      await client.models.ContentSpec.get({ id: module.id });
     if (errors || !existingModule) {
       console.error(errors);
-      toast.add({ title: 'Error', description: 'Failed to get module', color: 'error' });
+      toast.add({
+        title: 'Error',
+        description: 'Failed to get module',
+        color: 'error',
+      });
       return;
     } else {
-      const { data: updatedModule, errors } = await client.models.ContentSpec.update({ id: module.id, name: module.name, icon: module.icon, description: module.description });
+      const { errors } = await client.models.ContentSpec.update({
+        id: module.id,
+        name: module.name,
+        icon: module.icon,
+        description: module.description,
+      });
       if (errors) {
         console.error(errors);
-        toast.add({ title: 'Error', description: 'Failed to update module', color: 'error' });
+        toast.add({
+          title: 'Error',
+          description: 'Failed to update module',
+          color: 'error',
+        });
         return;
       } else {
-        toast.add({ title: 'Success', description: 'Module updated successfully', color: 'success' });
+        toast.add({
+          title: 'Success',
+          description: 'Module updated successfully',
+          color: 'success',
+        });
         module.isWaiting = false;
       }
     }
   } else {
-    console.log('creating');
+    console.warn('creating');
     const newModule = {
       name: module.name,
-      description: module.description
+      description: module.description,
     } as Module;
     if (module.icon) {
       newModule.icon = module.icon;
     }
-    const { data: updatedModule, errors } = await client.models.ContentSpec.create(newModule);
+    const { errors } = await client.models.ContentSpec.create(newModule);
     module.isWaiting = false;
     if (errors) {
       console.error(errors);
-      toast.add({ title: 'Error', description: 'Failed to add module', color: 'error' });
+      toast.add({
+        title: 'Error',
+        description: 'Failed to add module',
+        color: 'error',
+      });
       return;
     } else {
-      toast.add({ title: 'Success', description: 'Module added successfully', color: 'success' });
+      toast.add({
+        title: 'Success',
+        description: 'Module added successfully',
+        color: 'success',
+      });
       module.isWaiting = false;
     }
   }
@@ -189,7 +269,9 @@ const save = async (module: DynamicModule) => {
 const cancelEditing = async (module: DynamicModule) => {
   module.isWaiting = true;
   if (module.id) {
-    const { data: existingModule, errors } = await client.models.ContentSpec.get({ id: module.id });
+    const { data: existingModule } = await client.models.ContentSpec.get({
+      id: module.id,
+    });
     if (existingModule) {
       module.name = existingModule.name as string;
       module.icon = existingModule.icon as string;
@@ -203,32 +285,50 @@ const cancelEditing = async (module: DynamicModule) => {
 const deleteModule = async (module: DynamicModule) => {
   module.isWaiting = true;
   if (module.id) {
-    const { errors } = await client.models.ContentSpec.delete({ id: module.id });
+    const { errors } = await client.models.ContentSpec.delete({
+      id: module.id,
+    });
     if (errors) {
       console.error(errors);
-      toast.add({ title: 'Error', description: 'Failed to delete module', color: 'error' });
+      toast.add({
+        title: 'Error',
+        description: 'Failed to delete module',
+        color: 'error',
+      });
     } else {
-      toast.add({ title: 'Success', description: 'Module deleted successfully', color: 'success' });
+      toast.add({
+        title: 'Success',
+        description: 'Module deleted successfully',
+        color: 'success',
+      });
     }
   }
 };
 
 const createModule = async (moduleData: DynamicModule) => {
-  console.log('createModule > moduleData:', moduleData);
+  console.warn('createModule > moduleData:', moduleData);
   if (moduleData.id) {
     modules.value.push(moduleData);
   } else {
     const newModule = {
       name: moduleData.name,
-      description: moduleData.description
+      description: moduleData.description,
     };
-    const { data: updatedModule, errors } = await client.models.ContentSpec.create(newModule);
+    const { errors } = await client.models.ContentSpec.create(newModule);
     if (errors) {
       console.error(errors);
-      toast.add({ title: 'Error', description: 'Failed to add module', color: 'error' });
+      toast.add({
+        title: 'Error',
+        description: 'Failed to add module',
+        color: 'error',
+      });
       return;
     } else {
-      toast.add({ title: 'Success', description: 'Module added successfully', color: 'success' });
+      toast.add({
+        title: 'Success',
+        description: 'Module added successfully',
+        color: 'success',
+      });
     }
   }
 };
@@ -236,18 +336,18 @@ const createModule = async (moduleData: DynamicModule) => {
 let createSub: Subscription, updateSub: Subscription, deleteSub: Subscription;
 onBeforeMount(() => {
   createSub = client.models.ContentSpec.onCreate().subscribe({
-    next: (data) => console.log('db-reports-created:', data),
+    next: (data) => console.warn('db-reports-created:', data),
     error: (error) => console.warn(error),
   });
   updateSub = client.models.ContentSpec.onUpdate().subscribe({
-    next: (data) => console.log('db-reports-updated:', data),
+    next: (data) => console.warn('db-reports-updated:', data),
     error: (error) => console.warn(error),
   });
   deleteSub = client.models.ContentSpec.onDelete().subscribe({
-    next: (data) => console.log('db-reports-deleted:', data),
+    next: (data) => console.warn('db-reports-deleted:', data),
     error: (error) => console.warn(error),
   });
-})
+});
 
 onBeforeUnmount(() => {
   createSub.unsubscribe();

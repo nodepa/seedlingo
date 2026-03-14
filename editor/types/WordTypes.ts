@@ -8,9 +8,19 @@ export type WordWritable = Exclude<
   keyof WordSchema,
   'id' | 'createdAt' | 'updatedAt' | 'wordList' | 'wordTags'
 >;
-export type TagWritable = Exclude<keyof TagSchema, 'id' | 'createdAt' | 'updatedAt' | 'wordTags'>;
+export type TagWritable = Exclude<
+  keyof TagSchema,
+  'id' | 'createdAt' | 'updatedAt' | 'wordTags'
+>;
 
-export type DynamicWord = WordSchema & {
+export type DynamicWord = Omit<
+  WordSchema,
+  'description' | 'audio' | 'picture' | 'isPunctuation'
+> & {
+  description?: string;
+  audio?: string;
+  picture?: string;
+  isPunctuation?: boolean;
   inEditMode?: boolean;
   isWaiting?: boolean;
   waitsOn: { [Property in WordWritable]?: boolean };

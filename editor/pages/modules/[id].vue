@@ -6,12 +6,28 @@
     <p>
       {{ module?.description }}
     </p>
-    <UIcon :name="module?.icon || 'noto-unknown-flag'"
-      class="p-0 m-0 w-[10rem] h-[10rem] block" />
+    <UIcon
+      :name="module?.icon || 'noto-unknown-flag'"
+      class="p-0 m-0 w-[10rem] h-[10rem] block"
+    />
     <template #footer>
       <p>Module id: {{ id }}</p>
-      <p>Created at: {{ module?.createdAt ? new Date(module.createdAt).toLocaleString() : 'missing' }}</p>
-      <p>Updated at: {{ module?.updatedAt ? new Date(module.updatedAt).toLocaleString() : 'missing' }}</p>
+      <p>
+        Created at:
+        {{
+          module?.createdAt
+            ? new Date(module.createdAt).toLocaleString()
+            : 'missing'
+        }}
+      </p>
+      <p>
+        Updated at:
+        {{
+          module?.updatedAt
+            ? new Date(module.updatedAt).toLocaleString()
+            : 'missing'
+        }}
+      </p>
     </template>
   </UCard>
 </template>
