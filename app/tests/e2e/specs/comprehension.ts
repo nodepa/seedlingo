@@ -9,6 +9,9 @@ describe('马丽 interacts with the "text comprehension" system', () => {
   beforeEach(() => {
     // Avoid dealing with "instructions explainer" side effects.
     localStorage.setItem('InstructionsExplainerShownCount', '5');
+    // Suppress AbortError thrown when audio.play() is interrupted by pause()
+    // (e.g. when the user selects an option while another audio is still playing).
+    cy.on('uncaught:exception', (err) => err.name !== 'AbortError');
   });
 
   it(
@@ -30,14 +33,12 @@ describe('马丽 interacts with the "text comprehension" system', () => {
             'animation.animate',
           );
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
-            return {
-              matches: false,
-              addEventListener() {
-                /**/
-              },
-            };
-          });
+          cy.stub(window, 'matchMedia').callsFake(() => ({
+            matches: false,
+            addEventListener() {
+              /**/
+            },
+          }));
         },
       });
       cy.get(loader).should('not.be.visible');
@@ -72,14 +73,12 @@ describe('马丽 interacts with the "text comprehension" system', () => {
             'animation.animate',
           );
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
-            return {
-              matches: false,
-              addEventListener() {
-                /**/
-              },
-            };
-          });
+          cy.stub(window, 'matchMedia').callsFake(() => ({
+            matches: false,
+            addEventListener() {
+              /**/
+            },
+          }));
         },
       });
       cy.get(loader).should('not.be.visible');
@@ -129,14 +128,12 @@ describe('马丽 interacts with the "text comprehension" system', () => {
             'animation.animate',
           );
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
-            return {
-              matches: false,
-              addEventListener() {
-                /**/
-              },
-            };
-          });
+          cy.stub(window, 'matchMedia').callsFake(() => ({
+            matches: false,
+            addEventListener() {
+              /**/
+            },
+          }));
         },
       });
       cy.get(loader).should('not.be.visible');
@@ -177,14 +174,12 @@ describe('马丽 interacts with the "text comprehension" system', () => {
             'animation.animate',
           );
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
-            return {
-              matches: false,
-              addEventListener() {
-                /**/
-              },
-            };
-          });
+          cy.stub(window, 'matchMedia').callsFake(() => ({
+            matches: false,
+            addEventListener() {
+              /**/
+            },
+          }));
         },
       });
       cy.get(loader).should('not.be.visible');
