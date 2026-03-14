@@ -15,7 +15,7 @@ describe('马丽 interacts with the "instructions" system', () => {
         onBeforeLoad(window) {
           cy.spy(window.HTMLMediaElement.prototype, 'play').as('audio.play');
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
+          cy.stub(window, 'matchMedia').callsFake(() => {
             return {
               matches: false,
               addEventListener() {

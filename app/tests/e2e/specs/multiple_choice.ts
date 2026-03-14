@@ -30,7 +30,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
             'animation.animate',
           );
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
+          cy.stub(window, 'matchMedia').callsFake(() => {
             return {
               matches: false,
               addEventListener() {
@@ -159,7 +159,7 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
             'animation.animate',
           );
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
+          cy.stub(window, 'matchMedia').callsFake(() => {
             return {
               matches: false,
               addEventListener() {
