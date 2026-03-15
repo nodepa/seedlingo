@@ -14,7 +14,9 @@ export default class AudioProvider {
       playing: false,
       play() {
         el.currentTime = 0;
-        el.play();
+        el.play().catch(() => {
+          // Silently ignore AbortError when play() is interrupted by pause()
+        });
       },
       cancel() {
         el.pause();

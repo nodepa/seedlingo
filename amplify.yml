@@ -28,7 +28,7 @@ applications:
             - npm install
         test:
           commands:
-            - npm run test:unit
+            - npm run test:unit:ci
             - npm run test:e2e:ci
         postTest:
           commands:

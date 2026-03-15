@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { IonPage, useIonRouter } from '@ionic/vue';
-import { onMounted, ref, shallowRef, watch } from 'vue';
+import { ref, shallowRef, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import ClozeExercise from '@/Cloze/components/ClozeExercise.vue';
@@ -131,5 +131,6 @@ function getExercise(): void {
   ExerciseProvider.pickRandomExerciseType = restoreAfterMock;
 }
 
-onMounted(() => getExercise());
+watch(() => route.params, getExercise, { immediate: true });
+
 </script>

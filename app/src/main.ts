@@ -41,11 +41,17 @@ app.use(
 );
 
 if (import.meta.env.PROD) {
+  // Make sure the splash screen is displayed for at least a minimum delay,
+  // but expect general loading times, too,
+  // which should count towards the total splash display time
   const timeSinceNavStart =
     Date.now() - (performance?.timing?.navigationStart || Infinity);
   const minDelay = 2000;
   const delayMountAmount = Math.max(minDelay - timeSinceNavStart, 0);
-  setTimeout(() => app.mount('#app'), delayMountAmount);
+  const splashDelay = new Promise<void>((resolve) =>
+    setTimeout(resolve, delayMountAmount),
+  );
+  Promise.all([router.isReady(), splashDelay]).then(() => app.mount('#app'));
 } else {
   router.isReady().then(() => app.mount('#app'));
 }

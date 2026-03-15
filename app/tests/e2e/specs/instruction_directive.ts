@@ -5,6 +5,12 @@ describe('马丽 interacts with the "instructions" system', () => {
   const homeButton = '[data-test="home-button"]';
   const toggleInstructionsButton = '[data-test="toggle-instructions-button"]';
 
+  beforeEach(() => {
+    // Suppress AbortError thrown when audio.play() is interrupted by pause()
+    // (e.g. when instructions audio is playing and the user clicks the toggle button).
+    cy.on('uncaught:exception', (err) => err.name !== 'AbortError');
+  });
+
   it(
     'Displays the instructions mode with audio elements,' +
       'overlay and background shading',
