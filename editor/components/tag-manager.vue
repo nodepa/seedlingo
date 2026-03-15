@@ -1,5 +1,5 @@
 <template>
-  <div class="px-4 py-3 border-b border-(--ui-border)">
+  <div class="px-4 py-3 border-b border-default">
     <div class="flex items-center gap-2 mb-2">
       <UButton
         :icon="isExpanded ? 'lucide:chevron-down' : 'lucide:chevron-right'"
@@ -8,9 +8,7 @@
         size="xs"
         @click="isExpanded = !isExpanded"
       />
-      <span class="text-sm font-semibold text-(--ui-text-muted)"
-        >Manage Tags</span
-      >
+      <span class="text-sm font-semibold text-muted">Manage Tags</span>
       <UBadge
         v-if="tagsState.length > 0"
         :label="String(tagsState.length)"
@@ -21,14 +19,9 @@
     </div>
 
     <div v-if="isExpanded" class="space-y-2">
-      <p
-        v-if="!tagModelAvailable"
-        class="text-sm text-(--ui-text-muted) italic"
-      >
+      <p v-if="!tagModelAvailable" class="text-sm text-muted italic">
         Tag features require a backend deployment. Run
-        <code class="font-mono bg-(--ui-bg-elevated) px-1 rounded"
-          >npx ampx sandbox</code
-        >
+        <code class="font-mono bg-elevated px-1 rounded">npx ampx sandbox</code>
         to enable.
       </p>
       <template v-else>
@@ -36,7 +29,7 @@
           <li
             v-for="tag in tagsState"
             :key="tag.id"
-            class="flex items-center gap-1 bg-(--ui-bg-elevated) rounded-full px-3 py-1"
+            class="flex items-center gap-1 bg-elevated rounded-full px-3 py-1"
           >
             <UInput
               v-if="tag.inEditMode"
@@ -63,7 +56,7 @@
               color="neutral"
               variant="ghost"
               size="xs"
-              class="opacity-60 hover:opacity-100 hover:text-(--ui-error)"
+              class="opacity-60 hover:opacity-100 hover:text-error"
               :loading="tag.isWaiting"
               @click="() => deleteTag(tag)"
             />

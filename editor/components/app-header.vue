@@ -1,7 +1,7 @@
 <template>
   <section class="flex items-center">
     <UIcon
-      class="block w-[2.5rem] h-[2.5rem] mx-3 text-(--ui-primary)"
+      class="block w-10 h-10 mx-3 text-primary"
       name="game-icons-tree-beehive"
       @click="toggleDarkTheme"
     />

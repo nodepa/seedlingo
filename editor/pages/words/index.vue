@@ -2,7 +2,7 @@
   <UContainer>
     <UCard :ui="{ body: 'sm:p-0' }">
       <template #header>
-        <h1 class="text-2xl text-(--ui-primary)">Words</h1>
+        <h1 class="text-2xl text-primary">Words</h1>
       </template>
 
       <TagManager />
@@ -10,11 +10,9 @@
       <!-- Tag filter bar -->
       <div
         v-if="tagsState.length > 0"
-        class="px-4 py-2 flex flex-wrap gap-2 items-center border-b border-(--ui-border)"
+        class="px-4 py-2 flex flex-wrap gap-2 items-center border-b border-default"
       >
-        <span class="text-sm text-(--ui-text-muted) shrink-0"
-          >Filter by tag:</span
-        >
+        <span class="text-sm text-muted shrink-0">Filter by tag:</span>
         <UBadge
           v-for="tag in tagsState"
           :key="tag.id"
@@ -54,7 +52,7 @@
               v-model="row.original.word"
               type="text"
               variant="ghost"
-              class="w-full min-w-40 -mx-2 !text-lg !font-bold rounded-md *:focus:outline-solid *:focus:outline-(--ui-primary)"
+              class="w-full min-w-40 -mx-2 text-lg! font-bold! rounded-md *:focus:outline-solid *:focus:outline-primary"
               :loading="row.original.waitsOn?.word"
               trailing
               @blur="() => commitCell(row, 'word')"
@@ -67,7 +65,7 @@
               v-model="row.original.description"
               type="text"
               variant="ghost"
-              class="w-full text-start rounded-md -mx-2 *:focus:outline-solid *:focus:outline-(--ui-primary)"
+              class="w-full text-start rounded-md -mx-2 *:focus:outline-solid *:focus:outline-primary"
               autoresize
               :rows="1"
               :maxrows="3"
@@ -100,7 +98,7 @@
                 v-if="row.original.picture"
                 icon="lucide:trash-2"
                 color="neutral"
-                class="absolute z-12 bottom-0.5 right-0.5 rounded-full opacity-60 hover:bg-(--ui-primary) hover:opacity-100"
+                class="absolute z-12 bottom-0.5 right-0.5 rounded-full opacity-60 hover:bg-primary hover:opacity-100"
                 @click.stop="row.original.picture = ''"
               >
               </UButton>
@@ -127,7 +125,7 @@
               <UIcon
                 name="lucide:audio-lines"
                 color="primary"
-                class="w-40 h-18 text-(--ui-primary) hover:cursor-pointer"
+                class="w-40 h-18 text-primary hover:cursor-pointer"
               />
               <audio
                 controls
@@ -141,7 +139,7 @@
               <UButton
                 icon="lucide:trash-2"
                 color="neutral"
-                class="absolute z-12 bottom-10.5 right-0.5 rounded-full opacity-60 hover:bg-(--ui-primary) hover:opacity-100"
+                class="absolute z-12 bottom-10.5 right-0.5 rounded-full opacity-60 hover:bg-primary hover:opacity-100"
                 @click.stop="row.original.audio = ''"
               >
               </UButton>
@@ -199,13 +197,10 @@
                   <button
                     v-for="tag in availableTagsForWord(row.original.id)"
                     :key="tag.id"
-                    class="flex items-center gap-2 w-full px-2 py-1.5 rounded text-sm hover:bg-(--ui-bg-elevated) cursor-pointer text-left"
+                    class="flex items-center gap-2 w-full px-2 py-1.5 rounded text-sm hover:bg-elevated cursor-pointer text-left"
                     @click="addTagToWord(row.original.id, tag.id)"
                   >
-                    <UIcon
-                      name="lucide:tag"
-                      class="size-3.5 text-(--ui-text-muted)"
-                    />
+                    <UIcon name="lucide:tag" class="size-3.5 text-muted" />
                     {{ tag.name }}
                   </button>
                 </div>

@@ -2,22 +2,22 @@
   <UContainer>
     <UCard>
       <template #header>
-        <h1 class="text-2xl text-(--ui-primary)">Units</h1>
+        <h1 class="text-2xl text-primary">Units</h1>
       </template>
 
       <ul class="flex flex-wrap gap-4">
         <li v-if="!units || units.length === 0" class="flex w-xs">
           <UCard class="w-full">
             <div>
-              <USkeleton class="mb-4 w-[10rem] h-8" />
+              <USkeleton class="mb-4 w-40 h-8" />
             </div>
             <div>
-              <USkeleton class="mb-4 w-[8rem] h-[8rem]" />
+              <USkeleton class="mb-4 w-32 h-32" />
             </div>
             <div>
-              <USkeleton class="mb-2 w-[10rem] h-6" />
-              <USkeleton class="mb-2 w-[14rem] h-6" />
-              <USkeleton class="mb-2 w-[12rem] h-6" />
+              <USkeleton class="mb-2 w-40 h-6" />
+              <USkeleton class="mb-2 w-56 h-6" />
+              <USkeleton class="mb-2 w-48 h-6" />
             </div>
           </UCard>
         </li>
@@ -27,7 +27,7 @@
               <p class="text-xl">{{ unit.name }}</p>
               <UIcon
                 :name="unit.icon || 'noto-unknown-flag'"
-                class="w-[10rem] h-[10rem] block"
+                class="w-40 h-40 block"
               />
               <p class="mb-4">{{ unit.description }}</p>
               <p class="text-sm text-gray-500 mb-2">

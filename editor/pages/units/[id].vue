@@ -14,7 +14,7 @@
             v-model="unit.name"
             type="text"
             variant="ghost"
-            class="-mx-2 rounded-md *:focus:outline-solid *:focus:outline-(--ui-primary)"
+            class="-mx-2 rounded-md *:focus:outline-solid *:focus:outline-primary"
             :loading="unit.waitsOn?.name"
             trailing
             @blur="() => commit('name')"
@@ -30,14 +30,14 @@
         <div class="flex gap-6 flex-wrap">
           <UIcon
             :name="unit.icon || 'noto-unknown-flag'"
-            class="p-0 m-0 w-[8rem] h-[8rem] block"
+            class="p-0 m-0 w-32 h-32 block"
           />
           <div class="flex-1 min-w-xs">
             <UTextarea
               v-model="unit.description"
               type="text"
               variant="ghost"
-              class="w-full text-start rounded-md -mx-2 *:focus:outline-solid *:focus:outline-(--ui-primary)"
+              class="w-full text-start rounded-md -mx-2 *:focus:outline-solid *:focus:outline-primary"
               autoresize
               :rows="1"
               :maxrows="8"
@@ -59,7 +59,7 @@
 
         <div>
           <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl font-semibold text-(--ui-primary)">
+            <h2 class="text-xl font-semibold text-primary">
               Words in this unit
             </h2>
             <div class="flex gap-2">

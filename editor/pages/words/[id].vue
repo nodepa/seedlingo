@@ -8,7 +8,7 @@
     </p>
     <UIcon
       :name="word?.icon || 'noto-unknown-flag'"
-      class="p-0 m-0 w-[10rem] h-[10rem] block"
+      class="p-0 m-0 w-40 h-40 block"
     />
     <template #footer>
       <p>Word id: {{ id }}</p>

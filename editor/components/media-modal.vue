@@ -50,15 +50,15 @@
       </div> -->
 
       <div
-        class="my-6 p-2 flex flex-wrap justify-start items-start gap-2 overflow-scroll min-h-60 h-[40vh] bg-(--ui-bg-elevated) rounded-md"
+        class="my-6 p-2 flex flex-wrap justify-start items-start gap-2 overflow-scroll min-h-60 h-[40vh] bg-elevated rounded-md"
       >
         <!-- Media items -->
         <div
           v-for="(file, index) in library[mediaType]"
           :key="index"
-          class="relative flex flex-col justify-start bg-(--ui-bg) rounded-md hover:outline-4 hover:outline-(--ui-border-accented) hover:cursor-pointer"
+          class="relative flex flex-col justify-start bg-default rounded-md hover:outline-4 hover:outline-(--ui-border-accented) hover:cursor-pointer"
           :class="{
-            'outline-4 hover:outline-4 outline-(--ui-primary) hover:outline-(--ui-primary)':
+            'outline-4 hover:outline-4 outline-primary hover:outline-primary':
               locallySelected === file.name,
           }"
           @click="updateSelection(file.name)"
@@ -73,7 +73,7 @@
             <UButton
               icon="lucide:menu"
               color="neutral"
-              class="rounded-full opacity-60 hover:opacity-100 hover:bg-(--ui-primary)"
+              class="rounded-full opacity-60 hover:opacity-100 hover:bg-primary"
             />
           </UDropdownMenu>
 
@@ -82,7 +82,7 @@
             <!-- Progress overlay -->
             <div
               v-if="file.state.isLoading"
-              class="absolute inset-0 flex items-center justify-center bg-(--ui-bg-inverted) opacity-30 rounded-md z-10"
+              class="absolute inset-0 flex items-center justify-center bg-inverted opacity-30 rounded-md z-10"
             >
               <UProgress
                 v-model="file.state.progress"
@@ -96,7 +96,7 @@
             <!-- Error overlay -->
             <div
               v-if="file.state.error"
-              class="absolute inset-0 flex items-center justify-center bg-(--ui-error) opacity-50 rounded-md z-10"
+              class="absolute inset-0 flex items-center justify-center bg-error opacity-50 rounded-md z-10"
             >
               <UIcon name="lucide:alert-triangle" class="text-white text-xl" />
             </div>
@@ -116,7 +116,7 @@
               <UIcon
                 name="lucide:audio-lines"
                 color="primary"
-                class="w-40 h-26.5 text-(--ui-primary)"
+                class="w-40 h-26.5 text-primary"
               />
               <audio
                 controls
@@ -137,7 +137,7 @@
               </p>
               <p class="text-sm">{{ Math.round(file.size / 1024) }} kb</p>
             </div>
-            <p class="text-sm text-(--ui-text-muted)">
+            <p class="text-sm text-muted">
               {{
                 file.state.isLoading
                   ? 'Loading...'
