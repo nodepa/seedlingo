@@ -56,7 +56,7 @@
     "tuc": "npm run test:unit:coverage",
     "tud": "npm run test:unit:dev",
     "tuv": "npm run test:unit:verbose",
-    "test:unit": "vitest run --reporter dot",
+    "test:unit": "vitest run --reporter agent",
     "test:unit:coverage": "vitest run --reporter dot --coverage",
     "test:unit:dev": "vitest --reporter dot",
     "test:unit:verbose": "vitest --reporter verbose",
