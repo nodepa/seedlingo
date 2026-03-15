@@ -6,7 +6,6 @@
     close
     :ui="{ content: '!max-w-4xl' }"
   >
-    >
     <slot />
     <template #body>
       <FilePicker
