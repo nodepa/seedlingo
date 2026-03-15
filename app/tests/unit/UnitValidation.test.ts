@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeAll } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { existsSync } from 'fs';
 import type {
   Blank,
@@ -7,17 +7,15 @@ import type {
   WordRef,
 } from '@/common/types/ContentTypes';
 
-import Content from '@/Content/Content';
-
 // Ensure that *production* content is used (only) for unit validation
-beforeAll(() => {
-  vi.mock('@/Content/Content', async (importOriginal) => {
-    vi.stubEnv('MODE', 'production');
-    const Content = await importOriginal();
-    vi.unstubAllEnvs();
-    return Content;
-  });
+vi.mock('@/Content/Content', async (importOriginal) => {
+  vi.stubEnv('MODE', 'production');
+  const Content = await importOriginal();
+  vi.unstubAllEnvs();
+  return Content;
 });
+
+import Content from '@/Content/Content';
 
 describe('Integrity of JSON Unit data', () => {
   describe('Global integrity', () => {
