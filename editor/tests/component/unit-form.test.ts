@@ -43,7 +43,11 @@ describe('UnitForm', () => {
   });
 
   it('accepts unitData prop with id, name, and description', async () => {
-    const unitData = { id: 'unit-1', name: 'Lesson 1', description: 'Introduction' };
+    const unitData = {
+      id: 'unit-1',
+      name: 'Lesson 1',
+      description: 'Introduction',
+    };
     const wrapper = await mountSuspended(UnitForm, {
       props: { isAddMode: false, unitData },
     });

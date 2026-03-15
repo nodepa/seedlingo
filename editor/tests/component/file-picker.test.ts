@@ -88,6 +88,6 @@ describe('FilePicker', () => {
 
     const emitted = wrapper.emitted('filesAdded');
     expect(emitted).toBeTruthy();
-    expect(emitted![0][0]).toMatchObject({ files: [validFile] });
+    expect(emitted![0]![0]).toMatchObject({ files: [validFile] });
   });
 });

@@ -103,6 +103,6 @@ describe('WordForm', () => {
 
     const emitted = wrapper.emitted('updateWord');
     expect(emitted).toBeTruthy();
-    expect(emitted![0][0]).toMatchObject({ word: '你好', tagIds: [] });
+    expect(emitted![0]![0]).toMatchObject({ word: '你好', tagIds: [] });
   });
 });

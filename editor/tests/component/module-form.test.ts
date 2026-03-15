@@ -43,7 +43,11 @@ describe('ModuleForm', () => {
   });
 
   it('accepts moduleData prop with name and description', async () => {
-    const moduleData = { id: '1', name: 'Test Module', description: 'Test description' };
+    const moduleData = {
+      id: '1',
+      name: 'Test Module',
+      description: 'Test description',
+    };
     const wrapper = await mountSuspended(ModuleForm, {
       props: { isAddMode: false, moduleData },
     });

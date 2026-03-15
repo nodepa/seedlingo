@@ -30,7 +30,7 @@
     "postinstall": "nuxi prepare",
     "preview": "nuxi preview",
     "sandbox": "ampx sandbox",
-    "test": "npm run lint:tsc && npm run test:unit && npm run test:e2e",
+    "test": "npm run lint && npm run lint:tsc && npm run test:unit && npm run test:e2e",
     "test:e2e": "start-server-and-test preview :3000 'cypress run --e2e'",
     "test:e2e:dev": "start-server-and-test dev :3000 'cypress run --e2e --config baseUrl=http://localhost:3000'",
     "test:e2e:dev:open": "start-server-and-test dev :3000 'cypress open --e2e -b electron --config baseUrl=http://localhost:3000'",

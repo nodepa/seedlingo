@@ -20,7 +20,7 @@ describe('blobToBase64', () => {
     const blob = new Blob([text], { type: 'text/plain' });
     const result = (await blobToBase64(blob)) as string;
     // Extract the base64 part and decode it
-    const base64Part = result.split(',')[1];
+    const base64Part = result.split(',')[1]!;
     const decoded = atob(base64Part);
     expect(decoded).toBe(text);
   });
