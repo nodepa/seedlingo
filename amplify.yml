@@ -26,7 +26,6 @@ applications:
         preTest:
           commands:
             - npm install
-            - npm install mocha mochawesome mochawesome-merge mochawesome-report-generator
         test:
           commands:
             - npm run test:unit
