@@ -32,7 +32,7 @@ describe('马丽 interacts with the "matching" system', () => {
             'animation.animate',
           );
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
+          cy.stub(window, 'matchMedia').callsFake(() => {
             return {
               matches: false,
               addEventListener() {
@@ -372,7 +372,7 @@ describe('马丽 interacts with the "explanation matching" system', () => {
             'animation.animate',
           );
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
+          cy.stub(window, 'matchMedia').callsFake(() => {
             return {
               matches: false,
               addEventListener() {

@@ -30,7 +30,7 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
             'animation.animate',
           );
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
+          cy.stub(window, 'matchMedia').callsFake(() => {
             return {
               matches: false,
               addEventListener() {
@@ -71,7 +71,10 @@ describe('马丽 interacts with the "multiple-choice" system', () => {
         .should('be.visible');
 
       cy.log('**3. 马丽 taps the loudspeaker to hear the audio again.**');
-      cy.wait(600).get(itemUnderTestButton).click();
+      // Wait long enough for the first audio (~730 ms) to finish before replaying,
+      // otherwise the play() call while audio is already playing would not trigger
+      // a playing state change and therefore no new ripple animation.
+      cy.wait(1500).get(itemUnderTestButton).click();
       // 1 item audio played
       cy.get('@audio.play').should('have.callCount', 1).invoke('resetHistory');
 
@@ -159,7 +162,7 @@ describe('马丽 interacts with the "multiple-choice explanation" system', () =>
             'animation.animate',
           );
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
+          cy.stub(window, 'matchMedia').callsFake(() => {
             return {
               matches: false,
               addEventListener() {

@@ -24,7 +24,7 @@ describe('马丽 interacts with the "review" system', () => {
         cy.spy(window.Animation.prototype, 'play').as('animation.play');
         cy.spy(window.HTMLElement.prototype, 'animate').as('animation.animate');
         // avoid dark mode
-        cy.stub(window, 'matchMedia', () => {
+        cy.stub(window, 'matchMedia').callsFake(() => {
           return {
             matches: false,
             addEventListener() {

@@ -23,7 +23,7 @@ describe("马丽 opens the app to the home screen's list of units", () => {
             'animation.animate',
           );
           // avoid dark mode
-          cy.stub(window, 'matchMedia', () => {
+          cy.stub(window, 'matchMedia').callsFake(() => {
             return {
               matches: false,
               addEventListener() {
