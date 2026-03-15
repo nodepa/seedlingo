@@ -5,9 +5,9 @@ applications:
       phases:
         preBuild:
           commands:
-            - nvm install $(jq -r '.volta.node' package.json)
+            - nvm install $(node -e "process.stdout.write(require('./package.json').volta.node)")
             - node --version
-            - npm install -g npm@$(jq -r '.volta.npm' package.json)
+            - npm install -g npm@$(node -e "process.stdout.write(require('./package.json').volta.npm)")
             - npm --version
             - npm install
         build:
@@ -24,9 +24,9 @@ applications:
       phases:
         preTest:
           commands:
-            - nvm install $(jq -r '.volta.node' package.json)
+            - nvm install $(node -e "process.stdout.write(require('./package.json').volta.node)")
             - node --version
-            - npm install -g npm@$(jq -r '.volta.npm' package.json)
+            - npm install -g npm@$(node -e "process.stdout.write(require('./package.json').volta.npm)")
             - npm --version
             - npm install
         test:
@@ -50,9 +50,9 @@ applications:
       phases:
         preBuild:
           commands:
-            - nvm install $(jq -r '.volta.node' package.json)
+            - nvm install $(node -e "process.stdout.write(require('./package.json').volta.node)")
             - node --version
-            - npm install -g npm@$(jq -r '.volta.npm' package.json)
+            - npm install -g npm@$(node -e "process.stdout.write(require('./package.json').volta.npm)")
             - npm --version
         build:
           commands:
@@ -66,9 +66,9 @@ applications:
       phases:
         preBuild:
           commands:
-            - nvm install $(jq -r '.volta.node' package.json)
+            - nvm install $(node -e "process.stdout.write(require('./package.json').volta.node)")
             - node --version
-            - npm install -g npm@$(jq -r '.volta.npm' package.json)
+            - npm install -g npm@$(node -e "process.stdout.write(require('./package.json').volta.npm)")
             - npm --version
         build:
           commands:
