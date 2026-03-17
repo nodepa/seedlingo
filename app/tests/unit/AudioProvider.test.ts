@@ -156,25 +156,32 @@ describe('AudioProvider', () => {
       const spyGetAudioData = vi
         .spyOn(Content, 'getAudioData')
         .mockImplementation((path: string) => path);
+
+      let secondElement: HTMLMediaElement | null = null;
+      const originalPlay = HTMLMediaElement.prototype.play;
+      HTMLMediaElement.prototype.play = function () {
+        secondElement = this as HTMLMediaElement;
+        return Promise.resolve();
+      };
+
       const audio = AudioProvider.createCompositeAudioFromPaths([
         'path1',
         'path2',
       ]);
-      // Simulate playing state
+
+      // Simulate playing state on first element
       audio.el.onplaying?.(new Event('playing'));
       expect(audio.playing).toBe(true);
 
-      // Simulate first audio ending (advances to second)
+      // Simulate first audio ending (triggers play on second audio, capturing secondElement)
       audio.el.onended?.(new Event('ended'));
+      expect(secondElement).not.toBeNull();
 
-      // Simulate second audio ending (no more audios)
-      // We need to get a reference to the second audio element's ended handler
-      // by simulating the onpause/onended on the second audio element.
-      // The composite audio's playing state should become false after last ends.
-      // Trigger second audio's onended by calling cancel on the composite
-      // (since the second audio is now current after first ended)
-      audio.cancel();
+      // Simulate second (last) audio ending naturally
+      (secondElement as HTMLMediaElement).onended?.(new Event('ended'));
       expect(audio.playing).toBe(false);
+
+      HTMLMediaElement.prototype.play = originalPlay;
       spyGetAudioData.mockRestore();
     });
   });
