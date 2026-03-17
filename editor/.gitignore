@@ -27,3 +27,8 @@ logs
 .amplify
 amplify_outputs*
 amplifyconfiguration*
+
+# Test artifacts
+tests/e2e/screenshots
+tests/e2e/videos
+cypress/downloads
