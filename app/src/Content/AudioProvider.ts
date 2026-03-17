@@ -37,7 +37,10 @@ export default class AudioProvider {
   }
 
   public static createCompositeAudioFromPaths(srcs: string[]): ExerciseAudio {
-    if (srcs.length <= 1) {
+    if (srcs.length === 0) {
+      return this.createAudioFromData('');
+    }
+    if (srcs.length === 1) {
       return this.createAudioFromPath(srcs[0]);
     }
 
