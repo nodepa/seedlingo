@@ -3,12 +3,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
 import UnitForm from '~/components/unit-form.vue';
 
-// Mock AWS Amplify to prevent connection errors in tests
-vi.mock('aws-amplify/data', () => ({
-  generateClient: vi.fn(() => ({
-    models: {},
-  })),
-}));
+// Mock Nuxt middleware and plugins to isolate component from auth/AWS concerns
+vi.mock('~/middleware/auth.global', () => ({ default: () => {} }));
+vi.mock('~/plugins/amplify.client', () => ({ default: () => {} }));
 
 describe('UnitForm', () => {
   beforeEach(() => {
@@ -43,7 +40,11 @@ describe('UnitForm', () => {
   });
 
   it('accepts unitData prop with id, name, and description', async () => {
-    const unitData = { id: 'unit-1', name: 'Lesson 1', description: 'Introduction' };
+    const unitData = {
+      id: 'unit-1',
+      name: 'Lesson 1',
+      description: 'Introduction',
+    };
     const wrapper = await mountSuspended(UnitForm, {
       props: { isAddMode: false, unitData },
     });

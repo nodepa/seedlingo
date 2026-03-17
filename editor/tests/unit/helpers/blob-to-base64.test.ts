@@ -21,7 +21,7 @@ describe('blobToBase64', () => {
     const result = (await blobToBase64(blob)) as string;
     // Extract the base64 part and decode it
     const base64Part = result.split(',')[1];
-    const decoded = atob(base64Part);
+    const decoded = base64Part !== undefined ? atob(base64Part) : undefined;
     expect(decoded).toBe(text);
   });
 

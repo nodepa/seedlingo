@@ -57,7 +57,7 @@ describe('resizeImage', () => {
     class MockFileReader {
       onload: ((e: ProgressEvent<FileReader>) => void) | null = null;
       onerror: ((e: ProgressEvent<FileReader>) => void) | null = null;
-      readAsDataURL(_blob: Blob) {
+      readAsDataURL() {
         setTimeout(() => {
           if (this.onerror) {
             this.onerror({} as ProgressEvent<FileReader>);
@@ -97,7 +97,7 @@ describe('resizeImage', () => {
     class MockFileReader {
       onload: ((e: ProgressEvent<FileReader>) => void) | null = null;
       onerror: ((e: ProgressEvent<FileReader>) => void) | null = null;
-      readAsDataURL(_blob: Blob) {
+      readAsDataURL() {
         (globalThis as Record<string, unknown>).Image = MockImage;
         setTimeout(() => {
           if (this.onload) {

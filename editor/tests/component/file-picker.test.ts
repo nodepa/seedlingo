@@ -3,12 +3,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
 import FilePicker from '~/components/file-picker.vue';
 
-// Mock AWS Amplify to prevent connection errors in tests
-vi.mock('aws-amplify/data', () => ({
-  generateClient: vi.fn(() => ({
-    models: {},
-  })),
-}));
+// Mock Nuxt middleware and plugins to isolate component from auth/AWS concerns
+vi.mock('~/middleware/auth.global', () => ({ default: () => {} }));
+vi.mock('~/plugins/amplify.client', () => ({ default: () => {} }));
 
 describe('FilePicker', () => {
   beforeEach(() => {
@@ -88,6 +85,6 @@ describe('FilePicker', () => {
 
     const emitted = wrapper.emitted('filesAdded');
     expect(emitted).toBeTruthy();
-    expect(emitted![0][0]).toMatchObject({ files: [validFile] });
+    expect(emitted![0]![0]).toMatchObject({ files: [validFile] });
   });
 });

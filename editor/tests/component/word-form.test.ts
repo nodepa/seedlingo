@@ -4,12 +4,9 @@ import { mountSuspended } from '@nuxt/test-utils/runtime';
 import WordForm from '~/components/word-form.vue';
 import type { TagSchema } from '~/types/WordTypes';
 
-// Mock AWS Amplify to prevent connection errors in tests
-vi.mock('aws-amplify/data', () => ({
-  generateClient: vi.fn(() => ({
-    models: {},
-  })),
-}));
+// Mock Nuxt middleware and plugins to isolate component from auth/AWS concerns
+vi.mock('~/middleware/auth.global', () => ({ default: () => {} }));
+vi.mock('~/plugins/amplify.client', () => ({ default: () => {} }));
 
 // Minimal TagSchema stub for testing
 const makeFakeTag = (id: string, name: string): TagSchema => ({
@@ -103,6 +100,6 @@ describe('WordForm', () => {
 
     const emitted = wrapper.emitted('updateWord');
     expect(emitted).toBeTruthy();
-    expect(emitted![0][0]).toMatchObject({ word: '你好', tagIds: [] });
+    expect(emitted![0]![0]).toMatchObject({ word: '你好', tagIds: [] });
   });
 });

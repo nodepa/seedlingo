@@ -25,4 +25,17 @@ export default defineNuxtConfig({
       ],
     },
   },
+  vite: {
+    build: {
+      rollupOptions: {
+        // nuxt:module-preload-polyfill and @tailwindcss/vite:generate:build are
+        // upstream plugins that transform files without emitting sourcemaps.
+        // Suppress the resulting SOURCEMAP_BROKEN warnings since we can't fix them.
+        onwarn(warning, warn) {
+          if (warning.code === 'SOURCEMAP_BROKEN') return;
+          warn(warning);
+        },
+      },
+    },
+  },
 });

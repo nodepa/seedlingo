@@ -24,14 +24,15 @@
     "build": "nuxi build",
     "dev": "nuxi dev",
     "generate": "nuxi generate",
-    "lint": "eslint .",
+    "lint": "eslint",
     "lint:tsc": "nuxi typecheck",
     "login": "aws sso login",
     "postinstall": "nuxi prepare",
     "preview": "nuxi preview",
     "sandbox": "ampx sandbox",
-    "test": "npm run lint:tsc && npm run test:unit && npm run test:e2e",
-    "test:e2e": "start-server-and-test preview :3000 'cypress run --e2e'",
+    "start": "nuxi build && nuxi preview",
+    "test": "npm run lint && npm run lint:tsc && npm run test:unit && npm run test:e2e",
+    "test:e2e": "start-server-and-test start :3000 'cypress run --e2e'",
     "test:e2e:dev": "start-server-and-test dev :3000 'cypress run --e2e --config baseUrl=http://localhost:3000'",
     "test:e2e:dev:open": "start-server-and-test dev :3000 'cypress open --e2e -b electron --config baseUrl=http://localhost:3000'",
     "test:unit": "vitest run --reporter dot",
@@ -71,7 +72,8 @@
     "start-server-and-test": "^2.1.5",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.0",
+    "vue-tsc": "^3.2.6"
   },
   "overrides": {
     "@nuxt/ui": {

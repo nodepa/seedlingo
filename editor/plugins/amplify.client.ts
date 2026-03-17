@@ -10,7 +10,9 @@ export default defineNuxtPlugin(() => {
   });
   const configKey = Object.keys(configs)[0];
   if (configKey) {
-    Amplify.configure(configs[configKey] as Parameters<typeof Amplify.configure>[0]);
+    Amplify.configure(
+      configs[configKey] as Parameters<typeof Amplify.configure>[0],
+    );
   } else {
     console.warn(
       'Amplify configuration not found. Run `npx ampx sandbox` to enable AWS features.',
