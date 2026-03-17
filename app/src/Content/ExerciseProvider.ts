@@ -651,15 +651,11 @@ export default class ExerciseProvider {
           : // validOption is a single WordRef
             [Content.getWord(validOption)];
 
-        let optAudioId;
+        const optAudioPaths: string[] = [];
         validOptionWordSpecs.forEach((wordSpec) => {
           singleClozeWord.word += wordSpec.word;
-          // TODO: Handle successive audio #432
           if (wordSpec.audio) {
-            optAudioId = wordSpec.audio;
-            singleClozeWord.audio = AudioProvider.createAudioFromPath(
-              wordSpec.audio,
-            );
+            optAudioPaths.push(wordSpec.audio);
           }
           if (
             wordSpec.isPunctuation &&
@@ -668,6 +664,10 @@ export default class ExerciseProvider {
             singleClozeWord.isPunctuation = true;
           }
         });
+        if (optAudioPaths.length > 0) {
+          singleClozeWord.audio =
+            AudioProvider.createCompositeAudioFromPaths(optAudioPaths);
+        }
 
         if (
           'invalidOptions' in wordRefOrBlank &&
@@ -682,9 +682,9 @@ export default class ExerciseProvider {
               buzzing: false,
               disabled: false,
             };
-            if (optAudioId) {
+            if (optAudioPaths.length > 0) {
               singleClozeOption.audio =
-                AudioProvider.createAudioFromPath(optAudioId);
+                AudioProvider.createCompositeAudioFromPaths(optAudioPaths);
             }
             if (clozeSpec.singleClozeSpec?.suppressOptionAudio) {
               singleClozeOption.suppressOptionAudio =
@@ -819,16 +819,11 @@ export default class ExerciseProvider {
             buzzing: false,
             disabled: false,
           };
+          const multiClozeAudioPaths: string[] = [];
           wordSpecs.forEach((wordSpec) => {
             multiClozeWord.word += wordSpec.word;
-            // TODO: Handle successive audio #432
             if (wordSpec.audio) {
-              multiClozeWord.audio = AudioProvider.createAudioFromPath(
-                wordSpec.audio,
-              );
-              multiClozeOption.audio = AudioProvider.createAudioFromPath(
-                wordSpec.audio,
-              );
+              multiClozeAudioPaths.push(wordSpec.audio);
             }
             if (
               wordSpec.isPunctuation &&
@@ -837,23 +832,14 @@ export default class ExerciseProvider {
               multiClozeWord.isPunctuation = true;
             }
           });
+          if (multiClozeAudioPaths.length > 0) {
+            multiClozeWord.audio =
+              AudioProvider.createCompositeAudioFromPaths(multiClozeAudioPaths);
+            multiClozeOption.audio =
+              AudioProvider.createCompositeAudioFromPaths(multiClozeAudioPaths);
+          }
           multiClozeOption.word = multiClozeWord.word;
 
-          // const wordSpec = Content.getWord(wordRefOrBlank.validOptions[0]);
-          // if (wordSpec && wordSpec.audio) {
-          //   multiClozeWord.audio = this.createAudio(
-          //     Content.getAudioData(wordSpec.audio),
-          //   );
-          //   option.audio = this.createAudio(
-          //     Content.getAudioData(wordSpec.audio),
-          //   );
-          //   if (
-          //     wordSpec.isPunctuation &&
-          //     [true, 'true'].includes(wordSpec.isPunctuation)
-          //   ) {
-          //     multiClozeWord.isPunctuation = true;
-          //   }
-          // }
           if (
             clozeSpec.multiClozeSpec?.suppressOptionAudio &&
             [true, 'true'].includes(
@@ -977,13 +963,18 @@ export default class ExerciseProvider {
             : // word is a single WordRef
               [Content.getWord(optionSpec.word)];
 
+          const comprehensionAudioPaths: string[] = [];
           wordSpecs.forEach((wordSpec) => {
             option.word += wordSpec.word;
-            // TODO: Handle successive audio #432
             if (wordSpec.audio) {
-              option.audio = AudioProvider.createAudioFromPath(wordSpec.audio);
+              comprehensionAudioPaths.push(wordSpec.audio);
             }
           });
+          if (comprehensionAudioPaths.length > 0) {
+            option.audio = AudioProvider.createCompositeAudioFromPaths(
+              comprehensionAudioPaths,
+            );
+          }
 
           if (
             optionSpec.correct &&
