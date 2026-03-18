@@ -61,9 +61,8 @@ describe('ClozeExercise', () => {
 
     describe('.determineCorrectness()', () => {
       it('marks the correct option with success color and reveals the blank', async () => {
-        const correctOption: ClozeOption = wrapper.vm.exercise.clozeOptions.find(
-          (o: ClozeOption) => o.correct,
-        );
+        const correctOption: ClozeOption =
+          wrapper.vm.exercise.clozeOptions.find((o: ClozeOption) => o.correct);
         expect(correctOption).toBeDefined();
         wrapper.vm.determineCorrectness(correctOption);
         await wrapper.vm.$nextTick();
@@ -76,9 +75,8 @@ describe('ClozeExercise', () => {
       });
 
       it('shows the continue button after the correct option is selected', async () => {
-        const correctOption: ClozeOption = wrapper.vm.exercise.clozeOptions.find(
-          (o: ClozeOption) => o.correct,
-        );
+        const correctOption: ClozeOption =
+          wrapper.vm.exercise.clozeOptions.find((o: ClozeOption) => o.correct);
         wrapper.vm.determineCorrectness(correctOption);
         await wrapper.vm.$nextTick();
 
@@ -86,24 +84,23 @@ describe('ClozeExercise', () => {
       });
 
       it('disables the other options after the correct option is selected', async () => {
-        const correctOption: ClozeOption = wrapper.vm.exercise.clozeOptions.find(
-          (o: ClozeOption) => o.correct,
-        );
+        const correctOption: ClozeOption =
+          wrapper.vm.exercise.clozeOptions.find((o: ClozeOption) => o.correct);
         wrapper.vm.determineCorrectness(correctOption);
         await wrapper.vm.$nextTick();
 
-        const otherOptions: ClozeOption[] = wrapper.vm.exercise.clozeOptions.filter(
-          (o: ClozeOption) => o !== correctOption,
-        );
+        const otherOptions: ClozeOption[] =
+          wrapper.vm.exercise.clozeOptions.filter(
+            (o: ClozeOption) => o !== correctOption,
+          );
         otherOptions.forEach((option) => {
           expect(option.disabled).toBe(true);
         });
       });
 
       it('buzzes an incorrect option and does not reveal the blank', async () => {
-        const incorrectOption: ClozeOption = wrapper.vm.exercise.clozeOptions.find(
-          (o: ClozeOption) => !o.correct,
-        );
+        const incorrectOption: ClozeOption =
+          wrapper.vm.exercise.clozeOptions.find((o: ClozeOption) => !o.correct);
         expect(incorrectOption).toBeDefined();
         wrapper.vm.determineCorrectness(incorrectOption);
         await wrapper.vm.$nextTick();
@@ -116,9 +113,8 @@ describe('ClozeExercise', () => {
       });
 
       it('does not show the continue button after an incorrect option is selected', async () => {
-        const incorrectOption: ClozeOption = wrapper.vm.exercise.clozeOptions.find(
-          (o: ClozeOption) => !o.correct,
-        );
+        const incorrectOption: ClozeOption =
+          wrapper.vm.exercise.clozeOptions.find((o: ClozeOption) => !o.correct);
         wrapper.vm.determineCorrectness(incorrectOption);
         await wrapper.vm.$nextTick();
 
@@ -169,9 +165,10 @@ describe('ClozeExercise', () => {
           (w: { isBlank: boolean }) => w.isBlank,
         );
         const firstBlankWord = blanks[0].word;
-        const matchingOption: ClozeOption = wrapper.vm.exercise.clozeOptions.find(
-          (o: ClozeOption) => o.word === firstBlankWord,
-        );
+        const matchingOption: ClozeOption =
+          wrapper.vm.exercise.clozeOptions.find(
+            (o: ClozeOption) => o.word === firstBlankWord,
+          );
         expect(matchingOption).toBeDefined();
 
         wrapper.vm.determineCorrectness(matchingOption);

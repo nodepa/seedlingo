@@ -212,7 +212,7 @@ describe('马丽 interacts with the "text comprehension" system', () => {
         const hasBuzz = (spy as unknown as sinon.SinonSpy).args.some(
           (args) => Array.isArray(args[0]) && args[0].length === 6,
         );
-        expect(hasBuzz, 'buzz animation was created').to.be.true;
+        expect(hasBuzz, 'buzz animation was created').to.eq(true);
       });
       cy.get('@animation.animate').invoke('resetHistory');
 
