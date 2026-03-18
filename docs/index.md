@@ -55,7 +55,7 @@ features:
     imagePath: /images/mockup-basic-review.png
 
 footerHtml: true
-footer: '<a href="/privacy-policy/privacy-policy.html">Privacy policy</a><br/><br/><a href="https://nodepa.org">Copyright &copy; 2019-2024 Norwegian Development Partners</a>'
+footer: '<a href="/privacy-policy/privacy-policy.html">Privacy policy</a><br/><br/><a href="https://nodepa.org">Copyright &copy; 2019-2026 Norwegian Development Partners</a>'
 ---
 
 ## What is Seedlingo?

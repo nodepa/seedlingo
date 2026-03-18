@@ -8,7 +8,6 @@ interface TestStoreState {
 }
 
 function createTestStore() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return createStore<TestStoreState>({
     modules: {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,7 +17,6 @@ function createTestStore() {
 }
 
 describe('InstructionsModeStore', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let store: ReturnType<typeof createTestStore>;
 
   beforeEach(async () => {

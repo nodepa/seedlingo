@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2020-2021 Norwegian Development Partners
+Copyright (c) 2020-2026 Norwegian Development Partners
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

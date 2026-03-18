@@ -8,7 +8,12 @@ cat >$TMP <<EOF
   "include": [
 EOF
 for file in "$@"; do
-  echo "    \"$file\"," >> $TMP
+  # Only include files within tsconfig.json's scope (src/ and tests/).
+  # Root config files (e.g. vite.config.ts) belong to tsconfig.node.json
+  # and are not checked here to avoid moduleResolution mismatches.
+  if [[ "$file" == src/* ]] || [[ "$file" == tests/* ]]; then
+    echo "    \"$file\"," >> $TMP
+  fi
 done
 cat >>$TMP <<EOF
     "**/*.d.ts"

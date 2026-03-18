@@ -63,6 +63,9 @@ export default defineConfig({
     },
   },
   build: {
+    // The Content chunk bundles all audio as inline base64 data URIs for
+    // offline-first PWA support, so it is intentionally large (~7.3 MB).
+    chunkSizeWarningLimit: 7500,
     rollupOptions: {
       output: {
         manualChunks(id: string) {
