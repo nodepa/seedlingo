@@ -32,8 +32,10 @@ const features = computed(() => frontmatter.value.features ?? [])
   border-top: 1px solid var(--c-border);
 
   transition: border-color var(--t-color);
+}
 
-  @media (max-width: $MQMobile) {
+@media (max-width: 719px) {
+  .vp-features {
     flex-direction: column;
   }
 }
@@ -44,30 +46,34 @@ const features = computed(() => frontmatter.value.features ?? [])
   max-width: 30%;
 
   text-align: center;
+}
 
-  @media (max-width: $MQMobile) {
+@media (max-width: 719px) {
+  .vp-feature {
     max-width: 100%;
     padding: 0 2.5rem;
   }
+}
 
-  h2 {
-    padding-bottom: 0;
-    border-bottom: none;
+.vp-feature h2 {
+  padding-bottom: 0;
+  border-bottom: none;
 
-    color: var(--c-text-light);
+  color: var(--c-text-light);
 
-    font-weight: 500;
-    font-size: 1.4rem;
+  font-weight: 500;
+  font-size: 1.4rem;
 
-    white-space: preserve;
+  white-space: preserve;
+}
 
-    @media (max-width: $MQMobileNarrow) {
-      font-size: 1.25rem;
-    }
+@media (max-width: 419px) {
+  .vp-feature h2 {
+    font-size: 1.25rem;
   }
+}
 
-  p {
-    color: var(--c-text-lighter);
-  }
+.vp-feature p {
+  color: var(--c-text-lighter);
 }
 </style>
