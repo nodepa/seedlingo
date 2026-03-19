@@ -155,7 +155,6 @@
 import type { Schema } from '~/amplify/data/resource';
 import { generateClient } from 'aws-amplify/data';
 import * as v from 'valibot';
-// import type { Subscription } from 'aws-cdk-lib/aws-sns';
 import type { Subscription } from 'rxjs';
 
 const toast = useToast();
@@ -176,26 +175,22 @@ const ModuleSchema = v.object({
 
 const modules = useState<Array<DynamicModule>>('modules', () => []);
 const client = generateClient<Schema>({ authMode: 'userPool' });
-watchEffect(() => {
-  client.models.ContentSpec.observeQuery().subscribe({
-    next: ({ items }) => {
-      modules.value = items.map((item) => ({
-        ...item,
-        description: item.description ?? undefined,
-        icon: item.icon ?? undefined,
-      })) as DynamicModule[];
-    },
-    error: (error) => {
-      console.error('Error observing modules:', error);
-    },
-  });
-});
-watch(
-  () => modules.value,
-  (mods) => {
-    console.warn('modules:', mods);
+let subscription: Subscription | undefined;
+subscription = client.models.ContentSpec.observeQuery().subscribe({
+  next: ({ items }) => {
+    modules.value = items.map((item) => ({
+      ...item,
+      description: item.description ?? undefined,
+      icon: item.icon ?? undefined,
+    })) as DynamicModule[];
   },
-);
+  error: (error) => {
+    console.error('Error observing modules:', error);
+  },
+});
+onBeforeUnmount(() => {
+  subscription?.unsubscribe();
+});
 
 const save = async (module: DynamicModule) => {
   module.isWaiting = true;
