@@ -90,18 +90,21 @@
             @change="() => commitCell(row, 'picture')"
           >
             <div v-if="row.original.picture" class="relative w-40">
+              <div
+                v-if="!library.pictures[row.original.picture]?.data"
+                class="w-40 h-28 rounded-md bg-gray-200 dark:bg-gray-700 animate-pulse"
+              />
               <NuxtImg
-                :src="library.pictures[row.original.picture]?.data || undefined"
+                v-else
+                :src="library.pictures[row.original.picture].data"
                 class="w-40 min-w-40 h-28 object-cover rounded-md hover:cursor-pointer"
               />
               <UButton
-                v-if="row.original.picture"
                 icon="lucide:trash-2"
                 color="neutral"
                 class="absolute z-12 bottom-0.5 right-0.5 rounded-full opacity-60 hover:bg-primary hover:opacity-100"
                 @click.stop="row.original.picture = ''"
-              >
-              </UButton>
+              />
             </div>
             <UButton v-else icon="lucide:plus" color="primary" class="w-40">
               Add
@@ -116,33 +119,33 @@
             media-type="audio"
             @change="() => commitCell(row, 'audio')"
           >
-            <div
-              v-if="
-                row.original.audio && library.audio[row.original.audio]?.data
-              "
-              class="relative w-40 h-28 flex flex-col"
-            >
-              <UIcon
-                name="lucide:audio-lines"
-                color="primary"
-                class="w-40 h-18 text-primary hover:cursor-pointer"
+            <div v-if="row.original.audio" class="relative w-40 h-28 flex flex-col">
+              <div
+                v-if="!library.audio[row.original.audio]?.data"
+                class="w-40 h-28 rounded-md bg-gray-200 dark:bg-gray-700 animate-pulse"
               />
-              <audio
-                controls
-                preload="auto"
-                class="w-40 h-10 inline rounded-md"
-                :alt="row.original.audio"
-                :src="library.audio[row.original.audio!]?.data ?? undefined"
-              >
-                Your browser does not support the audio element.
-              </audio>
+              <template v-else>
+                <UIcon
+                  name="lucide:audio-lines"
+                  color="primary"
+                  class="w-40 h-18 text-primary hover:cursor-pointer"
+                />
+                <audio
+                  controls
+                  preload="auto"
+                  class="w-40 h-10 inline rounded-md"
+                  :alt="row.original.audio"
+                  :src="library.audio[row.original.audio].data"
+                >
+                  Your browser does not support the audio element.
+                </audio>
+              </template>
               <UButton
                 icon="lucide:trash-2"
                 color="neutral"
                 class="absolute z-12 bottom-10.5 right-0.5 rounded-full opacity-60 hover:bg-primary hover:opacity-100"
                 @click.stop="row.original.audio = ''"
-              >
-              </UButton>
+              />
             </div>
             <UButton v-else icon="lucide:plus" color="primary" class="w-40">
               Add

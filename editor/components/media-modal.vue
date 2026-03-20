@@ -197,23 +197,29 @@ const locallySelected = ref(props.selected || '');
 
 let identityId: string | undefined;
 
+const resolveIdentityId = async (): Promise<boolean> => {
+  if (identityId) return true;
+  try {
+    const session = await fetchAuthSession();
+    identityId = session.identityId;
+    return !!identityId;
+  } catch {
+    return false;
+  }
+};
+
+onMounted(async () => {
+  if (await resolveIdentityId()) {
+    await fetchStoredMedia();
+  }
+});
+
 watch(showMediaModal, async (isOpen) => {
   if (isOpen) {
     locallySelected.value = props.selected || '';
     if (!identityId) {
-      try {
-        const session = await fetchAuthSession();
-        identityId = session.identityId;
-      } catch {
-        toast.add({
-          title: 'Error',
-          description: 'Authentication failed — cannot access media storage',
-          color: 'error',
-        });
-        showMediaModal.value = false;
-        return;
-      }
-      if (!identityId) {
+      const resolved = await resolveIdentityId();
+      if (!resolved || !identityId) {
         toast.add({
           title: 'Error',
           description: 'No identity ID — cannot access media storage',
