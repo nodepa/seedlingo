@@ -1,6 +1,6 @@
 export type MediaFile = {
   name: string;
-  data: Base64URLString | null;
+  data: string | null;
   state: {
     progress: number;
     isLoading: boolean;

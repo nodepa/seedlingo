@@ -40,7 +40,7 @@
         :columns="columns"
         :column-visibility="columnVisibility"
         :sorting="sorting"
-        :loading="!wordsState || wordsState.length === 0"
+        :loading="isLoadingWords"
         loading-color="primary"
         loading-animation="carousel"
         sticky
@@ -156,11 +156,6 @@
             :loading="row.original.waitsOn?.isPunctuation"
             @change="() => commitCell(row, 'isPunctuation')"
           />
-          <div
-            :class="{ 'bg-amber-100': !row.original.waitsOn?.isPunctuation }"
-          >
-            {{ row.original.waitsOn?.isPunctuation }}
-          </div>
         </template>
         <template #tags-cell="{ row }">
           <div class="flex flex-wrap gap-1 min-w-32 py-1">
@@ -359,28 +354,40 @@ const toggleFilter = (tagId: string) => {
   }
 };
 
+const isLoadingWords = ref(true);
+
 const commitCell = (row: TableRow<DynamicWord>, col: DynamicWordField) => {
   const word = wordsState.value[row.index];
   if (!word) return;
   word.waitsOn = { ...word.waitsOn, [col]: true };
-  updateData(row.index, col, row.original[col] as string);
+  updateData(row.index, col, row.original[col]);
 };
 
 const updateData = (
   tableRowIndex: number,
   fieldName: DynamicWordField,
-  newValue: string,
+  newValue: DynamicWord[DynamicWordField],
 ) => {
   const word = wordsState.value[tableRowIndex];
   if (!word) return;
-  word[fieldName as DynamicWordField] = newValue as never;
+  word[fieldName] = newValue as never;
   save(word);
 };
 
 const client = generateClient<Schema>({ authMode: 'userPool' });
 
-watchEffect(() => {
-  client.models.Word.observeQuery().subscribe({
+let wordsSub: ReturnType<
+  ReturnType<typeof client.models.Word.observeQuery>['subscribe']
+>;
+let tagsSub: ReturnType<
+  ReturnType<typeof client.models.Tag.observeQuery>['subscribe']
+>;
+let wordTagsSub: ReturnType<
+  ReturnType<typeof client.models.WordTag.observeQuery>['subscribe']
+>;
+
+onMounted(() => {
+  wordsSub = client.models.Word.observeQuery().subscribe({
     next: ({ items }) => {
       wordsState.value = items.map((item) => ({
         ...item,
@@ -390,16 +397,16 @@ watchEffect(() => {
         isPunctuation: item.isPunctuation ?? undefined,
         waitsOn: {},
       })) as DynamicWord[];
+      isLoadingWords.value = false;
     },
     error: (error) => {
       console.error('Error observing words:', error);
+      isLoadingWords.value = false;
     },
   });
-});
 
-watchEffect(() => {
   try {
-    client.models.Tag.observeQuery().subscribe({
+    tagsSub = client.models.Tag.observeQuery().subscribe({
       next: ({ items }) => {
         tagsState.value = items as TagSchema[];
       },
@@ -408,7 +415,7 @@ watchEffect(() => {
       },
     });
 
-    client.models.WordTag.observeQuery().subscribe({
+    wordTagsSub = client.models.WordTag.observeQuery().subscribe({
       next: ({ items }) => {
         wordTagsState.value = items as WordTagSchema[];
       },
@@ -421,6 +428,12 @@ watchEffect(() => {
       'Tag/WordTag models unavailable. Redeploy the Amplify backend (`npx ampx sandbox`) to enable tagging.',
     );
   }
+});
+
+onBeforeUnmount(() => {
+  wordsSub?.unsubscribe();
+  tagsSub?.unsubscribe();
+  wordTagsSub?.unsubscribe();
 });
 
 const addTagToWord = async (wordId: string, tagId: string) => {

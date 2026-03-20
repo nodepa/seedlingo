@@ -1,15 +1,11 @@
 <template>
   <UCard>
     <template #header>
-      {{ word?.name }}
+      {{ word?.word }}
     </template>
     <p>
       {{ word?.description }}
     </p>
-    <UIcon
-      :name="word?.icon || 'noto-unknown-flag'"
-      class="p-0 m-0 w-40 h-40 block"
-    />
     <template #footer>
       <p>Word id: {{ id }}</p>
       <p>
@@ -36,7 +32,7 @@ import type { Schema } from '~/amplify/data/resource';
 
 const route = useRoute();
 const id = route.params.id;
-type Word = Schema['ContentSpec']['type'];
+type Word = Schema['Word']['type'];
 type DynamicWord = Word & {
   inEditMode?: boolean;
   isWaiting?: boolean;

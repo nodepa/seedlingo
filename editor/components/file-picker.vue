@@ -1,6 +1,6 @@
 <template>
   <UForm :schema="FileSchema" :state="state">
-    <UFormField name="state.files">
+    <UFormField name="files">
       <UInput
         ref="fileInput"
         type="file"

@@ -38,7 +38,7 @@ const links = [
   },
 ];
 
-const user = await getCurrentUser();
+const user = await getCurrentUser().catch(() => ({ signInDetails: null }));
 
 const userPreferredTheme = useCookie<'light' | 'dark' | 'unset'>(
   'userPreferredTheme',

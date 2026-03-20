@@ -207,67 +207,70 @@ onBeforeUnmount(() => {
 
 const save = async (unit: DynamicUnit) => {
   unit.isWaiting = true;
-  if (unit.id) {
-    const { data: existingUnit, errors } = await client.models.Unit.get({
-      id: unit.id,
-    });
-    if (errors || !existingUnit) {
-      console.error(errors);
-      toast.add({
-        title: 'Error',
-        description: 'Failed to get unit',
-        color: 'error',
-      });
-      return;
-    } else {
-      const { errors } = await client.models.Unit.update({
+  try {
+    if (unit.id) {
+      const { data: existingUnit, errors } = await client.models.Unit.get({
         id: unit.id,
-        name: unit.name,
-        icon: unit.icon,
-        description: unit.description,
       });
+      if (errors || !existingUnit) {
+        console.error(errors);
+        toast.add({
+          title: 'Error',
+          description: 'Failed to get unit',
+          color: 'error',
+        });
+        return;
+      } else {
+        const { errors } = await client.models.Unit.update({
+          id: unit.id,
+          name: unit.name,
+          icon: unit.icon,
+          description: unit.description,
+        });
+        if (errors) {
+          console.error(errors);
+          toast.add({
+            title: 'Error',
+            description: 'Failed to update unit',
+            color: 'error',
+          });
+          return;
+        } else {
+          toast.add({
+            title: 'Success',
+            description: 'Unit updated successfully',
+            color: 'success',
+          });
+          unit.inEditMode = false;
+        }
+      }
+    } else {
+      const newUnit = {
+        name: unit.name,
+        description: unit.description,
+      } as DynamicUnit;
+      if (unit.icon) {
+        newUnit.icon = unit.icon;
+      }
+      const { errors } = await client.models.Unit.create(newUnit);
       if (errors) {
         console.error(errors);
         toast.add({
           title: 'Error',
-          description: 'Failed to update unit',
+          description: 'Failed to add unit',
           color: 'error',
         });
         return;
       } else {
         toast.add({
           title: 'Success',
-          description: 'Unit updated successfully',
+          description: 'Unit added successfully',
           color: 'success',
         });
-        unit.isWaiting = false;
       }
     }
-  } else {
-    const newUnit = {
-      name: unit.name,
-      description: unit.description,
-    } as DynamicUnit;
-    if (unit.icon) {
-      newUnit.icon = unit.icon;
-    }
-    const { errors } = await client.models.Unit.create(newUnit);
-    if (errors) {
-      console.error(errors);
-      toast.add({
-        title: 'Error',
-        description: 'Failed to add unit',
-        color: 'error',
-      });
-      return;
-    } else {
-      toast.add({
-        title: 'Success',
-        description: 'Unit added successfully',
-        color: 'success',
-      });
-      unit.isWaiting = false;
-    }
+  } finally {
+    unit.isWaiting = false;
   }
 };
 
@@ -311,24 +314,18 @@ const deleteUnit = async (unit: DynamicUnit) => {
 const createUnit = async (unitData: DynamicUnit) => {
   let existingUnitIndex = -1;
   if (unitData.id) {
-    console.warn('unitData.id exists:', unitData.id);
     existingUnitIndex = units.value.findIndex(
       (unit) => unit.id === unitData.id,
     );
   }
   if (unitData.id && existingUnitIndex !== -1) {
-    console.warn('existingUnitIndex exists:', existingUnitIndex);
     units.value[existingUnitIndex] = unitData;
-    // units.value.push(unitData);
   } else {
-    console.warn(
-      'unitData.id and existingUnitIndex does not exist, creating temp unit',
-    );
     const newUnit = {
       name: unitData.name,
       description: unitData.description,
     };
-    let tempUnit = ref({
+    const tempUnit = ref({
       ...newUnit,
       id: crypto.randomUUID(),
       isWaiting: true,
@@ -338,7 +335,7 @@ const createUnit = async (unitData: DynamicUnit) => {
       },
     } as DynamicUnit);
     units.value.push(tempUnit.value);
-    console.warn('units before create:', JSON.stringify(units.value));
+    const tempUnitId = tempUnit.value.id;
     const { data: updatedUnit, errors } =
       await client.models.Unit.create(newUnit);
     if (errors) {
@@ -348,6 +345,8 @@ const createUnit = async (unitData: DynamicUnit) => {
         description: 'Failed to add unit',
         color: 'error',
       });
+      const idx = units.value.findIndex((u) => u.id === tempUnitId);
+      if (idx !== -1) units.value.splice(idx, 1);
       return;
     } else {
       toast.add({
@@ -355,8 +354,8 @@ const createUnit = async (unitData: DynamicUnit) => {
         description: 'Unit added successfully',
         color: 'success',
       });
-      tempUnit.value = updatedUnit as DynamicUnit;
-      console.warn('units after create:', JSON.stringify(units.value));
+      const idx = units.value.findIndex((u) => u.id === tempUnitId);
+      if (idx !== -1) units.value[idx] = updatedUnit as DynamicUnit;
     }
   }
 };

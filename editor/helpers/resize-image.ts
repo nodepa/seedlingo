@@ -38,7 +38,11 @@ export const resizeImage = (
         canvas.width = width;
         canvas.height = height;
 
-        const context = canvas.getContext('2d')!;
+        const context = canvas.getContext('2d');
+        if (!context) {
+          reject(new Error('Failed to get canvas 2D context'));
+          return;
+        }
         context.drawImage(image, 0, 0, width, height);
 
         const processImage = (quality: number) => {

@@ -189,12 +189,41 @@ const props = withDefaults(
 
 const emit = defineEmits(['update:selected', 'change']);
 
+const toast = useToast();
+
 const showMediaModal = ref(false);
 
 const locallySelected = ref(props.selected || '');
-watch(showMediaModal, (isOpen) => {
+
+let identityId: string | undefined;
+
+watch(showMediaModal, async (isOpen) => {
   if (isOpen) {
     locallySelected.value = props.selected || '';
+    if (!identityId) {
+      try {
+        const session = await fetchAuthSession();
+        identityId = session.identityId;
+      } catch {
+        toast.add({
+          title: 'Error',
+          description: 'Authentication failed — cannot access media storage',
+          color: 'error',
+        });
+        showMediaModal.value = false;
+        return;
+      }
+      if (!identityId) {
+        toast.add({
+          title: 'Error',
+          description: 'No identity ID — cannot access media storage',
+          color: 'error',
+        });
+        showMediaModal.value = false;
+        return;
+      }
+    }
+    await fetchStoredMedia();
   }
 });
 const updateSelection = (value: string) => {
@@ -209,7 +238,6 @@ const commitSelection = () => {
   emit('update:selected', locallySelected.value);
   emit('change');
 };
-const session = await fetchAuthSession();
 const library = useState<{
   pictures: Record<string, MediaFile>;
   audio: Record<string, MediaFile>;
@@ -225,7 +253,7 @@ const fetchStoredMedia = async () => {
   try {
     const pictureList = (
       await list({
-        path: `word-pictures/${session.identityId!}/`,
+        path: `word-pictures/${identityId}/`,
         options: {
           subpathStrategy: { strategy: 'exclude' },
         },
@@ -234,7 +262,7 @@ const fetchStoredMedia = async () => {
 
     const audioList = (
       await list({
-        path: `word-audio/${session.identityId!}/`,
+        path: `word-audio/${identityId}/`,
         options: {
           subpathStrategy: { strategy: 'exclude' },
         },
@@ -266,65 +294,65 @@ const fetchStoredMedia = async () => {
       });
     });
 
-    // Initiate download of each file
-    pictureList.forEach(async (picture) => {
-      const name = picture.path.split('/').pop() || '';
-      try {
-        const pictureFile = await downloadData({
-          path: picture.path,
-          options: {
-            onProgress: (progress) => {
-              if (progress.totalBytes) {
-                const percentage = Math.round(
-                  (progress.transferredBytes / progress.totalBytes) * 100,
-                );
-                library.value.pictures[name]!.state.progress = percentage;
-              }
+    // Initiate download of each file (parallel, fire-and-forget per item)
+    void Promise.allSettled([
+      ...pictureList.map(async (picture) => {
+        const name = picture.path.split('/').pop() || '';
+        try {
+          const pictureFile = await downloadData({
+            path: picture.path,
+            options: {
+              onProgress: (progress) => {
+                if (progress.totalBytes) {
+                  const percentage = Math.round(
+                    (progress.transferredBytes / progress.totalBytes) * 100,
+                  );
+                  library.value.pictures[name]!.state.progress = percentage;
+                }
+              },
             },
-          },
-        }).result;
-        const blob = await blobToBase64(await pictureFile.body.blob());
-        library.value.pictures[name]!.data = blob as Base64URLString;
-        library.value.pictures[name]!.state.isLoading = false;
-        library.value.pictures[name]!.state.progress = 100;
-      } catch (error) {
-        console.error('Error fetching picture:', error);
-        library.value.pictures[name]!.state.isLoading = false;
-        library.value.pictures[name]!.state.error = true;
-      }
-    });
-    audioList.forEach(async (audio) => {
-      const name = audio.path.split('/').pop() || '';
-      try {
-        const audioFile = await downloadData({
-          path: audio.path,
-          options: {
-            onProgress: (progress) => {
-              if (progress.totalBytes) {
-                const percentage = Math.round(
-                  (progress.transferredBytes / progress.totalBytes) * 100,
-                );
-                library.value.audio[name]!.state.progress = percentage;
-              }
+          }).result;
+          const blob = await blobToBase64(await pictureFile.body.blob());
+          library.value.pictures[name]!.data = blob;
+          library.value.pictures[name]!.state.isLoading = false;
+          library.value.pictures[name]!.state.progress = 100;
+        } catch (error) {
+          console.error('Error fetching picture:', error);
+          library.value.pictures[name]!.state.isLoading = false;
+          library.value.pictures[name]!.state.error = true;
+        }
+      }),
+      ...audioList.map(async (audio) => {
+        const name = audio.path.split('/').pop() || '';
+        try {
+          const audioFile = await downloadData({
+            path: audio.path,
+            options: {
+              onProgress: (progress) => {
+                if (progress.totalBytes) {
+                  const percentage = Math.round(
+                    (progress.transferredBytes / progress.totalBytes) * 100,
+                  );
+                  library.value.audio[name]!.state.progress = percentage;
+                }
+              },
             },
-          },
-        }).result;
-        const blob = await blobToBase64(await audioFile.body.blob());
-        library.value.audio[name]!.data = blob as Base64URLString;
-        library.value.audio[name]!.state.isLoading = false;
-        library.value.audio[name]!.state.progress = 100;
-      } catch (error) {
-        console.error('Error fetching audio:', error);
-        library.value.audio[name]!.state.isLoading = false;
-        library.value.audio[name]!.state.error = true;
-      }
-    });
+          }).result;
+          const blob = await blobToBase64(await audioFile.body.blob());
+          library.value.audio[name]!.data = blob;
+          library.value.audio[name]!.state.isLoading = false;
+          library.value.audio[name]!.state.progress = 100;
+        } catch (error) {
+          console.error('Error fetching audio:', error);
+          library.value.audio[name]!.state.isLoading = false;
+          library.value.audio[name]!.state.error = true;
+        }
+      }),
+    ]);
   } catch (error) {
     console.error('Error fetching media files:', error);
   }
 };
-
-fetchStoredMedia();
 
 // const mediaFilter = ref('');
 // const moduleNames = ref(['Intro 1', 'Intro 2', 'Intermediary 1', 'Intermediary 2', 'Advanced']);
@@ -333,75 +361,81 @@ fetchStoredMedia();
 // const unitFilter = ref([]);
 
 const filesAdded = ({ files: uploadFiles }: { files: Array<File> }) => {
-  uploadFiles.forEach(async (file) => {
-    try {
-      const resizedFile = await resizeImage(file, 0.5); // Max 0.5MB
+  void Promise.allSettled(
+    uploadFiles.map(async (file) => {
+      try {
+        const resizedFile =
+          props.mediaType === 'pictures'
+            ? await resizeImage(file, 0.5) // Max 0.5MB
+            : file;
 
-      const name = file.name;
-      library.value[props.mediaType][name] = reactive<MediaFile>({
-        name: file.name,
-        data: null,
-        state: {
-          progress: 0,
-          isLoading: true,
-          error: false,
-        },
-        size: resizedFile.size,
-        lastModified: Date.now(),
-      });
+        const name = file.name;
+        library.value[props.mediaType][name] = reactive<MediaFile>({
+          name: file.name,
+          data: null,
+          state: {
+            progress: 0,
+            isLoading: true,
+            error: false,
+          },
+          size: resizedFile.size,
+          lastModified: Date.now(),
+        });
 
-      const basePath = `word-${props.mediaType}/${session.identityId!}/`;
-      const fileReader = new FileReader();
-      fileReader.onload = async () => {
-        if (fileReader.result) {
-          try {
-            // Show upload progress
-            await uploadData({
-              path: `${basePath}${file.name}`,
-              data: fileReader.result,
-              options: {
-                onProgress: ({ transferredBytes, totalBytes }) => {
-                  if (totalBytes) {
-                    const percentage = Math.round(
-                      (transferredBytes / totalBytes) * 100,
-                    );
-                    library.value[props.mediaType][name]!.state.progress =
-                      percentage;
-                  }
+        const basePath = `word-${props.mediaType}/${identityId}/`;
+        const fileReader = new FileReader();
+        fileReader.onload = async () => {
+          if (fileReader.result) {
+            try {
+              // Show upload progress
+              await uploadData({
+                path: `${basePath}${file.name}`,
+                data: fileReader.result,
+                options: {
+                  onProgress: ({ transferredBytes, totalBytes }) => {
+                    if (totalBytes) {
+                      const percentage = Math.round(
+                        (transferredBytes / totalBytes) * 100,
+                      );
+                      library.value[props.mediaType][name]!.state.progress =
+                        percentage;
+                    }
+                  },
                 },
-              },
-            }).result;
+              }).result;
 
-            // Get file data for display
-            // const pictureFile = await downloadData({
-            //   path: `${basePath}/${file.name}`
-            // }).result;
+              // Get file data for display
+              // const pictureFile = await downloadData({
+              //   path: `${basePath}/${file.name}`
+              // }).result;
 
-            // const blob = await blobToBase64(await (pictureFile.body).blob());
-            const blob = await blobToBase64(new Blob([fileReader.result]));
+              // const blob = await blobToBase64(await (pictureFile.body).blob());
+              const blob = await blobToBase64(
+                new Blob([fileReader.result], { type: resizedFile.type }),
+              );
 
-            // Update with actual data
-            library.value[props.mediaType][name]!.data =
-              blob as Base64URLString;
-            library.value[props.mediaType][name]!.state.isLoading = false;
-            library.value[props.mediaType][name]!.state.progress = 100;
-          } catch {
-            library.value[props.mediaType][name]!.state.isLoading = false;
-            library.value[props.mediaType][name]!.state.error = true;
+              // Update with actual data
+              library.value[props.mediaType][name]!.data = blob;
+              library.value[props.mediaType][name]!.state.isLoading = false;
+              library.value[props.mediaType][name]!.state.progress = 100;
+            } catch {
+              library.value[props.mediaType][name]!.state.isLoading = false;
+              library.value[props.mediaType][name]!.state.error = true;
+            }
           }
-        }
-      };
+        };
 
-      fileReader.onerror = (e) => {
-        console.error('File read error', e);
-        library.value[props.mediaType][name]!.state.isLoading = false;
-        library.value[props.mediaType][name]!.state.error = true;
-      };
+        fileReader.onerror = (e) => {
+          console.error('File read error', e);
+          library.value[props.mediaType][name]!.state.isLoading = false;
+          library.value[props.mediaType][name]!.state.error = true;
+        };
 
-      fileReader.readAsArrayBuffer(resizedFile);
-    } catch (error) {
-      console.error('Error resizing image:', error);
-    }
-  });
+        fileReader.readAsArrayBuffer(resizedFile);
+      } catch (error) {
+        console.error('Error processing file:', error);
+      }
+    }),
+  );
 };
 </script>

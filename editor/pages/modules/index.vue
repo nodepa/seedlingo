@@ -176,8 +176,10 @@ const ModuleSchema = v.object({
 
 const modules = useState<Array<DynamicModule>>('modules', () => []);
 const client = generateClient<Schema>({ authMode: 'userPool' });
-watchEffect(() => {
-  client.models.ContentSpec.observeQuery().subscribe({
+
+let modulesSub: Subscription;
+onMounted(() => {
+  modulesSub = client.models.ContentSpec.observeQuery().subscribe({
     next: ({ items }) => {
       modules.value = items.map((item) => ({
         ...item,
@@ -190,79 +192,72 @@ watchEffect(() => {
     },
   });
 });
-watch(
-  () => modules.value,
-  (mods) => {
-    console.warn('modules:', mods);
-  },
-);
 
 const save = async (module: DynamicModule) => {
   module.isWaiting = true;
-  console.warn('save > module:', module);
-  if (module.id) {
-    console.warn('updating');
-    const { data: existingModule, errors } =
-      await client.models.ContentSpec.get({ id: module.id });
-    if (errors || !existingModule) {
-      console.error(errors);
-      toast.add({
-        title: 'Error',
-        description: 'Failed to get module',
-        color: 'error',
-      });
-      return;
+  try {
+    if (module.id) {
+      const { data: existingModule, errors } =
+        await client.models.ContentSpec.get({ id: module.id });
+      if (errors || !existingModule) {
+        console.error(errors);
+        toast.add({
+          title: 'Error',
+          description: 'Failed to get module',
+          color: 'error',
+        });
+        return;
+      } else {
+        const { errors } = await client.models.ContentSpec.update({
+          id: module.id,
+          name: module.name,
+          icon: module.icon,
+          description: module.description,
+        });
+        if (errors) {
+          console.error(errors);
+          toast.add({
+            title: 'Error',
+            description: 'Failed to update module',
+            color: 'error',
+          });
+          return;
+        } else {
+          toast.add({
+            title: 'Success',
+            description: 'Module updated successfully',
+            color: 'success',
+          });
+          module.inEditMode = false;
+        }
+      }
     } else {
-      const { errors } = await client.models.ContentSpec.update({
-        id: module.id,
+      const newModule = {
         name: module.name,
-        icon: module.icon,
         description: module.description,
-      });
+      } as Module;
+      if (module.icon) {
+        newModule.icon = module.icon;
+      }
+      const { errors } = await client.models.ContentSpec.create(newModule);
       if (errors) {
         console.error(errors);
         toast.add({
           title: 'Error',
-          description: 'Failed to update module',
+          description: 'Failed to add module',
           color: 'error',
         });
         return;
       } else {
         toast.add({
           title: 'Success',
-          description: 'Module updated successfully',
+          description: 'Module added successfully',
           color: 'success',
         });
-        module.isWaiting = false;
       }
     }
-  } else {
-    console.warn('creating');
-    const newModule = {
-      name: module.name,
-      description: module.description,
-    } as Module;
-    if (module.icon) {
-      newModule.icon = module.icon;
-    }
-    const { errors } = await client.models.ContentSpec.create(newModule);
+  } finally {
     module.isWaiting = false;
-    if (errors) {
-      console.error(errors);
-      toast.add({
-        title: 'Error',
-        description: 'Failed to add module',
-        color: 'error',
-      });
-      return;
-    } else {
-      toast.add({
-        title: 'Success',
-        description: 'Module added successfully',
-        color: 'success',
-      });
-      module.isWaiting = false;
-    }
   }
 };
 
@@ -306,7 +301,6 @@ const deleteModule = async (module: DynamicModule) => {
 };
 
 const createModule = async (moduleData: DynamicModule) => {
-  console.warn('createModule > moduleData:', moduleData);
   if (moduleData.id) {
     modules.value.push(moduleData);
   } else {
@@ -350,6 +344,7 @@ onBeforeMount(() => {
 });
 
 onBeforeUnmount(() => {
+  modulesSub?.unsubscribe();
   createSub.unsubscribe();
   updateSub.unsubscribe();
   deleteSub.unsubscribe();

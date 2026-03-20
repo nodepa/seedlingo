@@ -316,14 +316,24 @@ onBeforeUnmount(() => {
   wordsSub?.unsubscribe();
 });
 
-const commit = (property: UnitWritable) => {
+const commit = async (property: UnitWritable) => {
   if (!unit.value) return;
   unit.value.waitsOn = { ...unit.value.waitsOn, [property]: true };
-  setTimeout(() => {
-    if (unit.value) {
-      unit.value.waitsOn = { ...unit.value.waitsOn, [property]: false };
-    }
-  }, 1000);
+  const { errors } = await client.models.Unit.update({
+    id: unit.value.id,
+    [property]: unit.value[property],
+  });
+  if (unit.value) {
+    unit.value.waitsOn = { ...unit.value.waitsOn, [property]: false };
+  }
+  if (errors) {
+    console.error(errors);
+    toast.add({
+      title: 'Error',
+      description: `Failed to update ${property}`,
+      color: 'error',
+    });
+  }
 };
 
 const WordValidationSchema = v.object({
