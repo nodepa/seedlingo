@@ -1,10 +1,16 @@
 version: 1
 applications:
-  - frontend:
+  - appRoot: app
+    frontend:
       phases:
         preBuild:
           commands:
+            - nvm install $(node -e "process.stdout.write(require('./package.json').volta.node)")
+            - node --version
+            - npm install -g npm@$(node -e "process.stdout.write(require('./package.json').volta.npm)")
+            - npm --version
             - npm install
+            - npm run setup
         build:
           commands:
             - npm run build
@@ -16,16 +22,15 @@ applications:
         paths:
           - node_modules/**/*
     test:
-      artifacts:
-        baseDirectory: tests/e2e
-        configFilePath: '**/mochawesome.json'
-        files:
-          - '**/*.png'
-          - '**/*.mp4'
       phases:
         preTest:
           commands:
+            - nvm install $(node -e "process.stdout.write(require('./package.json').volta.node)")
+            - node --version
+            - npm install -g npm@$(node -e "process.stdout.write(require('./package.json').volta.npm)")
+            - npm --version
             - npm install
+            - npm run setup
         test:
           commands:
             - npm run test:unit:ci
@@ -33,8 +38,48 @@ applications:
         postTest:
           commands:
             - npx mochawesome-merge tests/e2e/report/mochawesome-report/mochawesome*.json -o  tests/e2e/report/mochawesome.json
+      artifacts:
+        baseDirectory: tests/e2e
+        configFilePath: '**/mochawesome.json'
+        files:
+          - '**/*.png'
+          - '**/*.mp4'
       cache:
         paths:
           - node_modules/**/*
-    appRoot: app
-
+  - appRoot: editor
+    backend:
+      phases:
+        preBuild:
+          commands:
+            - nvm install $(node -e "process.stdout.write(require('./package.json').volta.node)")
+            - node --version
+            - npm install -g npm@$(node -e "process.stdout.write(require('./package.json').volta.npm)")
+            - npm --version
+        build:
+          commands:
+            - npm ci --cache .npm --prefer-offline
+            - npm run setup
+            - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+      cache:
+        paths:
+          - .npm/**/*
+          - node_modules/**/*
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - nvm install $(node -e "process.stdout.write(require('./package.json').volta.node)")
+            - node --version
+            - npm install -g npm@$(node -e "process.stdout.write(require('./package.json').volta.npm)")
+            - npm --version
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: .amplify-hosting
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*

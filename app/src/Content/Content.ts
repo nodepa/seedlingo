@@ -78,7 +78,7 @@ if (import.meta.env.MODE === 'test') {
     eager: true,
     import: 'default',
   });
-  picSources = import.meta.glob('/src/test-support/**/*.jpg|jpeg|png|gif', {
+  picSources = import.meta.glob('/src/test-support/**/*.{jpg,jpeg,png,gif}', {
     eager: true,
     import: 'default',
   });
@@ -93,7 +93,7 @@ if (import.meta.env.MODE === 'test') {
     eager: true,
     import: 'default',
   });
-  picSources = import.meta.glob('../../../content/**/*.jpg|jpeg|png|gif', {
+  picSources = import.meta.glob('../../../content/**/*.{jpg,jpeg,png,gif}', {
     eager: true,
     import: 'default',
   });
