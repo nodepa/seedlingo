@@ -132,5 +132,4 @@ function getExercise(): void {
 }
 
 watch(() => route.params, getExercise, { immediate: true });
-
 </script>

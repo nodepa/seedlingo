@@ -96,7 +96,7 @@
               />
               <NuxtImg
                 v-else
-                :src="library.pictures[row.original.picture].data"
+                :src="library.pictures[row.original.picture]?.data || undefined"
                 class="w-40 min-w-40 h-28 object-cover rounded-md hover:cursor-pointer"
               />
               <UButton
@@ -119,7 +119,10 @@
             media-type="audio"
             @change="() => commitCell(row, 'audio')"
           >
-            <div v-if="row.original.audio" class="relative w-40 h-28 flex flex-col">
+            <div
+              v-if="row.original.audio"
+              class="relative w-40 h-28 flex flex-col"
+            >
               <div
                 v-if="!library.audio[row.original.audio]?.data"
                 class="w-40 h-28 rounded-md bg-gray-200 dark:bg-gray-700 animate-pulse"
@@ -135,7 +138,7 @@
                   preload="auto"
                   class="w-40 h-10 inline rounded-md"
                   :alt="row.original.audio"
-                  :src="library.audio[row.original.audio].data"
+                  :src="library.audio[row.original.audio]?.data || undefined"
                 >
                   Your browser does not support the audio element.
                 </audio>
