@@ -22,6 +22,8 @@
     "npm": "11.11.1"
   },
   "devDependencies": {
+    "@lavamoat/allow-scripts": "^3.4.3",
+    "@lavamoat/preinstall-always-fail": "^2.1.1",
     "@vuepress/bundler-vite": "^2.0.0-rc.27",
     "@vuepress/client": "^2.0.0-rc.27",
     "@vuepress/plugin-docsearch": "^2.0.0-rc.125",
@@ -33,9 +35,17 @@
   },
   "scripts": {
     "build": "vuepress build .",
-    "dev": "vuepress dev ."
+    "dev": "vuepress dev .",
+    "setup": "allow-scripts"
   },
   "overrides": {
     "vuepress": "$vuepress"
+  },
+  "lavamoat": {
+    "allowScripts": {
+      "@vuepress/theme-default>sass>@parcel/watcher": false,
+      "vuepress>@vuepress/cli>esbuild": true,
+      "@lavamoat/preinstall-always-fail": false
+    }
   }
 }

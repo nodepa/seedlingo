@@ -30,6 +30,7 @@
     "postinstall": "nuxi prepare",
     "preview": "nuxi preview",
     "sandbox": "ampx sandbox",
+    "setup": "allow-scripts && nuxi prepare",
     "start": "nuxi build && nuxi preview",
     "test": "npm run lint && npm run lint:tsc && npm run test:unit && npm run test:e2e",
     "test:e2e": "start-server-and-test start :3000 'cypress run --e2e'",
@@ -54,6 +55,8 @@
     "@aws-amplify/backend": "^1.21.1",
     "@aws-amplify/backend-cli": "^1.8.2",
     "@iconify-json/mdi": "^1.2.3",
+    "@lavamoat/allow-scripts": "^3.4.3",
+    "@lavamoat/preinstall-always-fail": "^2.1.1",
     "@nuxt/test-utils": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^8.57.1",
     "@typescript-eslint/parser": "^8.57.1",
@@ -111,5 +114,19 @@
   "volta": {
     "node": "24.13.1",
     "npm": "11.10.1"
+  },
+  "lavamoat": {
+    "allowScripts": {
+      "$root$": false,
+      "@aws-amplify/backend-cli>@aws-amplify/backend-deployer>tsx>esbuild": true,
+      "@aws-amplify/backend-cli>@aws-amplify/model-generator>@aws-amplify/graphql-types-generator>babel-types>babel-runtime>core-js": false,
+      "@aws-amplify/backend-cli>@aws-amplify/model-generator>@aws-amplify/graphql-types-generator>core-js": false,
+      "@lavamoat/preinstall-always-fail": false,
+      "@nuxt/image>ipx>sharp": true,
+      "@nuxt/ui>reka-ui>@floating-ui/vue>vue-demi": true,
+      "cypress": true,
+      "esbuild": true,
+      "nuxt>@parcel/watcher": true
+    }
   }
 }
