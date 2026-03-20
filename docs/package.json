@@ -18,21 +18,34 @@
   },
   "homepage": "https://github.com/nodepa/seedlingo#readme",
   "volta": {
-    "node": "20.18.0",
-    "npm": "10.8.3"
+    "node": "24.14.0",
+    "npm": "11.11.1"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "^2.0.0-rc.18",
-    "@vuepress/client": "^2.0.0-rc.18",
-    "@vuepress/plugin-docsearch": "^2.0.0-rc.55",
-    "@vuepress/plugin-seo": "^2.0.0-rc.55",
-    "@vuepress/plugin-sitemap": "^2.0.0-rc.55",
-    "@vuepress/theme-default": "^2.0.0-rc.55",
-    "sass-embedded": "^1.79.5",
-    "vuepress": "^2.0.0-rc.18"
+    "@lavamoat/allow-scripts": "^3.4.3",
+    "@lavamoat/preinstall-always-fail": "^2.1.1",
+    "@vuepress/bundler-vite": "^2.0.0-rc.27",
+    "@vuepress/client": "^2.0.0-rc.27",
+    "@vuepress/plugin-docsearch": "^2.0.0-rc.125",
+    "@vuepress/plugin-seo": "^2.0.0-rc.125",
+    "@vuepress/plugin-sitemap": "^2.0.0-rc.125",
+    "@vuepress/theme-default": "^2.0.0-rc.125",
+    "sass-embedded": "^1.98.0",
+    "vuepress": "^2.0.0-rc.27"
   },
   "scripts": {
     "build": "vuepress build .",
-    "dev": "vuepress dev ."
+    "dev": "vuepress dev .",
+    "setup": "allow-scripts"
+  },
+  "overrides": {
+    "vuepress": "$vuepress"
+  },
+  "lavamoat": {
+    "allowScripts": {
+      "@vuepress/theme-default>sass>@parcel/watcher": false,
+      "vuepress>@vuepress/cli>esbuild": true,
+      "@lavamoat/preinstall-always-fail": false
+    }
   }
 }

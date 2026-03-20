@@ -1,0 +1,352 @@
+<template>
+  <UContainer>
+    <UCard>
+      <template #header>
+        <h1 class="text-2xl text-primary">Modules</h1>
+      </template>
+
+      <ul class="flex flex-wrap gap-4">
+        <li v-if="!modules || modules.length === 0" class="flex w-xs">
+          <UCard class="w-full">
+            <div>
+              <USkeleton class="mb-4 w-40 h-8" />
+            </div>
+            <div>
+              <USkeleton class="mb-4 w-32 h-32" />
+            </div>
+            <div>
+              <USkeleton class="mb-2 w-40 h-6" />
+              <USkeleton class="mb-2 w-56 h-6" />
+              <USkeleton class="mb-2 w-48 h-6" />
+            </div>
+          </UCard>
+        </li>
+        <li
+          v-for="module in modules"
+          :key="'module-id-' + module.id"
+          class="flex w-xs"
+        >
+          <UCard class="w-full grid">
+            <div v-if="!module.inEditMode" class="h-full flex flex-col">
+              <p class="text-xl">{{ module.name }}</p>
+              <UIcon
+                :name="module.icon || 'noto-unknown-flag'"
+                class="w-40 h-40 block"
+              />
+              <p class="mb-4">{{ module.description }}</p>
+              <div class="flex-1"></div>
+              <div class="flex justify-center gap-2">
+                <UButton
+                  v-if="!module.inEditMode"
+                  color="primary"
+                  icon="lucide:eye"
+                  :to="'modules/' + module.id"
+                >
+                  View
+                </UButton>
+                <UButton
+                  v-if="!module.inEditMode"
+                  color="neutral"
+                  icon="lucide:edit"
+                  @click="module.inEditMode = true"
+                >
+                  Edit
+                </UButton>
+              </div>
+            </div>
+            <div v-else class="h-full">
+              <UForm
+                :schema="ModuleSchema"
+                :state="module"
+                class="h-full flex flex-col"
+                @submit="save(module)"
+              >
+                <UFormField label="Name" name="name" hint="required">
+                  <UInput
+                    v-model="module.name as string"
+                    :disabled="module.isWaiting"
+                    class="text-xl :invalid:border-blue"
+                  />
+                </UFormField>
+                <UFormField
+                  label="Icon"
+                  name="icon"
+                  hint="optional"
+                  class="my-4"
+                >
+                  <UInput
+                    v-model="module.icon as string"
+                    :disabled="module.isWaiting"
+                  />
+                </UFormField>
+                <UFormField
+                  label="Description"
+                  name="description"
+                  hint="optional"
+                >
+                  <UTextarea
+                    v-model="module.description as string"
+                    :autoresize="true"
+                    :maxrows="8"
+                    :disabled="module.isWaiting"
+                    class="mb-4 w-full resize-none"
+                  />
+                </UFormField>
+                <div class="flex-1"></div>
+                <div class="flex justify-center gap-2">
+                  <UButton
+                    type="submit"
+                    color="primary"
+                    icon="lucide:save"
+                    :disabled="module.isWaiting"
+                  >
+                    Save
+                  </UButton>
+                  <UButton
+                    color="neutral"
+                    icon="lucide:rotate-ccw"
+                    :disabled="module.isWaiting"
+                    @click="cancelEditing(module)"
+                  >
+                    Cancel
+                  </UButton>
+                  <UButton
+                    color="warning"
+                    icon="lucide:trash-2"
+                    :disabled="module.isWaiting"
+                    @click="deleteModule(module)"
+                  >
+                    Delete
+                  </UButton>
+                </div>
+              </UForm>
+            </div>
+          </UCard>
+        </li>
+        <li class="flex w-xs">
+          <UCard class="w-full grid items-center">
+            <div class="min-h-40 flex flex-col justify-center">
+              <!-- <div>
+                <USkeleton class="mb-4 w-[8rem] h-8" />
+              </div>
+              <div>
+                <USkeleton class="mb-4 w-[11rem] h-[8rem]" />
+              </div>
+              <div>
+                <USkeleton class="mb-2 w-[17rem] h-5" />
+                <USkeleton class="mb-4 w-[13rem] h-5" />
+              </div> -->
+              <ModuleForm is-add-mode @update-module="createModule" />
+            </div>
+          </UCard>
+        </li>
+      </ul>
+
+      <template #footer>
+        <p class="text-center">
+          Currently showing {{ modules.length }} modules
+        </p>
+      </template>
+    </UCard>
+  </UContainer>
+</template>
+
+<script setup lang="ts">
+import type { Schema } from '~/amplify/data/resource';
+import { generateClient } from 'aws-amplify/data';
+import * as v from 'valibot';
+// import type { Subscription } from 'aws-cdk-lib/aws-sns';
+import type { Subscription } from 'rxjs';
+
+const toast = useToast();
+
+type Module = Schema['ContentSpec']['type'];
+type DynamicModule = Omit<Module, 'description' | 'icon'> & {
+  description?: string;
+  icon?: string;
+  inEditMode?: boolean;
+  isWaiting?: boolean;
+};
+const ModuleSchema = v.object({
+  id: v.optional(v.string()),
+  name: v.pipe(v.string(), v.nonEmpty('Please enter a name for the module')),
+  description: v.optional(v.string()),
+  icon: v.optional(v.string()),
+});
+
+const modules = useState<Array<DynamicModule>>('modules', () => []);
+const client = generateClient<Schema>({ authMode: 'userPool' });
+
+let modulesSub: Subscription;
+onMounted(() => {
+  modulesSub = client.models.ContentSpec.observeQuery().subscribe({
+    next: ({ items }) => {
+      modules.value = items.map((item) => ({
+        ...item,
+        description: item.description ?? undefined,
+        icon: item.icon ?? undefined,
+      })) as DynamicModule[];
+    },
+    error: (error) => {
+      console.error('Error observing modules:', error);
+    },
+  });
+});
+
+const save = async (module: DynamicModule) => {
+  module.isWaiting = true;
+  try {
+    if (module.id) {
+      const { data: existingModule, errors } =
+        await client.models.ContentSpec.get({ id: module.id });
+      if (errors || !existingModule) {
+        console.error(errors);
+        toast.add({
+          title: 'Error',
+          description: 'Failed to get module',
+          color: 'error',
+        });
+        return;
+      } else {
+        const { errors } = await client.models.ContentSpec.update({
+          id: module.id,
+          name: module.name,
+          icon: module.icon,
+          description: module.description,
+        });
+        if (errors) {
+          console.error(errors);
+          toast.add({
+            title: 'Error',
+            description: 'Failed to update module',
+            color: 'error',
+          });
+          return;
+        } else {
+          toast.add({
+            title: 'Success',
+            description: 'Module updated successfully',
+            color: 'success',
+          });
+          module.inEditMode = false;
+        }
+      }
+    } else {
+      const newModule = {
+        name: module.name,
+        description: module.description,
+      } as Module;
+      if (module.icon) {
+        newModule.icon = module.icon;
+      }
+      const { errors } = await client.models.ContentSpec.create(newModule);
+      if (errors) {
+        console.error(errors);
+        toast.add({
+          title: 'Error',
+          description: 'Failed to add module',
+          color: 'error',
+        });
+        return;
+      } else {
+        toast.add({
+          title: 'Success',
+          description: 'Module added successfully',
+          color: 'success',
+        });
+      }
+    }
+  } finally {
+    module.isWaiting = false;
+  }
+};
+
+const cancelEditing = async (module: DynamicModule) => {
+  module.isWaiting = true;
+  if (module.id) {
+    const { data: existingModule } = await client.models.ContentSpec.get({
+      id: module.id,
+    });
+    if (existingModule) {
+      module.name = existingModule.name as string;
+      module.icon = existingModule.icon as string;
+      module.description = existingModule.description as string;
+    }
+  }
+  module.inEditMode = false;
+  module.isWaiting = false;
+};
+
+const deleteModule = async (module: DynamicModule) => {
+  module.isWaiting = true;
+  if (module.id) {
+    const { errors } = await client.models.ContentSpec.delete({
+      id: module.id,
+    });
+    if (errors) {
+      console.error(errors);
+      toast.add({
+        title: 'Error',
+        description: 'Failed to delete module',
+        color: 'error',
+      });
+    } else {
+      toast.add({
+        title: 'Success',
+        description: 'Module deleted successfully',
+        color: 'success',
+      });
+    }
+  }
+};
+
+const createModule = async (moduleData: DynamicModule) => {
+  if (moduleData.id) {
+    modules.value.push(moduleData);
+  } else {
+    const newModule = {
+      name: moduleData.name,
+      description: moduleData.description,
+    };
+    const { errors } = await client.models.ContentSpec.create(newModule);
+    if (errors) {
+      console.error(errors);
+      toast.add({
+        title: 'Error',
+        description: 'Failed to add module',
+        color: 'error',
+      });
+      return;
+    } else {
+      toast.add({
+        title: 'Success',
+        description: 'Module added successfully',
+        color: 'success',
+      });
+    }
+  }
+};
+
+let createSub: Subscription, updateSub: Subscription, deleteSub: Subscription;
+onBeforeMount(() => {
+  createSub = client.models.ContentSpec.onCreate().subscribe({
+    next: (data) => console.warn('db-reports-created:', data),
+    error: (error) => console.warn(error),
+  });
+  updateSub = client.models.ContentSpec.onUpdate().subscribe({
+    next: (data) => console.warn('db-reports-updated:', data),
+    error: (error) => console.warn(error),
+  });
+  deleteSub = client.models.ContentSpec.onDelete().subscribe({
+    next: (data) => console.warn('db-reports-deleted:', data),
+    error: (error) => console.warn(error),
+  });
+});
+
+onBeforeUnmount(() => {
+  modulesSub?.unsubscribe();
+  createSub.unsubscribe();
+  updateSub.unsubscribe();
+  deleteSub.unsubscribe();
+});
+</script>

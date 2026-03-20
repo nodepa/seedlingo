@@ -41,6 +41,10 @@ jobs:
         # if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
+      # run allowed package scripts (e.g. esbuild binary download)
+      - name: Run allowed package scripts
+        run: npm run setup
+
       # run build script
       - name: Build VuePress site
         run: npm run build

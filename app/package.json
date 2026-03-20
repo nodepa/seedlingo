@@ -33,7 +33,7 @@
     "genass": "cd public && pwd && npx pwa-asset-generator --background 'linear-gradient(#19D2FE, #1E64F0)' --padding '0px' --favicon --single-quotes --type png ../src/assets/logo/logo.svg ./logo",
     "lint": "eslint",
     "lint:tsc": "vue-tsc --noEmit",
-    "prepare": "cd ../ && husky ./app/.husky",
+    "setup": "allow-scripts && cd ../ && husky ./app/.husky",
     "sa": "npm run sync:android",
     "serve": "vite preview",
     "start": "vite build && vite preview",
@@ -70,7 +70,7 @@
     "register-service-worker": "^1.7.2",
     "roboto-fontface": "^0.10.0",
     "vue": "^3.5.30",
-    "vue-router": "^4.6.4",
+    "vue-router": "^5.0.4",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
@@ -82,10 +82,12 @@
     "@capacitor/ios": "^8.2.0",
     "@capacitor/keyboard": "^8.0.1",
     "@capacitor/status-bar": "^8.0.1",
-    "@commitlint/cli": "^20.4.4",
+    "@commitlint/cli": "^20.5.0",
+    "@lavamoat/allow-scripts": "^3.4.3",
+    "@lavamoat/preinstall-always-fail": "^2.1.1",
     "@mdi/js": "^7.4.47",
-    "@typescript-eslint/eslint-plugin": "^8.57.0",
-    "@typescript-eslint/parser": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.1",
+    "@typescript-eslint/parser": "^8.57.1",
     "@vitejs/plugin-vue": "^6.0.5",
     "@vitest/coverage-v8": "^4.1.0",
     "@vue/test-utils": "^2.4.6",
@@ -97,23 +99,43 @@
     "happy-dom": "^20.8.4",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "plausible-tracker": "^0.3.9",
     "mocha": "^11.7.5",
     "mochawesome": "^7.1.4",
     "mochawesome-merge": "^5.1.1",
     "mochawesome-report-generator": "^6.3.2",
+    "plausible-tracker": "^0.3.9",
     "prettier": "^3.8.1",
     "sass": "^1.98.0",
     "start-server-and-test": "^2.1.5",
     "typescript": "^5.9.3",
-    "vite": "^7.0.0",
+    "vite": "^8.0.1",
     "vite-plugin-pwa": "^1.2.0",
     "vitest": "^4.1.0",
     "vue-eslint-parser": "^10.4.0",
-    "vue-tsc": "^3.2.5"
+    "vue-tsc": "^3.2.6"
+  },
+  "overrides": {
+    "mocha": {
+      "diff": ">=8.0.2",
+      "serialize-javascript": ">=7.0.2"
+    },
+    "@rollup/plugin-terser": {
+      "serialize-javascript": ">=7.0.2"
+    },
+    "vite-plugin-pwa": {
+      "vite": ">=8.0.0"
+    }
   },
   "volta": {
     "node": "24.14.0",
     "npm": "11.11.1"
+  },
+  "lavamoat": {
+    "allowScripts": {
+      "@lavamoat/preinstall-always-fail": false,
+      "cypress": true,
+      "sass>@parcel/watcher": false,
+      "$root$": false
+    }
   }
 }
