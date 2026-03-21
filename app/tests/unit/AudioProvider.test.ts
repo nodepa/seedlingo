@@ -178,7 +178,7 @@ describe('AudioProvider', () => {
       expect(secondElement).not.toBeNull();
 
       // Simulate second (last) audio ending naturally
-      (secondElement as HTMLMediaElement).onended?.(new Event('ended'));
+      secondElement!.onended?.(new Event('ended'));
       expect(audio.playing).toBe(false);
 
       HTMLMediaElement.prototype.play = originalPlay;
