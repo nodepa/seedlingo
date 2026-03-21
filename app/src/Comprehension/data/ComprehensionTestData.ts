@@ -409,6 +409,9 @@ export default function ComprehensionTestData(): ComprehensionExercise {
       {
         // “我”有几个姐妹？ How many sisters does she have?
         questionText: '“我”有几个姐妹？',
+        questionAudio: AudioProvider.createAudioFromData(
+          audio2b64(placeholderAudio),
+        ),
         options: [
           {
             audio: AudioProvider.createAudioFromData(
@@ -455,6 +458,9 @@ export default function ComprehensionTestData(): ComprehensionExercise {
       {
         // “我”有几个兄弟？ How many brothers does she have?
         questionText: '“我”有几个兄弟？',
+        questionAudio: AudioProvider.createAudioFromData(
+          audio2b64(placeholderAudio),
+        ),
         options: [
           {
             audio: AudioProvider.createAudioFromData(
@@ -501,6 +507,9 @@ export default function ComprehensionTestData(): ComprehensionExercise {
       {
         // 爸爸和妈妈谁的年龄大？ Who is older, mom or dad?
         questionText: '爸爸和妈妈谁的年龄大？',
+        questionAudio: AudioProvider.createAudioFromData(
+          audio2b64(placeholderAudio),
+        ),
         options: [
           {
             audio: AudioProvider.createAudioFromData(

@@ -73,7 +73,7 @@ watch(
         currentQuestion.value >= 0 &&
         currentQuestion.value < exercise.value.questions.length - 1
       ) {
-        exercise.value.questions[currentQuestion.value].questionAudio?.cancel();
+        cancelCurrentQuestionAudio();
         currentQuestion.value += 1;
         togglePlayInstructions();
       } else if (
@@ -85,6 +85,9 @@ watch(
       } else if (currentStage.value >= STAGE.Review) {
         ionRouter.navigate({ name: 'Home' }, 'root', 'replace');
       } else {
+        if (currentStage.value === STAGE.AnswerQuestions) {
+          cancelCurrentQuestionAudio();
+        }
         exercise.value.stages[currentStage.value].instructionAudio?.cancel();
         currentStage.value += 1;
       }
@@ -116,6 +119,16 @@ watch(currentStage, (currentStage) => {
     togglePlayInstructions();
   }
 });
+
+function cancelCurrentQuestionAudio(): void {
+  if (currentQuestion.value >= 0) {
+    const question = exercise.value.questions[currentQuestion.value];
+    question.questionAudio?.cancel();
+    question.options.forEach((option) => {
+      option.audio?.cancel();
+    });
+  }
+}
 
 function togglePlayInstructions() {
   if (currentStage.value === STAGE.AnswerQuestions) {
