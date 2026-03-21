@@ -6,6 +6,15 @@ export default defineNuxtConfig({
   ssr: false,
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@nuxt/image'],
+  runtimeConfig: {
+    public: {
+      awsBranch: process.env.AWS_BRANCH || '',
+      appVersion: process.env.npm_package_version || '',
+      awsJobId: process.env.AWS_JOB_ID
+        ? process.env.AWS_JOB_ID.replace(/^0+/, '')
+        : '',
+    },
+  },
   app: {
     head: {
       title: 'Seedlingo Apiary',
