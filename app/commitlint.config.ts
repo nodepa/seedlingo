@@ -145,7 +145,7 @@ const Configuration: UserConfig = {
               '**certification**\n' +
                 '- [x] i certify that <!-- check the box to certify: [x] -->\n' +
                 '- i have read the [contributing guidelines](\n' +
-                '  https://github.com/nodepa/seedlingo/blob/main/.github/contributing.md)\n' +
+                '  https://github.com/nodepa/seedlingo/blob/main/.github/contributing.md).\n' +
                 "- i license these contributions to the public under seedlingo's\n" +
                 '  [license](https://github.com/nodepa/seedlingo/blob/main/license.md)\n' +
                 '  and have the rights to do so.\n',
@@ -158,7 +158,7 @@ const Configuration: UserConfig = {
               '**Certification**\n' +
               '- [X] I certify that <!-- Check the box to certify: [X] -->\n' +
               '- I have read the [contributing guidelines](\n' +
-              '  https://github.com/nodepa/seedlingo/blob/main/.github/CONTRIBUTING.md)\n' +
+              '  https://github.com/nodepa/seedlingo/blob/main/.github/CONTRIBUTING.md).\n' +
               "- I license these contributions to the public under Seedlingo's\n" +
               '  [LICENSE](https://github.com/nodepa/seedlingo/blob/main/LICENSE.md)\n' +
               '  and have the rights to do so.  ',
