@@ -365,8 +365,10 @@ test.describe('马丽 interacts with the "cloze" system', () => {
       ).toContainText('，');
       await page.locator('[data-test="sentence-word-5-punctuation"]').click();
       await expect(
-        page.locator('[data-test="sentence-word-5-punctuation"]'),
-      ).not.toContainText('.ripple');
+        page
+          .locator('[data-test="sentence-word-5-punctuation"]')
+          .locator('.ripple'),
+      ).toHaveCount(0);
       // 0 audio played
       await expectAudioPlayCount(page, 0);
       // 0 audio ripples played
