@@ -5,7 +5,7 @@ export default defineNuxtPlugin(() => {
   const { awsBranch, appVersion, awsJobId } = runtimeConfig.public;
 
   const domain =
-    awsBranch === 'main' ? 'apiary.seedlingo.app' : 'test-apiary.seedlingo.app';
+    awsBranch === 'main' ? 'apiary.seedlingo.com' : 'test.seedlingo.com';
 
   const plausible = Plausible({
     domain,
