@@ -1,6 +1,7 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { play, pause } from '@/test-support/MockImplementations';
 import AudioProvider from '@/Content/AudioProvider';
+import Content from '@/Content/Content';
 
 HTMLMediaElement.prototype.play = play;
 HTMLMediaElement.prototype.pause = pause;
@@ -61,6 +62,147 @@ describe('AudioProvider', () => {
       };
       audio.cancel();
       expect(pauseCalled).toBe(true);
+    });
+  });
+
+  describe('.createCompositeAudioFromPaths()', () => {
+    it('returns a single audio when given one path', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const audio = AudioProvider.createCompositeAudioFromPaths(['path1']);
+      expect(audio.el).toBeInstanceOf(HTMLAudioElement);
+      spyGetAudioData.mockRestore();
+    });
+
+    it('returns an object with playing set to false initially', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const audio = AudioProvider.createCompositeAudioFromPaths([
+        'path1',
+        'path2',
+      ]);
+      expect(audio.playing).toBe(false);
+      spyGetAudioData.mockRestore();
+    });
+
+    it('returns an object with play and cancel functions', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const audio = AudioProvider.createCompositeAudioFromPaths([
+        'path1',
+        'path2',
+      ]);
+      expect(typeof audio.play).toBe('function');
+      expect(typeof audio.cancel).toBe('function');
+      spyGetAudioData.mockRestore();
+    });
+
+    it('sets playing to true when the first audio element fires onplaying', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const audio = AudioProvider.createCompositeAudioFromPaths([
+        'path1',
+        'path2',
+      ]);
+      expect(audio.playing).toBe(false);
+      audio.el.onplaying?.(new Event('playing'));
+      expect(audio.playing).toBe(true);
+      spyGetAudioData.mockRestore();
+    });
+
+    it('sets playing to false when cancel() is called', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const audio = AudioProvider.createCompositeAudioFromPaths([
+        'path1',
+        'path2',
+      ]);
+      audio.el.onplaying?.(new Event('playing'));
+      expect(audio.playing).toBe(true);
+      audio.cancel();
+      expect(audio.playing).toBe(false);
+      spyGetAudioData.mockRestore();
+    });
+
+    it('advances to the next audio when the current one ends', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      let secondPlayCalled = false;
+      const originalPlay = HTMLMediaElement.prototype.play;
+      const audio = AudioProvider.createCompositeAudioFromPaths([
+        'path1',
+        'path2',
+      ]);
+
+      // Simulate the first audio ending - should trigger play on the second
+      HTMLMediaElement.prototype.play = function () {
+        secondPlayCalled = true;
+        return Promise.resolve();
+      };
+      audio.el.onended?.(new Event('ended'));
+      expect(secondPlayCalled).toBe(true);
+
+      HTMLMediaElement.prototype.play = originalPlay;
+      spyGetAudioData.mockRestore();
+    });
+
+    it('updates el to the currently playing element when advancing', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const audio = AudioProvider.createCompositeAudioFromPaths([
+        'path1',
+        'path2',
+      ]);
+
+      const firstElement = audio.el;
+
+      // Simulate first audio ending — should advance el to the second element
+      audio.el.onended?.(new Event('ended'));
+
+      expect(audio.el).not.toBe(firstElement);
+      expect(audio.el).toBeInstanceOf(HTMLAudioElement);
+
+      spyGetAudioData.mockRestore();
+    });
+
+    it('sets playing to false after the last audio ends', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+
+      let secondElement: HTMLMediaElement | null = null;
+      const originalPlay = HTMLMediaElement.prototype.play;
+      HTMLMediaElement.prototype.play = function () {
+        secondElement = this as HTMLMediaElement;
+        return Promise.resolve();
+      };
+
+      const audio = AudioProvider.createCompositeAudioFromPaths([
+        'path1',
+        'path2',
+      ]);
+
+      // Simulate playing state on first element
+      audio.el.onplaying?.(new Event('playing'));
+      expect(audio.playing).toBe(true);
+
+      // Simulate first audio ending (triggers play on second audio, capturing secondElement)
+      audio.el.onended?.(new Event('ended'));
+      expect(secondElement).not.toBeNull();
+
+      // Simulate second (last) audio ending naturally
+      secondElement!.onended?.(new Event('ended'));
+      expect(audio.playing).toBe(false);
+
+      HTMLMediaElement.prototype.play = originalPlay;
+      spyGetAudioData.mockRestore();
     });
   });
 });

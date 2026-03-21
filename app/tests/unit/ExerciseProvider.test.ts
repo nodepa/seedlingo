@@ -5,6 +5,7 @@ import type { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceType
 import type { ExerciseType } from '@/Content/ExerciseProvider';
 
 import Content from '@/Content/Content';
+import AudioProvider from '@/Content/AudioProvider';
 
 import unitTestData from '@/test-support/UnitSpecFile.json';
 const unit = unitTestData as UnitSpec;
@@ -214,6 +215,33 @@ describe('ExerciseProvider', () => {
       spyGetAudioData.mockRestore();
       spyPickRandomItem.mockRestore();
     });
+
+    it('calls createCompositeAudioFromPaths for composite validOption', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const spyCreateComposite = vi.spyOn(
+        AudioProvider,
+        'createCompositeAudioFromPaths',
+      );
+      // Force last SingleCloze exercise (composite fixture), then pick first
+      // item for all subsequent selections (composite validOption is the only one)
+      const spyPickRandomItem = vi
+        .spyOn(ExerciseProvider, 'pickRandomItem')
+        .mockImplementationOnce((array) => array[array.length - 1])
+        .mockImplementation((array) => array[0]);
+
+      ExerciseProvider.generateSingleClozeExercise(unit);
+
+      expect(spyCreateComposite).toHaveBeenCalledWith([
+        'audio/妈妈.mp3',
+        'audio/的.mp3',
+      ]);
+
+      spyGetAudioData.mockRestore();
+      spyCreateComposite.mockRestore();
+      spyPickRandomItem.mockRestore();
+    });
   });
 
   describe('.generateMultiClozeExercise()', () => {
@@ -262,6 +290,31 @@ describe('ExerciseProvider', () => {
       );
 
       spyGetAudioData.mockRestore();
+      spyPickRandomItem.mockRestore();
+    });
+
+    it('calls createCompositeAudioFromPaths for composite validOption', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const spyCreateComposite = vi.spyOn(
+        AudioProvider,
+        'createCompositeAudioFromPaths',
+      );
+      // Force last MultiCloze exercise (composite fixture)
+      const spyPickRandomItem = vi
+        .spyOn(ExerciseProvider, 'pickRandomItem')
+        .mockImplementation((array) => array[array.length - 1]);
+
+      ExerciseProvider.generateMultiClozeExercise(unit);
+
+      expect(spyCreateComposite).toHaveBeenCalledWith([
+        'audio/妈妈.mp3',
+        'audio/的.mp3',
+      ]);
+
+      spyGetAudioData.mockRestore();
+      spyCreateComposite.mockRestore();
       spyPickRandomItem.mockRestore();
     });
   });
@@ -313,6 +366,30 @@ describe('ExerciseProvider', () => {
       expect(comprehension.exerciseItems.stages[1].questionnaire).toBe(true);
 
       spyGetAudioData.mockRestore();
+      spyPickRandomItem.mockRestore();
+    });
+
+    it('calls createCompositeAudioFromPaths for composite option word', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const spyCreateComposite = vi.spyOn(
+        AudioProvider,
+        'createCompositeAudioFromPaths',
+      );
+      const spyPickRandomItem = vi
+        .spyOn(ExerciseProvider, 'pickRandomItem')
+        .mockImplementation((array) => array[0]);
+
+      ExerciseProvider.generateComprehensionExercise(unit);
+
+      expect(spyCreateComposite).toHaveBeenCalledWith([
+        'audio/妈妈.mp3',
+        'audio/的.mp3',
+      ]);
+
+      spyGetAudioData.mockRestore();
+      spyCreateComposite.mockRestore();
       spyPickRandomItem.mockRestore();
     });
   });

@@ -38,8 +38,8 @@ describe('Content.ts', () => {
     expect(units[0].multipleChoiceCount).toBe(4);
     expect(units[0].matchingCount).toBe(4);
     expect(units[0].explanationCount).toBe(2);
-    expect(units[0].singleClozeCount).toBe(2);
-    expect(units[0].multiClozeCount).toBe(2);
-    expect(units[0].exercises.length).toBe(9);
+    expect(units[0].singleClozeCount).toBe(3);
+    expect(units[0].multiClozeCount).toBe(3);
+    expect(units[0].exercises.length).toBe(11);
   });
 });

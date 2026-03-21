@@ -35,4 +35,63 @@ export default class AudioProvider {
 
     return audio;
   }
+
+  public static createCompositeAudioFromPaths(srcs: string[]): ExerciseAudio {
+    if (srcs.length === 0) {
+      return this.createAudioFromData('');
+    }
+    if (srcs.length === 1) {
+      return this.createAudioFromPath(srcs[0]);
+    }
+
+    const elements = srcs.map((src) => new Audio(Content.getAudioData(src)));
+    let currentIndex = 0;
+
+    const compositeAudio = reactive({
+      el: elements[0],
+      playing: false,
+      play() {
+        // Stop any currently playing elements before restarting from the beginning
+        elements.forEach((el) => {
+          el.pause();
+          el.currentTime = 0;
+        });
+        currentIndex = 0;
+        playNext(0);
+      },
+      cancel() {
+        elements[currentIndex]?.pause();
+        compositeAudio.playing = false;
+      },
+    }) as ExerciseAudio;
+
+    function playNext(index: number) {
+      if (index >= elements.length) {
+        compositeAudio.playing = false;
+        return;
+      }
+      currentIndex = index;
+      compositeAudio.el = elements[index];
+      elements[index].currentTime = 0;
+      elements[index].play().catch(() => {
+        // Silently ignore AbortError when play() is interrupted by pause()
+      });
+    }
+
+    elements.forEach((el, index) => {
+      el.onplaying = () => {
+        compositeAudio.playing = true;
+      };
+      el.onpause = () => {
+        if (currentIndex === index) {
+          compositeAudio.playing = false;
+        }
+      };
+      el.onended = () => {
+        playNext(index + 1);
+      };
+    });
+
+    return compositeAudio;
+  }
 }

@@ -5,8 +5,8 @@
   "multipleChoiceCount": 4,
   "matchingCount": 4,
   "explanationCount": 2,
-  "singleClozeCount": 2,
-  "multiClozeCount": 2,
+  "singleClozeCount": 3,
+  "multiClozeCount": 3,
   "comprehensionCount": 1,
   "wordsExercisedCount": 6,
   "exercises": [
@@ -515,6 +515,16 @@
                 "word": {
                   "四": "da473305-758c-40c0-a61b-d9de0aefb5a4"
                 }
+              },
+              {
+                "word": [
+                  {
+                    "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16"
+                  },
+                  {
+                    "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+                  }
+                ]
               }
             ]
           },
@@ -582,6 +592,82 @@
           {
             "instructionText": "最后，请跟随录音朗读短文，边读边用手指指着每一个字。然后自己再试着朗读短文。",
             "instructionAudio": "audio/placeholder-audio.mp3"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aaaaaaaaa-0000-0000-0000-composite0001",
+      "type": "SingleCloze",
+      "singleClozeSpec": {
+        "text": [
+          {
+            "他": "c53add23-aba4-42f5-9fbb-d6a6d1d8882c"
+          },
+          {
+            "是": "bc1ec01c-0fde-4e63-82e6-c0f78d01529e"
+          },
+          {
+            "description": "composite-validOption-test",
+            "validOptions": [
+              [
+                {
+                  "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16"
+                },
+                {
+                  "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+                }
+              ]
+            ],
+            "invalidOptions": [
+              {
+                "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089"
+              },
+              {
+                "爷爷": "1ad7f2f9-521a-4a00-b549-bd4ee081149b"
+              },
+              {
+                "奶奶": "5cd464a3-a04a-4ad2-9565-091036425550"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "aaaaaaaaa-0000-0000-0000-composite0002",
+      "type": "MultiCloze",
+      "multiClozeSpec": {
+        "text": [
+          {
+            "他": "c53add23-aba4-42f5-9fbb-d6a6d1d8882c"
+          },
+          {
+            "是": "bc1ec01c-0fde-4e63-82e6-c0f78d01529e"
+          },
+          {
+            "description": "composite-validOption-test",
+            "validOptions": [
+              [
+                {
+                  "妈妈": "8da1e3a6-3268-40da-8707-be2a2c902c16"
+                },
+                {
+                  "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+                }
+              ]
+            ]
+          },
+          {
+            "的": "843f4af4-5dcb-44a4-b690-759db29999c4"
+          },
+          {
+            "description": "atomic-blank",
+            "validOptions": [
+              {
+                "爸爸": "3773c800-4f9b-4951-b7a7-9e0c9861d089"
+              }
+            ]
           }
         ]
       }
