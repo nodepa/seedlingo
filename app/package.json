@@ -54,13 +54,13 @@
     "tedu": "npm run test:e2e:dev:unserved",
     "teo": "npm run test:e2e:open",
     "teu": "npm run test:e2e:unserved",
-    "test:e2e": "server-test start :4173 'cypress run --e2e'",
-    "test:e2e:ci": "server-test serve :4173 'cypress run --e2e --reporter mochawesome --reporter-options \"reportDir=tests/e2e/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss\"'",
-    "test:e2e:dev": "server-test vite :5173 'cypress run --e2e --config baseUrl=http://localhost:5173'",
-    "test:e2e:dev:open": "server-test vite :5173 'cypress open --e2e -b electron --config baseUrl=http://localhost:5173'",
-    "test:e2e:dev:unserved": "cypress run --e2e --config baseUrl=http://localhost:5173",
-    "test:e2e:open": "server-test start :4173 'cypress open --e2e -b electron'",
-    "test:e2e:unserved": "cypress run --e2e",
+    "test:e2e": "playwright test",
+    "test:e2e:ci": "playwright test",
+    "test:e2e:dev": "E2E_DEV=1 playwright test",
+    "test:e2e:dev:open": "E2E_DEV=1 playwright test --ui",
+    "test:e2e:dev:unserved": "E2E_DEV=1 E2E_NO_SERVER=1 playwright test",
+    "test:e2e:open": "playwright test --ui",
+    "test:e2e:unserved": "E2E_NO_SERVER=1 playwright test",
     "tu": "npm run test:unit",
     "tuc": "npm run test:unit:coverage",
     "tud": "npm run test:unit:dev",
@@ -100,7 +100,7 @@
     "@vitejs/plugin-vue": "^6.0.5",
     "@vitest/coverage-v8": "^4.1.0",
     "@vue/test-utils": "^2.4.6",
-    "cypress": "^15.12.0",
+    "@playwright/test": "^1.52.0",
     "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
@@ -108,14 +108,9 @@
     "happy-dom": "^20.8.4",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "mocha": "^11.7.5",
-    "mochawesome": "^7.1.4",
-    "mochawesome-merge": "^5.1.1",
-    "mochawesome-report-generator": "^6.3.2",
     "plausible-tracker": "^0.3.9",
     "prettier": "^3.8.1",
     "sass": "^1.98.0",
-    "start-server-and-test": "^2.1.5",
     "typescript": "^5.9.3",
     "vite": "^8.0.1",
     "vite-plugin-pwa": "^1.2.0",
@@ -124,10 +119,6 @@
     "vue-tsc": "^3.2.6"
   },
   "overrides": {
-    "mocha": {
-      "diff": ">=8.0.2",
-      "serialize-javascript": ">=7.0.2"
-    },
     "@rollup/plugin-terser": {
       "serialize-javascript": ">=7.0.2"
     },
@@ -142,7 +133,7 @@
   "lavamoat": {
     "allowScripts": {
       "@lavamoat/preinstall-always-fail": false,
-      "cypress": true,
+      "@playwright/test": true,
       "sass>@parcel/watcher": false,
       "$root$": false
     }

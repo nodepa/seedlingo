@@ -31,19 +31,17 @@ applications:
             - npm --version
             - npm install
             - npm run setup
+            - npx playwright install chromium --with-deps
         test:
           commands:
             - npm run test:unit:ci
             - npm run test:e2e:ci
-        postTest:
-          commands:
-            - npx mochawesome-merge tests/e2e/report/mochawesome-report/mochawesome*.json -o  tests/e2e/report/mochawesome.json
       artifacts:
-        baseDirectory: tests/e2e
-        configFilePath: '**/mochawesome.json'
+        baseDirectory: tests/e2e/report
+        configFilePath: '**/playwright-report.json'
         files:
           - '**/*.png'
-          - '**/*.mp4'
+          - '**/*.webm'
       cache:
         paths:
           - node_modules/**/*
@@ -80,6 +78,30 @@ applications:
         baseDirectory: .amplify-hosting
         files:
           - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+    test:
+      phases:
+        preTest:
+          commands:
+            - nvm install $(node -e "process.stdout.write(require('./package.json').volta.node)")
+            - node --version
+            - npm install -g npm@$(node -e "process.stdout.write(require('./package.json').volta.npm)")
+            - npm --version
+            - npm install
+            - npm run setup
+            - npx playwright install chromium --with-deps
+        test:
+          commands:
+            - npm run test:unit:ci
+            - npm run test:e2e:ci
+      artifacts:
+        baseDirectory: tests/e2e/report
+        configFilePath: '**/playwright-report.json'
+        files:
+          - '**/*.png'
+          - '**/*.webm'
       cache:
         paths:
           - node_modules/**/*
