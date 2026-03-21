@@ -20,7 +20,16 @@
   "type": "module",
   "main": "src/main.js",
   "lint-staged": {
-    "*": "./.husky/vue-tsc-lint.sh"
+    "*.{ts,mts,cts,tsx,vue}": [
+      "./.husky/vue-tsc-lint.sh",
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{js,cjs,mjs,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,scss,html,yaml,yml}": "prettier --write"
   },
   "scripts": {
     "ba": "npm run build:android",

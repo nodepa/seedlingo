@@ -1,3 +1,10 @@
-cd app
-pwd
-npx  lint-staged
+#!/bin/sh
+set -e
+
+if [ -f app/node_modules/.bin/lint-staged ]; then
+  (cd app && npx lint-staged)
+fi
+
+if [ -f editor/node_modules/.bin/lint-staged ]; then
+  (cd editor && npx lint-staged)
+fi

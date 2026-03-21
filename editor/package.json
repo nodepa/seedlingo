@@ -20,6 +20,17 @@
   ],
   "type": "module",
   "main": "src/main.js",
+  "lint-staged": {
+    "*.{ts,mts,cts,tsx,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{js,cjs,mjs,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,scss,html,yaml,yml}": "prettier --write"
+  },
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",
@@ -73,6 +84,8 @@
     "eslint-plugin-vue": "^10.8.0",
     "happy-dom": "^20.8.4",
     "plausible-tracker": "^0.3.9",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1",
     "start-server-and-test": "^2.1.5",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",

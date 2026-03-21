@@ -11,11 +11,11 @@ An English language demo version is available at
 Install [Node.js](https://nodejs.org),
 which includes [npm](https://www.npmjs.com/get-npm) (Node Package Manager).
 
-- If you *do not* use [Volta](https://volta.sh/),
+- If you _do not_ use [Volta](https://volta.sh/),
   **use the version specified in the `volta`-section of `package.json`**
   when installing [Node.js](https://nodejs.org) according to your preference.
 
-- If you *do* use [Volta](https://volta.sh/),
+- If you _do_ use [Volta](https://volta.sh/),
   the `package.json`-specified Node version
   will automatically be installed and used
   when commands are executed.
