@@ -51,6 +51,11 @@ export default class AudioProvider {
       el: elements[0],
       playing: false,
       play() {
+        // Stop any currently playing elements before restarting from the beginning
+        elements.forEach((el) => {
+          el.pause();
+          el.currentTime = 0;
+        });
         currentIndex = 0;
         playNext(0);
       },
