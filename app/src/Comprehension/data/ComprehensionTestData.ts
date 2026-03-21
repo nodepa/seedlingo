@@ -311,6 +311,9 @@ export default function ComprehensionTestData(): ComprehensionExercise {
       {
         // 谁是最小的？ Who is the youngest?
         questionText: '谁是最小的？',
+        questionAudio: AudioProvider.createAudioFromData(
+          audio2b64(placeholderAudio),
+        ),
         options: [
           {
             audio: AudioProvider.createAudioFromData(
@@ -357,6 +360,9 @@ export default function ComprehensionTestData(): ComprehensionExercise {
       {
         // 谁是最大的？ Who is the oldest?
         questionText: '谁是最大的？',
+        questionAudio: AudioProvider.createAudioFromData(
+          audio2b64(placeholderAudio),
+        ),
         options: [
           {
             audio: AudioProvider.createAudioFromData(

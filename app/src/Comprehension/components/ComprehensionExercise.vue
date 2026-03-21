@@ -69,11 +69,11 @@ watch(
   () => store.state.showContinueButton,
   (show: boolean) => {
     if (!show) {
-      // BUG: Instructions should stop playing when proposing answer option #431
       if (
         currentQuestion.value >= 0 &&
         currentQuestion.value < exercise.value.questions.length - 1
       ) {
+        exercise.value.questions[currentQuestion.value].questionAudio?.cancel();
         currentQuestion.value += 1;
         togglePlayInstructions();
       } else if (
@@ -118,13 +118,17 @@ watch(currentStage, (currentStage) => {
 });
 
 function togglePlayInstructions() {
-  // BUG: Needs to _properly_ suspend other potentially playing audio #431
   if (currentStage.value === STAGE.AnswerQuestions) {
     if (
       exercise.value.questions[currentQuestion.value].questionAudio?.playing
     ) {
       exercise.value.questions[currentQuestion.value].questionAudio?.cancel();
     } else {
+      exercise.value.questions[currentQuestion.value].options.forEach(
+        (option) => {
+          option.audio?.cancel();
+        },
+      );
       exercise.value.questions[
         currentQuestion.value
       ].questionAudio?.el.scrollIntoView();
@@ -170,6 +174,9 @@ function determineCorrectness(
 function playOptionAudio(option: ComprehensionOption): void {
   // pause other (potentially playing) audio
   exercise.value.questions.forEach((question: ComprehensionQuestion) => {
+    if (question.questionAudio?.playing) {
+      question.questionAudio.cancel();
+    }
     question.options.forEach((option) => {
       if (option.audio?.playing) {
         option.audio.cancel();
