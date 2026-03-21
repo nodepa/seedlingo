@@ -152,6 +152,26 @@ describe('AudioProvider', () => {
       spyGetAudioData.mockRestore();
     });
 
+    it('updates el to the currently playing element when advancing', () => {
+      const spyGetAudioData = vi
+        .spyOn(Content, 'getAudioData')
+        .mockImplementation((path: string) => path);
+      const audio = AudioProvider.createCompositeAudioFromPaths([
+        'path1',
+        'path2',
+      ]);
+
+      const firstElement = audio.el;
+
+      // Simulate first audio ending — should advance el to the second element
+      audio.el.onended?.(new Event('ended'));
+
+      expect(audio.el).not.toBe(firstElement);
+      expect(audio.el).toBeInstanceOf(HTMLAudioElement);
+
+      spyGetAudioData.mockRestore();
+    });
+
     it('sets playing to false after the last audio ends', () => {
       const spyGetAudioData = vi
         .spyOn(Content, 'getAudioData')

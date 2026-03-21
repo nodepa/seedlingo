@@ -71,6 +71,7 @@ export default class AudioProvider {
         return;
       }
       currentIndex = index;
+      compositeAudio.el = elements[index];
       elements[index].currentTime = 0;
       elements[index].play().catch(() => {
         // Silently ignore AbortError when play() is interrupted by pause()
