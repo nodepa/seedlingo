@@ -17,6 +17,7 @@ export default defineUserConfig({
     [ 'link', { rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180', href: 'favicon/apple-icon-180.png' } ],
     [ 'link', { rel: 'shortcut icon', href: '/favicon.ico' } ],
     [ 'link', { rel: 'preconnect', href: 'https://DBU4PMHNAN-dsn.algolia.net', crossorigin: '' } ],
+    [ 'script', { defer: '', 'data-domain': 'seedlingo.com', src: 'https://plausible.io/js/script.js' } ],
   ],
 
   alias: {
