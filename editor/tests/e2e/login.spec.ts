@@ -12,8 +12,12 @@ test.describe('Login page', () => {
   });
 
   test('renders a link to seedlingo.com', async ({ page }) => {
-    // Verify the Seedlingo link is present
-    await expect(page.getByText('Content editor for Seedlingo')).toBeVisible();
+    // Verify the Seedlingo link is present and points to seedlingo.com
+    const seedlingoLink = page.getByRole('link', {
+      name: 'Seedlingo',
+    });
+    await expect(seedlingoLink).toBeVisible();
+    await expect(seedlingoLink).toHaveAttribute('href', /seedlingo\.com/);
   });
 
   test('renders the Toggle Dark Mode button', async ({ page }) => {

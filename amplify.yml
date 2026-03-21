@@ -31,17 +31,16 @@ applications:
             - npm --version
             - npm install
             - npm run setup
-            - npx playwright install chromium --with-deps
+            - npx playwright install chromium
         test:
           commands:
             - npm run test:unit:ci
             - npm run test:e2e:ci
       artifacts:
-        baseDirectory: tests/e2e/report
-        configFilePath: '**/playwright-report.json'
+        baseDirectory: tests/e2e
         files:
-          - '**/*.png'
-          - '**/*.webm'
+          - 'report/**/*'
+          - 'test-results/**/*'
       cache:
         paths:
           - node_modules/**/*
@@ -91,17 +90,16 @@ applications:
             - npm --version
             - npm install
             - npm run setup
-            - npx playwright install chromium --with-deps
+            - npx playwright install chromium
         test:
           commands:
             - npm run test:unit:ci
             - npm run test:e2e:ci
       artifacts:
-        baseDirectory: tests/e2e/report
-        configFilePath: '**/playwright-report.json'
+        baseDirectory: tests/e2e
         files:
-          - '**/*.png'
-          - '**/*.webm'
+          - 'report/**/*'
+          - 'test-results/**/*'
       cache:
         paths:
           - node_modules/**/*
