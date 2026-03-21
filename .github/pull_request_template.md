@@ -23,11 +23,8 @@ Resolves #123
 
 **Certification**
 - [ ] I certify that <-- Check the box to certify: [X]
-- I have read the [contributing guidelines](
-  https://github.com/nodepa/seedlingo/blob/main/.github/CONTRIBUTING.md)
-- I license these contributions to the public under Seedlingo's
-  [LICENSE](https://github.com/nodepa/seedlingo/blob/main/LICENSE.md)
-  and have the rights to do so.
+- I have read the [contributing guidelines](https://github.com/nodepa/seedlingo/blob/main/.github/CONTRIBUTING.md).
+- I license these contributions to the public under Seedlingo's [LICENSE](https://github.com/nodepa/seedlingo/blob/main/LICENSE.md) and have the rights to do so.
 
 Signed-off-by: Name/username <email>
 
