@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-03-31',
   ssr: false,
   devtools: { enabled: true },
+  devServer: {
+    port: 4000,
+  },
   modules: ['@nuxt/ui', '@nuxt/image'],
   runtimeConfig: {
     public: {
@@ -45,6 +48,15 @@ export default defineNuxtConfig({
           warn(warning);
         },
       },
+    },
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'aws-amplify/auth',
+        'plausible-tracker',
+        'aws-amplify',
+      ],
     },
   },
 });

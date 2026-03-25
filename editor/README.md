@@ -24,7 +24,7 @@ npm install
 
 ## Development server
 
-Start the development server on `http://localhost:3000`:
+Start the development server on `http://localhost:4000`:
 
 ```sh
 npm run dev

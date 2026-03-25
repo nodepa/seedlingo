@@ -7,10 +7,9 @@ tsconfig.pre-commit.json
 
 # Tests
 /coverage
-/tests/e2e/videos/
-/tests/e2e/screenshots/
-/tests/e2e/examples/
+/tests/e2e/test-results/
 /tests/e2e/report/
+/playwright-report/
 
 # local env files
 .env.local
