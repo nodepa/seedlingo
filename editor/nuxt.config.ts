@@ -38,6 +38,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+  typescript: {},
   // Nuxt alias config is injected into both Vite and the generated tsconfig,
   // so TypeScript and Vite both resolve @/ the same way.
   // The more-specific Content mock alias must be listed before the generic @/.
