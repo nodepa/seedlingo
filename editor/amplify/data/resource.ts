@@ -23,6 +23,18 @@ const schema = a
       contentSpec: a.belongsTo('ContentSpec', 'contentSpecId'),
       unitSpecFile: a.string(), // ref UnitSpec model
       words: a.hasMany('Word', 'unitId'),
+      exercises: a.hasMany('Exercise', 'unitId'),
+    }),
+
+    Exercise: a.model({
+      unitId: a.id().required(),
+      unit: a.belongsTo('Unit', 'unitId'),
+      // Discriminator: 'MultipleChoice' | 'Matching' | etc.
+      type: a.string().required(),
+      // JSON-serialised spec payload (e.g. MultipleChoiceSpec, MatchingSpec, …)
+      specJson: a.string().required(),
+      // Display order within the unit (lower = earlier)
+      sortOrder: a.integer(),
     }),
 
     Word: a.model({
@@ -32,6 +44,10 @@ const schema = a
       picture: a.string(),
       symbol: a.string().array(),
       isPunctuation: a.boolean(),
+      // Teacher-assigned importance rating (1 = low, 5 = essential)
+      importance: a.integer(),
+      // Teacher-estimated learning difficulty (1 = easy, 5 = very hard)
+      difficulty: a.integer(),
       wordListId: a.id(),
       wordList: a.belongsTo('WordList', 'wordListId'),
       unitId: a.id(),

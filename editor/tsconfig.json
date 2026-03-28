@@ -1,4 +1,13 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    // The app/src files use regular (non-type-only) imports for types, which
+    // conflicts with the verbatimModuleSyntax rule that .nuxt/tsconfig.json
+    // enables. Turning it off here lets us import app components without
+    // having to modify the app source. All editor-owned files still benefit
+    // from strict checking via the other compiler options inherited above.
+    // TODO: Consider migrating app/src to use type-only imports, which would allow us to enable verbatimModuleSyntax here and get better type checking for all files.
+    "verbatimModuleSyntax": false
+  }
 }
