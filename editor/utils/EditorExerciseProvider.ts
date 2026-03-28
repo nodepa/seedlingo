@@ -43,8 +43,10 @@ export function generateMultipleChoiceExercise(
     itemUnderTestAudioPlaying: false,
   };
 
-  // Attach picture if the word has one (stored as a base64 data URI in the DB)
-  if (correctWord.picture && correctWord.picture.length > 0) {
+  // Only attach picture if it is a base64 data URI.  Words migrated from the
+  // old content-spec format may have a plain filename (e.g. "1.png") which is
+  // not resolvable in the editor — showing the ear-icon fallback is better.
+  if (correctWord.picture?.startsWith('data:')) {
     exercise.pictureToMatch = correctWord.picture;
   }
 

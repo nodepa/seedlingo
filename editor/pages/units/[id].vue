@@ -212,7 +212,7 @@
               <!-- playing: show the actual exercise component -->
               <div
                 v-else-if="exerciseState === 'playing' && currentExercise"
-                class="exercise-host"
+                id="exercise-host"
                 style="height: 32rem"
               >
                 <MultipleChoiceExerciseComponent
@@ -826,16 +826,21 @@ const removeWordFromUnit = async (word: DynamicWord) => {
 
 <style scoped>
 /*
- * All Ionic CSS is scoped to .exercise-host — nothing leaks into the rest of
+ * All Ionic CSS is scoped to #exercise-host — nothing leaks into the rest of
  * the editor. Values are taken verbatim from app/src/common/styles/theme.scss
  * so the preview matches exactly what the learner sees in the app.
  *
  * core.css is NOT imported globally (see ionic.client.ts). All the CSS custom
  * properties it would have set on :root are provided here instead.
+ *
+ * Dark-mode overrides live in the non-scoped <style> block below because
+ * Vue 3.5's compiler mishandles :global(.dark) <local-selector> in scoped
+ * styles — it strips the local selector and emits only .dark { ... }, which
+ * sets the rule on <html> instead of #exercise-host.
  */
 
 /* ── Light-mode Ionic environment (app light: background #e9e9e9) ─────────── */
-.exercise-host {
+#exercise-host {
   /* Typography */
   --ion-font-family: inherit;
   --ion-text-color: #373737;
@@ -887,9 +892,93 @@ const removeWordFromUnit = async (word: DynamicWord) => {
   height: 100%;
 }
 
-/* ── Dark-mode Ionic environment (app dark: background #383838) ───────────── */
-/* The editor's dark mode sets .dark on <html> (Tailwind selector strategy).   */
-:global(.dark) .exercise-host {
+/* ── Restore Ionic host-element padding zeroed by Tailwind preflight ──────── */
+/* Tailwind's preflight `* { padding: 0 }` applies to ion-col and ion-grid as  */
+/* light-DOM host elements, overriding their internal shadow :host padding      */
+/* rules. External author styles on the host element beat :host rules from      */
+/* inside the shadow root, so we explicitly restore the correct values here.   */
+#exercise-host :deep(ion-col) {
+  padding: var(--ion-grid-column-padding, 8px);
+}
+#exercise-host :deep(ion-grid) {
+  padding: var(--ion-grid-padding, 5px);
+}
+
+/* ── Ionic color utility classes for ExerciseButton ───────────────────────── */
+/* ion-button uses .ion-color-{name} to map --ion-color-{name} → --ion-color-  */
+/* base/contrast/shade/tint. Without these mappings the buttons render with no  */
+/* background. core.css is not loaded globally (to avoid style leakage), so    */
+/* these bridges must be declared explicitly for every color used.              */
+#exercise-host :deep(.ion-color-primary) {
+  --ion-color-base: var(--ion-color-primary);
+  --ion-color-base-rgb: var(--ion-color-primary-rgb);
+  --ion-color-contrast: var(--ion-color-primary-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-primary-contrast-rgb);
+  --ion-color-shade: var(--ion-color-primary-shade);
+  --ion-color-tint: var(--ion-color-primary-tint);
+}
+#exercise-host :deep(.ion-color-card) {
+  --ion-color-base: var(--ion-color-card);
+  --ion-color-base-rgb: var(--ion-color-card-rgb);
+  --ion-color-contrast: var(--ion-color-card-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-card-contrast-rgb);
+  --ion-color-shade: var(--ion-color-card-shade);
+  --ion-color-tint: var(--ion-color-card-tint);
+}
+#exercise-host :deep(.ion-color-success) {
+  --ion-color-base: var(--ion-color-success);
+  --ion-color-base-rgb: var(--ion-color-success-rgb);
+  --ion-color-contrast: var(--ion-color-success-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-success-contrast-rgb);
+  --ion-color-shade: var(--ion-color-success-shade);
+  --ion-color-tint: var(--ion-color-success-tint);
+}
+#exercise-host :deep(.ion-color-danger) {
+  --ion-color-base: var(--ion-color-danger);
+  --ion-color-base-rgb: var(--ion-color-danger-rgb);
+  --ion-color-contrast: var(--ion-color-danger-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-danger-contrast-rgb);
+  --ion-color-shade: var(--ion-color-danger-shade);
+  --ion-color-tint: var(--ion-color-danger-tint);
+}
+
+/* ── Ionic flex utility classes (from @ionic/vue/css/flex-utils.css) ─────── */
+/* These are needed for ion-row classes like ion-justify-content-center and    */
+/* ion-justify-content-around used in MultipleChoiceExercise.vue. Without      */
+/* flex-utils.css loaded globally, those classes have no effect.               */
+#exercise-host :deep(.ion-justify-content-start) {
+  justify-content: flex-start !important;
+}
+#exercise-host :deep(.ion-justify-content-end) {
+  justify-content: flex-end !important;
+}
+#exercise-host :deep(.ion-justify-content-center) {
+  justify-content: center !important;
+}
+#exercise-host :deep(.ion-justify-content-between) {
+  justify-content: space-between !important;
+}
+#exercise-host :deep(.ion-justify-content-around) {
+  justify-content: space-around !important;
+}
+#exercise-host :deep(.ion-justify-content-evenly) {
+  justify-content: space-evenly !important;
+}
+</style>
+
+<style>
+/*
+ * Dark-mode overrides for the exercise preview — intentionally non-scoped.
+ *
+ * Vue 3.5's @vue/compiler-sfc incorrectly compiles :global(.dark) <selector>
+ * in scoped styles: it drops the local selector entirely and emits only
+ * .dark { ... }, which would set the rule on <html> rather than on
+ * #exercise-host. Using a plain non-scoped block with .dark #exercise-host
+ * is the correct workaround. The id selector ensures no leakage.
+ *
+ * Values sourced from app/src/common/styles/theme.scss body.dark.
+ */
+.dark #exercise-host {
   --ion-text-color: #ffffff;
   --ion-text-color-rgb: 255, 255, 255;
 
@@ -897,7 +986,7 @@ const removeWordFromUnit = async (word: DynamicWord) => {
   --ion-background-color-rgb: 56, 56, 56;
   background-color: #383838;
 
-  /* Card — dark mode (theme.scss body.dark) */
+  /* Card — dark mode */
   --ion-color-card: #595959;
   --ion-color-card-rgb: 89, 89, 89;
   --ion-color-card-contrast: #ffffff;
@@ -905,19 +994,18 @@ const removeWordFromUnit = async (word: DynamicWord) => {
   --ion-color-card-shade: #4e4e4e;
   --ion-color-card-tint: #6a6a6a;
 
-  /* Primary, Success, Danger stay the same in app dark mode */
+  /* Success — dark mode variant */
+  --ion-color-success: #26a69a;
+  --ion-color-success-rgb: 38, 166, 154;
+  --ion-color-success-shade: #219288;
+  --ion-color-success-tint: #3cafa4;
 }
 
-/* ── Ionic color utility class for color="card" on ExerciseButton ─────────── */
-/* ion-button uses .ion-color-{name} to map --ion-color-{name} → --ion-color-  */
-/* base/contrast/shade/tint. Without this mapping the button renders with no   */
-/* background. This mirrors the .ion-color-card block in theme.scss.           */
-.exercise-host :deep(.ion-color-card) {
-  --ion-color-base: var(--ion-color-card);
-  --ion-color-base-rgb: var(--ion-color-card-rgb);
-  --ion-color-contrast: var(--ion-color-card-contrast);
-  --ion-color-contrast-rgb: var(--ion-color-card-contrast-rgb);
-  --ion-color-shade: var(--ion-color-card-shade);
-  --ion-color-tint: var(--ion-color-card-tint);
+/* Force ion-grid's background to match the host in dark mode.
+ * ion-grid is a shadow DOM component whose background is transparent by
+ * default, so the host's background-color shows through — but being explicit
+ * here guards against any future Ionic version that sets its own background. */
+.dark #exercise-host ion-grid {
+  background-color: #383838;
 }
 </style>
