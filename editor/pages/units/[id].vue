@@ -435,6 +435,9 @@
 
 <script setup lang="ts">
 import { generateClient } from 'aws-amplify/data';
+import { downloadData } from 'aws-amplify/storage';
+import { fetchAuthSession } from 'aws-amplify/auth';
+import { blobToBase64 } from '~/helpers/blob-to-base64';
 import * as v from 'valibot';
 import type { FormSubmitEvent } from '@nuxt/ui';
 import type { TableColumn } from '@nuxt/ui';
@@ -484,14 +487,46 @@ const exerciseState = ref<ExerciseState>('idle');
 const currentExercise = ref<MultipleChoiceExercise | null>(null);
 const isSavingExercise = ref(false);
 
-// Watch the exercise store for the "exercise completed" signal from
-// MultipleChoiceExercise.vue (it dispatches setShowContinueButton(true),
-// which our fake store translates into exerciseStore.showContinueButton)
+// ─── Exercise completion ───────────────────────────────────────────────────────
+
+// The correct option in the current exercise (null when idle/done).
+const correctOption = computed(
+  () => currentExercise.value?.options.find((opt) => opt.correct) ?? null,
+);
+
+// Primary path: watch the correct option's audio.playing go true → false.
+// MultipleChoiceExercise.vue sets option.color = 'success' and calls
+// option.audio.play() before dispatching setShowContinueButton, so by the
+// time the 'play' DOM event fires and audio.playing becomes true, this watcher
+// is already set up and will catch the transition to false when playback ends.
+watch(
+  () => correctOption.value?.audio.playing,
+  (playing, wasPlaying) => {
+    if (
+      wasPlaying === true &&
+      playing === false &&
+      exerciseState.value === 'playing'
+    ) {
+      exerciseState.value = 'done';
+    }
+  },
+);
+
+// Fallback path: for words with no audio (silent stub), audio.playing never
+// becomes true so the watcher above never fires. In that case, wait 1000ms
+// after the signal before transitioning — long enough to see the success
+// colour on the button, short enough not to feel broken.
 watch(
   () => exerciseStore.showContinueButton,
   (show) => {
-    if (show && exerciseState.value === 'playing') {
-      exerciseState.value = 'done';
+    if (!show || exerciseState.value !== 'playing') return;
+    const src = correctOption.value?.audio?.el?.src;
+    if (!src) {
+      setTimeout(() => {
+        if (exerciseState.value === 'playing') {
+          exerciseState.value = 'done';
+        }
+      }, 1000);
     }
   },
 );
@@ -507,6 +542,57 @@ function toggleWordSelection(word: DynamicWord): void {
   // Reset exercise whenever the selection changes
   exerciseState.value = 'idle';
   currentExercise.value = null;
+}
+
+// ─── S3 media resolution ─────────────────────────────────────────────────────
+// The audio and picture fields stored in DynamoDB are S3 object filenames (e.g.
+// "my-audio.mp3", "cat.webp"), not base64 data. This function downloads the
+// S3 files and replaces the filename keys with the resolved data so that:
+//   • word.audio  → raw base64 string  (consumed by createAudioFromBase64)
+//   • word.picture → full data URI     (consumed directly by <img :src="...">)
+// Called after observeQuery() delivers words so the data is ready before the
+// user clicks Preview. Words that already carry resolved data (data: URI / raw
+// base64) are skipped.
+async function resolveWordMedia(word: DynamicWord): Promise<void> {
+  const needsAudio = word.audio && !word.audio.startsWith('data:');
+  const needsPicture = word.picture && !word.picture.startsWith('data:');
+  if (!needsAudio && !needsPicture) return;
+
+  let identityId: string;
+  try {
+    const session = await fetchAuthSession();
+    if (!session.identityId) return;
+    identityId = session.identityId;
+  } catch {
+    return; // Not authenticated — leave filenames as-is
+  }
+
+  if (needsAudio) {
+    try {
+      const { body } = await downloadData({
+        path: `word-audio/${identityId}/${word.audio}`,
+      }).result;
+      const dataUri = await blobToBase64(await body.blob());
+      // blobToBase64 returns a full "data:...;base64,<raw>" URI.
+      // createAudioFromBase64 expects just the raw base64 part (no prefix),
+      // because it prepends "data:audio/mpeg;base64," itself.
+      word.audio = dataUri.split(',')[1] ?? word.audio;
+    } catch {
+      /* leave unchanged on error */
+    }
+  }
+
+  if (needsPicture) {
+    try {
+      const { body } = await downloadData({
+        path: `word-pictures/${identityId}/${word.picture}`,
+      }).result;
+      // blobToBase64 returns a full data URI — used directly as <img :src>
+      word.picture = await blobToBase64(await body.blob());
+    } catch {
+      /* leave unchanged on error */
+    }
+  }
 }
 
 function playExercise(): void {
@@ -678,6 +764,9 @@ onMounted(() => {
     next: ({ items }) => {
       allWords.value = items as DynamicWord[];
       unitWords.value = items.filter((w) => w.unitId === id) as DynamicWord[];
+      // Resolve S3 filenames → base64 in the background for all unit words so
+      // that audio and picture are ready by the time the user clicks Preview.
+      unitWords.value.forEach((w) => void resolveWordMedia(w));
     },
     error: (error) => {
       console.error('Error observing words:', error);
