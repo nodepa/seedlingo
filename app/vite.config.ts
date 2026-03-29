@@ -43,7 +43,7 @@ export default defineConfig({
           },
         ],
       },
-      workbox: {
+      injectManifest: {
         globPatterns: [
           '**/*.{js,css,html,ico,jpg,jpeg,png,gif,svg,mp3,audio,xml,txt}',
         ],

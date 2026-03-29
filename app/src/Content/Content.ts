@@ -71,6 +71,7 @@ if (import.meta.env.MODE === 'test') {
   contentFolder = '/src/test-support/';
   mp3Sources = import.meta.glob('/src/test-support/**/*.mp3', {
     eager: true,
+    query: '?url',
     import: 'default',
   });
   jsonSources = import.meta.glob('/src/test-support/**/*.json', {
@@ -85,6 +86,7 @@ if (import.meta.env.MODE === 'test') {
   contentFolder = '../../../content/';
   mp3Sources = import.meta.glob('../../../content/**/*.mp3', {
     eager: true,
+    query: '?url',
     import: 'default',
   });
   jsonSources = import.meta.glob('../../../content/**/*.json', {
