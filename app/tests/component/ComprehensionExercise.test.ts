@@ -1,9 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { ref } from 'vue';
 import { mount, VueWrapper } from '@vue/test-utils';
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { IonicVue } from '@ionic/vue';
 import { animate, pause, play } from '@/test-support/MockImplementations';
-import rootStore from '@/common/store/RootStore';
+import { useContinueButton } from '@/common/composables/useContinueButton';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import ComprehensionTestData from '@/Comprehension/data/ComprehensionTestData';
@@ -23,6 +24,19 @@ const router = createRouter({
   routes: [{ path: '/', name: 'Home', component: { template: '<div/>' } }],
 });
 
+const { showContinueButton } = useContinueButton();
+
+// Local standalone state for the directive
+const isInstructionsMode = ref(false);
+const toggleInstructionsMode = () => {
+  isInstructionsMode.value = !isInstructionsMode.value;
+};
+const directiveOptions = {
+  Badge: InstructionsBadge,
+  isInstructionsMode,
+  toggleInstructionsMode,
+};
+
 /**
  * Advances the component from ReadText to AnswerQuestions (first question,
  * index 0) by waiting for the initial mount watchers to settle, then
@@ -35,10 +49,10 @@ async function advanceToAnswerQuestions(
   // Allow onMounted + currentStage watcher to dispatch setShowContinueButton(true)
   await wrapper.vm.$nextTick();
   // Ensure the state is true before we fire the Continue click
-  await rootStore.dispatch('setShowContinueButton', true);
+  showContinueButton.value = true;
   await wrapper.vm.$nextTick();
   // Simulate clicking Continue: true to false triggers the showContinueButton watcher
-  await rootStore.dispatch('setShowContinueButton', false);
+  showContinueButton.value = false;
   await wrapper.vm.$nextTick();
 }
 
@@ -47,19 +61,14 @@ describe('ComprehensionExercise', () => {
   let wrapper: VueWrapper<any>;
 
   beforeEach(async () => {
-    await rootStore.dispatch('resetState');
+    showContinueButton.value = false;
     localStorage.clear();
     wrapper = mount(ComprehensionExercise, {
       props: {
         exerciseProp: ComprehensionTestData(),
       },
       global: {
-        plugins: [
-          IonicVue,
-          router,
-          rootStore,
-          [InstructionsDirective, { Badge: InstructionsBadge }],
-        ],
+        plugins: [IonicVue, router, [InstructionsDirective, directiveOptions]],
       },
     });
   });
@@ -157,9 +166,9 @@ describe('ComprehensionExercise', () => {
       const cancelSpy = vi.spyOn(question.questionAudio!, 'cancel');
 
       // Trigger Continue (true to false advances to the next question)
-      await rootStore.dispatch('setShowContinueButton', true);
+      showContinueButton.value = true;
       await wrapper.vm.$nextTick();
-      await rootStore.dispatch('setShowContinueButton', false);
+      showContinueButton.value = false;
       await wrapper.vm.$nextTick();
 
       expect(cancelSpy).toHaveBeenCalled();
@@ -178,9 +187,9 @@ describe('ComprehensionExercise', () => {
       expect(wrapper.vm.currentStage).toBe(1); // STAGE.AnswerQuestions
 
       // Trigger Continue -- this hits the "last question -> advance stage" else branch.
-      await rootStore.dispatch('setShowContinueButton', true);
+      showContinueButton.value = true;
       await wrapper.vm.$nextTick();
-      await rootStore.dispatch('setShowContinueButton', false);
+      showContinueButton.value = false;
       await wrapper.vm.$nextTick();
 
       // Stage should have advanced past AnswerQuestions (1) to FocusNewWords (2).

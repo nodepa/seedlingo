@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ComputedRef, Ref, ref, watch } from 'vue';
-import { useStore } from 'vuex';
+import { useContinueButton } from '@/common/composables/useContinueButton';
 import { earOutline } from 'ionicons/icons';
 import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
@@ -67,7 +67,7 @@ watch(selected, (indexOfSelected: number, indexOfPrevious: number) => {
   checkForMatchAndReOrder(indexOfSelected, indexOfPrevious);
 });
 
-const store = useStore();
+const { showContinueButton } = useContinueButton();
 function checkForMatchAndReOrder(
   indexOfSelected: number,
   indexOfPrevious: number,
@@ -173,7 +173,7 @@ function checkForMatchAndReOrder(
       }, allOptions.length)
     ) {
       // all options have been matched
-      store.dispatch('setShowContinueButton', true);
+      showContinueButton.value = true;
     }
   } else {
     // 1 item was selected, now another item is selected

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { IonButton, IonIcon } from '@ionic/vue';
 import { home, homeSharp } from 'ionicons/icons';
-import { useStore } from 'vuex';
+import { useContinueButton } from '@/common/composables/useContinueButton';
 
-const store = useStore();
+const { showContinueButton } = useContinueButton();
 interface Props {
   homeButtonInstructions: string;
   homeButtonDisabled?: boolean;
@@ -23,7 +23,7 @@ withDefaults(defineProps<Props>(), {
     :disabled="homeButtonDisabled"
     router-link="/"
     router-direction="root"
-    @click="store.dispatch('setShowContinueButton', false)"
+    @click="showContinueButton = false"
   >
     <ion-icon
       :md="homeSharp"

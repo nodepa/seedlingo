@@ -1,7 +1,8 @@
 import { beforeEach, describe, expect, it } from 'vitest';
+import { ref } from 'vue';
 import { mount, VueWrapper } from '@vue/test-utils';
 import { animate, pause, play } from '@/test-support/MockImplementations';
-import rootStore from '@/common/store/RootStore';
+import { useContinueButton } from '@/common/composables/useContinueButton';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import SingleClozeTestData from '@/Cloze/data/SingleClozeTestData';
@@ -14,12 +15,24 @@ window.Element.prototype.animate = animate;
 HTMLMediaElement.prototype.play = play;
 HTMLMediaElement.prototype.pause = pause;
 
+// Local standalone state for the directive
+const isInstructionsMode = ref(false);
+const toggleInstructionsMode = () => {
+  isInstructionsMode.value = !isInstructionsMode.value;
+};
+const directiveOptions = {
+  Badge: InstructionsBadge,
+  isInstructionsMode,
+  toggleInstructionsMode,
+};
+
 describe('ClozeExercise', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let wrapper: VueWrapper<any>;
+  const { showContinueButton } = useContinueButton();
 
   beforeEach(async () => {
-    await rootStore.dispatch('resetState');
+    showContinueButton.value = false;
     localStorage.clear();
   });
 
@@ -30,10 +43,7 @@ describe('ClozeExercise', () => {
           exerciseProp: SingleClozeTestData(),
         },
         global: {
-          plugins: [
-            rootStore,
-            [InstructionsDirective, { Badge: InstructionsBadge }],
-          ],
+          plugins: [[InstructionsDirective, directiveOptions]],
         },
       });
     });
@@ -55,7 +65,7 @@ describe('ClozeExercise', () => {
       });
 
       it('does not show the continue button initially', () => {
-        expect(rootStore.state.showContinueButton).toBe(false);
+        expect(showContinueButton.value).toBe(false);
       });
     });
 
@@ -80,7 +90,7 @@ describe('ClozeExercise', () => {
         wrapper.vm.determineCorrectness(correctOption);
         await wrapper.vm.$nextTick();
 
-        expect(rootStore.state.showContinueButton).toBe(true);
+        expect(showContinueButton.value).toBe(true);
       });
 
       it('disables the other options after the correct option is selected', async () => {
@@ -118,7 +128,7 @@ describe('ClozeExercise', () => {
         wrapper.vm.determineCorrectness(incorrectOption);
         await wrapper.vm.$nextTick();
 
-        expect(rootStore.state.showContinueButton).toBe(false);
+        expect(showContinueButton.value).toBe(false);
       });
     });
   });
@@ -130,10 +140,7 @@ describe('ClozeExercise', () => {
           exerciseProp: MultiClozeTestData(),
         },
         global: {
-          plugins: [
-            rootStore,
-            [InstructionsDirective, { Badge: InstructionsBadge }],
-          ],
+          plugins: [[InstructionsDirective, directiveOptions]],
         },
       });
     });
@@ -155,7 +162,7 @@ describe('ClozeExercise', () => {
       });
 
       it('does not show the continue button initially', () => {
-        expect(rootStore.state.showContinueButton).toBe(false);
+        expect(showContinueButton.value).toBe(false);
       });
     });
 
@@ -212,9 +219,9 @@ describe('ClozeExercise', () => {
           await wrapper.vm.$nextTick();
 
           if (i < blanks.length - 1) {
-            expect(rootStore.state.showContinueButton).toBe(false);
+            expect(showContinueButton.value).toBe(false);
           } else {
-            expect(rootStore.state.showContinueButton).toBe(true);
+            expect(showContinueButton.value).toBe(true);
           }
         }
       });
