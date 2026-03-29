@@ -16,14 +16,18 @@ import Badge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import App from '@/App.vue';
 import router from '@/common/router';
-import store from '@/common/store/RootStore';
 import { createPlausible } from '@/common/plugins/PlausibleAnalytics';
+import { useInstructionsMode } from '@/common/composables/useInstructionsMode';
 
 const app = createApp(App);
+const { isInstructionsMode, toggleInstructionsMode } = useInstructionsMode();
 app.use(IonicVue);
-app.use(store);
 app.use(router);
-app.use(InstructionsDirective, { Badge });
+app.use(InstructionsDirective, {
+  Badge,
+  isInstructionsMode,
+  toggleInstructionsMode,
+});
 app.use(
   createPlausible({
     init: {

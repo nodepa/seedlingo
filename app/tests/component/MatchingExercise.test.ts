@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
+import { ref } from 'vue';
 import { mount, VueWrapper } from '@vue/test-utils';
 import { animate, play } from '@/test-support/MockImplementations';
-import rootStore from '@/common/store/RootStore';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import getTestData from '@/Matching/data/MatchingTestData';
@@ -12,6 +12,17 @@ import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
 
 window.Element.prototype.animate = animate;
 HTMLMediaElement.prototype.play = play;
+
+// Local standalone state for the directive
+const isInstructionsMode = ref(false);
+const toggleInstructionsMode = () => {
+  isInstructionsMode.value = !isInstructionsMode.value;
+};
+const directiveOptions = {
+  Badge: InstructionsBadge,
+  isInstructionsMode,
+  toggleInstructionsMode,
+};
 
 describe('MatchingExercise', () => {
   /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -24,10 +35,7 @@ describe('MatchingExercise', () => {
         exerciseProp: getTestData(),
       },
       global: {
-        plugins: [
-          rootStore,
-          [InstructionsDirective, { Badge: InstructionsBadge }],
-        ],
+        plugins: [[InstructionsDirective, directiveOptions]],
       },
     });
   });

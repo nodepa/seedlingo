@@ -1,4 +1,4 @@
-import rootStore from '@/common/store/RootStore';
+import { ref } from 'vue';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import Content from '@/Content/Content';
@@ -20,6 +20,12 @@ window.HTMLMediaElement.prototype.play = play;
 
 // Item under test
 import UnitsMenu from '@/UnitsMenu/components/UnitsMenu.vue';
+
+// Local standalone state for the directive
+const isInstructionsMode = ref(false);
+const toggleInstructionsMode = () => {
+  isInstructionsMode.value = !isInstructionsMode.value;
+};
 
 describe('UnitsMenu', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -45,13 +51,20 @@ describe('UnitsMenu', () => {
   });
 
   beforeEach(() => {
-    rootStore.dispatch('resetState');
+    isInstructionsMode.value = false;
+    localStorage.clear();
     wrapper = mount(UnitsMenu, {
       shallow: false,
       global: {
         plugins: [
-          rootStore,
-          [InstructionsDirective, { Badge: InstructionsBadge }],
+          [
+            InstructionsDirective,
+            {
+              Badge: InstructionsBadge,
+              isInstructionsMode,
+              toggleInstructionsMode,
+            },
+          ],
         ],
       },
     });
@@ -80,7 +93,8 @@ describe('UnitsMenu', () => {
         (wrapper.find('[data-test="unit-button-01"]').element as HTMLElement)
           .className,
       ).not.toBe('pop-through');
-      await rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
+      toggleInstructionsMode();
+      await wrapper.vm.$nextTick();
       expect(
         (wrapper.find('[data-test="unit-button-01"]').element as HTMLElement)
           .className,

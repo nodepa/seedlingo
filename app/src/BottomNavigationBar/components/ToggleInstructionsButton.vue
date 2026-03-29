@@ -1,12 +1,6 @@
 <script setup lang="ts">
-import {
-  ComponentPublicInstance,
-  computed,
-  ComputedRef,
-  onMounted,
-  ref,
-} from 'vue';
-import { useStore } from 'vuex';
+import { ComponentPublicInstance, onMounted, ref } from 'vue';
+import { useInstructionsMode } from '@/common/composables/useInstructionsMode';
 import { createAnimation, IonButton, IonIcon } from '@ionic/vue';
 import ToggleInstructionsOnIcon from '@/common/icons/ToggleInstructionsOnIcon.svg';
 import ToggleInstructionsOffIcon from '@/common/icons/ToggleInstructionsOffIcon.svg';
@@ -41,12 +35,16 @@ onMounted(() => {
   }
 });
 
-const store = useStore();
+const {
+  isInstructionsMode,
+  toggleInstructionsMode,
+  hideInstructionsExplainer,
+} = useInstructionsMode();
 
 const toggleInstructionsButtonAudio = ref<HTMLAudioElement | null>(null);
-const toggleInstructionsMode = (): void => {
+const handleToggle = (): void => {
   if (props.showInstructionsExplainer) {
-    store.dispatch('hideInstructionsExplainer');
+    hideInstructionsExplainer();
 
     // Add <audio> element to Instructions.AudioCollection to trigger cancelling whenever other instructions start playing
     const audioEl = toggleInstructionsButtonAudio.value as HTMLAudioElement;
@@ -55,12 +53,8 @@ const toggleInstructionsMode = (): void => {
     audioEl.play();
   }
 
-  store.dispatch('instructionsModeStore/toggleInstructionsMode');
+  toggleInstructionsMode();
 };
-
-const isInstructionsMode: ComputedRef<boolean> = computed(() => {
-  return store.state.instructionsModeStore.isInstructionsMode;
-});
 </script>
 
 <template>
@@ -68,7 +62,7 @@ const isInstructionsMode: ComputedRef<boolean> = computed(() => {
     ref="toggleInstructionsButton"
     data-test="toggle-instructions-button"
     aria-label="Toggle instructions mode"
-    @click="toggleInstructionsMode()"
+    @click="handleToggle()"
   >
     <ion-icon
       v-if="isInstructionsMode"
