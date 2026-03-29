@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config';
+import { fileURLToPath } from 'node:url';
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-03-31',
@@ -37,7 +38,27 @@ export default defineNuxtConfig({
       ],
     },
   },
+  typescript: {},
+  // Nuxt alias config is injected into both Vite and the generated tsconfig,
+  // so TypeScript and Vite both resolve @/ the same way.
+  // The more-specific Content mock alias must be listed before the generic @/.
+  alias: {
+    '@/Content/Content': fileURLToPath(
+      new URL('./mocks/Content.ts', import.meta.url),
+    ),
+    '@': fileURLToPath(new URL('../app/src', import.meta.url)),
+  },
   vite: {
+    resolve: {
+      alias: {
+        // Duplicate here as well so Vite picks up both the trailing-slash form
+        // (@/foo) and the bare form (@) consistently.
+        '@/Content/Content': fileURLToPath(
+          new URL('./mocks/Content.ts', import.meta.url),
+        ),
+        '@/': fileURLToPath(new URL('../app/src/', import.meta.url)),
+      },
+    },
     build: {
       rollupOptions: {
         // nuxt:module-preload-polyfill and @tailwindcss/vite:generate:build are
@@ -56,6 +77,8 @@ export default defineNuxtConfig({
         'aws-amplify/auth',
         'plausible-tracker',
         'aws-amplify',
+        '@ionic/vue',
+        'ionicons',
       ],
     },
   },

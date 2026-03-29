@@ -4,6 +4,8 @@
 
 Do not run `git commit` (or any command that creates a commit) without explicit permission from the user, even in agent mode.
 
+Ask for explicit permission to disable eslint rules if there is no other sensible way to deal with eslint errors or warnings.
+
 ## Repository Overview
 
 Seedlingo is a monorepo for an adult first-language digital literacy learning platform. It has two independent packages:
