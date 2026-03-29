@@ -330,12 +330,18 @@
             });
         });
 
-        navigator.serviceWorker.addEventListener('message', (event) => {
+        // BroadcastChannel receives progress from the SW install phase even
+        // before the SW controls this page (unlike navigator.serviceWorker messages).
+        const bc = new BroadcastChannel('sw-cache-progress');
+        bc.addEventListener('message', (event) => {
           if (event.data && event.data.type === 'CACHE_PROGRESS') {
             const { loaded, total } = event.data;
             const bar = document.getElementById('loader-progress-bar');
             if (bar && total > 0) {
               bar.style.width = Math.round((loaded / total) * 100) + '%';
+            }
+            if (loaded >= total) {
+              bc.close();
             }
           }
         });

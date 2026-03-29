@@ -52,22 +52,24 @@ function waitForAssets(): Promise<void> {
   }
 
   return new Promise<void>((resolve) => {
-    const timeout = setTimeout(resolve, 8000);
+    // 30s timeout — long enough for slow connections to finish pre-caching
+    const timeout = setTimeout(resolve, 30_000);
 
-    navigator.serviceWorker.addEventListener(
-      'message',
-      function handler(event: MessageEvent) {
-        if (
-          event.data &&
-          event.data.type === 'CACHE_PROGRESS' &&
-          event.data.loaded >= event.data.total
-        ) {
-          clearTimeout(timeout);
-          navigator.serviceWorker.removeEventListener('message', handler);
-          resolve();
-        }
-      },
-    );
+    // BroadcastChannel works during the SW install phase even before the SW
+    // controls this page (unlike navigator.serviceWorker.addEventListener('message')).
+    const bc = new BroadcastChannel('sw-cache-progress');
+    bc.addEventListener('message', function handler(event: MessageEvent) {
+      if (
+        event.data &&
+        event.data.type === 'CACHE_PROGRESS' &&
+        event.data.loaded >= event.data.total
+      ) {
+        clearTimeout(timeout);
+        bc.removeEventListener('message', handler);
+        bc.close();
+        resolve();
+      }
+    });
   });
 }
 

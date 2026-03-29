@@ -6,7 +6,12 @@ declare let self: ServiceWorkerGlobalScope;
 // __WB_MANIFEST is injected by vite-plugin-pwa at build time
 const manifest = self.__WB_MANIFEST;
 
-// Install: cache all precache entries and broadcast progress to clients
+// BroadcastChannel works across all same-origin pages regardless of whether
+// the SW controls them yet — unlike clients.matchAll() which misses
+// uncontrolled clients during the install phase on first load.
+const bc = new BroadcastChannel('sw-cache-progress');
+
+// Install: cache all precache entries and broadcast progress
 self.addEventListener('install', (event: ExtendableEvent) => {
   event.waitUntil(
     (async () => {
@@ -25,15 +30,11 @@ self.addEventListener('install', (event: ExtendableEvent) => {
             // If a single asset fails, don't block install
           }
           loaded += 1;
-          const clients = await self.clients.matchAll({
-            includeUncontrolled: true,
-          });
-          clients.forEach((client) =>
-            client.postMessage({ type: 'CACHE_PROGRESS', loaded, total }),
-          );
+          bc.postMessage({ type: 'CACHE_PROGRESS', loaded, total });
         }),
       );
 
+      bc.close();
       await self.skipWaiting();
     })(),
   );
