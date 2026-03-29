@@ -1,7 +1,12 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
+import { readFileSync } from 'fs';
 import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
+
+const appConfig = JSON.parse(
+  readFileSync('../content/app.config.json', 'utf-8'),
+);
 
 export default defineConfig({
   appType: 'spa',
@@ -10,6 +15,9 @@ export default defineConfig({
     VitePWA({
       injectRegister: null,
       registerType: 'autoUpdate',
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.ts',
       manifest: {
         id: '/',
         name: '立爱种字',
@@ -35,11 +43,11 @@ export default defineConfig({
           },
         ],
       },
-      workbox: {
+      injectManifest: {
         globPatterns: [
           '**/*.{js,css,html,ico,jpg,jpeg,png,gif,svg,mp3,audio,xml,txt}',
         ],
-        maximumFileSizeToCacheInBytes: 8000000,
+        maximumFileSizeToCacheInBytes: 8_000_000,
       },
     }),
   ],
@@ -49,6 +57,7 @@ export default defineConfig({
       process.env.AWS_JOB_ID ? process.env.AWS_JOB_ID.replace(/^0+/, '') : '',
     ),
     __AWS_BRANCH__: JSON.stringify(process.env.AWS_BRANCH),
+    __REMOTE_URL__: JSON.stringify(appConfig.remoteUrl),
   },
   resolve: {
     alias: {
@@ -63,15 +72,10 @@ export default defineConfig({
     },
   },
   build: {
-    // The Content chunk bundles all audio as inline base64 data URIs for
-    // offline-first PWA support, so it is intentionally large (~7.3 MB).
-    chunkSizeWarningLimit: 7500,
+    assetsInlineLimit: 0,
     rollupOptions: {
       output: {
         manualChunks(id: string) {
-          if (id.includes('Content/Content.ts')) {
-            return 'Content';
-          }
           if (id.includes('node_modules/@mdi')) {
             return 'mdi';
           }

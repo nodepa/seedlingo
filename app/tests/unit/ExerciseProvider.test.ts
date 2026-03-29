@@ -25,15 +25,14 @@ describe('ExerciseProvider', () => {
         .mockImplementation(
           () => unit.exercises[1].matchingSpec?.matchingWords || [],
         );
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
 
       let exercise = ExerciseProvider.getExerciseFromUnit(1);
       expect(spyPickRandomExerciseTypeMatching).toHaveBeenCalled();
       expect(exercise.exerciseType).toBe('Matching');
 
-      // reset mocks
       spyPickRandomExerciseTypeMatching.mockRestore();
       spySelectRandomSubsetMatching.mockRestore();
 
@@ -70,7 +69,7 @@ describe('ExerciseProvider', () => {
       spyPickRandomExerciseTypeMultipleChoice.mockRestore();
       spySelectRandomSubsetMultipleChoice.mockRestore();
       spyRandomIndexLessThan.mockRestore();
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
     });
   });
 
@@ -91,44 +90,44 @@ describe('ExerciseProvider', () => {
 
   describe('.generateMatchingExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
       const matchingExercise = ExerciseProvider.generateMatchingExercise(unit);
       expect(matchingExercise.exerciseType).toBe('Matching');
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
     });
   });
 
   describe('.generateExplanationMatchingExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
       const matchingExercise =
         ExerciseProvider.generateExplanationMatchingExercise(unit);
       expect(matchingExercise.exerciseType).toBe('Matching');
       expect(matchingExercise.exerciseItems.items.length).toBe(4);
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
     });
   });
 
   describe('.generateMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
       const multipleChoiceExercise =
         ExerciseProvider.generateMultipleChoiceExercise(unit);
       expect(multipleChoiceExercise.exerciseType).toBe('MultipleChoice');
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
     });
   });
 
   describe('.generateExplanationMultipleChoiceExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
       const spyPickRandomItem = vi
         .spyOn(ExerciseProvider, 'pickRandomItem')
@@ -162,15 +161,15 @@ describe('ExerciseProvider', () => {
             [],
         )[0],
       );
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
       spyPickRandomItem.mockRestore();
     });
   });
 
   describe('.generateSingleClozeExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
       // force first single cloze exercise and first valid option in test spec
       const spyPickRandomItem = vi
@@ -212,13 +211,13 @@ describe('ExerciseProvider', () => {
         false,
       );
 
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
       spyPickRandomItem.mockRestore();
     });
 
     it('calls createCompositeAudioFromPaths for composite validOption', () => {
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
       const spyCreateComposite = vi.spyOn(
         AudioProvider,
@@ -238,7 +237,7 @@ describe('ExerciseProvider', () => {
         'audio/的.mp3',
       ]);
 
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
       spyCreateComposite.mockRestore();
       spyPickRandomItem.mockRestore();
     });
@@ -246,8 +245,8 @@ describe('ExerciseProvider', () => {
 
   describe('.generateMultiClozeExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
       // force second multi-cloze exercise in test spec
       const spyPickRandomItem = vi
@@ -289,13 +288,13 @@ describe('ExerciseProvider', () => {
         false,
       );
 
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
       spyPickRandomItem.mockRestore();
     });
 
     it('calls createCompositeAudioFromPaths for composite validOption', () => {
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
       const spyCreateComposite = vi.spyOn(
         AudioProvider,
@@ -313,7 +312,7 @@ describe('ExerciseProvider', () => {
         'audio/的.mp3',
       ]);
 
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
       spyCreateComposite.mockRestore();
       spyPickRandomItem.mockRestore();
     });
@@ -346,8 +345,8 @@ describe('ExerciseProvider', () => {
 
   describe('.generateComprehensionExercise()', () => {
     it('correctly returns exercises', () => {
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
       // force random to always pick first option
       const spyPickRandomItem = vi
@@ -365,13 +364,13 @@ describe('ExerciseProvider', () => {
       expect(comprehension.exerciseItems.questions.length).toBe(3);
       expect(comprehension.exerciseItems.stages[1].questionnaire).toBe(true);
 
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
       spyPickRandomItem.mockRestore();
     });
 
     it('calls createCompositeAudioFromPaths for composite option word', () => {
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
       const spyCreateComposite = vi.spyOn(
         AudioProvider,
@@ -388,7 +387,7 @@ describe('ExerciseProvider', () => {
         'audio/的.mp3',
       ]);
 
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
       spyCreateComposite.mockRestore();
       spyPickRandomItem.mockRestore();
     });
@@ -453,8 +452,8 @@ describe('ExerciseProvider', () => {
 
   describe('.createPairsFromWords()', () => {
     it('correctly handles params', () => {
-      const spyGetAudioData = vi
-        .spyOn(Content, 'getAudioData')
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
         .mockImplementation((path: string) => path);
       const words = Content.getWordsInUnit(unit).slice(4);
       const pairs = ExerciseProvider.createPairsFromWords(words);
@@ -462,7 +461,7 @@ describe('ExerciseProvider', () => {
       expect(pairs[0].wordOrIcons).toBe('姥姥');
       expect(pairs[2].wordOrIcons).toBe('姥爷');
 
-      spyGetAudioData.mockRestore();
+      spyGetAudioUrl.mockRestore();
     });
   });
 

@@ -10,6 +10,9 @@ export default defineConfig({
   use: {
     baseURL,
     viewport: { width: 375, height: 812 },
+    launchOptions: {
+      args: ['--autoplay-policy=no-user-gesture-required'],
+    },
   },
   webServer: process.env.E2E_NO_SERVER
     ? undefined
