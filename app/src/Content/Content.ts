@@ -64,14 +64,13 @@ const mdiIcons = new Map([
 
 let jsonSources: Record<string, unknown>,
   picSources: Record<string, unknown>,
-  mp3Base64Sources: Record<string, unknown>;
+  mp3Sources: Record<string, unknown>;
 let contentFolder = '';
 if (import.meta.env.MODE === 'test') {
   // applies to unit tests; e2e tests run in production mode
   contentFolder = '/src/test-support/';
-  mp3Base64Sources = import.meta.glob('/src/test-support/**/*.mp3.audio', {
+  mp3Sources = import.meta.glob('/src/test-support/**/*.mp3', {
     eager: true,
-    query: '?raw',
     import: 'default',
   });
   jsonSources = import.meta.glob('/src/test-support/**/*.json', {
@@ -84,9 +83,8 @@ if (import.meta.env.MODE === 'test') {
   });
 } else {
   contentFolder = '../../../content/';
-  mp3Base64Sources = import.meta.glob('../../../content/**/*.mp3.audio', {
+  mp3Sources = import.meta.glob('../../../content/**/*.mp3', {
     eager: true,
-    query: '?raw',
     import: 'default',
   });
   jsonSources = import.meta.glob('../../../content/**/*.json', {
@@ -134,7 +132,7 @@ export default class Content {
         newWords: [],
       };
       units[oneBasedIndex].icon = this.getIcon(unit.icon);
-      units[oneBasedIndex].audio = this.getAudioData(unit.introductionAudio);
+      units[oneBasedIndex].audio = this.getAudioUrl(unit.introductionAudio);
 
       const unitSpec = this.UnitSpecs[i];
       const unitWords = this.getWordsInUnit(unitSpec);
@@ -220,10 +218,8 @@ export default class Content {
     return [...words];
   }
 
-  public static getAudioData(path: string): string {
-    return `data:audio/mpeg;base64,${
-      mp3Base64Sources[`${contentFolder}${path}.audio`] as string
-    }`;
+  public static getAudioUrl(path: string): string {
+    return mp3Sources[`${contentFolder}${path}`] as string;
   }
 
   public static getPicPath(path: string): string {
@@ -233,7 +229,7 @@ export default class Content {
   public static getInstructionsAudio(
     scope: keyof ContentSpec['instructions'],
   ): string {
-    return this.getAudioData(this.ContentSpec.instructions[scope]);
+    return this.getAudioUrl(this.ContentSpec.instructions[scope]);
   }
 
   public static getIcon(key: string): string {

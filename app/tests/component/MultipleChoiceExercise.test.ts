@@ -48,7 +48,7 @@ describe('MultipleChoiceExercise', () => {
     it('handles correct and incorrect options', async () => {
       const option1: MultipleChoiceItem = {
         word: 'someWord',
-        audio: AudioProvider.createAudioFromData(''),
+        audio: AudioProvider.createAudioFromUrl(''),
         correct: false,
         disabled: false,
         playing: false,
@@ -59,7 +59,7 @@ describe('MultipleChoiceExercise', () => {
 
       const option2: MultipleChoiceItem = {
         word: 'someWord',
-        audio: AudioProvider.createAudioFromData(''),
+        audio: AudioProvider.createAudioFromUrl(''),
         correct: true,
         disabled: false,
         playing: false,

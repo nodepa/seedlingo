@@ -241,6 +241,32 @@
         transform: translate(-50%, -50%);
       }
 
+      #loader-progress-container {
+        position: fixed;
+        bottom: 15vh;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(60vw, 300px);
+        height: 4px;
+        background: rgba(0, 0, 0, 0.12);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      #loader-progress-bar {
+        width: 0%;
+        height: 100%;
+        background: #1976d2;
+        border-radius: 2px;
+        transition: width 0.15s ease;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        #loader-progress-container {
+          background: rgba(255, 255, 255, 0.12);
+        }
+      }
+
       .pulse {
         animation: ray-pulse-animation 2s ease-in infinite;
       }
@@ -303,6 +329,16 @@
               console.error('Service worker registration failed:', reason);
             });
         });
+
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          if (event.data && event.data.type === 'CACHE_PROGRESS') {
+            const { loaded, total } = event.data;
+            const bar = document.getElementById('loader-progress-bar');
+            if (bar && total > 0) {
+              bar.style.width = Math.round((loaded / total) * 100) + '%';
+            }
+          }
+        });
       } else {
         console.info('Not registering service worker');
       }
@@ -315,6 +351,9 @@
     </noscript>
     <div id="app"></div>
     <div id="loader" data-test="loader">
+      <div id="loader-progress-container">
+        <div id="loader-progress-bar"></div>
+      </div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"

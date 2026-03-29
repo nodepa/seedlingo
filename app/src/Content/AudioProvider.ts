@@ -4,11 +4,12 @@ import Content from './Content';
 
 export default class AudioProvider {
   public static createAudioFromPath(src: string): ExerciseAudio {
-    return this.createAudioFromData(Content.getAudioData(src));
+    return this.createAudioFromUrl(Content.getAudioUrl(src));
   }
 
-  public static createAudioFromData(data: string): ExerciseAudio {
-    const el = new Audio(data || undefined);
+  public static createAudioFromUrl(url: string): ExerciseAudio {
+    const el = new Audio(url || undefined);
+    el.preload = 'auto';
     const audio = reactive({
       el,
       playing: false,
@@ -38,13 +39,17 @@ export default class AudioProvider {
 
   public static createCompositeAudioFromPaths(srcs: string[]): ExerciseAudio {
     if (srcs.length === 0) {
-      return this.createAudioFromData('');
+      return this.createAudioFromUrl('');
     }
     if (srcs.length === 1) {
       return this.createAudioFromPath(srcs[0]);
     }
 
-    const elements = srcs.map((src) => new Audio(Content.getAudioData(src)));
+    const elements = srcs.map((src) => {
+      const el = new Audio(Content.getAudioUrl(src));
+      el.preload = 'auto';
+      return el;
+    });
     let currentIndex = 0;
 
     const compositeAudio = reactive({
