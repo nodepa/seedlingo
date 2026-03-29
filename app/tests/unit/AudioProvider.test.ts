@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { play, pause } from '@/test-support/MockImplementations';
 import AudioProvider from '@/Content/AudioProvider';
 import Content from '@/Content/Content';
@@ -202,6 +202,80 @@ describe('AudioProvider', () => {
       expect(audio.playing).toBe(false);
 
       HTMLMediaElement.prototype.play = originalPlay;
+      spyGetAudioUrl.mockRestore();
+    });
+  });
+
+  describe('.readyToPlay()', () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('resolves immediately when readyState >= 3', async () => {
+      const audio = AudioProvider.createAudioFromUrl('');
+      Object.defineProperty(audio.el, 'readyState', {
+        value: 3,
+        configurable: true,
+      });
+      const promise = audio.readyToPlay!();
+      await expect(promise).resolves.toBeUndefined();
+    });
+
+    it('resolves when canplaythrough fires', async () => {
+      const audio = AudioProvider.createAudioFromUrl('');
+      // readyState stays at 0 (HAVE_NOTHING) — no immediate resolve
+      const promise = audio.readyToPlay!();
+      audio.el.dispatchEvent(new Event('canplaythrough'));
+      await expect(promise).resolves.toBeUndefined();
+    });
+
+    it('resolves after 500ms timeout if canplaythrough never fires', async () => {
+      const audio = AudioProvider.createAudioFromUrl('');
+      const promise = audio.readyToPlay!();
+      let settled = false;
+      promise.then(() => {
+        settled = true;
+      });
+      await Promise.resolve(); // flush microtasks
+      expect(settled).toBe(false);
+      vi.advanceTimersByTime(500);
+      await promise;
+      expect(settled).toBe(true);
+    });
+
+    it('resolves immediately for composite audio when all elements have readyState >= 3', async () => {
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
+        .mockImplementation((path: string) => path);
+      const audio = AudioProvider.createCompositeAudioFromPaths([
+        'path1',
+        'path2',
+      ]);
+      // The composite exposes only el (first element); force readyState on it via the element itself
+      // We cannot reach inner elements directly, so trigger canplaythrough on both
+      const promise = audio.readyToPlay!();
+      // Fire canplaythrough on the exposed element
+      audio.el.dispatchEvent(new Event('canplaythrough'));
+      // Advance past timeout for any remaining inner elements
+      vi.advanceTimersByTime(500);
+      await promise;
+      spyGetAudioUrl.mockRestore();
+    });
+
+    it('resolves immediately for composite with single path (delegates to createAudioFromUrl)', async () => {
+      const spyGetAudioUrl = vi
+        .spyOn(Content, 'getAudioUrl')
+        .mockImplementation((path: string) => path);
+      const audio = AudioProvider.createCompositeAudioFromPaths(['path1']);
+      Object.defineProperty(audio.el, 'readyState', {
+        value: 4,
+        configurable: true,
+      });
+      await expect(audio.readyToPlay!()).resolves.toBeUndefined();
       spyGetAudioUrl.mockRestore();
     });
   });

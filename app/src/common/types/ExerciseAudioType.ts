@@ -3,4 +3,5 @@ export interface ExerciseAudio {
   playing: boolean;
   play(): void;
   cancel(): void;
+  readyToPlay?(): Promise<void>;
 }

@@ -3,6 +3,29 @@ import type { ExerciseAudio } from '@/common/types/ExerciseAudioType';
 import Content from './Content';
 
 export default class AudioProvider {
+  private static waitForElement(
+    el: HTMLAudioElement,
+    timeoutMs = 500,
+  ): Promise<void> {
+    // HAVE_FUTURE_DATA (3) or HAVE_ENOUGH_DATA (4) — already buffered enough
+    if (el.readyState >= 3) return Promise.resolve();
+    return new Promise<void>((resolve) => {
+      const onReady = () => {
+        cleanup();
+        resolve();
+      };
+      const timer = setTimeout(() => {
+        cleanup();
+        resolve();
+      }, timeoutMs);
+      function cleanup() {
+        el.removeEventListener('canplaythrough', onReady);
+        clearTimeout(timer);
+      }
+      el.addEventListener('canplaythrough', onReady, { once: true });
+    });
+  }
+
   public static createAudioFromPath(src: string): ExerciseAudio {
     return this.createAudioFromUrl(Content.getAudioUrl(src));
   }
@@ -21,6 +44,9 @@ export default class AudioProvider {
       },
       cancel() {
         el.pause();
+      },
+      readyToPlay(): Promise<void> {
+        return AudioProvider.waitForElement(el);
       },
     }) as ExerciseAudio;
 
@@ -67,6 +93,11 @@ export default class AudioProvider {
       cancel() {
         elements[currentIndex]?.pause();
         compositeAudio.playing = false;
+      },
+      readyToPlay(): Promise<void> {
+        return Promise.all(
+          elements.map((el) => AudioProvider.waitForElement(el)),
+        ).then(() => undefined);
       },
     }) as ExerciseAudio;
 
