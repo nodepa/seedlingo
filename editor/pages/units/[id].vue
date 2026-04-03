@@ -449,8 +449,7 @@ import type { MultipleChoiceExercise } from '@/MultipleChoice/MultipleChoiceType
 import type { MultipleChoiceSpec } from '@/common/types/ContentTypes';
 import { generateMultipleChoiceExercise } from '~/utils/EditorExerciseProvider';
 import MultipleChoiceExerciseComponent from '@/MultipleChoice/components/MultipleChoiceExercise.vue';
-import { exerciseStore } from '~/plugins/ionic.client';
-
+import { useContinueButton } from '@/common/composables/useContinueButton';
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 type ExerciseSchema = Schema['Exercise']['type'];
@@ -486,6 +485,7 @@ type ExerciseState = 'idle' | 'playing' | 'done';
 const exerciseState = ref<ExerciseState>('idle');
 const currentExercise = ref<MultipleChoiceExercise | null>(null);
 const isSavingExercise = ref(false);
+const { showContinueButton } = useContinueButton();
 
 // ─── Exercise completion ───────────────────────────────────────────────────────
 
@@ -516,20 +516,17 @@ watch(
 // becomes true so the watcher above never fires. In that case, wait 1000ms
 // after the signal before transitioning — long enough to see the success
 // colour on the button, short enough not to feel broken.
-watch(
-  () => exerciseStore.showContinueButton,
-  (show) => {
-    if (!show || exerciseState.value !== 'playing') return;
-    const src = correctOption.value?.audio?.el?.src;
-    if (!src) {
-      setTimeout(() => {
-        if (exerciseState.value === 'playing') {
-          exerciseState.value = 'done';
-        }
-      }, 1000);
-    }
-  },
-);
+watch(showContinueButton, (show) => {
+  if (!show || exerciseState.value !== 'playing') return;
+  const src = correctOption.value?.audio?.el?.src;
+  if (!src) {
+    setTimeout(() => {
+      if (exerciseState.value === 'playing') {
+        exerciseState.value = 'done';
+      }
+    }, 1000);
+  }
+});
 
 function toggleWordSelection(word: DynamicWord): void {
   const next = new Set(selectedWordIds.value);
@@ -602,7 +599,7 @@ function playExercise(): void {
   if (selected.length === 0) return;
 
   // Reset the exercise store's continue-button flag before starting
-  exerciseStore.showContinueButton = false;
+  showContinueButton.value = false;
 
   // Cast to the type EditorExerciseProvider expects (DynamicWord from WordTypes)
   currentExercise.value = generateMultipleChoiceExercise(

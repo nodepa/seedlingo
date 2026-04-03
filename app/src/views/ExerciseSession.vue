@@ -9,7 +9,7 @@
 import { IonPage, useIonRouter } from '@ionic/vue';
 import { ref, shallowRef, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { useStore } from 'vuex';
+import { useContinueButton } from '@/common/composables/useContinueButton';
 import ClozeExercise from '@/Cloze/components/ClozeExercise.vue';
 import ComprehensionExercise from '@/Comprehension/components/ComprehensionExercise.vue';
 import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
@@ -98,23 +98,20 @@ function collectAudioObjects(items: ExerciseItems): ExerciseAudio[] {
 }
 
 const ionRouter = useIonRouter();
-const store = useStore();
+const { showContinueButton } = useContinueButton();
 const currentIteration = ref<number>(1);
-watch(
-  () => store.state.showContinueButton,
-  (show: boolean) => {
-    if (!show) {
-      if (exerciseComponent.value !== ComprehensionExercise) {
-        if (currentIteration.value >= 10) {
-          ionRouter.navigate({ name: 'Home' }, 'root', 'push');
-        } else {
-          currentIteration.value += 1;
-          getExercise();
-        }
+watch(showContinueButton, (show: boolean) => {
+  if (!show) {
+    if (exerciseComponent.value !== ComprehensionExercise) {
+      if (currentIteration.value >= 10) {
+        ionRouter.navigate({ name: 'Home' }, 'root', 'push');
+      } else {
+        currentIteration.value += 1;
+        getExercise();
       }
     }
-  },
-);
+  }
+});
 
 const route = useRoute();
 async function getExercise(): Promise<void> {

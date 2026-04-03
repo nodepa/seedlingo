@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
+import { ref } from 'vue';
 import { mount, VueWrapper } from '@vue/test-utils';
 import { animate, pause, play } from '@/test-support/MockImplementations';
-import rootStore from '@/common/store/RootStore';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
 import getTestData from '@/MultipleChoice/data/MultipleChoiceTestData';
@@ -14,6 +14,17 @@ window.Element.prototype.animate = animate;
 HTMLMediaElement.prototype.play = play;
 HTMLMediaElement.prototype.pause = pause;
 
+// Local standalone state for the directive
+const isInstructionsMode = ref(false);
+const toggleInstructionsMode = () => {
+  isInstructionsMode.value = !isInstructionsMode.value;
+};
+const directiveOptions = {
+  Badge: InstructionsBadge,
+  isInstructionsMode,
+  toggleInstructionsMode,
+};
+
 describe('MultipleChoiceExercise', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let wrapper: VueWrapper<any>;
@@ -25,10 +36,7 @@ describe('MultipleChoiceExercise', () => {
         exerciseProp: getTestData(),
       },
       global: {
-        plugins: [
-          rootStore,
-          [InstructionsDirective, { Badge: InstructionsBadge }],
-        ],
+        plugins: [[InstructionsDirective, directiveOptions]],
       },
     });
   });

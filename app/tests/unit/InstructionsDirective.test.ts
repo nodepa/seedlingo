@@ -1,14 +1,11 @@
-import { Component, ComponentPublicInstance } from 'vue';
-import { Store } from 'vuex';
+import { Component, ComponentPublicInstance, ref } from 'vue';
 import { beforeEach, afterEach, describe, it, expect, vi } from 'vitest';
 import { mount, VueWrapper } from '@vue/test-utils';
 import { pause, play } from '@/test-support/MockImplementations';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
-import rootStore from '@/common/store/RootStore';
 import {
   Instructions,
   InstructionsElement,
-  InstructionsModeRootState,
 } from '@/common/directives/InstructionsDirective';
 
 window.HTMLMediaElement.prototype.pause = pause;
@@ -19,30 +16,27 @@ const spyAddAudioListeners = vi.spyOn(
   'addAudioListeners',
 );
 
-declare module '@vue/runtime-core' {
-  interface ComponentCustomProperties {
-    $store: Store<InstructionsModeRootState>;
-  }
-}
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let wrapper: VueWrapper<any>;
 let instructions: Instructions;
 const audioPath = 'http://just.a.test/audio.mp3';
 
+// Local standalone state — no dependency on useInstructionsMode composable
+const isInstructionsMode = ref(false);
+const toggleInstructionsMode = () => {
+  isInstructionsMode.value = !isInstructionsMode.value;
+};
+
 beforeEach(() => {
-  // Setup
-  rootStore.dispatch('resetState');
+  // Reset local state before each test
+  isInstructionsMode.value = false;
   spyAddAudioListeners.mockClear();
 
   wrapper = mount(
     {
       template: `<button />`,
     },
-    {
-      global: {
-        plugins: [rootStore],
-      },
-    },
+    {},
   );
 
   instructions = new Instructions(
@@ -50,11 +44,12 @@ beforeEach(() => {
     audioPath,
     wrapper.vm as ComponentPublicInstance,
     InstructionsBadge as Component,
-    rootStore as Store<InstructionsModeRootState>,
+    isInstructionsMode,
+    toggleInstructionsMode,
   );
 
   // Replicates the "bind"-function
-  if (wrapper.vm.$store.state.instructionsModeStore.isInstructionsMode) {
+  if (isInstructionsMode.value) {
     instructions.addEventListener();
     instructions.addStyling();
   }
@@ -81,7 +76,7 @@ describe('class Instructions', () => {
   it('addEventListener: adds event listeners', () => {
     const spy = vi.spyOn(wrapper.vm.$el, 'addEventListener');
     expect(spy).toHaveBeenCalledTimes(0);
-    rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
+    toggleInstructionsMode();
     expect(spy).toHaveBeenCalledTimes(1);
     instructions.addEventListener();
     expect(spy).toHaveBeenCalledTimes(2);
@@ -170,28 +165,27 @@ describe('class Instructions', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('unsubscribe: calls unsubscribe function from store', () => {
+  it('unsubscribe: calls unsubscribe function from watch', () => {
     // Setup and assert pre-state
-    // A side-effect of the store's toggleInstructionsMode value
-    // changing to false
+    // A side-effect of isInstructionsMode changing to false
     // is that pauseRegisteredInstructionsAudio() is called.
     // After unsubscribing,
     // pauseRegisteredInstructionsAudio() should no longer be called
-    // when toggleInstructionsMode turns false.
+    // when isInstructionsMode turns false.
     const spy = vi.spyOn(Instructions, 'pauseRegisteredInstructionsAudio');
 
     // Assert invocating pauseRegisteredInstructionsAudio()
     expect(spy).toHaveBeenCalledTimes(0);
-    rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
-    rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
+    toggleInstructionsMode();
+    toggleInstructionsMode();
     expect(spy).toHaveBeenCalledTimes(1);
 
     // Apply function
     instructions.unsubscribe();
 
     // Assert NO LONGER invocating pauseRegisteredInstructionsAudio()
-    rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
-    rootStore.dispatch('instructionsModeStore/toggleInstructionsMode');
+    toggleInstructionsMode();
+    toggleInstructionsMode();
     expect(spy).toHaveBeenCalledTimes(1); // Still 1
   });
 

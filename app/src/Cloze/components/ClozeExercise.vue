@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ComputedRef, ref, watch } from 'vue';
 import { IonCard, IonCardContent, IonCol, IonGrid, IonRow } from '@ionic/vue';
-import { useStore } from 'vuex';
+import { useContinueButton } from '@/common/composables/useContinueButton';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
@@ -35,7 +35,7 @@ const blanks = computed((): Array<ClozeWord> => {
   return exercise.value.clozeText.filter((entry) => entry.isBlank);
 });
 
-const store = useStore();
+const { showContinueButton } = useContinueButton();
 function determineCorrectness(selectedOption: ClozeOption): void {
   if (!selectedOption.suppressOptionAudio) {
     playOptionAudio(selectedOption);
@@ -50,7 +50,7 @@ function determineCorrectness(selectedOption: ClozeOption): void {
         }
       });
       blanks.value[0].revealed = true;
-      store.dispatch('setShowContinueButton', true);
+      showContinueButton.value = true;
     } else {
       selectedOption.buzzing = true;
       watch(
@@ -74,7 +74,7 @@ function determineCorrectness(selectedOption: ClozeOption): void {
       selectedOption.buzzing = true;
     }
     if (firstStillHiddenIndex === blanks.value.length - 1) {
-      store.dispatch('setShowContinueButton', true);
+      showContinueButton.value = true;
     }
   }
 }

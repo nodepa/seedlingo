@@ -8,8 +8,7 @@ import {
   IonRow,
   useIonRouter,
 } from '@ionic/vue';
-import { useStore } from 'vuex';
-
+import { useContinueButton } from '@/common/composables/useContinueButton';
 import type {
   ComprehensionExercise,
   ComprehensionOption,
@@ -25,7 +24,7 @@ import MultipleChoiceExercise from '@/MultipleChoice/components/MultipleChoiceEx
 import MatchingExercise from '@/Matching/components/MatchingExercise.vue';
 import calcFontSize from '@/common/utils/CalcFontSize';
 
-const store = useStore();
+const { showContinueButton } = useContinueButton();
 const ionRouter = useIonRouter();
 
 const props = defineProps<{
@@ -65,51 +64,48 @@ const allowWordInteraction = computed(() => currentStage.value >= STAGE.Review);
 onMounted(() => {
   currentStage.value = STAGE.ReadText;
 });
-watch(
-  () => store.state.showContinueButton,
-  (show: boolean) => {
-    if (!show) {
-      if (
-        currentQuestion.value >= 0 &&
-        currentQuestion.value < exercise.value.questions.length - 1
-      ) {
+watch(showContinueButton, (show: boolean) => {
+  if (!show) {
+    if (
+      currentQuestion.value >= 0 &&
+      currentQuestion.value < exercise.value.questions.length - 1
+    ) {
+      cancelCurrentQuestionAudio();
+      currentQuestion.value += 1;
+      togglePlayInstructions();
+    } else if (
+      currentExercise.value >= 0 &&
+      currentExercise.value <
+        (exercise.value.newWordsExercises?.length || 1) - 1
+    ) {
+      currentExercise.value += 1;
+    } else if (currentStage.value >= STAGE.Review) {
+      ionRouter.navigate({ name: 'Home' }, 'root', 'replace');
+    } else {
+      if (currentStage.value === STAGE.AnswerQuestions) {
         cancelCurrentQuestionAudio();
-        currentQuestion.value += 1;
-        togglePlayInstructions();
-      } else if (
-        currentExercise.value >= 0 &&
-        currentExercise.value <
-          (exercise.value.newWordsExercises?.length || 1) - 1
-      ) {
-        currentExercise.value += 1;
-      } else if (currentStage.value >= STAGE.Review) {
-        ionRouter.navigate({ name: 'Home' }, 'root', 'replace');
-      } else {
-        if (currentStage.value === STAGE.AnswerQuestions) {
-          cancelCurrentQuestionAudio();
-        }
-        exercise.value.stages[currentStage.value].instructionAudio?.cancel();
-        currentStage.value += 1;
       }
+      exercise.value.stages[currentStage.value].instructionAudio?.cancel();
+      currentStage.value += 1;
     }
-  },
-);
+  }
+});
 watch(currentStage, (currentStage) => {
   switch (currentStage) {
     case STAGE.ReadText:
-      store.dispatch('setShowContinueButton', true);
+      showContinueButton.value = true;
       break;
     case STAGE.AnswerQuestions:
       currentQuestion.value += 1;
       break;
     case STAGE.FocusNewWords:
-      store.dispatch('setShowContinueButton', true);
+      showContinueButton.value = true;
       break;
     case STAGE.PracticeNewWords:
       currentExercise.value += 1;
       break;
     case STAGE.Review:
-      store.dispatch('setShowContinueButton', true);
+      showContinueButton.value = true;
       break;
   }
   if (
@@ -171,7 +167,7 @@ function determineCorrectness(
         option.disabled = true;
       }
     });
-    store.dispatch('setShowContinueButton', true);
+    showContinueButton.value = true;
   } else {
     selectedOption.buzzing = true;
     watch(

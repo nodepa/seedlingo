@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
-import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
+import { useContinueButton } from '@/common/composables/useContinueButton';
 import {
   IonCard,
   IonCardContent,
@@ -19,7 +19,7 @@ import AudioProvider from '@/Content/AudioProvider';
 
 const route = useRoute();
 const ionRouter = useIonRouter();
-const store = useStore();
+const { showContinueButton } = useContinueButton();
 
 const unitIndex = +route.params.unitIndex;
 
@@ -35,7 +35,7 @@ watch(
   () => audio.value.playing,
   (playing) => {
     if (!playing) {
-      store.dispatch('setShowContinueButton', true);
+      showContinueButton.value = true;
     }
   },
 );
@@ -43,19 +43,16 @@ watch(word, () => {
   audio.value = AudioProvider.createAudioFromPath(word.value.audio as string);
   audio.value.play();
 });
-watch(
-  () => store.state.showContinueButton,
-  (show: boolean) => {
-    if (!show) {
-      if (currentWordIndex >= lastWordIndex) {
-        ionRouter.navigate({ name: 'Home' }, 'root', 'replace');
-      } else {
-        currentWordIndex += 1;
-        word.value = words[currentWordIndex];
-      }
+watch(showContinueButton, (show: boolean) => {
+  if (!show) {
+    if (currentWordIndex >= lastWordIndex) {
+      ionRouter.navigate({ name: 'Home' }, 'root', 'replace');
+    } else {
+      currentWordIndex += 1;
+      word.value = words[currentWordIndex];
     }
-  },
-);
+  }
+});
 onMounted(() => {
   audio.value.play();
 });

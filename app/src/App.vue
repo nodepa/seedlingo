@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ComputedRef } from 'vue';
 import { useRoute } from 'vue-router';
-import { useStore } from 'vuex';
+import { useInstructionsMode } from '@/common/composables/useInstructionsMode';
 import { IonApp, IonContent, IonRouterOutlet } from '@ionic/vue';
 
 import AppHeader from '@/AppHeader/components/AppHeader.vue';
@@ -11,16 +11,15 @@ import InstructionsOverlay from '@/Instructions/components/InstructionsOverlay.v
 import Content from '@/Content/Content';
 
 const route = useRoute();
-const store = useStore();
+const {
+  isInstructionsMode,
+  showInstructionsExplainer: storeShowInstructionsExplainer,
+} = useInstructionsMode();
 
 const showInstructionsExplainer = computed(
   () =>
-    route.name?.toString() === 'Home' && store.state.showInstructionsExplainer,
+    route.name?.toString() === 'Home' && storeShowInstructionsExplainer.value,
 );
-
-const isInstructionsMode = computed(() => {
-  return store.state.instructionsModeStore.isInstructionsMode;
-});
 
 const welcomeInstructions: ComputedRef<string> = computed(() => {
   return Content.getInstructionsAudio('welcome');

@@ -1,12 +1,6 @@
 <script setup lang="ts">
-import {
-  ComponentPublicInstance,
-  computed,
-  ComputedRef,
-  ref,
-  watch,
-} from 'vue';
-import { useStore } from 'vuex';
+import { ComponentPublicInstance, ref, watch } from 'vue';
+import { useContinueButton } from '@/common/composables/useContinueButton';
 import { createAnimation, IonButton, IonIcon } from '@ionic/vue';
 import { arrowForward } from 'ionicons/icons';
 
@@ -38,10 +32,7 @@ watch(
   },
 );
 
-const store = useStore();
-const showContinueButton: ComputedRef<boolean> = computed(() => {
-  return store.state.showContinueButton;
-});
+const { showContinueButton } = useContinueButton();
 </script>
 
 <template>
@@ -51,7 +42,7 @@ const showContinueButton: ComputedRef<boolean> = computed(() => {
     v-instructions="continueButtonInstructions"
     data-test="continue-button"
     aria-label="Show the next exercise"
-    @click="store.dispatch('setShowContinueButton', false)"
+    @click="showContinueButton = false"
   >
     <ion-icon :icon="arrowForward" color="success" aria-hidden="false" />
   </ion-button>

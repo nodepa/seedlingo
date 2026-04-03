@@ -1,5 +1,5 @@
 // Libraries, plugins, components
-import rootStore from '@/common/store/RootStore';
+import { ref } from 'vue';
 import { IonicVue, IonRouterOutlet } from '@ionic/vue';
 import InstructionsBadge from '@/common/components/InstructionsBadge.vue';
 import InstructionsDirective from '@/common/directives/InstructionsDirective';
@@ -22,17 +22,25 @@ vi.mock('vue-router', () => ({
   })),
 }));
 
+// Local standalone state for the directive — no dependency on the composable
+const isInstructionsMode = ref(false);
+const toggleInstructionsMode = () => {
+  isInstructionsMode.value = !isInstructionsMode.value;
+};
+const directiveOptions = {
+  Badge: InstructionsBadge,
+  isInstructionsMode,
+  toggleInstructionsMode,
+};
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 let wrapper: VueWrapper<any>;
 describe('App', () => {
   beforeEach(async () => {
+    isInstructionsMode.value = false;
     wrapper = mount(App, {
       global: {
-        plugins: [
-          IonicVue,
-          rootStore,
-          [InstructionsDirective, { Badge: InstructionsBadge }],
-        ],
+        plugins: [IonicVue, [InstructionsDirective, directiveOptions]],
         stubs: ['IonRouterOutlet'],
       },
     });
@@ -75,11 +83,7 @@ describe('App', () => {
 
     wrapper = mount(App, {
       global: {
-        plugins: [
-          IonicVue,
-          rootStore,
-          [InstructionsDirective, { Badge: InstructionsBadge }],
-        ],
+        plugins: [IonicVue, [InstructionsDirective, directiveOptions]],
         stubs: ['IonRouterOutlet'],
       },
     });

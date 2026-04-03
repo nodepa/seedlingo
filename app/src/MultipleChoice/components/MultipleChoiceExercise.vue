@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ComputedRef, onMounted, onUpdated, ref, watch } from 'vue';
-import { useStore } from 'vuex';
+import { useContinueButton } from '@/common/composables/useContinueButton';
 import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import { earOutline } from 'ionicons/icons';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
@@ -11,7 +11,7 @@ import type {
   MultipleChoiceItem,
 } from '../MultipleChoiceTypes';
 
-const store = useStore();
+const { showContinueButton } = useContinueButton();
 
 const props = defineProps<{
   exerciseProp: MultipleChoiceExercise;
@@ -45,7 +45,7 @@ function correctHandler(option: MultipleChoiceItem): void {
   if (option.audio) {
     option.audio.play();
   }
-  store.dispatch('setShowContinueButton', true);
+  showContinueButton.value = true;
 }
 
 function incorrectHandler(option: MultipleChoiceItem): void {
