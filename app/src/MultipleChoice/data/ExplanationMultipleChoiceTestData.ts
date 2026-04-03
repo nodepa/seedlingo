@@ -1,7 +1,6 @@
-import placeholder from '@/test-support/audio/placeholder-audio.mp3.audio?raw';
+import placeholder from '@/test-support/audio/placeholder-audio.mp3?url';
 import type { MultipleChoiceExercise } from '../MultipleChoiceTypes';
 import AudioProvider from '@/Content/AudioProvider';
-const audio2b64 = (rawMp3: string) => `data:audio/mpeg;base64,${rawMp3}`;
 
 export default function ExplanationMultipleChoiceTestData(): MultipleChoiceExercise {
   return {
@@ -15,7 +14,7 @@ export default function ExplanationMultipleChoiceTestData(): MultipleChoiceExerc
       {
         word: 'Uncle',
         // word: '姥姥',
-        audio: AudioProvider.createAudioFromData(audio2b64(placeholder)),
+        audio: AudioProvider.createAudioFromUrl(placeholder),
         correct: true,
         disabled: false,
         playing: false,
@@ -23,7 +22,7 @@ export default function ExplanationMultipleChoiceTestData(): MultipleChoiceExerc
       {
         word: 'Cousin',
         // word: '姥爷',
-        audio: AudioProvider.createAudioFromData(audio2b64(placeholder)),
+        audio: AudioProvider.createAudioFromUrl(placeholder),
         correct: false,
         disabled: false,
         playing: false,
@@ -31,7 +30,7 @@ export default function ExplanationMultipleChoiceTestData(): MultipleChoiceExerc
       {
         word: 'Aunt',
         // word: '阿姨',
-        audio: AudioProvider.createAudioFromData(audio2b64(placeholder)),
+        audio: AudioProvider.createAudioFromUrl(placeholder),
         correct: false,
         disabled: false,
         playing: false,
@@ -39,7 +38,7 @@ export default function ExplanationMultipleChoiceTestData(): MultipleChoiceExerc
       {
         word: 'Grandma',
         // word: '叔叔',
-        audio: AudioProvider.createAudioFromData(audio2b64(placeholder)),
+        audio: AudioProvider.createAudioFromUrl(placeholder),
         correct: false,
         disabled: false,
         playing: false,

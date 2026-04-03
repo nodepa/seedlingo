@@ -3,9 +3,9 @@ export interface ContentSpec {
 
   instructions: {
     // Paths to instructions audio must be relative to <project root>/content/:
-    // some/audio/path.mp3.audio
+    // some/audio/path.mp3
     // will be resolved to:
-    // <project root>/content/some/audio/path.mp3.audio
+    // <project root>/content/some/audio/path.mp3
     welcome: string;
     homeButton: string;
     continueButton: string;

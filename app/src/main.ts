@@ -40,18 +40,37 @@ app.use(
   }),
 );
 
-if (import.meta.env.PROD) {
-  // Make sure the splash screen is displayed for at least a minimum delay,
-  // but expect general loading times, too,
-  // which should count towards the total splash display time
-  const timeSinceNavStart =
-    Date.now() - (performance?.timing?.navigationStart || Infinity);
-  const minDelay = 2000;
-  const delayMountAmount = Math.max(minDelay - timeSinceNavStart, 0);
-  const splashDelay = new Promise<void>((resolve) =>
-    setTimeout(resolve, delayMountAmount),
-  );
-  Promise.all([router.isReady(), splashDelay]).then(() => app.mount('#app'));
-} else {
-  router.isReady().then(() => app.mount('#app'));
+function waitForAssets(): Promise<void> {
+  // In non-prod or without SW support, resolve immediately
+  if (!import.meta.env.PROD || !('serviceWorker' in navigator)) {
+    return Promise.resolve();
+  }
+
+  // If the SW already controls this page, assets are cached from a prior run
+  if (navigator.serviceWorker.controller) {
+    return Promise.resolve();
+  }
+
+  return new Promise<void>((resolve) => {
+    // 30s timeout — long enough for slow connections to finish pre-caching
+    const timeout = setTimeout(resolve, 30_000);
+
+    // BroadcastChannel works during the SW install phase even before the SW
+    // controls this page (unlike navigator.serviceWorker.addEventListener('message')).
+    const bc = new BroadcastChannel('sw-cache-progress');
+    bc.addEventListener('message', function handler(event: MessageEvent) {
+      if (
+        event.data &&
+        event.data.type === 'CACHE_PROGRESS' &&
+        event.data.loaded >= event.data.total
+      ) {
+        clearTimeout(timeout);
+        bc.removeEventListener('message', handler);
+        bc.close();
+        resolve();
+      }
+    });
+  });
 }
+
+Promise.all([router.isReady(), waitForAssets()]).then(() => app.mount('#app'));
