@@ -1,4 +1,4 @@
-import Plausible from 'plausible-tracker';
+import { init, track } from '@plausible-analytics/tracker';
 
 export default defineNuxtPlugin(() => {
   const runtimeConfig = useRuntimeConfig();
@@ -6,11 +6,6 @@ export default defineNuxtPlugin(() => {
 
   const domain =
     awsBranch === 'main' ? 'apiary.seedlingo.com' : 'test.seedlingo.com';
-
-  const plausible = Plausible({
-    domain,
-    trackLocalhost: true,
-  });
 
   const getProps = (): { AppVersion?: string } => {
     if (!appVersion) return {};
@@ -20,16 +15,21 @@ export default defineNuxtPlugin(() => {
     return { AppVersion: version };
   };
 
-  const router = useRouter();
-  router.afterEach(() => {
-    plausible.trackPageview({}, { props: getProps() });
+  init({
+    domain,
+    captureOnLocalhost: true,
+    autoCapturePageviews: false,
+    outboundLinks: true,
   });
 
-  plausible.enableAutoOutboundTracking();
+  const router = useRouter();
+  router.afterEach(() => {
+    track('pageview', { props: getProps() });
+  });
 
   return {
     provide: {
-      plausible,
+      plausible: { track },
     },
   };
 });

@@ -1,39 +1,26 @@
-import Plausible from 'plausible-tracker';
-import type { PlausibleOptions, EventOptions } from 'plausible-tracker';
+import { init, track } from '@plausible-analytics/tracker';
+import type { PlausibleConfig } from '@plausible-analytics/tracker';
 import type { App } from 'vue';
 import { inject } from 'vue';
 import { isPlatform } from '@ionic/vue';
 import { App as CapacitorApp } from '@capacitor/app';
 
-export type IPlausible = typeof Plausible;
-export type ReturnUsePlausible = Omit<
-  ReturnType<typeof Plausible>,
-  'enableAutoPageviews' | 'enableAutoOutboundTracking'
->;
+export type ReturnUsePlausible = { track: typeof track };
 
 export interface OptionPlugin {
-  init: PlausibleOptions;
+  init: PlausibleConfig;
   settings: InstallOptions;
   partytown?: boolean;
 }
 
 export interface InstallOptions {
   enableAutoPageviews?: boolean;
-  enableAutoOutboundTracking?: boolean;
 }
 
-type TrackPageview = (
-  eventData?: PlausibleOptions,
-  options?: EventOptions,
-) => void;
-
-const enableAutoPageviews = async (
-  trackPageview: TrackPageview,
-  hashMode: boolean,
-) => {
-  const props: { AppVersion?: string; MobileApp?: boolean } = {};
-  props.MobileApp = isPlatform('capacitor');
-  if (props.MobileApp) {
+const enableAutoPageviews = async (hashBasedRouting: boolean) => {
+  const props: { AppVersion?: string; MobileApp?: string } = {};
+  props.MobileApp = isPlatform('capacitor') ? 'true' : 'false';
+  if (props.MobileApp === 'true') {
     const appInfo = await CapacitorApp.getInfo();
     if (appInfo) {
       props.AppVersion = `v${appInfo.version}_${appInfo.build}`;
@@ -48,12 +35,9 @@ const enableAutoPageviews = async (
     }
   }
   const pageview = () =>
-    trackPageview(
-      {},
-      {
-        props,
-      },
-    );
+    track('pageview', {
+      props,
+    });
 
   const originalPushState = history.pushState;
   if (originalPushState) {
@@ -64,7 +48,7 @@ const enableAutoPageviews = async (
     addEventListener('popstate', pageview);
   }
 
-  if (hashMode) {
+  if (hashBasedRouting) {
     addEventListener('hashchange', pageview);
   }
 
@@ -75,7 +59,7 @@ const enableAutoPageviews = async (
       history.pushState = originalPushState;
       removeEventListener('popstate', pageview);
     }
-    if (hashMode) {
+    if (hashBasedRouting) {
       removeEventListener('hashchange', pageview);
     }
   };
@@ -84,22 +68,14 @@ const enableAutoPageviews = async (
 export function createPlausible(options: OptionPlugin) {
   return {
     install(app: App): void {
-      const plausible = Plausible(options.init);
+      init(options.init);
 
       if (options.settings.enableAutoPageviews === true) {
-        // plausible.enableAutoPageviews();
-        enableAutoPageviews(
-          plausible.trackPageview,
-          options.init.hashMode || false,
-        );
+        enableAutoPageviews(options.init.hashBasedRouting || false);
       }
 
-      if (options.settings.enableAutoOutboundTracking === true) {
-        plausible.enableAutoOutboundTracking();
-      }
-
-      app.config.globalProperties.$plausible = plausible;
-      app.provide('$plausible', plausible);
+      app.config.globalProperties.$plausible = { track };
+      app.provide('$plausible', { track });
     },
   };
 }
@@ -110,6 +86,6 @@ export function usePlausible() {
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
-    $plausible: ReturnType<typeof Plausible>;
+    $plausible: { track: typeof track };
   }
 }

@@ -64,6 +64,11 @@ export default defineConfig({
       '@/': `${__dirname}/src/`,
     },
   },
+  server: {
+    fs: {
+      allow: ['..'],
+    },
+  },
   test: {
     include: ['tests/{unit,component}/**/*.{test,spec}.{js,ts}'],
     environment: 'happy-dom',
