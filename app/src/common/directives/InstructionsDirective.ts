@@ -40,6 +40,8 @@ export class Instructions {
 
   private badgeVNode?: VNode;
 
+  private badgeContainer: HTMLElement;
+
   private audioElement: HTMLAudioElement;
 
   private vm: ComponentPublicInstance;
@@ -65,8 +67,9 @@ export class Instructions {
     this.vm = vm;
     this.isInstructionsMode = isInstructionsMode;
     this.toggleInstructionsMode = toggleInstructionsMode;
+    this.badgeContainer = document.createElement('div');
     this.badgeVNode = h(Badge, { playing: this.showAudioRipple });
-    render(this.badgeVNode, document.createElement('div'));
+    render(this.badgeVNode, this.badgeContainer);
 
     this.makeResponsiveToInstructionsModeChange();
     // In case already isInstructionsMode
@@ -148,7 +151,7 @@ export class Instructions {
 
   public unmount(): void {
     if (this.badgeVNode) {
-      render(null, this.badgeVNode.el as HTMLElement);
+      render(null, this.badgeContainer);
       this.badgeVNode = undefined;
     }
   }
