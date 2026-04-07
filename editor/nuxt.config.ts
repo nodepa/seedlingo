@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config';
 import { fileURLToPath } from 'node:url';
+import type { LoggingFunction, RollupLog } from 'rollup';
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-03-31',
@@ -64,7 +65,7 @@ export default defineNuxtConfig({
         // nuxt:module-preload-polyfill and @tailwindcss/vite:generate:build are
         // upstream plugins that transform files without emitting sourcemaps.
         // Suppress the resulting SOURCEMAP_BROKEN warnings since we can't fix them.
-        onwarn(warning, warn) {
+        onwarn(warning: RollupLog, warn: LoggingFunction) {
           if (warning.code === 'SOURCEMAP_BROKEN') return;
           warn(warning);
         },
@@ -75,7 +76,7 @@ export default defineNuxtConfig({
         '@vue/devtools-core',
         '@vue/devtools-kit',
         'aws-amplify/auth',
-        'plausible-tracker',
+        '@plausible-analytics/tracker',
         'aws-amplify',
         '@ionic/vue',
         'ionicons',

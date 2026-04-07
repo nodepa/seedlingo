@@ -35,11 +35,12 @@ app.use(
         __AWS_BRANCH__ === 'main' || isPlatform('capacitor')
           ? 'seedlingo.app'
           : 'test.seedlingo.app',
-      trackLocalhost: true,
+      captureOnLocalhost: true,
+      autoCapturePageviews: false,
+      outboundLinks: true,
     },
     settings: {
       enableAutoPageviews: true,
-      enableAutoOutboundTracking: true,
     },
   }),
 );
