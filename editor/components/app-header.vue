@@ -3,12 +3,19 @@
     <UIcon
       class="block w-10 h-10 mx-3 text-primary"
       name="game-icons-tree-beehive"
-      @click="toggleDarkTheme"
     />
     <UNavigationMenu class="w-auto" :items="links" />
     <div class="flex grow"></div>
-    <p>{{ user.signInDetails?.loginId }}</p>
-    <UButton class="text-nowrap m-4" @click="handleSignOut">Sign Out</UButton>
+
+    <!-- Theme toggle button -->
+    <AppThemeToggle class="mr-1" />
+
+    <!-- User dropdown -->
+    <UDropdownMenu :items="userMenuItems" :content="{ align: 'end' }">
+      <UButton icon="mdi:account-circle" color="neutral" variant="outline">
+        <UIcon name="lucide:chevron-down" />
+      </UButton>
+    </UDropdownMenu>
   </section>
 </template>
 
@@ -40,20 +47,25 @@ const links = [
 
 const user = await getCurrentUser().catch(() => ({ signInDetails: null }));
 
-const userPreferredTheme = useCookie<'light' | 'dark' | 'unset'>(
-  'userPreferredTheme',
-  {
-    default: () => 'unset',
-    maxAge: 60 * 60 * 24 * 365,
-  },
-);
-const toggleDarkTheme = () => {
-  userPreferredTheme.value =
-    userPreferredTheme.value === 'dark' ? 'light' : 'dark';
-};
-
 const handleSignOut = async () => {
   await signOut();
   await navigateTo('/login');
 };
+
+const userMenuItems = computed(() => [
+  [
+    {
+      label: user.signInDetails?.loginId ?? 'Unknown user',
+      icon: 'mdi:account-circle',
+      disabled: true,
+    },
+  ],
+  [
+    {
+      label: 'Sign Out',
+      icon: 'lucide:log-out',
+      onSelect: handleSignOut,
+    },
+  ],
+]);
 </script>
