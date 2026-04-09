@@ -16,16 +16,12 @@
       </div>
     </template>
     <template #footer>
-      <UButton
-        icon="lucide:sun-moon"
-        color="neutral"
-        variant="outline"
-        size="xs"
+      <AppThemeToggle
+        show-label
+        button-variant="outline"
+        size="md"
         class="float-right mt-2"
-        @click="toggleDarkTheme"
-      >
-        Toggle Dark Mode
-      </UButton>
+      />
     </template>
   </Authenticator>
 </template>
@@ -35,16 +31,6 @@ import { Authenticator } from '@aws-amplify/ui-vue';
 import { Hub } from 'aws-amplify/utils';
 
 definePageMeta({ layout: 'login' });
-
-const userPreferredTheme = useCookie<'light' | 'dark' | 'unset'>(
-  'userPreferredTheme',
-  { default: () => 'unset', maxAge: 60 * 60 * 24 * 365, sameSite: 'strict' },
-);
-
-const toggleDarkTheme = () => {
-  userPreferredTheme.value =
-    userPreferredTheme.value !== 'dark' ? 'dark' : 'light';
-};
 
 let unsubscribeHub: (() => void) | undefined;
 
