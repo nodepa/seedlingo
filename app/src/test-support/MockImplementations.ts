@@ -52,6 +52,8 @@ export class Animation {
 
   onremove = null;
 
+  overallProgress = null;
+
   pause(): void {
     /* do nothing */
   }

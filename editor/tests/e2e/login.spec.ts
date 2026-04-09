@@ -20,9 +20,9 @@ test.describe('Login page', () => {
     await expect(seedlingoLink).toHaveAttribute('href', /seedlingo\.com/);
   });
 
-  test('renders the Toggle Dark Mode button', async ({ page }) => {
-    // Verify the dark mode toggle button is present
-    await expect(page.getByText('Toggle Dark Mode')).toBeVisible();
+  test('renders the Toggle Theme button', async ({ page }) => {
+    // Verify the dark/light mode toggle button is present
+    await expect(page.getByText('System (light)')).toBeVisible();
   });
 
   test('renders the Amplify Authenticator sign-in form', async ({ page }) => {

@@ -8,73 +8,48 @@
 
 <script setup lang="ts">
 const appConfig = useAppConfig();
+const appTitle = appConfig.title as string;
 useHeadSafe({
-  title: appConfig.title,
+  title: appTitle,
   htmlAttrs: {
     lang: 'en',
   },
 });
 useSeoMeta({
-  title: appConfig.title,
-  ogTitle: appConfig.title,
+  title: appTitle,
+  ogTitle: appTitle,
   description: 'Content editor for Seedlingo.',
   ogDescription: 'Content editor for Seedlingo.',
 });
 
-// initial saved user preference
-const userPreferredTheme = useCookie<'light' | 'dark' | 'unset'>(
-  'userPreferredTheme',
-  {
-    default: () => 'unset',
-    maxAge: 60 * 60 * 24 * 365,
-    sameSite: 'strict',
-  },
-);
-// initial virtual state
-const browserPreferredTheme: Ref<'light' | 'dark' | 'unset'> = useState(
-  'browserPreferredTheme',
-  () => 'unset',
-);
-// update virtual state on os/browser state change
+const { userPreferredTheme, browserPreferredTheme } = useTheme();
+
+// Populate browserPreferredTheme from the OS on mount and keep it in sync.
+// This is the only place the matchMedia listener is registered.
 onMounted(() => {
-  window
-    .matchMedia('(prefers-color-scheme: dark)')
-    .addEventListener('change', (e) => {
-      browserPreferredTheme.value = e.matches ? 'dark' : 'light';
-    });
-  browserPreferredTheme.value = window.matchMedia(
-    '(prefers-color-scheme: dark)',
-  ).matches
-    ? 'dark'
-    : 'light';
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  mq.addEventListener('change', (e) => {
+    browserPreferredTheme.value = e.matches ? 'dark' : 'light';
+  });
+  browserPreferredTheme.value = mq.matches ? 'dark' : 'light';
 });
-// effectuate os/browser state change in DOM
-watch(browserPreferredTheme, (browserPreferredTheme) => {
-  if (userPreferredTheme.value === 'unset') {
-    document.documentElement.classList.toggle(
-      'dark',
-      browserPreferredTheme === 'dark',
-    );
-  } else {
-    document.documentElement.classList.toggle(
-      'dark',
-      userPreferredTheme.value === 'dark',
-    );
-  }
+
+// Apply .dark to <html> whenever the OS preference changes
+watch(browserPreferredTheme, (browser) => {
+  document.documentElement.classList.toggle(
+    'dark',
+    userPreferredTheme.value === 'unset'
+      ? browser === 'dark'
+      : userPreferredTheme.value === 'dark',
+  );
 });
-// effectuate user preference change in DOM
-watch(userPreferredTheme, (userPreferredTheme) => {
-  if (userPreferredTheme === 'unset') {
-    document.documentElement.classList.toggle(
-      'dark',
-      browserPreferredTheme.value === 'dark',
-    );
-  } else {
-    document.documentElement.classList.toggle(
-      'dark',
-      userPreferredTheme === 'dark',
-    );
-  }
+
+// Apply .dark to <html> whenever the user preference changes
+watch(userPreferredTheme, (user) => {
+  document.documentElement.classList.toggle(
+    'dark',
+    user === 'unset' ? browserPreferredTheme.value === 'dark' : user === 'dark',
+  );
 });
 </script>
 <style>
