@@ -145,6 +145,7 @@
       "@nuxt/ui>reka-ui>@floating-ui/vue>vue-demi": true,
       "esbuild": true,
       "nuxt>@parcel/watcher": true,
+      "@aws-amplify/backend-cli>@aws-amplify/sandbox>@aws-amplify/backend-deployer>tsx>esbuild": false,
       "@nuxt/ui>@nuxt/fonts>fontless>esbuild": false,
       "@nuxt/ui>vaul-vue>@vueuse/core>@vueuse/shared>vue-demi": false,
       "@nuxt/ui>vaul-vue>@vueuse/core>vue-demi": false,
