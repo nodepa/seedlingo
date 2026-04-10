@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { computed, ComputedRef, onMounted, onUpdated, ref, watch } from 'vue';
+import {
+  computed,
+  type ComputedRef,
+  onMounted,
+  onUpdated,
+  ref,
+  watch,
+} from 'vue';
 import { useContinueButton } from '@/common/composables/useContinueButton';
 import { IonCol, IonGrid, IonIcon, IonRow } from '@ionic/vue';
 import { earOutline } from 'ionicons/icons';

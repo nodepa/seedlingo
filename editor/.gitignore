@@ -25,6 +25,7 @@ logs
 
 # amplify
 .amplify
+.amplify-hosting
 amplify_outputs*
 amplifyconfiguration*
 
