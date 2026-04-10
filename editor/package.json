@@ -40,7 +40,7 @@
     "preview": "nuxi preview",
     "sandbox": "ampx sandbox",
     "setup": "allow-scripts && nuxi prepare",
-    "start": "nuxi build && nuxi preview",
+    "start": "nuxi build && node .output/server/index.mjs",
     "test": "npm run lint && npm run typecheck && npm run test:unit && npm run test:e2e",
     "test:e2e": "playwright test",
     "test:e2e:ci": "playwright test",
