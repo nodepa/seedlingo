@@ -6,6 +6,7 @@ import { earOutline } from 'ionicons/icons';
 import ExerciseButton from '@/common/components/ExerciseButton.vue';
 import Content from '@/Content/Content';
 import calcFontSize from '@/common/utils/CalcFontSize';
+import type { ExerciseAudio } from '@/common/types/ExerciseAudioType';
 import type {
   MultipleChoiceExercise,
   MultipleChoiceItem,
@@ -19,7 +20,7 @@ const props = defineProps<{
 
 watch(
   () => props.exerciseProp.itemUnderTestAudio,
-  (itemUnderTestAudio) => {
+  (itemUnderTestAudio: ExerciseAudio | undefined) => {
     itemUnderTestAudio?.play();
   },
   { flush: 'post' },
@@ -36,7 +37,7 @@ function determineCorrectness(option: MultipleChoiceItem): void {
 }
 
 function correctHandler(option: MultipleChoiceItem): void {
-  props.exerciseProp.options.forEach((item) => {
+  props.exerciseProp.options.forEach((item: MultipleChoiceItem) => {
     if (item !== option) {
       item.disabled = true;
     }
@@ -61,7 +62,8 @@ function incorrectHandler(option: MultipleChoiceItem): void {
           setTimeout(() => {
             if (
               !props.exerciseProp.options.reduce(
-                (anyPlaying, item) => anyPlaying || item.audio.playing,
+                (anyPlaying: boolean, item: MultipleChoiceItem) =>
+                  anyPlaying || item.audio.playing,
                 false,
               )
             ) {
@@ -77,7 +79,7 @@ function incorrectHandler(option: MultipleChoiceItem): void {
 }
 
 function cancelAllAudio() {
-  props.exerciseProp.options.forEach((item) => {
+  props.exerciseProp.options.forEach((item: MultipleChoiceItem) => {
     if (item.audio && item.audio.playing) {
       item.audio.cancel();
     }
@@ -192,7 +194,7 @@ onUpdated(() => {
       >
         <ExerciseButton
           :buzzing="option.audio.playing && !option.correct"
-          :data-test="`option-button-${index + 1}`"
+          :data-test="`option-button-${(index as number) + 1}`"
           :disabled="option.disabled && !option.audio.playing"
           :playing="option.audio.playing"
           :color="option.color || 'primary'"
