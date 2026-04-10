@@ -69,6 +69,7 @@
     "vue-router": "^5.0.4"
   },
   "devDependencies": {
+    "@mdi/js": "^7.4.47",
     "@aws-amplify/backend": "^1.22.0",
     "@aws-amplify/backend-cli": "^1.8.2",
     "@iconify-json/mdi": "^1.2.3",
@@ -136,6 +137,7 @@
   "lavamoat": {
     "allowScripts": {
       "$root$": false,
+      "@mdi/js": false,
       "@aws-amplify/backend-cli>@aws-amplify/backend-deployer>tsx>esbuild": true,
       "@aws-amplify/backend-cli>@aws-amplify/model-generator>@aws-amplify/graphql-types-generator>babel-types>babel-runtime>core-js": false,
       "@aws-amplify/backend-cli>@aws-amplify/model-generator>@aws-amplify/graphql-types-generator>core-js": false,
