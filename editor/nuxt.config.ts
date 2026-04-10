@@ -39,7 +39,32 @@ export default defineNuxtConfig({
       ],
     },
   },
-  typescript: {},
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        // app/src files import these packages directly, but TypeScript resolves
+        // modules by walking up from the source file's directory — which never
+        // reaches editor/node_modules when type-checking ../../app/src/**. Pin
+        // them here so nuxi prepare injects them into .nuxt/tsconfig.json via
+        // defu deep-merge, preserving all other Nuxt-generated paths.
+        paths: {
+          vue: [fileURLToPath(new URL('./node_modules/vue', import.meta.url))],
+          '@ionic/vue': [
+            fileURLToPath(
+              new URL('./node_modules/@ionic/vue', import.meta.url),
+            ),
+          ],
+          ionicons: [
+            fileURLToPath(new URL('./node_modules/ionicons', import.meta.url)),
+          ],
+          // Wildcard variant covers ionicons/icons and other subpath imports.
+          // Uses a relative path (relative to .nuxt/) because resolveConfig()
+          // only converts absolute paths, and a glob '*' can't go through URL.
+          'ionicons/*': ['../node_modules/ionicons/*'],
+        },
+      },
+    },
+  },
   // Nuxt alias config is injected into both Vite and the generated tsconfig,
   // so TypeScript and Vite both resolve @/ the same way.
   // The more-specific Content mock alias must be listed before the generic @/.
