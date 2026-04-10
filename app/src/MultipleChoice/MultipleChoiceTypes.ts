@@ -1,4 +1,4 @@
-import { ExerciseAudio } from '@/common/types/ExerciseAudioType';
+import type { ExerciseAudio } from '@/common/types/ExerciseAudioType';
 
 export interface MultipleChoiceExercise {
   itemUnderTestAudio?: ExerciseAudio;

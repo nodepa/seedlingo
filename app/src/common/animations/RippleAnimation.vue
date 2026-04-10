@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue';
-import { createAnimation, Animation } from '@ionic/vue';
+import { createAnimation, type Animation } from '@ionic/vue';
 
 interface Props {
   playing?: boolean;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ComponentPublicInstance, ref, watch } from 'vue';
+import { type ComponentPublicInstance, ref, watch } from 'vue';
 import { IonButton } from '@ionic/vue';
 import RippleAnimation from '@/common/animations/RippleAnimation.vue';
 
