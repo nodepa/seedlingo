@@ -32,12 +32,14 @@ import { Hub } from 'aws-amplify/utils';
 
 definePageMeta({ layout: 'login' });
 
+const route = useRoute();
 let unsubscribeHub: (() => void) | undefined;
 
 onMounted(() => {
   unsubscribeHub = Hub.listen('auth', async ({ payload }) => {
     if (payload.event === 'signedIn') {
-      await navigateTo('/');
+      const redirect = route.query.redirect as string | undefined;
+      await navigateTo(redirect || '/modules');
     }
   });
 });

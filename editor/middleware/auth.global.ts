@@ -12,10 +12,15 @@ export default defineNuxtRouteMiddleware(async (to) => {
   }
 
   if (to.path === '/login' && isAuthenticated) {
-    return navigateTo('/');
+    return navigateTo('/modules');
+  }
+
+  if ((to.path === '/' || to.path === '') && isAuthenticated) {
+    return navigateTo('/modules');
   }
 
   if (to.path !== '/login' && !isAuthenticated) {
-    return navigateTo('/login');
+    const query = to.path !== '/' ? { redirect: to.fullPath } : {};
+    return navigateTo({ path: '/login', query });
   }
 });
