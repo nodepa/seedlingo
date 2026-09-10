@@ -58,7 +58,7 @@
   "dependencies": {
     "@aws-amplify/ui-vue": "^4.4.2",
     "@ionic/vue": "^8.8.3",
-    "@nuxt/image": "^2.0.0",
+    "@nuxt/image": "^2.1.0",
     "@nuxt/ui": "^4.6.1",
     "aws-amplify": "^6.16.3",
     "ionicons": "^8.0.13",
